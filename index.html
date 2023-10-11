@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Thế giới mắt kính</title>
+</head>
+<body>
+<div id="menu">
+    <nav class="navbar navbar-expand-lg pb-0">
+        <div class="container-xxl m-md-auto mt-2">
+            <div class="row">
+                <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                    <a href="#" class="navbar-brand me-5">
+                        <img src="logo.png" alt="logo.png">
+                        KIMI
+                    </a>
+                </div>
+                <div class="search col-lg-5 col-md-6 col-sm-6 border-0 px-lg-0 px-md-5">
+                    <form class="d-flex input-group">
+                        <input class="form-control border-0 ps-3" type="text" name="search" id="search"
+                               placeholder="Nhập tên sản phẩm">
+                        <span class="input-group-text  border-0"><a class="nav-link" href="#"><i
+                                class="fa-solid fa-magnifying-glass"></i></a></span>
+                    </form>
+                </div>
+                <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
+                    <button type="button" class="btn d-flex float-lg-end">
+                        <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
+                        <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
+                    </button>
+                </div>
+                <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
+                    <button type="button" class="btn d-flex float-lg-end">
+                        <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
+                        <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
+                    </button>
+                </div>
+                <div class="cart col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
+                    <button type="button" class="btn d-flex float-lg-start">
+                        <span class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</span>
+                        <span class="icon">
+                            <span class="material-symbols-outlined">
+                                shopping_cart
+                            </span>
+                            <span id="amount-product" class="amount-product">0</span>
+                        </span>
+                    </button>
+                </div>
+                <div class="menu-product col-lg-12 col-md-1 col-sm-1">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar"
+                            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                         aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav m-auto">
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a class="nav-link " type="button" data-bs-toggle="dropdown">
+                                        <span>Kính mát</span>
+                                        <span class="material-symbols-outlined float-end">expand_more</span>
+                                    </a>
+                                    <ul class="dropdown-menu border-0">
+                                        <li><a class="dropdown-item" href="#">Kính mát 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Kính mát 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Kính mát 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        Mắt kính trẻ em
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Mắt kính trẻ em 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Mắt kính trẻ em 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Mắt kính trẻ em 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        Gọng kính
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Góng kính 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Góng kính 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Góng kính 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        Tròng kính
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Tròng kính 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Tròng kính 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Tròng kính 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="#" class="nav-link">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
