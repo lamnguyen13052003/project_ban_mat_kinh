@@ -1,0 +1,25 @@
+<a class="btnx" href="/account/login">Đăng nhập</a>
+							<a href="/account/register">Đăng ký</a>
+							<!DOCTYPE html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="theme-color" content="#f02b2b" />
+		<link rel="canonical" href="https://template-glasses.mysapo.net/account/login"/>
+		<meta name='revisit-after' content='2 days' />
+		<meta name="robots" content="noodp,index,follow" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">	
+		<meta name="description" content="">
+		<title>Đăng nhập tài khoản		</title>
+		<script>
+	var Bizweb = Bizweb || {};
+	Bizweb.store = 'template-glasses.mysapo.net';
+	Bizweb.id = 332764;
+	Bizweb.theme = {"id":894770,"name":"Glasses 13-02-2023","role":"main"};
+	Bizweb.template = 'customers/login';
+	if(!Bizweb.fbEventId)  Bizweb.fbEventId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+	var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+				return v.toString(16);
+			});		
+</script>
+<script>
