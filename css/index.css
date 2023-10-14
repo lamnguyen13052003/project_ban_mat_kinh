@@ -64,3 +64,41 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #F30;
     font-weight: bold;
 }
+.breadcrumb_background {
+    background-image: url(https://bizweb.dktcdn.net/100/332/764/themes/894770/assets/breadcrumb.jpg?1665388816899);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 200px;
+    z-index: 9;
+    padding: 75px 0 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+.title_page {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    color: #fff;
+    margin: 0 0 15px;
+    position: relative;
+    text-transform: uppercase;
+}
+.breadcrumb {
+    font-family: "Arial",sans-serif;
+    margin: 0;
+    font-size: 14px;
+    border-radius: 0;
+    padding: 0;
+    font-weight: 400;
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    line-height: 24px;
+    text-align: left;
+    color: white;
+}
+
+span, p, label, input, button{
+    font-size: 14px;
+}
