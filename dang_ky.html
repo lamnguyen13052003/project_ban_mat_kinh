@@ -132,6 +132,69 @@
     </nav>
 </div>
 
+<main class="my-4 main-login">
+    <div class="modal-body form-login">
+        <div class="row">
+            <div class="col-6">
+                <div class="tab-pane fade active show" id="modalLogin" role="tabpanel" aria-labelledby="modalLoginTab">
+                    <h5 class="text-center mb-2">
+                        ĐĂNG KÝ
+                    </h5>
+                    <div class="login-form-body">
+                        <form accept-charset="UTF-8" action="/account/login" id="customer_login" method="post">
+        <input name="form_type" type="hidden" value="customer_login">
+        <input name="utf8" type="hidden" value="✓">
+                        <div class="form-group mb-3">
+                            <label for="login-fullName">Họ và tên*</label>
+                            <input type="text" id="signup-fullName" placeholder="Họ và tên" class="form-control" name="customer[fullName]" required="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="login-phone">Số điện thoại*</label>
+                            <input type="phone" id="signup-phone" placeholder="Số điện thoại" class="form-control" name="customer[phone]" required="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Giới tính</label>
+                            <div class="row">
+                                <div class="col-3">
+                                    <input type="radio" id="register-gender-0" value="0" name="customer[gender]" checked=""> 
+                                    <label for="register-gender-0">Nữ</label>
+                                </div>
+                                <div class="col-3">
+                                    <input type="radio" id="register-gender-1" value="1" name="customer[gender]" data-gtm-form-interact-field-id="0"> 
+                                    <label for="register-gender-1">Nam</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="login-email">Email*</label>
+                            <input type="email" id="signup-email" placeholder="Email" class="form-control" name="customer[email]" required="">
+                        </div>
+                        <div class="form-group ">
+                            <label for="login-password">Mật khẩu*</label>
+                            <input type="password" id="signup-password" placeholder="Mật khẩu" class="form-control" name="customer[password]" required="">
+                        </div>
+                        
+                        <div class="form-group mt-2 d-flex-center">
+                            <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
+                                Đăng ký
+                            </button>
+                        </div>
+                        <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc</p>
+                        <p style="text-align: center; font-size: 13px;" >Bạn đã có tài khoản? <a style="font-size: 13px; color: blue;" href="/dang_nhap.html">Đăng nhập</a></p>
+        
+        
+        <input id="4acb11b585ff413fa278159c73db7b9f" name="g-recaptcha-response" type="hidden" value="03AFcWeA4KJfpetZhNC6KEwIGBSiKVxBaK_FGjMxzfIlhzQgM056f9OHsepLE8lAPA_2t8bHXRmjbLqdmy3pz19RQTi4GjWJ7qB2qzBhzpLdfYUFR7nrBPnPqot6p3831ygPsCD9xJOufcQc960KZfu28-My5JLKiFC74irZ9Q26n-ttZ-JfvNYX4gWtw9sA-XAU6r_ROWClf-PZhPT2ATEeCf5YHgeLPPxGcLYleQZhLDgzSo8qmiREwucZ4_Uaw8fiG4NqKVkjtn62jS_YMyzJevJsdqu6ifcIiIe7GkrFLQD7sU64Wv4fo7TPAr9Dq-BI4nQKU_sHtUDG45z-wo4ahle6YsFfmCT9Fh_QJ7cj4feeqm2jhDtnLftPwqQSoI1L-b_B63TeOSQ2-Tr1GAE54OHMFL_YtejxRyMhFHWQHPgahGG3q9KulZsxMqly1utBkGZlg27j_bbGH4oJXwigAbTk74dQTIVrtcM_VSeNVHBsPrhoxs_S6xUtOhyBCILdpQ-r_X9nmYBvP-RcT2V6LBC7myuZG35w"><noscript data-src="https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-"></noscript><noscript>grecaptcha.ready(function() {grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action: 'submit'}).then(function(token) {document.getElementById('4acb11b585ff413fa278159c73db7b9f').value = token;});});</noscript></form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 banner-account">
+            </div>
+        </div>  
+    </div>
+</main>
+<hr>
 <div id="footer">
     <footer class="footer">
         <div class="container ">
