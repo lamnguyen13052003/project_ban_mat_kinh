@@ -72,7 +72,9 @@ ul, li, a{
     background-color: #F30;
     font-weight: bold;
 }
-
+#menu .navbar .container-xxl .row .menu-product .offcanvas .navbar-nav .nav-item:hover .dropdown-menu{
+    display: block;
+}
 /***************************************Footer**********************************/
 #footer .footer .footer-top-item li{
     margin: 5px 0;
