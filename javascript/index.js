@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("input").each(function () {
+    $("input#search").each(function () {
         displayPlaceholder($(this));
     });
 });

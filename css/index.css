@@ -101,3 +101,29 @@ ul, li, a{
     cursor: pointer;
     font-weight: bold;
 }
+.form-login{
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px lightgray;
+}
+
+.d-flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner-account{
+    background-image: url('../images/bannerAccount.png');
+    background-size: cover;
+    border-radius: 10px;
+
+}
+.form-login label{
+    font-size: 14px;
+}
+.form-login input{
+    font-size: 14px;
+}
