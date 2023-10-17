@@ -159,6 +159,84 @@
     </nav>
 </div>
 
+<main class="my-4 main-login">
+    <div class="modal-body form-login">
+        <div class="row">
+            <div class="col-6">
+                <div class="tab-pane fade active show" id="modalLogin" role="tabpanel" aria-labelledby="modalLoginTab">
+                    <h5 class="text-center mb-2">
+                        ĐĂNG NHẬP
+                    </h5>
+                    <div class="login-form-body">
+                        <form accept-charset="UTF-8" action="/account/login" id="customer_login" method="post">
+                            <input name="form_type" type="hidden" value="customer_login">
+                            <input name="utf8" type="hidden" value="✓">
+
+                            <div class="form-group mb-3">
+                                <label for="login-email">Email*</label>
+                                <input type="email" id="login-email" placeholder="Email" class="form-control"
+                                       name="customer[email]" required="">
+                            </div>
+                            <div class="form-group ">
+                                <label for="login-password">Mật khẩu*</label>
+                                <input type="password" id="login-password" placeholder="Mật khẩu" class="form-control"
+                                       name="customer[password]" required="">
+                            </div>
+                            <div class="mt-2" style="display: flex; justify-content: flex-end;">
+                                <a style="font-size: 13px; color: blue;" href="#" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">Quên mật khẩu</a>
+                            </div>
+                            <div class="form-group mt-2 d-flex-center">
+                                <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc</p>
+                            <p style="text-align: center; font-size: 13px;">Bạn chưa có tài khoản? <a
+                                    style="font-size: 13px; color: blue;" href="./dang_ky.html">Đăng ký</a></p>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 banner-account">
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Quên mật khẩu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body form-forgot">
+                <form accept-charset="UTF-8" action="/account/login" id="customer_forget_password" method="post">
+                    <div class="form-group mb-3">
+                        <label for="login-email">Email*</label>
+                        <input type="email" id="forgot-email" placeholder="Email" class="form-control"
+                               name="customer[email]" required="">
+                    </div>
+                    <div class="form-group mt-2 d-flex-center">
+                        <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
+                            Quên mật khẩu
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+
 <div id="footer">
     <footer class="footer">
         <div class="container ">
