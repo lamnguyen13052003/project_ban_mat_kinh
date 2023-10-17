@@ -111,6 +111,8 @@ ul, li, a{
     cursor: pointer;
     font-weight: bold;
 }
+
+/***************************************Login-Signup-forget_password**********************************/
 .form-login{
     max-width: 800px;
     margin: auto;
