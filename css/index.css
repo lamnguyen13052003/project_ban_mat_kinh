@@ -121,9 +121,9 @@ ul, li, a{
     border-radius: 10px;
 
 }
-.form-login label{
+.form-login label, .form-forgot label{
     font-size: 14px;
 }
-.form-login input{
+.form-login input, .form-forgot input{
     font-size: 14px;
 }
