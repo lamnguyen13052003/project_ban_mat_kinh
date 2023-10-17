@@ -45,6 +45,11 @@ ul, li, a{
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
+#menu .active{
+    background-color: #2F189A;
+    color: #ffffff;
+}
+
 #menu .navbar .container-xxl .row .search form{
     background-color: #F5F5F5;
     border-radius: 10px;
@@ -74,6 +79,11 @@ ul, li, a{
 }
 #menu .navbar .container-xxl .row .menu-product .offcanvas .navbar-nav .nav-item:hover .dropdown-menu{
     display: block;
+}
+
+#menu .navbar .container-xxl .row .menu-product .offcanvas .navbar-nav .nav-item:hover .dropdown-item:hover{
+    background-color: #2F189A;
+    color: #ffffff;
 }
 /***************************************Footer**********************************/
 #footer .footer .footer-top-item li{
