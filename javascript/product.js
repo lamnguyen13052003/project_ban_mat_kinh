@@ -1,6 +1,7 @@
 $(document).ready(function () {
     setRateProduct();
     addActionClickForButtonFilter();
+    removeCheckedFilterAll();
     addActionClickForButtonSort();
     addActionFilterMore();
 });
@@ -30,6 +31,12 @@ function addActionFilterMore(){
             $(this).empty();
             $(this).append('<span class="border-0">Rút gọn <i class="fa-solid fa-arrow-left"></i></span>');
         }
+    });
+}
+
+function removeCheckedFilterAll(){
+    $("button#removeCheckedFilterAll").click(function (){
+        $("div.filter>ul>li>button").removeClass("checked");
     });
 }
 
