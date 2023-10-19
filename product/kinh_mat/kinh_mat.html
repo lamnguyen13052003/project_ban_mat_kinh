@@ -7,6 +7,7 @@
     <script src="../../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/product.css">
     <link rel="icon" type="image/x-icon" href="../../logo_icon.png">
 
     <script src="../../jquery/jquery-3.7.1.slim.min.js"></script>
@@ -127,7 +128,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../trong_kinh/trong_kinh.html" class="nav-link dropdown-toggle px-4 rounded"
+                                    <a href="../trong_kinh/trong_kinh.html"
+                                       class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Tròng kính
                                     </a>
@@ -159,6 +161,350 @@
     </nav>
 </div>
 
+<div id="main" class="mt-5 pb-5">
+    <div class="container">
+        <!--Phần slide-->
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <!--Các nút bên dưới hình-->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <!--Danh sách các hình-->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../../images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../../images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+
+            <!--2 Nút chuyển qua và lại-->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!--End phần slide-->
+
+        <!--Phần nội dung-->
+        <div class="content collection-wrap">
+            <!--phần fillter-->
+            <section class="collection-wrap-filter">
+                <!--Phần title-->
+                <div class="filter-header">
+                    <div class="section-title-all border-1 bg-primary">
+                        <h2>Bộ lọc (0 lựa chọn) <i class="lnil lni-plus"></i></h2>
+                    </div>
+                </div>
+
+                <!--Phần hiển thị danh sách bộ lọc-->
+                <div class="filter-body">
+                    <!--Các trường lọc-->
+                    <div class="filter">
+                        <h4>Thương hiệu</h4>
+                        <ul class="list-group list-group-horizontal">
+                            <li>
+                                <button class="border-0" id="data-brand-p1" value="brand 1" name="brandFilter">brand 1</button>
+                            </li>
+                            <li>
+                                <button class="border-0" id="data-brand-p2" value="brand 2" name="brandFilter">brand 2</button>
+                            </li>
+                            <!--Danh sách brand bị ẩn-->
+                            <li  class="d-none">
+                                <button class="border-0" id="data-brand-p3" value="brand 3" name="brandFilter">brand 3</button>
+                            </li>
+                            <li class="d-none">
+                                <button class="border-0" id="data-brand-p4" value="brand 4" name="brandFilter">brand 4</button>
+                            </li>
+                            <li class="filter-more">
+                                <button class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Các trường lọc-->
+                    <div class="filter ">
+                        <h4 class="">Chất liệu</h4>
+                        <ul class="list-group list-group-horizontal">
+                            <li>
+                                <button class="border-0" id="data-variant-p1" value="chatlieu_1" name="variantFilter">Chất liệu 1</button>
+                            </li>
+                            <li>
+                                <button class="border-0" id="data-variant-p2" value="chatlieu_2"  name="variantFilter">Chất liệu 2</button>
+                            </li>
+
+                            <!--Danh sách brand bị ẩn-->
+                            <li>
+                                <button class="border-0" id="data-variant-p3" value="chatlieu_3"  name="variantFilter">Chất liệu 3</button>
+                            </li>
+                            <li>
+                                <button class="border-0" id="data-variant-p4" value="chatlieu_4"  name="variantFilter">Chất liệu 4</button>
+                            </li>
+                            <li class="filter-more active" style="display: list-item;">
+                                <button class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Các trường lọc-->
+                    <div class="filter position-relative">
+                        <h4 class="d-block">Giá sản phẩm</h4>
+                        <div class="row row-cols-6 text-center g-2">
+                            <div class="col">
+                                <button class="border-0"  id="data-price-p1" data-pricemin="0" data-pricemax="220000"  name="priceFilter">0 - 220,000</button>
+                            </div>
+                            <div  class="col">
+                                <button class="border-0"  id="data-price-p2" data-pricemin="220000" data-pricemax="500000"  name="priceFilter">220,000 - 500,000</button>
+                            </div>
+                            <div  class="col">
+                                <button class="border-0"  id="data-price-p3" data-pricemin="500000" data-pricemax="1000000"  name="priceFilter">500,000 - 1,000,000</button>
+                            </div>
+                            <div  class="col">
+                                <button class="border-0"  id="data-price-p4" data-pricemin="1000000" data-pricemax="2000000"  name="priceFilter">1,000,000 - 2,000,000</button>
+                            </div>
+                            <div class="col">
+                                <button class="border-0"  id="data-price-p5" data-pricemin="2000000" data-pricemax="3000000"  name="priceFilter">2,000,000 - 3,000,000</button>
+                            </div>
+                            <div  class="col">
+                                <button class="border-0"  id="data-price-p6" data-pricemin="3000000" data-pricemax="5000000"  name="priceFilter">3,000,000 - 5,000,000</button>
+                            </div>
+                            <div  class="col">
+                                <button class="border-0"  id="data-price-p7" data-pricemin="5000000" data-pricemax="10000000"  name="priceFilter">5,000,000 - 10,000,000</button>
+                            </div>
+                            <div class="filter-more active col">
+                                <button class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Các trường lọc-->
+                    <div class="filter">
+                        <h4>Kiểu dáng</h4>
+                        <ul class="list-group list-group-horizontal">
+                            <li>
+                                <button class="border-0"   id="data-type-p1" value="kieudang_chunhat" name="typeFilter">Chữ Nhật</button>
+                            </li>
+                            <li>
+                                <button class="border-0"   id="data-type-p2" value="kieudang_tron" name="typeFilter">Tròn</button>
+                            </li>
+                            <li>
+                                <button class="border-0"   id="data-type-p3" value="kieudang_kieu3" name="typeFilter">kiểu 3</button>
+                            </li>
+                            <li>
+                                <button class="border-0"   id="data-type-p4" value="kieudang_kieu4" name="typeFilter">kiểu 4</button>
+                            </li>
+                            <li class="filter-more active" style="display: list-item;">
+                                <button class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Nút hủy bộ lọc-->
+                    <button class="f-button" type="button" data-action="close-filter">
+                        <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15"
+                             height="15">
+                            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+            <!--end filter-->
+
+            <!--phần sort-->
+            <section class="collection-wrap-sort">
+                <!--Phần title-->
+                <div class="sort-header">
+                    <div class="section-title-all">
+                        <h2>Sắp xếp <i class="lnil lni-plus"></i></h2>
+                    </div>
+                </div>
+
+                <!--Phần thân-->
+                <div class="sort-body">
+                    <div class="cSort">
+                        <h4>Sắp xếp theo</h4>
+
+                        <!--Phần danh sách các tiêu chí sort-->
+                        <ul class="cSort-list">
+
+                            <li>
+                                <input type="radio" id="data-sort-p0" value="manual" class="cSort-list-radio"
+                                       name="sortFilter">
+                                <label for="data-sort-p0">Mặc định</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p1" value="price-ascending"
+                                       class="cSort-list-radio" name="sortFilter">
+                                <label for="data-sort-p1">Giá: Tăng dần</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p2" value="price-descending"
+                                       class="cSort-list-radio" name="sortFilter">
+                                <label for="data-sort-p2">Giá: Giảm dần</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p3" value="title-ascending"
+                                       class="cSort-list-radio" name="sortFilter">
+                                <label for="data-sort-p3">Tên: A-Z</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p4" value="title-descending"
+                                       class="cSort-list-radio" name="sortFilter">
+                                <label for="data-sort-p4">Tên: Z-A</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p5" value="created-ascending"
+                                       class="cSort-list-radio" name="sortFilter">
+                                <label for="data-sort-p5">Cũ nhất</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p6" value="created-descending"
+                                       class="cSort-list-radio" name="sortFilter">
+                                <label for="data-sort-p6">Mới nhất</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="data-sort-p7" value="best-selling" class="cSort-list-radio"
+                                       name="sortFilter">
+                                <label for="data-sort-p7">Bán chạy nhất</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!--end sort-->
+
+            <!--Phần danh sách sản phẩm-->
+            <!--Kích thước tối đa là 4 dòng 4 cột-->
+            <!--Nếu thiếu thì tách trang-->
+            <!--cấu trúc tên khi tách trang: ví dụ tách trang kinh_mat.html (index bắt đầu là 02, 03, 04, ....)-->
+            <!--kinh_mat_page_02.html-->
+            <div class="collection-wrap-product-list">
+                <!--1 dòng-->
+                <div class="row">
+                    <!--Ô hiển thị-->
+                    <div class="pro-loop col-3">
+                        <!--Phạm vi hiển thị trong ô-->
+                        <div class="pro-loop-wrap">
+                            <!--Phần hình ảnh-->
+                            <div class="pro-loop-image">
+
+                                <!--Hiển thị hêt hàng-->
+                                <div class="pro-loop-sd d-none">
+                                    <span>Hết hàng</span>
+                                </div>
+
+                                <!--Hiển thị quà tặng-->
+                                <div class="gift product_gift_label d-none" data-id="1012829436">
+                                    <img class="lazyload" src="../../images/qua_tang.jpg" alt="icon quà tặng">
+                                </div>
+
+                                <!--Hiển thị hình ảnh-->
+                                <a href="/products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item">
+                                    <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
+                                    <picture>
+                                        <img class=" lazyloaded" src="//product.hstatic.net/1000269337/product/kinh-mat--gap-tron-hato-6825-c01_grande.jpg" data-src="//product.hstatic.net/1000269337/product/kinh-mat--gap-tron-hato-6825-c01_grande.jpg" alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                    </picture>
+                                    <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
+                                    <picture>
+                                        <img class=" lazyloaded" src="//product.hstatic.net/1000269337/product/kinh-mat--gap-tron-hato-6825-c02_grande.jpg" data-src="//product.hstatic.net/1000269337/product/kinh-mat--gap-tron-hato-6825-c02_grande.jpg" alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                    </picture>
+                                </a>
+                            </div>
+
+                            <!--hiển thị sản phẩm đang là sản phẩm hot-->
+                            <div class="pro-loop-sold">
+                                <label>
+                                    <img src="../../images/hot.jpg" alt="pro-loop-sold">
+                                </label>
+                            </div>
+
+                            <!--Hiển thị tên thương hiệu-->
+                            <span class="pro-loop-vendor">Tên thương hiệu</span>
+
+                            <!--Hiển thị tên sản phẩm-->
+                            <h3 class="pro-loop-name">
+                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                            </h3>
+
+
+                            <!--hiển thị giá-->
+                            <div class="pro-loop-price">
+                                <span>Giá mới ở đây 200,000</span>
+                                <del>Giá củ ở 250,000</del>
+                            </div>
+
+                            <!--Hiển thị đánh giá và số lượng bán-->
+                            <div class="sold_qty">
+                                <!--Phần đánh giá sao-->
+                                <div class="prod-review-loop">
+                                    <!--Danh sách ngôi sao-->
+                                    <div class="onirvapp--shape-container">
+                                        <ul>
+                                            <li><i class="fa-regular fa-star" style="color: #fdd836;"></i></li>
+                                            <li><i class="fa-regular fa-star" style="color: #fdd836;"></i></li>
+                                            <li><i class="fa-regular fa-star" style="color: #fdd836;"></i></li>
+                                            <li><i class="fa-regular fa-star" style="color: #fdd836;"></i></li>
+                                            <li><i class="fa-regular fa-star" style="color: #fdd836;"></i></li>
+                                        </ul>
+                                    </div>
+
+                                    <!--số lượng đánh giá-->
+                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
+                                </div>
+
+                                <!--Đường cắt ngang-->
+                                <span class="h-line"></span>
+
+                                <!--Phần hiển thị số lượng đã bán-->
+                                <div class="sold_qty_num">
+                                    <p>
+                                        Đã bán: <span>12</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!--2 nút thao tác-->
+                            <div class="pro-loop-bottom">
+                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">Thêm vào giỏ hàng</button>
+                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End 1 ô sản phẩm-->
+                </div>
+                <!--End 1 dòng-->
+            </div>
+            <!--end danh sách sản phẩm-->
+
+            <!--Phần chuyển trang (<- 1 2 3 ... ->)-->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            <!--End phần chuyển trang  (<- 1 2 3 ... ->)-->
+        </div>
+        <!--End phần nội dung-->
+    </div>
+</div>
+
 <div id="footer">
     <footer class="footer">
         <div class="container ">
@@ -180,7 +526,8 @@
                             </li>
                             <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
                             </li>
-                            <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i class="fa-brands fa-facebook-f px-1"></i><span
+                            <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
+                                    class="fa-brands fa-facebook-f px-1"></i><span
                                     class="px-1 hover"><b>KIMI</b> </span></a></li>
                             <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
                             <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
@@ -196,27 +543,33 @@
 
                         </div>
                         <ul>
-                            <li><a class="hover" href="../../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách thanh toán, giao nhận</a></li>
+                            <li><a class="hover" href="../../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
+                                online</a></li>
+                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
+                                thanh toán, giao nhận</a></li>
                             <li><a class="hover" href="../../pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và hoàn tiền</a></li>
+                            <li><a class="hover" href="../../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a>
+                            </li>
+                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi
+                                trả và hoàn tiền</a></li>
                             <li><a class="hover" href="../../pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
                         </ul>
                     </div>
 
                 </div>
             </div>
-        </div>
-        <div class="row footer-bot text-center border-3">
-            <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                <a href="../../index.html">
-                    <img src="../../logo.png" alt="logo.png">
-                    <span>KIMI</span>
-                </a>
+
+            <div class="row footer-bot text-center">
+                <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                    <a href="../../index.html">
+                        <img src="../../logo.png" alt="logo.png">
+                        <span>KIMI</span>
+                    </a>
+                </div>
+                <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
             </div>
-            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
         </div>
+
     </footer>
 
 </div>

@@ -1,0 +1,13 @@
+#main .content .filter-body li{
+    margin: 2px 4px;
+}
+
+#main .content .filter-body li button{
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+}
+
+#main .content .filter-body li.filter-more button{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
