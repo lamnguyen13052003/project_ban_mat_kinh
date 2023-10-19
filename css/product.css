@@ -43,16 +43,25 @@
     margin: 2px 0 5px 0;
 }
 
-#main .content .filter-body ul li button{
+#main .content .filter-body ul li button,
+#main .content .sort-body ul li button{
     background-color: rgba(0, 0, 0, 0.08);
     border-radius: 5px;
 }
 
-#main .content .filter-body ul li.filter-more button{
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
+
+#main .content .filter-body ul li button.checked,
+#main .content .sort-body ul li button.checked{
+    background-color: #2F189A;
+    color: #fff;
 }
 
+#main .content .filter-body ul li.filter-more span{
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 3px 10px;
+    cursor: pointer;
+}
 /***************************Phần danh sách sản phẩm*********************************/
 #main .content .collection-wrap-product-list .pro-loop{
     padding: 0 10px;
