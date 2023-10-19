@@ -2,6 +2,7 @@ $(document).ready(function () {
     setRateProduct();
     addActionClickForButtonFilter();
     addActionClickForButtonSort();
+    addActionFilterMore();
 });
 
 function addActionClickForButtonFilter() {
@@ -16,8 +17,24 @@ function addActionClickForButtonSort() {
     });
 }
 
+function addActionFilterMore(){
+    $("div.filter>ul>li.filter-more").click(function (){
+        if($(this).hasClass("active")){
+            $(this).parent().children("li.hidden").addClass("d-none");
+            $(this).removeClass("active");
+            $(this).empty();
+            $(this).append('<span class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></span>');
+        }else {
+            $(this).parent().children("li.hidden").removeClass("d-none");
+            $(this).addClass("active");
+            $(this).empty();
+            $(this).append('<span class="border-0">Rút gọn <i class="fa-solid fa-arrow-left"></i></span>');
+        }
+    });
+}
+
 function changeColorButtonCheck(button) {
-   if(button.attr("class").indexOf("checked") >= 0){
+   if(button.hasClass("checked")){
         button.removeClass("checked");
    }else{
        button.addClass("checked");
