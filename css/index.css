@@ -78,6 +78,12 @@ ul, li, a{
     background-color: #F30;
     font-weight: bold;
 }
+
+#menu .navbar .container-xxl .row .menu-product{
+    margin-top: 5px;
+    padding-bottom: 5px;
+}
+
 #menu .navbar .container-xxl .row .menu-product .offcanvas .navbar-nav .nav-item:hover .dropdown-menu{
     display: block;
 }
