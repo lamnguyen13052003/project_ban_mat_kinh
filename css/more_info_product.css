@@ -168,6 +168,10 @@ input::-webkit-inner-spin-button {
 }
 
 /***********************Phần productTabsContent**********************/
+#main .productTabsContent{
+    height: fit-content;
+}
+
 #main .productTabsContent ul.nav-tabs li a{
     color: black;
     border-radius: 10px 10px 0 0;
@@ -181,6 +185,10 @@ input::-webkit-inner-spin-button {
 
 #main .productTabsContent .tab-content .tab-pane.active{
     display: block;
+}
+
+#main .productTabsContent .tab-content .tab-pane>div img{
+    width: 700px;
 }
 
 #main .productTabsContent .tab-content .tab-pane>a{
