@@ -333,6 +333,8 @@ section:not(#silder-section){
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+
 }
 .home-about .home-about-top{
     display: flex;
@@ -345,6 +347,7 @@ section:not(#silder-section){
 }
 .home-about .home-about-top > span{
     transition: box-shadow 0.3s;
+    border-radius: 10px;
 
 }
 .home-about .home-about-top > span:hover{
@@ -573,9 +576,72 @@ section:not(#silder-section){
 .home-banner .home-banner-wrap .home-banner-wrap-left a:hover{
     background-color: #FFFFFF;
     color: var(--color-blue-origin);
-    padding: 12px 24px;
 
 }
+/******home blog****/
+.slick-track .article-item {
+    display: block;
+    box-shadow: rgba(0, 0 ,0 ,0.5);
+    transition: box-shadow 0.3s;
+}
+.slick-track .article-item:hover{
+    box-shadow: rgb(47, 24, 154, 1);
+
+}
+.article-item .article-item-bottom {
+    max-width: 85%;
+    background: #fff;
+    border-radius: 10px;
+    margin: -75px auto 0;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+.article-item .article-item-bottom .article-item-bottom-name a {
+    transition: all .5s;
+    font-size: 16px;
+    color: #212121;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.article-item .article-item-bottom .article-item-bottom-des {
+    color: #333;
+    margin-top: 10px;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+.home-blog-body .slick-list .slick-track .article-item .article-item-top a{
+    display: block;
+    position: relative;
+}
+.home-blog-body .slick-list .slick-track .article-item .article-item-top a:hover::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(232, 159, 72, 0.5);
+    z-index: 1;
+    transition: all .5s;
+}
+
+.home-blog-body .slick-list .slick-track .article-item .article-item-bottom  a:hover{
+    color: var(--color-blue-origin);
+}
+.home-blog-body .slick-track .slick-arrow{
+    background-color: #f4f4f4;
+}
+.home-blog-body .slick-track .slick-arrow:hover{
+    background-color: var(--color-blue-origin);
+}
+.home-blog-body .slick-list .slick-track .slick-dots{
+    margin: 0 auto;
+}
+
+
 /***************************************Login-Signup-forget_password**********************************/
 .form-login {
     max-width: 800px;

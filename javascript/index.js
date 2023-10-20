@@ -105,7 +105,12 @@ $(document).ready(function() {
     }
     setInterval(resizeImage, 100);
 });
-
+/***slick***/
+$('.multiple-items').slick({
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3
+});
 
 
 
