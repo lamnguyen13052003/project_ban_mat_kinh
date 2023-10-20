@@ -162,52 +162,1008 @@
     </nav>
 </div>
 <!--    section 1-->
-<div id="slider">
-    <a href="#" style="display: block">
-        <div class="" id="section_slider">
-            <div class="container-slider">
-                <div id="myCarousel" class="carousel slide">
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active slide z-n1">
-                            <img src="font/img_slide/slideShow_1.png" alt="">
+<section id="silder-section">
+    <div id="slider">
+        <a href="#" style="display: block">
+            <div class="" id="section_slider">
+                <div class="container-slider">
+                    <div id="myCarousel" class="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active slide z-n1">
+                                <img src="font/img_slide/slideShow_1.png" alt="">
+                            </div>
+                            <div class="item slide z-n1">
+                                <img src="font/img_slide/slideShow_2.png" alt="">
+                            </div>
+                            <div class="item slide z-n1">
+                                <img src="font/img_slide/slideShow_3.jpg" alt="">
+                            </div>
                         </div>
-                        <div class="item slide z-n1">
-                            <img src="font/img_slide/slideShow_2.png" alt="">
-                        </div>
-                        <div class="item slide z-n1">
-                            <img src="font/img_slide/slideShow_3.jpg" alt="">
+                        <button type="button" class="slick-prev slick-arrow z-3 left">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button type="button" class="slick-next slick-arrow z-3 right">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <ul class="slick-dots  z-3" style="display: flex;" role="tablist">
+                            <li class=" px-1" role="presentation">
+                                <button class="slick-active slick" type="button" role="tab" id="slick-slide-control00"
+                                        aria-controls="slick-slide00"
+                                        aria-label="1 of 3" tabindex="-1">
+                                </button>
+                            </li>
+                            <li class="px-1" role="presentation">
+                                <button class=" slick" id="slick-slide-control01" type="button" role="tab"
+                                        aria-controls="slick-slide01"
+                                        aria-label="2 of 3" tabindex="-1">
+                                </button>
+                            </li>
+                            <li role="presentation" class="px-1">
+                                <button class="slick" id="slick-slide-control02" type="button" role="tab"
+                                        aria-controls="slick-slide02"
+                                        aria-label="3 of 3" tabindex="0" aria-selected="true">
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+<section class="home-fSale">
+    <!--    section 2-->
+    <div id="fsale" class="container-xxl">
+        <div class="home-fSale-wrap">
+            <div class="row position-relative">
+                <div class="img-fsale text-center z-2">
+                    <img src="font/img-fsale/home_fsale_image.png" alt="" srcset="">
+                </div>
+                <div class="time-fsale row z-3 position-absolute">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-5">
+                        <label class="text-label">Kết thúc sau</label>
+                        <div data-time="31/05/2023 24:00:00" class="row">
+                            <span class="days g-col-1">00</span>
+                            <span class="hours g-col-1">00</span>
+                            <span class="minutes g-col-1">00</span>
+                            <span class="seconds g-col-1">00</span>
                         </div>
                     </div>
-                    <button type="button" class="slick-prev slick-arrow z-3 left">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <button type="button" class="slick-next slick-arrow z-3 right">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                    <ul class="slick-dots  z-3" style="display: flex;" role="tablist">
-                        <li class="slick-active px-1" role="presentation">
-                            <button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00"
-                                    aria-label="1 of 3" tabindex="-1">
-                            </button>
-                        </li>
-                        <li class="px-1" role="presentation">
-                            <button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01"
-                                    aria-label="2 of 3" tabindex="-1">
-                            </button>
-                        </li>
-                        <li role="presentation" class="px-1">
-                            <button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02"
-                                    aria-label="3 of 3" tabindex="0" aria-selected="true">
-                            </button>
-                        </li>
-                    </ul>
+                </div>
+            </div>
+            <div class="show-item-sale">
+                <div class="container-fluid">
+                    <div class="list_item ">
+                        <div class="item-sale ">
+                            <div class="frame">
+                                <div class="img-item-sale ">
+                                    <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                                </div>
+                                <label class="pro-loop-sold row">
+                                    <div class="col-md-4 pro-loop-sold-sub" style="width: 50px; height: 50px">
+                                        <img class="to-nho" src="font/img-fsale/hot_33.png" alt="pro-loop-sold">
+                                    </div>
+                                    <div class="col-md-8 pro-loop-sold-sub">
+                                        <span class="edit_text px-lg-0">Còn lại 70 sản phẩm</span>
+                                    </div>
+                                </label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 61%"></div>
+                                </div>
+                                <div class="pro-loop-vendor">
+                                    <span class="pro-loop-vendor-sb">GM</span>
+                                </div>
+                                <div class="name-item">
+                                    <a href="#"
+                                       title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                                       tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                        Trường</a>
+                                </div>
+                                <div class="pro-loop-price">
+                                    <span class="px-1">400,000</span>
+                                    <del class="px-1">950,000</del>
+                                </div>
+                                <div class="sold_qty ">
+                                    <div class="danh-gia ">
+                                        <ul>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-solid fa-star"></i></li>
+                                            <li><i class="fa-regular fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="prod-review-loop px-1">
+                                        <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                                    </div>
+                                    <div class="sold_qty_num px-2">
+                                        <p>
+                                            Đã bán: <span>1502</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="pro-loop-bottom">
+                                    <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
+                                            data-id="1065360150" tabindex="0">Mua ngay
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-sale ">
+                        <div class="frame">
+                            <div class="img-item-sale ">
+                                <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                            </div>
+                            <label class="pro-loop-sold row">
+                                <div class="col-md-4 pro-loop-sold-sub" style="width: 50px; height: 50px">
+                                    <img class="to-nho" src="font/img-fsale/hot_33.png" alt="pro-loop-sold">
+                                </div>
+                                <div class="col-md-8 pro-loop-sold-sub">
+                                    <span class="edit_text px-lg-0">Còn lại 70 sản phẩm</span>
+                                </div>
+                            </label>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 61%"></div>
+                            </div>
+                            <div class="pro-loop-vendor">
+                                <span class="pro-loop-vendor-sb">GM</span>
+                            </div>
+                            <div class="name-item">
+                                <a href="#"
+                                   title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                                   tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                    Trường</a>
+                            </div>
+                            <div class="pro-loop-price">
+                                <span class="px-1">400,000</span>
+                                <del class="px-1">950,000</del>
+                            </div>
+                            <div class="sold_qty ">
+                                <div class="danh-gia ">
+                                    <ul>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="prod-review-loop px-1">
+                                    <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                                </div>
+                                <div class="sold_qty_num px-2">
+                                    <p>
+                                        Đã bán: <span>1502</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="pro-loop-bottom">
+                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
+                                        data-id="1065360150" tabindex="0">Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-sale ">
+                        <div class="frame">
+                            <div class="img-item-sale ">
+                                <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                            </div>
+                            <label class="pro-loop-sold row">
+                                <div class="col-md-4 pro-loop-sold-sub" style="width: 50px; height: 50px">
+                                    <img class="to-nho" src="font/img-fsale/hot_33.png" alt="pro-loop-sold">
+                                </div>
+                                <div class="col-md-8 pro-loop-sold-sub">
+                                    <span class="edit_text px-lg-0">Còn lại 70 sản phẩm</span>
+                                </div>
+                            </label>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 61%"></div>
+                            </div>
+                            <div class="pro-loop-vendor">
+                                <span class="pro-loop-vendor-sb">GM</span>
+                            </div>
+                            <div class="name-item">
+                                <a href="#"
+                                   title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                                   tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                    Trường</a>
+                            </div>
+                            <div class="pro-loop-price">
+                                <span class="px-1">400,000</span>
+                                <del class="px-1">950,000</del>
+                            </div>
+                            <div class="sold_qty ">
+                                <div class="danh-gia ">
+                                    <ul>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="prod-review-loop px-1">
+                                    <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                                </div>
+                                <div class="sold_qty_num px-2">
+                                    <p>
+                                        Đã bán: <span>1502</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="pro-loop-bottom">
+                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
+                                        data-id="1065360150" tabindex="0">Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-sale ">
+                        <div class="frame">
+                            <div class="img-item-sale ">
+                                <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                            </div>
+                            <label class="pro-loop-sold row">
+                                <div class="col-md-4 pro-loop-sold-sub" style="width: 50px; height: 50px">
+                                    <img class="to-nho" src="font/img-fsale/hot_33.png" alt="pro-loop-sold">
+                                </div>
+                                <div class="col-md-8 pro-loop-sold-sub">
+                                    <span class="edit_text px-lg-0">Còn lại 70 sản phẩm</span>
+                                </div>
+                            </label>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 61%"></div>
+                            </div>
+                            <div class="pro-loop-vendor">
+                                <span class="pro-loop-vendor-sb">GM</span>
+                            </div>
+                            <div class="name-item">
+                                <a href="#"
+                                   title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                                   tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                    Trường</a>
+                            </div>
+                            <div class="pro-loop-price">
+                                <span class="px-1">400,000</span>
+                                <del class="px-1">950,000</del>
+                            </div>
+                            <div class="sold_qty ">
+                                <div class="danh-gia ">
+                                    <ul>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="prod-review-loop px-1">
+                                    <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                                </div>
+                                <div class="sold_qty_num px-2">
+                                    <p>
+                                        Đã bán: <span>1502</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="pro-loop-bottom">
+                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
+                                        data-id="1065360150" tabindex="0">Mua ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </a>
+    </div>
+    </div>
+</section>
 
-</div>
+<section class="home-about">
+    <div class="container">
+        <div class="home-about-top row">
+			<span class="col-md-6 col-6">
+				<a href="#">
+				<img class=" lazyloaded " src="font/home_about/home_about_top.png" alt="home-about-top"></a>
+            </span>
+            <div class="section-title-all col-md-6 col-6">
+                <div>
+                    <span>Chuẩn Auth 1:1</span>
+                    <h2><p><a href="#">Bộ Sưu Tập Gentle Monster&nbsp;</a></p></h2>
+                </div>
+                <p class="py-md-3"></p>
+                <p><a href="#">Gentle Monster hàng chuẩn Auth rẻ hơn 1/10 Store.&nbsp;</a></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="home-about-bot">
+			<span><a href="#">
+				<img class=" lazyloaded" src="font/home_about/home_about_bot.png" alt="home-about-bot"></a></span>
+        </div>
+    </div>
+</section>
+<section class="home-product-slider">
+    <div class="container">
+        <div class="home-product-slider-wrap">
+            <div class="home-product-slider-wrap-header">
+                <div class="section-title-all">
+                    <div>
+                        <span>Gentle Monster</span>
+                        <h2>Sản phẩm nổi bật</h2>
+                    </div>
+                    <a class="" href="#" data-hover="Xem thêm">Xem thêm <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="home-product-slider-wrap-body slick-initialized slick-slider slick-dotted">
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="slick-prev slick-arrow z-3 left">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button type="button" class="slick-next slick-arrow z-3 right">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="home-product-slider-wrap-body slick-initialized slick-slider slick-dotted">
+                <ul class="slick-dots" style="display: flex;" role="tablist">
+                    <li class=" px-1" role="presentation">
+                        <button class="slick-active slick" type="button" role="tab" id="slick-slide-control03"
+                                aria-controls="slick-slide00"
+                                aria-label="1 of 3" tabindex="-1">
+                        </button>
+                    </li>
+                    <li class="px-1" role="presentation">
+                        <button class=" slick" id="slick-slide-control04" type="button" role="tab"
+                                aria-controls="slick-slide01"
+                                aria-label="2 of 3" tabindex="-1">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="home-gallery">
+    <div class="container">
+        <div class="home-product-slider-wrap">
+            <div class="home-product-slider-wrap-header">
+                <div class="section-title-all">
+                    <div>
+                        <span>BIG SALE</span>
+                        <h2>Bộ sưu tập</h2>
+                    </div>
+                    <a class="" href="#" data-hover="Xem thêm">Xem thêm <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="khung-trong container m-3">
+                    <div class="home-gallery-wrap-body  row p-md-3">
+                        <div class="home-gallery-wrap-body-item col">
+                            <a class="col-8" href="#" data-fancybox="gallery">
+                                <img class=" ls-is-cached lazyloaded"
+                                     src="font/home_gallery/home_gallery_item_imageOne_1.png" alt="imageOne-1">
+                                <span>Bộ sưu tập Kuboraum</span>
+                            </a>
+                            <a class="col-4" href="#" data-fancybox="gallery">
+                                <img class=" ls-is-cached lazyloaded"
+                                     src="font/home_gallery/home_gallery_item_imageTwo_1.png" alt="imageOne-1">
+                                <span>Kính Râm Cận Sap Lens</span>
+                            </a>
+                        </div>
+                        <div class="home-gallery-wrap-body-item col">
+                            <a class="col-4" href="#" data-fancybox="gallery">
+                                <img class=" ls-is-cached lazyloaded"
+                                     src="font/home_gallery/home_gallery_item_imageOne_2.png" data-src=""
+                                     alt="imageOne-2">
+                                <span>Bộ sưu tập Chrome Hearts</span>
+                            </a>
+                            <a class="col-8" href="#" data-fancybox="gallery col">
+                                <img class=" ls-is-cached lazyloaded"
+                                     src="font/home_gallery/home_gallery_item_imageTwo_2.png" alt="imageOne-2">
+                                <span>Tròng Kính Carl Zeiss 10% OFF</span>
+                            </a>
+                        </div>
+                        <div class="home-gallery-wrap-body-item col">
+                            <a class="col-8" href="#" data-fancybox="gallery">
+                                <img class=" ls-is-cached lazyloaded"
+                                     src="font/home_gallery/home_gallery_item_imageOne_3.png" alt="imageOne-3">
+                                <span>Bộ sưu tập Outdo</span>
+                            </a>
+                            <a class="col-4" href="#" data-fancybox="gallery">
+                                <img class=" ls-is-cached lazyloaded"
+                                     src="font/home_gallery/home_gallery_item_imageTwo_3.png" alt="imageOne-3">
+                                <span>Hoya ưu đãi 20% Chỉ Hôm Nay</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="home-product">
+    <div class="container">
+        <div class="home-product-slider-wrap">
+            <div class="home-product-slider-wrap-header">
+                <div class="section-title-all">
+                    <div>
+                        <span>Kính mát</span>
+                        <h2>Sản phẩm khuyến mãi</h2>
+                    </div>
+                    <a class="" href="#" data-hover="Xem thêm">Xem thêm <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="home-product-slider-wrap-body slick-initialized slick-slider slick-dotted">
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-sale py-1">
+                    <div class="frame">
+                        <div class="img-item-sale ">
+                            <img class="no-hover-img" src="font/img-fsale/item_1.png">
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61%"></div>
+                        </div>
+                        <div class="pro-loop-vendor">
+                            <span class="pro-loop-vendor-sb">GM</span>
+                        </div>
+                        <div class="name-item">
+                            <a href="#"
+                               title="Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị Trường"
+                               tabindex="0">Gọng Kính V Gentle Monster South Side Rep 1:1 Bản Chuẩn Nhất Thị
+                                Trường</a>
+                        </div>
+                        <div class="pro-loop-price">
+                            <span class="px-1">400,000</span>
+                            <del class="px-1">950,000</del>
+                        </div>
+                        <div class="sold_qty ">
+                            <div class="danh-gia ">
+                                <ul>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="prod-review-loop px-1">
+                                <span class="onireviewapp-loopitem-title">(8 đánh giá)</span>
+                            </div>
+                            <div class="sold_qty_num px-2">
+                                <p>
+                                    Đã bán: <span>1502</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pro-loop-bottom">
+                            <button type="button" class="f-button xem-nhanh" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Xem nhanh
+                            </button>
+                            <button type="button" class="f-button mua-ngay" data-type="add-cart"
+                                    data-id="1065360150" tabindex="0">Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="slick-prev slick-arrow z-3 left">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button type="button" class="slick-next slick-arrow z-3 right">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="home-product-slider-wrap-body slick-initialized slick-slider slick-dotted">
+                <ul class="slick-dots" style="display: flex;" role="tablist">
+                    <li class=" px-1" role="presentation">
+                        <button class="slick-active slick" type="button" role="tab" id="slick-slide-control05"
+                                aria-controls="slick-slide00"
+                                aria-label="1 of 3" tabindex="-1">
+                        </button>
+                    </li>
+                    <li class="px-1" role="presentation">
+                        <button class=" slick" id="slick-slide-control06" type="button" role="tab"
+                                aria-controls="slick-slide01"
+                                aria-label="2 of 3" tabindex="-1">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="home-banner">
+    <div class="container">
+        <div class="home-banner-wrap row text-center">
+            <div class="home-banner-wrap-left col">
+                <h2>TRÒNG KÍNH CRIZAL ROCK GIẢM 20%</h2>
+                <p>BỀN BỈ GẤP 3 LẦN THẾ HỆ TRƯỚC
+                </p>
+                <a href="#">Mua ngay</a>
+            </div>
+            <div class="home-banner-wrap-right col">
+                <img class=" ls-is-cached lazyloaded" src="font/home_baner/banner_bottom_img.png"
+                     alt="home-banner-right">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="home-blog">
+    <div class="container">
+        <div class="home-product-slider-wrap">
+            <div class="home-product-slider-wrap-header">
+                <div class="section-title-all">
+                    <div>
+                        <span>Tin tức</span>
+                        <h2>KIMI Blog</h2>
+                    </div>
+                    <a class="" href="#" data-hover="Xem thêm">Xem thêm <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="home-blog-body slick-initialized slick-slider slick-dotted">
+                <button type="button" class="slick-prev slick-arrow slick-disabled" aria-disabled="true"
+                        style="display: block;"><i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <div class="slick-list draggable">
+                    <div class="slick-track" style="opacity: 1; width: 1268px; transform: translate3d(0px, 0px, 0px);">
+                        <article class="article-item slick-slide slick-current slick-active" style="width: 317px;"
+                                 tabindex="0" role="tabpanel" id="slick-slide30"
+                                 aria-describedby="slick-slide-control30" data-slick-index="0" aria-hidden="false">
+                            <div class="article-item-top">
+                                <a href="#"
+                                   title="Giải đáp thắc mắc: Những điều cần biết trước khi đeo kính clip on 2 in 1 ?"
+                                   rel="nofollow" tabindex="0">
+                                    <img src="font/home-blog/blog_1.png"
+                                         class="img-fluid ls-is-cached lazyloaded"
+                                         alt="Giải đáp thắc mắc: Những điều cần biết trước khi đeo kính clip on 2 in 1 ?">
+                                </a>
+                            </div>
+                            <div class="article-item-bottom">
+                                <h3 class="article-item-bottom-name"><a
+                                        href="#"
+                                        title="Giải đáp thắc mắc: Những điều cần biết trước khi đeo kính clip on 2 in 1 ?"
+                                        tabindex="0">Giải đáp thắc mắc: Những điều cần biết trước khi đeo kính clip on 2
+                                    in 1 ?</a></h3>
+                                <p class="article-item-bottom-des">Kính clip on 2 in 1 là sản phẩm chuyên biệt dành cho
+                                    các bạn bị tật cận thị đang tìm kiếm một chiếc kính đa dạng tính năng. Vừa giúp bạn
+                                    bảo vệ mắt khi tham gia các hoạt...</p>
+                            </div>
+                        </article>
+                        <article class="article-item slick-slide slick-active" style="width: 317px;" tabindex="0"
+                                 role="tabpanel" id="slick-slide31" aria-describedby="slick-slide-control31"
+                                 data-slick-index="1" aria-hidden="false">
+                            <div class="article-item-top">
+                                <a href="#"
+                                   title="Kính râm cận và lời khuyên dành cho những ai bị cận thị - Giá bao nhiêu? Địa chỉ uy tín"
+                                   rel="nofollow" tabindex="0">
+                                    <img src="font/home-blog/bolg_3.png"
+                                         class="img-fluid ls-is-cached lazyloaded"
+                                         alt="Kính râm cận và lời khuyên dành cho những ai bị cận thị - Giá bao nhiêu? Địa chỉ uy tín">
+                                </a>
+                            </div>
+                            <div class="article-item-bottom">
+                                <h3 class="article-item-bottom-name"><a
+                                        href="#"
+                                        title="Kính râm cận và lời khuyên dành cho những ai bị cận thị - Giá bao nhiêu? Địa chỉ uy tín"
+                                        tabindex="0">Kính râm cận và lời khuyên dành cho những ai bị cận thị - Giá bao
+                                    nhiêu? Địa chỉ uy tín</a></h3>
+                                <p class="article-item-bottom-des">&nbsp;Các loại kính râm cận hiện nay đa dạng cả thiết
+                                    kế và tiện ích. Bên cạnh sẽ có rất nhiều lời khuyên dành cho các bạn mắc tật cận thị
+                                    đang quan tâm tới dòng kính râm có độ...</p>
+                            </div>
+                        </article>
+                        <article class="article-item slick-slide slick-active" style="width: 317px;" tabindex="0"
+                                 role="tabpanel" id="slick-slide32" aria-describedby="slick-slide-control32"
+                                 data-slick-index="2" aria-hidden="false">
+                            <div class="article-item-top">
+                                <a href="#"
+                                   title="+5 điều về gọng kính cận &amp; Tips chọn kính cận cho từng kiểu khuôn mặt"
+                                   rel="nofollow" tabindex="0">
+                                    <img src="font/home-blog/blog_2.png"
+                                         class="img-fluid ls-is-cached lazyloaded"
+                                         alt="+5 điều về gọng kính cận &amp; Tips chọn kính cận cho từng kiểu khuôn mặt">
+                                </a>
+                            </div>
+                            <div class="article-item-bottom">
+                                <h3 class="article-item-bottom-name"><a
+                                        href="#"
+                                        title="+5 điều về gọng kính cận &amp; Tips chọn kính cận cho từng kiểu khuôn mặt"
+                                        tabindex="0">+5 điều về gọng kính cận &amp; Tips chọn kính cận cho từng kiểu
+                                    khuôn mặt</a>
+                                </h3>
+                                <p class="article-item-bottom-des">&nbsp;Để chọn gọng kính cận cho gương mặt trước hết
+                                    bạn phải hiểu về các loại kính sau đó xét đến đường nét khuôn mặt. Việc phân tích
+                                    thông tin và giá cả gọng kính cận giúp bạn có được...</p>
+                            </div>
+                        </article>
+                        <article class="article-item slick-slide" style="width: 317px;" tabindex="-1" role="tabpanel"
+                                 id="slick-slide33" aria-describedby="slick-slide-control33" data-slick-index="3"
+                                 aria-hidden="true">
+                            <div class="article-item-top">
+                                <a href="#"
+                                   title="Tất tần tật về kính đa tròng: Công dụng, Các loại phổ biến, Giá bán"
+                                   rel="nofollow" tabindex="-1">
+                                    <img src="font/home-blog/blog_4.png"
+                                         class="img-fluid ls-is-cached lazyloaded"
+                                         alt="Tất tần tật về kính đa tròng: Công dụng, Các loại phổ biến, Giá bán">
+                                </a>
+                            </div>
+                            <div class="article-item-bottom">
+                                <h3 class="article-item-bottom-name"><a
+                                        href="#"
+                                        title="Tất tần tật về kính đa tròng: Công dụng, Các loại phổ biến, Giá bán"
+                                        tabindex="-1">Tất tần tật về kính đa tròng: Công dụng, Các loại phổ biến, Giá
+                                    bán</a>
+                                </h3>
+                                <p class="article-item-bottom-des">Tất tần tật về kính đa tròng: Công dụng, Các loại phổ
+                                    biến, Giá bán Kính đa tròng với công dụng đa năng và giải quyết các tật khúc xạ khác
+                                    nhau của đôi mắt. Tìm hiểu các loại kính...</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <div id="footer">
     <footer class="footer">
@@ -262,18 +1218,19 @@
 
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row footer-bot text-center border-3">
-                <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="index.html">
-                        <img src="logo.png" alt="logo.png">
-                        <span>KIMI</span>
-                    </a>
+            <div class="container">
+                <div class="row footer-bot text-center border-3">
+                    <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                        <a href="index.html">
+                            <img src="logo.png" alt="logo.png">
+                            <span>KIMI</span>
+                        </a>
+                    </div>
+                    <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
                 </div>
-                <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
             </div>
         </div>
+
 
     </footer>
 </div>
