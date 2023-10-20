@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    fixSlide();
     setRateProduct();
     addActionClickForButtonFilter();
     removeCheckedFilterAll();
@@ -55,4 +56,9 @@ function setRateProduct(){
             star.getElementsByTagName("i")[0].setAttribute("class", "fa-solid fa-star");
         }
     }
+}
+
+function fixSlide(){
+    $("div#main>div>div.carousel").removeClass("slide").attr("id", "carouselExampleAutoplaying").attr("data-bs-ride", "carousel")
+    $("div#carouselExampleAutoplaying button").attr("data-bs-target", "#carouselExampleAutoplaying");
 }
