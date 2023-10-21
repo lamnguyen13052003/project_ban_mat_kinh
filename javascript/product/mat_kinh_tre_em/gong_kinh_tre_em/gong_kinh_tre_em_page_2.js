@@ -1,4 +1,4 @@
-class GongKinhTreEm {
+class Product {
     constructor(list_img, brand, name, old_price, new_price, amount_star, amount_rate, amount_selled, link_more_info) {
         this.list_img = list_img;
         this.brand = brand;
@@ -13,8 +13,8 @@ class GongKinhTreEm {
 }
 
 $(document).ready(function () {
-    //     var product1 = new GongKinhTreEm(["../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png", "../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s03_master.png"],"branh 1", "tên 1", 150000, 120000, 5, 20, 25, "../../product/gong_kinh/more_info/demo.html");
-    // var product2 = new GongKinhTreEm([], "branh 2", "tên 2", 120000, null, 1, 200, 210, "../../product/gong_kinh/more_info/demo.html");
+    //     var product1 = new Product(["../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png", "../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s03_master.png"],"branh 1", "tên 1", 150000, 120000, 5, 20, 25, "../../product/gong_kinh/more_info/demo.html");
+    // var product2 = new Product([], "branh 2", "tên 2", 120000, null, 1, 200, 210, "../../product/gong_kinh/more_info/demo.html");
     // var listInfProduct = [product1, product2];
     loaddingProduct();
 })
@@ -22,9 +22,9 @@ $(document).ready(function () {
 
 function loaddingProduct() {
     var listInfoProduct = [
-        new GongKinhTreEm(["../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-PLAY-KIDS-S7-&-ILUVU-K1/s7-playkids-k1-c128-007_master.png", "../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-PLAY-KIDS-S7-&-ILUVU-K1/s7-playkids-k1-c258-002_master.png", ],"S7 Playkids", "Gọng Kính Trẻ Em PLAY KIDS S7 & ILUVU K1", 1440000.0, 1600000.0, "3", "8708", "9320", "../../product/gong_kinh/more_info/demo.html"),
-        new GongKinhTreEm(["../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-TR90-OEM-JC054/gong-kinh-can-tre-em-054-06_master.png", "../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-TR90-OEM-JC054/gong-kinh-can-tre-em-054-12_master.png", ],"OEM", "Gọng Kính Trẻ Em TR90 OEM JC054", 135000.0, 150000.0, "3", "8708", "9320", "../../product/gong_kinh/more_info/demo.html"),
-    ]
+        new Product(["../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-PLAY-KIDS-S7-&-ILUVU-K1/s7-playkids-k1-c128-007_master.png", "../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-PLAY-KIDS-S7-&-ILUVU-K1/s7-playkids-k1-c258-002_master.png", ],"S7 Playkids", "Gọng Kính Trẻ Em PLAY KIDS S7 & ILUVU K1", 1600000.0, 1440000.0, 5, 2464, 5827, "../../product/gong_kinh/more_info/demo.html"),
+        new Product(["../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-TR90-OEM-JC054/gong-kinh-can-tre-em-054-06_master.png", "../../images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Tre-Em-TR90-OEM-JC054/gong-kinh-can-tre-em-054-12_master.png", ],"OEM", "Gọng Kính Trẻ Em TR90 OEM JC054", 150000.0, 135000.0, 5, 2464, 5827, "../../product/gong_kinh/more_info/demo.html"),
+    ];
 
     let index = 0;
 
