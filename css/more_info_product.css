@@ -202,6 +202,10 @@ input::-webkit-inner-spin-button {
     width: 200px;
     border-radius: 0 0 10px 10px;
 }
+/****Phần đánh giá***/
+#customer-rate{
+    font-size: 30px;
+}
 
 /****Phần danh sach liên quan***/
 #main .other-product .collection-wrap-product-list .other-product-title{

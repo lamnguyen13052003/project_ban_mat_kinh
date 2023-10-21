@@ -2,6 +2,7 @@ $(document).ready(function () {
     showMoreInfor();
     selectOption();
     changeAmount();
+    setRate();
 });
 
 function showMoreInfor() {
@@ -37,4 +38,17 @@ function changeAmount(){
         var val =  $("#quantity");
         val.val(Number(val.val()) + 1);
     });
+}
+
+function setRate(){
+    $("div#customer-rate li i").attr("class", "fa-solid fa-star");
+    $("div#customer-rate li").click(function (){
+        let amount = $(this).attr("class").charAt(0);
+        console.log(amount);
+        $("div#customer-rate li i").attr("class", "fa-regular fa-star");
+        for(var index = 0; index < amount; index++){
+            $("div#customer-rate li").eq(index).children().attr("class", "fa-solid fa-star");
+        }
+    });
+
 }
