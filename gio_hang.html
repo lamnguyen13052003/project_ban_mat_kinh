@@ -7,12 +7,12 @@
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="icon" href="logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
 
     <title>Thế giới mắt kính</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div id="menu">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
                     <a href="dang_nhap.html">
-                        <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
+                        <button type="button" class="btn d-flex float-lg-end">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
                         </button>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
                     <a href="dang_ky.html">
-                        <button type="button" class="btn d-flex float-lg-none">
+                        <button type="button" class="btn d-flex float-lg-end">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
                         </button>
@@ -51,14 +51,14 @@
                 </div>
                 <div class="cart col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
                     <a href="gio_hang.html">
-                        <button type="button" class="btn d-flex float-lg-none active">
+                        <button type="button" class="btn d-flex float-lg-start">
                             <span class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</span>
-                            <span class="icon d-flex">
-                                <span class="material-symbols-outlined">
-                                    shopping_cart
-                                </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                            <span class="icon">
+                            <span class="material-symbols-outlined">
+                                shopping_cart
                             </span>
+                            <span id="amount-product" class="amount-product">0</span>
+                        </span>
                         </button>
                     </a>
                 </div>
@@ -75,83 +75,54 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/kinh_mat/kinh_mat.html"
-                                       class="nav-link dropdown-toggle px-4 rounded"
-                                       type="button">
+                                    <a href="product/kinh_mat/kinh_mat.html" class="nav-link dropdown-toggle" type="button">
                                         <span>Kính mát</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nam.html">Kính mát
-                                            nam</a></li>
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nu.html">Kính mát
-                                            nữ</a></li>
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_ngay_va_dem.html">Kính
-                                            đi ngày và đêm</a></li>
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_doi_mau.html">Kính đổi
-                                            màu</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="product/kinh_mat/kinh_loc_anh_sang_xanh.html">Kính lọc ánh sáng
-                                            xanh</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="product/kinh_mat/kinh_mat_clip_on_hai_lop.html">Kính Mắt Clip on 2
-                                            Lớp</a></li>
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nam.html">Kính mát nam</a></li>
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nu.html">Kính mát nữ</a></li>
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_ngay_va_dem.html">Kính đi ngày và đêm</a></li>
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_doi_mau.html">Kính đổi màu</a></li>
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_loc_anh_sang_xanh.html">Kính lọc ánh sáng xanh</a></li>
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_clip_on_hai_lop.html">Kính Mắt Clip on 2 Lớp</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/mat_kinh_tre_em/mat_kinh_tre_em.html"
-                                       class="nav-link dropdown-toggle px-4 rounded" type="button">
+                                    <a href="product/mat_kinh_tre_em/mat_kinh_tre_em.html" class="nav-link dropdown-toggle" type="button">
                                         Mắt kính trẻ em
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                               href="product/mat_kinh_tre_em/gong_kinh_tre_em.html">Gọng Kính Trẻ Em</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                               href="product/mat_kinh_tre_em/kinh_mat_tre_em.html">Kính Mát Trẻ Em</a>
-                                        </li>
+                                        <li><a class="dropdown-item" href="product/mat_kinh_tre_em/gong_kinh_tre_em.html">Gọng Kính Trẻ Em</a></li>
+                                        <li><a class="dropdown-item" href="product/mat_kinh_tre_em/kinh_mat_tre_em.html">Kính Mát Trẻ Em</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/gong_kinh/gong_kinh.html"
-                                       class="nav-link dropdown-toggle px-4 rounded"
-                                       type="button">
+                                    <a href="product/gong_kinh/gong_kinh.html" class="nav-link dropdown-toggle" type="button">
                                         Gọng kính
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_nua_khung.html">Gọng
-                                            kính nữa khung</a></li>
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_khoan.html">Gọng
-                                            kính khoan</a></li>
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_tron.html">Gọng
-                                            kính tròn</a></li>
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_titan.html">Gọng
-                                            kính titan</a></li>
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_nua_khung.html">Gọng kính nữa khung</a></li>
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_khoan.html">Gọng kính khoan</a></li>
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_tron.html">Gọng kính tròn</a></li>
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_titan.html">Gọng kính titan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/trong_kinh/trong_kinh.html"
-                                       class="nav-link dropdown-toggle px-4 rounded"
-                                       type="button">
+                                    <a href="product/trong_kinh/trong_kinh.html" class="nav-link dropdown-toggle" type="button">
                                         Tròng kính
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                               href="product/trong_kinh/trong_kinh_chong_anh_sang_xanh.html">Tròng kính
-                                            chống ánh sáng xanh</a></li>
-                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_doi_mau.html">Tròng
-                                            kính đổi màu</a></li>
-                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_mau.html">Tròng
-                                            kính màu</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="product/trong_kinh/trong_kinh_cho_gong_khoan.html">Tròng kính cho
-                                            gọng khoan</a></li>
+                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_chong_anh_sang_xanh.html">Tròng kính chống ánh sáng xanh</a></li>
+                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_doi_mau.html">Tròng kính đổi màu</a></li>
+                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_mau.html">Tròng kính màu</a></li>
+                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_cho_gong_khoan.html">Tròng kính cho gọng khoan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="khuyen_mai.html" class="nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="khuyen_mai.html" class="nav-link">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="lien_he.html" class="nav-link px-4 rounded">Liên hệ</a>
+                                    <a href="lien_he.html" class="nav-link">Liên hệ</a>
                                 </li>
                             </ul>
                         </div>
@@ -161,6 +132,72 @@
         </div>
     </nav>
 </div>
+<header class="intro">
+    <h1>Giỏ Hàng</h1>
+
+    <div class="action">
+        <a href="index.html"
+            title="Back to download and tutorial page" class="btn back">Quay lại trang chủ</a>
+    </div>
+    
+
+<main>
+    
+    <div class="shopping-cart-wrapper">
+        <table class="table is-fullwidth shopping-cart">
+            <thead>
+                <tr>
+                  <th></th>
+                    <th>Tên Sản Phẩm </th>
+                    <th>Giá </th>
+                    <th>Số lượng</th>
+                    <th>Số tiền</th>
+                  
+                </tr>
+                <tr>
+                    <td>
+                        <img src="data:image/jpeg;base64,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" width="40" height="50">
+                    </td>
+                    <td>
+                    Sản phẩm 1
+                    </td>
+                    <td>
+                        100.000VND
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        100.00VND
+                    </td>
+                </tr>
+            </thead>
+        </table>
+        <!-- <div class="totals">
+            <div class="totals-item">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.lDc1C66v_NQqgq_bzHZmQgHaHa&pid=Api&P=0&h=220" width="50" height="60">
+                <label>dienhdg</label>
+                <div class="totals-value" id="cart-subtotal">0 VND</div>
+            </div>
+            <div class="totals-item">
+                <label>Thuế (5%)</label>
+                <div class="totals-value" id="cart-tax">0 VND</div>
+            </div>
+            <div class="totals-item">
+                <label>Phí Giao hàng</label>
+                <div class="totals-value" id="cart-shipping">0 VND</div>
+            </div>
+            <div class="totals-item totals-item-total">
+                <label>Thành Tiền</label>
+                <div class="totals-value" id="cart-total">0 VND</div>
+            </div>
+        </div> -->
+        <button class="checkout">Đặt Hàng</button>
+    </div>
+    
+</main>
+
+</header>
 
 <div id="footer">
     <footer class="footer">
@@ -177,14 +214,13 @@
                             <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
                             </li>
                             <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
-                                    class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
+                                    class="px-1">0123456789</span></b> ( 9:00 - 21:00 )
                             </li>
                             <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
                             </li>
-                            <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
+                            <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">group64@gmail.com.vn</span>
                             </li>
-                            <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
-                                    class="fa-brands fa-facebook-f px-1"></i><span
+                            <li class="contact-5"><a href="#"><i class="fa-brands fa-facebook-f px-1"></i><span
                                     class="px-1 hover"><b>KIMI</b> </span></a></li>
                             <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
                             <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
@@ -200,32 +236,32 @@
 
                         </div>
                         <ul>
-                            <li><a class="hover" href="pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
-                                online</a></li>
-                            <li><a class="hover" href="pages/chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh
-                                toán, giao nhận</a></li>
-                            <li><a class="hover" href="pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
-                            <li><a class="hover" href="pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
-                            <li><a class="hover" href="pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và
-                                hoàn tiền</a></li>
-                            <li><a class="hover" href="pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                            <li><a class="hover" href="#">Hướng dẫn mua hàng online</a></li>
+                            <li><a class="hover" href="#">Chính sách thanh toán, giao nhận</a></li>
+                            <li><a class="hover" href="#">Chính sách bảo mật</a></li>
+                            <li><a class="hover" href="#">Chính sách bảo hành</a></li>
+                            <li><a class="hover" href="#">Chính sách đổi trả và hoàn tiền</a></li>
+                            <li><a class="hover" href="#">Kiểm tra đơn hàng</a></li>
                         </ul>
                     </div>
 
                 </div>
             </div>
-            <div class="row footer-bot text-center border-3">
-                <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="index.html">
-                        <img src="logo.png" alt="logo.png">
-                        <span>KIMI</span>
-                    </a>
-                </div>
-                <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+        </div>
+        <div class="row footer-bot text-center border-3">
+            <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                <a href="#">
+                    <img src="logo.png" alt="logo.png">
+                    <span>KIMI</span>
+                </a>
             </div>
+            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
         </div>
     </footer>
+
 </div>
 <script src="javascript/index.js"></script>
+<script src="javascript/script.js"></script>
+
 </body>
 </html>
