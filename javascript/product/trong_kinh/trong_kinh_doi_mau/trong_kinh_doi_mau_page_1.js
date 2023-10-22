@@ -66,6 +66,7 @@ function loaddingBrand(product, brand){
 
 function loaddingName(product, name){
     product.find(".pro-loop-name>a").text(name);
+    product.find(".pro-loop-name>a").attr("title", name);
 }
 
 function loaddingPrice(product, old_price, new_price){
