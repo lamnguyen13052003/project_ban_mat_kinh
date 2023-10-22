@@ -24,3 +24,11 @@
 .form-login input, .form-forgot input{
     font-size: 14px;
 }
+
+.form-login .ngay_sinh input:nth-of-type(2){
+    width: 70px;
+}
+
+.form-login select{
+    margin: 0 5px;
+}
