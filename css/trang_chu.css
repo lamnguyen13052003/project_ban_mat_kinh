@@ -123,119 +123,238 @@ section:not(#silder-section){
     transform: translate(-45%, 0%);
 
 }
-
-#fsale .show-item-sale .item-sale {
-    border-radius: 10px;
-    background: #FFFFFF;
-    margin: 20px 10px ;
+/***************************Phần danh sách sản phẩm*********************************/
+.show-item-sale  .pro-loop{
+    padding: 0 10px;
+    width: 300px;
+    margin: 0 10px 10px 0;
+    height: 415px;
+    background-color: #FFFFFF;
+}
+.show-item-sale  .pro-loop:hover{
+    background-color: #f2f2f2;
 }
 
-#fsale .show-item-sale #no-hover-img {
-    padding: 10px;
-}
-.frame .pro-loop-sold{
-    margin: 0 auto;
+/*Phạm vi ô hiển thị*/
+.show-item-sale  .pro-loop .pro-loop-wrap{
+    top: 10px;
+    padding-bottom: 10px;
 }
 
-.to-nho {
-    transition: all 0.8s;
+/*Phần hình ảnh*/
+.show-item-sale  .pro-loop .pro-loop-image .pro-loop-sd{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 2px 10px;
+    top: 5px;
+    left: 5px;
 }
-.show-item-sale .item-sale{
+.show-item-sale  .pro-loop .pro-loop-image picture.img-show-when-hover{
+    display: none;
+}
+.show-item-sale  .pro-loop .pro-loop-image picture.img-hidden-when-hover{
+    display: block;
+}
+.show-item-sale  .pro-loop:hover .pro-loop-image picture.img-hidden-when-hover{
+    display: none;
+}
+.show-item-sale  .pro-loop:hover .pro-loop-image picture.img-show-when-hover{
+    display: block;
+}
+.show-item-sale  .pro-loop .pro-loop-image img{
     width: 280px;
-    height: 540px;
-}
-.show-item-sale .item-sale .frame {
-    padding: 10px;
+    height: 280px;
 }
 
-.show-item-sale .item-sale .edit_text {
-    text-align: center;
-    line-height: 40px;
-    color: #FF3300;
+/*Phần độ hot*/
+.show-item-sale  .pro-loop .pro-loop-sold{
+    z-index: 1;
+    top: 5px;
+    right: 5px;
 }
-.show-item-sale .item-sale .progress-bar {
-    margin: 0 auto;
-    width: 90%;
-    background-color: #ff9966;
-    height: 10px;
-    border-radius: 10px;
-    position: relative;
+.show-item-sale  .pro-loop .pro-loop-sold img{
+    width: 30px;
+}
+
+/*Phần tên brand*/
+.show-item-sale  .pro-loop .pro-loop-brand{
+    font-size: 9px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 5px 0;
+}
+
+/*Phần tên sản phẩm*/
+.show-item-sale  .pro-loop .pro-loop-name{
+    font-size: 15px;
+    height: 18px;
+    width: 280px;
     overflow: hidden;
 }
 
-.show-item-sale .item-sale .progress-fill {
-    height: 100%;
-    background: linear-gradient(to right, #ff9966, #ff5e62);;
-    transition: all 1s;
-    border-radius: 10px;
-}
-.item-sale .pro-loop-vendor{
-    color: #000000;
-    opacity: 0.5;
-    text-align: center;
-    padding: 10px 0;
-}
- .item-sale .name-item{
-    text-align: center;
-    color: #000000;
-    font-size: 13px;
-}
-.item-sale .name-item a:hover{
-    color: var(--color-blue-origin);
-}
-.item-sale .pro-loop-price {
-    text-align: center;
-    margin: 8px 0;
-}
-.item-sale .pro-loop-price span{
-    font-weight: bold;
-    color: var(--color-origan-origin);
-}
-.item-sale .pro-loop-price del{
-    color: #000000;
-    opacity: 0.5;
-}
-.item-sale .sold_qty{
-   display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.danh-gia ul li{
-    float: left;
-    color: #ffb800;
-}
-.prod-review-loop .onireviewapp-loopitem-title{
-    font-size: 12px;
-    opacity: 0.5;
-    position: relative;
-}
-.prod-review-loop .onireviewapp-loopitem-title:after{
-    position: absolute;
-    content: "";
-    top: 50%;
-    right: -10%;
-    border-right: 1px solid #000000;
-    height: 16px;
-    transform: translate(-50%, -50%);
-}
-.sold_qty_num p{
-    font-size: 12px;
-}
-.sold_qty_num p span{
+/*Phần giá sản phẩm*/
+.show-item-sale  .pro-loop .pro-loop-price p{
+    color: #F30;
     font-size: 15px;
+    margin-bottom: 10px;
 }
-.pro-loop-bottom {
-    text-align: center;
-    padding-top: 12px;
+.show-item-sale  .pro-loop .pro-loop-price del{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 10px;
 }
-.pro-loop-bottom button{
-    width: 186px;
-    height: 32px;
+
+/*Phần đánh giá và số lượng bán*/
+.show-item-sale  .pro-loop .sold_qty{
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+.show-item-sale  .pro-loop .sold_qty .h-line{
+    border: rgba(0, 0, 0, 0.5) solid 1px;
+    margin: 0 5px;
+    height: 10px;
+}
+
+/*Phần nút điều kiển*/
+.show-item-sale  .pro-loop .pro-loop-bottom{
+    display: none;
+}
+.show-item-sale  .pro-loop:hover .pro-loop-bottom{
+    display: block;
+    font-size: 10px;
+}
+.show-item-sale  .pro-loop:hover .pro-loop-bottom button{
+    border: none;
+    padding: 5px;
+    width: 120px;
     border-radius: 5px;
-    background: var(--color-origan-origin);
-    color: #FFFFFF;
-    border: var(--color-origan-origin);
+    font-weight: bold;
 }
+
+.show-item-sale .pro-loop:hover .pro-loop-bottom button:nth-of-type(1){
+    background-color: rgba(47, 24, 154, 1);
+    margin-left: 15px;
+    color: #fff;
+}
+
+.show-item-sale .pro-loop:hover .pro-loop-bottom button:nth-of-type(2){
+    background-color: #F30;
+    float: right;
+    margin-right: 5px;
+    color: #fff;
+}
+
+/*#fsale .show-item-sale .item-sale {*/
+/*    border-radius: 10px;*/
+/*    background: #FFFFFF;*/
+/*    margin: 20px 10px ;*/
+/*}*/
+
+/*#fsale .show-item-sale #no-hover-img {*/
+/*    padding: 10px;*/
+/*}*/
+/*.frame .pro-loop-sold{*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*.to-nho {*/
+/*    transition: all 0.8s;*/
+/*}*/
+/*.show-item-sale .item-sale{*/
+/*    width: 280px;*/
+/*    height: 540px;*/
+/*}*/
+/*.show-item-sale .item-sale .frame {*/
+/*    padding: 10px;*/
+/*}*/
+
+/*.show-item-sale .item-sale .edit_text {*/
+/*    text-align: center;*/
+/*    line-height: 40px;*/
+/*    color: #FF3300;*/
+/*}*/
+/*.show-item-sale .item-sale .progress-bar {*/
+/*    margin: 0 auto;*/
+/*    width: 90%;*/
+/*    background-color: #ff9966;*/
+/*    height: 10px;*/
+/*    border-radius: 10px;*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.show-item-sale .item-sale .progress-fill {*/
+/*    height: 100%;*/
+/*    background: linear-gradient(to right, #ff9966, #ff5e62);;*/
+/*    transition: all 1s;*/
+/*    border-radius: 10px;*/
+/*}*/
+/*.item-sale .pro-loop-vendor{*/
+/*    color: #000000;*/
+/*    opacity: 0.5;*/
+/*    text-align: center;*/
+/*    padding: 10px 0;*/
+/*}*/
+/* .item-sale .name-item{*/
+/*    text-align: center;*/
+/*    color: #000000;*/
+/*    font-size: 13px;*/
+/*}*/
+/*.item-sale .name-item a:hover{*/
+/*    color: var(--color-blue-origin);*/
+/*}*/
+/*.item-sale .pro-loop-price {*/
+/*    text-align: center;*/
+/*    margin: 8px 0;*/
+/*}*/
+/*.item-sale .pro-loop-price span{*/
+/*    font-weight: bold;*/
+/*    color: var(--color-origan-origin);*/
+/*}*/
+/*.item-sale .pro-loop-price del{*/
+/*    color: #000000;*/
+/*    opacity: 0.5;*/
+/*}*/
+/*.item-sale .sold_qty{*/
+/*   display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+/*.danh-gia ul li{*/
+/*    float: left;*/
+/*    color: #ffb800;*/
+/*}*/
+/*.prod-review-loop .onireviewapp-loopitem-title{*/
+/*    font-size: 12px;*/
+/*    opacity: 0.5;*/
+/*    position: relative;*/
+/*}*/
+/*.prod-review-loop .onireviewapp-loopitem-title:after{*/
+/*    position: absolute;*/
+/*    content: "";*/
+/*    top: 50%;*/
+/*    right: -10%;*/
+/*    border-right: 1px solid #000000;*/
+/*    height: 16px;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+/*.sold_qty_num p{*/
+/*    font-size: 12px;*/
+/*}*/
+/*.sold_qty_num p span{*/
+/*    font-size: 15px;*/
+/*}*/
+/*.pro-loop-bottom {*/
+/*    text-align: center;*/
+/*    padding-top: 12px;*/
+/*}*/
+/*.pro-loop-bottom button{*/
+/*    width: 186px;*/
+/*    height: 32px;*/
+/*    border-radius: 5px;*/
+/*    background: var(--color-origan-origin);*/
+/*    color: #FFFFFF;*/
+/*    border: var(--color-origan-origin);*/
+/*}*/
 /***************************************section home about**********************************/
 
 .home-about img{
