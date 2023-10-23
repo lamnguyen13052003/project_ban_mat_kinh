@@ -243,118 +243,7 @@ section:not(#silder-section){
     color: #fff;
 }
 
-/*#fsale .show-item-sale .item-sale {*/
-/*    border-radius: 10px;*/
-/*    background: #FFFFFF;*/
-/*    margin: 20px 10px ;*/
-/*}*/
 
-/*#fsale .show-item-sale #no-hover-img {*/
-/*    padding: 10px;*/
-/*}*/
-/*.frame .pro-loop-sold{*/
-/*    margin: 0 auto;*/
-/*}*/
-
-/*.to-nho {*/
-/*    transition: all 0.8s;*/
-/*}*/
-/*.show-item-sale .item-sale{*/
-/*    width: 280px;*/
-/*    height: 540px;*/
-/*}*/
-/*.show-item-sale .item-sale .frame {*/
-/*    padding: 10px;*/
-/*}*/
-
-/*.show-item-sale .item-sale .edit_text {*/
-/*    text-align: center;*/
-/*    line-height: 40px;*/
-/*    color: #FF3300;*/
-/*}*/
-/*.show-item-sale .item-sale .progress-bar {*/
-/*    margin: 0 auto;*/
-/*    width: 90%;*/
-/*    background-color: #ff9966;*/
-/*    height: 10px;*/
-/*    border-radius: 10px;*/
-/*    position: relative;*/
-/*    overflow: hidden;*/
-/*}*/
-
-/*.show-item-sale .item-sale .progress-fill {*/
-/*    height: 100%;*/
-/*    background: linear-gradient(to right, #ff9966, #ff5e62);;*/
-/*    transition: all 1s;*/
-/*    border-radius: 10px;*/
-/*}*/
-/*.item-sale .pro-loop-vendor{*/
-/*    color: #000000;*/
-/*    opacity: 0.5;*/
-/*    text-align: center;*/
-/*    padding: 10px 0;*/
-/*}*/
-/* .item-sale .name-item{*/
-/*    text-align: center;*/
-/*    color: #000000;*/
-/*    font-size: 13px;*/
-/*}*/
-/*.item-sale .name-item a:hover{*/
-/*    color: var(--color-blue-origin);*/
-/*}*/
-/*.item-sale .pro-loop-price {*/
-/*    text-align: center;*/
-/*    margin: 8px 0;*/
-/*}*/
-/*.item-sale .pro-loop-price span{*/
-/*    font-weight: bold;*/
-/*    color: var(--color-origan-origin);*/
-/*}*/
-/*.item-sale .pro-loop-price del{*/
-/*    color: #000000;*/
-/*    opacity: 0.5;*/
-/*}*/
-/*.item-sale .sold_qty{*/
-/*   display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
-/*.danh-gia ul li{*/
-/*    float: left;*/
-/*    color: #ffb800;*/
-/*}*/
-/*.prod-review-loop .onireviewapp-loopitem-title{*/
-/*    font-size: 12px;*/
-/*    opacity: 0.5;*/
-/*    position: relative;*/
-/*}*/
-/*.prod-review-loop .onireviewapp-loopitem-title:after{*/
-/*    position: absolute;*/
-/*    content: "";*/
-/*    top: 50%;*/
-/*    right: -10%;*/
-/*    border-right: 1px solid #000000;*/
-/*    height: 16px;*/
-/*    transform: translate(-50%, -50%);*/
-/*}*/
-/*.sold_qty_num p{*/
-/*    font-size: 12px;*/
-/*}*/
-/*.sold_qty_num p span{*/
-/*    font-size: 15px;*/
-/*}*/
-/*.pro-loop-bottom {*/
-/*    text-align: center;*/
-/*    padding-top: 12px;*/
-/*}*/
-/*.pro-loop-bottom button{*/
-/*    width: 186px;*/
-/*    height: 32px;*/
-/*    border-radius: 5px;*/
-/*    background: var(--color-origan-origin);*/
-/*    color: #FFFFFF;*/
-/*    border: var(--color-origan-origin);*/
-/*}*/
 /***************************************section home about**********************************/
 
 .home-about img{
@@ -438,75 +327,21 @@ section:not(#silder-section){
     font-size: 24px;
     font-weight: bold;
 }
-.home-product-slider .item-sale{
-    width: 304px;
-    height: 492px;
-    background: #FFFFFF;
+.carousel-indicators button{
+    margin-top: 16px;
 }
-.home-product-slider-wrap-body{
-    margin-top: 20px;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.carousel-indicators .active{
+    background-color: var(--color-blue-origin);
 }
-.home-product-slider-wrap-body .item-sale{
-    margin: auto;
-}
-.home-product-slider-wrap-body .name-item{
-    padding: 0 16px;
-}
-.home-product-slider-wrap-body .pro-loop-bottom{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.home-product-slider-wrap-body .pro-loop-bottom .f-button{
-    width: 136px;
-    margin: 16px 0;
-    transition: box-shadow 0.5s;
-}
-.home-product-slider-wrap-body .pro-loop-bottom .f-button:hover{
-    box-shadow: 0 0 20px 5px rgba(255, 184, 0, 0.2);
-}
-.home-product-slider-wrap-body .pro-loop-bottom .f-button.xem-nhanh{
-    background: var(--color-blue-origin);
-    opacity: 0.7;
-}
-.home-product-slider-wrap {
-    position: relative;
-}
-.home-product-slider-wrap .slick-arrow{
+.carousel-control-color{
+    background-color: var(--color-blue-origin);
+    width: 64px;
+    height: 64px;
     position: absolute;
     top: 50%;
-    width: 32px;
-    height: 32px;
     border-radius: 50%;
-    border: #FFFFFF;
-    background: #FFFFFF;
-
+    transform: translateX(-12%);
 }
-.home-product-slider-wrap .slick-arrow:hover{
-    color: #FFFFFF;
-    background: var(--color-blue-origin);
-}
-.home-product-slider-wrap .slick-arrow.slick-prev{
-    left: 0;
-    transform: translate(-125%, -50%);
-}
-.home-product-slider-wrap .slick-arrow.slick-next{
-    right: 0;
-    transform: translate(125%, -50%);
-}
-.home-product-slider-wrap .slick-dots{
-   margin: auto;
-}
- .home-product-slider-wrap .slick-dots li .slick-active{
-    background: var(--color-blue-origin);
-}
- .home-product-slider-wrap-body.slick-initialized.slick-slider.slick-dotted{
-     margin: 0;
- }
 
 /******home-gallery**********/
 .home-gallery img{
@@ -608,12 +443,12 @@ section:not(#silder-section){
 
 }
 /******home blog****/
-.slick-track .article-item {
+.article-item {
     display: block;
     box-shadow: rgba(0, 0 ,0 ,0.5);
     transition: box-shadow 0.3s;
 }
-.slick-track .article-item:hover{
+.article-item:hover{
     box-shadow: rgb(47, 24, 154, 1);
 
 }
@@ -641,11 +476,11 @@ section:not(#silder-section){
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
-.home-blog-body .slick-list .slick-track .article-item .article-item-top a{
+.article-item .article-item-top a{
     display: block;
     position: relative;
 }
-.home-blog-body .slick-list .slick-track .article-item .article-item-top a:hover::after{
+.article-item .article-item-top a:hover::after{
     content: '';
     position: absolute;
     bottom: 0;
@@ -656,21 +491,12 @@ section:not(#silder-section){
     z-index: 1;
     transition: all .5s;
 }
-
-.home-blog-body .slick-list .slick-track .article-item .article-item-bottom  a:hover{
-    color: var(--color-blue-origin);
+.home-blog .carousel-indicators button{
+        background-color: rgba(0, 0, 0, 1) !important;
 }
-.home-blog-body .slick-track .slick-arrow{
-    background-color: #f4f4f4;
+.home-blog .carousel-indicators .active{
+    background-color: var(--color-blue-origin) !important;
 }
-.home-blog-body .slick-track .slick-arrow:hover{
-    background-color: var(--color-blue-origin);
-}
-.home-blog-body .slick-list .slick-track .slick-dots{
-    margin: 0 auto;
-}
-
-
 /***************************************Login-Signup-forget_password**********************************/
 .form-login{
     max-width: 800px;
