@@ -8,6 +8,7 @@
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="stylesheet" href="css/gio_hang.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/product.css">
     <link rel="icon" href="logo_icon.png">
@@ -165,91 +166,181 @@
     </nav>
 </div>
 
-<div id="main" class="intro mt-5 pb-5">
-    <h2>Giỏ Hàng</h2>
-  <main>
-    
-    <div class="shopping-cart-wrapper">
-        <table class="table is-fullwidth shopping-cart">
-            <thead>
-            
-                <tr>
-                  <th></th>
-                    <th>Tên Sản Phẩm </th>
-                    <th>Giá </th>
-                    <th>Số lượng</th>
-                    <th>Chọn</th>
-                  
-                </tr>
-                <tr>
-                    <td>
-                        <img src="images/product/giong-kinh/images/gong-kinh-baron-8859/1.jpg" width="40" height="50">
-                    </td>
-                    <td>
-                    Sản phẩm 1
-                    </td>
-                    <td>
-                        <span>100.000</span><sub>đ</sub>
-                    </td>
-                    <td>
-                        <input style="width: 40px;outline: none;" type="number" value="1" min="0">
-                        
-                    </td>
-                    <td style="cursor: pointer;">
-                        Xóa
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="images/product/giong-kinh/images/gong-kinh-bat-oc-khong-vien-titanium-nikon-1458/1.jpg" width="40" height="50">
-                    </td>
-                    <td>
-                    Sản phẩm 2
-                    </td>
-                    <td>
-                        <span>800.000</span><sub>đ</sub>
-                    </td>
-                    <td>
-                        <input style="width: 40px;outline: none;" type="number" value="1" min="0">
-                        
-                    </td>
-                    <td style="cursor: pointer;">
-                        Xóa
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="images/product/giong-kinh/images/gong-kinh-acetate-titanium-merriandy-36025/1.jpg" width="40" height="50">
-                    </td>
-                    <td>
-                    Sản phẩm 3
-                    </td>
-                    <td>
-                        <span>800.000</span><sub>đ</sub>
-                    </td>
-                    <td>
-                        <input style="width: 40px;outline: none;" type="number" value="1" min="0">
-                        
-                    </td>
-                    <td style="cursor: pointer;">
-                        Xóa
-                    </td>
-                </tr>
-                
-            </thead>
-        </table>
-       
-        <button class="checkout">Đặt Hàng</button>
+<div id="main" class="mt-5 pb-5">
+    <div class="container rounded cart">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="product-details mr-2">
+                    <!--Quay về-->
+                    <div class="d-flex flex-row align-items-center">
+                        <a href="index.html">
+                            <i class="fa fa-long-arrow-left"></i>
+                            <span class="ms-2">Quay lại trang chủ</span>
+                        </a>
+                    </div>
+                    <hr>
+                    <!--Phần header-->
+                    <div class="cart-header">
+                        <h6 class="mb-0">Giỏ hàng</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Bạn đang có 4 sản phẩm</span>
+                        </div>
+                    </div>
+                    <!--Danh sách sản phẩm-->
+                    <div class="list-product">
+                        <!--Sản phẩm-->
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                            <div class="d-flex flex-row">
+                                <img class="rounded" src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png" width="40">
+                                <div class="ms-2">
+                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
+                                    <span class="option">Màu xanh</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="d-block">2</span>
+                                <span class="d-block ms-5 fw-bold">950,000</span>
+                                <span class="fw-bold">₫</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                            <div class="d-flex flex-row"><img class="rounded" src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png" width="40">
+                                <div class="ms-2">
+                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
+                                    <span class="option">Màu xanh</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="d-block">2</span>
+                                <span class="d-block ms-5 fw-bold">950,000</span>
+                                <span class="fw-bold">₫</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                            <div class="d-flex flex-row">
+                                <img class="rounded" src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png" width="40">
+                                <div class="ms-2">
+                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
+                                    <span class="option">Màu xanh</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="d-block">2</span>
+                                <span class="d-block ms-5 fw-bold">950,000</span>
+                                <span class="fw-bold">₫</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                            <div class="d-flex flex-row">
+                                <img class="rounded" src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png" width="40">
+                                <div class="ms-2">
+                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
+                                    <span class="option">Màu xanh</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="d-block">2</span>
+                                <span class="d-block ms-5 fw-bold">950,000</span>
+                                <span class="fw-bold">₫</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Thanh toán-->
+            <div class="col-md-4">
+                <div class="payment-info">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>Thanh toán</span>
+                    </div>
+                    <!--Hình thức thanh toán-->
+                    <div class="pay-option">
+                        <span class="type d-block mt-3 mb-1">Hình thức thanh toán</span>
+                        <div class="list-option-pay pb-2">
+                            <label class="radio">
+                                <input type="radio" name="pay" value="cash" checked>
+                                <span>
+                            <img src="images/icon/cash.png" alt="cash.png" width="30px" style="height: 30px; border-radius: 50%">
+                        </span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="pay" value="transfer"  >
+                                <span>
+                            <img src="images/icon/transfer.png" alt="cash.png" width="30px">
+                        </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-info">
+                        <form action="">
+                            <div>
+                                <label class="credit-pay-label" for="full-name">Họ và tên*</label>
+                                <input type="text" class="form-control info-payer" placeholder="Họ và tên" id="full-name"></div>
+                            <div>
+                                <label class="credit-pay-label" for="phone-number">Số điện thoại*</label>
+                                <input type="text" class="form-control info-payer" required placeholder="xxxx.xxx.xxx" id="phone-number">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="credit-pay-label" for="tp-tinh">Thành phố/Tỉnh:</label>
+                                    <select class="form-control info-payer" id="tp-tinh">
+                                        <option value="hanoi">Hà Nội</option>
+                                        <option value="hochiminh">Hồ Chí Minh</option>
+                                        <option value="danang">Đà Nẵng</option>
+                                        <option value="hue">Huế</option>
+                                        <option value="haiduong">Hải Dương</option>
+                                        <!-- Thêm các tỉnh/thành phố khác ở đây -->
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="credit-pay-label" for="quan-huyen">Quận/Huyện</label>
+                                    <select id="quan-huyen" name="quan-huyen" class="form-control info-payer">
+                                        <option value="quan1">Quận 1</option>
+                                        <option value="quan2">Quận 2</option>
+                                        <option value="quan3">Quận 3</option>
+                                        <option value="quan4">Quận 4</option>
+                                        <option value="quan5">Quận 5</option>
+                                        <!-- Thêm các quận/huyện khác ở đây -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="credit-pay-label" for="full-address">Địa chỉ cụ thể*</label>
+                                <input type="text" class="form-control info-payer" required placeholder="số xx, thôn xx, huyện xx, tỉnh xx" id="full-address">
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="line">
+                    <div class="money">
+                        <div class="d-flex justify-content-between information">
+                            <span>Tổng đơn</span>
+                            <p class="m-0 p-0">
+                                <span>3,000,000</span>
+                                <span>₫</span>
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between information">
+                            <span>Phí ship</span>
+                            <p class="m-0 p-0">
+                                <span>20,000</span>
+                                <span>₫</span>
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between information">
+                            <span>Tổng trả: </span>
+                            <p class="m-0 p-0">
+                                <span>3,020,000</span>
+                                <span>₫</span>
+                            </p>
+                        </div>
+                        <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 w-100" type="button">
+                            <span>Thanh toán<i class="fa fa-long-arrow-right ms-1"></i></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="action">
-        <link rel="stylesheet" href="css/style.css">
-
-        <a href="index.html"
-            title="Back to download and tutorial page" class="btn back">Quay lại trang chủ</a>
-    </div>
-    
-</main>
-
 </div>
 
 <div id="footer">
