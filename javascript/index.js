@@ -26,7 +26,7 @@ function displayPlaceholder(element){
 
 $(document).ready(function() {
     var currentSlide = 0;
-    var totalSlides = $('.slide').length;
+    var totalSlides = $('#silder-section .slide').length;
 
     function showSlide(slideIndex) {
         $('.slide').hide();
@@ -47,7 +47,7 @@ $(document).ready(function() {
         showSlide(currentSlide);
     });
     // btn phan trang
-    $('.slick').click(function () {
+    $('#silder-section .slick').click(function () {
         clearInterval(interval);
         $('.carousel ul li button').removeClass('slick-active');
         $(this).addClass('slick-active');
@@ -58,7 +58,7 @@ $(document).ready(function() {
 
     // Tự động chuyển slide sau một khoảng thời gian
     function autoSlide() {
-        $('.carousel ul li button').removeClass('slick-active');
+        $('#silder-section .carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide + 1) % totalSlides;
         $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
         showSlide(currentSlide);
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
     var interval = setInterval(autoSlide, 5000);
 
-    $('.carousel').hover(
+    $('#silder-section .carousel').hover(
         function() {
             clearInterval(interval);
         },
@@ -78,39 +78,6 @@ $(document).ready(function() {
     showSlide(currentSlide);
 });
 
-/****section 2*******/
-$(document).ready(function() {
-    var initialImage = "../font/img-fsale/item_1.png";
-    var hoverImage = "../font/img-fsale/item_1_hover_sm.png";
-    $(".no-hover-img").hover(
-        function() {
-            $(this).attr("src", hoverImage);
-        },
-        function() {
-            $(this).attr("src", initialImage);
-        }
-    );
-});
-/*fire to-nho*/
-$(document).ready(function() {
-    var isLarge = false;
-
-    function resizeImage() {
-        if (isLarge) {
-            $(".to-nho").css({ width: "30px", height: "30px" });
-        } else {
-            $(".to-nho").css({ width: "50px", height: "50px" });
-        }
-        isLarge = !isLarge; // Đảo ngược trạng thái kích thước
-    }
-    setInterval(resizeImage, 100);
-});
-/***slick***/
-$('.multiple-items').slick({
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 3
-});
 
 
 
