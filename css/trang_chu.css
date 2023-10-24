@@ -132,7 +132,7 @@ section:not(#silder-section){
     background-color: #FFFFFF;
 }
 .show-item-sale  .pro-loop:hover{
-    background-color:  #e5e5e5;
+    background-color: #f2f2f2;
 }
 
 /*Phạm vi ô hiển thị*/
@@ -332,26 +332,21 @@ section:not(#silder-section){
 }
 .carousel-indicators button{
     margin-top: 16px;
-    /**fix*/
-    width: 20px !important;
-    height: 20px !important;
-    background-color: rgba(0, 0, 0, 0.5) !important;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 }
 .carousel-indicators .active{
-    background-color: var(--color-blue-origin) !important;
+    background-color: var(--color-blue-origin);
 }
 .carousel-control-color{
-    background-color: rgba(0, 0, 0, 0.2);/**fix*/
+    background-color: var(--color-blue-origin);
     width: 64px;
     height: 64px;
     position: absolute;
     top: 50%;
     border-radius: 50%;
     transform: translateX(-12%);
-}
-.carousel-control-color:hover{
-    background-color: var(--color-blue-origin);
 }
 
 /******home-gallery**********/
@@ -511,8 +506,11 @@ section:not(#silder-section){
     z-index: 1;
     transition: all .5s;
 }
-.home-banner{
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+.home-blog .carousel-indicators button{
+        background-color: rgba(0, 0, 0, 1) !important;
+}
+.home-blog .carousel-indicators .active{
+    background-color: var(--color-blue-origin) !important;
 }
 /***************************************Login-Signup-forget_password**********************************/
 .form-login{
@@ -544,3 +542,4 @@ section:not(#silder-section){
 .form-login input, .form-forgot input {
     font-size: 14px;
 }
+
