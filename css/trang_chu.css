@@ -49,11 +49,6 @@ section:not(#silder-section){
 #section_slider .slick-prev {
     left: 32px;
 }
-#section_slider #myCarousel .slick-dots button{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-}
 
 #section_slider #myCarousel button:hover {
     background: var(--color-blue-origin);
@@ -335,37 +330,25 @@ section:not(#silder-section){
     font-size: 24px;
     font-weight: bold;
 }
-/***Chỉnh sửa lại nút phân trang và chuyển siler**/
 .carousel-indicators button{
     margin-top: 16px;
-    background-color: rgba(0, 0, 0, 0.7) !important;
-    width: 20px !important;
-    height: 20px !important;
-    border-radius: 50% !important;
 }
 .carousel-indicators .active{
-    background-color: var(--color-blue-origin) !important;
+    background-color: var(--color-blue-origin);
 }
 .carousel-control-color{
-    background-color: rgba(0, 0, 0, 0.7) ;
+    background-color: var(--color-blue-origin);
     width: 64px;
     height: 64px;
     position: absolute;
     top: 50%;
     border-radius: 50%;
     transform: translateX(-12%);
-    opacity: 0.5 !important;
-}
-.carousel-control-color:hover{
-    background-color: var(--color-blue-origin);
-    opacity: 1 !important;
-
 }
 
 /******home-gallery**********/
 .home-gallery{
     background-color: #f4f4f4;
-
 }
 .home-gallery img{
     max-width: 100%;
