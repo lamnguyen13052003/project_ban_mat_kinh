@@ -50,11 +50,11 @@ const initItem = (item)=>{
             <a href="/products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
                 <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                 <picture class="img-hidden-when-hover">
-                    <img class="lazyloaded  rounded-3" src="../../../images/product/giong-kinh/${item['HỈNH ẢNH']}/0.jpg" alt=" Kính Mát Gập Tròn OEM 2015 ">
+                    <img class="lazyloaded  rounded-3" src="../../images/product/giong-kinh/${item['HỈNH ẢNH']}/0.jpg" alt=" Kính Mát Gập Tròn OEM 2015 ">
                 </picture>
                 <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                 <picture class="img-show-when-hover">
-                    <img class="lazyloaded  rounded-3" src="../../../images/product/giong-kinh/${item['HỈNH ẢNH']}/1.jpg" alt=" Kính Mát Gập Tròn OEM 2015 ">
+                    <img class="lazyloaded  rounded-3" src="../../images/product/giong-kinh/${item['HỈNH ẢNH']}/1.jpg" alt=" Kính Mát Gập Tròn OEM 2015 ">
                 </picture>
             </a>
         </div>
