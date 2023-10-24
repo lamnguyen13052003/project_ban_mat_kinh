@@ -100,6 +100,34 @@ label.radio input:checked + span {
     box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
 }
 
+.items .input-amount button,
+.items .input-amount input{
+    border: 1px solid black;
+}
+
+.items .input-amount button:nth-of-type(1){
+    border-radius: 5px 0 0 5px;
+}
+
+.items .input-amount button:nth-of-type(2){
+    border-radius: 0 5px 5px 0;
+}
+
+.items .amount-product{
+    width: 50px;
+}
+
+.items .amount-product:focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.items .amount-product::-webkit-outer-spin-button,
+.items .amount-product::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .option {
     font-size: 11px;
 }
