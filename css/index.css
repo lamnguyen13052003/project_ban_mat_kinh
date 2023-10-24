@@ -503,11 +503,8 @@ section:not(#silder-section){
     z-index: 1;
     transition: all .5s;
 }
-.home-blog .carousel-indicators button{
-    background-color: rgba(0, 0, 0, 1) !important;
-}
-.home-blog .carousel-indicators .active{
-    background-color: var(--color-blue-origin) !important;
+.home-banner{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 /***************************************Login-Signup-forget_password**********************************/
 .form-login{
