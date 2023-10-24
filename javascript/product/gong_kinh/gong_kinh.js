@@ -37,8 +37,8 @@ const initItem = (item)=>{
         <div class="pro-loop-image position-relative">
 
             <!--Hiển thị hêt hàng-->
-            <div class="pro-loop-sd z-2 position-absolute">
-                <!--<span>Hết hàng</span>-->
+            <div class="pro-loop-sd z-2 position-absolute d-none">
+                <span>Hết hàng</span>
             </div>
 
             <!--Hiển thị quà tặng-->
