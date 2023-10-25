@@ -16,7 +16,7 @@
     <title>Thế giới mắt kính</title>
 </head>
 <body>
-<div id="menu">
+<header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
@@ -159,9 +159,9 @@
             </div>
         </div>
     </nav>
-</div>
+</header>
 
-<div id="main" class="mt-5 pb-5">
+<main id="main" class="mt-5 pb-5">
     <div class="container">
         <!--Phần slide-->
         <div id="carouselExampleIndicators" class="carousel slide mb-5">
@@ -208,11 +208,13 @@
                 <div class="filter-header">
                     <div class="section-title-all row d-flex align-items-center">
                         <div class="col-11">
-                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (0 lựa chọn) <i class="lnil lni-plus"></i></h2>
+                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (0 lựa chọn) <i class="lnil lni-plus"></i>
+                            </h2>
                         </div>
                         <!--Nút hủy bộ lọc-->
                         <div class="col mt-2">
-                            <button id="removeCheckedFilterAll" class="button border-0" type="button" data-action="close-filter">
+                            <button id="removeCheckedFilterAll" class="button border-0" type="button"
+                                    data-action="close-filter">
                                 <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15"
                                      height="15">
                                     <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none"
@@ -259,7 +261,8 @@
                         <h4>Chất liệu</h4>
                         <ul class="filter-list">
                             <li>
-                                <button class="border-0 checked" id="data-variant-p1" value="chatlieu_1" name="variantFilter">
+                                <button class="border-0 checked" id="data-variant-p1" value="chatlieu_1"
+                                        name="variantFilter">
                                     Chất liệu 1
                                 </button>
                             </li>
@@ -311,17 +314,17 @@
                                         data-pricemax="2000000" name="priceFilter">1,000,000 - 2,000,000
                                 </button>
                             </li>
-                            <li  class="d-none hidden">
+                            <li class="d-none hidden">
                                 <button class="border-0" id="data-price-p5" data-pricemin="2000000"
                                         data-pricemax="3000000" name="priceFilter">2,000,000 - 3,000,000
                                 </button>
                             </li>
-                            <li  class="d-none hidden">
+                            <li class="d-none hidden">
                                 <button class="border-0" id="data-price-p6" data-pricemin="3000000"
                                         data-pricemax="5000000" name="priceFilter">3,000,000 - 5,000,000
                                 </button>
                             </li>
-                            <li  class="d-none hidden">
+                            <li class="d-none hidden">
                                 <button class="border-0" id="data-price-p7" data-pricemin="5000000"
                                         data-pricemax="10000000" name="priceFilter">5,000,000 - 10,000,000
                                 </button>
@@ -379,28 +382,43 @@
                         <!--Phần danh sách các tiêu chí sort-->
                         <ul class="sort-list">
                             <li>
-                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">Mặc định</button>
+                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">Mặc định
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p1" value="price-ascending"  name="sortFilter">Giá: Tăng dần</button>
+                                <button class="border-0" id="data-sort-p1" value="price-ascending" name="sortFilter">
+                                    Giá: Tăng dần
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0"  id="data-sort-p2" value="price-descending"  name="sortFilter">Giá: Giảm dần</button>
+                                <button class="border-0" id="data-sort-p2" value="price-descending" name="sortFilter">
+                                    Giá: Giảm dần
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p3" value="title-ascending" name="sortFilter">Tên: A-Z</button>
+                                <button class="border-0" id="data-sort-p3" value="title-ascending" name="sortFilter">
+                                    Tên: A-Z
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p4" value="title-descending" name="sortFilter">Tên: Z-A</button>
+                                <button class="border-0" id="data-sort-p4" value="title-descending" name="sortFilter">
+                                    Tên: Z-A
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p5" value="created-ascending" name="sortFilter">Cũ nhất</button>
+                                <button class="border-0" id="data-sort-p5" value="created-ascending" name="sortFilter">
+                                    Cũ nhất
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p6" value="created-descending" name="sortFilter">Mới nhất</button>
+                                <button class="border-0" id="data-sort-p6" value="created-descending" name="sortFilter">
+                                    Mới nhất
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p7" value="best-selling"  name="sortFilter">Bán chạy nhất</button>
+                                <button class="border-0" id="data-sort-p7" value="best-selling" name="sortFilter">Bán
+                                    chạy nhất
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -468,14 +486,16 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Gọng Kính Chống Ánh Sáng Xanh Baggio BC901">Gọng Kính Chống Ánh Sáng Xanh Baggio BC901</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Baggio BC901">Gọng Kính Chống Ánh Sáng Xanh
+                                    Baggio BC901</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
                                 <p class="fw-bold d-inline me-3">670,000 <span> ₫</span></p>
-                                <del> <span> </span></del>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -580,7 +600,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12149">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12149</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12149">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12149</a>
                             </h3>
 
 
@@ -692,7 +714,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Tròn TR90 Clip On Phân Cực Polarized 2 Trong 1 TJ2186">Kính Râm Cận Tròn TR90 Clip On Phân Cực Polarized 2 Trong 1 TJ2186</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Tròn TR90 Clip On Phân Cực Polarized 2 Trong 1 TJ2186">Kính Râm
+                                    Cận Tròn TR90 Clip On Phân Cực Polarized 2 Trong 1 TJ2186</a>
                             </h3>
 
 
@@ -804,14 +828,16 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Clip On 2 Trong 1 Baggio CG7703">Kính Râm Cận Clip On 2 Trong 1 Baggio CG7703</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Clip On 2 Trong 1 Baggio CG7703">Kính Râm Cận Clip On 2 Trong 1
+                                    Baggio CG7703</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
                                 <p class="fw-bold d-inline me-3">680,000 <span> ₫</span></p>
-                                <del> <span> </span></del>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -916,14 +942,17 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Thể Thao Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp TR 2269">Kính Thể Thao Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp TR 2269</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Thể Thao Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp TR 2269">Kính
+                                    Thể Thao Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp TR
+                                    2269</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
                                 <p class="fw-bold d-inline me-3">300,000 <span> ₫</span></p>
-                                <del>600,000  <span> ₫</span></del>
+                                <del>600,000 <span> ₫</span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1028,7 +1057,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2218T">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2218T</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2218T">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2218T</a>
                             </h3>
 
 
@@ -1140,7 +1171,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12185">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12185</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12185">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12185</a>
                             </h3>
 
 
@@ -1252,14 +1285,16 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Clip On 2 Trong 1 Cao Cấp 8192">Kính Râm Cận Clip On 2 Trong 1 Cao Cấp 8192</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Clip On 2 Trong 1 Cao Cấp 8192">Kính Râm Cận Clip On 2 Trong 1
+                                    Cao Cấp 8192</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
                                 <p class="fw-bold d-inline me-3">500,000 <span> ₫</span></p>
-                                <del>800,000  <span> ₫</span></del>
+                                <del>800,000 <span> ₫</span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1364,7 +1399,10 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Thể Thao Dây Đeo TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2502A">Kính Râm Cận Thể Thao Dây Đeo TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2502A</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Thể Thao Dây Đeo TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2502A">Kính
+                                    Râm Cận Thể Thao Dây Đeo TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp
+                                    2502A</a>
                             </h3>
 
 
@@ -1476,7 +1514,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12158">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12158</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12158">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12158</a>
                             </h3>
 
 
@@ -1588,7 +1628,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12184">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12184</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12184">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12184</a>
                             </h3>
 
 
@@ -1700,7 +1742,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính mát Cao Cấp Clip on 2 lớp CHRISTIAN DIOR Diamond S4U">Kính mát Cao Cấp Clip on 2 lớp CHRISTIAN DIOR Diamond S4U</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính mát Cao Cấp Clip on 2 lớp CHRISTIAN DIOR Diamond S4U">Kính mát Cao
+                                    Cấp Clip on 2 lớp CHRISTIAN DIOR Diamond S4U</a>
                             </h3>
 
 
@@ -1812,7 +1856,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Snap Lens 12160">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Snap Lens 12160</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Snap Lens 12160">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Snap Lens 12160</a>
                             </h3>
 
 
@@ -1924,7 +1970,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12183">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12183</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12183">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 12183</a>
                             </h3>
 
 
@@ -2036,7 +2084,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2146">Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2146</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2146">Kính
+                                    Râm Cận TR90 Clip On Phân Cực Polarized 2 Trong 1 Bộ 5 Kẹp Cao Cấp 2146</a>
                             </h3>
 
 
@@ -2148,7 +2198,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Brownline TR90 Clip On Phân Cực Polarized 2 Trong 1 18023">Kính Râm Cận Brownline TR90 Clip On Phân Cực Polarized 2 Trong 1 18023</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Brownline TR90 Clip On Phân Cực Polarized 2 Trong 1 18023">Kính
+                                    Râm Cận Brownline TR90 Clip On Phân Cực Polarized 2 Trong 1 18023</a>
                             </h3>
 
 
@@ -2260,7 +2312,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận TR90 Clip On 2 Trong 1 Phân Cực Polarized 8188">Kính Râm Cận TR90 Clip On 2 Trong 1 Phân Cực Polarized 8188</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận TR90 Clip On 2 Trong 1 Phân Cực Polarized 8188">Kính Râm Cận TR90
+                                    Clip On 2 Trong 1 Phân Cực Polarized 8188</a>
                             </h3>
 
 
@@ -2372,7 +2426,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Clip On 2 Trong 1 Cao Cấp 8191">Kính Râm Cận Clip On 2 Trong 1 Cao Cấp 8191</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Clip On 2 Trong 1 Cao Cấp 8191">Kính Râm Cận Clip On 2 Trong 1
+                                    Cao Cấp 8191</a>
                             </h3>
 
 
@@ -2484,7 +2540,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính râm cận 2 lớp clip on daniel jones 536">Kính râm cận 2 lớp clip on daniel jones 536</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính râm cận 2 lớp clip on daniel jones 536">Kính râm cận 2 lớp clip on daniel
+                                    jones 536</a>
                             </h3>
 
 
@@ -2597,7 +2655,9 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Kính Râm Cận Clip On 2 Trong 1 Saint Brown 2132">Kính Râm Cận Clip On 2 Trong 1 Saint Brown 2132</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Kính Râm Cận Clip On 2 Trong 1 Saint Brown 2132">Kính Râm Cận Clip On 2 Trong
+                                    1 Saint Brown 2132</a>
                             </h3>
 
 
@@ -2678,13 +2738,16 @@
                         <a class="page-link d-flex justify-content-center align-items-center" href="kinh_mat.html">1</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center" href="kinh_mat_page_02.html">2</a>
+                        <a class="page-link d-flex justify-content-center align-items-center"
+                           href="kinh_mat_page_02.html">2</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center" href="kinh_mat_page_03.html">3</a>
+                        <a class="page-link d-flex justify-content-center align-items-center"
+                           href="kinh_mat_page_03.html">3</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center" href="kinh_mat_page_04.html">4</a>
+                        <a class="page-link d-flex justify-content-center align-items-center"
+                           href="kinh_mat_page_04.html">4</a>
                     </li>
                     <li class="page-item">
                         <a class="page-link d-flex justify-content-center align-items-center" href="#">
@@ -2697,74 +2760,72 @@
         </div>
         <!--End phần nội dung-->
     </div>
-</div>
+</main>
 
-<div id="footer">
-    <footer class="footer">
-        <div class="container ">
-            <div class="footer-top row">
-                <div class="footer-top-item col">
-                    <h5>Mắt Kính KIMI
-                    </h5>
-                    <div class="footer-content footer-contact">
-                        <div class="ft_map">
+<footer id="footer" class="footer">
+    <div class="container ">
+        <div class="footer-top row">
+            <div class="footer-top-item col">
+                <h5>Mắt Kính KIMI
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
 
-                        </div>
-                        <ul>
-                            <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
-                            </li>
-                            <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
-                                    class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
-                            </li>
-                            <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
-                            </li>
-                            <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
-                            </li>
-                            <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
-                                    class="fa-brands fa-facebook-f px-1"></i><span
-                                    class="px-1 hover"><b>KIMI</b> </span></a></li>
-                            <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
-                            <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
-                        </ul>
                     </div>
-                </div>
-
-                <div class="footer-top-item col">
-                    <h5>HỖ TRỢ KHÁCH HÀNG
-                    </h5>
-                    <div class="footer-content footer-contact">
-                        <div class="ft_map">
-
-                        </div>
-                        <ul>
-                            <li><a class="hover" href="../../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
-                                online</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
-                                thanh toán, giao nhận</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a>
-                            </li>
-                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi
-                                trả và hoàn tiền</a></li>
-                            <li><a class="hover" href="../../pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
-                        </ul>
-                    </div>
-
+                    <ul>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
+                                class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
+                        </li>
+                        <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
+                        </li>
+                        <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
+                        </li>
+                        <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
+                                class="fa-brands fa-facebook-f px-1"></i><span
+                                class="px-1 hover"><b>KIMI</b> </span></a></li>
+                        <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
+                        <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
+                    </ul>
                 </div>
             </div>
-            <div class="row footer-bot text-center border-3">
-                <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="../../index.html">
-                        <img src="../../logo.png" alt="logo.png">
-                        <span>KIMI</span>
-                    </a>
+
+            <div class="footer-top-item col">
+                <h5>HỖ TRỢ KHÁCH HÀNG
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
+
+                    </div>
+                    <ul>
+                        <li><a class="hover" href="../../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
+                            online</a></li>
+                        <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
+                            thanh toán, giao nhận</a></li>
+                        <li><a class="hover" href="../../pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
+                        <li><a class="hover" href="../../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a>
+                        </li>
+                        <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi
+                            trả và hoàn tiền</a></li>
+                        <li><a class="hover" href="../../pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                    </ul>
                 </div>
-                <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+
             </div>
         </div>
-    </footer>
+        <div class="row footer-bot text-center border-3">
+            <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                <a href="../../index.html">
+                    <img src="../../logo.png" alt="logo.png">
+                    <span>KIMI</span>
+                </a>
+            </div>
+            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+        </div>
+    </div>
+</footer>
 
-</div>
 <script src="../../javascript/menu_footer.js"></script>
 <script src="../../javascript/product.js"></script>
 </body>

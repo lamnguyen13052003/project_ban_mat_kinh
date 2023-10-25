@@ -100,16 +100,21 @@ ul, li, a {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 /***************************************Footer**********************************/
-#footer .footer .footer-top-item li {
+#footer .container:nth-of-type(2){
+    margin-top: 20px;
+    background-color: black;
+}
+
+footer .footer-top-item li {
     margin: 5px 0;
 }
 
-#footer .footer .footer-top-item h5 {
+footer .footer-top-item h5 {
     padding: 10px 0;
     position: relative;
 }
 
-#footer .footer .footer-top-item h5::after {
+footer .footer-top-item h5::after {
     position: absolute;
     content: "";
     bottom: 0;
@@ -118,12 +123,12 @@ ul, li, a {
     width: 100px;
 }
 
-#footer .footer .footer-bot {
+footer .footer-bot {
     padding: 20px 0;
     border-top: 2px solid #F5F5F5;
 }
 
-#footer .footer .hover:hover {
+footer.hover:hover {
     color: #2F189A;
     cursor: pointer;
     font-weight: bold;
