@@ -1,3 +1,4 @@
 $(document).ready(function () {
-    $("#button-account").parent().attr("href", "../../account.html");
+    $("#menu .account a").attr("href", "../account.html");
+    $("#menu .account a img").attr("src", "../logo.png");
 });
