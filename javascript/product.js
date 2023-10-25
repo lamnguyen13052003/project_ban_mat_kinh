@@ -38,7 +38,7 @@ function addActionFilterMore(){
 }
 
 function removeCheckedFilterAll(){
-    $("button#removeCheckedFilterAll").click(function (){
+    $("#removeCheckedFilterAll").click(function (){
         $("div.filter>ul>li>button").removeClass("checked");
     });
 }
@@ -61,6 +61,6 @@ function setRateProduct(){
 }
 
 function fixSlide(){
-    $("div#main>div>div.carousel").removeClass("slide").attr("id", "carouselExampleAutoplaying").attr("data-bs-ride", "carousel")
-    $("div#carouselExampleAutoplaying button").attr("data-bs-target", "#carouselExampleAutoplaying");
+    $("#main>div>div.carousel").removeClass("slide").attr("id", "carouselExampleAutoplaying").attr("data-bs-ride", "carousel")
+    $("#carouselExampleAutoplaying button").attr("data-bs-target", "#carouselExampleAutoplaying");
 }
