@@ -10,6 +10,9 @@ $(document).ready(function () {
             tên: "Nguyễn Đình Lam"
         }
         displayMenuAccount(user);
+    }else{
+        $("#menu").find(".login").removeClass("d-none");
+        $("#menu").find(".sign-up").removeClass("d-none");
     }
 });
 

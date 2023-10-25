@@ -14,6 +14,10 @@ $(document).ready(function () {
         const imageUrl = window.URL.createObjectURL(selectedFile);
         $("#avatar").attr("src", imageUrl);
     });
+
+    $("#signout").click(function () {
+        sessionStorage.removeItem("account");
+    });
 });
 
 function display_account_page(index) {
