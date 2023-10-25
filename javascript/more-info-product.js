@@ -8,43 +8,44 @@ $(document).ready(function () {
 });
 
 function showMoreInfor() {
-    $("div#main .productTabsContent .tab-content .tab-pane a.readmore").click(function () {
-        $(this).addClass("d-none");
-        $("div#main .productTabsContent .tab-content .tab-pane a.readless").removeClass("d-none");
-        $("div#main .productTabsContent .tab-content .tab-pane>div").removeClass("overflow-hidden").attr("style", "");
+
+    $("#main .productTabsContent .tab-content .tab-pane a.readmore div").click(function () {
+        $(this).parent().addClass("d-none");
+        $("#main .productTabsContent .tab-content .tab-pane a.readless").removeClass("d-none");
+        $("#main .productTabsContent .tab-content .tab-pane>div").removeClass("overflow-hidden").attr("style", "");
     });
 
-    $("div#main .productTabsContent .tab-content .tab-pane a.readless").click(function () {
-        $(this).addClass("d-none");
-        $("div#main .productTabsContent .tab-content .tab-pane a.readmore").removeClass("d-none");
-        $("div#main .productTabsContent .tab-content .tab-pane>div").addClass("overflow-hidden").attr("style", "height: 500px;");
+    $("#main .productTabsContent .tab-content .tab-pane a.readless  div").click(function () {
+        $(this).parent().addClass("d-none");
+        $("#main .productTabsContent .tab-content .tab-pane a.readmore").removeClass("d-none");
+        $("#main .productTabsContent .tab-content .tab-pane>div").addClass("overflow-hidden").attr("style", "height: 500px;");
     });
 }
 
 function selectOption() {
-    $("div#main .productWrap .productWrapDetail .product-swatch button").click(function () {
-        $("div#main .productWrap .productWrapDetail .product-swatch button").removeClass("active");
+    $("#main .productWrap .productWrapDetail .product-swatch button").click(function () {
+        $("#main .productWrap .productWrapDetail .product-swatch button").removeClass("active");
         $(this).addClass("active")
     });
 }
 
 function changeAmount(){
-    $("div#main .productWrap .productWrapDetail .productActionMain button.minusQuan").click(function () {
+    $("#main .productWrap .productWrapDetail .productActionMain button.minusQuan").click(function () {
         var val =  $("#quantity");
         if(Number(val.val()) > 1){
             val.val(Number(val.val()) - 1);
         }
     });
 
-    $("div#main .productWrap .productWrapDetail .productActionMain button.plusQuan").click(function () {
+    $("#main .productWrap .productWrapDetail .productActionMain button.plusQuan").click(function () {
         var val =  $("#quantity");
         val.val(Number(val.val()) + 1);
     });
 }
 
 function setRate(){
-    $("div#customer-rate li i").attr("class", "fa-solid fa-star");
-    $("div#customer-rate li").click(function (){
+    $("#customer-rate li i").attr("class", "fa-solid fa-star");
+    $("#customer-rate li").click(function (){
         let amount = $(this).attr("class").charAt(0);
         console.log(amount);
         $("div#customer-rate li i").attr("class", "fa-regular fa-star");
