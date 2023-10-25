@@ -3,6 +3,8 @@ $(document).ready(function () {
     selectOption();
     changeAmount();
     setRate();
+
+    $("#button-account").parent().attr("href", "../../../account.html");
 });
 
 function showMoreInfor() {
