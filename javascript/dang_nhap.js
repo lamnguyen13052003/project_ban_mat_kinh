@@ -5,6 +5,10 @@ $(document).ready(function () {
             password: $("#login-password").val(),
         };
 
+        if(account.user == "admin"){
+            $("#customer_login").attr("action", "page_admin/danh_sach_khach_hang.html")
+        }
+
         // Chuyển đối tượng thành một chuỗi JSON và lưu nó vào sessionStorage
         sessionStorage.setItem("account", JSON.stringify(account));
     });
