@@ -27,7 +27,7 @@ function displayPlaceholder(element) {
             index++;
             if (index === string.length) {
                 index = 0;
-                val = "logo.png";
+                val = "";
                 element.attr("placeholder", "");
             }
         }, 150);
