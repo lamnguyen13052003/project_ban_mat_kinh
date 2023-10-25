@@ -5,6 +5,8 @@ $(document).ready(function () {
     removeCheckedFilterAll();
     addActionClickForButtonSort();
     addActionFilterMore();
+
+    $("#button-account").parent().attr("href", "../../account.html");
 });
 
 function addActionClickForButtonFilter() {
