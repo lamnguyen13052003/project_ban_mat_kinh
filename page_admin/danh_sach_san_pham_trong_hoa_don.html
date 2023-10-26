@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
@@ -21,7 +22,7 @@
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                     <a href="danh_sach_khach_hang.html" class="navbar-brand me-5">
+                    <a href="danh_sach_khach_hang.html" class="navbar-brand me-5">
                         <img src="../logo.png" alt="logo.png">
                         KIMI
                     </a>
@@ -63,10 +64,12 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 active">
-                                    <a href="danh_sach_khach_hang.html" class="nav-link px-4 rounded">Danh sách khách hàng</a>
+                                    <a href="danh_sach_khach_hang.html" class="nav-link px-4 rounded">Danh sách khách
+                                        hàng</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_san_pham.html" class="nav-link px-4 rounded">Danh sách sản phẩm</a>
+                                    <a href="danh_sach_san_pham.html" class="nav-link px-4 rounded">Danh sách sản
+                                        phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.html" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
@@ -82,32 +85,225 @@
 
 <main id="main" class=" p-5">
     <div class="container">
-<!--        top-->
+        <!--        top-->
         <div class="in4-bill-top d-flex align-items-center justify-content-between">
             <div class="in4-left">
                 <div class="id-bill-and-in4-ship d-flex align-items-center justify-content-around">
-                    <div class="id-bill "><p><h3 class="fw-bold">Hóa đơn: #<span>xxx</span></h3></p></div>
+                    <div class="id-bill "><p>
+                        <h3 class="fw-bold">Hóa đơn: #<span>xxx</span></h3></p></div>
                     <div class="in4-ship px-3 mx-5"><span>Đang trên đường giao</span></div>
                 </div>
                 <div class="time-order py-2"><p><span>dd/mm/yyyy, </span><span>hh:mm</span></p></div>
             </div>
             <div class="in4-right ">
-                <button type="button" >Xóa đơn đặt hàng</button>
+                <button type="button">Xóa đơn đặt hàng</button>
             </div>
         </div>
-<!--        sản phẩm và thông tin khác hàng-->
-        <div class="container text-center">
-            <div class="item-and-in4-customer  d-flex align-items-center justify-content-center">
-<!--                thông tin sản phẩm-->
-                <div class="in4-item ">
-
+        <!--        sản phẩm và thông tin khác hàng-->
+        <div class="item-and-in4-customer my-3  d-flex align-items-center justify-content-between">
+            <!--                thông tin sản phẩm-->
+            <div class="in4-item overflow-hidden" style="width: 60%">
+                <div class="col-name-item py-3 row ">
+                    <div class="col-6 "><span class="px-4">Sản phẩm</span></div>
+                    <div class="col-2">Đơn giá</div>
+                    <div class="col-2">Số lượng</div>
+                    <div class="col-2">Thành tiền</div>
                 </div>
-<!--                thông tin khách hàng-->
-                <div class="in4-customer  ">
+                <div class="list-item" style="width: 100%">
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
 
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+
+                    <!--                    bắt đầu 1 hàng sản phẩm-->
+                    <div class="item row py-2 text-center">
+                        <div class="col-6 d-flex">
+                            <div class="img-item px-4">
+                                <img class="d-none" src="" alt="">
+                                <div class="img-60x60 text-center">
+                                    <span>Hình ảnh<br>60x60</span>
+                                </div>
+                            </div>
+                            <div class="in4-item">
+                                <p><span>Tên sản phẩm</span><br><span
+                                        style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">option sản phẩm nếu có</span>
+                                </p>
+                            </div>
+                            <div></div>
+                        </div>
+                        <div class="col-2"><span>1,300,000</span></div>
+                        <div class="col-2"><span>10</span></div>
+                        <div class="col-2"><span>13,000,000</span></div>
+                    </div>
+                    <!--                    kết thúc 1 hàng sản phẩm-->
+                </div>
+            <!--hiện thị tổng số tiền cần trả-->
+                <div class="show-total-money py-4 mx-5 d-flex align-items-center justify-content-end">
+                    <div class="show-total px-3 ">
+                        <ul>
+                            <li><span>Tổng hóa đơn:</span><span>130,000,000 <span>₫</span></span> </li>
+                            <li><span>Phí vận chuyển:</span><span>20,000 <span>₫</span></span></li>
+                            <li><span>Tổng tiền phải trả:</span><span>130,020,000 <span>₫</span></span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div></div>
+            <!--                thông tin khách hàng-->
+            <div class="in4-customer  " style="width: 30%">
+
+            </div>
+        </div>
+        <div>
+
         </div>
     </div>
 </main>

@@ -1,29 +1,89 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 }
-#main{
+
+#main {
     background-color: #f1f2f7;
 }
+
 /****top***/
-.in4-bill-top .id-bill-and-in4-ship .in4-ship{
+.in4-bill-top .id-bill-and-in4-ship .in4-ship {
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
     border-radius: 5px;
 }
-.in4-bill-top .time-order{
+
+.in4-bill-top .time-order {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.5);
 }
-.in4-right button{
+
+.in4-right button {
     border: none;
     padding: 5px 10px;
     background-color: var(--color-origan-origin);
     color: #FFFFFF;
     border-radius: 10px;
 }
+
 /*thông tin sản phẩm và thông tin khách hàng*/
-.item-and-in4-customer  div{
+.item-and-in4-customer > div {
     border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+.col-name-item {
+    background-color: var(--color-blue-origin);
+    color: #FFFFFF;
+}
+.list-item{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 448px;
+}
+
+.list-item .item:not(.item:last-child){
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+.list-item .item .img-item .img-60x60 {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #000000;
+    font-size: 12px;
+    position: relative;
+}
+.list-item .item .img-item .img-60x60 span{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+}
+.item div:not(div:first-child) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item div:not(div:first-child) span {
+    padding-right: 30px;
+}
+/*hiện thị số tiền*/
+.show-total-money .show-total{
+    width: 50%;
+    height: auto;
+    background-color: var(--color-blue-origin);
+    border-radius: 10px;
+}
+.show-total-money .show-total ul li {
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.show-total ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
 }
