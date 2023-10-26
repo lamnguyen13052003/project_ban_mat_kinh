@@ -16,7 +16,7 @@
 /****show list bill****/
 .show-list-bill .name-col{
     width: auto;
-    height: 40px;
+    padding: 20px 0;
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
     font-weight: bold;
