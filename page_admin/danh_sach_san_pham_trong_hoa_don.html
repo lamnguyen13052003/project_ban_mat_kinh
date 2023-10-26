@@ -86,7 +86,7 @@
 <main id="main" class=" p-5">
     <div class="container">
         <!--        top-->
-        <div class="in4-bill-top d-flex align-items-center justify-content-between">
+        <div class="in4-bill-top d-flex justify-content-between">
             <div class="in4-left">
                 <div class="id-bill-and-in4-ship d-flex align-items-center justify-content-around">
                     <div class="id-bill "><p>
@@ -96,11 +96,11 @@
                 <div class="time-order py-2"><p><span>dd/mm/yyyy, </span><span>hh:mm</span></p></div>
             </div>
             <div class="in4-right ">
-                <button type="button">Xóa đơn đặt hàng</button>
+                <button type="button"><i class="fa-solid fa-trash"></i> Xóa đơn đặt hàng</button>
             </div>
         </div>
         <!--        sản phẩm và thông tin khác hàng-->
-        <div class="item-and-in4-customer my-3  d-flex align-items-center justify-content-between">
+        <div class="item-and-in4-customer my-3  d-flex align-items-center justify-content-between position-relative">
             <!--                thông tin sản phẩm-->
             <div class="in4-item overflow-hidden" style="width: 60%">
                 <div class="col-name-item py-3 row ">
@@ -287,7 +287,7 @@
                     <!--                    kết thúc 1 hàng sản phẩm-->
                 </div>
             <!--hiện thị tổng số tiền cần trả-->
-                <div class="show-total-money py-4 mx-5 d-flex align-items-center justify-content-end">
+                <div class="show-total-money py-3 mx-5 d-flex align-items-center justify-content-end">
                     <div class="show-total px-3 ">
                         <ul>
                             <li><span>Tổng hóa đơn:</span><span>130,000,000 <span>₫</span></span> </li>
@@ -297,13 +297,38 @@
                     </div>
                 </div>
             </div>
-            <!--                thông tin khách hàng-->
-            <div class="in4-customer  " style="width: 30%">
 
+            <!--                thông tin khách hàng-->
+            <div class="in4-customer position-absolute top-0 end-0 " style="width: 35%">
+                <div class="col-name-in4-customer"><h3>Thông tin khách hàng</h3></div>
+                <div class="img-avatar-and-name-customer">
+                    <div class="img-avatar">
+                        <img class="d-none" src="" alt="">
+                        <div class="avatar">
+                            <span>avatar<br>60x60</span>
+                        </div>
+                    </div>
+                    <div class="name-customer">
+                        <p>Tên khách hàng<br><span>mã khách hàng: <span>xxx</span></span></p>
+                    </div>
+                </div>
+                <div class="tong-san-pham">
+                    <div class="icon-cart"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <p>Tổng sản phẩm: <span>12</span></p>
+                </div>
+                <div class="address">
+                    <div class="edit-address">
+                        <p>Địa chỉ</p>
+                        <span><i class="fa-solid fa-pen"></i></span>
+                    </div>
+                    <p><span>Email: </span><span>abc@gmail.com</span></p>
+                    <p><span>Số điện thoại: </span><span>xxxx.xxx.xxx</span></p>
+                    <p><span>Địa chỉ:</span><span>abc.xyz</span></p>
+
+                </div>
             </div>
         </div>
         <div>
-
         </div>
     </div>
 </main>
