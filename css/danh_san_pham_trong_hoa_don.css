@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#main{
+    background-color: #f1f2f7;
+}
+/****top***/
+.in4-bill-top .id-bill-and-in4-ship .in4-ship{
+    background-color: var(--color-blue-origin);
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+.in4-bill-top .time-order{
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.in4-right button{
+    border: none;
+    padding: 5px 10px;
+    background-color: var(--color-origan-origin);
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+/*thông tin sản phẩm và thông tin khách hàng*/
+.item-and-in4-customer  div{
+    border-radius: 10px;
+}
