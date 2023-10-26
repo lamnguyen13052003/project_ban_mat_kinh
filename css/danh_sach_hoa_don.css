@@ -1,11 +1,41 @@
+#main{
+    background-color: #f4f4f4;
+}
+#main .container{
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
 /*******Search***/
 .input-group span{
     background-color: #FFFFFF;
 }
+.input-group input::placeholder{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+}
+/****show list bill****/
 .show-list-bill .name-col{
-    width: 100%;
+    width: auto;
     height: 40px;
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
     font-weight: bold;
+}
+.show-list-bill .list-bill .item-bill{
+    border-bottom: 1px solid #000000;
+}
+.show-list-bill .list-bill .item-bill .id-item{
+    color: var(--color-blue-origin);
+    font-weight: bold;
+}
+.show-list-bill .list-bill .item-bill .in4-img{
+    margin: 0 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+.show-list-bill .list-bill .item-bill .in4-tex ul li:not(li:first-child){
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
 }
