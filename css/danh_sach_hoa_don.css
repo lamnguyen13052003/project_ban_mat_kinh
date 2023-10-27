@@ -81,29 +81,3 @@
 #main .table .body-table .customer .info-customer p:nth-of-type(3) {
     font-size: 10px;
 }
-/***show bot***/
-/*.show-bot ul li{*/
-/*    padding: 0 8px;*/
-/*}*/
-/*.show-bot .sum-bil{*/
-/*    font-size: 12px;*/
-/*    color: rgba(0, 0, 0, 0.5);*/
-/*    padding-left: 32px;*/
-/*}*/
-/*.show-bot .phan-trang .btn-phan-trang{*/
-/*    display: block;*/
-/*    width: 24px;*/
-/*    height: 24px;*/
-/*}*/
-/*.show-bot .phan-trang .btn-phan-trang:hover{*/
-/*    background-color: var(--color-blue-origin);*/
-/*    color: #FFFFFF;*/
-/*    border-radius: 50% ;*/
-/*}*/
-/*.show-bot .phan-trang .page-active{*/
-/*    border-radius: 50%;*/
-/*    background-color: var(--color-blue-origin);*/
-/*}*/
-/*.show-bot .phan-trang .page-active a {*/
-/*    color: #FFFFFF;*/
-/*}*/
