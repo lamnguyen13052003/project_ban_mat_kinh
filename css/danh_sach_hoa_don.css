@@ -20,6 +20,7 @@
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
     font-weight: bold;
+    border-radius: 10px 10px 0 0;
 }
 .show-list-bill .list-bill .item-bill{
     border-bottom: 1px solid #000000;
