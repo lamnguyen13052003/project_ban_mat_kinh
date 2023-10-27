@@ -40,29 +40,70 @@
     font-size: 10px;
     color: rgba(0, 0, 0, 0.5);
 }
-/***show bot***/
-.show-bot ul li{
-    padding: 0 8px;
+/*Phần footer, coppy*/
+#main .table .footer-table {
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    border-radius: 0 0 10px 10px;
 }
-.show-bot .sum-bil{
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.5);
-    padding-left: 32px;
+
+.footer-table .change-page-display-list button {
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    background-color: #FFFFFF;
 }
-.show-bot .phan-trang .btn-phan-trang{
-    display: block;
-    width: 24px;
-    height: 24px;
-}
-.show-bot .phan-trang .btn-phan-trang:hover{
+
+.footer-table .change-page-display-list button:hover,
+.footer-table .change-page-display-list button.active {
+    color: #fff;
     background-color: var(--color-blue-origin);
-    color: #FFFFFF;
-    border-radius: 50% ;
+    font-weight: 550;
 }
-.show-bot .phan-trang .page-active{
+/*Phần avatar và text, coppy*/
+#main .table .body-table .customer .avatar-customer {
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    width: fit-content;
     border-radius: 50%;
-    background-color: var(--color-blue-origin);
+    padding: 5px;
 }
-.show-bot .phan-trang .page-active a {
-    color: #FFFFFF;
+
+#main .table .body-table .customer .avatar-customer img {
+    width: 40px;
+    height: 40px;
 }
+
+#main .table .body-table .customer .info-customer p:nth-of-type(1) {
+    font-size: 15px;
+}
+
+#main .table .body-table .customer .info-customer p:nth-of-type(2),
+#main .table .body-table .customer .info-customer p:nth-of-type(3) {
+    font-size: 10px;
+}
+/***show bot***/
+/*.show-bot ul li{*/
+/*    padding: 0 8px;*/
+/*}*/
+/*.show-bot .sum-bil{*/
+/*    font-size: 12px;*/
+/*    color: rgba(0, 0, 0, 0.5);*/
+/*    padding-left: 32px;*/
+/*}*/
+/*.show-bot .phan-trang .btn-phan-trang{*/
+/*    display: block;*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*}*/
+/*.show-bot .phan-trang .btn-phan-trang:hover{*/
+/*    background-color: var(--color-blue-origin);*/
+/*    color: #FFFFFF;*/
+/*    border-radius: 50% ;*/
+/*}*/
+/*.show-bot .phan-trang .page-active{*/
+/*    border-radius: 50%;*/
+/*    background-color: var(--color-blue-origin);*/
+/*}*/
+/*.show-bot .phan-trang .page-active a {*/
+/*    color: #FFFFFF;*/
+/*}*/
