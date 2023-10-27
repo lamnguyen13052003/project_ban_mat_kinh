@@ -102,3 +102,26 @@
     text-align: center;
     font-size: 10px;
 }
+.in4-customer .tong-san-pham .icon-cart{
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-blue-origin);
+    color: #FFFFFF;
+    border-radius: 50%;
+}
+.in4-customer .tong-san-pham p{
+    padding: 10px;
+}
+.address .edit-address p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.address .edit-address a:hover{
+    color: var(--color-blue-origin);
+    font-size: 20px;
+}
+.address > p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
