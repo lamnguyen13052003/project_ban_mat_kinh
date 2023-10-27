@@ -88,26 +88,38 @@
 }
 /*thông tin khách hàng*/
 .in4-customer .col-name-in4-customer{
-    font-size: 16px;
+    font-size: 12px;
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
     font-weight: bold;
     border-radius: 10px 10px 0 0;
 }
-.img-avatar-and-name-customer .img-avatar .avatar{
+/*Phần avatar và text, coppy*/
+.avatar-customer {
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    width: fit-content;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.avatar-customer img {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    border: 2px solid #000000;
-    text-align: center;
+}
+
+.info-customer p:nth-of-type(1) {
+    font-size: 15px;
+}
+
+.info-customer p:nth-of-type(2),
+.info-customer p:nth-of-type(3) {
     font-size: 10px;
 }
 .in4-customer .tong-san-pham .icon-cart{
-    width: 40px;
-    height: 40px;
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
     border-radius: 50%;
+    padding: 16px;
 }
 .in4-customer .tong-san-pham p{
     padding: 10px;
