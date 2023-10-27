@@ -125,3 +125,43 @@
     align-items: center;
     justify-content: space-between;
 }
+/*lộ trình vận chuyển hàng*/
+.trip-ship{
+    width: 60%;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+.in4-trip .icon-trip > span{
+    font-size: 8px;
+    color: var(--color-blue-origin);
+}
+.in4-trip .icon-trip .has-one-line p:not(p:first-child){
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.in4-trip .icon-trip .has-one-line{
+    position: relative;
+}
+.in4-trip .icon-trip .has-one-line::after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -5px;
+    height: 32px;
+    transform: translate(0%, 30%);
+    border: 1px solid var(--color-blue-origin);
+}
+.show-list-trip .trip{
+    margin-bottom: 10px;
+}
+.in4-trip .icon-trip .da-giao p:not(p:first-child){
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+/**overflow-y**/
+.show-list-trip{
+    height: 240px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
