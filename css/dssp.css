@@ -1,0 +1,114 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .main-danh-sach-san-pham-trong-don-hang {
+    background-color: lightgray;
+  }
+  .box-section {
+    background-color: white;
+    border-radius: 6px;
+  }
+  .filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .ten-box {
+    flex: 1;
+    padding: 3px 0;
+  }
+  .dong1 {
+    background-color: rgb(65, 26, 191);
+    color: white;
+    border-radius: 10px;
+  }
+  .cot1 {
+    border-top-left-radius: 10px;
+  }
+  .cotcuoi {
+    border-top-right-radius: 10px;
+  }
+  .tensanpham {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+  }
+  .loaisp {
+    font-size: 14px;
+    color: rgb(150, 149, 149);
+  }
+  .page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  .icon-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .icon-right > a.active,
+  .icon-hover:hover {
+    background-color: blue;
+    color: white;
+  }
+  .icon-right > a {
+    padding: 5px 12px;
+    border-radius: 50%;
+  }
+  .box-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .box-section-header .search,
+  .box-section-header .ac-add-product {
+    display: flex;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid #bebdbd;
+  }
+  .ac-add-product {
+    display: flex;
+    align-items: center;
+    background-color: rgb(65, 26, 191);
+    color: white;
+    border: none !important;
+  }
+  .ac-add-product span {
+    font-size: 12px;
+    width: 100px;
+  }
+  .ac-add-product .btn-plus i {
+    color: white;
+  }
+  .btn-search,
+  .btn-plus {
+    padding: 5px 10px;
+    border-left: 1px solid #bebdbd;
+    cursor: pointer;
+  }
+  .input-search {
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    width: 300px;
+  }
+  .btn-search i {
+    color: #333;
+  }
+  
