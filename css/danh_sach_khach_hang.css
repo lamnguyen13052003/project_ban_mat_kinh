@@ -1,0 +1,91 @@
+/*******************Phần filter*********************/
+#main .filter .search-name-customer {
+    margin-left: 25px;
+    width: fit-content;
+    display: flex;
+    border-radius: 10px;
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+}
+
+#main .filter .search-name-customer input {
+    border: none;
+    border-radius: 10px;
+}
+
+#main .filter .search-name-customer input:focus {
+    outline: none;
+}
+
+#main .filter .search-name-customer span {
+    border-left: rgba(0, 0, 0, 0.5) solid 2px;
+}
+
+/*************Phần table*************/
+#main .table .header-table {
+    background-color: var(--color-blue-origin);
+    border-radius: 10px 10px 0 0;
+    padding: 5px 0;
+    font-weight: 540;
+    color: #fff;
+}
+
+#main .table .body-table .customer {
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    border-top: none;
+    padding: 5px 0;
+}
+
+#main .table .body-table .customer .id-customer {
+    color: var(--color-blue-origin);
+    font-weight: bold;
+}
+
+/*Phần avatar và text, coppy*/
+#main .table .body-table .customer .avatar-customer {
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    width: fit-content;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+#main .table .body-table .customer .avatar-customer img {
+    width: 40px;
+    height: 40px;
+}
+
+#main .table .body-table .customer .info-customer p:nth-of-type(1) {
+    font-size: 15px;
+}
+
+#main .table .body-table .customer .info-customer p:nth-of-type(2),
+#main .table .body-table .customer .info-customer p:nth-of-type(3) {
+    font-size: 10px;
+}
+/*Kết thúc phần avatar và text*/
+
+#main .table .body-table .customer input{
+    width: 25px;
+    height: 25px;
+}
+
+/*Phần footer, coppy*/
+#main .table .footer-table {
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    border-radius: 0 0 10px 10px;
+}
+
+#main .table .footer-table .change-page-display-list button {
+    border-radius: 50px;
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+}
+
+#main .table .footer-table .change-page-display-list button:hover,
+#main .table .footer-table .change-page-display-list button.active {
+    color: #fff;
+    background-color: var(--color-blue-origin);
+    font-weight: 550;
+}
+
+/*Kết thúc phần footer*/
