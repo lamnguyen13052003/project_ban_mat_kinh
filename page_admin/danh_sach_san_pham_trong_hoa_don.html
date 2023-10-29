@@ -318,11 +318,49 @@
                 <div class="address  px-3 py-1">
                     <div class="edit-address d-flex align-items-center justify-content-between">
                         <p>Địa chỉ</p>
-                        <a href="#"><i class="fa-solid fa-pen"></i></a>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editAddressModal">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+
                     </div>
                     <p><span>Email: </span><span>abc@gmail.com</span></p>
                     <p><span>Số điện thoại: </span><span>xxxx.xxx.xxx</span></p>
                     <p><span>Địa chỉ: </span><span>abc.xyz</span></p>
+
+<!--                    dialog sửa địa chỉ-->
+                    <!-- Button trigger modal -->
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa Địa chỉ</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nhập email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Số điện thoại</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Nhập số điện thoại">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="Nhập địa chỉ">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn" style="background-color: var(--color-blue-origin); color: #FFFFFF">Lưu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

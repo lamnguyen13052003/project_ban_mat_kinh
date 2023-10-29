@@ -128,9 +128,8 @@
     font-size: 20px;
     font-weight: bold;
 }
-.address .edit-address a:hover{
+.address .edit-address button:hover{
     color: var(--color-blue-origin);
-    font-size: 20px;
 }
 .address > p{
     display: flex;
