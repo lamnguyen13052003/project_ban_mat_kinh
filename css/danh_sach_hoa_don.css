@@ -75,3 +75,11 @@
 .info-customer p:nth-of-type(3) {
     font-size: 10px;
 }
+.list-bill .item-bill .option-edit button{
+    border: none;
+    background-color: #FFFFFF;
+}
+.list-bill .item-bill .option-edit button:hover{
+    font-size: 20px;
+    color: var(--color-blue-origin);
+}
