@@ -87,13 +87,13 @@
             <div class="row text-center">
                 <div class="search-bill col">
                     <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Tìm kiếm hóa đơn" aria-label="Tìm kiếm hóa đơn" aria-describedby="basic-addon1">
+                        <input type="search" id="find-bill" class="form-control" placeholder="Tìm kiếm hóa đơn" aria-label="Tìm kiếm hóa đơn" aria-describedby="basic-addon1">
                         <span class="input-group-text" ><i class="fa-solid fa-magnifying-glass"  style="color: #dee2e6;"></i></span>
                     </div>
                 </div>
                 <div class="search-customer col">
                     <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Tìm kiếm khách hàng" aria-label="Tìm kiếm khách hàng" aria-describedby="basic-addon1">
+                        <input type="search" id="find-name-customer"  class="form-control" placeholder="Tìm kiếm khách hàng" aria-label="Tìm kiếm khách hàng" aria-describedby="basic-addon1">
                         <span class="input-group-text" ><i class="fa-solid fa-magnifying-glass"  style="color: #dee2e6;"></i></span>
                     </div>
                 </div>
@@ -117,8 +117,8 @@
             <div class="list-bill">
 <!--                sản phẩm-->
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00001" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình A">
+                    <div class="id-item col-2"><span>#00001</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
@@ -136,15 +136,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00002" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình B">
+                    <div class="id-item col-2" ><span>#00002</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình B</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -155,15 +155,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00003" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình C">
+                    <div class="id-item col-2" ><span>#00003</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình C</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -174,15 +174,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00004" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình D">
+                    <div class="id-item col-2" ><span>#00004</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình D</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -193,15 +193,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00005" class="item-bill row  align-items-center py-md-3"value="Nguyễn Đình E" >
+                    <div class="id-item col-2" ><span>#00005</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình E</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -212,15 +212,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00006" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình F">
+                    <div class="id-item col-2" ><span>#00006</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình F</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -231,15 +231,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00007" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình G">
+                    <div class="id-item col-2" ><span>#00007</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình G</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -250,15 +250,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00008" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình I">
+                    <div class="id-item col-2" value="00007"><span>#00008</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình I</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
@@ -269,15 +269,15 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
 
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
-                <div class="item-bill row  align-items-center py-md-3">
-                    <div class="id-item col-2"><span>#12345</span></div>
+                <div id="00009" class="item-bill row  align-items-center py-md-3" value="Nguyễn Đình J" >
+                    <div class="id-item col-2" ><span>#00009</span></div>
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-4 d-flex">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
-                            <p class="name-customer">Nguyễn Đình A</p>
+                            <p class="name-customer">Nguyễn Đình J</p>
                             <p class="email-customer">kiminonawa1305@gmail.com</p>
                             <p class="number-phone-customer">0855354919</p>
                         </div>
