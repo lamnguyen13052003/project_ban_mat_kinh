@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/kiem_tra_don_hang.css">
     <link rel="icon" href="../logo_icon.png">
 
@@ -16,7 +16,7 @@
     <title>Thế giới mắt kính</title>
 </head>
 <body>
-<div id="menu">
+<header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
@@ -172,9 +172,9 @@
             </div>
         </div>
     </nav>
-</div>
+</header>
 
-<div id="main" class="mt-5 pb-5">
+<main id="main" class="mt-5 pb-5">
     <div class="container-md  rounded py-4">
         <div class="title d-flex align-items-center justify-content-center py-3">
             <span class="material-symbols-outlined h5 text-light">search</span>
@@ -183,7 +183,7 @@
         <div class="check_function row text-light mb-4">
             <span>Phương thức kiểm tra</span>
             <div class="col-4">
-                <input  type="radio" name="type" id="phone_number" value="phone_number" checked>
+                <input type="radio" name="type" id="phone_number" value="phone_number" checked>
                 <label for="phone_number">Số điện thoại</label>
             </div>
             <div class="col">
@@ -191,14 +191,16 @@
                 <label for="email">Email</label>
             </div>
         </div>
-        <form  class="row input_data" action="">
+        <form class="row input_data" action="">
             <div class="input active" data-bs-target="phone_number">
                 <label class="text-light" for="input_phone_number">Số điện thoại:</label>
-                <input class="rounded col-12 p-2" type="text" name="input_phone_number" id="input_phone_number" placeholder="0855 xxx xxx">
+                <input class="rounded col-12 p-2" type="text" name="input_phone_number" id="input_phone_number"
+                       placeholder="0855 xxx xxx">
             </div>
             <div class="input" data-bs-target="email">
                 <label class="text-light" for="input_email">Email:</label>
-                <input class="rounded col-12  p-2" type="text" name="input_phone_number" id="input_email" placeholder="abc@gmail.com">
+                <input class="rounded col-12  p-2" type="text" name="input_phone_number" id="input_email"
+                       placeholder="abc@gmail.com">
             </div>
             <div class="text-light my-3">
                 <span>Nếu quý khách có bất kỳ thắc mắc nào, xin vui lòng gọi </span>
@@ -209,75 +211,74 @@
             </div>
         </form>
     </div>
-</div>
+</main>
 
-<div id="footer">
-    <footer class="footer">
-        <div class="container ">
-            <div class="footer-top row">
-                <div class="footer-top-item col">
-                    <h5>Mắt Kính KIMI
-                    </h5>
-                    <div class="footer-content footer-contact">
-                        <div class="ft_map">
+<footer id="footer" class="footer">
+    <div class="container ">
+        <div class="footer-top row">
+            <div class="footer-top-item col">
+                <h5>Mắt Kính KIMI
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
 
-                        </div>
-                        <ul>
-                            <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
-                            </li>
-                            <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
-                                    class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
-                            </li>
-                            <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
-                            </li>
-                            <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
-                            </li>
-                            <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
-                                    class="fa-brands fa-facebook-f px-1"></i><span
-                                    class="px-1 hover"><b>KIMI</b> </span></a></li>
-                            <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
-                            <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
-                        </ul>
                     </div>
-                </div>
-
-                <div class="footer-top-item col">
-                    <h5>HỖ TRỢ KHÁCH HÀNG
-                    </h5>
-                    <div class="footer-content footer-contact">
-                        <div class="ft_map">
-
-                        </div>
-                        <ul>
-                            <li><a class="hover" href="huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a>
-                            </li>
-                            <li><a class="hover" href="chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh toán,
-                                giao nhận</a></li>
-                            <li><a class="hover" href="chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
-                            <li><a class="hover" href="chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
-                            <li><a class="hover" href="chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và hoàn
-                                tiền</a></li>
-                            <li><a class="hover" href="kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
-                        </ul>
-                    </div>
-
+                    <ul>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
+                                class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
+                        </li>
+                        <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
+                        </li>
+                        <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
+                        </li>
+                        <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
+                                class="fa-brands fa-facebook-f px-1"></i><span
+                                class="px-1 hover"><b>KIMI</b> </span></a></li>
+                        <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
+                        <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
+                    </ul>
                 </div>
             </div>
-            <div class="row footer-bot text-center border-3">
-                <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="../index.html">
-                        <img src="../logo.png" alt="logo.png">
-                        <span>KIMI</span>
-                    </a>
+
+            <div class="footer-top-item col">
+                <h5>HỖ TRỢ KHÁCH HÀNG
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
+
+                    </div>
+                    <ul>
+                        <li><a class="hover" href="huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a>
+                        </li>
+                        <li><a class="hover" href="chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh toán,
+                            giao nhận</a></li>
+                        <li><a class="hover" href="chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
+                        <li><a class="hover" href="chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
+                        <li><a class="hover" href="chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và hoàn
+                            tiền</a></li>
+                        <li><a class="hover" href="kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                    </ul>
                 </div>
-                <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+
             </div>
         </div>
+        <div class="row footer-bot text-center border-3">
+            <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                <a href="../index.html">
+                    <img src="../logo.png" alt="logo.png">
+                    <span>KIMI</span>
+                </a>
+            </div>
+            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+        </div>
+    </div>
 
-    </footer>
+</footer>
 
-</div>
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/kiem_tra_don_hang.js"></script>
+<script src="../javascript/chinh_sach.js"></script>
 </body>
 </html>

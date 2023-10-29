@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="../../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/menu_footer.css">
     <link rel="stylesheet" href="../../css/product.css">
     <link rel="icon" type="image/x-icon" href="../../logo_icon.png">
 
@@ -16,7 +16,7 @@
     <title>Thế giới mắt kính</title>
 </head>
 <body>
-<div id="menu">
+<header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
@@ -159,9 +159,9 @@
             </div>
         </div>
     </nav>
-</div>
+</header>
 
-<div id="main" class="mt-5 pb-5">
+<main id="main" class="mt-5 pb-5">
     <div class="container">
         <!--Phần slide-->
         <div id="carouselExampleIndicators" class="carousel slide mb-5">
@@ -208,11 +208,13 @@
                 <div class="filter-header">
                     <div class="section-title-all row d-flex align-items-center">
                         <div class="col-11">
-                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (0 lựa chọn) <i class="lnil lni-plus"></i></h2>
+                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (0 lựa chọn) <i class="lnil lni-plus"></i>
+                            </h2>
                         </div>
                         <!--Nút hủy bộ lọc-->
                         <div class="col mt-2">
-                            <button id="removeCheckedFilterAll" class="button border-0" type="button" data-action="close-filter">
+                            <button id="removeCheckedFilterAll" class="button border-0" type="button"
+                                    data-action="close-filter">
                                 <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15"
                                      height="15">
                                     <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none"
@@ -259,7 +261,8 @@
                         <h4>Chất liệu</h4>
                         <ul class="filter-list">
                             <li>
-                                <button class="border-0 checked" id="data-variant-p1" value="chatlieu_1" name="variantFilter">
+                                <button class="border-0 checked" id="data-variant-p1" value="chatlieu_1"
+                                        name="variantFilter">
                                     Chất liệu 1
                                 </button>
                             </li>
@@ -311,17 +314,17 @@
                                         data-pricemax="2000000" name="priceFilter">1,000,000 - 2,000,000
                                 </button>
                             </li>
-                            <li  class="d-none hidden">
+                            <li class="d-none hidden">
                                 <button class="border-0" id="data-price-p5" data-pricemin="2000000"
                                         data-pricemax="3000000" name="priceFilter">2,000,000 - 3,000,000
                                 </button>
                             </li>
-                            <li  class="d-none hidden">
+                            <li class="d-none hidden">
                                 <button class="border-0" id="data-price-p6" data-pricemin="3000000"
                                         data-pricemax="5000000" name="priceFilter">3,000,000 - 5,000,000
                                 </button>
                             </li>
-                            <li  class="d-none hidden">
+                            <li class="d-none hidden">
                                 <button class="border-0" id="data-price-p7" data-pricemin="5000000"
                                         data-pricemax="10000000" name="priceFilter">5,000,000 - 10,000,000
                                 </button>
@@ -379,28 +382,43 @@
                         <!--Phần danh sách các tiêu chí sort-->
                         <ul class="sort-list">
                             <li>
-                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">Mặc định</button>
+                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">Mặc định
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p1" value="price-ascending"  name="sortFilter">Giá: Tăng dần</button>
+                                <button class="border-0" id="data-sort-p1" value="price-ascending" name="sortFilter">
+                                    Giá: Tăng dần
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0"  id="data-sort-p2" value="price-descending"  name="sortFilter">Giá: Giảm dần</button>
+                                <button class="border-0" id="data-sort-p2" value="price-descending" name="sortFilter">
+                                    Giá: Giảm dần
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p3" value="title-ascending" name="sortFilter">Tên: A-Z</button>
+                                <button class="border-0" id="data-sort-p3" value="title-ascending" name="sortFilter">
+                                    Tên: A-Z
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p4" value="title-descending" name="sortFilter">Tên: Z-A</button>
+                                <button class="border-0" id="data-sort-p4" value="title-descending" name="sortFilter">
+                                    Tên: Z-A
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p5" value="created-ascending" name="sortFilter">Cũ nhất</button>
+                                <button class="border-0" id="data-sort-p5" value="created-ascending" name="sortFilter">
+                                    Cũ nhất
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p6" value="created-descending" name="sortFilter">Mới nhất</button>
+                                <button class="border-0" id="data-sort-p6" value="created-descending" name="sortFilter">
+                                    Mới nhất
+                                </button>
                             </li>
                             <li>
-                                <button  class="border-0" id="data-sort-p7" value="best-selling"  name="sortFilter">Bán chạy nhất</button>
+                                <button class="border-0" id="data-sort-p7" value="best-selling" name="sortFilter">Bán
+                                    chạy nhất
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -414,6 +432,10 @@
             <!--cấu trúc tên khi tách trang: ví dụ tách trang kinh_mat.html (index bắt đầu là 02, 03, 04, ....)-->
             <!--kinh_mat_page_02.html-->
             <section class="collection-wrap-product-list mt-5">
+                <div class="title mb-3">
+                    <h3>Kính mát lọc ánh sáng xanh</h3>
+                </div>
+
                 <!--1 dòng-->
                 <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4 d-flex justify-content-center">
                     <!--Ô hiển thị-->
@@ -438,14 +460,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh1_zinmy-blue-protect-1.58.png"
+                                             alt=" Tròng Kính Chống Bể Chống Ánh Sáng Xanh Zinmy Blue Protect 1.58 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh1_zinmy-blue-protect-1.58_hover.png"
+                                             alt=" Tròng Kính Chống Bể Chống Ánh Sáng Xanh Zinmy Blue Protect 1.58 ">
                                     </picture>
                                 </a>
                             </div>
@@ -459,19 +481,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Zinmy</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Tròng Kính Chống Bể Chống Ánh Sáng Xanh Zinmy Blue Protect 1.58">Tròng Kính
+                                    Chống Bể Chống Ánh Sáng Xanh Zinmy Blue Protect 1.58</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">864,000 <span> ₫</span></p>
+                                <del>960,000 <span> ₫</span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -550,14 +574,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh2_zinmy-blue-sun-1.60.png"
+                                             alt=" Tròng Kính Mỏng Đổi Màu + Lọc Ánh Sáng Xanh Zinmy Blue Sun 1.60 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh2_zinmy-blue-sun-1.60_hover.png"
+                                             alt=" Tròng Kính Mỏng Đổi Màu + Lọc Ánh Sáng Xanh Zinmy Blue Sun 1.60 ">
                                     </picture>
                                 </a>
                             </div>
@@ -571,19 +595,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Zinmy</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Tròng Kính Mỏng Đổi Màu + Lọc Ánh Sáng Xanh Zinmy Blue Sun 1.60">Tròng Kính
+                                    Mỏng Đổi Màu + Lọc Ánh Sáng Xanh Zinmy Blue Sun 1.60</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,620,000 <span> ₫</span></p>
+                                <del>1,800,000 <span> ₫</span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -662,14 +688,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh3_essilor-crizal-rock-blue-uv-capture.png"
+                                             alt=" font/thong_tin_san_pham_kinh_mat/img/anhsangxanh3_essilor-crizal-rock-blue-uv-ca ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh3_essilor-crizal-rock-blue-uv-capture_hover.png"
+                                             alt=" font/thong_tin_san_pham_kinh_mat/img/anhsangxanh3_essilor-crizal-rock-blue-uv-ca ">
                                     </picture>
                                 </a>
                             </div>
@@ -683,19 +709,22 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Essilor</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Tròng Kính Tròng Suốt Chống Ánh Sáng Xanh Pháp Essilor Crizal Rock Blue UV Capture Chính Hãng">Tròng
+                                    Kính Tròng Suốt Chống Ánh Sáng Xanh Pháp Essilor Crizal Rock Blue UV Capture Chính
+                                    Hãng</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,114,200 <span> ₫</span></p>
+                                <del>1,238,000 <span> ₫</span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -774,14 +803,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh4_blueStop-tr3514.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh BluStop TR3514 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh4_blueStop-tr3514_c224nau.png.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh BluStop TR3514 ">
                                     </picture>
                                 </a>
                             </div>
@@ -795,19 +824,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Blustop</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh BluStop TR3514">Gọng Kính Chống Ánh Sáng Xanh
+                                    BluStop TR3514</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">500,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -886,14 +917,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh5_iron-man-unitech-blueStop-588.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Iron Man Unitech Blustop 588 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh5_iron-man-unitech-blueStop-588_hover.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Iron Man Unitech Blustop 588 ">
                                     </picture>
                                 </a>
                             </div>
@@ -907,19 +938,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Blustop</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Iron Man Unitech Blustop 588">Gọng Kính Chống
+                                    Ánh Sáng Xanh Iron Man Unitech Blustop 588</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
                                 <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -998,14 +1031,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh6_zola-bluecut-wb609-c71.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Zola Blucut WB609 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh6_zola-bluecut-wb609-c72.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Zola Blucut WB609 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1019,19 +1052,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Zola</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Zola Blucut WB609">Gọng Kính Chống Ánh Sáng Xanh
+                                    Zola Blucut WB609</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3"> 500,000<span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1110,14 +1145,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh7_lapola-antiblue-5927.png"
+                                             alt=" Gọng Kính Hợp Kim Nam Nữ Dáng Chử Nhật Cắt Ánh Sáng Xanh, Lái Xe Chống Lóa Đèn Xe Ban Đêm Lapola AntiBlue 5927 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh7_lapola-antiblue-5927_hover.png"
+                                             alt=" Gọng Kính Hợp Kim Nam Nữ Dáng Chử Nhật Cắt Ánh Sáng Xanh, Lái Xe Chống Lóa Đèn Xe Ban Đêm Lapola AntiBlue 5927 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1131,19 +1166,22 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Lapola</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Hợp Kim Nam Nữ Dáng Chử Nhật Cắt Ánh Sáng Xanh, Lái Xe Chống Lóa Đèn Xe Ban Đêm Lapola AntiBlue 5927">Gọng
+                                    Kính Hợp Kim Nam Nữ Dáng Chử Nhật Cắt Ánh Sáng Xanh, Lái Xe Chống Lóa Đèn Xe
+                                    Ban Đêm Lapola AntiBlue 5927</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">500,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1222,14 +1260,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh8_baggio-tr2356_c1dennham.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Baggio TR2356 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh8_baggio-tr2356_c1dennham_hover.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Baggio TR2356 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1243,19 +1281,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Baggio</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Baggio TR2356">Gọng Kính Chống Ánh Sáng Xanh
+                                    Baggio TR2356</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">450,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1334,14 +1374,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh9_acetate-patton-blustop-ps8809.c010-den-bong.png"
+                                             alt=" Gọng Kính Acetate Chống Ánh Sáng Xanh Patton Blustop PS8809 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh9_acetate-patton-blustop-ps8809.c304-xanh-duong.png"
+                                             alt=" Gọng Kính Acetate Chống Ánh Sáng Xanh Patton Blustop PS8809 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1355,19 +1395,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Acetate Chống Ánh Sáng Xanh Patton Blustop PS8809">Gọng Kính Acetate
+                                    Chống Ánh Sáng Xanh Patton Blustop PS8809</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,250,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1446,14 +1488,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh10_actate-patton-bluestop-ps8801_C01den-bong.png"
+                                             alt=" Gọng Kính Actate Chống Ánh Sáng Xanh Patton Blustop PS8801 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh10_actate-patton-bluestop-ps8801_C174-hong.png"
+                                             alt=" Gọng Kính Actate Chống Ánh Sáng Xanh Patton Blustop PS8801 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1467,19 +1509,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Actate Chống Ánh Sáng Xanh Patton Blustop PS8801">Gọng Kính Actate
+                                    Chống Ánh Sáng Xanh Patton Blustop PS8801</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,250,000<span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1558,14 +1602,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh11_titanium-patton-pt908_C02-P174-den-vang.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Titanium Patton PT908 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh11_titanium-patton-pt908_C26-P174-den-bac.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Titanium Patton PT908 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1579,19 +1623,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Titanium Patton PT908">Gọng Kính Chống Ánh Sáng
+                                    Xanh Titanium Patton PT908</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,500,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1670,14 +1716,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh12_titanium-patton-pt910_C02-P147-vang.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Titanium Siêu Nhẹ Patton PT910 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh12_titanium-patton-pt910_C05-P147-bac.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Titanium Siêu Nhẹ Patton PT910 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1691,19 +1737,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Titanium Siêu Nhẹ Patton PT910">Gọng Kính Chống
+                                    Ánh Sáng Xanh Titanium Siêu Nhẹ Patton PT910</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,500,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1782,14 +1830,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh13_aceteta-patton-ps8815_C01-P181-den.png"
+                                             alt=" Gọng Kính Mắt Mèo Acetate Chống Ánh Sáng Xanh Patton Ps8815 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh13_aceteta-patton-ps8815_C400-P181.png"
+                                             alt=" Gọng Kính Mắt Mèo Acetate Chống Ánh Sáng Xanh Patton Ps8815 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1803,19 +1851,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Mắt Mèo Acetate Chống Ánh Sáng Xanh Patton Ps8815">Gọng Kính Mắt Mèo
+                                    Acetate Chống Ánh Sáng Xanh Patton Ps8815</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,500,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -1894,14 +1944,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh14_titanium-patton-st6211_C05-P81-bac.png"
+                                             alt=" Gọng Kính Tròn Chống Ánh Sáng Xanh Titanium Patton ST6211 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh14_titanium-patton-st6211_C11-P81-hong.png"
+                                             alt=" Gọng Kính Tròn Chống Ánh Sáng Xanh Titanium Patton ST6211 ">
                                     </picture>
                                 </a>
                             </div>
@@ -1915,19 +1965,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Tròn Chống Ánh Sáng Xanh Titanium Patton ST6211">Gọng Kính Tròn
+                                    Chống Ánh Sáng Xanh Titanium Patton ST6211</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,250,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -2006,14 +2058,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh15_titanium-patton-pt911_C02-vang.png"
+                                             alt=" Gọng Kính Tròn Nam Nữ Chống Ánh Sáng Xanh Titanium Patton PT911 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh15_titanium-patton-pt911_C91-den.png"
+                                             alt=" Gọng Kính Tròn Nam Nữ Chống Ánh Sáng Xanh Titanium Patton PT911 ">
                                     </picture>
                                 </a>
                             </div>
@@ -2027,19 +2079,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Patton</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Tròn Nam Nữ Chống Ánh Sáng Xanh Titanium Patton PT911">Gọng Kính
+                                    Tròn Nam Nữ Chống Ánh Sáng Xanh Titanium Patton PT911</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">1,500,000<span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -2118,14 +2172,14 @@
                                     <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                     <picture class="img-hidden-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh16_baggio-BC901_C01-P81-den.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Baggio BC901 ">
                                     </picture>
                                     <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                     <picture class="img-show-when-hover">
                                         <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                             src="../../images/thong_tin_san_pham_kinh_mat/img/anhsangxanh16_baggio-BC901_C26-P81-trang-trong.png"
+                                             alt=" Gọng Kính Chống Ánh Sáng Xanh Baggio BC901 ">
                                     </picture>
                                 </a>
                             </div>
@@ -2139,468 +2193,21 @@
 
                             <!--Hiển thị tên thương hiệu-->
                             <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
+                                <span class="pro-loop-vendor d-block">Baggio</span>
                             </div>
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
+                                <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                   title="Gọng Kính Chống Ánh Sáng Xanh Baggio BC901">Gọng Kính Chống Ánh Sáng Xanh
+                                    Baggio BC901</a>
                             </h3>
 
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
-                            </div>
-
-                            <!--Hiển thị đánh giá và số lượng bán-->
-                            <div class="sold_qty text-center">
-                                <!--Phần đánh giá sao-->
-                                <div class="prod-review-loop   d-inline-block">
-                                    <!--Danh sách ngôi sao-->
-                                    <div class="onirvapp--shape-container d-inline-block">
-                                        <ul class="list-group list-group-horizontal">
-                                            <!--Các li có class checked là sao hoàn thiện-->
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <!--số lượng đánh giá-->
-                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                                </div>
-
-                                <!--Đường cắt ngang-->
-                                <span class="h-line d-inline-block"></span>
-
-                                <!--Phần hiển thị số lượng đã bán-->
-                                <div class="sold_qty_num  d-inline-block">
-                                    <p class="m-0">
-                                        Đã bán: <span>12</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!--2 nút thao tác-->
-                            <div class="pro-loop-bottom">
-                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                    Thêm vào giỏ hàng
-                                </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                    ngay
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End 1 ô sản phẩm-->
-
-                    <!--Ô hiển thị-->
-                    <div class="pro-loop col rounded-3">
-                        <!--Phạm vi hiển thị trong ô-->
-                        <div class="pro-loop-wrap position-relative">
-                            <!--Phần hình ảnh-->
-                            <div class="pro-loop-image position-relative">
-
-                                <!--Hiển thị hêt hàng-->
-                                <div class="pro-loop-sd z-2 position-absolute">
-                                    <span>Hết hàng</span>
-                                </div>
-
-                                <!--Hiển thị quà tặng-->
-                                <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                    <img class="lazyload" src="../../images/qua_tang.jpg" alt="icon quà tặng">
-                                </div>
-
-                                <!--Hiển thị hình ảnh-->
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                    <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                    <picture class="img-hidden-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                    <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                    <picture class="img-show-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                </a>
-                            </div>
-
-                            <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                            <div class="pro-loop-sold position-absolute">
-                                <label>
-                                    <img src="../../images/hot.jpg" alt="pro-loop-sold">
-                                </label>
-                            </div>
-
-                            <!--Hiển thị tên thương hiệu-->
-                            <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                            </div>
-
-                            <!--Hiển thị tên sản phẩm-->
-                            <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                            </h3>
-
-
-                            <!--hiển thị giá-->
-                            <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
-                            </div>
-
-                            <!--Hiển thị đánh giá và số lượng bán-->
-                            <div class="sold_qty text-center">
-                                <!--Phần đánh giá sao-->
-                                <div class="prod-review-loop   d-inline-block">
-                                    <!--Danh sách ngôi sao-->
-                                    <div class="onirvapp--shape-container d-inline-block">
-                                        <ul class="list-group list-group-horizontal">
-                                            <!--Các li có class checked là sao hoàn thiện-->
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <!--số lượng đánh giá-->
-                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                                </div>
-
-                                <!--Đường cắt ngang-->
-                                <span class="h-line d-inline-block"></span>
-
-                                <!--Phần hiển thị số lượng đã bán-->
-                                <div class="sold_qty_num  d-inline-block">
-                                    <p class="m-0">
-                                        Đã bán: <span>12</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!--2 nút thao tác-->
-                            <div class="pro-loop-bottom">
-                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                    Thêm vào giỏ hàng
-                                </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                    ngay
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End 1 ô sản phẩm-->
-
-                    <!--Ô hiển thị-->
-                    <div class="pro-loop col rounded-3">
-                        <!--Phạm vi hiển thị trong ô-->
-                        <div class="pro-loop-wrap position-relative">
-                            <!--Phần hình ảnh-->
-                            <div class="pro-loop-image position-relative">
-
-                                <!--Hiển thị hêt hàng-->
-                                <div class="pro-loop-sd z-2 position-absolute">
-                                    <span>Hết hàng</span>
-                                </div>
-
-                                <!--Hiển thị quà tặng-->
-                                <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                    <img class="lazyload" src="../../images/qua_tang.jpg" alt="icon quà tặng">
-                                </div>
-
-                                <!--Hiển thị hình ảnh-->
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                    <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                    <picture class="img-hidden-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                    <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                    <picture class="img-show-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                </a>
-                            </div>
-
-                            <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                            <div class="pro-loop-sold position-absolute">
-                                <label>
-                                    <img src="../../images/hot.jpg" alt="pro-loop-sold">
-                                </label>
-                            </div>
-
-                            <!--Hiển thị tên thương hiệu-->
-                            <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                            </div>
-
-                            <!--Hiển thị tên sản phẩm-->
-                            <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                            </h3>
-
-
-                            <!--hiển thị giá-->
-                            <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
-                            </div>
-
-                            <!--Hiển thị đánh giá và số lượng bán-->
-                            <div class="sold_qty text-center">
-                                <!--Phần đánh giá sao-->
-                                <div class="prod-review-loop   d-inline-block">
-                                    <!--Danh sách ngôi sao-->
-                                    <div class="onirvapp--shape-container d-inline-block">
-                                        <ul class="list-group list-group-horizontal">
-                                            <!--Các li có class checked là sao hoàn thiện-->
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <!--số lượng đánh giá-->
-                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                                </div>
-
-                                <!--Đường cắt ngang-->
-                                <span class="h-line d-inline-block"></span>
-
-                                <!--Phần hiển thị số lượng đã bán-->
-                                <div class="sold_qty_num  d-inline-block">
-                                    <p class="m-0">
-                                        Đã bán: <span>12</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!--2 nút thao tác-->
-                            <div class="pro-loop-bottom">
-                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                    Thêm vào giỏ hàng
-                                </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                    ngay
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End 1 ô sản phẩm-->
-
-
-                    <!--Ô hiển thị-->
-                    <div class="pro-loop col rounded-3">
-                        <!--Phạm vi hiển thị trong ô-->
-                        <div class="pro-loop-wrap position-relative">
-                            <!--Phần hình ảnh-->
-                            <div class="pro-loop-image position-relative">
-
-                                <!--Hiển thị hêt hàng-->
-                                <div class="pro-loop-sd z-2 position-absolute">
-                                    <span>Hết hàng</span>
-                                </div>
-
-                                <!--Hiển thị quà tặng-->
-                                <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                    <img class="lazyload" src="../../images/qua_tang.jpg" alt="icon quà tặng">
-                                </div>
-
-                                <!--Hiển thị hình ảnh-->
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                    <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                    <picture class="img-hidden-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                    <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                    <picture class="img-show-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                </a>
-                            </div>
-
-                            <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                            <div class="pro-loop-sold position-absolute">
-                                <label>
-                                    <img src="../../images/hot.jpg" alt="pro-loop-sold">
-                                </label>
-                            </div>
-
-                            <!--Hiển thị tên thương hiệu-->
-                            <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                            </div>
-
-                            <!--Hiển thị tên sản phẩm-->
-                            <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                            </h3>
-
-
-                            <!--hiển thị giá-->
-                            <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
-                            </div>
-
-                            <!--Hiển thị đánh giá và số lượng bán-->
-                            <div class="sold_qty text-center">
-                                <!--Phần đánh giá sao-->
-                                <div class="prod-review-loop   d-inline-block">
-                                    <!--Danh sách ngôi sao-->
-                                    <div class="onirvapp--shape-container d-inline-block">
-                                        <ul class="list-group list-group-horizontal">
-                                            <!--Các li có class checked là sao hoàn thiện-->
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <!--số lượng đánh giá-->
-                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                                </div>
-
-                                <!--Đường cắt ngang-->
-                                <span class="h-line d-inline-block"></span>
-
-                                <!--Phần hiển thị số lượng đã bán-->
-                                <div class="sold_qty_num  d-inline-block">
-                                    <p class="m-0">
-                                        Đã bán: <span>12</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!--2 nút thao tác-->
-                            <div class="pro-loop-bottom">
-                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                    Thêm vào giỏ hàng
-                                </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                    ngay
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End 1 ô sản phẩm-->
-
-                    <!--Ô hiển thị-->
-                    <div class="pro-loop col rounded-3">
-                        <!--Phạm vi hiển thị trong ô-->
-                        <div class="pro-loop-wrap position-relative">
-                            <!--Phần hình ảnh-->
-                            <div class="pro-loop-image position-relative">
-
-                                <!--Hiển thị hêt hàng-->
-                                <div class="pro-loop-sd z-2 position-absolute">
-                                    <span>Hết hàng</span>
-                                </div>
-
-                                <!--Hiển thị quà tặng-->
-                                <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                    <img class="lazyload" src="../../images/qua_tang.jpg" alt="icon quà tặng">
-                                </div>
-
-                                <!--Hiển thị hình ảnh-->
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                    <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                    <picture class="img-hidden-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c01_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                    <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                    <picture class="img-show-when-hover">
-                                        <img class="lazyloaded  rounded-3"
-                                             src="../../images/product/kinh_mat/kinh_mat_thoi_trang_abc/kinh-mat--gap-tron-hato-6825-c02_grande.png"
-                                             alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                    </picture>
-                                </a>
-                            </div>
-
-                            <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                            <div class="pro-loop-sold position-absolute">
-                                <label>
-                                    <img src="../../images/hot.jpg" alt="pro-loop-sold">
-                                </label>
-                            </div>
-
-                            <!--Hiển thị tên thương hiệu-->
-                            <div class="pro-loop-brand text-center">
-                                <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                            </div>
-
-                            <!--Hiển thị tên sản phẩm-->
-                            <h3 class="pro-loop-name text-center">
-                                <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                            </h3>
-
-
-                            <!--hiển thị giá-->
-                            <div class="pro-loop-price text-center mt-0">
-                                <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                                <del>250,000 <span> ₫</span></del>
+                                <p class="fw-bold d-inline me-3">670,000 <span> ₫</span></p>
+                                <del><span> </span></del>
                             </div>
 
                             <!--Hiển thị đánh giá và số lượng bán-->
@@ -2661,7 +2268,7 @@
             <!--end danh sách sản phẩm-->
 
             <!--Phần chuyển trang (<- 1 2 3 ... ->)-->
-            <nav aria-label="page active example">
+            <nav aria-label="page active example" class="d-none">
                 <ul class="pagination d-flex justify-content-center">
                     <li class="page-item">
                         <a class="page-link d-flex justify-content-center align-items-center" href="#">
@@ -2696,75 +2303,73 @@
         </div>
         <!--End phần nội dung-->
     </div>
-</div>
+</main>
 
-<div id="footer">
-    <footer class="footer">
-        <div class="container ">
-            <div class="footer-top row">
-                <div class="footer-top-item col">
-                    <h5>Mắt Kính KIMI
-                    </h5>
-                    <div class="footer-content footer-contact">
-                        <div class="ft_map">
+<footer id="footer" class="footer">
+    <div class="container ">
+        <div class="footer-top row">
+            <div class="footer-top-item col">
+                <h5>Mắt Kính KIMI
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
 
-                        </div>
-                        <ul>
-                            <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
-                            </li>
-                            <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
-                                    class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
-                            </li>
-                            <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
-                            </li>
-                            <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
-                            </li>
-                            <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
-                                    class="fa-brands fa-facebook-f px-1"></i><span
-                                    class="px-1 hover"><b>KIMI</b> </span></a></li>
-                            <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
-                            <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
-                        </ul>
                     </div>
-                </div>
-
-                <div class="footer-top-item col">
-                    <h5>HỖ TRỢ KHÁCH HÀNG
-                    </h5>
-                    <div class="footer-content footer-contact">
-                        <div class="ft_map">
-
-                        </div>
-                        <ul>
-                            <li><a class="hover" href="../../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
-                                online</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
-                                thanh toán, giao nhận</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
-                            <li><a class="hover" href="../../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a>
-                            </li>
-                            <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi
-                                trả và hoàn tiền</a></li>
-                            <li><a class="hover" href="../../pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
-                        </ul>
-                    </div>
-
+                    <ul>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
+                                class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
+                        </li>
+                        <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
+                        </li>
+                        <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
+                        </li>
+                        <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
+                                class="fa-brands fa-facebook-f px-1"></i><span
+                                class="px-1 hover"><b>KIMI</b> </span></a></li>
+                        <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
+                        <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
+                    </ul>
                 </div>
             </div>
-            <div class="row footer-bot text-center border-3">
-                <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="../../index.html">
-                        <img src="../../logo.png" alt="logo.png">
-                        <span>KIMI</span>
-                    </a>
+
+            <div class="footer-top-item col">
+                <h5>HỖ TRỢ KHÁCH HÀNG
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
+
+                    </div>
+                    <ul>
+                        <li><a class="hover" href="../../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
+                            online</a></li>
+                        <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
+                            thanh toán, giao nhận</a></li>
+                        <li><a class="hover" href="../../pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
+                        <li><a class="hover" href="../../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a>
+                        </li>
+                        <li><a class="hover" href="../../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi
+                            trả và hoàn tiền</a></li>
+                        <li><a class="hover" href="../../pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                    </ul>
                 </div>
-                <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+
             </div>
         </div>
+        <div class="row footer-bot text-center border-3">
+            <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                <a href="../../index.html">
+                    <img src="../../logo.png" alt="logo.png">
+                    <span>KIMI</span>
+                </a>
+            </div>
+            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+        </div>
+    </div>
 
-    </footer>
+</footer>
 
-</div>
 <script src="../../javascript/menu_footer.js"></script>
 <script src="../../javascript/product.js"></script>
 </body>

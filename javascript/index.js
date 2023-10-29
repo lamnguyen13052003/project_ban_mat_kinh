@@ -1,79 +1,64 @@
+
 /**main**/
 /*section 1*/
-// $(document).ready(function () {
-//     $('.right').click(function (event) {
-//         var sldie_sau = $('.active').next();
-//         if(sldie_sau.length != 0){
-//             $('.active').addClass('bien-mat-ben-trai').one('webkitAnimationEnd', function (event) {
-//                 $('.bien-mat-ben-trai').removeClass('bien-mat-ben-trai').removeClass('active');
-//             });
-//             sldie_sau.addClass('active').addClass('di-vao-ben-phai').one('webkitAnimationEnd', function (event) {
-//                 $('.di-vao-ben-phai').removeClass('di-vao-ben-phai');
-//             });
-//         }else {
-//             $('.active').addClass('bien-mat-ben-trai').one('webkitAnimationEnd', function (event) {
-//                 $('.bien-mat-ben-trai').removeClass('bien-mat-ben-trai').removeClass('active');
-//             });
-//             $('.item:first-child').addClass('active').addClass('di-vao-ben-phai').one('webkitAnimationEnd', function (event) {
-//                 $('.di-vao-ben-phai').removeClass('di-vao-ben-phai');
-//             });
-//         }
-//     });
-//
-//     $('.left').click(function (event) {
-//         var sldie_truoc = $('.active').prev();
-//         if(sldie_truoc.length != 0){
-//             $('.active').addClass('bien-mat-ben-phai').one('webkitAnimationEnd', function (event) {
-//                 $('.bien-mat-ben-phai').removeClass('bien-mat-ben-phai').removeClass('active');
-//             });
-//             sldie_truoc.addClass('active').addClass('di-vao-ben-trai').one('webkitAnimationEnd', function (event) {
-//                 $('.di-vao-ben-trai').removeClass('di-vao-ben-trai');
-//             });
-//         }else {
-//             $('.active').addClass('bien-mat-ben-phai').one('webkitAnimationEnd', function (event) {
-//                 $('.bien-mat-ben-phai').removeClass('bien-mat-ben-phai').removeClass('active');
-//             });
-//             $('.item:last-child').addClass('active').addClass('di-vao-ben-trai').one('webkitAnimationEnd', function (event) {
-//                 $('.di-vao-ben-trai').removeClass('di-vao-ben-trai');
-//             });
-//         }
-//     });
-// });
+
 $(document).ready(function() {
     var currentSlide = 0;
-    var totalSlides = $('.slide').length;
+    var totalSlides = $('#silder-section .slide').length;
 
     function showSlide(slideIndex) {
         $('.slide').hide();
-        $('.slide:eq(' + slideIndex + ')').fadeIn();
+        $('.slide:eq(' + slideIndex + ')').fadeIn(600, 'linear');
     }
 
     $('.right').click(function() {
+        $('.carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide + 1) % totalSlides;
+        $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
         showSlide(currentSlide);
     });
 
     $('.left').click(function() {
+        $('.carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
         showSlide(currentSlide);
     });
+    // btn phan trang
+    $('#silder-section .slick').click(function () {
+        clearInterval(interval);
+        $('.carousel ul li button').removeClass('slick-active');
+        $(this).addClass('slick-active');
+        var elementID = $($(this)).attr('id');
+        var index = parseInt(elementID[elementID.length - 1]);
+        showSlide(index);
+    })
 
     // Tự động chuyển slide sau một khoảng thời gian
     function autoSlide() {
+        $('#silder-section .carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide + 1) % totalSlides;
+        $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
         showSlide(currentSlide);
     }
 
-    var interval = setInterval(autoSlide, 3000);
+    var interval = setInterval(autoSlide, 5000);
 
-    $('.slider').hover(
+    $('#silder-section .carousel').hover(
         function() {
             clearInterval(interval);
         },
         function() {
-            interval = setInterval(autoSlide, 3000);
+            interval = setInterval(autoSlide, 5000);
         }
     );
 
     showSlide(currentSlide);
 });
+
+
+
+
+
+
+
