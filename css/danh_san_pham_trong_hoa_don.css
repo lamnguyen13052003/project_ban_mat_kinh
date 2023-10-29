@@ -5,7 +5,7 @@
 }
 
 #main {
-    background-color: #f1f2f7;
+    background-color: #FFFFFF;
 }
 
 /****top***/
@@ -29,14 +29,19 @@
 }
 
 /*thông tin sản phẩm và thông tin khách hàng*/
-.item-and-in4-customer > div {
+#main .container{
+    border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    background-color: #FFFFFF;
 }
-
+#main .in4-item-frame{
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
 .col-name-item {
     background-color: var(--color-blue-origin);
     color: #FFFFFF;
+    border-radius: 10px 10px 0 0 ;
+    margin: auto;
 }
 .list-item{
     overflow-y: scroll;
@@ -87,6 +92,10 @@
     justify-content: space-between;
 }
 /*thông tin khách hàng*/
+.in4-customer, .trip-ship{
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
 .in4-customer .col-name-in4-customer{
     font-size: 12px;
     background-color: var(--color-blue-origin);
@@ -135,6 +144,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.in4-customer .address{
+    position: relative;
+}
+.in4-customer .address::after{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 300px;
+    border: 1px solid rgba(0, 0, 0 ,0.5);
+    transform: translate(25%, 0);
 }
 /*lộ trình vận chuyển hàng*/
 .trip-ship{
