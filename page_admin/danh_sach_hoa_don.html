@@ -63,13 +63,16 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_khach_hang.html" class="nav-link px-4 rounded">Danh sách khách hàng</a>
+                                    <a href="danh_sach_khach_hang.html" class="nav-link px-4 rounded">Danh sách khách
+                                        hàng</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_san_pham.html" class="nav-link px-4 rounded">Danh sách sản phẩm</a>
+                                    <a href="danh_sach_san_pham.html" class="nav-link px-4 rounded">Danh sách sản
+                                        phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_hoa_don.html" class="nav-link px-4 rounded active">Danh sách hóa đơn</a>
+                                    <a href="danh_sach_hoa_don.html" class="nav-link px-4 rounded active">Danh sách hóa
+                                        đơn</a>
                                 </li>
                             </ul>
                         </div>
@@ -80,31 +83,39 @@
     </nav>
 </header>
 
-<div id="main" class=" py-5">
+<div id="main" class="mt-5 pb-5">
     <div class="container ">
-<!--        thanh tìm kiếm-->
-        <div class="search py-4">
-            <div class="row text-center">
+        <!--        thanh tìm kiếm-->
+        <div class="search pb-4">
+            <div class="search_header ms-4">
+                <span>Tìm kiếm</span>
+            </div>
+
+            <div class="row text-center option-search">
                 <div class="search-bill col">
-                    <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Tìm kiếm hóa đơn" aria-label="Tìm kiếm hóa đơn" aria-describedby="basic-addon1">
-                        <span class="input-group-text" ><i class="fa-solid fa-magnifying-glass"  style="color: #dee2e6;"></i></span>
+                    <div class="search-item rounded">
+                        <input class="ps-2" type="text" name="search-name-customer" id="search-id-bill"
+                               placeholder="Nhập mã hóa đơn">
+                        <label for="search-id-bill" class="d-flex align-items-center p-1"><span
+                                class="material-symbols-outlined ps-1 fs-3">search</span></label>
                     </div>
                 </div>
                 <div class="search-customer col">
-                    <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Tìm kiếm khách hàng" aria-label="Tìm kiếm khách hàng" aria-describedby="basic-addon1">
-                        <span class="input-group-text" ><i class="fa-solid fa-magnifying-glass"  style="color: #dee2e6;"></i></span>
+                    <div class="search-item rounded">
+                        <input class="ps-2" type="text" name="search-name-customer" id="search-name-customer"
+                               placeholder="Nhập tên khách hàng">
+                        <label for="search-name-customer" class="d-flex align-items-center p-1"><span
+                                class="material-symbols-outlined ps-1 fs-3">search</span></label>
                     </div>
                 </div>
-                <div class="col float-start">
-                    <i class="fa-regular fa-square-check fa-2xl"></i>
-                    <span class="px-md-1">Đã giao</span>
+                <div class="col float-start d-flex align-items-center">
+                    <input type="checkbox">
+                    <span class="px-md-1 ms-2">Đã giao</span>
                 </div>
             </div>
         </div>
         <div class="show-list-bill p-0">
-<!--            tên cột-->
+            <!--            tên cột-->
             <div class="name-col row  align-items-center ps-4">
                 <div class="col-2">Mã hóa đơn</div>
                 <div class="col-2">Thời gian đặt</div>
@@ -113,9 +124,9 @@
                 <div class="col-2">Trạng thái</div>
                 <div class="col-2">Hình thức thanh toán</div>
             </div>
-<!--            hiện thị danh sách sản phẩm-->
+            <!--            hiện thị danh sách sản phẩm-->
             <div class="list-bill">
-<!--                sản phẩm-->
+                <!--                sản phẩm-->
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
                 <div class="item-bill row  align-items-center py-md-3 ps-4">
                     <div class="id-item col-2"><span>#12345</span></div>
@@ -288,7 +299,7 @@
                 <!-- kết thúc một hàng hiện thị sản phẩm-->
             </div>
         </div>
-<!--        Tổng tiền và hiển thị nút phân trang-->
+        <!--        Tổng tiền và hiển thị nút phân trang-->
         <div class="footer-table row p-4 d-flex align-items-center">
             <div class="text-amount-account col-8 ">
                 <span class="ps-0 pe-0">Tổng số khách hàng: </span>
@@ -296,34 +307,43 @@
                 <span class="ps-0 pe-0"> khách hàng</span>
             </div>
             <div class="change-page-display-list col-4 d-flex ps-5">
-                <button id="prev" class="d-flex align-items-center justify-content-center"><span class="material-symbols-outlined">chevron_left</span></button>
-                <button class="d-flex align-items-center justify-content-center button-number active" data-target="1">1</button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2</button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3</button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="">...</button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="14">14</button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="15">15</button>
-                <button id="next" class="d-flex align-items-center justify-content-center"><span class="material-symbols-outlined">chevron_right</span></button>
+                <button id="prev" class="d-flex align-items-center justify-content-center"><span
+                        class="material-symbols-outlined">chevron_left</span></button>
+                <button class="d-flex align-items-center justify-content-center button-number active" data-target="1">
+                    1
+                </button>
+                <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2
+                </button>
+                <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3
+                </button>
+                <button class="d-flex align-items-center justify-content-center button-number" data-target="">...
+                </button>
+                <button class="d-flex align-items-center justify-content-center button-number" data-target="14">14
+                </button>
+                <button class="d-flex align-items-center justify-content-center button-number" data-target="15">15
+                </button>
+                <button id="next" class="d-flex align-items-center justify-content-center"><span
+                        class="material-symbols-outlined">chevron_right</span></button>
             </div>
         </div>
-<!--        <div class="show-bot text-center d-flex align-items-center justify-content-between">-->
-<!--            <div class="sum-bil">-->
-<!--                <p>Tổng hoá đơn: <span class="show-num">123</span> hóa đơn</p>-->
-<!--            </div>-->
-<!--            <div class="phan-trang">-->
-<!--                <ul class="text-center d-flex align-items-center justify-content-center py-3">-->
-<!--                    <li><a href="#" class=" btn-phan-trang phan-trang-prev"><span><i class="fa-solid fa-chevron-left"></i></span></a></li>-->
-<!--                    <li class="page-active"><a href="#"><span>1</span></a></li>-->
-<!--                    <li><a href="#"><span>2</span></a></li>-->
-<!--                    <li><a href="#"><span>3</span></a></li>-->
-<!--                    <li><a href="#"><span>4</span></a></li>-->
-<!--                    <li><a href="#"><span>5</span></a></li>-->
-<!--                    <li><a href="#"><span>...</span></a></li>-->
-<!--                    <li><a href="#"><span>19</span></a></li>-->
-<!--                    <li><a href="#" class="btn-phan-trang phan-trang-next active"><span><i class="fa-solid fa-chevron-right"></i></span></a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="show-bot text-center d-flex align-items-center justify-content-between">-->
+        <!--            <div class="sum-bil">-->
+        <!--                <p>Tổng hoá đơn: <span class="show-num">123</span> hóa đơn</p>-->
+        <!--            </div>-->
+        <!--            <div class="phan-trang">-->
+        <!--                <ul class="text-center d-flex align-items-center justify-content-center py-3">-->
+        <!--                    <li><a href="#" class=" btn-phan-trang phan-trang-prev"><span><i class="fa-solid fa-chevron-left"></i></span></a></li>-->
+        <!--                    <li class="page-active"><a href="#"><span>1</span></a></li>-->
+        <!--                    <li><a href="#"><span>2</span></a></li>-->
+        <!--                    <li><a href="#"><span>3</span></a></li>-->
+        <!--                    <li><a href="#"><span>4</span></a></li>-->
+        <!--                    <li><a href="#"><span>5</span></a></li>-->
+        <!--                    <li><a href="#"><span>...</span></a></li>-->
+        <!--                    <li><a href="#"><span>19</span></a></li>-->
+        <!--                    <li><a href="#" class="btn-phan-trang phan-trang-next active"><span><i class="fa-solid fa-chevron-right"></i></span></a></li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </div>
 

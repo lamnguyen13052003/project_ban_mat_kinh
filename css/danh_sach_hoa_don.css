@@ -6,13 +6,47 @@
     background-color: #FFFFFF;
 }
 /*******Search***/
-.input-group span{
-    background-color: #FFFFFF;
+#main .search{
+    border-radius: 10px;
+    border: rgba(0, 0, 0, 0.3) solid 2px;
+    margin: 0 -10px 15px;
 }
-.input-group input::placeholder{
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 13px;
+
+#main .search .search_header{
+    position: relative;
+    background-color: #fff;
+    top: -15px;
+    width: fit-content;
+    font-weight: bold;
+    font-size: 20px;
 }
+
+#main .search .search-item {
+    margin-left: 25px;
+    width: fit-content;
+    display: flex;
+    border-radius: 10px;
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+}
+
+#main .search .search-item input {
+    border: none;
+    border-radius: 10px;
+}
+
+#main .search .search-item input:focus {
+    outline: none;
+}
+
+#main .search .search-item span {
+    border-left: rgba(0, 0, 0, 0.5) solid 2px;
+}
+
+#main .search  input[type='checkbox']{
+    width: 25px;
+    height: 25px;
+}
+
 /****show list bill****/
 .show-list-bill .name-col{
     width: auto;
