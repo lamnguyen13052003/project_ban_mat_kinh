@@ -289,7 +289,7 @@
                         <!--                    kết thúc 1 hàng sản phẩm-->
                     </div>
                     <!--hiện thị tổng số tiền cần trả-->
-                    <div class="show-total-money py-3 mx-5 d-flex align-items-center justify-content-end">
+                    <div class="show-total-money py-3 mx-5 d-flex align-items-center justify-content-end mt-2">
                         <div class="show-total px-3 ">
                             <ul>
                                 <li><span>Tổng hóa đơn:</span><span>130,000,000 <span>₫</span></span> </li>
@@ -303,7 +303,7 @@
             <div class="p-3 col-4">
                 <!--                thông tin khách hàng-->
                 <div class="in4-customer " >
-                    <div class="col-name-in4-customer"><h4 class="px-3 py-3">Thông tin khách hàng</h4></div>
+                    <div class="col-name-in4-customer"><h4 class="px-3 py-3 mb-2">Thông tin khách hàng</h4></div>
                     <div class=" d-flex px-3 py-1">
                         <div class="avatar-customer">
                             <img src="../logo.png" alt="avatar.png">
@@ -314,21 +314,21 @@
                             <p class="number-phone-customer">0855354919</p>
                         </div>
                     </div>
-                    <div class="tong-san-pham d-flex align-items-start justify-content-start  px-3 py-1">
+                    <div class="tong-san-pham d-flex align-items-start justify-content-start  px-3 pt-1 pb-3">
                         <div class="icon-cart d-flex align-items-center justify-content-center"><i class="fa-solid fa-cart-shopping"></i></div>
                         <p>Tổng sản phẩm: <span>12</span></p>
                     </div>
-                    <div class="address  px-3 py-1">
+                    <div class="address  px-3 pb-2 pt-2">
                         <div class="edit-address d-flex align-items-center justify-content-between">
                             <p>Địa chỉ</p>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editAddressModal">
+                            <button id="edit" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editAddressModal">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
 
                         </div>
-                        <p><span>Email: </span><span>kiminonawa1305@gmail.com</span></p>
-                        <p><span>Số điện thoại: </span><span>0855354919</span></p>
-                        <p><span>Địa chỉ: </span><span>abc.xyz</span></p>
+                        <p><span>Email: </span><span class="email-customer">kiminonawa1305@gmail.com</span></p>
+                        <p><span>Số điện thoại: </span><span class="number-phone-customer">0855354919</span></p>
+                        <p><span>Địa chỉ: </span><span class="address-customer">abc.xyz</span></p>
 
                         <!--                    dialog sửa địa chỉ-->
                         <!-- Button trigger modal -->
@@ -341,24 +341,23 @@
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa Địa chỉ</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body" id="form">
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nhập email" value="kiminonawa1305@gmail.com">
+                                            <label for="input-email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="input-email" placeholder="Nhập email">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Số điện thoại</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="Nhập số điện thoại" value="0855354919">
+                                            <label for="input-phone-number" class="form-label">Số điện thoại</label>
+                                            <input type="text" class="form-control" id="input-phone-number" placeholder="Nhập số điện thoại">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
-                                            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="Nhập địa chỉ" value="abc.xyz">
+                                            <label for="input-address" class="form-label">Địa chỉ</label>
+                                            <input type="text" class="form-control" id="input-address" placeholder="Nhập địa chỉ">
                                         </div>
-
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn" style="background-color: var(--color-blue-origin); color: #FFFFFF">Lưu</button>
+                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                        <button id="save" type="button" class="btn"  data-bs-dismiss="modal" style="background-color: var(--color-blue-origin); color: #FFFFFF">Lưu</button>
                                     </div>
                                 </div>
                             </div>

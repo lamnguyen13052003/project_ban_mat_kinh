@@ -47,6 +47,11 @@
     overflow-y: scroll;
     overflow-x: hidden;
     height: 448px;
+    border-bottom: rgba(0, 0, 0, 0.3) solid 2px;
+}
+
+.list-item .item>div:nth-of-type(1){
+    text-align: left;
 }
 
 .list-item .item:not(.item:last-child){
@@ -147,15 +152,14 @@
 }
 .in4-customer .address{
     position: relative;
+    border-top: 2px solid rgba(0, 0, 0 ,0.5);
 }
 .in4-customer .address::after{
     position: absolute;
     content: "";
     top: 0;
     left: 0;
-    width: 300px;
-    border: 1px solid rgba(0, 0, 0 ,0.5);
-    transform: translate(25%, 0);
+
 }
 /*lộ trình vận chuyển hàng*/
 .trip-ship{
