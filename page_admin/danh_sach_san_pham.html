@@ -84,270 +84,288 @@
 
 <main id="main" class=" mt-5 pb-5">
     <div class="container">
-       <div class="displa-product">
-           <div class="filter pb-4">
-               <div class="filter_header ms-4">
-                   <span>Bộ lọc</span>
-               </div>
+        <div class="display-product">
+            <div class="filter pb-4">
+                <div class="filter_header ms-4">
+                    <span>Bộ lọc</span>
+                </div>
 
-               <div class="filter-body row">
-                   <div class="option-filter col-4">
-                       <div class="filter-item">
-                           <select class="rounded" name="status">
-                               <option value="" disabled selected>Trạng thái</option>
-                               <option value="còn hàng">Còn hàng</option>
-                               <option value="Hết hàng">Hết hàng</option>
-                           </select>
-                       </div>
-                   </div>
+                <div class="filter-body row">
+                    <div class="option-filter col-4">
+                        <div class="filter-item">
+                            <select class="rounded" name="status">
+                                <option value="" disabled selected>Trạng thái</option>
+                                <option value="còn hàng">Còn hàng</option>
+                                <option value="Hết hàng">Hết hàng</option>
+                            </select>
+                        </div>
+                    </div>
 
-                   <div class="option-filter col-4">
-                       <div class="filter-item">
-                           <select class="rounded" name="brand">
-                               <option value="" disabled selected>Thương hiệu</option>
-                               <option value="còn hàng">Thương hiệu a</option>
-                               <option value="Hết hàng">Thương hiệu b</option>
-                           </select>
-                       </div>
-                   </div>
+                    <div class="option-filter col-4">
+                        <div class="filter-item">
+                            <select class="rounded" name="brand">
+                                <option value="" disabled selected>Thương hiệu</option>
+                                <option value="còn hàng">Thương hiệu a</option>
+                                <option value="Hết hàng">Thương hiệu b</option>
+                            </select>
+                        </div>
+                    </div>
 
-                   <div class="option-filter col-4">
-                       <div class="filter-item">
-                           <select class="rounded" name="type">
-                               <option value="" disabled selected>Loại sản phẩm</option>
-                               <option value="còn hàng">Kính mắt trẻ em</option>
-                               <option value="Hết hàng">Kính mát</option>
-                           </select>
-                       </div>
-                   </div>
-               </div>
-           </div>
+                    <div class="option-filter col-4">
+                        <div class="filter-item">
+                            <select class="rounded" name="type">
+                                <option value="" disabled selected>Loại sản phẩm</option>
+                                <option value="còn hàng">Kính mắt trẻ em</option>
+                                <option value="Hết hàng">Kính mát</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-           <div class="search pb-4">
-               <div class="search_header ms-4">
-                   <span>Tìm kiếm</span>
-               </div>
+            <div class="search pb-4">
+                <div class="search_header ms-4">
+                    <span>Tìm kiếm</span>
+                </div>
 
-               <div class="search-body row">
-                   <div class="option-search col-10">
-                       <div class="search-item rounded">
-                           <input type="text" name="search-name-product" id="search-name-product"
-                                  placeholder="Nhập tên sản phẩm">
-                           <label for="search-name-product" class="d-flex align-items-center p-1"><span
-                                   class="material-symbols-outlined ps-1 fs-3">search</span></label>
-                       </div>
-                   </div>
+                <div class="search-body row">
+                    <div class="option-search col-10">
+                        <div class="search-item rounded">
+                            <input type="text" name="search-name-product" id="search-name-product"
+                                   placeholder="Nhập tên sản phẩm">
+                            <label for="search-name-product" class="d-flex align-items-center p-1"><span
+                                    class="material-symbols-outlined ps-1 fs-3">search</span></label>
+                        </div>
+                    </div>
 
-                   <div class="addProduct col-2">
-                       <button class="btn d-flex ">
-                           <span>Thêm sản phẩm</span>
-                           <span class="material-symbols-outlined">add</span>
-                       </button>
-                   </div>
-               </div>
-           </div>
+                    <div class="addProduct col-2">
+                        <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#form-add-product">
+                            <span>Thêm sản phẩm</span>
+                            <span class="material-symbols-outlined">add</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-           <div class="table">
-               <div class="row header-table  align-items-center ps-4">
-                   <div class="col-3">Sản phẩm</div>
-                   <div class="col-2">Dòng sản phẩm</div>
-                   <div class="col-1">Số lượng</div>
-                   <div class="col-1">Đã bán</div>
-                   <div class="col-1">Giá tiến</div>
-                   <div class="col-2">Giá sau giảm</div>
-                   <div class="col-2">Trạng thái</div>
-               </div>
-               <div class="body-table">
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-                   <div class="product row ps-4">
-                       <div class="col-3 d-flex">
-                           <div class="img-product">
-                               <img src="../logo.png" alt="hinh_anh.png">
-                           </div>
-                           <div class="info-product ms-2 w-100">
-                               <p class="name-product">Sản phảm A</p>
-                               <select>
-                                   <option value="">Đỏ</option>
-                                   <option value="">Xanh</option>
-                                   <option value="">Tím</option>
-                               </select>
-                           </div>
-                       </div>
-                       <div class="col-2 type-product">Kính mắt trẻ em</div>
-                       <div class="col-1 amount-product te">2222</div>
-                       <div class="col-1 amount-product-bought">1231</div>
-                       <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span></div>
-                       <div class="col-1 status">Còn hàng</div>
-                       <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                   </div>
-               </div>
+            <div class="table">
+                <div class="row header-table  align-items-center ps-4">
+                    <div class="col-3">Sản phẩm</div>
+                    <div class="col-2">Dòng sản phẩm</div>
+                    <div class="col-1">Số lượng</div>
+                    <div class="col-1">Đã bán</div>
+                    <div class="col-1">Giá tiến</div>
+                    <div class="col-2">Giá sau giảm</div>
+                    <div class="col-2">Trạng thái</div>
+                </div>
 
-               <!--Phần footer, coppy-->
-               <div class="footer-table row p-4 d-flex align-items-center">
-                   <div class="text-amount-account col-8 ">
-                       <span class="ps-0 pe-0">Tổng số khách hàng: </span>
-                       <span class="amount ps-0 pe-0">100</span>
-                       <span class="ps-0 pe-0"> khách hàng</span>
-                   </div>
-                   <div class="change-page-display-list col-4 d-flex ps-5">
-                       <button id="prev" class="d-flex align-items-center justify-content-center"><span
-                               class="material-symbols-outlined">chevron_left</span></button>
-                       <button class="d-flex align-items-center justify-content-center button-number active"
-                               data-target="1">1
-                       </button>
-                       <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2
-                       </button>
-                       <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3
-                       </button>
-                       <button class="d-flex align-items-center justify-content-center button-number" data-target="">...
-                       </button>
-                       <button class="d-flex align-items-center justify-content-center button-number" data-target="14">14
-                       </button>
-                       <button class="d-flex align-items-center justify-content-center button-number" data-target="15">15
-                       </button>
-                       <button id="next" class="d-flex align-items-center justify-content-center"><span
-                               class="material-symbols-outlined">chevron_right</span></button>
-                   </div>
-               </div>
-               <!--kết thúc footer-->
-           </div>
-       </div>
+                <!--phần thân-->
+                <div class="body-table">
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                    <div class="product row ps-4">
+                        <div class="col-3 d-flex">
+                            <div class="img-product">
+                                <img src="../logo.png" alt="hinh_anh.png">
+                            </div>
+                            <div class="info-product ms-2 w-100">
+                                <p class="name-product">Sản phảm A</p>
+                                <p class="id-product">#abc</p>
+                                <select>
+                                    <option value="">Đỏ</option>
+                                    <option value="">Xanh</option>
+                                    <option value="">Tím</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2 type-product">Kính mắt trẻ em</div>
+                        <div class="col-1 amount-product te">2222</div>
+                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-1 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price-after-sale">1,000,000 <span class="text-decoration-underline">đ</span>
+                        </div>
+                        <div class="col-1 status">Còn hàng</div>
+                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                    </div>
+                </div>
+                <!--kết thúc thân-->
 
-        <div class="form-add-product">
-
+                <!--Phần footer, coppy-->
+                <div class="footer-table row p-4 d-flex align-items-center">
+                    <div class="text-amount-account col-8 ">
+                        <span class="ps-0 pe-0">Tổng số sản phẩm: </span>
+                        <span class="amount ps-0 pe-0">100</span>
+                        <span class="ps-0 pe-0"> sản phẩm</span>
+                    </div>
+                    <div class="change-page-display-list col-4 d-flex ps-5">
+                        <button id="prev" class="d-flex align-items-center justify-content-center"><span
+                                class="material-symbols-outlined">chevron_left</span></button>
+                        <button class="d-flex align-items-center justify-content-center button-number active"
+                                data-target="1">1
+                        </button>
+                        <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2
+                        </button>
+                        <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3
+                        </button>
+                        <button class="d-flex align-items-center justify-content-center button-number" data-target="">
+                            ...
+                        </button>
+                        <button class="d-flex align-items-center justify-content-center button-number" data-target="14">
+                            14
+                        </button>
+                        <button class="d-flex align-items-center justify-content-center button-number" data-target="15">
+                            15
+                        </button>
+                        <button id="next" class="d-flex align-items-center justify-content-center"><span
+                                class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                </div>
+                <!--kết thúc footer-->
+            </div>
         </div>
+
+
     </div>
 </main>
 

@@ -101,19 +101,18 @@
     height: 60px;
 }
 
-#main .table .body-table .info-product p {
-    font-size: 20px;
-    padding-top: 5px;
+#main .table .body-table .info-product .name-product{
+}
+
+
+#main .table .body-table .product .info-product .id-product{
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--color-blue-origin);
 }
 
 #main .table .body-table .info-product select {
     width: 70%;
-    margin-top: 5px;
-}
-
-#main .table .body-table .product .info-product p:nth-of-type(2),
-#main .table .body-table .product .info-product p:nth-of-type(3) {
-    font-size: 10px;
 }
 /*Kết thúc phần avatar và text*/
 

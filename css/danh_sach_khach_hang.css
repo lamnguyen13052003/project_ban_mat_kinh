@@ -40,8 +40,8 @@
 #main .table .header-table {
     background-color: var(--color-blue-origin);
     border-radius: 10px 10px 0 0;
-    padding: 5px 0;
-    font-weight: 540;
+    padding: 15px 0;
+    font-weight: 600;
     color: #fff;
 }
 
