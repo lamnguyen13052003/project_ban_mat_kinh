@@ -84,29 +84,27 @@
 
 <main id="main" class=" mt-5 pb-5">
     <div class="container">
-        <div class="input-info-product input">
-            <form action="">
+        <form action="">
+            <div class="input-info-product input">
                 <h4 class="input-info-product-title title">
                     Thông tin sản phẩm
                 </h4>
 
-                <div class="info-product mb-4">
+                <div class="input-info-product-body mb-4">
                     <div class="row mb-4">
-                        <input type="text" name="name-product" id="name-product" placeholder="Tên sản phẩm" required>
+                        <div class="col">
+                            <input type="text" class="w-100" name="name-product" id="name-product" placeholder="Tên sản phẩm" required>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-6 ps-0  pe-0"><input type="text" name="type-product"
-                                                             id="type-product" placeholder="Loại sản phẩm"
-                                                             required></div>
-                        <div class="col-6 ps-0 pe-0"><input type="text" name="id-product"
-                                                            id="id-product"
-                                                            placeholder="Mã sản phẩm" required>
+                        <div class="col-6"><input class="w-100" type="text" name="type-product" id="type-product" placeholder="Loại sản phẩm"required></div>
+                        <div class="col-6"><input class="w-100" type="text" name="id-product" id="id-product" placeholder="Mã sản phẩm" required>
                         </div>
                     </div>
                 </div>
 
-                <div class="expanded-info-product">
+                <div class="input-expanded-info-product">
                     <div class="input-expanded-info-product-header">
                         <span class="material-symbols-outlined"> format_bold </span>
                         <span class="material-symbols-outlined">format_italic </span>
@@ -123,87 +121,125 @@
                                placeholder="Mô tả sản phẩm"></input>
                     </div>
                 </div>
-            </form>
-        </div>
-
-        <div class="input-img-product input">
-            <h4 class="input-img-product-title title">
-                Ảnh minh họa
-            </h4>
-
-            <div class="input-img-product-main">
-                <div class="img-product ">
-                    <img src="../logo.png" alt="img.png">
-                </div>
-                <div class="img-product ">
-                    <img src="../logo.png" alt="img.png">
-                </div>
-                <div class="input">
-                    <label for="input-img-product" class="d-"><span class="material-symbols-outlined">cloud_upload</span></label>
-                    <input type="file" name="input-img-product" id="input-img-product" hidden="">
-                </div>
             </div>
-        </div>
 
-        <div class="input-option-product input">
-            <h4 class="input-option-product-title title">
-                Sự lựa chọn
-            </h4>
+            <div class="input-img-product input">
+                <h4 class="input-img-product-title title">
+                    Ảnh minh họa
+                </h4>
 
-            <div class="input-option-product-main">
-                <div class="row a-input-option-product">
-                    <div class="col">
-                        <select name="option">
-                            <option value="màu sắc">Màu sắc</option>
-                            <option value="chiết suất">Chiết suất</option>
-                        </select>
+                <div class="input-img-product-body">
+                    <div class="img-product ">
+                        <img src="../logo.png" alt="img.png">
+                        <button class="text-danger cancel">x</button>
                     </div>
-                    <div class="col">
-                        <input type="text" name="value-option" placeholder="Giá trị">
+                    <div class="img-product ">
+                        <img src="../logo.png" alt="img.png">
+                        <button class="text-danger cancel">x</button>
                     </div>
-                    <div class="col">
-                        <select name="link-img-option">
-                            <option value="index">Hình 1</option>
-                        </select>
+                    <div class="input">
+                        <label for="input-img-product" class="d-"><span
+                                class="material-symbols-outlined">cloud_upload</span></label>
+                        <input type="file" name="input-img-product" id="input-img-product" hidden="">
                     </div>
                 </div>
             </div>
 
-            <div class="input-option-product-footer">
-                <button class="btn">
-                    Thêm sự lựa chọn sản phẩm
-                </button>
-            </div>
-        </div>
+            <div class="input-option-product input">
+                <h4 class="input-option-product-title title">
+                    Sự lựa chọn
+                </h4>
 
-        <div class="input-amount-and-release-date-product input">
-            <h4 class="input-amount-and-release-date-product-title title">
-                Số lượng và thời gian ra mắt
-            </h4>
-
-            <div class="input-amount-and-release-date-product-main">
-                <div class="input-amount-product">
-                    <label for="amount-product">Số lượng sản phẩm</label>
-                    <input type="text" class="amount-product" required id="amount-product" placeholder="100">
+                <div class="input-option-product-body">
+                    <div class="row a-input-option-product">
+                        <div class="col">
+                            <select name="option">
+                                <option value="màu sắc">Màu sắc</option>
+                                <option value="chiết suất">Chiết suất</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="text" name="value-option" placeholder="Giá trị">
+                        </div>
+                        <div class="col">
+                            <select name="link-img-option">
+                                <option value="index">Hình 1</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="input-release-date-product">
-                    <label for="release-date-product">Thời gian ra mắt</label>
-                    <input type="date" class="release-date-product" required id="release-date-product">
+
+                <div class="input-option-product-footer">
+                    <button class="btn">
+                        Thêm sự lựa chọn sản phẩm
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <div class="input-price-product input">
-            <h4 class="input-price-product-title title">
-                Giá sản phẩm
-            </h4>
-        </div>
+            <div class="input-amount-and-release-date-product input">
+                <h4 class="input-amount-and-release-date-product-title title">
+                    Số lượng và thời gian ra mắt
+                </h4>
 
-        <div class="input-filter-product input">
-            <h4 class="input-filter-product-title title">
-                Bộ lọc sản phẩm
-            </h4>
-        </div>
+                <div class="input-amount-and-release-date-product-body">
+                    <div class="input-amount-product">
+                        <label for="amount-product">Số lượng sản phẩm</label>
+                        <input type="text" class="amount-product" required id="amount-product" placeholder="100">
+                    </div>
+                    <div class="input-release-date-product">
+                        <label for="release-date-product">Thời gian ra mắt</label>
+                        <input type="date" class="release-date-product" required id="release-date-product">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-price-product input">
+                <h4 class="input-price-product-title title">
+                    Giá sản phẩm
+                </h4>
+
+                <div class="input-price-product-body">
+                    <input type="number" class="w-100" name="price-product" id="price-product"
+                           placeholder="Giá sản phẩm">
+                    <input type="number" class="w-100" name="sale-product" id="sale-product"
+                           placeholder="Giá sau giảm">
+                </div>
+
+                <div class="input-price-product-footer mt-3 d-flex row align-items-center">
+                    <div class="checkbox d-flex col-6 ps-0">
+                        <input type="checkbox" name="apply-product" id="apply-product" required>
+                        <label>Áp dụng ngay</label>
+                    </div>
+                    <div class="col-6 pe-0">
+                        <input type="date" class="w-100" required  name="data-apply-sale" id="data-apply-sale">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-filter-product input">
+                <h4 class="input-filter-product-title title">
+                    Bộ lọc sản phẩm
+                </h4>
+
+                <div class="input-filter-product-body">
+                    <select class="w-100" name="select-brand-product" id="select-brand-product">
+                        <option value="thương hiệu 1">Thương hiệu 1</option>
+                        <option value="thương hiệu 2">Thương hiệu 2</option>
+                        <option value="thương hiệu 3">Thương hiệu 3</option>
+                    </select>
+                    <select class="w-100" name="select-material-product" id="select-material-product">
+                        <option value="chất liệu a">Chất liệu a</option>
+                        <option value="chất liệu b">Chất liệu b</option>
+                        <option value="chất liệu c">Chất liệu c</option>
+                    </select>
+                    <select class="w-100" name="select-type-product" id="select-type-product">
+                        <option value="kiểu 1">Kiểu 1</option>
+                        <option value="kiểu 2">Kiểu 2</option>
+                        <option value="kiểu 3">Kiểu 3</option>
+                    </select>
+                </div>
+            </div>
+        </form>
     </div>
 </main>
 
