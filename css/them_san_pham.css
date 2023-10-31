@@ -26,6 +26,10 @@
     margin-bottom: 36px;
 }
 
+#main .input>div{
+    margin-left: 25px;
+}
+
 /*Phần thông tin sản phẩm*/
 #main .input-info-product form > div {
     margin-left: 25px;
@@ -36,17 +40,17 @@
 }
 
 #main .input-info-product .info-product > div:nth-of-type(1) input {
-    width: 96%;
+    width: 95.5%;
 }
 
 #main .input-info-product .info-product > div:nth-of-type(2) input {
-    width: 92%;
+    width: 90.5%;
 }
 
 #main .input-info-product .expanded-info-product {
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
-    width: 94.5%;
+    width: 93.5%;
 }
 
 #main .input-info-product .expanded-info-product .input-expanded-info-product-header {
@@ -86,8 +90,7 @@
     border: rgba(0, 0, 0, 0.3) solid 2px;
     border-radius: 5px;
     padding: 10px 10px 0 10px;
-    width: 94.5%;
-    margin-left: 24px;
+    width: 93.5%;
 }
 
 
@@ -114,15 +117,12 @@
 }
 
 /*Phần sự lựa chọn*/
-#main .input-option-product>div{
-    padding-left: 25px;
-}
 #main .input-option-product .input-option-product-main input,
 #main .input-option-product .input-option-product-main select{
     border-radius: 5px;
     padding: 5px 12px;
     height: 40px;
-    width: 92%;
+    width: 90.5%;
     border: 2px solid rgba(0,0,0,0.3);
 }
 
@@ -134,4 +134,29 @@
     background-color: var(--color-blue-origin);
     color: #fff;
     font-weight: bold;
+}
+
+/*Phần số lượng và thời gian ra mắt*/
+#main .input-amount-and-release-date-product .input-amount-and-release-date-product-main div{
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 96.5%;
+}
+
+#main .input-amount-and-release-date-product .input-amount-and-release-date-product-main div:nth-of-type(1){
+    margin-bottom: 15px;
+}
+
+#main .input-amount-and-release-date-product .input-amount-and-release-date-product-main div label{
+    position: absolute;
+    left: 10px;
+    top: -11px;
+    width: fit-content;
+    background-color: #fff;
+}
+#main .input-amount-and-release-date-product .input-amount-and-release-date-product-main input{
+    padding:  7px 12px;
+    border: none;
+    width: 100%;
 }
