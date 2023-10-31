@@ -133,14 +133,14 @@
                         <img src="../logo.png" alt="img.png">
                         <button class="text-danger cancel">x</button>
                     </div>
-                    <div class="img-product ">
+                    <div class="img-product">
                         <img src="../logo.png" alt="img.png">
                         <button class="text-danger cancel">x</button>
                     </div>
                     <div class="input">
                         <label for="input-img-product" class="d-"><span
                                 class="material-symbols-outlined">cloud_upload</span></label>
-                        <input type="file" name="input-img-product" id="input-img-product" hidden="">
+                        <input type="file" name="input-img-product" id="input-img-product" accept="image/jpeg,image/png" hidden="">
                     </div>
                 </div>
             </div>
@@ -163,12 +163,8 @@
                             <input type="text" name="value-option" placeholder="Giá trị">
                         </div>
                         <div class="col">
-                            <select name="link-img-option">
+                            <select name="link-img-option" id="select-img-option-product">
                                 <option selected disabled>Hình ảnh</option>
-                                <option value="index">Hình 1</option>
-                                <option value="index">Hình 2</option>
-                                <option value="index">Hình 3</option>
-                                <option value="index">Hình 4</option>
                             </select>
                         </div>
                     </div>
@@ -247,7 +243,7 @@
 
             <div class="button-action row">
                 <div class="col-6">
-                    <button class="w-100" type="button">Hủy</button>
+                    <button class="w-100" type="reset"><a class="text-light" href="danh_sach_san_pham.html">Hủy</a></button>
                 </div>
                 <div class="col-6">
                     <button class="w-100" type="submit"><a class="text-light" href="danh_sach_san_pham.html">Lưu</a></button>
@@ -300,5 +296,6 @@
 
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin-page.js"></script>
+<script src="../javascript/them_san_pham.js"></script>
 </body>
 </html>
