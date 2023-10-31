@@ -7,7 +7,7 @@
 }
 
 #main form input[type='number']::-webkit-inner-spin-button,
-#main form input[type='number']::-webkit-outer-spin-button{
+#main form input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -22,6 +22,7 @@
     left: 25px;
     background-color: #fff;
     width: fit-content;
+    font-weight: 600;
 }
 
 #main .input {
@@ -38,7 +39,7 @@
     margin-right: 25px;
 }
 
-#main .container{
+#main .container {
     position: relative;
 }
 
@@ -169,32 +170,32 @@
 }
 
 /*Phần giá*/
-#main .input-price-product{
+#main .input-price-product {
     width: 30%;
     position: absolute;
     right: 0;
     top: 0;
 }
 
-#main .input-price-product .input-price-product-body input:nth-of-type(1){
+#main .input-price-product .input-price-product-body input:nth-of-type(1) {
     margin-bottom: 15px;
 }
 
-#main .input-price-product .input-price-product-footer .checkbox input{
+#main .input-price-product .input-price-product-footer .checkbox input {
     width: 20px;
     height: 20px;
     margin-right: 10px;
 }
 
 /*Phần bộ lọc sản phẩm*/
-#main .input-filter-product{
+#main .input-filter-product {
     width: 30%;
     position: absolute;
     right: 0;
     top: 236px;
 }
 
-#main .input-filter-product .input-filter-product-body select{
+#main .input-filter-product .input-filter-product-body select {
     border-radius: 5px;
     padding: 5px 12px;
     width: 100%;
@@ -202,6 +203,30 @@
     margin-bottom: 15px
 }
 
-#main .input-filter-product .input-filter-product-body select:last-of-type{
+#main .input-filter-product .input-filter-product-body select:last-of-type {
     margin-bottom: 0;
+}
+
+/*Phần button*/
+#main .button-action {
+    width: 30%;
+    position: absolute;
+    top: 460px;
+    right: 12px;
+}
+
+#main .button-action button {
+    font-weight: bold;
+    color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+#main .button-action div:nth-of-type(1) button {
+    background-color: #f30;
+}
+
+#main .button-action div:nth-of-type(2) button {
+    background-color: var(--color-blue-origin);
 }

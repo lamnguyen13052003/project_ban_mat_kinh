@@ -154,6 +154,7 @@
                     <div class="row a-input-option-product">
                         <div class="col">
                             <select name="option">
+                                <option value="" disabled selected>Lựa chọn</option>
                                 <option value="màu sắc">Màu sắc</option>
                                 <option value="chiết suất">Chiết suất</option>
                             </select>
@@ -163,7 +164,11 @@
                         </div>
                         <div class="col">
                             <select name="link-img-option">
+                                <option selected disabled>Hình ảnh</option>
                                 <option value="index">Hình 1</option>
+                                <option value="index">Hình 2</option>
+                                <option value="index">Hình 3</option>
+                                <option value="index">Hình 4</option>
                             </select>
                         </div>
                     </div>
@@ -200,18 +205,18 @@
 
                 <div class="input-price-product-body">
                     <input type="number" class="w-100" name="price-product" id="price-product"
-                           placeholder="Giá sản phẩm">
+                           placeholder="Giá sản phẩm" required>
                     <input type="number" class="w-100" name="sale-product" id="sale-product"
-                           placeholder="Giá sau giảm">
+                           placeholder="Giá sau giảm" required>
                 </div>
 
                 <div class="input-price-product-footer mt-3 d-flex row align-items-center">
                     <div class="checkbox d-flex col-6 ps-0">
-                        <input type="checkbox" name="apply-product" id="apply-product" required>
+                        <input type="checkbox" name="apply-product" id="apply-product" checked>
                         <label>Áp dụng ngay</label>
                     </div>
                     <div class="col-6 pe-0">
-                        <input type="date" class="w-100" required  name="data-apply-sale" id="data-apply-sale">
+                        <input type="date" class="w-100" name="data-apply-sale" id="data-apply-sale">
                     </div>
                 </div>
             </div>
@@ -237,6 +242,15 @@
                         <option value="kiểu 2">Kiểu 2</option>
                         <option value="kiểu 3">Kiểu 3</option>
                     </select>
+                </div>
+            </div>
+
+            <div class="button-action row">
+                <div class="col-6">
+                    <button class="w-100" type="button">Hủy</button>
+                </div>
+                <div class="col-6">
+                    <button class="w-100" type="submit"><a class="text-light" href="danh_sach_san_pham.html">Lưu</a></button>
                 </div>
             </div>
         </form>
