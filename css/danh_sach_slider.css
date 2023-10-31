@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.frame-boder,
+.frame-boder .edit-img div div{
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+.frame-boder{
+    position: relative;
+}
+.frame-boder .title{
+    position: absolute;
+    background-color: #fff;
+    top: -16px;
+    width: fit-content;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.frame-boder .edit-img div img{
+    width: 100%;
+    height: 234px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.frame-boder div .btn-edit-img button{
+    padding: 16px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    font-weight: bold;
+}
+.frame-boder div .btn-edit-img button:hover{
+    background-color: var(--color-origan-origin);
+    color: #FFFFFF;
+    border: 2px solid var(--color-origan-origin);
+}
+.edit-img div .item-img{
+    position: relative;
+}
+.edit-img div .item-img > .check-box-img{
+    width: 0;
+    height: 0;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 24px;
+}
+.edit-img div .item-img > .check-box-img input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+.edit-img div .item-img > .check-box-img input[type="checkbox"]:checked {
+    background-color: var(--color-blue-origin);
+    border: 1px solid #FFFFFF;
+}
