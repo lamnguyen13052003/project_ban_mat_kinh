@@ -4,13 +4,40 @@ $(document).ready(function () {
         updateSelectImgOption();
     });
 
-    const input = document.getElementById("input-img-product");
     $("#input-img-product").change(function (event) {
-        getImgFile(this);
+        addImgFile(this);
+    });
+    $("#input-img-for-expanded-info-product").change(function (event) {
+        addImgForExpandedInfoProduct(this);
     });
 });
 
-function getImgFile(file) {
+
+function addImgForExpandedInfoProduct(file) {
+    var selectedFile = file.files[0];
+    const imageUrl = window.URL.createObjectURL(selectedFile);
+
+    $("#main")
+        .find(".input-expanded-info-product-body")
+        .find(".content-product")
+        .find("*")
+        .last()
+        .after('<div class="img">\n' +
+            '         <img src="'+ imageUrl +'" alt="'+ selectedFile.name +'">\n' +
+            '          <button class="cancel text-danger">x</button>\n' +
+            '   </div>');
+    $("#main")
+        .find(".input-expanded-info-product-body")
+        .find(".content-product")
+        .find(".img")
+        .last()
+        .find(".cancel")
+        .click(function () {
+            $(this).parent().remove();
+        });
+}
+
+function addImgFile(file) {
     var selectedFile = file.files[0];
     const imageUrl = window.URL.createObjectURL(selectedFile);
 
@@ -26,11 +53,18 @@ function getImgFile(file) {
     updateSelectImgOption();
 }
 
+$(document).keypress(
+    function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+        }
+    });
+
 function updateSelectImgOption() {
     const listImg = $("#main").find(".input-img-product-body").find(".img-product");
     $("#select-img-option-product").html('<option selected disabled>Hình ảnh</option>');
-    for(var i = 0; i < listImg.length; i++){
-            $("#select-img-option-product").find("option").last().after('<option value="' + i  + '" >Hình ' + i + '</option>');
+    for (var i = 0; i < listImg.length; i++) {
+        $("#select-img-option-product").find("option").last().after('<option value="' + i + '" >Hình ' + i + '</option>');
     }
 }
 

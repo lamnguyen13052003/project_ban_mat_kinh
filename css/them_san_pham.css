@@ -77,6 +77,19 @@
     padding: 5px 12px;
 }
 
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img{
+    position: relative;
+}
+
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img button{
+    background: none;
+    border: none;
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    font-size: 20px;
+}
+
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body input {
     position: relative;
     width: 100%;

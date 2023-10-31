@@ -111,14 +111,19 @@
                         <span class="material-symbols-outlined">format_underlined</span>
                         <span class="material-symbols-outlined">format_list_numbered</span>
                         <span class="material-symbols-outlined">link</span>
-                        <span class="material-symbols-outlined">image</span>
+                        <label for="input-img-for-expanded-info-product"><span class="material-symbols-outlined">image</span></label>
+                        <input type="file" name="input-img-for-expanded-info-product" id="input-img-for-expanded-info-product" accept="image/jpeg,image/png" hidden="">
                     </div>
                     <div class="input-expanded-info-product-body">
                         <label for="describe-product"></label>
-                        <div class="content-product">
+                        <div class="content-product ms-2 me-2">
+                            <div class="img">
+                                <img src="../images/bannerAccount.png" alt="">
+                                <button class="cancel text-danger">x</button>
+                            </div>
                         </div>
                         <input type="text" class="border-0" name="describe-product" id="describe-product"
-                               placeholder="Mô tả sản phẩm"></input>
+                               placeholder="Mô tả sản phẩm">
                     </div>
                 </div>
             </div>
