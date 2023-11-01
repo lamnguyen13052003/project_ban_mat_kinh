@@ -1,6 +1,17 @@
-a{
- cursor: pointer;
+#frame-content ul > li {
+    list-style-type: circle;
 }
+
+#frame-content ol > li {
+    list-style-type: decimal;
+}
+
+#frame-content ul:focus,
+#frame-content ol:focus{
+    outline: none;
+    border: none;
+}
+
 
 #main form input {
     padding: 5px 0 5px 12px;
@@ -60,17 +71,17 @@ a{
     padding: 10px 0 10px 8px;
 }
 
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit{
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit {
     margin-left: 15px;
     border-radius: 5px;
 }
 
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit.active{
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit.active {
     background-color: var(--color-blue-origin);
     color: #fff;
 }
 
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit > label{
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit > label {
     display: flex;
 }
 
@@ -93,17 +104,17 @@ a{
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body p,
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body em,
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body strong,
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body li{
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body li {
     cursor: text;
     outline: none;
 }
 
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img{
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img {
     position: relative;
     width: fit-content;
 }
 
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img button{
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img button {
     background: none;
     border: none;
     position: absolute;

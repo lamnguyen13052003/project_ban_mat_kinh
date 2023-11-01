@@ -10,7 +10,7 @@ var textIsDarken;
 function addText() {
     $("#new-text").keypress(function (event) {
         if (event.which == '13') {
-            $(this).before(`<p>` + $(this).html() + `</p>`);
+            add_text_in_list($(this).html());
             $(this).text("")
             $(this).prev().mouseup(function () {
                 $(this).attr("contenteditable", "true");
@@ -22,11 +22,16 @@ function addText() {
                 if (event.which == '13') {
                     $(this).removeAttr("contenteditable");
                     changeAttrEdit($("#new-text"));
+
+                    if ($(this).text() == "") {
+                        $(this).remove();
+                    }
                 }
             });
 
             changeAttrEdit($(this));
         }
+
     });
 
     $("#new-text").mouseup(function () {
@@ -110,6 +115,27 @@ function editText(type) {
         }
 
         case "format_list_numbered": {
+            break;
+        }
+    }
+}
+
+function changeTagNameNextText(type) {
+    switch (type) {
+        case "format_bold": {
+            formatBold(textIsDarken);
+            break;
+        }
+        case "format_italic": {
+            formatItalic(textIsDarken);
+            break;
+        }
+        case "format_underlined": {
+            formatUnderlined(textIsDarken);
+            break;
+        }
+
+        case "format_list_numbered": {
             format_list_numbered(textIsDarken);
             break;
         }
@@ -175,12 +201,45 @@ function addLink(text) {
     $("#button-show-input-link").click();
 }
 
-function format_list_numbered(text) {
+function add_text_in_list(html) {
+    if(!$("#format_list_numbered").is(":checked") && !$("#format_list_bulleted").is(":checked")){
+        $("#new-text").before(`<p>` + html + `</p>`);
+        return;
+    }
+
+    if ($("#new-text").prev().is("ul") || $("#new-text").prev().is("ol")) {
+        const form = `<li>` + html + `</li>`;
+        if ($("#new-text").prev().find("li").length != 0) {
+            $("#new-text").prev().find("li:last").after(form)
+        } else {
+            $("#new-text").prev().html(form);
+        }
+    }
 }
 
 function changeAttrEdit(node) {
     $("#frame-content").find("*[edit='true']").removeAttr("edit");
     node.attr("edit", "true");
+}
+
+function actionListUl() {
+    if ($("#new-text").prev().is("ul") && $("#new-text").prev().find("li") == 0) {
+        $("#new-text").prev().remove();
+    }
+
+    if (!$("#new-text").prev().is("ul")) {
+        $("#new-text").before(`<ul></ul>`)
+    }
+}
+
+function actionListOl() {
+    if ($("#new-text").prev().is("ol") && $("#new-text").prev().find("li") == 0) {
+        $("#new-text").prev().remove();
+    }
+
+    if (!$("#new-text").prev().is("ol")) {
+        $("#new-text").before(`<ol></ol>`)
+    }
 }
 
 /*Hủy event press enter của form*/
@@ -204,6 +263,8 @@ function setEvent() {
     setClickForItemEdit();
 
     setClickForButtonSaveURL();
+
+    setClickForEditItem();
 }
 
 function setClickForNewText() {
@@ -241,6 +302,7 @@ function setChangeForUpdateImg() {
         addImgFile(this);
     });
 
+
     $("#input-img-for-expanded-info-product").change(function (event) {
         addImgForExpandedInfoProduct(this);
     });
@@ -269,5 +331,17 @@ function setClickForButtonSaveURL() {
             newNote = first + edit + end;
 
         noteEdit.html(newNote);
+    });
+}
+
+function setClickForEditItem() {
+    $(".item-edit:not(.item-edit[value=link])").find("input").mousedown(function () {
+        // if (textIsDarken != null && textIsDarken != "") return;
+
+        if ($(this).is(":checked")) {
+           alert("checked");
+        } else {
+            alert("dont checked");
+        }
     });
 }
