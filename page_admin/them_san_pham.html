@@ -106,24 +106,62 @@
 
                 <div class="input-expanded-info-product">
                     <div class="input-expanded-info-product-header">
-                        <span class="material-symbols-outlined"> format_bold </span>
-                        <span class="material-symbols-outlined">format_italic </span>
-                        <span class="material-symbols-outlined">format_underlined</span>
-                        <span class="material-symbols-outlined">format_list_numbered</span>
-                        <span class="material-symbols-outlined">link</span>
-                        <label for="input-img-for-expanded-info-product"><span class="material-symbols-outlined">image</span></label>
-                        <input type="file" name="input-img-for-expanded-info-product" id="input-img-for-expanded-info-product" accept="image/jpeg,image/png" hidden="">
+                        <div class="item-edit" value="format_bold">
+                            <label for="format_bold"><span class="material-symbols-outlined">format_bold</span></label>
+                            <input type="checkbox" name="format_bold" id="format_bold" hidden="">
+                        </div>
+                        <div class="item-edit" value="format_italic">
+                            <label for="format_italic"><span class="material-symbols-outlined">format_italic </span></label>
+                            <input type="checkbox" name="format_italic" id="format_italic" hidden="">
+                        </div>
+                        <div class="item-edit" value="format_underlined">
+                            <label for="format_underlined"><span class="material-symbols-outlined">format_underlined</span></label>
+                            <input type="checkbox" name="format_underlined" id="format_underlined" hidden="">
+                        </div>
+                        <div class="item-edit" value="format_list_numbered">
+                            <label for="format_list_numbered"><span class="material-symbols-outlined">format_list_numbered</span></label>
+                            <input type="checkbox" name="format_list_numbered" id="format_list_numbered" hidden="">
+                        </div>
+                        <div class="item-edit" value="link">
+                            <label for="link"><span class="material-symbols-outlined">link</span></label>
+                            <input type="checkbox" name="link" id="link" hidden="">
+                        </div>
+                        <div class="item-edit" value="image">
+                            <label for="image"><span class="material-symbols-outlined">image</span></label>
+                            <input type="file" name="image" id="image" accept="image/jpeg,image/png" hidden="">
+                        </div>
                     </div>
+
+
                     <div class="input-expanded-info-product-body">
-                        <label for="describe-product"></label>
-                        <div class="content-product ms-2 me-2">
-                            <div class="img">
-                                <img src="../images/bannerAccount.png" alt="">
-                                <button class="cancel text-danger">x</button>
+                        <div class="content-product ms-2 me-2" id="frame-content">
+                            <p id="new-text" contenteditable="true" style="color: #bebebe">
+                                Nhập nội dung tại đây......
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" data-bs-toggle="modal" data-bs-target="#dialog-input-link" id="button-show-input-link" hidden="">
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="dialog-input-link" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Link</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="url" id="input-link" value="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" id="button-save-url">Save changes</button>
                             </div>
                         </div>
-                        <input type="text" class="border-0" name="describe-product" id="describe-product"
-                               placeholder="Mô tả sản phẩm">
                     </div>
                 </div>
             </div>

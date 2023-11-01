@@ -1,3 +1,6 @@
+a{
+ cursor: pointer;
+}
 
 #main form input {
     padding: 5px 0 5px 12px;
@@ -57,8 +60,18 @@
     padding: 10px 0 10px 8px;
 }
 
-#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header span {
-    margin-right: 10px;
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit{
+    margin-left: 15px;
+    border-radius: 5px;
+}
+
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit.active{
+    background-color: var(--color-blue-origin);
+    color: #fff;
+}
+
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-header .item-edit > label{
+    display: flex;
 }
 
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body {
@@ -77,17 +90,26 @@
     padding: 5px 12px;
 }
 
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body p,
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body em,
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body strong,
+#main .input-info-product .input-expanded-info-product .input-expanded-info-product-body li{
+    cursor: text;
+    outline: none;
+}
+
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img{
     position: relative;
+    width: fit-content;
 }
 
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body .content-product .img button{
     background: none;
     border: none;
     position: absolute;
-    top: -10px;
-    right: -20px;
-    font-size: 20px;
+    top: -5px;
+    right: 5px;
+    font-size: 30px;
 }
 
 #main .input-info-product .input-expanded-info-product .input-expanded-info-product-body input {
