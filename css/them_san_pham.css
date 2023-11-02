@@ -48,13 +48,23 @@
 }
 
 #main .input {
-    width: 65%;
     border: rgba(0, 0, 0, 0.5) solid 2px;
     position: relative;
     border-radius: 10px;
     padding-bottom: 26px;
     margin-bottom: 36px;
 }
+
+#main section.left .input{
+    width: 65%;
+}
+
+#main section.right{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 
 #main .input > div {
     margin-left: 25px;
@@ -67,6 +77,12 @@
 
 #frame-content a {
     color: var(--color-blue-origin);
+}
+
+#main .button-add {
+    background-color: var(--color-blue-origin);
+    color: #fff;
+    font-weight: bold;
 }
 
 
@@ -186,12 +202,6 @@
     margin-top: 15px;
 }
 
-#main .input-option-product .input-option-product-footer button {
-    background-color: var(--color-blue-origin);
-    color: #fff;
-    font-weight: bold;
-}
-
 /*Phần số lượng và thời gian ra mắt*/
 #main .input-amount-and-release-date-product .input-amount-and-release-date-product-body div {
     border-radius: 5px;
@@ -212,13 +222,6 @@
 }
 
 /*Phần giá*/
-#main .input-price-product {
-    width: 30%;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
 #main .input-price-product .input-price-product-body input:nth-of-type(1) {
     margin-bottom: 15px;
 }
@@ -230,35 +233,12 @@
 }
 
 /*Phần bộ lọc sản phẩm*/
-#main .input-filter-product {
-    width: 30%;
-    position: absolute;
-    right: 0;
-    top: 236px;
-}
-
 #main .input-filter-product .input-filter-product-body select {
     margin-bottom: 15px
 }
 
 #main .input-filter-product .input-filter-product-body select:last-of-type {
     margin-bottom: 0;
-}
-
-/*Phần button*/
-#main .button-action {
-    width: 30%;
-    position: absolute;
-    top: 460px;
-    right: 12px;
-}
-
-#main .button-action button {
-    font-weight: bold;
-    color: #fff;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    padding: 5px 0;
 }
 
 #main .button-action div:nth-of-type(1) button {

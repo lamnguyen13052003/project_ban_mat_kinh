@@ -43,6 +43,7 @@ function addImgFileForProduct(file) {
         $(this).parent().remove();
         updateSelectImgOption();
     });
+
     updateSelectImgOption();
 }
 /*Cập nhật lại danh sách các hình có thể chọn làm hình ảnh cho phần select option*/
@@ -57,6 +58,7 @@ function updateSelectImgOption() {
 /*Thết lập event*/
 function setEvent() {
     setChangeForUpdateImg();
+    addOption();
 }
 
 function setChangeForUpdateImg() {
@@ -67,5 +69,54 @@ function setChangeForUpdateImg() {
 
     $("#input-img-for-expanded-info-product").change(function (event) {
         addImgForExpandedInfoProduct(this);
+    });
+}
+
+function addOption(){
+    $("#add-option").mouseup(function () {
+        const list_input_option_product = $("#frame-input-option-product").find(".a-input-option-product");
+        if(list_input_option_product.length == 0){
+            $("#frame-input-option-product").html(`<div class="row a-input-option-product align-items-center">
+                            <div class="col-4">
+                                <select name="option">
+                                    <option value="" disabled selected>Lựa chọn</option>
+                                    <option value="color">Màu sắc</option>
+                                    <option value="extracts">Chiết suất</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="value-option" placeholder="Giá trị">
+                            </div>
+                            <div class="col-3">
+                                <select name="link-img-option" id="select-img-option-product">
+                                    <option selected disabled>Hình ảnh</option>
+                                </select>
+                            </div>
+                            <button type="button" class="cancel bg-danger rounded h-100 col-1">x</button>
+                        </div>`)
+        }else{
+            list_input_option_product.last().after(`<div class="row a-input-option-product align-items-center mt-1">
+                            <div class="col-4">
+                                <select name="option">
+                                    <option value="" disabled selected>Lựa chọn</option>
+                                    <option value="color">Màu sắc</option>
+                                    <option value="extracts">Chiết suất</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="value-option" placeholder="Giá trị">
+                            </div>
+                            <div class="col-3">
+                                <select name="link-img-option" id="select-img-option-product">
+                                    <option selected disabled>Hình ảnh</option>
+                                </select>
+                            </div>
+                            <button type="button" class="cancel bg-danger rounded h-100 col-1">x</button>
+                        </div>`);
+        }
+
+        $("#frame-input-option-product").find(".a-input-option-product").last().find(".cancel").mouseup(function () {
+            $(this).parent().remove();
+        });
     });
 }
