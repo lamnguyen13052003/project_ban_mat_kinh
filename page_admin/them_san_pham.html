@@ -246,6 +246,7 @@
                     </h4>
 
                     <div class="input-option-product-body" id="frame-input-option-product">
+                        <div id="input-option-product"></div>
                     </div>
 
                     <div class="input-option-product-footer">
@@ -279,32 +280,16 @@
                     </h4>
 
                     <div class="input-price-product-body">
-                        <input type="number" class="w-100" name="price-product" id="price-product"
+                        <input type="number" class="w-100 mb-0" name="price-product" id="price-product"
                                placeholder="Giá sản phẩm" required>
-                        <hr>
                         <div class="list-sale-product">
-                            <div class="sale-product">
-                                <input type="number" class="w-100" name="sale-product"
-                                       placeholder="chiết khấu" required>
-                                <div class="input-date-sale-product d-flex row align-items-center align-items-center">
-                                    <div class="col-5">
-                                        <input type="date" class="w-100 mb-0" name="data-start-apply-sale">
-                                    </div>
-                                    <div class="col-1 text-center">-</div>
-                                    <div class="col-5">
-                                        <input type="date" class="w-100 mb-0" name="data-end-apply-sale">
-                                    </div>
-                                    <div class="col-1 ps-0">
-                                        <button type="button" class="cancel bg-danger rounded">x</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="input-sale-product"></div>
                         </div>
                     </div>
 
                     <hr>
                     <div class="input-price-product-footer mt-3">
-                        <button class="btn button-add">Thêm giảm giá</button>
+                        <button type="button" class="btn button-add" id="add-sale-product">Thêm giảm giá</button>
                     </div>
                 </div>
 

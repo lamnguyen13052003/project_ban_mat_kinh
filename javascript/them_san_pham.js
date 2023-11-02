@@ -28,6 +28,7 @@ function addImgForExpandedInfoProduct(file) {
             $(this).parent().remove();
         });
 }
+
 //
 /*Thêm hình vào sản phẩm*/
 function addImgFileForProduct(file) {
@@ -46,6 +47,7 @@ function addImgFileForProduct(file) {
 
     updateSelectImgOption();
 }
+
 /*Cập nhật lại danh sách các hình có thể chọn làm hình ảnh cho phần select option*/
 function updateSelectImgOption() {
     const listImg = $("#main").find(".input-img-product-body").find(".img-product");
@@ -59,6 +61,7 @@ function updateSelectImgOption() {
 function setEvent() {
     setChangeForUpdateImg();
     addOption();
+    addSaleProduct();
 }
 
 function setChangeForUpdateImg() {
@@ -72,11 +75,9 @@ function setChangeForUpdateImg() {
     });
 }
 
-function addOption(){
+function addOption() {
     $("#add-option").mouseup(function () {
-        const list_input_option_product = $("#frame-input-option-product").find(".a-input-option-product");
-        if(list_input_option_product.length == 0){
-            $("#frame-input-option-product").html(`<div class="row a-input-option-product align-items-center">
+        $("#input-option-product").before(`<div class="row a-input-option-product align-items-center mb-2">
                             <div class="col-4">
                                 <select name="option">
                                     <option value="" disabled selected>Lựa chọn</option>
@@ -87,36 +88,40 @@ function addOption(){
                             <div class="col-4">
                                 <input type="text" name="value-option" placeholder="Giá trị">
                             </div>
-                            <div class="col-3">
+                            <div class="col-3 me-3">
                                 <select name="link-img-option" id="select-img-option-product">
                                     <option selected disabled>Hình ảnh</option>
                                 </select>
                             </div>
-                            <button type="button" class="cancel bg-danger rounded h-100 col-1">x</button>
+                            <button type="button" class="cancel bg-danger rounded h-100 col-1" style="width: 40px">x</button>
                         </div>`)
-        }else{
-            list_input_option_product.last().after(`<div class="row a-input-option-product align-items-center mt-1">
-                            <div class="col-4">
-                                <select name="option">
-                                    <option value="" disabled selected>Lựa chọn</option>
-                                    <option value="color">Màu sắc</option>
-                                    <option value="extracts">Chiết suất</option>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <input type="text" name="value-option" placeholder="Giá trị">
-                            </div>
-                            <div class="col-3">
-                                <select name="link-img-option" id="select-img-option-product">
-                                    <option selected disabled>Hình ảnh</option>
-                                </select>
-                            </div>
-                            <button type="button" class="cancel bg-danger rounded h-100 col-1">x</button>
-                        </div>`);
-        }
 
-        $("#frame-input-option-product").find(".a-input-option-product").last().find(".cancel").mouseup(function () {
+        $("#input-option-product").prev().find(".cancel").mouseup(function () {
             $(this).parent().remove();
+        });
+    });
+}
+
+function addSaleProduct() {
+    $("#add-sale-product").mouseup(function () {
+        $("#input-sale-product").before(`
+                            <div class="sale-product">
+                                 <hr>
+                                <input type="number" class="w-100" name="sale-product"
+                                       placeholder="chiết khấu" required>
+                                <div class="input-date-sale-product d-flex row align-items-center align-items-center">
+                                    <div class="col-5 pe-0">
+                                        <input type="date" class="w-100 mb-0" name="data-start-apply-sale">
+                                    </div>
+                                    <div class="col-1 px-0 mx-0 text-center">-</div>
+                                    <div class="col-5 ps-0">
+                                        <input type="date" class="w-100 mb-0" name="data-end-apply-sale">
+                                    </div>
+                                    <button type="button" class="cancel bg-danger rounded col-1 px-0">x</button>
+                                </div>
+                            </div> `);
+        $("#input-sale-product").prev().find(".cancel").mouseup(function () {
+            $(this).parent().parent().remove();
         });
     });
 }
