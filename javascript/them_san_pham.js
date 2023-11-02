@@ -34,7 +34,7 @@ function addImgFileForProduct(file) {
     var selectedFile = file.files[0];
     const imageUrl = window.URL.createObjectURL(selectedFile);
 
-    $("#main").find(".input-img-product-body").find(".img-product").last().after(' <div class="img-product">\n' +
+    $("#input-img").before('<div class="img-product">\n' +
         '                        <img src="' + imageUrl + '" alt="' + selectedFile.name + '">\n' +
         '                        <button class="text-danger cancel">x</button>\n' +
         '                    </div>');
