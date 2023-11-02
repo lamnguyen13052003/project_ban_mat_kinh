@@ -105,44 +105,60 @@
                 </div>
 
                 <div class="input-expanded-info-product">
-                    <div class="input-expanded-info-product-header">
-                        <div class="item-edit" value="format_bold">
-                            <label for="format_bold"><span class="material-symbols-outlined">format_bold</span></label>
-                            <input type="checkbox" name="format_bold" id="format_bold" hidden="">
-                        </div>
-                        <div class="item-edit" value="format_italic">
-                            <label for="format_italic"><span class="material-symbols-outlined">format_italic </span></label>
-                            <input type="checkbox" name="format_italic" id="format_italic" hidden="">
-                        </div>
-                        <div class="item-edit" value="format_underlined">
-                            <label for="format_underlined"><span class="material-symbols-outlined">format_underlined</span></label>
-                            <input type="checkbox" name="format_underlined" id="format_underlined" hidden="">
-                        </div>
-                        <div class="item-edit" value="format_list_numbered">
-                            <label for="format_list_numbered"><span class="material-symbols-outlined">format_list_numbered</span></label>
-                            <input type="checkbox" name="format_list_numbered" id="format_list_numbered" hidden="">
-                        </div>
-                        <div class="item-edit" value="format_list_bulleted">
-                            <label for="format_list_numbered"><span class="material-symbols-outlined">format_list_bulleted</span></label>
-                            <input type="checkbox" name="format_list_bulleted" id="format_list_bulleted" hidden="">
-                        </div>
-                        <div class="item-edit" value="link">
-                            <label for="link"><span class="material-symbols-outlined">link</span></label>
-                            <input type="checkbox" name="link" id="link" hidden="">
-                        </div>
-                        <div class="item-edit" value="input-img-for-expanded-info-product">
-                            <label for="input-img-for-expanded-info-product"><span class="material-symbols-outlined">image</span></label>
-                            <input type="file" name="input-img-for-expanded-info-product" id="input-img-for-expanded-info-product" accept="image/jpeg,image/png" hidden="">
-                        </div>
+                    <div class="input-expanded-info-product-header text-editor-header">
+                        <button type="button" class="btn"
+                                data-element="bold">
+                            <i class="fa fa-bold"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="italic">
+                            <i class="fa fa-italic"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="underline">
+                            <i class="fa fa-underline"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="insertUnorderedList">
+                            <i class="fa fa-list-ul"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="insertOrderedList">
+                            <i class="fa fa-list-ol"></i>
+                        </button>
+
+                        <button type="button" class="btn"
+                                data-element="justifyLeft">
+                            <i class="fa fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="justifyCenter">
+                            <i class="fa fa-align-center"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="justifyRight">
+                            <i class="fa fa-align-right"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="justifyFull">
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                        <button type="button" class="btn"
+                                data-element="createLink">
+                            <i class="fa fa-link"></i>
+                        </button>
+                        <label type="button" class="btn" data-element="insertImage" for="input-img-for-expanded-info-product">
+                            <i class="fa fa-image"></i>
+                            <input type="file" hidden="" id="input-img-for-expanded-info-product" accept="image/png,image/jpeg">
+                        </label>
                     </div>
 
 
-                    <div class="input-expanded-info-product-body">
-                        <div class="content-product ms-2 me-2" id="frame-content">
-                            <p id="new-text" contenteditable="true" style="color: #bebebe">
-                                Nhập nội dung tại đây......
+                    <div class="input-expanded-info-product-body"  id="frame-content">
+                        <div class="content-product ms-2 me-2" contenteditable="true">
+                            <div>
                                 <br>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -300,6 +316,7 @@
     </div>
 </main>
 
+
 <footer id="footer" class="footer">
     <div class="container ">
         <div class="footer-top row">
@@ -344,5 +361,6 @@
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin-page.js"></script>
 <script src="../javascript/them_san_pham.js"></script>
+<script src="/javascript/form-des.js"> </script>
 </body>
 </html>
