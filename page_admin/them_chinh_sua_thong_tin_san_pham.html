@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet"
+            href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+        <link rel="stylesheet"
+            href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
+        <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+        <link rel="stylesheet" href="../css/menu_footer.css">
+        <link rel="icon" href="../logo_icon.png">
+        <link rel="stylesheet" href="../css/them_chinh_sua_thong_tin.css">
+
+        <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
+        <script src="../jquery/jquery-3.7.1.min.js"></script>
+
+        <title>Danh sách hóa đơn</title>
+    </head>
+
+    <body>
+        <header id="menu">
+            <nav class="navbar navbar-expand-lg pb-0">
+                <div class="container-xxl m-md-auto mt-2">
+                    <div class="row">
+                        <div
+                            class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                            <a href="danh_sach_khach_hang.html"
+                                class="navbar-brand me-5">
+                                <img src="../logo.png" alt="logo.png">
+                                KIMI
+                            </a>
+                        </div>
+                        <div
+                            class="search col-lg-5 col-md-6 col-sm-6 border-0 px-lg-0 px-md-5">
+                            <form class="d-flex input-group">
+                                <input class="form-control border-0 ps-3"
+                                    type="text" name="search" id="search"
+                                    placeholder="Nhập tên sản phẩm!">
+                                <span class="input-group-text  border-0"><a
+                                        class="nav-link" href="#"><i
+                                            class="fa-solid fa-magnifying-glass"></i></a></span>
+                            </form>
+                        </div>
+                        <div
+                            class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
+                            <a href="../dang_nhap.html">
+                                <button type="button"
+                                    class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
+                                    <span
+                                        class="d-lg-inline d-md-none d-sm-none">Đăng
+                                        nhập</span>
+                                    <span
+                                        class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div
+                            class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
+                            <a href="../dang_ky.html">
+                                <button type="button"
+                                    class="btn d-flex float-lg-none">
+                                    <span
+                                        class="d-lg-inline d-md-none  d-sm-none">Đăng
+                                        ký</span>
+                                    <span
+                                        class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="menu-product col-lg-12 col-md-1 col-sm-1">
+                            <!--Icon 3 dấu gạch mang hiển thị menu-->
+                            <button class="navbar-toggler" type="button"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar"
+                                aria-controls="offcanvasNavbar"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <!--Các mục trong menu-->
+                            <div class="offcanvas offcanvas-end" tabindex="-1"
+                                id="offcanvasNavbar"
+                                aria-labelledby="offcanvasNavbarLabel">
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav m-auto">
+                                        <li
+                                            class="nav-item dropdown pe-lg-5 pe-md-0 active">
+                                            <a href="danh_sach_khach_hang.html"
+                                                class="nav-link px-4 rounded">Danh
+                                                sách
+                                                khách hàng</a>
+                                        </li>
+                                        <li
+                                            class="nav-item dropdown pe-lg-5 pe-md-0">
+                                            <a href="danh_sach_san_pham.html"
+                                                class="nav-link px-4 rounded">Danh
+                                                sách sản
+                                                phẩm</a>
+                                        </li>
+                                        <li
+                                            class="nav-item dropdown pe-lg-5 pe-md-0">
+                                            <a href="danh_sach_hoa_don.html"
+                                                class="nav-link px-4 rounded">Danh
+                                                sách hóa
+                                                đơn</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main id="main" class=" mt-3 pb-5" style="background-color: lightgray;">
+            <div class="container center1">
+                <section class="sec-left ">
+                    <div class="sec-1 px-4 py-4">
+                        <h5 class="mb-2 ">Thông tin sản phẩm</h5>
+                        <input class="mb-2"
+                            style="width: 100%;border-radius: 6px" type="text"
+                            placeholder="Tên sản phẩm">
+                        <div class="holder1">
+                            <input style="border-radius: 6px" type="text"
+                                placeholder="Dòng sản phẩm">
+                            <input style="border-radius: 6px" type="text"
+                                placeholder="Mã sản phẩm">
+                        </div>
+                        <br>
+                        <h8>Thông tin sản phẩm</h8>
+                        <div class="main-content">
+                            <div class="text-editor-header">
+                                <button type="button" class="btn"
+                                    data-element="bold">
+                                    <i class="fa fa-bold"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="italic">
+                                    <i class="fa fa-italic"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="underline">
+                                    <i class="fa fa-underline"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="insertUnorderedList">
+                                    <i class="fa fa-list-ul"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="insertOrderedList">
+                                    <i class="fa fa-list-ol"></i>
+                                </button>
+
+                                <button type="button" class="btn"
+                                    data-element="justifyLeft">
+                                    <i class="fa fa-align-left"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="justifyCenter">
+                                    <i class="fa fa-align-center"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="justifyRight">
+                                    <i class="fa fa-align-right"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="justifyFull">
+                                    <i class="fa fa-align-justify"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="createLink">
+                                    <i class="fa fa-link"></i>
+                                </button>
+                                <button type="button" class="btn"
+                                    data-element="insertImage">
+                                    <i class="fa fa-image"></i>
+                                </button>
+                            </div>
+                            <div class="content" contenteditable="true"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="sec-2 px-4 py-4">
+                        <h5> Ảnh Minh Họa</h5>
+                        <br>
+                        <div class="khung2 pt-3">
+                            <img
+                                src="../images/product/giong-kinh/images/gong-kinh-acetate-titanium-merriandy-00144/0.jpg"
+                                alt height="105" width="105">
+                            <img
+                                src="../images/product/giong-kinh/images/gong-kinh-acetate-titanium-merriandy-00144/1.jpg"
+                                alt height="105" width="105">
+                                <img src="../images/up_anh_len.png" alt height="105" width="120">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="sec-3 px-4 py-4">
+                        <h5> Sự lựa chọn </h5>
+                        <section class="box-section px-4 py-4 ">
+                            <div class="filter ">
+                                <select class="ten-box" id>
+                                    <option value>Màu sắc</option>
+                                    <option value>Chiết suất</option>
+                                </select>
+                                <select class="ten-box" name id>
+                                    <option value>Giá trị</option>
+                                </select>
+                                <select class="ten-box" name id>
+                                    <option value>Chọn ảnh</option>
+                                </select>
+                                <br>
+                            </div>
+                            <br>
+                            <input
+                                style="background-color: #2f189a; border-radius: 6px;color: white;"
+                                type="submit" value="Chọn sản phẩm">
+                        </section>
+                    </div>
+                    <br>
+                    <div class="sec-4 px-4 py-4">
+                        <h5>Số lượng và thời gian ra mắt</h5>
+                        <h7 class=" mb-2">Số lượng sản phẩm :</h7>
+                        <div class="holder2 mb-2">
+                            <input class="mb-2"
+                                style="width: 100%; border-radius: 6px"
+                                type="text" placeholder="100">
+
+                        </div>
+                        <div>
+                            <form action>
+                                <label for>Thời gian ra mắt:</label>
+                                <input class=" mb-2"
+                                    style="border-radius: 6px ; width: 100%;"
+                                    type="date" id name>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sec-right ">
+                    <section>
+                        <div class="sec-5 px-4 py-4">
+                            <h5 class="mt-2">Giá sản phẩm</h5>
+                            <div class="holder3">
+                                <input class="mb-2"
+                                    style="width: 100%;border-radius: 6px;"
+                                    ;type="text" placeholder="Giá sản phẩm">
+                                <input class="mb-2"
+                                    style="width: 100%;border-radius: 6px;"
+                                    ;type="text" placeholder="Giá khuyến mãi">
+                                <input type="checkbox" value>
+                                <td>Áp dụng ngay</td>
+                                <hr>
+                                <p>Tung sản phẩm</p> <button
+                                    style="background-color: #2f189a; border-radius: 6px; color: white;"
+                                    name="button" type="button"> Accept
+                                </button>
+
+                            </div>
+                        </div>
+                    </section>
+                    <br>
+                    <section>
+                        <div class=" sec-6 px-4 py-4">
+                            <h5 class="  mt-2 mb-2"> Bộ lọc sản phẩm </h5>
+                            <div class="holder3">
+                                <select class="ten-box-1" name id>
+                                    <option value>Thương hiệu</option>
+                                </select>
+                                <br>
+                                <select class="ten-box-1" name id>
+                                    <option value>Chất liệu</option>
+                                </select>
+                                <br>
+                                <select class="ten-box-1" name id>
+                                    <option value>Giá sản phẩm</option>
+                                </select>
+                                <br>
+                                <select class="ten-box-1" name id>
+                                    <option value>Kiểu dáng</option>
+                                </select>
+                                <br>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </section>
+
+            </div>
+
+        </main>
+
+        <footer id="footer" class="footer">
+            <div class="container ">
+                <div class="footer-top row">
+                    <div class="footer-top-item col">
+                        <h5>Mắt Kính KIMI
+                        </h5>
+                        <div class="footer-content footer-contact">
+                            <div class="ft_map">
+
+                            </div>
+                            <ul>
+                                <li class="contact-1"><i
+                                        class="fa-solid fa-map-location-dot px-1"></i><span
+                                        class="px-1">Khu phố 6, Phường Linh
+                                        Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                                </li>
+                                <li class="contact-2"><i
+                                        class="fa-solid fa-phone px-1"></i><b><span
+                                            class="px-1">0855354919</span></b> (
+                                    9:00 - 21:00 )
+                                </li>
+                                <li class="contact-3"><i
+                                        class="fa-solid fa-business-time px-1"></i><span
+                                        class="px-1">9:00
+                                        - 20:00 ( Kể cả T7 và CN )</span>
+                                </li>
+                                <li class="contact-4"><i
+                                        class="fa-solid fa-envelope px-1"></i><span
+                                        class="px-1">matkinhkimi@gmail.com</span>
+                                </li>
+                                <li class="contact-5"><a
+                                        href="https://www.facebook.com/profile.php?id=100045667640701"><i
+                                            class="fa-brands fa-facebook-f px-1"></i><span
+                                            class="px-1 hover"><b>KIMI</b>
+                                        </span></a></li>
+                                <li class="contact-6">
+                                    <p>Kiểm tra thị lực miễn phí &amp; cắt kính
+                                        lấy liền.</p>
+                                </li>
+                                <li class="contact-7">
+                                    <p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer-bot text-center border-3">
+                    <div
+                        class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                        <a href="danh_sach_khach_hang.html">
+                            <img src="../logo.png" alt="logo.png">
+                            <span>KIMI</span>
+                        </a>
+                    </div>
+                    <div class="col"><span>© 2023 - Tất cả các quyền thuộc về
+                            KIMI</span></div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="../javascript/menu_footer.js"></script>
+        <script src="../javascript/admin-page.js"></script>
+    </body>
+    <script src="/javascript/form-des.js">
+
+    </script>
+</html>
