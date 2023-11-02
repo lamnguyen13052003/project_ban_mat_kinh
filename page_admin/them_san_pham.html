@@ -98,7 +98,34 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6"><input class="w-100" type="text" name="type-product" id="type-product" placeholder="Loại sản phẩm"required></div>
+                        <div class="col-6">
+                            <select class="w-100" type="text" name="type-product" id="type-product" required>
+                                <optgroup label="Kính mát">
+                                    <option value="kinh_mat_nam">Kính mát nam</option>
+                                    <option value="kinh_mat_nu">Kính mát nữ</option>
+                                    <option value="kinh_di_ngay_va_dem">Kính đi ngày và đêm</option>
+                                    <option value="kinh_doi_mau">Kinh đổi màu</option>
+                                    <option value="kinh_loc_anh_sang_xanh">Kính lọc ánh sánh xanh</option>
+                                    <option value="kinh_mat_clip_on_2_lop">Kính mắt clip on 2 lớp</option>
+                                </optgroup>
+                                <optgroup label="Mắt kính trẻ em">
+                                    <option value="gong_kinh_tre_em">Gọng kính trẻ em</option>
+                                    <option value="kinh_mat_tre_em">Kính mát trẻ em</option>
+                                </optgroup>
+                                <optgroup label="Gọng kính">
+                                    <option value="gong_kinh_nua_khung">Gọng kính nữa khung</option>
+                                    <option value="gong_kinh_khoan">Gọng kính khoan</option>
+                                    <option value="gong_kinh_tron">Gọng kính tròn</option>
+                                    <option value="gong_kinh_titan">Gọng kính titan</option>
+                                </optgroup>
+                                <optgroup label="Tròng kính">
+                                    <option value="trong_kinh_trong_anh_sang_xanh">Tròng kính chống ánh sáng xanh</option>
+                                    <option value="trong_kinh_doi_mau">Tròng kính đổi màu</option>
+                                    <option value="trong_kinh_mau">Tròng kính màu</option>
+                                    <option value="trong_kinh_cho_gong_khoan">Tròng kính cho gọng khoan</option>
+                                </optgroup>
+                            </select>
+                        </div>
                         <div class="col-6"><input class="w-100" type="text" name="id-product" id="id-product" placeholder="Mã sản phẩm" required>
                         </div>
                     </div>
@@ -214,21 +241,24 @@
                 </h4>
 
                 <div class="input-option-product-body">
-                    <div class="row a-input-option-product">
-                        <div class="col">
+                    <div class="row a-input-option-product align-items-center">
+                        <div class="col-4">
                             <select name="option">
                                 <option value="" disabled selected>Lựa chọn</option>
-                                <option value="màu sắc">Màu sắc</option>
-                                <option value="chiết suất">Chiết suất</option>
+                                <option value="color">Màu sắc</option>
+                                <option value="extracts">Chiết suất</option>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <input type="text" name="value-option" placeholder="Giá trị">
                         </div>
-                        <div class="col">
+                        <div class="col-3">
                             <select name="link-img-option" id="select-img-option-product">
                                 <option selected disabled>Hình ảnh</option>
                             </select>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class=".cancel bg-danger rounded w-75 h-100">x</button>
                         </div>
                     </div>
                 </div>
@@ -287,19 +317,19 @@
 
                 <div class="input-filter-product-body">
                     <select class="w-100" name="select-brand-product" id="select-brand-product">
-                        <option value="thương hiệu 1">Thương hiệu 1</option>
-                        <option value="thương hiệu 2">Thương hiệu 2</option>
-                        <option value="thương hiệu 3">Thương hiệu 3</option>
+                        <option value="brand_1">Thương hiệu 1</option>
+                        <option value="brand_2">Thương hiệu 2</option>
+                        <option value="brand_3">Thương hiệu 3</option>
                     </select>
                     <select class="w-100" name="select-material-product" id="select-material-product">
-                        <option value="chất liệu a">Chất liệu a</option>
-                        <option value="chất liệu b">Chất liệu b</option>
-                        <option value="chất liệu c">Chất liệu c</option>
+                        <option value="material_1">Chất liệu a</option>
+                        <option value="material_2">Chất liệu b</option>
+                        <option value="material_3">Chất liệu c</option>
                     </select>
                     <select class="w-100" name="select-type-product" id="select-type-product">
-                        <option value="kiểu 1">Kiểu 1</option>
-                        <option value="kiểu 2">Kiểu 2</option>
-                        <option value="kiểu 3">Kiểu 3</option>
+                        <option value="type_1">Kiểu 1</option>
+                        <option value="type_2">Kiểu 2</option>
+                        <option value="type_3">Kiểu 3</option>
                     </select>
                 </div>
             </div>

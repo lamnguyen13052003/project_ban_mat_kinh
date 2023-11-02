@@ -1,4 +1,4 @@
-*[contenteditable="true"]{
+*[contenteditable="true"] {
     outline: none;
 }
 
@@ -11,17 +11,21 @@
 }
 
 #frame-content ul:focus,
-#frame-content ol:focus{
+#frame-content ol:focus {
     outline: none;
     border: none;
 }
 
-
+#main form select,
 #main form input {
     padding: 5px 0 5px 12px;
     border-radius: 5px;
     border: 2px solid rgba(0, 0, 0, 0.3);
     width: 100%;
+}
+
+#main form select {
+    height: 40px;
 }
 
 #main form input[type='number']::-webkit-inner-spin-button,
@@ -61,7 +65,7 @@
     position: relative;
 }
 
-#frame-content a{
+#frame-content a {
     color: var(--color-blue-origin);
 }
 
@@ -178,15 +182,6 @@
 }
 
 /*Phần sự lựa chọn*/
-#main .input-option-product .input-option-product-body input,
-#main .input-option-product .input-option-product-body select {
-    border-radius: 5px;
-    padding: 5px 12px;
-    height: 40px;
-    width: 100%;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-}
-
 #main .input-option-product .input-option-product-footer {
     margin-top: 15px;
 }
@@ -200,7 +195,6 @@
 /*Phần số lượng và thời gian ra mắt*/
 #main .input-amount-and-release-date-product .input-amount-and-release-date-product-body div {
     border-radius: 5px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
     position: relative;
     width: 100%;
 }
@@ -215,12 +209,6 @@
     top: -11px;
     width: fit-content;
     background-color: #fff;
-}
-
-#main .input-amount-and-release-date-product .input-amount-and-release-date-product-body input {
-    padding: 7px 12px;
-    border: none;
-    width: 100%;
 }
 
 /*Phần giá*/
@@ -250,10 +238,6 @@
 }
 
 #main .input-filter-product .input-filter-product-body select {
-    border-radius: 5px;
-    padding: 5px 12px;
-    width: 100%;
-    border: 2px solid rgba(0, 0, 0, 0.3);
     margin-bottom: 15px
 }
 
