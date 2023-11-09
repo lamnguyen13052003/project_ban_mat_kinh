@@ -132,3 +132,8 @@ setInterval(function (){
         displayImg(button, currentSile, 0);
     }
 }, 5000);
+
+/*Phần demo*/
+$(".carousel-inner img").eq(0).attr("src", "../../images/img_slide/slideShow_1.png");
+$(".carousel-inner img").eq(1).attr("src", "../../images/img_slide/slideShow_2.png");
+$(".carousel-inner img").eq(2).attr("src", "../../images/img_slide/slideShow_3.jpg");

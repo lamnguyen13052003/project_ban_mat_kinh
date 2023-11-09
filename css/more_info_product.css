@@ -386,7 +386,32 @@ input::-webkit-inner-spin-button {
     height: 100px;
 }
 
+/*++++++++++++++Phn form review+++++++++++++++++*/
+#list-review-image>.input,
+#list-review-image .a-review-image{
+    position: relative;
+    width: fit-content;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
 
+#list-review-image>.input label{
+    width: fit-content;
+}
+
+#list-review-image .a-review-image img{
+    height: 60px;
+}
+
+#list-review-image .a-review-image span{
+    position: absolute;
+    font-size: 15px;
+    top: -5px;
+    right: 3px;
+    cursor: pointer;
+}
 
 
 

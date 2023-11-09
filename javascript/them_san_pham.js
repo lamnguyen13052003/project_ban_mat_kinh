@@ -1,13 +1,8 @@
 $(document).ready(function () {
     setEvent();
 });
-//
-// var textIsDarken;
-//
-/*Nhập text từ bản phím vào phần mô tả sản phẩm*/
 
-//
-/*Thêm hình vào phn mô tả sản phẩm*/
+/*Thêm hình vào phẩn mô tả sản phẩm*/
 function addImgForExpandedInfoProduct(file) {
     var selectedFile = file.files[0];
     const imageUrl = window.URL.createObjectURL(selectedFile);
