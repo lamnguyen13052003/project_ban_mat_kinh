@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/gio_hang.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/product.css">
     <link rel="icon" href="logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
@@ -168,263 +167,270 @@
 
 <main id="main" class="mt-5 pb-5">
     <div class="container rounded cart">
-        <div class="row no-gutters">
-            <div class="col-md-8">
-                <div class="product-details mr-2">
-                    <!--Quay về-->
-                    <div class="d-flex flex-row align-items-center">
-                        <a href="index.html">
-                            <i class="fa fa-long-arrow-left"></i>
-                            <span class="ms-2">Quay lại trang chủ</span>
-                        </a>
+        <form>
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="product-details mr-2">
+                        <!--Quay về-->
+                        <div class="d-flex flex-row align-items-center">
+                            <a href="index.html">
+                                <i class="fa fa-long-arrow-left"></i>
+                                <span class="ms-2">Quay lại trang chủ</span>
+                            </a>
+                        </div>
+                        <hr>
+                        <!--Phần header-->
+                        <div class="cart-header">
+                            <h6 class="mb-0">Giỏ hàng</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>Bạn đang có 4 sản phẩm</span>
+                            </div>
+                        </div>
+                        <!--Danh sách sản phẩm-->
+                        <div class="list-product cart-body" id="list-product">
+                            <!--Sản phẩm-->
+                            <div class="product">
+                                <input type="checkbox" name="select-product">
+                                <div class="info-product">
+                                    <img class="rounded"
+                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
+                                    <div class="ms-2">
+                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 1</span>
+                                        <span class="option">Màu xanh</span>
+                                    </div>
+                                </div>
+                                <div class="change-amount">
+                                    <button type="button" class="down"><span
+                                            class="material-symbols-outlined">arrow_left</span></button>
+                                    <input type="number" name="amount-product"
+                                           class="amount-product" min="1" value="1" disabled>
+                                    <button type="button" class="up"><span
+                                            class="material-symbols-outlined">arrow_right</span></button>
+                                </div>
+                                <div class="price">
+                                    <span class="price">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <div class="total-price">
+                                    <span class="total-money">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <button class="cancel text-danger">x</button>
+                            </div>
+                            <!--Kết thúc sản phẩm-->
+                            <!--Sản phẩm-->
+                            <div class="product">
+                                <input type="checkbox" name="select-product">
+                                <div class="info-product">
+                                    <img class="rounded"
+                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
+                                    <div class="ms-2">
+                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 2</span>
+                                        <span class="option">Màu xanh</span>
+                                    </div>
+                                </div>
+                                <div class="change-amount">
+                                    <button type="button" class="down"><span
+                                            class="material-symbols-outlined">arrow_left</span></button>
+                                    <input type="number" name="amount-product"
+                                           class="amount-product " min="1" value="1" disabled>
+                                    <button type="button" class="up"><span
+                                            class="material-symbols-outlined">arrow_right</span></button>
+                                </div>
+                                <div class="price">
+                                    <span class="price">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <div class="total-price">
+                                    <span class="total-money">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <button class="cancel text-danger">x</button>
+                            </div>
+                            <!--Kết thúc sản phẩm-->
+                            <!--Sản phẩm-->
+                            <div class="product">
+                                <input type="checkbox" name="select-product">
+                                <div class="info-product">
+                                    <img class="rounded"
+                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
+                                    <div class="ms-2">
+                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 3</span>
+                                        <span class="option">Màu xanh</span>
+                                    </div>
+                                </div>
+                                <div class="change-amount">
+                                    <button type="button" class="down"><span
+                                            class="material-symbols-outlined">arrow_left</span></button>
+                                    <input type="number" name="amount-product"
+                                           class="amount-product " min="1" value="1" disabled>
+                                    <button type="button" class="up"><span
+                                            class="material-symbols-outlined">arrow_right</span></button>
+                                </div>
+                                <div class="price">
+                                    <span class="price">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <div class="total-price">
+                                    <span class="total-money">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <button class="cancel text-danger">x</button>
+                            </div>
+                            <!--Kết thúc sản phẩm-->
+                            <!--Sản phẩm-->
+                            <div class="product">
+                                <input type="checkbox" name="select-product">
+                                <div class="info-product">
+                                    <img class="rounded"
+                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
+                                    <div class="ms-2">
+                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 4</span>
+                                        <span class="option">Màu xanh</span>
+                                    </div>
+                                </div>
+                                <div class="change-amount">
+                                    <button type="button" class="down"><span
+                                            class="material-symbols-outlined">arrow_left</span></button>
+                                    <input type="number" name="amount-product"
+                                           class="amount-product " min="1" value="1" disabled>
+                                    <button type="button" class="up"><span
+                                            class="material-symbols-outlined">arrow_right</span></button>
+                                </div>
+                                <div class="price">
+                                    <span class="price">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <div class="total-price">
+                                    <span class="total-money">120,000</span>
+                                    <span>₫</span>
+                                </div>
+                                <button class="cancel text-danger">x</button>
+                            </div>
+                            <!--Kết thúc sản phẩm-->
+                        </div>
                     </div>
-                    <hr>
-                    <!--Phần header-->
-                    <div class="cart-header">
-                        <h6 class="mb-0">Giỏ hàng</h6>
-                        <div class="d-flex justify-content-between">
-                            <span>Bạn đang có 4 sản phẩm</span>
+                </div>
+                <!--Thanh toán-->
+                <div class="col-md-4" id="pay">
+                    <div class="payment-info">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Thanh toán</span>
+                        </div>
+                        <!--Hình thức thanh toán-->
+                        <div class="pay-option">
+                            <span class="type d-block mt-3 mb-1">Hình thức thanh toán</span>
+                            <div class="list-option-pay pb-2">
+                                <label class="radio" for="cash">
+                                    <input type="radio" name="pay" value="cash" id="cash" checked>
+                                    <span>
+                                        <img src="images/icon/cash.png" alt="cash.png" >
+                                    </span>
+                                </label>
+                                <label for="transfer" class="radio" data-bs-toggle="modal" data-bs-target="#qr-pay">
+                                    <input type="radio" name="pay" value="transfer" id="transfer">
+                                    <span>
+                                        <img src="images/icon/transfer.png" alt="cash.png">
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-info">
+                            <form action="">
+                                <div>
+                                    <label class="credit-pay-label" for="full-name">Họ và tên <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control info-payer" placeholder="Họ và tên"
+                                           id="full-name"></div>
+                                <div>
+                                    <label class="credit-pay-label" for="phone-number">Số điện thoại <span
+                                            class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control info-payer" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                                           placeholder="Nhập số điện thoại"
+                                           id="phone-number">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="credit-pay-label" for="tp-tinh">Thành phố/Tỉnh:</label>
+                                        <select class="form-control info-payer" id="tp-tinh">
+                                            <option value="hanoi">Hà Nội</option>
+                                            <option value="hochiminh">Hồ Chí Minh</option>
+                                            <option value="danang">Đà Nẵng</option>
+                                            <option value="hue">Huế</option>
+                                            <option value="haiduong">Hải Dương</option>
+                                            <!-- Thêm các tỉnh/thành phố khác ở đây -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="credit-pay-label" for="quan-huyen">Quận/Huyện</label>
+                                        <select id="quan-huyen" name="quan-huyen" class="form-control info-payer">
+                                            <option value="quan1">Quận 1</option>
+                                            <option value="quan2">Quận 2</option>
+                                            <option value="quan3">Quận 3</option>
+                                            <option value="quan4">Quận 4</option>
+                                            <option value="quan5">Quận 5</option>
+                                            <!-- Thêm các quận/huyện khác ở đây -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="credit-pay-label" for="full-address">Địa chỉ cụ thể <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control info-payer" required
+                                           placeholder="số xx, thôn xx, huyện xx, tỉnh xx" id="full-address">
+                                </div>
+                            </form>
+                        </div>
+                        <hr class="line">
+                        <div class="money">
+                            <div class="d-flex justify-content-between information">
+                                <span>Tổng hóa đơn</span>
+                                <p class="m-0 p-0">
+                                    <span>3,000,000</span>
+                                    <span>₫</span>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between information">
+                                <span>Phí ship</span>
+                                <p class="m-0 p-0">
+                                    <span>20,000</span>
+                                    <span>₫</span>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between information">
+                                <span>Tổng trả: </span>
+                                <p class="m-0 p-0">
+                                    <span>3,020,000</span>
+                                    <span>₫</span>
+                                </p>
+                            </div>
+                            <a href="thanh_toan_thanh_cong.html">
+                                <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 w-100"
+                                        type="button">
+                                    <span>Thanh toán<i class="fa fa-long-arrow-right ms-1"></i></span>
+                                </button>
+                            </a>
                         </div>
                     </div>
-                    <!--Danh sách sản phẩm-->
-                    <div class="list-product">
-                        <!--Sản phẩm-->
-                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                            <div class="d-flex flex-row">
-                                <img class="rounded"
-                                     src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png"
-                                     width="40">
-                                <div class="ms-2">
-                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
-                                    <span class="option">Màu xanh</span>
-                                </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="qr-pay" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Mã thanh toán</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
-                            <div class="d-flex flex-row align-items-center">
-                                <div class="input-amount d-flex">
-                                    <button class="d-flex justify-content-center align-items-center p-0 down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="d-block amount-product text-center" min="1" value="1" disabled>
-                                    <button class="d-flex justify-content-center align-items-center p-0 up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="d-flex price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="d-flex total-price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="ps-4 mb-2">
-                                    <button class="cancel text-danger fs-2 border-0 p-0 bg-white">x</button>
-                                </div>
+                            <div class="modal-body">
+                                <img src="images/qr.png" alt="qr.png">
                             </div>
                         </div>
-                        <!--Kết thúc sản phẩm-->
-                        <!--Sản phẩm-->
-                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                            <div class="d-flex flex-row">
-                                <img class="rounded"
-                                     src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png"
-                                     width="40">
-                                <div class="ms-2">
-                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
-                                    <span class="option">Màu xanh</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                                <div class="input-amount d-flex">
-                                    <button class="d-flex justify-content-center align-items-center p-0 down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="d-block amount-product text-center" min="1" value="1" disabled>
-                                    <button class="d-flex justify-content-center align-items-center p-0 up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="d-flex price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="d-flex total-price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="ps-4 mb-2">
-                                    <button class="cancel text-danger fs-2 border-0 p-0 bg-white">x</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Kết thúc sản phẩm-->
-                        <!--Sản phẩm-->
-                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                            <div class="d-flex flex-row">
-                                <img class="rounded"
-                                     src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png"
-                                     width="40">
-                                <div class="ms-2">
-                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
-                                    <span class="option">Màu xanh</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                                <div class="input-amount d-flex">
-                                    <button class="d-flex justify-content-center align-items-center p-0 down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="d-block amount-product text-center" min="1" value="1" disabled>
-                                    <button class="d-flex justify-content-center align-items-center p-0 up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="d-flex price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="d-flex total-price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="ps-4 mb-2">
-                                    <button class="cancel text-danger fs-2 border-0 p-0 bg-white">x</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Kết thúc sản phẩm-->
-                        <!--Sản phẩm-->
-                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                            <div class="d-flex flex-row">
-                                <img class="rounded"
-                                     src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png"
-                                     width="40">
-                                <div class="ms-2">
-                                    <span class="fw-bold d-block">Gọng kính cận trẻ em TR90 JC052</span>
-                                    <span class="option">Màu xanh</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                                <div class="input-amount d-flex">
-                                    <button class="d-flex justify-content-center align-items-center p-0 down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="d-block amount-product text-center" min="1" value="1" disabled>
-                                    <button class="d-flex justify-content-center align-items-center p-0 up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="d-flex price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="d-flex total-price">
-                                    <span class="d-block ms-5 fw-bold total-money">120,000</span>
-                                    <span class="fw-bold">₫</span>
-                                </div>
-                                <div class="ps-4 mb-2">
-                                    <button class="cancel text-danger fs-2 border-0 p-0 bg-white">x</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Kết thúc sản phẩm-->
                     </div>
                 </div>
             </div>
-            <!--Thanh toán-->
-            <div class="col-md-4">
-                <div class="payment-info">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span>Thanh toán</span>
-                    </div>
-                    <!--Hình thức thanh toán-->
-                    <div class="pay-option">
-                        <span class="type d-block mt-3 mb-1">Hình thức thanh toán</span>
-                        <div class="list-option-pay pb-2">
-                            <label class="radio">
-                                <input type="radio" name="pay" value="cash" checked>
-                                <span>
-                            <img src="images/icon/cash.png" alt="cash.png" width="30px"
-                                 style="height: 30px; border-radius: 50%">
-                        </span>
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="pay" value="transfer">
-                                <span>
-                            <img src="images/icon/transfer.png" alt="cash.png" width="30px">
-                        </span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-info">
-                        <form action="">
-                            <div>
-                                <label class="credit-pay-label" for="full-name">Họ và tên*</label>
-                                <input type="text" class="form-control info-payer" placeholder="Họ và tên"
-                                       id="full-name"></div>
-                            <div>
-                                <label class="credit-pay-label" for="phone-number">Số điện thoại*</label>
-                                <input type="text" class="form-control info-payer" required placeholder="xxxx.xxx.xxx"
-                                       id="phone-number">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="credit-pay-label" for="tp-tinh">Thành phố/Tỉnh:</label>
-                                    <select class="form-control info-payer" id="tp-tinh">
-                                        <option value="hanoi">Hà Nội</option>
-                                        <option value="hochiminh">Hồ Chí Minh</option>
-                                        <option value="danang">Đà Nẵng</option>
-                                        <option value="hue">Huế</option>
-                                        <option value="haiduong">Hải Dương</option>
-                                        <!-- Thêm các tỉnh/thành phố khác ở đây -->
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="credit-pay-label" for="quan-huyen">Quận/Huyện</label>
-                                    <select id="quan-huyen" name="quan-huyen" class="form-control info-payer">
-                                        <option value="quan1">Quận 1</option>
-                                        <option value="quan2">Quận 2</option>
-                                        <option value="quan3">Quận 3</option>
-                                        <option value="quan4">Quận 4</option>
-                                        <option value="quan5">Quận 5</option>
-                                        <!-- Thêm các quận/huyện khác ở đây -->
-                                    </select>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="credit-pay-label" for="full-address">Địa chỉ cụ thể*</label>
-                                <input type="text" class="form-control info-payer" required
-                                       placeholder="số xx, thôn xx, huyện xx, tỉnh xx" id="full-address">
-                            </div>
-                        </form>
-                    </div>
-                    <hr class="line">
-                    <div class="money">
-                        <div class="d-flex justify-content-between information">
-                            <span>Tổng hóa đơn</span>
-                            <p class="m-0 p-0">
-                                <span>3,000,000</span>
-                                <span>₫</span>
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-between information">
-                            <span>Phí ship</span>
-                            <p class="m-0 p-0">
-                                <span>20,000</span>
-                                <span>₫</span>
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-between information">
-                            <span>Tổng trả: </span>
-                            <p class="m-0 p-0">
-                                <span>3,020,000</span>
-                                <span>₫</span>
-                            </p>
-                        </div>
-                        <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 w-100"
-                                type="button">
-                            <span>Thanh toán<i class="fa fa-long-arrow-right ms-1"></i></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </main>
 
@@ -491,6 +497,6 @@
     </div>
 </footer>
 <script src="javascript/menu_footer.js"></script>
-<script src="javascript/gio-hang.js"></script>
+<script src="javascript/gio_hang.js"></script>
 </body>
 </html>

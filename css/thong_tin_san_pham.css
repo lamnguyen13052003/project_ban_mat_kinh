@@ -226,11 +226,15 @@ input::-webkit-inner-spin-button {
 
 /*Phạm vi ô hiển thị*/
 #main .other-product .collection-wrap-product-list .pro-loop .pro-loop-wrap {
-    top: 10px;
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
 /*Phần hình ảnh*/
+#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image{
+    position: relative;
+}
+
 #main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image .pro-loop-sd {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 5px;

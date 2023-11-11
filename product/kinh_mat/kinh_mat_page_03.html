@@ -7,7 +7,7 @@
     <script src="../../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../../css/menu_footer.css">
-    <link rel="stylesheet" href="../../css/product.css">
+    <link rel="stylesheet" href="../../css/san_pham.css">
     <link rel="icon" type="image/x-icon" href="../../logo_icon.png">
 
     <script src="../../jquery/jquery-3.7.1.slim.min.js"></script>
@@ -2724,37 +2724,44 @@
             <!--end danh sách sản phẩm-->
 
             <!--Phần chuyển trang (<- 1 2 3 ... ->)-->
-            <nav aria-label="page active example">
-                <ul class="pagination d-flex justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center" href="#">
-                            <span class="material-symbols-outlined d-flex">chevron_left</span>
-                        </a>
-                    </li>
+            <section id="navigation_change_page">
+                <nav class="content-footer">
+                    <ul class="pagination d-flex justify-content-center">
+                        <li>
+                            <button class="page-link d-flex justify-content-center align-items-center">
+                                <span class="material-symbols-outlined d-flex">chevron_left</span>
+                            </button>
+                        </li>
 
-                    <!--active để bôi đên trang hiện tại đang đứng; Ví dụ đang đứng trang só 1 thì số 1 đc active-->
-                    <li class="page-item active">
-                        <a class="page-link d-flex justify-content-center align-items-center" href="kinh_mat.html">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center"
-                           href="kinh_mat_page_02.html">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center"
-                           href="kinh_mat_page_03.html">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center"
-                           href="kinh_mat_page_04.html">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link d-flex justify-content-center align-items-center" href="#">
-                            <span class="material-symbols-outlined d-flex">chevron_right</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                        <li>
+                            <button class="page-link d-flex justify-content-center align-items-center" target-page="1">
+                                1
+                            </button>
+                        </li>
+                        <li>
+                            <button class="page-link d-flex justify-content-center align-items-center" target-page="2">
+                                2
+                            </button>
+                        </li>
+                        <li>
+                            <button class="page-link d-flex justify-content-center align-items-center" target-page="3">
+                                3
+                            </button>
+                        </li>
+                        <li>
+                            <button class="page-link d-flex justify-content-center align-items-center" target-page="4">
+                                4
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="page-link d-flex justify-content-center align-items-center">
+                                <span class="material-symbols-outlined d-flex">chevron_right</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
             <!--End phần chuyển trang  (<- 1 2 3 ... ->)-->
         </div>
         <!--End phần nội dung-->
@@ -2826,6 +2833,6 @@
 </footer>
 
 <script src="../../javascript/menu_footer.js"></script>
-<script src="../../javascript/product.js"></script>
+<script src="../../javascript/san_pham.js"></script>
 </body>
 </html>

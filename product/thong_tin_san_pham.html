@@ -7,7 +7,7 @@
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
-    <link rel="stylesheet" href="../css/more_info_product.css">
+    <link rel="stylesheet" href="../css/thong_tin_san_pham.css">
     <link rel="icon" type="image/x-icon" href="../logo_icon.png">
 
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
@@ -415,95 +415,12 @@
                                 <span>Danh sách đánh giá</span>
                                 <span id="numberOfReview"> (0)</span>
                             </div>
-                            <div class="onirvapp-tab-action col-2">
-                                <button type="button" class="btn active bg-primary text-light" data-bs-toggle="modal"
-                                        data-bs-target="#form-add-rate">Viết đánh giá mới
-                                </button>
-                            </div>
                         </div>
                         <div class="onirvapp-detail-content mt-3">
                             <div id="onirvapp-review-list" class="onirvapp-comments-list active">
                                 <div class="d-none onirvapp-review-empty text-center">
                                     <span class="onirvapp-comments-empty-text">Chưa có đánh giá nào</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Phần form-->
-            <div class="form-container">
-                <div class="modal fade" id="form-add-rate" tabindex="-1" aria-labelledby="form-add-rate"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content ">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="modalLabel">Viết đánh giá mới</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    <!--Phần sao-->
-                                    <div class="mb-3">
-                                        <label class="col-form-label">Đánh giá *</label>
-                                        <div class="sold_qty d-flex align-items-center" id="customer-rate">
-                                            <div class="prod-review-loop d-flex">
-                                                <div class="onirvapp--shape-container">
-                                                    <ul class="list-group list-group-horizontal">
-                                                        <!--Các li có class checked là sao hoàn thiện-->
-                                                        <li class="1-star checked">
-                                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                        </li>
-                                                        <li class="2-star checked">
-                                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                        </li>
-                                                        <li class="3-star checked">
-                                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                        </li>
-                                                        <li class="4-star checked">
-                                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                        </li>
-                                                        <li class="5-star checked">
-                                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Phần mô tả-->
-                                    <div class="mb-3">
-                                        <label for="review-text" class="col-form-label">Mô tả</label>
-                                        <textarea class="form-control" name="review-text" id="review-text"></textarea>
-                                        <span class="error text-danger d-none">Không được bỏ trống</span>
-                                    </div>
-                                    <!--Phần tải ảnh-->
-                                    <div class="mb-3 review-image">
-                                        <p class="col-form-label">
-                                            <span>Hình ảnh:</span>
-                                            <span class="text-secondary">(Tối đa 5 hình ảnh)</span>
-                                        </p>
-                                        <div class="input-review-image" id="list-review-image">
-                                            <div class="input">
-                                                <input type="file" class="d-none" name="review-image" id="review-image"
-                                                       accept="image/png,image/gif,image/jpeg,image/jpg">
-                                                <label for="review-image"
-                                                       class="review-img d-flex flex-column p-2 bg-body-secondary rounded-2">
-                                                    <i class="fa-solid fa-upload mx-auto mt-1"></i>
-                                                    <span class="mb-1">Tải lên</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                <button type="submit" id="submit-form" class="btn btn-primary" data-bs-dismiss="modal">
-                                    Gửi đánh giá
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -1039,7 +956,7 @@
 </footer>
 
 <script src="../javascript/menu_footer.js"></script>
-<script src="../javascript/more-info-product.js"></script>
+<script src="../javascript/thong_tin_san_pham.js"></script>
 
 <script>
     var listImg = [

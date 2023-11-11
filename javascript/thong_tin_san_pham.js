@@ -15,16 +15,8 @@ $(document).ready(function () {
     changeAmount();
     setRate();
 
-    $("#menu .account a").attr("href", "../../../account.html");
+    $("#menu .account a").attr("href", "../../../tai_khoan.html");
     $("#menu .account a img").attr("src", "../../../logo.png");
-
-    $("#submit-form").click(function () {
-    });
-
-    $("#review-image").change(function () {
-        const list_review_image = $("#list-review-image").find("div");
-        setReviewImage(this, list_review_image);
-    });
 });
 
 /******Nút xổ thêm thông tin mô tả của sản phẩm******/
@@ -61,45 +53,6 @@ function changeAmount() {
     $("#main .productWrap .productWrapDetail .productActionMain button.plusQuan").click(function () {
         var val = $("#quantity");
         val.val(Number(val.val()) + 1);
-    });
-}
-
-
-/**************Nhấn để chọn số sao mong muốn vote****************/
-function setRate() {
-    $("#customer-rate li i").attr("class", "fa-solid fa-star");
-    $("#customer-rate li").click(function () {
-        let amount = $(this).attr("class").charAt(0);
-        $("div#customer-rate li i").attr("class", "fa-regular fa-star");
-        $("div#customer-rate li").removeClass("checked");
-        for (var index = 0; index < amount; index++) {
-            $("div#customer-rate li").eq(index).addClass("checked").children().attr("class", "fa-solid fa-star");
-        }
-    });
-}
-
-function setReviewImage(file, list_review_image) {
-    var selectedFile = file.files[0];
-    const imageUrl = window.URL.createObjectURL(selectedFile);
-    list_review_image.last().before(`<div class="a-review-image">
-                <img src="${imageUrl}"
-                    alt="review-img.png">
-                <span class="cancel text-danger">x</span>
-            </div>`);
-    cancelReviewImage(list_review_image.last().prev(), list_review_image);
-
-    if(list_review_image.length == 5){
-        list_review_image.last().addClass("d-none");
-    }
-}
-
-function cancelReviewImage(a_review_image, list_review_image) {
-    a_review_image.find("span.cancel").click(function () {
-        $(this).parent().remove();
-
-        if(list_review_image.length != 6){
-            list_review_image.last().removeClass("d-none");
-        }
     });
 }
 
