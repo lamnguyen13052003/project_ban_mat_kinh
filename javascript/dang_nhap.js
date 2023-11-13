@@ -6,7 +6,7 @@ $(document).ready(function () {
         };
 
         if(account.user == "admin"){
-            $("#customer_login").attr("action", "page_admin/danh_sach_khach_hang.html")
+            $("#customer_login").attr("action", "page_admin/danh_sach_tai_khoan.html")
         }
 
         // Chuyển đối tượng thành một chuỗi JSON và lưu nó vào sessionStorage

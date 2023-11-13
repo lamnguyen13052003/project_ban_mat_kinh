@@ -102,12 +102,11 @@
 }
 
 .info-customer p:nth-of-type(1) {
-    font-size: 15px;
+    font-size: 20px;
 }
 
-.info-customer p:nth-of-type(2),
-.info-customer p:nth-of-type(3) {
-    font-size: 10px;
+.info-customer p:nth-of-type(2) {
+    font-size: 15px;
 }
 .list-bill .item-bill .option-edit button{
     border: none;
