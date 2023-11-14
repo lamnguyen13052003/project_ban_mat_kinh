@@ -1,0 +1,316 @@
+<html lang="vi" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../css/menu_footer.css">
+    <link rel="stylesheet" href="../css/danh_gia.css">
+    <link rel="icon" type="image/x-icon" href="../logo_icon.png">
+
+    <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
+    <script src="../jquery/jquery-3.7.1.min.js"></script>
+
+    <title>Đánh giá</title>
+</head>
+<body>
+<header id="menu">
+    <nav class="navbar navbar-expand-lg pb-0">
+        <div class="container-xxl m-md-auto mt-2">
+            <div class="row">
+                <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                    <a href="../index.html" class="navbar-brand me-5">
+                        <img src="../logo.png" alt="logo.png">
+                        KIMI
+                    </a>
+                </div>
+                <div class="search col-lg-5 col-md-6 col-sm-6 border-0 px-lg-0 px-md-5">
+                    <form class="d-flex input-group">
+                        <input class="form-control border-0 ps-3" type="text" name="search" id="search"
+                               placeholder="Nhập tên sản phẩm!">
+                        <span class="input-group-text  border-0"><a class="nav-link" href="#"><i
+                                class="fa-solid fa-magnifying-glass"></i></a></span>
+                    </form>
+                </div>
+                <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
+                    <a href="../dang_nhap.html">
+                        <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
+                            <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
+                            <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
+                        </button>
+                    </a>
+                </div>
+                <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
+                    <a href="../dang_ky.html">
+                        <button type="button" class="btn d-flex float-lg-none">
+                            <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
+                            <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
+                        </button>
+                    </a>
+                </div>
+                <div class="cart col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
+                    <a href="../gio_hang.html">
+                        <button type="button" class="btn d-flex float-lg-none">
+                            <span class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</span>
+                            <span class="icon d-flex">
+                                <span class="material-symbols-outlined">
+                                    shopping_cart
+                                </span>
+                                <span id="amount-product" class="amount-product">0</span>
+                            </span>
+                        </button>
+                    </a>
+                </div>
+                <div class="menu-product col-lg-12 col-md-1 col-sm-1">
+                    <!--Icon 3 dấu gạch mang hiển thị menu-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar"
+                            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!--Các mục trong menu-->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                         aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav m-auto">
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="kinh_mat/kinh_mat.html" class="nav-link dropdown-toggle px-4 rounded"
+                                       type="button">
+                                        <span>Kính mát</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="kinh_mat/kinh_mat_nam.html">Kính mát
+                                            nam</a></li>
+                                        <li><a class="dropdown-item" href="kinh_mat/kinh_mat_nu.html">Kính mát
+                                            nữ</a></li>
+                                        <li><a class="dropdown-item" href="kinh_mat/kinh_mat_ngay_va_dem.html">Kính
+                                            đi ngày và đêm</a></li>
+                                        <li><a class="dropdown-item" href="kinh_mat/kinh_doi_mau.html">Kính đổi
+                                            màu</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="kinh_mat/kinh_loc_anh_sang_xanh.html">Kính lọc ánh sáng
+                                            xanh</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="kinh_mat/kinh_mat_clip_on_hai_lop.html">Kính Mắt Clip on 2
+                                            Lớp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="mat_kinh_tre_em/mat_kinh_tre_em.html"
+                                       class="nav-link dropdown-toggle px-4 rounded" type="button">
+                                        Mắt kính trẻ em
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                               href="mat_kinh_tre_em/gong_kinh_tre_em.html">Gọng Kính Trẻ Em</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                               href="mat_kinh_tre_em/kinh_mat_tre_em.html">Kính Mát Trẻ Em</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="gong_kinh/gong_kinh.html"
+                                       class="nav-link dropdown-toggle px-4 rounded"
+                                       type="button">
+                                        Gọng kính
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="gong_kinh/gong_kinh_nua_khung.html">Gọng
+                                            kính nữa khung</a></li>
+                                        <li><a class="dropdown-item" href="gong_kinh/gong_kinh_khoan.html">Gọng
+                                            kính khoan</a></li>
+                                        <li><a class="dropdown-item" href="gong_kinh/gong_kinh_tron.html">Gọng
+                                            kính tròn</a></li>
+                                        <li><a class="dropdown-item" href="gong_kinh/gong_kinh_titan.html">Gọng
+                                            kính titan</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="trong_kinh/trong_kinh.html"
+                                       class="nav-link dropdown-toggle px-4 rounded"
+                                       type="button">
+                                        Tròng kính
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                               href="trong_kinh/trong_kinh_chong_anh_sang_xanh.html">Tròng kính
+                                            chống ánh sáng xanh</a></li>
+                                        <li><a class="dropdown-item" href="trong_kinh/trong_kinh_doi_mau.html">Tròng
+                                            kính đổi màu</a></li>
+                                        <li><a class="dropdown-item" href="trong_kinh/trong_kinh_mau.html">Tròng
+                                            kính màu</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="trong_kinh/trong_kinh_cho_gong_khoan.html">Tròng kính cho
+                                            gọng khoan</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="../khuyen_mai.html" class="nav-link px-4 rounded">Khuyến mãi</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="../lien_he.html" class="nav-link px-4 rounded">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main id="main" class="mt-5 pb-5">
+    <div class="container">
+        <button class="back-to-home">
+            <a href="../index.html" class="text-light">
+                <i class="fa-solid fa-house"></i>
+                <span>Quay về trang chủ</span>
+            </a>
+        </button>
+
+        <div class="review-product mt-3">
+            <div class="review-product header mb-2">
+                <h3>Đánh giá sản phẩm</h3>
+            </div>
+
+            <div class="review-product-body">
+                <div class="info-product">
+                    <div class="name-product">
+                        <p>Gọng kính abc</p>
+                    </div>
+                    <div class="option-product">
+                        <span>Màu: </span>
+                        <span>Xanh</span>
+                    </div>
+                    <div class="img-product">
+                        <img src="../images/product/giong-kinh/gong-kinh-baron-8859/0.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="review">
+                    <form action="">
+                        <div class="quality-product" id="input-star">
+                            <p class="fs-4 d-block">Chất lượng sản phẩm</p>
+                            <ul class="d-inline-flex list-star">
+                                <!--Các li có class checked là sao hoàn thiện-->
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="1"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="2"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="3"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="4"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="5"></i>
+                                </li>
+                            </ul>
+                            <span id="text-quality-product">Tuyệt vời</span>
+                        </div>
+                        <div class="evaluate-product mt-3">
+                            <label for="comment">
+                                <span class="fs-4">Đánh giá</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea class="mt-1" placeholder="Nhập thông tin đánh giá" rows="5" name="comment" id="comment"
+                                      required></textarea>
+                        </div>
+                        <div class="img-product mt-3">
+                            <span class="fs-4">Hình ảnh: </span>
+                            <span class="text-secondary">(Tối đa 5 sản phẩm)</span><br>
+
+                            <div class="list-img-review-product d-flex mt-1">
+                                <input id="input-img-review" type="file" hidden="">
+                                <label for="input-img-review">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="mt-3" type="submit" id="submit-review">
+                            Đánh giá
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+<footer id="footer" class="footer">
+    <div class="container ">
+        <div class="footer-top row">
+            <div class="footer-top-item col">
+                <h5>Mắt Kính KIMI
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
+
+                    </div>
+                    <ul>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
+                                class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
+                        </li>
+                        <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
+                        </li>
+                        <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
+                        </li>
+                        <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
+                                class="fa-brands fa-facebook-f px-1"></i><span
+                                class="px-1 hover"><b>KIMI</b> </span></a></li>
+                        <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
+                        <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-top-item col">
+                <h5>HỖ TRỢ KHÁCH HÀNG
+                </h5>
+                <div class="footer-content footer-contact">
+                    <div class="ft_map">
+
+                    </div>
+                    <ul>
+                        <li><a class="hover" href="../pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
+                            online</a></li>
+                        <li><a class="hover" href="../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
+                            thanh toán, giao nhận</a></li>
+                        <li><a class="hover" href="../pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a>
+                        </li>
+                        <li><a class="hover" href="../pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a>
+                        </li>
+                        <li><a class="hover" href="../pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách
+                            đổi trả và hoàn tiền</a></li>
+                        <li><a class="hover" href="../pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="row footer-bot text-center border-3">
+            <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
+                <a href="../index.html">
+                    <img src="../logo.png" alt="logo.png">
+                    <span>KIMI</span>
+                </a>
+            </div>
+            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
+        </div>
+    </div>
+</footer>
+
+<script src="../javascript/menu_footer.js"></script>
+<script src="../javascript/danh_gia.js"></script>
+</body>
+</html>
