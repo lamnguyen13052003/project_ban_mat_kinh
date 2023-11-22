@@ -29,7 +29,7 @@ public class UserDAO {
                         .list()
         );
 
-        return !users.isEmpty() && users.size() == 1 ? users.getFirst() : null;
+        return !users.isEmpty() && users.size() == 1 ? users.get(0) : null;
     }
 
     public boolean getEmail(String email) {
