@@ -32,3 +32,8 @@
 .form-login select{
     margin: 0 5px;
 }
+
+
+main .login-error {
+    height: 25px;
+}

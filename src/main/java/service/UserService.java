@@ -1,5 +1,6 @@
 package service;
 
+import DAO.UserDAO;
 import bean.User;
 import db.JDBIConnector;
 import org.jdbi.v3.core.Jdbi;
@@ -7,9 +8,10 @@ import org.jdbi.v3.core.Jdbi;
 import java.util.List;
 
 public class UserService {
-    private Jdbi connector;
     private static UserService instance;
     private User user;
+
+    private UserDAO userDAO;
 
     private final String INSERT_USER = "INSERT INTO Users(avatar, fullName, sex, birthday, email, password, role, verify, lock) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -19,20 +21,13 @@ public class UserService {
         return instance;
     }
 
-    public boolean checkLogin(String username, String password) {
-        connector = JDBIConnector.get();
-        List<User> users = connector.withHandle(handle ->
-                handle.createQuery("SELECT * FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
-                        .bind(0, username)
-                        .bind(1, password)
-                        .bind(2, 1)
-                        .bind(3, 0)
-                        .mapToBean(User.class)
-                        .list()
-        );
+    private UserService() {
+        userDAO = UserDAO.getInstance();
+    }
 
-        user = !users.isEmpty() && users.size() == 1 ? users.getFirst() : null;
-        return user != null;
+    public boolean canLogin(String eamil, String password) {
+        user = userDAO.getUser(eamil, password);
+        return  user != null;
     }
 
     public User getUser() {
@@ -40,18 +35,14 @@ public class UserService {
     }
 
     public void signup(User user) {
-        connector.withHandle(handle ->
-                handle.createUpdate(INSERT_USER)
-                        .bind(0, user.getAvatar())
-                        .bind(1, user.getFullName())
-                        .bind(2, user.getSex())
-//                        .bind(3, user.getBirthDay())
-                        .bind(4, user.getEmail())
-                        .bind(5, user.getPassword())
-                        .bind(6, 1)
-                        .bind(7, 1)
-                        .bind(8, 0)
-                        .execute()
-        );
+        userDAO.addUser(user);
+    }
+
+    public void forgetPassword(String email){
+
+    }
+
+    public boolean containEmail(String email){
+        return userDAO.getEmail(email);
     }
 }

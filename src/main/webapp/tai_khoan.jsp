@@ -1,21 +1,21 @@
+<%@ page import="bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="stylesheet" href="css/dang_nhap_va_dang_ky.css">
+    <link rel="stylesheet" href="css/tai_khoan.css">
     <link rel="icon" href="logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
 
-    <title>Đăng nhập</title>
+    <title>Tài khoản</title>
 </head>
 <body>
 <header id="menu">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
                     <a href="dang_nhap.jsp">
-                        <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2 active">
+                        <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
                         </button>
@@ -165,89 +165,101 @@
     </nav>
 </header>
 
-<main class="my-4 main-login">
-    <div class="modal-body form-login">
-        <div class="row">
-            <div class="col-6">
-                <div class="tab-pane fade active show" id="modalLogin" role="tabpanel" aria-labelledby="modalLoginTab">
-                    <h5 class="text-center mb-2">
-                        ĐĂNG NHẬP
-                    </h5>
-                    <div class="login-form-body">
-                        <form accept-charset="UTF-8" action="Login" id="customer_login" method="post">
-                            <input name="form_type" type="hidden" value="customer_login">
-                            <input name="utf8" type="hidden" value="✓">
-
-                            <div class="form-group mb-2">
-                                <label for="login-email">Email*</label>
-                                <input type="text" id="login-email" placeholder="Email" class="form-control"
-                                       name="email" required="">
+<main id="main" class="mt-5 pb-5">
+    <div id="account-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!--Phần menu-->
+                <div class="account-page-sidebar col-3">
+                    <div class="account-sidebar-header list-group align-items-center">
+                        <div class="account-sidevar-avatar list-group-item  border-0">
+                            <div class="display-avatar p-3 rounded-circle d-flex align-items-center justify-content-center">
+                                <img src="logo.png" alt="" width="100px" id="avatar">
                             </div>
-                            <div class="form-group mb-2">
-                                <label for="login-password">Mật khẩu*</label>
-                                <input type="password" id="login-password" placeholder="Mật khẩu" class="form-control" name="password" required="">
+                            <div class="change-avatar position-absolute">
+                                <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
+                                <label for="input-avatar"><i class="fa-solid fa-user-pen fs-5"></i></label>
                             </div>
-                            <div class="login-error mt-1">
-                                <%String error = (String)request.getAttribute("login_error");
-                                if(error != null){%><span class="text-danger"><%=error%></span> <%}%>
-                            </div>
-                            <div class="mt-1" style="display: flex; justify-content: flex-end;">
-                                <a style="font-size: 13px; color: blue;" href="#" data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal">Quên mật khẩu</a>
-                            </div>
-                            <div class="form-group mt-2 d-flex-center">
-                                <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity" id="signin">
-                                    Đăng nhập
+                        </div>
+                        <div class="account-sidevar-name list-group-item  border-0">
+                            <h3>Hi, <b>Nguyễn Lam</b></h3>
+                        </div>
+                    </div>
+                    <div class="account-sidebar-menu mt-3">
+                        <ul>
+                            <li>
+                                <button class="active" data-bs-target="0">Thông tin tài khoản
                                 </button>
-                            </div>
-                            <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc</p>
-                            <p style="text-align: center; font-size: 13px;">Bạn chưa có tài khoản? <a
-                                    style="font-size: 13px; color: blue;" href="dang_ky.jsp">Đăng ký</a></p>
-                        </form>
+                            </li>
+                            <li>
+                                <button data-bs-target="1">Lịch sử mua hàng</button>
+                            </li>
+                            <li>
+                                <a href="index.jsp" id="signout"><span>Đăng xuất</span></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-6 banner-account">
+                <!--Phần trang-->
+                <div class="account-page col-9">
+                    <!--Bắt đầu page-->
+                    <div class="account-page-content active">
+                        <h1>
+                            <span>Thông tin tài khoản</span>
+                        </h1>
+                        <div class="account-page-detail account-page-info mt-3">
+                            <div class="table-responsive">
+                                <div class="table overflow-x-hidden  pb-5">
+                                    <div class="row">
+                                        <div class="col-4"><span>Email</span></div>
+                                        <div class="col-8 "><span>kiminonawa1305@gmail.com</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><span>Mật khẩu</span></div>
+                                        <div class="col-8 "><span>*********************</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><span>Họ tên</span></div>
+                                        <div class="col-8 "><span>Nguyễn Đình Lam</span></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><span>Giới tính</span></div>
+                                        <div class="col-8">
+                                            <span>Nam</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4"><span>Ngày sinh</span></div>
+                                        <div class="col-8"><span>13/05/2003</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Kết thúc page-->
+
+                    <!--Bắt đầu page-->
+                    <div class="account-page-content">
+                        <h1>
+                            <span>Lịch sử mua hàng</span>
+                        </h1>
+                        <div class="account-page-detail account-page-order-list mt-2">
+                            <div class="table-responsive">
+                                <p class="text-center">Bạn chưa đặt mua sản phẩm nào!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Kết thúc page-->
+                </div>
             </div>
         </div>
+    </div>
     </div>
 </main>
 
-<!-- Modal -->
-<%-- Form quên mật khầu --%>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Quên mật khẩu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body form-forgot">
-                <form accept-charset="UTF-8" action="/account/login" id="customer_forget_password" method="post">
-                    <div class="form-group mb-3">
-                        <label for="login-email">Email*</label>
-                        <input type="email" id="forgot-email" placeholder="Email" class="form-control"
-                               name="customer[email]" required="">
-                    </div>
-                    <div class="form-group mt-2 d-flex-center">
-                        <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
-                            Quên mật khẩu
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-
-
 <footer id="footer" class="footer">
-    <div class="container ">
+    <div class="container">
         <div class="footer-top row">
             <div class="footer-top-item col">
                 <h5>Mắt Kính KIMI
@@ -257,7 +269,8 @@
 
                     </div>
                     <ul>
-                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span
+                                class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
                         </li>
                         <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
                                 class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
@@ -283,14 +296,14 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a>
-                        </li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh toán,
-                            giao nhận</a></li>
+                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng
+                            online</a></li>
+                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách
+                            thanh toán, giao nhận</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và
-                            hoàn tiền</a></li>
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi
+                            trả và hoàn tiền</a></li>
                         <li><a class="hover" href="policy_pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
@@ -308,8 +321,19 @@
         </div>
     </div>
 </footer>
-
 <script src="javascript/menu_footer.js"></script>
-<script src="javascript/dang_nhap.js"></script>
+<script src="javascript/tai_khoan.js"></script>
+<script type="text/javascript">
+    <%User user = (User) session.getAttribute("user");
+    if(user != null){%>
+    const user = new User();
+    user.setId(<%=user.getId()%>);
+    user.setAvatar("images/avatar/<%=user.getAvatar()%>");
+    user.setFullName("<%=user.getFullName()%>");
+    displayMenuAccount(user);
+    <%} else{%>
+    hidenMenuAccount();
+    <%}%>
+</script>
 </body>
 </html>

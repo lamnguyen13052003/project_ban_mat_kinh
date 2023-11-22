@@ -52,7 +52,7 @@
                     </a>
                 </div>
                 <div class="cart col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="gio_hang.html">
+                    <a href="gio_hang.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</span>
                             <span class="icon d-flex">
@@ -77,83 +77,83 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/kinh_mat/kinh_mat.html"
+                                    <a href="product/kinh_mat/kinh_mat.jsp"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         <span>Kính mát</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nam.html">Kính mát
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nam.jsp">Kính mát
                                             nam</a></li>
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nu.html">Kính mát
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_nu.jsp">Kính mát
                                             nữ</a></li>
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_ngay_va_dem.html">Kính
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_mat_ngay_va_dem.jsp">Kính
                                             đi ngày và đêm</a></li>
-                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_doi_mau.html">Kính đổi
+                                        <li><a class="dropdown-item" href="product/kinh_mat/kinh_doi_mau.jsp">Kính đổi
                                             màu</a></li>
                                         <li><a class="dropdown-item"
-                                               href="product/kinh_mat/kinh_loc_anh_sang_xanh.html">Kính lọc ánh sáng
+                                               href="product/kinh_mat/kinh_loc_anh_sang_xanh.jsp">Kính lọc ánh sáng
                                             xanh</a></li>
                                         <li><a class="dropdown-item"
-                                               href="product/kinh_mat/kinh_mat_clip_on_hai_lop.html">Kính Mắt Clip on 2
+                                               href="product/kinh_mat/kinh_mat_clip_on_hai_lop.jsp">Kính Mắt Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/mat_kinh_tre_em/mat_kinh_tre_em.html"
+                                    <a href="product/mat_kinh_tre_em/mat_kinh_tre_em.jsp"
                                        class="nav-link dropdown-toggle px-4 rounded" type="button">
                                         Mắt kính trẻ em
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                               href="product/mat_kinh_tre_em/gong_kinh_tre_em.html">Gọng Kính Trẻ Em</a>
+                                               href="product/mat_kinh_tre_em/gong_kinh_tre_em.jsp">Gọng Kính Trẻ Em</a>
                                         </li>
                                         <li><a class="dropdown-item"
-                                               href="product/mat_kinh_tre_em/kinh_mat_tre_em.html">Kính Mát Trẻ Em</a>
+                                               href="product/mat_kinh_tre_em/kinh_mat_tre_em.jsp">Kính Mát Trẻ Em</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/gong_kinh/gong_kinh.html"
+                                    <a href="product/gong_kinh/gong_kinh.jsp"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Gọng kính
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_nua_khung.html">Gọng
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_nua_khung.jsp">Gọng
                                             kính nữa khung</a></li>
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_khoan.html">Gọng
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_khoan.jsp">Gọng
                                             kính khoan</a></li>
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_tron.html">Gọng
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_tron.jsp">Gọng
                                             kính tròn</a></li>
-                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_titan.html">Gọng
+                                        <li><a class="dropdown-item" href="product/gong_kinh/gong_kinh_titan.jsp">Gọng
                                             kính titan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product/trong_kinh/trong_kinh.html"
+                                    <a href="product/trong_kinh/trong_kinh.jsp"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Tròng kính
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                               href="product/trong_kinh/trong_kinh_chong_anh_sang_xanh.html">Tròng kính
+                                               href="product/trong_kinh/trong_kinh_chong_anh_sang_xanh.jsp">Tròng kính
                                             chống ánh sáng xanh</a></li>
-                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_doi_mau.html">Tròng
+                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_doi_mau.jsp">Tròng
                                             kính đổi màu</a></li>
-                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_mau.html">Tròng
+                                        <li><a class="dropdown-item" href="product/trong_kinh/trong_kinh_mau.jsp">Tròng
                                             kính màu</a></li>
                                         <li><a class="dropdown-item"
-                                               href="product/trong_kinh/trong_kinh_cho_gong_khoan.html">Tròng kính cho
+                                               href="product/trong_kinh/trong_kinh_cho_gong_khoan.jsp">Tròng kính cho
                                             gọng khoan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="khuyen_mai.html" class="nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="khuyen_mai.jsp" class="nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="lien_he.html" class="nav-link px-4 rounded">Liên hệ</a>
+                                    <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
                                 </li>
                             </ul>
                         </div>
@@ -303,15 +303,15 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a>
+                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a>
                         </li>
-                        <li><a class="hover" href="pages/chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh toán,
+                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh toán,
                             giao nhận</a></li>
-                        <li><a class="hover" href="pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
-                        <li><a class="hover" href="pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và
+                        <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
+                        <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.html">Chính sách bảo hành</a></li>
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.html">Chính sách đổi trả và
                             hoàn tiền</a></li>
-                        <li><a class="hover" href="pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                        <li><a class="hover" href="policy_pages/kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
 

@@ -1,19 +1,40 @@
+class User {
+    constructor() {
+    }
+
+    setId(id) {
+        this.id = id;
+    }
+
+    setFullName(fullName){
+        this.fullName = fullName;
+    }
+
+    setAvatar(avatar){
+        this.avatar = avatar;
+    }
+
+    setEmail(email) {
+        this.email = email;
+    }
+
+    setPassword(password){
+        this.password = password;
+    }
+
+    setBirthday(birthday){
+        this.birthday = birthday;
+    }
+
+    setSex(sex){
+        this.sex = sex;
+    }
+}
+
 $(document).ready(function () {
     $("input#search").each(function () {
         displayPlaceholder($(this));
     });
-
-    const storedAccount =  sessionStorage.getItem("account");
-    if (storedAccount != null) {
-        var user = {
-            hình: "logo.png",
-            tên: "Nguyễn Đình Lam"
-        }
-        displayMenuAccount(user);
-    }else{
-        $("#menu").find(".login").removeClass("d-none");
-        $("#menu").find(".sign-up").removeClass("d-none");
-    }
 });
 
 function displayPlaceholder(element) {
@@ -37,16 +58,22 @@ function displayPlaceholder(element) {
 function displayMenuAccount(user) {
     $("#menu").find(".login").addClass("d-none");
     $("#menu").find(".sign-up").addClass("d-none");
-    $("#menu").find(".sign-up").after(`<div class="account col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0">
+    $("#menu").find(".sign-up").after(`<div idUser=${user.id}" class="account col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0">
         <a href="tai_khoan.html">
             <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2" id="button-account">
                 <div class="avatar p-1 bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 25px; height: 25px">
-                    <img src="${user.hình}" alt="avatar.png"  class="d-md-line" width="18" height="18">
+                    <img src="${user.avatar}" alt="avatar.png"  class="d-md-line" width="18" height="18">
                 </div>
-                <span class="d-lg-block d-md-none ms-2 overflow-x-hidden d-block" style="max-width: 130px; white-space: nowrap">${user.tên}</span>
+                <span class="d-lg-block d-md-none ms-2 overflow-x-hidden d-block" style="max-width: 130px; white-space: nowrap">${user.fullName}</span>
             </button>
         </a>
     </div>`);
+}
+
+function hidenMenuAccount(){
+    $("#menu").find(".account").remove();
+    $("#menu").find(".login").removeClass("d-none");
+    $("#menu").find(".sign-up").removeClass("d-none");
 }
 
 

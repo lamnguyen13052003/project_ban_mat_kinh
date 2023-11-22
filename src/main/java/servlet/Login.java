@@ -22,20 +22,25 @@ public class Login extends HttpServlet {
 
         UserService userService = UserService.getInstance();
 
-        if(userService.checkLogin(email, password)){
+        if(userService.canLogin(email, password)){
             User user = userService.getUser();
             goToPage(user, request, response);
+        }else{
+            request.setAttribute("login_error", "Đăng nhập không thành công!");
+            request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
         }
     }
 
     private void goToPage(User user, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int role = user.getRole();
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
         switch (role){
             case 0 ->{
-                request.getRequestDispatcher("page_admin/danh_sach_tai_khoan.jsp").forward(request, response);
+               response.sendRedirect("page_admin/danh_sach_tai_khoan.jsp");
             }
             case 1 ->{
-                request.getRequestDispatcher("index.jsp").forward(request, response);;
+                response.sendRedirect("index.jsp");
             }
         }
     }
