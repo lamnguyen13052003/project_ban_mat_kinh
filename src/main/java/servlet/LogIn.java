@@ -1,7 +1,7 @@
 package servlet;
 
-import bean.User;
-import service.UserService;
+import model.bean.User;
+import model.service.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

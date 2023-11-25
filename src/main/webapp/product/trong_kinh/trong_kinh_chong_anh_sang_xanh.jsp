@@ -1,4 +1,4 @@
-<%@ page import="bean.User" %>
+<%@ page import="model.bean.User" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
