@@ -1,6 +1,6 @@
 package db;
 
-import bean.User;
+import model.bean.User;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 
