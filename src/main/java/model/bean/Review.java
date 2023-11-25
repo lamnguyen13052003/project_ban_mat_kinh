@@ -70,4 +70,17 @@ public class Review {
         images = images == null ? new ArrayList<String>() : images;
         images.add(image);
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", billId=" + billId +
+                ", userId=" + userId +
+                ", numberOfStar=" + numberOfStar +
+                ", comment='" + comment + '\'' +
+                ", images=" + images +
+                '}';
+    }
 }

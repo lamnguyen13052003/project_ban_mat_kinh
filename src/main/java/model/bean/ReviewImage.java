@@ -19,4 +19,12 @@ public class ReviewImage {
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
     }
+
+    @Override
+    public String toString() {
+        return "ReviewImage{" +
+                "reviewId=" + reviewId +
+                ", urlImage='" + urlImage + '\'' +
+                '}';
+    }
 }

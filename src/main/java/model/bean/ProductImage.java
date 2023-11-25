@@ -28,4 +28,13 @@ public class ProductImage {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "ProductImage{" +
+                "productId=" + productId +
+                ", urlImage='" + urlImage + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

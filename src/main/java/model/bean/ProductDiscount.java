@@ -19,5 +19,13 @@ public class ProductDiscount {
     public void setPricePercentage(Double pricePercentage) {
         this.pricePercentage = pricePercentage;
     }
+
+    @Override
+    public String toString() {
+        return "ProductDiscount{" +
+                "productId=" + productId +
+                ", pricePercentage=" + pricePercentage +
+                '}';
+    }
 }
 

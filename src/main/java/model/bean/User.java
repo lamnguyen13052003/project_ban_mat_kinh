@@ -1,12 +1,11 @@
 package model.bean;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class User {
     private Integer id, role;
     private String avatar, fullName, sex, email, password;
-    private Date birthDay;
+    private LocalDateTime birthDay;
 
     public User() {
     }
@@ -59,13 +58,13 @@ public class User {
         this.password = password;
     }
 
-//    public LocalDate getBirthDay() {
-//        return birthDay;
-//    }
-//
-//    public void setBirthDay(String birthDay) {
-//        this.birthDay = LocalDate.parse(birthDay);
-//    }
+    public LocalDateTime getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(LocalDateTime birthDay) {
+        this.birthDay = birthDay;
+    }
 
 
     @Override
@@ -88,9 +87,5 @@ public class User {
 
     public void setRole(Integer role) {
         this.role = role;
-    }
-
-    public String getInitJsObject(){
-        return null;
     }
 }

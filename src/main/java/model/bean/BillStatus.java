@@ -1,6 +1,6 @@
 package model.bean;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,8 @@ import java.util.Map;
 public class BillStatus implements Comparator<BillStatus> {
     private Integer billId, status;
     private String describe;
-    private Date date;
+    private LocalDateTime date;
+    
     private Boolean canEdit;
 
     private static final Map<Integer, String> mapStatusCodes = new HashMap<>();
@@ -42,11 +43,11 @@ public class BillStatus implements Comparator<BillStatus> {
         this.describe = describe;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -56,6 +57,17 @@ public class BillStatus implements Comparator<BillStatus> {
 
     public void setCanEdit(Boolean canEdit) {
         this.canEdit = canEdit;
+    }
+
+    @Override
+    public String toString() {
+        return "BillStatus{" +
+                "billId=" + billId +
+                ", status=" + status +
+                ", describe='" + describe + '\'' +
+                ", date=" + date +
+                ", canEdit=" + canEdit +
+                '}';
     }
 
     @Override

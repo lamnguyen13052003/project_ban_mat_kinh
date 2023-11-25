@@ -43,4 +43,15 @@ public class BillDetail {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "BillDetail{" +
+                "billId=" + billId +
+                ", productId=" + productId +
+                ", modelId=" + modelId +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
+    }
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Bill {
-    private Integer id, userId, userName;
-    private String phoneNumber, address;
+    private Integer id, userId;
+    private String userName, phoneNumber, address;
     private Boolean transfer;
     private Double transportFee;
 
@@ -28,11 +28,11 @@ public class Bill {
         this.userId = userId;
     }
 
-    public Integer getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(Integer userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -90,5 +90,20 @@ public class Bill {
         }
 
         details.add(detail);
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", userName=" + userName +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", transfer=" + transfer +
+                ", transportFee=" + transportFee +
+                ", statuses=" + statuses +
+                ", details=" + details +
+                '}';
     }
 }

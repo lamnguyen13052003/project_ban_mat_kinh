@@ -2,7 +2,7 @@ package model.bean;
 
 public class Model {
     private Integer id, idProduct;
-    private String name, image;
+    private String name, urlIamge;
 
     public Integer getId() {
         return id;
@@ -28,11 +28,21 @@ public class Model {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getUrlIamge() {
+        return urlIamge;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUrlIamge(String urlIamge) {
+        this.urlIamge = urlIamge;
+    }
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "id=" + id +
+                ", idProduct=" + idProduct +
+                ", name='" + name + '\'' +
+                ", image='" + urlIamge + '\'' +
+                '}';
     }
 }

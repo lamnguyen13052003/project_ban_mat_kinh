@@ -13,7 +13,7 @@ public class JDBIConnector {
 
     private static void makeConnect() {
         MysqlDataSource dataSource = new MysqlDataSource();
-        String url = "jdbc:mysql://" + DBProperties.getDbHost() + ":" + DBProperties.getDbPort() + "/" + DBProperties.getDbName();
+        String url = "jdbc:mysql://" + DBProperties.getDbHost() + ":" + DBProperties.getDbPort() + "/" + DBProperties.getDbName() + "?useUnicode=yes&characterEncoding=UTF-8";
         System.out.println(url);
         dataSource.setURL(url);
         dataSource.setUser(DBProperties.getUsername());
