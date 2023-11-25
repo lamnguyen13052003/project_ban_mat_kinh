@@ -1,6 +1,6 @@
-package DAO;
+package model.DAO;
 
-import bean.User;
+import model.bean.User;
 import db.JDBIConnector;
 import org.jdbi.v3.core.Jdbi;
 

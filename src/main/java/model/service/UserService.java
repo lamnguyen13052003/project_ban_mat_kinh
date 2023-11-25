@@ -1,7 +1,7 @@
-package service;
+package model.service;
 
-import DAO.UserDAO;
-import bean.User;
+import model.DAO.UserDAO;
+import model.bean.User;
 import db.JDBIConnector;
 import org.jdbi.v3.core.Jdbi;
 
