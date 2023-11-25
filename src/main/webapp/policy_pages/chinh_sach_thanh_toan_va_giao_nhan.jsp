@@ -267,7 +267,7 @@
                     <ul>
                         <li><a class="hover" href="huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng online</a>
                         </li>
-                        <li><a class="hover" href="chinh_sach_thanh_toan_va_giao_nhan.html">Chính sách thanh toán,
+                        <li><a class="hover" href="chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh toán,
                             giao nhận</a></li>
                         <li><a class="hover" href="chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
                         <li><a class="hover" href="chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>

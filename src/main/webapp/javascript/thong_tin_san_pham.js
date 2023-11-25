@@ -13,10 +13,8 @@ $(document).ready(function () {
     showMoreInfor();
     selectOption();
     changeAmount();
-    setRate();
 
-    $("#menu .account a").attr("href", "../../../tai_khoan.jsp");
-    $("#menu .account a img").attr("src", "../../../logo.png");
+    $(".account").find("a").attr("href", "../tai_khoan.jsp");;
 });
 
 /******Nút xổ thêm thông tin mô tả của sản phẩm******/

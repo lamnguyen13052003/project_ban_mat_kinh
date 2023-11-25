@@ -1,11 +1,11 @@
 $(document).ready(function () {
+    $(".account").find("a").attr("href", "../../tai_khoan.jsp");
     fixSlide();
     setRateProduct();
     addActionClickForButtonFilter();
     removeCheckedFilterAll();
     addActionClickForButtonSort();
     addActionFilterMore();
-    slide();
 });
 
 function addActionClickForButtonFilter() {
@@ -67,73 +67,3 @@ function fixSlide() {
     carouse.find(".carousel-control-prev").removeClass("carousel-control-prev").addClass("my-carousel-control-prev").html(`<span class="material-symbols-outlined">arrow_back </span>`);
     carouse.find(".carousel-control-next").removeClass("carousel-control-next").addClass("my-carousel-control-next").html(`<span class="material-symbols-outlined">arrow_forward </span>`);
 }
-
-function slide() {
-    const carouse = $("#carouselIndicators");
-    const img = carouse.find(".my-carousel-inner").find(".carousel-item");
-    const button = carouse.find(".my-carousel-indicators").find("button");
-    var key = 0, currentSile = 0;
-
-    button.click(function () {
-        key = $(this).attr("data-bs-slide-to");
-        currentSile = carouse.find(".my-carousel-indicators").find("button.active").attr("data-bs-slide-to");
-
-        displayImg(button, currentSile, key);
-    });
-
-    carouse.find(".my-carousel-control-prev").click(function () {
-        currentSile = $("#carouselIndicators").find(".my-carousel-indicators").find("button.active").attr("data-bs-slide-to");
-        key = currentSile - 1;
-        if (key >= 0) {
-            displayImg(button, currentSile, key);
-        } else {
-            displayImg(button, currentSile, img.length - 1);
-        }
-
-    });
-
-    carouse.find(".my-carousel-control-next").click(function () {
-        currentSile = $("#carouselIndicators").find(".my-carousel-indicators").find("button.active").attr("data-bs-slide-to");
-        key = Number(currentSile) + 1;
-        if (key < img.length) {
-            displayImg(button, currentSile, key);
-        } else {
-            displayImg(button, currentSile, 0);
-        }
-    });
-}
-
-function displayImg(button, currentSile, key) {
-    const img = $("#carouselIndicators").find(".my-carousel-inner").find(".carousel-item");
-    img.removeClass("active"); /*Ẩn các hình*/
-
-    button.removeClass("active");
-    button.eq(key).addClass("active");
-
-    img.filter(function () {
-        if (currentSile > key) {
-            img.eq(key).attr("class", "carousel-item active prev_slide");
-        } else {
-            img.eq(key).attr("class", "carousel-item active next_slide");
-        }
-    });
-}
-
-setInterval(function (){
-    const carouse = $("#carouselIndicators");
-    const img = carouse.find(".my-carousel-inner").find(".carousel-item");
-    const button = carouse.find(".my-carousel-indicators").find("button");
-    var currentSile = carouse.find(".my-carousel-indicators").find("button.active").attr("data-bs-slide-to");
-
-    var key = Number(currentSile) + 1;
-    if (key < img.length) {
-        displayImg(button, currentSile, key);
-    } else {
-        displayImg(button, currentSile, 0);
-    }
-}, 5000);
-
-/*Phần demo*/
-$(".carousel-inner img").eq(0).attr("src", "../../images/img_slide/slideShow_1.png");
-$(".carousel-inner img").eq(1).attr("src", "../../images/img_slide/slideShow_2.png");
-$(".carousel-inner img").eq(2).attr("src", "../../images/img_slide/slideShow_3.jpg");

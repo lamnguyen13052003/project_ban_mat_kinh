@@ -88,4 +88,8 @@ public class User {
     public void setRole(int role) {
         this.role = role;
     }
+
+    public String getInitJsObject(){
+        return null;
+    }
 }

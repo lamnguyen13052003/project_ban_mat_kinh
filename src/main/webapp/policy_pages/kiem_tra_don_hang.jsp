@@ -260,7 +260,7 @@
                         <li><a class="hover" href="chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
                         <li><a class="hover" href="chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả và hoàn
                             tiền</a></li>
-                        <li><a class="hover" href="kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                        <li><a class="hover" href="kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
 

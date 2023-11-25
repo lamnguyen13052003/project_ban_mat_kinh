@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    $("#button-account").addClass("active");
-
     const button = $("#account-page").find(".account-sidebar-menu").find("li>button");
     button.click(function () {
         button.removeClass("active");
@@ -16,12 +14,14 @@ $(document).ready(function () {
     });
 
     $("#signout").click(function () {
-        sessionStorage.removeItem("account");
+        $.get("/maven_war/LogOut", function (){
+            window.location.replace("index.jsp");
+        });
     });
 });
 
 function display_account_page(index) {
-    const page = $("#account-page").find("div.account-page").find("div.account-page-content");
+    const page = $("#account-page").find("div.account-page-content");
     page.removeClass("active");
     page.eq(index).addClass("active");
 }
