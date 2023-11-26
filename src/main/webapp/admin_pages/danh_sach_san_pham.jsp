@@ -1,3 +1,4 @@
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -398,5 +399,17 @@
 
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
+<script type="text/javascript">
+    <%User user = (User) session.getAttribute("user");
+    if(user != null){%>
+    const user = new User();
+    user.setId(<%=user.getId()%>);
+    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setFullName("<%=user.getFullName()%>");
+    displayMenuAccount(user);
+    <%} else{%>
+    hidenMenuAccount();
+    <%}%>
+</script>
 </body>
 </html>

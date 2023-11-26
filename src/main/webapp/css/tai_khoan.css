@@ -37,7 +37,6 @@ input[type='number']::-webkit-outer-spin-button{
     background-color: #2F189A;
     color: #fff;
 }
-#account-page .account-page-sidebar .account-sidebar-menu span:hover,
 #account-page .account-page-sidebar .account-sidebar-menu button:hover{
     border-radius: 5px;
     border: #2F189A 2px solid;

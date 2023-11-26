@@ -1,4 +1,4 @@
-<%@ page import="bean.User" %>
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -260,7 +260,7 @@
                         <li><a class="hover" href="chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
                         <li><a class="hover" href="chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả và hoàn
                             tiền</a></li>
-                        <li><a class="hover" href="kiem_tra_don_hang.html">Kiểm tra đơn hàng</a></li>
+                        <li><a class="hover" href="kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
 

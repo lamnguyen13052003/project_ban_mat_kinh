@@ -1,6 +1,6 @@
 package db;
 
-import bean.User;
+import model.bean.User;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 
@@ -13,7 +13,7 @@ public class JDBIConnector {
 
     private static void makeConnect() {
         MysqlDataSource dataSource = new MysqlDataSource();
-        String url = "jdbc:mysql://" + DBProperties.getDbHost() + ":" + DBProperties.getDbPort() + "/" + DBProperties.getDbName();
+        String url = "jdbc:mysql://" + DBProperties.getDbHost() + ":" + DBProperties.getDbPort() + "/" + DBProperties.getDbName() + "?useUnicode=yes&characterEncoding=UTF-8";
         System.out.println(url);
         dataSource.setURL(url);
         dataSource.setUser(DBProperties.getUsername());

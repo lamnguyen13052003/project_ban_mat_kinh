@@ -1,15 +1,15 @@
 package servlet;
 
-import bean.User;
-import service.UserService;
+import model.bean.User;
+import model.service.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "Login", value = "/Login")
-public class Login extends HttpServlet {
+@WebServlet(name = "LogIn", value = "/LogIn")
+public class LogIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
         session.setAttribute("user", user);
         switch (role){
             case 0 ->{
-               response.sendRedirect("page_admin/danh_sach_tai_khoan.jsp");
+               response.sendRedirect("admin_pages/danh_sach_tai_khoan.jsp");
             }
             case 1 ->{
                 response.sendRedirect("index.jsp");

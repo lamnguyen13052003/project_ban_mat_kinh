@@ -1,6 +1,6 @@
 package servlet;
 
-import bean.User;
+import model.bean.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

@@ -1,11 +1,7 @@
-package service;
+package model.service;
 
-import DAO.UserDAO;
-import bean.User;
-import db.JDBIConnector;
-import org.jdbi.v3.core.Jdbi;
-
-import java.util.List;
+import model.DAO.UserDAO;
+import model.bean.User;
 
 public class UserService {
     private static UserService instance;

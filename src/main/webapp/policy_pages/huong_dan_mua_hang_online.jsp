@@ -1,4 +1,4 @@
-<%@ page import="bean.User" %>
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -276,7 +276,7 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="huong_dan_mua_hang_online.html">Hướng dẫn mua hàng online</a>
+                        <li><a class="hover" href="huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng online</a>
                         </li>
                         <li><a class="hover" href="chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh toán,
                             giao nhận</a></li>

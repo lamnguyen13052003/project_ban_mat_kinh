@@ -512,7 +512,7 @@ section:not(#silder-section){
 .home-blog .carousel-indicators .active{
     background-color: var(--color-blue-origin) !important;
 }
-/***************************************Login-Signup-forget_password**********************************/
+/***************************************LogIn-Signup-forget_password**********************************/
 .form-login{
     max-width: 800px;
     margin: auto;

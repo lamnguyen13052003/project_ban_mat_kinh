@@ -1,4 +1,4 @@
-<%@ page import="bean.User" %>
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -307,7 +307,7 @@
                         </li>
                         <li><a class="hover" href="chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh toán,
                             giao nhận</a></li>
-                        <li><a class="hover" href="chinh_sach_bao_mat.html">Chính sách bảo mật</a></li>
+                        <li><a class="hover" href="chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
                         <li><a class="hover" href="chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
                         <li><a class="hover" href="chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả và hoàn
                             tiền</a></li>

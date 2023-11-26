@@ -1,7 +1,5 @@
 
 /**main**/
-/*section 1*/
-
 $(document).ready(function() {
     var currentSlide = 0;
     var totalSlides = $('#silder-section .slide').length;

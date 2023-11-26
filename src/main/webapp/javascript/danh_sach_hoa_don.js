@@ -1,7 +1,6 @@
 /**find  name customer****/
 $(document).ready(function () {
     document.getElementById("search-name-customer").addEventListener("input", function () {
-        console.log(this.value);
         filter_name_customer(this.value)
     })
 });

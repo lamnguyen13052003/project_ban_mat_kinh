@@ -1,20 +1,20 @@
-package bean;
+package model.bean;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class User {
-    private int id, role;
+    private Integer id, role;
     private String avatar, fullName, sex, email, password;
-//    private LocalDate birthDayDemo;
+    private LocalDateTime birthDay;
 
     public User() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,13 +58,13 @@ public class User {
         this.password = password;
     }
 
-//    public LocalDate getBirthDay() {
-//        return birthDay;
-//    }
-//
-//    public void setBirthDay(String birthDay) {
-//        this.birthDay = LocalDate.parse(birthDay);
-//    }
+    public LocalDateTime getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(LocalDateTime birthDay) {
+        this.birthDay = birthDay;
+    }
 
 
     @Override
@@ -76,16 +76,16 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-//                ", birthDay=" + birthDay + '\'' +
+                ", birthDay=" + birthDay + '\'' +
                 ", role=" + role +
                 '}';
     }
 
-    public int getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 }
