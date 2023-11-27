@@ -77,94 +77,81 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product/kinh_mat/kinh_mat.jsp"
+                                    <a href="DisplayProduct?idCategoryGroup=1&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         <span>Kính mát</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="../product/kinh_mat/kinh_mat_nam.jsp">Kính
-                                            mát
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=1&page=1">Kính mát
                                             nam</a></li>
-                                        <li><a class="dropdown-item" href="../product/kinh_mat/kinh_mat_nu.jsp">Kính
-                                            mát
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=2&page=1">Kính mát
                                             nữ</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="../product/kinh_mat/kinh_mat_ngay_va_dem.jsp">Kính
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=3&page=1">Kính
                                             đi ngày và đêm</a></li>
-                                        <li><a class="dropdown-item" href="../product/kinh_mat/kinh_doi_mau.jsp">Kính
-                                            đổi
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="../product/kinh_mat/kinh_loc_anh_sang_xanh.jsp">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="../product/kinh_mat/kinh_mat_clip_on_hai_lop.jsp">Kính Mắt Clip on
-                                            2
+                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product/mat_kinh_tre_em/mat_kinh_tre_em.jsp"
+                                    <a href="DisplayProduct?idCategoryGroup=2&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded" type="button">
                                         Mắt kính trẻ em
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                               href="../product/mat_kinh_tre_em/gong_kinh_tre_em.jsp">Gọng Kính Trẻ
-                                            Em</a>
+                                               href="DisplayProduct?idCategory=7&page=1">Gọng Kính Trẻ Em</a>
                                         </li>
                                         <li><a class="dropdown-item"
-                                               href="../product/mat_kinh_tre_em/kinh_mat_tre_em.jsp">Kính Mát Trẻ
-                                            Em</a>
+                                               href="DisplayProduct?idCategory=8&page=1">Kính Mát Trẻ Em</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product/gong_kinh/gong_kinh.jsp"
+                                    <a href="DisplayProduct?idCategoryGroup=3&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Gọng kính
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                               href="../product/gong_kinh/gong_kinh_nua_khung.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=9&page=1">Gọng
                                             kính nữa khung</a></li>
-                                        <li><a class="dropdown-item" href="../product/gong_kinh/gong_kinh_khoan.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=10&page=1">Gọng
                                             kính khoan</a></li>
-                                        <li><a class="dropdown-item" href="../product/gong_kinh/gong_kinh_tron.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=11&page=1">Gọng
                                             kính tròn</a></li>
-                                        <li><a class="dropdown-item" href="../product/gong_kinh/gong_kinh_titan.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=12&page=1">Gọng
                                             kính titan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product/trong_kinh/trong_kinh.jsp"
+                                    <a href="DisplayProduct?idCategoryGroup=4&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Tròng kính
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                               href="../product/trong_kinh/trong_kinh_chong_anh_sang_xanh.jsp">Tròng
-                                            kính
+                                               href="DisplayProduct?idCategory=13&page=1">Tròng kính
                                             chống ánh sáng xanh</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="../product/trong_kinh/trong_kinh_doi_mau.jsp">Tròng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=14&page=1">Tròng
                                             kính đổi màu</a></li>
-                                        <li><a class="dropdown-item" href="../product/trong_kinh/trong_kinh_mau.jsp">Tròng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=15&page=1">Tròng
                                             kính màu</a></li>
                                         <li><a class="dropdown-item"
-                                               href="../product/trong_kinh/trong_kinh_cho_gong_khoan.jsp">Tròng kính
-                                            cho
+                                               href="DisplayProduct?idCategory=16&page=1">Tròng kính cho
                                             gọng khoan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../khuyen_mai.jsp" class="nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
+                                    <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
                                 </li>
                             </ul>
                         </div>

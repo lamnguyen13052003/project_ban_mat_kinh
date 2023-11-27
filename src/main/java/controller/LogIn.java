@@ -1,4 +1,4 @@
-package servlet;
+package controller;
 
 import model.bean.User;
 import model.service.UserService;

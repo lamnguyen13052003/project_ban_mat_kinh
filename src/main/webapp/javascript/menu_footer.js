@@ -85,10 +85,3 @@ function hidenMenuAccount(){
     $("#menu").find(".login").removeClass("d-none");
     $("#menu").find(".sign-up").removeClass("d-none");
 }
-
-
-
-
-
-
-

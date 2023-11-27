@@ -1,21 +1,32 @@
+<%@ page import="model.bean.Product" %>
+<%@ page import="java.util.List" %>
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Tu
+  Date: 11/27/2023
+  Time: 4:28 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="../../bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="../../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../../fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="../../css/menu_footer.css">
-    <link rel="stylesheet" href="../../css/san_pham.css">
-    <link rel="icon" type="image/x-icon" href="../../logo_icon.png">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="css/san_pham.css">
+    <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="icon" type="image/x-icon" href="logo_icon.png">
 
-    <script src="../../jquery/jquery-3.7.1.slim.min.js"></script>
-    <script src="../../jquery/jquery-3.7.1.min.js"></script>
+    <script src="jquery/jquery-3.7.1.slim.min.js"></script>
+    <script src="jquery/jquery-3.7.1.min.js"></script>
 
-    <title>Gọng kính titan</title>
+    <title><%=request.getAttribute("title")%>
+    </title>
 </head>
 <body>
 <header id="menu">
@@ -23,8 +34,8 @@
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="../../index.jsp" class="navbar-brand me-5">
-                        <img src="../../logo.png" alt="logo.png">
+                    <a href="index.jsp" class="navbar-brand me-5">
+                        <img src="logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -37,7 +48,7 @@
                     </form>
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../../dang_nhap.jsp">
+                    <a href="dang_nhap.jsp">
                         <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
@@ -45,7 +56,7 @@
                     </a>
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../../dang_ky.jsp">
+                    <a href="dang_ky.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
@@ -53,7 +64,7 @@
                     </a>
                 </div>
                 <div class="cart col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../../gio_hang.jsp">
+                    <a href="gio_hang.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</span>
                             <span class="icon d-flex">
@@ -78,81 +89,81 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../kinh_mat/kinh_mat.jsp" class="nav-link dropdown-toggle px-4 rounded"
+                                    <a href="DisplayProduct?idCategoryGroup=1&page=1"
+                                       class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         <span>Kính mát</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="../kinh_mat/kinh_mat_nam.jsp">Kính mát
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=1&page=1">Kính mát
                                             nam</a></li>
-                                        <li><a class="dropdown-item" href="../kinh_mat/kinh_mat_nu.jsp">Kính mát
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=2&page=1">Kính mát
                                             nữ</a></li>
-                                        <li><a class="dropdown-item" href="../kinh_mat/kinh_mat_ngay_va_dem.jsp">Kính
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=3&page=1">Kính
                                             đi ngày và đêm</a></li>
-                                        <li><a class="dropdown-item" href="../kinh_mat/kinh_doi_mau.jsp">Kính đổi
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="../kinh_mat/kinh_loc_anh_sang_xanh.jsp">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"
-                                               href="../kinh_mat/kinh_mat_clip_on_hai_lop.jsp">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../mat_kinh_tre_em/mat_kinh_tre_em.jsp"
+                                    <a href="DisplayProduct?idCategoryGroup=2&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded" type="button">
                                         Mắt kính trẻ em
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                               href="../mat_kinh_tre_em/gong_kinh_tre_em.jsp">Gọng Kính Trẻ Em</a>
+                                               href="DisplayProduct?idCategory=7&page=1">Gọng Kính Trẻ Em</a>
                                         </li>
                                         <li><a class="dropdown-item"
-                                               href="../mat_kinh_tre_em/kinh_mat_tre_em.jsp">Kính Mát Trẻ Em</a>
+                                               href="DisplayProduct?idCategory=8&page=1">Kính Mát Trẻ Em</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="gong_kinh.jsp" class="nav-link dropdown-toggle px-4 rounded active"
+                                    <a href="DisplayProduct?idCategoryGroup=3&page=1"
+                                       class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Gọng kính
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="gong_kinh_nua_khung.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=9&page=1">Gọng
                                             kính nữa khung</a></li>
-                                        <li><a class="dropdown-item" href="gong_kinh_khoan.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=10&page=1">Gọng
                                             kính khoan</a></li>
-                                        <li><a class="dropdown-item" href="gong_kinh_tron.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=11&page=1">Gọng
                                             kính tròn</a></li>
-                                        <li><a class="dropdown-item" href="gong_kinh_titan.jsp">Gọng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=12&page=1">Gọng
                                             kính titan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../trong_kinh/trong_kinh.jsp"
+                                    <a href="DisplayProduct?idCategoryGroup=4&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Tròng kính
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                               href="../trong_kinh/trong_kinh_chong_anh_sang_xanh.jsp">Tròng kính
+                                               href="DisplayProduct?idCategory=13&page=1">Tròng kính
                                             chống ánh sáng xanh</a></li>
-                                        <li><a class="dropdown-item" href="../trong_kinh/trong_kinh_doi_mau.jsp">Tròng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=14&page=1">Tròng
                                             kính đổi màu</a></li>
-                                        <li><a class="dropdown-item" href="../trong_kinh/trong_kinh_mau.jsp">Tròng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=15&page=1">Tròng
                                             kính màu</a></li>
                                         <li><a class="dropdown-item"
-                                               href="../trong_kinh/trong_kinh_cho_gong_khoan.jsp">Tròng kính cho
+                                               href="DisplayProduct?idCategory=16&page=1">Tròng kính cho
                                             gọng khoan</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../../khuyen_mai.jsp" class="nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../../lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
+                                    <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
                                 </li>
                             </ul>
                         </div>
@@ -180,13 +191,13 @@
             <!--Danh sách các hình-->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../../images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">
+                    <img src="images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../../images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
+                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="../../images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
+                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
                 </div>
             </div>
 
@@ -435,13 +446,142 @@
             <!--kinh_mat_page_02.jsp-->
             <section class="collection-wrap-product-list mt-5">
                 <div class="title mb-3">
-                    <h3>Gọng kính titan</h3>
+                    <h3><%=request.getAttribute("title")%>
+                    </h3>
                 </div>
-                <!--1 dòng-->
-                <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4 d-flex justify-content-center main-product"></div>
 
+                <!--hiển thị danh sách sản phẩm-->
+                <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4 d-flex justify-content-center">
+                    <%
+                        List<Product> products = (List<Product>) request.getAttribute("products");
+                        products = products == null ? new ArrayList<Product>() : products;
+                        for (Product product : products) {
+                    %>
+                    <!--Ô hiển thị-->
+                    <div class="pro-loop col rounded-3">
+                        <!--Phạm vi hiển thị trong ô-->
+                        <div class="pro-loop-wrap position-relative">
+                            <!--Phần hình ảnh-->
+                            <div class="pro-loop-image position-relative">
+                                <!--Hiển thị hêt hàng-->
+                                <div class="pro-loop-sd z-2 position-absolute">
+                                    <span>Hết hàng</span>
+                                </div>
+
+                                <!--Hiển thị hình ảnh-->
+                                <div class="pro-loop-image-item">
+                                    <a href="thong_tin_san_pham.jsp">
+                                        <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
+                                        <picture class="img-hidden-when-hover">
+                                            <img class="lazyloaded  rounded-3"
+                                                 src=""
+                                                 alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                        </picture>
+                                        <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
+                                        <picture class="img-show-when-hover">
+                                            <img class="lazyloaded  rounded-3"
+                                                 src=""
+                                                 alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                        </picture>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--hiển thị sản phẩm đang là sản phẩm hot-->
+                            <div class="pro-loop-sold position-absolute">
+                                <label>
+                                    <img src="images/hot.jpg" alt="pro-loop-sold">
+                                </label>
+                            </div>
+
+                            <!--Hiển thị tên thương hiệu-->
+                            <div class="pro-loop-brand text-center">
+                                <span class="pro-loop-vendor d-block"><%=product.getBrandName()%></span>
+                            </div>
+
+                            <!--Hiển thị tên sản phẩm-->
+                            <h3 class="pro-loop-name text-center">
+                                <a href="thong_tin_san_pham.jsp" title="Tên sản phẩm"><%=product.getName()%>
+                                </a>
+                            </h3>
+
+
+                            <!--hiển thị giá-->
+                            <div class="pro-loop-price text-center mt-0">
+                                <%if (product.hasDiscount()) {%>
+                                <p class="fw-bold d-inline me-3">
+                                    <%=Product.formatNumber(product.getDiscount())%>
+                                    <span> ₫</span></p>
+                                <del>
+                                    <%=Product.formatNumber(product.getPrice())%>
+                                    <span> ₫</span>
+                                </del>
+                                <%} else {%>
+                                <p class="fw-bold d-inline me-3">
+                                    <%=Product.formatNumber(product.getPrice())%>
+                                    <span> ₫</span>
+                                </p>
+                                <%}%>
+                            </div>
+
+                            <!--Hiển thị đánh giá và số lượng bán-->
+                            <div class="sold_qty text-center">
+                                <!--Phần đánh giá sao-->
+                                <div class="prod-review-loop   d-inline-block">
+                                    <!--Danh sách ngôi sao-->
+                                    <div class="onirvapp--shape-container d-inline-block">
+                                        <ul class="list-group list-group-horizontal">
+                                            <!--Các li có class checked là sao hoàn thiện-->
+                                            <li class="checked">
+                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                            </li>
+                                            <li class="checked">
+                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                            </li>
+                                            <li class="checked">
+                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!--số lượng đánh giá-->
+                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
+                                </div>
+
+                                <!--Đường cắt ngang-->
+                                <span class="h-line d-inline-block"></span>
+
+                                <!--Phần hiển thị số lượng đã bán-->
+                                <div class="sold_qty_num  d-inline-block">
+                                    <p class="m-0">
+                                        Đã bán: <span>12</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!--2 nút thao tác-->
+                            <div class="pro-loop-bottom">
+                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
+                                    Thêm vào giỏ hàng
+                                </button>
+                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
+                                    ngay
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End 1 ô sản phẩm-->
+                    <%}%>
+                </div>
             </section>
-            <!--end danh sách sản phẩm-->
+            <!--end hiển thị danh sách sản phẩm-->
+
 
             <!--Phần chuyển trang (<- 1 2 3 ... ->)-->
             <section id="navigation_change_page">
@@ -525,15 +665,16 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="../../policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
+                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
                             online</a></li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách thanh
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách thanh
                             toán, giao nhận</a></li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả
+                        <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
+                        <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi
+                            trả
                             và hoàn tiền</a></li>
-                        <li><a class="hover" href="../../policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
+                        <li><a class="hover" href="policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
 
@@ -541,8 +682,8 @@
         </div>
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                <a href="../../index.jsp">
-                    <img src="../../logo.png" alt="logo.png">
+                <a href="index.jsp">
+                    <img src="logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -552,13 +693,8 @@
 
 </footer>
 
-<script src="../../javascript/menu_footer.js"></script>
-<script src="../../javascript/san_pham.js"></script>
-<script src="../../javascript/product/gong_kinh/data.js"></script>
-<script src="../../javascript/product/gong_kinh/gong_kinh.js"></script>
-<script>
-    initProduct("TITAN");
-</script>
+<script src="javascript/menu_footer.js"></script>
+<script src="javascript/san_pham.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
@@ -571,5 +707,6 @@
     hidenMenuAccount();
     <%}%>
 </script>
+<%----%>
 </body>
 </html>

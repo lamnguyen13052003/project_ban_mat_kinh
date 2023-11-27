@@ -3,10 +3,9 @@ package model.bean;
 import java.util.ArrayList;
 
 public class Product {
-    private Integer id, categoryId, quantity;
+    private Integer id, categoryId, quantity, starNumber;
     private String name, brandName, describe, material, type;
-    private Double price, discount;
-
+    private Integer price, discount;
     private ArrayList<Model> models;
     private ArrayList<String> images;
 
@@ -37,23 +36,35 @@ public class Product {
         this.models = models;
     }
 
-    public void addImage(String image) {
-        if(images == null) images =  new ArrayList<>();
-
-        images.add(image);
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void addModel(Model model) {
-        if(models == null) models =  new ArrayList<>();
-
-        models.add(model);
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public double getDiscount() {
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
+    }
+
+    public int getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 
@@ -105,12 +116,24 @@ public class Product {
         this.type = type;
     }
 
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Integer getStarNumber() {
+        return starNumber;
+    }
+
+    public void setStarNumber(Integer starNumber) {
+        this.starNumber = starNumber;
+    }
+
+    public boolean hasDiscount(){
+        return Double.compare(this.discount, 0) != 0;
     }
 
     @Override
@@ -129,5 +152,29 @@ public class Product {
                 ", models=" + models +
                 ", images=" + images +
                 '}';
+    }
+
+    public static String formatNumber(int number){
+        String strN = Integer.toString((int)number);
+
+        // Tạo một StringBuilder để xây dựng chuỗi kết quả
+        StringBuilder result = new StringBuilder();
+
+        // Tạo một vòng lặp để chia chuỗi thành các đoạn có độ dài 3 ký tự từ phải sang trái
+        int length = strN.length();
+        for (int i = length - 1; i >= 0; i--) {
+            result.insert(0, strN.charAt(i)); // Chèn ký tự vào đầu chuỗi kết quả
+
+            // Thêm dấu chấm sau mỗi 3 ký tự nếu đủ 3 ký tự và không phải là ký tự cuối cùng
+            if ((length - i) % 3 == 0 && i != 0) {
+                result.insert(0, '.');
+            }
+        }
+
+        return result.toString();
+    }
+
+    public boolean equalsId(Integer key) {
+        return id == key;
     }
 }
