@@ -68,11 +68,14 @@
                                     <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_san_pham.html" class="nav-link px-4 rounded active">Danh sách sản
+                                    <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded active">Danh sách sản
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>

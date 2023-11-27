@@ -65,7 +65,7 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_tai_khoan.html" class="nav-link px-4 rounded active">Danh sách
+                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded active">Danh sách
                                         tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -74,6 +74,9 @@
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>

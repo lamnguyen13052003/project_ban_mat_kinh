@@ -72,8 +72,11 @@
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_hoa_don.html" class="nav-link px-4 rounded active">Danh sách hóa
+                                    <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded active">Danh sách hóa
                                         đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>

@@ -91,7 +91,7 @@
             <div class="in4-left">
                 <div class="id-bill-and-in4-ship d-flex align-items-center justify-content-around">
                     <div class="id-bill "><p>
-                        <h3 class="fw-bold">Hóa đơn: #<span>xxx</span></h3></p></div>
+                        <h3 class="fw-bold">Hóa đơn: #<span>xxx</span></h3></div>
                     <div class="in4-ship px-3 mx-5"><span>Đang trên đường giao</span></div>
                 </div>
                 <div class="time-order py-2"><p><span>dd/mm/yyyy, </span><span>hh:mm</span></p></div>
