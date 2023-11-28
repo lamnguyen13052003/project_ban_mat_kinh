@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.bean.User" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
@@ -103,9 +105,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -160,7 +164,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -395,37 +400,34 @@
                         <!--Phần danh sách các tiêu chí sort-->
                         <ul class="sort-list">
                             <li>
-                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">Mặc định
+                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">
+                                    <a href="DisplayProduct?<%=request.getAttribute("request")%>">
+                                        Mặc định
+                                    </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="data-sort-p1" value="price-ascending" name="sortFilter">
-                                    Giá: Tăng dần
+                                    <a href="DisplayProduct?<%=request.getAttribute("request")%>&sort-price=1">Giá: Tăng
+                                        dần</a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="data-sort-p2" value="price-descending" name="sortFilter">
-                                    Giá: Giảm dần
+                                    <a href="DisplayProduct?<%=request.getAttribute("request")%>&sort-price=0">Giá: Giảm
+                                        dần</a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="data-sort-p3" value="title-ascending" name="sortFilter">
-                                    Tên: A-Z
+                                    <a href="DisplayProduct?<%=request.getAttribute("request")%>&sort-name=1">Tên:
+                                        A-Z</a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="data-sort-p4" value="title-descending" name="sortFilter">
-                                    Tên: Z-A
-                                </button>
-                            </li>
-                            <li>
-                                <button class="border-0" id="data-sort-p5" value="created-ascending" name="sortFilter">
-                                    Cũ nhất
-                                </button>
-                            </li>
-                            <li>
-                                <button class="border-0" id="data-sort-p6" value="created-descending" name="sortFilter">
-                                    Mới nhất
+                                    <a href="DisplayProduct?<%=request.getAttribute("request")%>&sort-name=0">Tên:
+                                        Z-A</a>
                                 </button>
                             </li>
                             <li>
@@ -453,6 +455,7 @@
                 <!--hiển thị danh sách sản phẩm-->
                 <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4 d-flex justify-content-center">
                     <%
+                        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
                         List<Product> products = (List<Product>) request.getAttribute("products");
                         products = products == null ? new ArrayList<Product>() : products;
                         for (Product product : products) {
@@ -464,9 +467,11 @@
                             <!--Phần hình ảnh-->
                             <div class="pro-loop-image position-relative">
                                 <!--Hiển thị hêt hàng-->
+                                <%if (!product.available()) {%>
                                 <div class="pro-loop-sd z-2 position-absolute">
                                     <span>Hết hàng</span>
                                 </div>
+                                <%}%>
 
                                 <!--Hiển thị hình ảnh-->
                                 <div class="pro-loop-image-item">
@@ -474,14 +479,14 @@
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
                                             <img class="lazyloaded  rounded-3"
-                                                 src=""
-                                                 alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                                 src="<%=product.getImages().get(0)%>"
+                                                 alt="<%=product.getName()%>.jsp">
                                         </picture>
                                         <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                         <picture class="img-show-when-hover">
                                             <img class="lazyloaded  rounded-3"
-                                                 src=""
-                                                 alt=" Kính Mát Gập Tròn OEM 2015 ">
+                                                 src="<%=product.getImages().get(1)%>"
+                                                 alt="<%=product.getName()%>.jsp">
                                         </picture>
                                     </a>
                                 </div>
@@ -501,25 +506,21 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="thong_tin_san_pham.jsp" title="Tên sản phẩm"><%=product.getName()%>
+                                <a href="thong_tin_san_pham.jsp" title="<%=product.getName()%>"><%=product.getName()%>
                                 </a>
                             </h3>
-
 
                             <!--hiển thị giá-->
                             <div class="pro-loop-price text-center mt-0">
                                 <%if (product.hasDiscount()) {%>
                                 <p class="fw-bold d-inline me-3">
-                                    <%=Product.formatNumber(product.getDiscount())%>
-                                    <span> ₫</span></p>
-                                <del>
-                                    <%=Product.formatNumber(product.getPrice())%>
-                                    <span> ₫</span>
-                                </del>
-                                <%} else {%>
+                                        <%=nf.format(product.getDiscount())%>
+                                    <del>
+                                        <%=nf.format(product.getPrice())%>
+                                    </del>
+                                        <%} else {%>
                                 <p class="fw-bold d-inline me-3">
-                                    <%=Product.formatNumber(product.getPrice())%>
-                                    <span> ₫</span>
+                                    <%=nf.format(product.getPrice())%>
                                 </p>
                                 <%}%>
                             </div>
@@ -532,26 +533,30 @@
                                     <div class="onirvapp--shape-container d-inline-block">
                                         <ul class="list-group list-group-horizontal">
                                             <!--Các li có class checked là sao hoàn thiện-->
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                            <%
+                                                int index = 0;
+                                                for (; index < product.getStarNumber(); index++) {
+                                            %>
+                                            <li>
+                                                <i class="fa-solid fa-star" style="color: #fdd836;"></i>
                                             </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
-                                            <li class="checked">
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
+                                            <%
+                                                }
+                                                if (index < 5) {
+                                                    for (; index < 5; index++) {
+                                            %>
                                             <li>
                                                 <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                             </li>
-                                            <li>
-                                                <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                            </li>
+                                            <%
+                                                    }
+                                                }
+                                            %>
                                         </ul>
                                     </div>
 
                                     <!--số lượng đánh giá-->
-                                    <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
+                                    <span class="onireviewapp-loopitem-title">(<%=product.getTotalReview()%> đánh giá)</span>
                                 </div>
 
                                 <!--Đường cắt ngang-->
@@ -560,19 +565,24 @@
                                 <!--Phần hiển thị số lượng đã bán-->
                                 <div class="sold_qty_num  d-inline-block">
                                     <p class="m-0">
-                                        Đã bán: <span>12</span>
+                                        Đã bán: <span><%=product.getTotalQuantitySold()%></span>
                                     </p>
                                 </div>
                             </div>
 
                             <!--2 nút thao tác-->
                             <div class="pro-loop-bottom">
-                                <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                    Thêm vào giỏ hàng
-                                </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                    ngay
-                                </button>
+                                <a href="shopping-cart?id-product=<%=product.getId()%>">
+                                    <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
+                                            data-id="">
+                                        + Giỏ hàng
+                                    </button>
+                                </a>
+                                <a href="">
+                                    <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
+                                        Mua ngay
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

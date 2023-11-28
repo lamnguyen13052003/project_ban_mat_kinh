@@ -2,7 +2,6 @@ package model.service;
 
 import model.DAO.ReviewDAO;
 import model.bean.Product;
-import model.bean.Review;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,13 +9,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class ReviewService {
-    public Map<Integer, Integer> getStarNumber(List<Product> products){
+    public Map<Integer, InfReview> getInfReview(List<Product> products){
         ReviewDAO reviewDAO = ReviewDAO.getInstance();
-        Map<Integer, List<Integer>> reviews = reviewDAO.getStarNumber(products);
-        Map<Integer, Integer> result = new HashMap<Integer, Integer>();
+        Map<Integer, List<Integer>> reviews = reviewDAO.getInfReview(products);
+        Map<Integer, InfReview> result = new HashMap<Integer, InfReview>();
         for(Entry<Integer, List<Integer>> entry : reviews.entrySet()){
             int averageStarNumber = averageStarNumber(entry.getValue());
-            result.put(entry.getKey(), averageStarNumber);
+            result.put(entry.getKey(), new InfReview(averageStarNumber, entry.getValue().size()));
         }
 
         return result;
@@ -33,5 +32,32 @@ public class ReviewService {
         residual = sum/(double)size - sum/size;
         return residual >= 0.5 ? sum/size + 1 : sum/size;
     }
+}
 
+class InfReview{
+    private int starNumber, totalReview;
+
+    public InfReview(int starNumber, int totalReview) {
+        this.starNumber = starNumber;
+        this.totalReview = totalReview;
+    }
+
+    public InfReview() {
+    }
+
+    public int getStarNumber() {
+        return starNumber;
+    }
+
+    public void setStarNumber(int starNumber) {
+        this.starNumber = starNumber;
+    }
+
+    public int getTotalReview() {
+        return totalReview;
+    }
+
+    public void setTotalReview(int totalReview) {
+        this.totalReview = totalReview;
+    }
 }

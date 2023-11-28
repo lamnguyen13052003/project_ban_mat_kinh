@@ -1,9 +1,7 @@
 package model.DAO;
 
 import model.bean.Product;
-import model.bean.Review;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class ReviewDAO extends DAO {
         return instance == null ? new ReviewDAO() : instance;
     }
 
-    public Map<Integer, List<Integer>> getStarNumber(List<Product> products) {
+    public Map<Integer, List<Integer>> getInfReview(List<Product> products) {
         Map<Integer, List<Integer>> result = new HashMap<>();
         for (Product product : products) {
             int id = product.getId();

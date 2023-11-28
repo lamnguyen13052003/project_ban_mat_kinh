@@ -3,15 +3,12 @@ package model.service;
 import model.DAO.ProductDAO;
 import model.bean.Product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.NumberFormat;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ProductService {
     public static ProductService instance;
-    private List<Product> products;
     private ProductDAO productDAO = ProductDAO.getInstance();
     private static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
 
@@ -40,7 +37,7 @@ public class ProductService {
         MAP_PAGE.put(20, "Tròng kính");
     }
 
-    public String getPageTitle(int page){
+    public String getPageTitle(int page) {
         return MAP_PAGE.get(page);
     }
 
@@ -48,72 +45,81 @@ public class ProductService {
         return instance == null ? new ProductService() : instance;
     }
 
-    public List<Product> getProductByIdCategoryForPage(int idCategory, int page){
-        products = productDAO.getProductByIdCategoryForPage(idCategory, page);
-        setImageDemo();
-        setStarNumber();
-        setReducedPrice();
+    public List<Product> getProductByIdCategoryForPage(int idCategory, int page) {
+        List<Product> products = productDAO.getProductByIdCategoryForPage(idCategory, page);
+        setUpProduct(products);
         return products;
     }
 
-    public List<Product> getProductDiscountForPage(int page){
-        products = productDAO.getProductDiscountForPage(page);
-        setImageDemo();
-        setStarNumber();
-        setReducedPrice();
+    public List<Product> getProductDiscountForPage(int page) {
+        List<Product> products = productDAO.getProductDiscountForPage(page);
+        setUpProduct(products);
         return products;
     }
 
-    public List<Product> getProductByIdCategoryGroupForPage(int idCategoryGroup, int page){
-        products = productDAO.getProductByIdCategoryGroupForPage(idCategoryGroup, page);
-        setImageDemo();
-        setStarNumber();
-        setReducedPrice();
+    public List<Product> getProductByIdCategoryGroupForPage(int idCategoryGroup, int page) {
+        List<Product> products = productDAO.getProductByIdCategoryGroupForPage(idCategoryGroup, page);
+        setUpProduct(products);
         return products;
     }
 
-    private void setImageDemo(){
+    public void setUpProduct(List<Product> products) {
+        setImageDemo(products);
+        setStarNumber(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
+    }
+
+    private void setImageDemo(List<Product> products) {
         ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages =  productImageService.getImageDemoProduct(products);
-        for(Entry<Integer, List<String>> entry : mapProductImages.entrySet()){
-            for(Product product : products){
-                if(product.equalsId(entry.getKey())){
-                    product.setImages((ArrayList<String>) entry.getValue());
-                    break;
-                }
-            }
+        Map<Integer, List<String>> mapProductImages = productImageService.getImageDemoProduct(products);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setImages((ArrayList<String>) mapProductImages.get(id));
         }
     }
 
-    private void setStarNumber(){
+    private void setStarNumber(List<Product> products) {
         ReviewService reviewService = new ReviewService();
-        Map<Integer, Integer> mapStarNumber = reviewService.getStarNumber(products);
-        for(Entry<Integer, Integer> entry : mapStarNumber.entrySet()){
-            for(Product product : products){
-                if(product.equalsId(entry.getKey())){
-                    product.setStarNumber(entry.getValue());
-                    break;
-                }
-            }
+        Map<Integer, InfReview> mapStarNumber = reviewService.getInfReview(products);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            InfReview infReview = mapStarNumber.get(id);
+            product.setStarNumber(infReview.getStarNumber());
+            product.setTotalReview(infReview.getTotalReview());
         }
     }
 
-    private void setReducedPrice(){
+    private void setReducedPrice(List<Product> products) {
         ProductDiscountService productDiscountService = new ProductDiscountService();
         Map<Integer, Double> mapProductPricePercentage = productDiscountService.getPricePercentages(products);
-        int discount;
-        for(Entry<Integer, Double> entry : mapProductPricePercentage.entrySet()){
-            for(Product product : products){
-                if(product.equalsId(entry.getKey())){
-                    discount = 0;
-                    if(Double.compare(entry.getValue(), 0) != 0) {
-                        discount = (int) (product.getPrice()*(1 - entry.getValue()));
-                    }
+        int id;
+        double pricePercentage, discount;
 
-                    product.setDiscount(discount);
-                    break;
-                }
+        NumberFormat nf = NumberFormat.getCompactNumberInstance();
+        nf.setMaximumFractionDigits(2);
+        for (Product product : products) {
+            id = product.getId();
+            pricePercentage = mapProductPricePercentage.get(id);
+            discount = product.getPrice() * (1.0 - pricePercentage);
+            if (Double.compare(pricePercentage, 0) == 0) {
+                discount = 0;
             }
+
+            product.setDiscount(discount);
+        }
+    }
+
+
+    private void setTotalQuantitySold(List<Product> products) {
+        BillDetailService billDetailService = new BillDetailService();
+        Map<Integer, Integer> mapTotalQuantitySold = billDetailService.getTotalQuantitySold(products);
+        int id = 0;
+        for (Product product : products) {
+            id = product.getId();
+            product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
     }
 }

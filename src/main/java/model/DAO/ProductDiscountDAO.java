@@ -14,21 +14,20 @@ public class ProductDiscountDAO extends DAO{
 
     public Map<Integer, Double> getPricePercentages(List<Product> products){
         Map<Integer, Double> result = new LinkedHashMap<Integer, Double>();
-        List<Double> pricePercentages;
         double pricePercentage;
         for(Product product : products){
             int id = product.getId();
-            pricePercentages = connector.withHandle(handle ->
+            pricePercentage = connector.withHandle(handle ->
                     handle.createQuery("SELECT pd.pricePercentage " +
                                            "FROM product_discounts AS pd " +
                                            "WHERE " +
                                            "pd.productId = ?;")
                             .bind(0, id)
                             .mapTo(Double.class)
-                            .list()
+                            .findFirst()
+                            .orElse(0.0)
                     );
 
-            pricePercentage = pricePercentages.isEmpty() ? 0 : pricePercentages.get(0);
             result.put(id, pricePercentage);
         }
         return result;

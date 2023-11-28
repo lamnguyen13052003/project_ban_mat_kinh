@@ -172,7 +172,7 @@
                         ĐĂNG NHẬP
                     </h5>
                     <div class="login-form-body">
-                        <form accept-charset="UTF-8" action="LogIn" id="customer_login" method="get">
+                        <form accept-charset="UTF-8" action="login" id="customer_login" method="get">
                             <input name="form_type" type="hidden" value="customer_login">
                             <input name="utf8" type="hidden" value="✓">
 
