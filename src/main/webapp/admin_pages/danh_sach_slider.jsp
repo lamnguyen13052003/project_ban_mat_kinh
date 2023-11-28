@@ -1,5 +1,5 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -77,7 +77,8 @@
                                         đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded active">Danh sách hình ảnh thanh trượt</a>
+                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded active">Danh sách hình
+                                        ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -90,7 +91,7 @@
 
 <div id="main" class="mt-5 pb-5">
     <div class="container">
-        <div class="frame-boder row p-3">
+        <div class="frame-boder row p-3 my-5">
             <div class="title"><span>Danh sách hình ảnh trong thanh trượt</span></div>
             <div class="col-10">
                 <div class="edit-img row row-cols-2">
@@ -123,11 +124,68 @@
             </div>
             <div class="col-2 p-4">
                 <div class="btn-edit-img row row-cols-1 ">
-                    <button class="remove-img col" type="button"><span><i class="fa-solid fa-trash"></i></span><span class="px-2">Xóa</span></button>
-                    <button class="select-all-img col" type="button"><span><i class="fa-solid fa-check-double"></i></span><span class="px-2">Chọn tất cả</span></button>
-                    <button class="add-img col" type="button"><span><i class="fa-solid fa-circle-plus"></i></span><span class="px-2">Thêm ảnh</span></button>
+                    <button class="remove-img col" type="button"><span><i class="fa-solid fa-trash"></i></span><span
+                            class="px-2">Xóa</span></button>
+                    <button class="select-all-img col" type="button"><span><i
+                            class="fa-solid fa-check-double"></i></span><span class="px-2">Chọn tất cả</span></button>
+                    <button class="add-img col" type="button"><span><i class="fa-solid fa-circle-plus"></i></span><span
+                            class="px-2">Thêm ảnh</span></button>
                 </div>
             </div>
+        </div>
+        <%--        quan ly banner--%>
+        <div class="frame-boder frame-banner row p-3">
+            <div class="title"><span>Danh sách hình ảnh hiện thị</span></div>
+            <div class="row">
+                <div class="edit-img row row-cols-2">
+                    <div class="p-3">
+                        <div class="item-img col">
+                            <img class="img-fluid " src="../images/img_slide/slideShow_1.png" alt="">
+                            <div class="text-banner"><span>Đăng nhập</span></div>
+                            <div class="upload-img">
+                                <input class="form-check-input " type="file" value="" name="banner-login"
+                                       id="banner-login" accept="image/png, image/jpg" hidden>
+                                <label for="banner-login"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3">
+                        <div class="item-img col">
+                            <img class="img-fluid z-0 " src="../images/img_slide/slideShow_2.png" alt="">
+                            <div class="text-banner"><span>Đăng ký</span></div>
+                            <div class="upload-img">
+                                <input class="form-check-input " type="file" value="" name="banner-signup"
+                                       id="banner-signup" accept="image/png, image/jpg" hidden>
+                                <label for="banner-signup"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <div class="item-img col">
+                            <img class="img-fluid z-0 " src="../images/img_slide/slideShow_3_resize1.png" alt="">
+                            <div class="text-banner"><span>Quảng cáo</span></div>
+                            <div class="upload-img">
+                                <input class="form-check-input " type="file" value="" name="banner-pr" id="banner-pr"
+                                       accept="image/png, image/jpg" hidden>
+                                <label for="banner-pr"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <div class="item-img col">
+                            <img class="img-fluid z-0" src="../images/img_slide/slideShow_3_resize1.png" alt="">
+                            <div class="text-banner"><span>Logo</span></div>
+                            <div class="upload-img">
+                                <input class="form-check-input " type="file" value="" name="banner-logo"
+                                       id="banner-logo" accept="image/png, image/jpg" hidden>
+                                <label for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
