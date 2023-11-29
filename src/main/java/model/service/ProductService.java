@@ -5,7 +5,6 @@ import model.bean.Product;
 
 import java.text.NumberFormat;
 import java.util.*;
-import java.util.Map.Entry;
 
 public class ProductService {
     public static ProductService instance;
@@ -37,33 +36,131 @@ public class ProductService {
         MAP_PAGE.put(20, "Tròng kính");
     }
 
-    public String getPageTitle(int page) {
-        return MAP_PAGE.get(page);
-    }
-
     public static ProductService getInstance() {
         return instance == null ? new ProductService() : instance;
     }
 
-    public List<Product> getProductByIdCategoryForPage(int idCategory, int page) {
-        List<Product> products = productDAO.getProductByIdCategoryForPage(idCategory, page);
-        setUpProduct(products);
+    /**
+     * Lấy tiêu đề trang
+     *
+     * @param idCategoryGroup id nhóm danh mục
+     * @param idCategory      id danh mục
+     */
+    public String getTitle(int idCategoryGroup, int idCategory) {
+        ProductService productService = ProductService.getInstance();
+
+        if (idCategoryGroup == 0 && idCategory == 0) {
+            return MAP_PAGE.get(idCategory);
+        }
+        if (idCategoryGroup != 0 && idCategory == 0) {
+            return MAP_PAGE.get(16 + idCategoryGroup);
+        }
+        if (idCategoryGroup != 0 && idCategory != 0) {
+            return MAP_PAGE.get(idCategory);
+        }
+        return null;
+    }
+
+    /**
+     * Lấy các sản phẩm theo câu query
+     *
+     * @param query câu query từ thanh URL
+     */
+    public List<Product> getProducts(String query) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
+        Map<String, List<String>> mapFilter = new LinkedHashMap<>();
+        Map<String, String> mapSort = new LinkedHashMap<>();
+
+        initMapQueryRequest(query, mapInfRoot, mapFilter, mapSort);
+        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
+        System.out.println("result: " + products.size());
+        setOtherFieldsProduct(products);
+
         return products;
     }
 
-    public List<Product> getProductDiscountForPage(int page) {
-        List<Product> products = productDAO.getProductDiscountForPage(page);
-        setUpProduct(products);
-        return products;
+    /**
+     * Khởi tạo các map query
+     *
+     * @param query      cấu query lấy từ thanh URL
+     * @param mapInfRoot chứa các dữ liệu liên quan đến id nhóm danh mục, id danh muc va trang đang đứng
+     * @param mapFilter  chứa các giá trị bộ lọc
+     * @param mapSort    chứa các giá trị liên quan đến sắp xếp
+     */
+    private void initMapQueryRequest(String query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+        List<String> values;
+        String oldRequest = query.substring(0, query.lastIndexOf("&"));
+        String newRequest = query.substring(query.lastIndexOf("&"), query.length());
+        StringTokenizer tk;
+        String name;
+        String valueStr;
+        int valueInt;
+
+        if (oldRequest.contains(newRequest)) {
+            query = oldRequest.replace(newRequest, "");
+        }
+
+        tk = new StringTokenizer(query, "&=");
+        while (tk.hasMoreTokens()) {
+            name = tk.nextToken();
+            if (name.startsWith("filter")) {
+                valueStr = tk.nextToken();
+
+                if (!newRequest.contains("filter-none")) {
+                    values = mapFilter.get(name) == null ? new ArrayList<>() : mapFilter.get(name);
+                    values.add(valueStr);
+                    mapFilter.put(name, values);
+                }
+            }
+
+            if (name.startsWith("sort")) {
+                valueStr = tk.nextToken();
+                if (!query.contains("sort-none")) mapSort.put(name, valueStr);
+            }
+
+            if (!name.startsWith("filter") && !name.startsWith("sort")) {
+                valueInt = Integer.parseInt(tk.nextToken());
+                mapInfRoot.put(name, valueInt);
+            }
+        }
     }
 
-    public List<Product> getProductByIdCategoryGroupForPage(int idCategoryGroup, int page) {
-        List<Product> products = productDAO.getProductByIdCategoryGroupForPage(idCategoryGroup, page);
-        setUpProduct(products);
-        return products;
+    /*
+     * Xữ lý lại địa chỉ thanh URL cho hợp lý
+     * */
+    public String getSQLQueryRequest(String query) {
+        StringTokenizer tk = new StringTokenizer(query, "&=");
+        String oldRequest = query.substring(0, query.lastIndexOf("&"));
+        String newRequest = query.substring(query.lastIndexOf("&"), query.length());
+        String name;
+        StringBuilder sb = new StringBuilder();
+
+        if (oldRequest.contains(newRequest)) {
+            return oldRequest.replace(newRequest, "");
+        }
+
+        if (newRequest.contains("sort-none") || newRequest.contains("filter-none")) {
+            while (tk.hasMoreTokens()) {
+                name = tk.nextToken();
+                if (name.startsWith("sort") || name.startsWith("filter")) {
+                    tk.nextToken();
+                } else {
+                    if (!sb.isEmpty()) sb.append("&");
+                    sb.append(name);
+                    sb.append("=");
+                    sb.append(tk.nextToken());
+                }
+            }
+
+            return sb.toString();
+        }
+
+        return query;
     }
 
-    public void setUpProduct(List<Product> products) {
+    /**/
+    public void setOtherFieldsProduct(List<Product> products) {
         setImageDemo(products);
         setStarNumber(products);
         setReducedPrice(products);
@@ -111,7 +208,6 @@ public class ProductService {
             product.setDiscount(discount);
         }
     }
-
 
     private void setTotalQuantitySold(List<Product> products) {
         BillDetailService billDetailService = new BillDetailService();
