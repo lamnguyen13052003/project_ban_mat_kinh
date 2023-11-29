@@ -1,6 +1,7 @@
 package model.service;
 
 import model.DAO.BannnerDAO;
+import model.bean.BannerImage;
 import model.bean.ReviewImage;
 
 import java.util.List;
@@ -12,13 +13,12 @@ public class BannerService {
 
     public static BannerService getInstance() { return INSTANCE != null ? INSTANCE :  new BannerService(); }
 
-    public List<ReviewImage> getSlideShowImages() {
+    public List<BannerImage> getSlideShowImages() {
 
         return  BannnerDAO.getInstance().getSlideShowImages();
     }
 
     public static void main(String[] args) {
         System.out.println(BannerService.getInstance().getSlideShowImages());
-        ;
     }
 }
