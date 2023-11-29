@@ -3,10 +3,9 @@ package model.bean;
 import java.util.ArrayList;
 
 public class Product {
-    private Integer id, categoryId, quantity;
+    private Integer id, categoryId, quantity, starNumber, totalReview, totalQuantitySold;
     private String name, brandName, describe, material, type;
     private Double price, discount;
-
     private ArrayList<Model> models;
     private ArrayList<String> images;
 
@@ -37,16 +36,24 @@ public class Product {
         this.models = models;
     }
 
-    public void addImage(String image) {
-        if(images == null) images =  new ArrayList<>();
-
-        images.add(image);
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void addModel(Model model) {
-        if(models == null) models =  new ArrayList<>();
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
-        models.add(model);
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
     }
 
     public double getDiscount() {
@@ -109,8 +116,36 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public Integer getStarNumber() {
+        return starNumber;
+    }
+
+    public void setStarNumber(Integer starNumber) {
+        this.starNumber = starNumber;
+    }
+
+    public boolean hasDiscount() {
+        return Double.compare(this.discount, 0) != 0;
+    }
+
+    public Integer getTotalReview() {
+        return totalReview;
+    }
+
+    public void setTotalReview(Integer totalReview) {
+        this.totalReview = totalReview;
+    }
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public Integer getTotalQuantitySold() {
+        return totalQuantitySold;
+    }
+
+    public void setTotalQuantitySold(Integer totalQuantitySold) {
+        this.totalQuantitySold = totalQuantitySold;
     }
 
     @Override
@@ -130,4 +165,13 @@ public class Product {
                 ", images=" + images +
                 '}';
     }
+
+    public boolean equalsId(Integer key) {
+        return id == key;
+    }
+
+    public boolean available() {
+        return (quantity - totalQuantitySold) > 0;
+    }
+
 }

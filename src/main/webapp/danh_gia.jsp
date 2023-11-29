@@ -1,3 +1,4 @@
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -8,14 +9,13 @@
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/xac_thuc.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="stylesheet" href="css/danh_gia.css">
+    <link rel="icon" type="image/x-icon" href="logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
 
-    <title>Xác thực</title>
+    <title>Đánh giá</title>
 </head>
 <body>
 <header id="menu">
@@ -164,28 +164,91 @@
 </header>
 
 <main id="main" class="mt-5 pb-5">
-    <div class="container position-relative">
-        <div class="verify">
-            <div class="verify-header mb-3">
-                <label for="input-verify">
-                    <h2>Xác thực tài khoản <span>kiminonawa1305@gmail.com</span></h2>
-                </label>
+    <div class="container">
+        <button class="back-to-home">
+            <a href="index.jsp" class="text-light">
+                <i class="fa-solid fa-house"></i>
+                <span>Quay về trang chủ</span>
+            </a>
+        </button>
+
+        <div class="review-product mt-3">
+            <div class="review-product header mb-2">
+                <h3>Đánh giá sản phẩm</h3>
             </div>
-            <div class="verify-body">
-                <form action="" method="GET">
-                    <input class="p-2 mb-2 rounded w-25" type="text" name="input-verify" id="input-verify"
-                           placeholder="Nhập mã xác thực tại đây" required><br>
-                    <button class="text-light p-2 rounded" type="submit">Xác thực</button>
-                </form>
+
+            <div class="review-product-body">
+                <div class="info-product">
+                    <div class="name-product">
+                        <p>Gọng kính abc</p>
+                    </div>
+                    <div class="option-product">
+                        <span>Màu: </span>
+                        <span>Xanh</span>
+                    </div>
+                    <div class="img-product">
+                        <img src="images/product/giong-kinh/gong-kinh-baron-8859/0.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="review">
+                    <form action="">
+                        <div class="quality-product" id="input-star">
+                            <p class="fs-4 d-block">Chất lượng sản phẩm</p>
+                            <ul class="d-inline-flex list-star">
+                                <!--Các li có class checked là sao hoàn thiện-->
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="1"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="2"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="3"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="4"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="5"></i>
+                                </li>
+                            </ul>
+                            <span id="text-quality-product">Tuyệt vời</span>
+                        </div>
+                        <div class="evaluate-product mt-3">
+                            <label for="comment">
+                                <span class="fs-4">Đánh giá</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea class="mt-1" placeholder="Nhập thông tin đánh giá" rows="5" name="comment" id="comment"
+                                      required></textarea>
+                        </div>
+                        <div class="img-product mt-3">
+                            <span class="fs-4">Hình ảnh: </span>
+                            <span class="text-secondary">(Tối đa 5 sản phẩm)</span><br>
+
+                            <div class="list-img-review-product d-flex mt-1">
+                                <input id="input-img-review" type="file" hidden="">
+                                <label for="input-img-review">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="mt-3" type="submit" id="submit-review">
+                            Đánh giá
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="background">
-            <img src="images/bannerAccount.png" alt="background">
-        </div>
+
+
     </div>
 </main>
+
 <footer id="footer" class="footer">
-    <div class="container">
+    <div class="container ">
         <div class="footer-top row">
             <div class="footer-top-item col">
                 <h5>Mắt Kính KIMI
@@ -195,8 +258,7 @@
 
                     </div>
                     <ul>
-                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span
-                                class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
                         </li>
                         <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
                                 class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
@@ -222,21 +284,22 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
+                        <li><a class="hover" href="../../policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
                             online</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách
+                        <li><a class="hover" href="../../policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách
                             thanh toán, giao nhận</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi
-                            trả và hoàn tiền</a></li>
-                        <li><a class="hover" href="policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
+                        <li><a class="hover" href="../../policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a>
+                        </li>
+                        <li><a class="hover" href="../../policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a>
+                        </li>
+                        <li><a class="hover" href="../../policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách
+                            đổi trả và hoàn tiền</a></li>
+                        <li><a class="hover" href="../../policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
 
             </div>
         </div>
-
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
@@ -248,7 +311,20 @@
         </div>
     </div>
 </footer>
+
 <script src="javascript/menu_footer.js"></script>
-<script src="javascript/index.js"></script>
+<script src="javascript/danh_gia.js"></script>
+<script type="text/javascript">
+    <%User user = (User) session.getAttribute("user");
+    if(user != null){%>
+    const user = new User();
+    user.setId(<%=user.getId()%>);
+    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setFullName("<%=user.getFullName()%>");
+    displayMenuAccount(user);
+    <%} else{%>
+    hidenMenuAccount();
+    <%}%>
+</script>
 </body>
 </html>

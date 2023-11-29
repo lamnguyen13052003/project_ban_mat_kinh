@@ -131,7 +131,7 @@
     padding: 0 10px;
     width: 300px;
     margin: 0 10px 10px 0;
-    height: 415px;
+    height: 425px;
 }
 
 #main .content .collection-wrap-product-list .pro-loop:hover{
@@ -145,7 +145,8 @@
 }
 
 /*Phần hình ảnh*/
-#main .content .collection-wrap-product-list .pro-loop .pro-loop-image{
+#main .content .collection-wrap-product-list .pro-loop .pro-loop-image .pro-loop-image-item{
+    display: block;
     width: 280px;
     height: 280px;
 }
@@ -157,7 +158,6 @@
     top: 5px;
     left: 5px;
 }
-
 #main .content .collection-wrap-product-list .pro-loop .pro-loop-image picture{
     width: 100%;
     height: 100%;
@@ -173,6 +173,7 @@
 #main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-image picture.img-show-when-hover{
     display: block;
 }
+
 
 #main .content .collection-wrap-product-list .pro-loop .pro-loop-image img{
     width: 280px;
@@ -232,7 +233,7 @@
 
 #main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom{
     display: block;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 #main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom button{
@@ -241,19 +242,18 @@
     width: 120px;
     border-radius: 5px;
     font-weight: bold;
-}
-
-#main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom button:nth-of-type(1){
-    background-color: rgba(47, 24, 154, 1);
-    margin-left: 15px;
     color: #fff;
 }
 
-#main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom button:nth-of-type(2){
+#main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom a:nth-of-type(1) button{
+    background-color: rgba(47, 24, 154, 1);
+    margin-left: 15px;
+}
+
+#main .content .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom a:nth-of-type(2) button{
     background-color: #F30;
     float: right;
     margin-right: 5px;
-    color: #fff;
 }
 
 /********************************Phần chuyển trang********************************/

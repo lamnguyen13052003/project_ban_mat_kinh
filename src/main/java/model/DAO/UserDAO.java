@@ -6,8 +6,7 @@ import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
 
-public class UserDAO {
-    private Jdbi connector;
+public class UserDAO extends DAO{
     private static UserDAO INSTANCE;
 
     public static UserDAO getInstance() {
