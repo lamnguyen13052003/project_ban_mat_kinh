@@ -1,19 +1,22 @@
 <%@ page import="model.bean.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.bean.ReviewImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="../css/menu_footer.css">
-    <link rel="stylesheet" href="../css/danh_sach_slider.css">
-    <link rel="icon" href="../logo_icon.png">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="stylesheet" href="css/danh_sach_slider.css">
+    <link rel="icon" href="logo_icon.png">
 
-    <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
-    <script src="../jquery/jquery-3.7.1.min.js"></script>
+    <script src="jquery/jquery-3.7.1.slim.min.js"></script>
+    <script src="jquery/jquery-3.7.1.min.js"></script>
 
     <title>Danh sách hình ảnh trong thanh trượt</title>
 </head>
@@ -24,7 +27,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -37,7 +40,7 @@
                     </form>
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../dang_nhap.jsp">
+                    <a href="dang_nhap.jsp">
                         <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
@@ -45,7 +48,7 @@
                     </a>
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../dang_ky.jsp">
+                    <a href="dang_ky.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
@@ -77,7 +80,7 @@
                                         đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded active">Danh sách hình
+                                    <a href="../banner" class="nav-link px-4 rounded active">Danh sách hình
                                         ảnh thanh trượt</a>
                                 </li>
                             </ul>
@@ -95,26 +98,31 @@
             <div class="title"><span>Danh sách hình ảnh trong thanh trượt</span></div>
             <div class="col-10">
                 <div class="edit-img row row-cols-2">
+                    <%
+                            List<ReviewImage>   urls = (List<ReviewImage>) request.getAttribute("slideShowImages");
+                            for(ReviewImage ri : urls){
+                    %>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " src="../images/img_slide/slideShow_1.png" alt="">
+                            <img class="img-fluid " name="slideShowImages"  src="<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
-                                <input class="form-check-input " type="checkbox" value="" id="check-img-01">
+                                <input class="form-check-input " type="checkbox" id="check-img-01">
                             </div>
                         </div>
                     </div>
-
-                    <div class="p-3">
+                    <% }
+                   %>
+                    <div class="p-3 d-none">
                         <div class="item-img col">
-                            <img class="img-fluid z-0" src="../images/img_slide/slideShow_2.png" alt="">
+                            <img class="img-fluid z-0" src="images/img_slide/slideShow_2.png" alt="">
                             <div class="check-box-img">
                                 <input class="form-check-input " type="checkbox" value="" id="check-img-02">
                             </div>
                         </div>
                     </div>
-                    <div class="p-3">
+                    <div class="p-3 d-none">
                         <div class="item-img col">
-                            <img class="img-fluid z-0" src="../images/img_slide/slideShow_3_resize1.png" alt="">
+                            <img class="img-fluid z-0" src="images/img_slide/slideShow_3_resize1.png" alt="">
                             <div class="check-box-img">
                                 <input class="form-check-input " type="checkbox" value="" id="check-img-03">
                             </div>
@@ -140,7 +148,7 @@
                 <div class="edit-img row row-cols-2">
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " src="../images/img_slide/slideShow_1.png" alt="">
+                            <img class="img-fluid " src="images/img_slide/slideShow_1.png" alt="">
                             <div class="text-banner"><span>Đăng nhập</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-login"
@@ -152,7 +160,7 @@
 
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0 " src="../images/img_slide/slideShow_2.png" alt="">
+                            <img class="img-fluid z-0 " src="images/img_slide/slideShow_2.png" alt="">
                             <div class="text-banner"><span>Đăng ký</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-signup"
@@ -163,7 +171,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0 " src="../images/img_slide/slideShow_3_resize1.png" alt="">
+                            <img class="img-fluid z-0 " src="images/img_slide/slideShow_3_resize1.png" alt="">
                             <div class="text-banner"><span>Quảng cáo</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-pr" id="banner-pr"
@@ -174,7 +182,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0" src="../images/img_slide/slideShow_3_resize1.png" alt="">
+                            <img class="img-fluid z-0" src="images/img_slide/slideShow_3_resize1.png" alt="">
                             <div class="text-banner"><span>Logo</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-logo"
@@ -222,7 +230,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                    <img src="logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -231,9 +239,9 @@
     </div>
 </footer>
 
-<script src="../javascript/menu_footer.js"></script>
-<script src="../javascript/admin_page.js"></script>
-<script src="../javascript/danh_sach_slider.js"></script>
+<script src="javascript/menu_footer.js"></script>
+<script src="javascript/admin_page.js"></script>
+<script src="javascript/danh_sach_slider.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

@@ -4,16 +4,16 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="../css/menu_footer.css">
-    <link rel="stylesheet" href="../css/them_san_pham.css">
-    <link rel="icon" href="../logo_icon.png">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="stylesheet" href="css/them_san_pham.css">
+    <link rel="icon" href="logo_icon.png">
 
-    <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
-    <script src="../jquery/jquery-3.7.1.min.js"></script>
+    <script src="jquery/jquery-3.7.1.slim.min.js"></script>
+    <script src="jquery/jquery-3.7.1.min.js"></script>
 
     <title>Chỉnh sửa sản phẩm</title>
 </head>
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                     </form>
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../dang_nhap.jsp">
+                    <a href="dang_nhap.jsp">
                         <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
@@ -45,7 +45,7 @@
                     </a>
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../dang_ky.jsp">
+                    <a href="dang_ky.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
@@ -75,7 +75,7 @@
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_slider.jsp" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
+                                    <a href="banner" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -363,7 +363,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                    <img src="logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -372,9 +372,9 @@
     </div>
 </footer>
 
-<script src="../javascript/menu_footer.js"></script>
-<script src="../javascript/admin_page.js"></script>
-<script src="../javascript/them_san_pham.js"></script>
+<script src="javascript/menu_footer.js"></script>
+<script src="javascript/admin_page.js"></script>
+<script src="javascript/them_san_pham.js"></script>
 <script src="/javascript/form_des.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
