@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.bean.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.bean.BannerImage" %>
+<%@ page import="java.util.ArrayList" %>
 <%User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -16,6 +19,19 @@
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
+
+<%--    <script>
+        console.log("loadding");
+        $.ajax({
+            url: "BannerImageController",
+            method: "GET",
+            success: function(response){
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    </script>--%>
 
     <title>Trag chủ</title>
 </head>
@@ -173,15 +189,17 @@
                     <div id="myCarousel" class="carousel">
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
+                            <%
+                                List<BannerImage> urls = (List<BannerImage>) request.getAttribute("bannerImages");
+                                urls = urls == null ? new ArrayList<BannerImage>() : urls;
+                                for(BannerImage url: urls){
+                            %>
                             <div class="item active slide z-n1">
-                                <img src="images/img_slide/slideShow_1.png" alt="">
+                                <img src="<%= url.getUrlImage()%>" alt="">
                             </div>
-                            <div class="item slide z-n1">
-                                <img src="images/img_slide/slideShow_2.png" alt="">
-                            </div>
-                            <div class="item slide z-n1">
-                                <img src="images/img_slide/slideShow_3.jpg" alt="">
-                            </div>
+                            <%
+                                }
+                            %>
                         </div>
                         <button type="button" class="slick-prev slick-arrow z-3 left">
                             <i class="fa-solid fa-arrow-left"></i>
@@ -1667,7 +1685,7 @@
                 <a href="#">Mua ngay</a>
             </div>
             <div class="home-banner-wrap-right col">
-                <img class=" ls-is-cached lazyloaded" src="images/home_baner/banner_bottom_img.png"
+                <img class=" ls-is-cached lazyloaded" src="images/home_banner/banner_bottom_img.png"
                      alt="home-banner-right">
             </div>
         </div>

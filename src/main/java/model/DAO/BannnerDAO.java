@@ -12,17 +12,18 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BannnerDAO {
+public class BannnerDAO extends  DAO{
     private static Jdbi conn;
     private static BannnerDAO INSTANCE;
 
     public static BannnerDAO getInstance() {return INSTANCE != null ? INSTANCE : new BannnerDAO();}
 
     public List<BannerImage> getSlideShowImages() {
-        conn = JDBIConnector.get();
+        String slide = "slide%";
         // lay data cot id va comment cua table Review
-        return  conn.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE r.description LIKE 'slideShow%'")
+        return  connector.withHandle(handle ->
+                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE bi.description LIKE ?")
+                        .bind(0,slide)
                 .mapToBean(BannerImage.class).list());
     }
 }

@@ -1,6 +1,5 @@
-
 /**main**/
-$(document).ready(function() {
+$(document).ready(function () {
     var currentSlide = 0;
     var totalSlides = $('#silder-section .slide').length;
 
@@ -9,17 +8,17 @@ $(document).ready(function() {
         $('.slide:eq(' + slideIndex + ')').fadeIn(600, 'linear');
     }
 
-    $('.right').click(function() {
+    $('.right').click(function () {
         $('.carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide + 1) % totalSlides;
-        $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
+        $('.carousel ul li:nth-child(' + (currentSlide + 1) + ') button').addClass('slick-active');
         showSlide(currentSlide);
     });
 
-    $('.left').click(function() {
+    $('.left').click(function () {
         $('.carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
+        $('.carousel ul li:nth-child(' + (currentSlide + 1) + ') button').addClass('slick-active');
         showSlide(currentSlide);
     });
     // btn phan trang
@@ -36,23 +35,27 @@ $(document).ready(function() {
     function autoSlide() {
         $('#silder-section .carousel ul li button').removeClass('slick-active');
         currentSlide = (currentSlide + 1) % totalSlides;
-        $('.carousel ul li:nth-child('+(currentSlide + 1)+') button').addClass('slick-active');
+        $('.carousel ul li:nth-child(' + (currentSlide + 1) + ') button').addClass('slick-active');
         showSlide(currentSlide);
     }
 
     var interval = setInterval(autoSlide, 5000);
 
     $('#silder-section .carousel').hover(
-        function() {
+        function () {
             clearInterval(interval);
         },
-        function() {
+        function () {
             interval = setInterval(autoSlide, 5000);
         }
     );
 
     showSlide(currentSlide);
 });
+
+const  loadSlide = false;
+
+
 
 
 
