@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/san_pham.css">
     <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="icon" type="image/x-icon" href="logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
@@ -182,40 +184,92 @@
 <main id="main" class="mt-5 pb-5">
     <div class="container">
         <!--Phần slide-->
-        <div id="carouselExampleIndicators" class="carousel slide mb-5">
-            <!--Các nút bên dưới hình-->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-            </div>
+<%--        <div id="carouselExampleIndicators" class="carousel slide mb-5">--%>
+<%--            <!--Các nút bên dưới hình-->--%>
+<%--            <div class="carousel-indicators">--%>
+<%--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"--%>
+<%--                        aria-current="true" aria-label="Slide 1"></button>--%>
+<%--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"--%>
+<%--                        aria-label="Slide 2"></button>--%>
+<%--                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"--%>
+<%--                        aria-label="Slide 3"></button>--%>
+<%--            </div>--%>
 
-            <!--Danh sách các hình-->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
-                </div>
-            </div>
+<%--            <!--Danh sách các hình-->--%>
+<%--            <div class="carousel-inner">--%>
+<%--                <div class="carousel-item active">--%>
+<%--                    <img src="images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">--%>
+<%--                </div>--%>
+<%--                <div class="carousel-item">--%>
+<%--                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">--%>
+<%--                </div>--%>
+<%--                <div class="carousel-item">--%>
+<%--                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <!--2 Nút chuyển qua và lại-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </div>
+<%--            <!--2 Nút chuyển qua và lại-->--%>
+<%--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"--%>
+<%--                    data-bs-slide="prev">--%>
+<%--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
+<%--            </button>--%>
+<%--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"--%>
+<%--                    data-bs-slide="next">--%>
+<%--                <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
+<%--            </button>--%>
+<%--        </div>--%>
+        <section id="silder-section">
+            <div id="slider">
+                <a href="#" style="display: block">
+                    <div class="" id="section_slider">
+                        <div class="container-slider">
+                            <div id="myCarousel" class="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <%
+                                        List<BannerImage> urls = (List<BannerImage>) request.getAttribute("bannerImages");
+                                        urls = urls == null ? new ArrayList<BannerImage>() : urls;
+                                        for(BannerImage url: urls){
+                                    %>
+                                    <div class="item active slide z-n1">
+                                        <img src="<%= url.getUrlImage()%>" alt="">
+                                    </div>
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                                <button type="button" class="slick-prev slick-arrow z-3 left">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                                <button type="button" class="slick-next slick-arrow z-3 right">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <ul class="slick-dots  z-3" style="display: flex;" role="tablist">
+                                    <li class=" px-1" role="presentation">
+                                        <button class="slick-active slick" type="button" role="tab" id="slick-slide-control00"
+                                                aria-controls="slick-slide00"
+                                                aria-label="1 of 3" tabindex="-1">
+                                        </button>
+                                    </li>
+                                    <li class="px-1" role="presentation">
+                                        <button class=" slick" id="slick-slide-control01" type="button" role="tab"
+                                                aria-controls="slick-slide01"
+                                                aria-label="2 of 3" tabindex="-1">
+                                        </button>
+                                    </li>
+                                    <li role="presentation" class="px-1">
+                                        <button class="slick" id="slick-slide-control02" type="button" role="tab"
+                                                aria-controls="slick-slide02"
+                                                aria-label="3 of 3" tabindex="0" aria-selected="true">
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
         <!--End phần slide-->
 
         <!--Phần nội dung-->
