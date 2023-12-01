@@ -13,9 +13,7 @@ import java.util.List;
 public class BannerImageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<BannerImage> urlBannerImages = BannerService.getInstance().getSlideShowImages();
-        request.setAttribute("bannerImages", urlBannerImages);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     @Override

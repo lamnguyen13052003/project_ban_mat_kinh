@@ -5,16 +5,18 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
-    <welcome-file>banner</welcome-file>
+    <welcome-file>index</welcome-file>
   </welcome-file-list>
 
   <servlet>
-    <servlet-name>banner</servlet-name>
-    <servlet-class>controller.BannerImageController</servlet-class>
+    <servlet-name>index</servlet-name>
+    <servlet-class>controller.IndexController</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>banner</servlet-name>
-    <url-pattern>/banner</url-pattern>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/index</url-pattern>
   </servlet-mapping>
+
+
 </web-app>

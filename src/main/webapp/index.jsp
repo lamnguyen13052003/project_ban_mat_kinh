@@ -1685,8 +1685,12 @@
                 <a href="#">Mua ngay</a>
             </div>
             <div class="home-banner-wrap-right col">
-                <img class=" ls-is-cached lazyloaded" src="images/home_banner/banner_bottom_img.png"
+                <%
+                    BannerImage bannerPR = (BannerImage) request.getAttribute("bannerPRImages");
+                %>
+                <img class=" ls-is-cached lazyloaded" src="<%= bannerPR.getUrlImage()%>"
                      alt="home-banner-right">
+                <% %>
             </div>
         </div>
     </div>
