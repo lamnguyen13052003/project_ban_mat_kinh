@@ -166,6 +166,12 @@ public class ProductService {
         setReducedPrice(products);
         setTotalQuantitySold(products);
     }
+    public void setOtherFieldsProductByStar(List<Product> products) {
+        setImageDemo(products);
+        setStarNumberDescending(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
+    }
 
     private void setImageDemo(List<Product> products) {
         ProductImageService productImageService = new ProductImageService();
@@ -180,6 +186,17 @@ public class ProductService {
     private void setStarNumber(List<Product> products) {
         ReviewService reviewService = new ReviewService();
         Map<Integer, InfReview> mapStarNumber = reviewService.getInfReview(products);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            InfReview infReview = mapStarNumber.get(id);
+            product.setStarNumber(infReview.getStarNumber());
+            product.setTotalReview(infReview.getTotalReview());
+        }
+    }
+    private void setStarNumberDescending(List<Product> products) {
+        ReviewService reviewService = new ReviewService();
+        Map<Integer, InfReview> mapStarNumber = reviewService.getInfReviewDescendingByStart(products);
         int id;
         for (Product product : products) {
             id = product.getId();
@@ -217,5 +234,8 @@ public class ProductService {
             id = product.getId();
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
+    }
+    public List<Product> getImageByProminentStart(){
+        return ProductDAO.getInstance().getImageByProminentStart();
     }
 }
