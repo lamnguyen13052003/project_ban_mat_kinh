@@ -520,17 +520,17 @@
 
                                 <!--Hiển thị hình ảnh-->
                                 <div class="pro-loop-image-item">
-                                    <a href="thong_tin_san_pham.jsp">
+                                    <a href="more-info-product?id=<%=product.getId()%>">
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
                                             <img class="lazyloaded  rounded-3"
-                                                 src="<%=product.getImages().get(0)%>"
+                                                 src="<%=product.getProductImages().get(0)%>"
                                                  alt="<%=product.getName()%>.jsp">
                                         </picture>
                                         <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                         <picture class="img-show-when-hover">
                                             <img class="lazyloaded  rounded-3"
-                                                 src="<%=product.getImages().get(1)%>"
+                                                 src="<%=product.getProductImages().get(1)%>"
                                                  alt="<%=product.getName()%>.jsp">
                                         </picture>
                                     </a>
@@ -551,7 +551,8 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="thong_tin_san_pham.jsp" title="<%=product.getName()%>"><%=product.getName()%>
+                                <a href="more-info-product?id=<%=product.getId()%>"
+                                   title="<%=product.getName()%>"><%=product.getName()%>
                                 </a>
                             </h3>
 
@@ -559,11 +560,12 @@
                             <div class="pro-loop-price text-center mt-0">
                                 <%if (product.hasDiscount()) {%>
                                 <p class="fw-bold d-inline me-3">
-                                        <%=nf.format(product.getDiscount())%>
-                                    <del>
-                                        <%=nf.format(product.getPrice())%>
-                                    </del>
-                                        <%} else {%>
+                                    <%=nf.format(product.getDiscount())%>
+                                </p>
+                                <del>
+                                    <%=nf.format(product.getPrice())%>
+                                </del>
+                                <%} else {%>
                                 <p class="fw-bold d-inline me-3">
                                     <%=nf.format(product.getPrice())%>
                                 </p>
@@ -768,7 +770,7 @@
     Map<String, String> mapSort = (Map<String, String>)request.getAttribute("mapSort");
     for(List<String> values : mapFilter.values()){
         for(String id : values){%>
-        $("#<%=id%>").addClass("checked");
+    $("#<%=id%>").addClass("checked");
     <%}};
     for(Map.Entry<String, String> id : mapSort.entrySet()){%>
     $("#<%=id.getKey()%>-<%=id.getValue()%>").addClass("checked");

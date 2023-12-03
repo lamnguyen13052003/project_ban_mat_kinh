@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "DisplayProductController", value = "/product")
+@WebServlet(name = "DisplayProductController", value = "/product-booth")
 public class DisplayProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,15 +21,10 @@ public class DisplayProductController extends HttpServlet {
         Map<String, Integer> mapInfRoot = productService.getMapInfRoot(formatQuery);
         List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort);
         int totalPages = productService.getTotalPages(mapInfRoot, mapFilter, mapSort);
-        int idCategory = 0, page = 0, idCategoryGroup = 0;
 
-        try {
-            idCategory = Integer.parseInt(request.getParameter("id-category"));
-            idCategoryGroup = Integer.parseInt(request.getParameter("id-category-group"));
-            page = Integer.parseInt(request.getParameter("page"));
-        } catch (NumberFormatException e) {
-            System.out.println(e);
-        }
+        int idCategory = mapInfRoot.get("id-category"),
+                idCategoryGroup = mapInfRoot.get("id-category-group"),
+                page = mapInfRoot.get("page");
 
         String title = productService.getTitle(idCategoryGroup, idCategory);
 
@@ -41,7 +36,7 @@ public class DisplayProductController extends HttpServlet {
         request.setAttribute("mapInfRoot", mapInfRoot);
         request.setAttribute("mapFilter", mapFilter);
         request.setAttribute("mapSort", mapSort);
-        request.getRequestDispatcher("product.jsp").forward(request, response);
+        request.getRequestDispatcher("gian_hang.jsp").forward(request, response);
     }
 
     @Override

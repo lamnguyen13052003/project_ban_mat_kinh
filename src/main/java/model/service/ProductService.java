@@ -10,6 +10,7 @@ public class ProductService {
     public static ProductService instance;
     private ProductDAO productDAO = ProductDAO.getInstance();
     private static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
+    private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
     static {
         MAP_PAGE.put(0, "Khuyến mãi");
@@ -61,6 +62,15 @@ public class ProductService {
         return null;
     }
 
+    public Product getProduct(String id) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProduct(id);
+        setOtherFieldsProduct(products, false);
+
+        return products.get(0);
+    }
+
     /**
      * Lấy các sản phẩm theo câu query
      */
@@ -68,7 +78,7 @@ public class ProductService {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
-        setOtherFieldsProduct(products);
+        setOtherFieldsProduct(products, true);
 
         return products;
     }
@@ -123,7 +133,6 @@ public class ProductService {
         while (tk.hasMoreTokens()) {
             name = tk.nextToken();
 
-            System.out.println(name);
             if (name.startsWith("id") || name.startsWith("page")) {
                 valueInt = Integer.parseInt(tk.nextToken());
                 mapInfRoot.put(name, valueInt);
@@ -150,15 +159,21 @@ public class ProductService {
         String name;
         StringBuilder sb = new StringBuilder();
 
-        if (oldRequest.contains("&page") && newRequest.startsWith("&page")) {
-            int indexFirstFound = oldRequest.indexOf("&page");
-            return oldRequest.substring(0, indexFirstFound)
-                    + newRequest
-                    + oldRequest.substring(oldRequest.indexOf("&", indexFirstFound + 1), oldRequest.length());
-        }
 
         if (oldRequest.contains(newRequest)) {
             return oldRequest.replace(newRequest, "");
+        }
+
+        for (String key : REPlAY) {
+            if (oldRequest.contains(key) && newRequest.startsWith(key)) {
+                int indexFirstFound = oldRequest.indexOf(key), indexBright = query.indexOf("&", indexFirstFound + 1), length = oldRequest.length();
+                if (key.startsWith("&page"))
+                    return oldRequest.substring(0, indexFirstFound)
+                            + newRequest
+                            + oldRequest.substring(indexBright, length);
+                return oldRequest.substring(0, indexFirstFound)
+                        + newRequest;
+            }
         }
 
         if (newRequest.contains("sort-none") || newRequest.contains("filter-none")) {
@@ -182,23 +197,43 @@ public class ProductService {
     }
 
     /**/
-    private void setOtherFieldsProduct(List<Product> products) {
-        setImageDemo(products);
+    private void setOtherFieldsProduct(List<Product> products, boolean limit) {
+        if (!limit) {
+            setModel(products);
+            setDescribeImage(products);
+        }
+        setProductImage(products, limit);
         setStarNumber(products);
         setReducedPrice(products);
         setTotalQuantitySold(products);
     }
 
-    private void setImageDemo(List<Product> products) {
-        ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages = productImageService.getImageDemoProduct(products);
+    private void setModel(List<Product> products) {
+        ModelService modelService = new ModelService();
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setImages((ArrayList<String>) mapProductImages.get(id));
+            product.setModels(modelService.getModels(id));
         }
     }
-
+    private void setDescribeImage(List<Product> products) {
+        ProductImageService productImageService = new ProductImageService();
+        Map<Integer, List<String>> mapProductImages = productImageService.getDescribeImage(products);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
+        }
+    }
+    private void setProductImage(List<Product> products, boolean limit) {
+        ProductImageService productImageService = new ProductImageService();
+        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, limit);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+        }
+    }
     private void setStarNumber(List<Product> products) {
         ReviewService reviewService = new ReviewService();
         Map<Integer, InfReview> mapStarNumber = reviewService.getInfReview(products);
@@ -210,7 +245,6 @@ public class ProductService {
             product.setTotalReview(infReview.getTotalReview());
         }
     }
-
     private void setReducedPrice(List<Product> products) {
         ProductDiscountService productDiscountService = new ProductDiscountService();
         Map<Integer, Double> mapProductPricePercentage = productDiscountService.getPricePercentages(products);
@@ -230,7 +264,6 @@ public class ProductService {
             product.setDiscount(discount);
         }
     }
-
     private void setTotalQuantitySold(List<Product> products) {
         BillDetailService billDetailService = new BillDetailService();
         Map<Integer, Integer> mapTotalQuantitySold = billDetailService.getTotalQuantitySold(products);
@@ -240,8 +273,6 @@ public class ProductService {
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
     }
-
-
     public static void main(String[] args) {
         String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
         ProductService productService = new ProductService();

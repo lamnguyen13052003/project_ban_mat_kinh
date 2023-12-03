@@ -117,6 +117,10 @@
 #main .content .filter-body ul li button.checked,
 #main .content .sort-body ul li button.checked{
     background-color: #2F189A;
+}
+
+#main .content .filter-body ul li button.checked a,
+#main .content .sort-body ul li button.checked a{
     color: #fff;
 }
 

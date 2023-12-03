@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Product {
     private Integer id, categoryId, quantity, starNumber, totalReview, totalQuantitySold;
-    private String name, brandName, describe, material, type;
+    private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
     private ArrayList<Model> models;
-    private ArrayList<String> images;
+    private ArrayList<String> productImages;
+    private ArrayList<String> describeImages;
 
     public Product() {
     }
@@ -52,8 +53,8 @@ public class Product {
         this.price = price;
     }
 
-    public void setImages(ArrayList<String> images) {
-        this.images = images;
+    public void setProductImages(ArrayList<String> productImages) {
+        this.productImages = productImages;
     }
 
     public double getDiscount() {
@@ -136,8 +137,8 @@ public class Product {
         this.totalReview = totalReview;
     }
 
-    public ArrayList<String> getImages() {
-        return images;
+    public ArrayList<String> getProductImages() {
+        return productImages;
     }
 
     public Integer getTotalQuantitySold() {
@@ -148,30 +149,53 @@ public class Product {
         this.totalQuantitySold = totalQuantitySold;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", quantity=" + quantity +
-                ", name='" + name + '\'' +
-                ", brandName='" + brandName + '\'' +
-                ", describe='" + describe + '\'' +
-                ", material='" + material + '\'' +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                ", discount=" + discount +
-                ", models=" + models +
-                ", images=" + images +
-                '}';
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public boolean equalsId(Integer key) {
-        return id == key;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public ArrayList<String> getDescribeImages() {
+        return describeImages;
+    }
+
+    public void setDescribeImages(ArrayList<String> describeImages) {
+        this.describeImages = describeImages;
     }
 
     public boolean available() {
         return (quantity - totalQuantitySold) > 0;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", categoryId=" + categoryId +
+                ", quantity=" + quantity +
+                ", starNumber=" + starNumber +
+                ", totalReview=" + totalReview +
+                ", totalQuantitySold=" + totalQuantitySold +
+                ", name='" + name + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", describe='" + describe + '\'' +
+                ", material='" + material + '\'' +
+                ", type='" + type + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", models=" + models +
+                ", images=" + productImages +
+                '}';
+    }
 }

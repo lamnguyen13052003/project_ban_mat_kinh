@@ -13,6 +13,7 @@ public class ProductDAO extends DAO {
     private final String WHERE_NOT_JOIN = " WHERE p.categoryId = ? ";
     private final String WHERE_JOIN_1 = " WHERE CURRENT_TIMESTAMP() BETWEEN pd.dateStart AND pd.dateEnd ";
     private final String WHERE_JOIN_2 = " WHERE c.categoryGroupId = ? ";
+    private final String WHERE_JOIN_3 = " WHERE p.id = ? ";
     private final String JOIN_1 = " JOIN product_discounts AS pd ON pd.productId = p.id ";
     private final String JOIN_2 = " JOIN categories AS c ON c.id = p.categoryId ";
     private final String LIMIT_OFFSET = " LIMIT ? OFFSET ? ";
@@ -43,18 +44,32 @@ public class ProductDAO extends DAO {
         return instance == null ? new ProductDAO() : instance;
     }
 
+    public List<Product> getProduct(String id) {
+        List<Product> result;
+        int index = 0;
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.quantity, p.describe ";
+
+        String sql = initSQLGetProduct(select), name;
+        return connector.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
     public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         List<Product> result;
-        int index =  0, page = mapInfRoot.get("page"),
+        int index = 0, page = mapInfRoot.get("page"),
                 offset = (page - 1) * 20;
         String select = " p.id, p.name, p.brandName, p.price, p.quantity ";
-        String sql = initSQL(select, mapInfRoot, mapFilter, mapSort), name;
+        String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort), name;
         sql += LIMIT_OFFSET;
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
         index = setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
-        query.bind(index++,  LIMIT);
-        query.bind(index,  offset);
+        query.bind(index++, LIMIT);
+        query.bind(index, offset);
         result = query.mapToBean(Product.class).list();
 
         query.close();
@@ -63,10 +78,10 @@ public class ProductDAO extends DAO {
         return result;
     }
 
-    public int totalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort){
+    public int totalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         int result;
         String select = " COUNT(P.id) ";
-        String sql = initSQL(select, mapInfRoot, mapFilter, mapSort), name;
+        String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort), name;
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
         setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
@@ -75,19 +90,20 @@ public class ProductDAO extends DAO {
         query.close();
         handle.close();
 
-        return result%20 == 0 ? result/20 : result/20 + 1;
+        return result % 20 == 0 ? result / 20 : result / 20 + 1;
     }
 
-    private String initSQL(String select, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
-        int idCategoryGroup = mapInfRoot.get("id-category-group");
-        int idCategory = mapInfRoot.get("id-category");
+    private String initSQLGetProducts(String select, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+        int idCategoryGroup = 0, idCategory = 0, id = 0;
+        idCategory = mapInfRoot.get("id-category");
+        idCategoryGroup = mapInfRoot.get("id-category-group");
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
         if (idCategoryGroup == 0) {
             sql.append(JOIN_1);
             sql.append(WHERE_JOIN_1);
         }
 
-        if (idCategoryGroup != 0 && idCategory == 0) {
+        if ((idCategoryGroup != 0 && idCategory == 0) || id != 0) {
             sql.append(JOIN_2);
             sql.append(WHERE_JOIN_2);
         }
@@ -101,14 +117,73 @@ public class ProductDAO extends DAO {
         return sql.toString();
     }
 
+    private String initSQLGetProduct(String select) {
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+        sql.append(JOIN_2);
+        sql.append(WHERE_JOIN_3);
+
+        return sql.toString();
+    }
+
+    private String getSQLFilter(Map<String, List<String>> mapFilter) {
+        StringBuilder sql = new StringBuilder();
+        if (mapFilter.isEmpty()) return sql.toString();
+
+        for (Map.Entry<String, List<String>> entry : mapFilter.entrySet()) {
+            String name = entry.getKey();
+            if (name.equals("filter-price")) {
+                sql.append(" AND (");
+                for (String value : entry.getValue()) {
+                    sql.append(MAP_SQL_FILTER.get(name));
+                }
+
+                /*Xóa chữ OR cuối*/
+                sql.delete(sql.length() - 3, sql.length());
+                sql.append(") ");
+            } else {
+                sql.append(MAP_SQL_FILTER.get(name));
+                sql.append("(");
+                for (String value : entry.getValue()) {
+                    sql.append("?, ");
+                }
+                sql.delete(sql.length() - 2, sql.length());
+                sql.append(")");
+            }
+        }
+
+        return sql.toString();
+    }
+
+    private String getSQLSort(Map<String, String> mapSort) {
+        StringBuilder sql = new StringBuilder();
+        if (mapSort.isEmpty()) return sql.toString();
+
+        sql.append(" ORDER BY ");
+        for (Map.Entry<String, String> entry : mapSort.entrySet()) {
+            String name = entry.getKey();
+            sql.append(MAP_SQL_SORT.get(name)).append(", ");
+        }
+
+        sql.delete(sql.length() - 2, sql.length());
+        return sql.toString();
+    }
+
     private int setValuesQuery(Query query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         String name;
         StringTokenizer tk;
         int begin, end, index = 0,
-                idCategoryGroup = mapInfRoot.get("id-category-group"),
-                idCategory = mapInfRoot.get("id-category");
+                idCategoryGroup = 0,
+                idCategory = 0,
+                id = 0;
+        if (mapInfRoot.containsKey("id")) id = mapInfRoot.get("id");
+        if (mapInfRoot.containsKey("id-category-group")) idCategory = mapInfRoot.get("id-category");
+        if (mapInfRoot.containsKey("id-category-group")) idCategoryGroup = mapInfRoot.get("id-category-group");
 
-        if (idCategoryGroup == 0) {
+        if (id != 0) {
+            System.out.println("Thong tin chi tiet san pham");
+        }
+
+        if (idCategoryGroup == 0 && id == 0) {
             System.out.println("Khuyen mai");
         }
 
@@ -145,105 +220,5 @@ public class ProductDAO extends DAO {
         }
 
         return index;
-    }
-
-    private String getSQLFilter(Map<String, List<String>> mapFilter) {
-        StringBuilder sql = new StringBuilder();
-        if (mapFilter.isEmpty()) return sql.toString();
-
-        for (Map.Entry<String, List<String>> entry : mapFilter.entrySet()) {
-            String name = entry.getKey();
-            if (name.equals("filter-price")) {
-                sql.append(" AND ");
-                for (String value : entry.getValue()) {
-                    sql.append(MAP_SQL_FILTER.get(name));
-                }
-
-                /*Xóa chữ OR cuối*/
-                sql.delete(sql.length() - 3, sql.length());
-            } else {
-                sql.append(MAP_SQL_FILTER.get(name));
-                sql.append("(");
-                for (String value : entry.getValue()) {
-                    sql.append("?, ");
-                }
-                sql.delete(sql.length() - 2, sql.length());
-                sql.append(")");
-            }
-        }
-
-        return sql.toString();
-    }
-
-    private String getSQLSort(Map<String, String> mapSort) {
-        StringBuilder sql = new StringBuilder();
-        if (mapSort.isEmpty()) return sql.toString();
-
-        sql.append(" ORDER BY ");
-        for (Map.Entry<String, String> entry : mapSort.entrySet()) {
-            String name = entry.getKey();
-            sql.append(MAP_SQL_SORT.get(name));
-        }
-
-        return sql.toString();
-    }
-
-    public List<Product> getProductByIdCategoryForPage(int idCategory, int page) {
-        int offset = (page - 1) * 20;
-        List<Product> products = connector.withHandle(handle ->
-                handle.createQuery("SELECT p.id, p.name, p.brandName, p.price, p.material, p.`type`, p.quantity " +
-                                "FROM products AS p " +
-                                "WHERE p.categoryId = ? LIMIT ? OFFSET ?")
-                        .bind(0, idCategory)
-                        .bind(1, LIMIT)
-                        .bind(2, offset)
-                        .mapToBean(Product.class)
-                        .list()
-        );
-
-        return products;
-    }
-
-    public List<Product> getProductDiscountForPage(int page) {
-        int offset = (page - 1) * 20;
-        List<Product> products = connector.withHandle(handle ->
-                handle.createQuery("SELECT p.id, p.name, p.brandName, p.price, p.material, p.`type`, p.quantity " +
-                                "FROM products AS p " +
-                                "JOIN product_discounts AS pd ON pd.productId = p.id " +
-                                "WHERE CURRENT_TIMESTAMP() BETWEEN pd.dateStart AND pd.dateEnd " +
-                                "LIMIT ? OFFSET ?")
-                        .bind(0, LIMIT)
-                        .bind(1, offset)
-                        .mapToBean(Product.class)
-                        .list()
-        );
-
-        return products;
-    }
-
-    public List<Product> getProductByIdCategoryGroupForPage(int idCategoryGroup, int page) {
-        int offset = (page - 1) * 20;
-        List<Product> products = connector.withHandle(handle ->
-                handle.createQuery("SELECT p.id, p.name, p.brandName, p.price, p.material, p.`type`, p.quantity " +
-                                "FROM products AS p " +
-                                "JOIN categories AS c ON c.id = p.categoryId " +
-                                "WHERE c.categoryGroupId = ? " +
-                                "LIMIT ? OFFSET ?")
-                        .bind(0, idCategoryGroup)
-                        .bind(1, LIMIT)
-                        .bind(2, offset)
-                        .mapToBean(Product.class)
-                        .list()
-        );
-
-        return products;
-    }
-
-    public void hasNextPage(String request, int page) {
-
-    }
-
-    public void hasPrevPage(String request, int page) {
-        StringTokenizer tokenizer = new StringTokenizer(request, "&");
     }
 }
