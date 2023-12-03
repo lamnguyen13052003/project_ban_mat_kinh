@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.bean.Product;
+import model.bean.Review;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
@@ -230,5 +231,18 @@ public class ProductDAO extends DAO {
 
     public void hasPrevPage(String request, int page) {
         StringTokenizer tokenizer = new StringTokenizer(request, "&");
+    }
+
+    /*
+    lay danh sach hinh anh noi bat tren trang chu
+    dk: sap xep theo so sao
+     */
+    public List<Product> getImageByProminentStart(){
+        List<Product> products = connector.withHandle(handle ->
+            handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p")
+                    .mapToBean(Product.class).list()
+        );
+        return products;
+
     }
 }
