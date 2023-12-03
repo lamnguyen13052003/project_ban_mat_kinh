@@ -1,7 +1,9 @@
 package controller;
 
 import model.bean.BannerImage;
+import model.bean.Product;
 import model.service.BannerService;
+import model.service.ProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -17,6 +19,11 @@ public class IndexController extends HttpServlet {
         BannerImage urlBannerPRImages = BannerService.getInstance().getBannerPRImages(); // banner pr
         request.setAttribute("bannerImages", urlBannerImages); // slide
         request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
+
+        List<Product> prominentProducts = ProductService.getInstance().getImageByProminentStart(); // prominent
+        ProductService.getInstance().setOtherFieldsProductByStar(prominentProducts);
+        request.setAttribute("prominentProducts", prominentProducts); // prominent
+
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

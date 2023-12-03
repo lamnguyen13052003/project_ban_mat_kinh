@@ -238,4 +238,10 @@ public class ProductService {
     public List<Product> getImageByProminentStart(){
         return ProductDAO.getInstance().getImageByProminentStart();
     }
+
+    public static void main(String[] args) {
+        List<Product> prominentProducts = ProductService.getInstance().getImageByProminentStart(); // prominent
+        ProductService.getInstance().setOtherFieldsProductByStar(prominentProducts);
+        System.out.println(prominentProducts);
+    }
 }

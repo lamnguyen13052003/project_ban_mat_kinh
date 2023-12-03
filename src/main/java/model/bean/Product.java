@@ -154,6 +154,9 @@ public class Product {
                 "id=" + id +
                 ", categoryId=" + categoryId +
                 ", quantity=" + quantity +
+                ", starNumber=" + starNumber +
+                ", totalReview=" + totalReview +
+                ", totalQuantitySold=" + totalQuantitySold +
                 ", name='" + name + '\'' +
                 ", brandName='" + brandName + '\'' +
                 ", describe='" + describe + '\'' +
