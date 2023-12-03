@@ -27,8 +27,8 @@ public class ProductDAO extends DAO {
 
     private void initMapSQL() {
         if (MAP_SQL_SORT.isEmpty()) {
-            MAP_SQL_SORT.put("sort-price", " price = ? ");
-            MAP_SQL_SORT.put("sort-name", " name = ? ");
+            MAP_SQL_SORT.put("sort-price", " p.price = ? ");
+            MAP_SQL_SORT.put("sort-name", " p.name = ? ");
         }
 
         if (MAP_SQL_FILTER.isEmpty()) {
@@ -45,10 +45,16 @@ public class ProductDAO extends DAO {
 
     public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         List<Product> result;
-        String sql = initSQL(mapInfRoot, mapFilter, mapSort), name;
+        int index =  0, page = mapInfRoot.get("page"),
+                offset = (page - 1) * 20;
+        String select = " p.id, p.name, p.brandName, p.price, p.quantity ";
+        String sql = initSQL(select, mapInfRoot, mapFilter, mapSort), name;
+        sql += LIMIT_OFFSET;
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
-        setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
+        index = setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
+        query.bind(index++,  LIMIT);
+        query.bind(index,  offset);
         result = query.mapToBean(Product.class).list();
 
         query.close();
@@ -57,10 +63,25 @@ public class ProductDAO extends DAO {
         return result;
     }
 
-    private String initSQL(Map<String, Integer> infRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
-        int idCategoryGroup = infRoot.get("id-category-group");
-        int idCategory = infRoot.get("id-category");
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.brandName, p.price, p.quantity FROM products AS p ");
+    public int totalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort){
+        int result;
+        String select = " COUNT(P.id) ";
+        String sql = initSQL(select, mapInfRoot, mapFilter, mapSort), name;
+        Handle handle = connector.open();
+        Query query = handle.createQuery(sql);
+        setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
+        result = query.mapTo(Integer.class).findFirst().orElse(0);
+
+        query.close();
+        handle.close();
+
+        return result%20 == 0 ? result/20 : result/20 + 1;
+    }
+
+    private String initSQL(String select, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+        int idCategoryGroup = mapInfRoot.get("id-category-group");
+        int idCategory = mapInfRoot.get("id-category");
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
         if (idCategoryGroup == 0) {
             sql.append(JOIN_1);
             sql.append(WHERE_JOIN_1);
@@ -77,18 +98,15 @@ public class ProductDAO extends DAO {
 
         sql.append(getSQLFilter(mapFilter));
         sql.append(getSQLSort(mapSort));
-        sql.append(LIMIT_OFFSET);
         return sql.toString();
     }
 
-    private void setValuesQuery(Query query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    private int setValuesQuery(Query query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         String name;
         StringTokenizer tk;
         int begin, end, index = 0,
                 idCategoryGroup = mapInfRoot.get("id-category-group"),
-                idCategory = mapInfRoot.get("id-category"),
-                page = mapInfRoot.get("page"),
-                offset = (page - 1) * 20;
+                idCategory = mapInfRoot.get("id-category");
 
         if (idCategoryGroup == 0) {
             System.out.println("Khuyen mai");
@@ -126,10 +144,7 @@ public class ProductDAO extends DAO {
             query.bind(index++, entry.getValue());
         }
 
-
-        query.bind(index++, LIMIT);
-        query.bind(index++, offset);
-        System.out.println(query.toString());
+        return index;
     }
 
     private String getSQLFilter(Map<String, List<String>> mapFilter) {

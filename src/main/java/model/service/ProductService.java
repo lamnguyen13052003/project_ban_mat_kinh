@@ -63,78 +63,99 @@ public class ProductService {
 
     /**
      * Lấy các sản phẩm theo câu query
-     *
-     * @param query câu query từ thanh URL
      */
-    public List<Product> getProducts(String query) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         ProductDAO productDAO = ProductDAO.getInstance();
-        Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
-        Map<String, List<String>> mapFilter = new LinkedHashMap<>();
-        Map<String, String> mapSort = new LinkedHashMap<>();
 
-        initMapQueryRequest(query, mapInfRoot, mapFilter, mapSort);
         List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
-        System.out.println("result: " + products.size());
         setOtherFieldsProduct(products);
 
         return products;
     }
 
-    /**
-     * Khởi tạo các map query
-     *
-     * @param query      cấu query lấy từ thanh URL
-     * @param mapInfRoot chứa các dữ liệu liên quan đến id nhóm danh mục, id danh muc va trang đang đứng
-     * @param mapFilter  chứa các giá trị bộ lọc
-     * @param mapSort    chứa các giá trị liên quan đến sắp xếp
-     */
-    private void initMapQueryRequest(String query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public Map<String, List<String>> getMapFilter(String query) {
+        Map<String, List<String>> mapFilter = new LinkedHashMap<>();
         List<String> values;
-        String oldRequest = query.substring(0, query.lastIndexOf("&"));
-        String newRequest = query.substring(query.lastIndexOf("&"), query.length());
         StringTokenizer tk;
         String name;
         String valueStr;
-        int valueInt;
-
-        if (oldRequest.contains(newRequest)) {
-            query = oldRequest.replace(newRequest, "");
-        }
 
         tk = new StringTokenizer(query, "&=");
         while (tk.hasMoreTokens()) {
             name = tk.nextToken();
             if (name.startsWith("filter")) {
                 valueStr = tk.nextToken();
-
-                if (!newRequest.contains("filter-none")) {
-                    values = mapFilter.get(name) == null ? new ArrayList<>() : mapFilter.get(name);
-                    values.add(valueStr);
-                    mapFilter.put(name, values);
-                }
+                values = mapFilter.get(name);
+                values = values == null ? new ArrayList<>() : values;
+                values.add(valueStr);
+                mapFilter.put(name, values);
             }
+        }
 
+        return mapFilter;
+    }
+
+    public Map<String, String> getMapSort(String query) {
+        Map<String, String> mapSort = new LinkedHashMap<>();
+        StringTokenizer tk;
+        String name;
+        String valueStr;
+
+        tk = new StringTokenizer(query, "&=");
+        while (tk.hasMoreTokens()) {
+            name = tk.nextToken();
             if (name.startsWith("sort")) {
                 valueStr = tk.nextToken();
                 if (!query.contains("sort-none")) mapSort.put(name, valueStr);
             }
+        }
 
-            if (!name.startsWith("filter") && !name.startsWith("sort")) {
+        return mapSort;
+    }
+
+    public Map<String, Integer> getMapInfRoot(String query) {
+        Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
+        StringTokenizer tk;
+        String name;
+        int valueInt;
+
+        tk = new StringTokenizer(query, "&=");
+        while (tk.hasMoreTokens()) {
+            name = tk.nextToken();
+
+            System.out.println(name);
+            if (name.startsWith("id") || name.startsWith("page")) {
                 valueInt = Integer.parseInt(tk.nextToken());
                 mapInfRoot.put(name, valueInt);
             }
         }
+
+        return mapInfRoot;
+    }
+
+
+    public int getTotalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        return productDAO.totalPages(mapInfRoot, mapFilter, mapSort);
     }
 
     /*
      * Xữ lý lại địa chỉ thanh URL cho hợp lý
      * */
-    public String getSQLQueryRequest(String query) {
+    public String formatQueryRequest(String query) {
         StringTokenizer tk = new StringTokenizer(query, "&=");
         String oldRequest = query.substring(0, query.lastIndexOf("&"));
         String newRequest = query.substring(query.lastIndexOf("&"), query.length());
         String name;
         StringBuilder sb = new StringBuilder();
+
+        if (oldRequest.contains("&page") && newRequest.startsWith("&page")) {
+            int indexFirstFound = oldRequest.indexOf("&page");
+            return oldRequest.substring(0, indexFirstFound)
+                    + newRequest
+                    + oldRequest.substring(oldRequest.indexOf("&", indexFirstFound + 1), oldRequest.length());
+        }
 
         if (oldRequest.contains(newRequest)) {
             return oldRequest.replace(newRequest, "");
@@ -143,6 +164,7 @@ public class ProductService {
         if (newRequest.contains("sort-none") || newRequest.contains("filter-none")) {
             while (tk.hasMoreTokens()) {
                 name = tk.nextToken();
+
                 if (name.startsWith("sort") || name.startsWith("filter")) {
                     tk.nextToken();
                 } else {
@@ -160,7 +182,7 @@ public class ProductService {
     }
 
     /**/
-    public void setOtherFieldsProduct(List<Product> products) {
+    private void setOtherFieldsProduct(List<Product> products) {
         setImageDemo(products);
         setStarNumber(products);
         setReducedPrice(products);
@@ -217,5 +239,13 @@ public class ProductService {
             id = product.getId();
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
+    }
+
+
+    public static void main(String[] args) {
+        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
+        ProductService productService = new ProductService();
+
+        System.out.println(productService.formatQueryRequest(query));
     }
 }
