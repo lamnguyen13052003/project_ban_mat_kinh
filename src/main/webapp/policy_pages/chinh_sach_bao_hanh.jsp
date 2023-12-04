@@ -67,13 +67,13 @@
                 <div class="menu-product col-lg-12 col-md-1 col-sm-1">
                     <!--Icon 3 dấu gạch mang hiển thị menu-->
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar"
-                            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                            data-bs-target="#offcanvasNavbarPolicy"
+                            aria-controls="offcanvasNavbarPolicy" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!--Các mục trong menu-->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                         aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarPolicy"
+                         aria-labelledby="offcanvasNavbarPolicyLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -265,7 +265,7 @@
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setAvatar("../<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>

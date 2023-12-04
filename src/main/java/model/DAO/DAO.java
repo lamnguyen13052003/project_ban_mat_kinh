@@ -9,4 +9,8 @@ public abstract class DAO {
     public DAO() {
         connector = JDBIConnector.get();
     }
+
+    protected Jdbi getConnector(){
+        return connector;
+    }
 }

@@ -503,7 +503,7 @@
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("images/avatar/<%=user.getAvatar()%>");
+    user.setAvatar("<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
