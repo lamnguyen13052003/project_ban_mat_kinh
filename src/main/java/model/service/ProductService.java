@@ -70,7 +70,6 @@ public class ProductService {
 
         return products.get(0);
     }
-
     /**
      * Lấy các sản phẩm theo câu query
      */
@@ -82,7 +81,6 @@ public class ProductService {
 
         return products;
     }
-
     public Map<String, List<String>> getMapFilter(String query) {
         Map<String, List<String>> mapFilter = new LinkedHashMap<>();
         List<String> values;
@@ -104,7 +102,6 @@ public class ProductService {
 
         return mapFilter;
     }
-
     public Map<String, String> getMapSort(String query) {
         Map<String, String> mapSort = new LinkedHashMap<>();
         StringTokenizer tk;
@@ -122,7 +119,6 @@ public class ProductService {
 
         return mapSort;
     }
-
     public Map<String, Integer> getMapInfRoot(String query) {
         Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
         StringTokenizer tk;
@@ -141,14 +137,11 @@ public class ProductService {
 
         return mapInfRoot;
     }
-
-
     public int getTotalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         return productDAO.totalPages(mapInfRoot, mapFilter, mapSort);
     }
-
     /*
      * Xữ lý lại địa chỉ thanh URL cho hợp lý
      * */
@@ -195,17 +188,24 @@ public class ProductService {
 
         return query;
     }
-
-    /**/
     private void setOtherFieldsProduct(List<Product> products, boolean limit) {
         if (!limit) {
             setModel(products);
             setDescribeImage(products);
+            setReview(products);
         }
         setProductImage(products, limit);
         setStarNumber(products);
         setReducedPrice(products);
         setTotalQuantitySold(products);
+    }
+    private void setReview(List<Product> products) {
+        ReviewService reviewService = ReviewService.getInstance();
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setReviews(reviewService.getReviews(id));
+        }
     }
 
     private void setModel(List<Product> products) {

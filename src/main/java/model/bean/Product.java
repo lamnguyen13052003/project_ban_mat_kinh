@@ -1,12 +1,14 @@
 package model.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Product {
     private Integer id, categoryId, quantity, starNumber, totalReview, totalQuantitySold;
     private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
     private ArrayList<Model> models;
+    private List<Review> reviews;
     private ArrayList<String> productImages;
     private ArrayList<String> describeImages;
 
@@ -167,6 +169,14 @@ public class Product {
 
     public ArrayList<String> getDescribeImages() {
         return describeImages;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public void setDescribeImages(ArrayList<String> describeImages) {

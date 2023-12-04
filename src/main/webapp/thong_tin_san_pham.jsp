@@ -4,6 +4,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.bean.Model" %>
+<%@ page import="model.bean.Review" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -312,8 +313,10 @@
                     </div>
 
                     <!--Phần lựa chọn option-->
-                    <%List<Model> models = product.getModels();
-                    if(!models.isEmpty()){%>
+                    <%
+                        List<Model> models = product.getModels();
+                        if (!models.isEmpty()) {
+                    %>
                     <div class="product-swatch mb-5">
                         <div class="product-sw-line">
                             <div class="dflex-new">
@@ -323,23 +326,25 @@
                             </div>
                             <!--Phần button select-->
                             <ul class="product-sw-select">
-                                <%List<String> productimages = product.getProductImages();
-                                    for(int i = 0; i < models.size(); i++) {
+                                <%
+                                    List<String> productimages = product.getProductImages();
+                                    for (int i = 0; i < models.size(); i++) {
                                         for (index = 0; index < productimages.size(); index++) {
-                                            if (models.get(i).getUrlIamge().equals(productimages.get(index))){%>
-                                                <li class="product-sw-select-item">
-                                                    <button type="button" data-bs-target="#carouselExampleAutoplaying"
-                                                            data-bs-slide-to="<%=index%>"
-                                                            aria-label="Slide 0">
-                                                        <img src="<%=models.get(i).getUrlIamge()%>"
-                                                             alt="<%=models.get(i).getName()%>.png">
-                                                        <span><%=models.get(i).getName()%></span>
-                                                    </button>
-                                                </li>
-                                <%              break;
-                                            }
-                                        }
-                                    }
+                                            if (models.get(i).getUrlIamge().equals(productimages.get(index))) {
+                                %>
+                                <li class="product-sw-select-item">
+                                    <button type="button" data-bs-target="#carouselExampleAutoplaying"
+                                            data-bs-slide-to="<%=index%>"
+                                            aria-label="Slide 0">
+                                        <img src="<%=models.get(i).getUrlIamge()%>"
+                                             alt="<%=models.get(i).getName()%>.png">
+                                        <span><%=models.get(i).getName()%></span>
+                                    </button>
+                                </li>
+                                <% break;
+                                }
+                                }
+                                }
                                 %>
                             </ul>
                         </div>
@@ -433,14 +438,71 @@
                         <div class="onirvapp-detail-tabs row">
                             <div class="onirvapp-tab col-10 mt-2">
                                 <span>Danh sách đánh giá</span>
-                                <span id="numberOfReview"> (0)</span>
+                                <span id="numberOfReview"> (<%=product.getTotalReview()%> đánh giá)</span>
                             </div>
                         </div>
                         <div class="onirvapp-detail-content mt-3">
                             <div id="onirvapp-review-list" class="onirvapp-comments-list active">
+                                <%if (product.getTotalReview() == 0) {%>
                                 <div class="d-none onirvapp-review-empty text-center">
                                     <span class="onirvapp-comments-empty-text">Chưa có đánh giá nào</span>
                                 </div>
+                                <%
+                                } else {
+                                    for (Review review : product.getReviews()) {
+                                %>
+                                <div class="a-review mb-3">
+                                    <div class="user">
+                                        <div class="avatar-user left">
+                                            <img src="<%=review.getUser().getAvatar()%>">
+                                        </div>
+                                        <div class="right">
+                                            <div class="name-user"><span><%=review.getUser().getFullName()%></span>
+                                            </div>
+                                            <div class="onirvapp--shape-container d-inline-block">
+                                                <ul class="list-group list-group-horizontal">
+                                                    <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        index = 0;
+                                                        for (; index < review.getNumberStar(); index++) {
+                                                    %>
+                                                    <li>
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                        }
+                                                        if (index < 5) {
+                                                            for (; index < 5; index++) {
+                                                    %>
+                                                    <li>
+                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="date-review">
+                                            <span><%=review.getDate()%></span>
+                                        </div>
+                                    </div>
+                                    <div class="content-review">
+                                        <div class="text-review">
+                                            <span><%=review.getComment()%></span>
+                                        </div>
+                                        <div class="img-review">
+                                            <%for (String url : review.getImages()) {%>
+                                            <img src="<%=url%>" alt="img-review.img" class="me-1">
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%
+                                        }
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>
@@ -457,342 +519,6 @@
             </div>
 
             <div class="row  row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1  d-flex justify-content-center">
-                <!--Ô hiển thị-->
-                <div class="pro-loop col rounded-3">
-                    <!--Phạm vi hiển thị trong ô-->
-                    <div class="pro-loop-wrap position-relative">
-                        <!--Phần hình ảnh-->
-                        <div class="pro-loop-image position-relative">
-
-                            <!--Hiển thị hêt hàng-->
-                            <div class="pro-loop-sd z-2 position-absolute">
-                                <span>Hết hàng</span>
-                            </div>
-
-                            <!--Hiển thị quà tặng-->
-                            <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                <img class="lazyload" src="images/qua_tang.jpg" alt="icon quà tặng">
-                            </div>
-
-                            <!--Hiển thị hình ảnh-->
-                            <a href="..//products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                <picture class="img-hidden-when-hover">
-                                    <img class="lazyloaded  rounded-3"
-                                         src="images/product/kinh_mat/anhsangxanh2_zinmy-blue-sun-1.60.png"
-                                         alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                </picture>
-                                <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                <picture class="img-show-when-hover">
-                                    <img class="lazyloaded  rounded-3"
-                                         src="images/product/kinh_mat/anhsangxanh1_zinmy-blue-protect-1.58.png"
-                                         alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                </picture>
-                            </a>
-                        </div>
-
-                        <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                        <div class="pro-loop-sold position-absolute">
-                            <label>
-                                <img src="images/hot.jpg" alt="pro-loop-sold">
-                            </label>
-                        </div>
-
-                        <!--Hiển thị tên thương hiệu-->
-                        <div class="pro-loop-brand text-center">
-                            <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                        </div>
-
-                        <!--Hiển thị tên sản phẩm-->
-                        <h3 class="pro-loop-name text-center">
-                            <a href="..//products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                        </h3>
-
-
-                        <!--hiển thị giá-->
-                        <div class="pro-loop-price text-center mt-0">
-                            <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                            <del>250,000 <span> ₫</span></del>
-                        </div>
-
-                        <!--Hiển thị đánh giá và số lượng bán-->
-                        <div class="sold_qty text-center">
-                            <!--Phần đánh giá sao-->
-                            <div class="prod-review-loop   d-inline-block">
-                                <!--Danh sách ngôi sao-->
-                                <div class="onirvapp--shape-container d-inline-block">
-                                    <ul class="list-group list-group-horizontal">
-                                        <!--Các li có class checked là sao hoàn thiện-->
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <!--số lượng đánh giá-->
-                                <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                            </div>
-
-                            <!--Đường cắt ngang-->
-                            <span class="h-line d-inline-block"></span>
-
-                            <!--Phần hiển thị số lượng đã bán-->
-                            <div class="sold_qty_num  d-inline-block">
-                                <p class="m-0">
-                                    Đã bán: <span>12</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <!--2 nút thao tác-->
-                        <div class="pro-loop-bottom">
-                            <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                Thêm vào giỏ hàng
-                            </button>
-                            <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--End 1 ô sản phẩm-->
-
-                <!--Ô hiển thị-->
-                <div class="pro-loop col rounded-3">
-                    <!--Phạm vi hiển thị trong ô-->
-                    <div class="pro-loop-wrap position-relative">
-                        <!--Phần hình ảnh-->
-                        <div class="pro-loop-image position-relative">
-
-                            <!--Hiển thị hêt hàng-->
-                            <div class="pro-loop-sd z-2 position-absolute">
-                                <span>Hết hàng</span>
-                            </div>
-
-                            <!--Hiển thị quà tặng-->
-                            <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                <img class="lazyload" src="images/qua_tang.jpg" alt="icon quà tặng">
-                            </div>
-
-                            <!--Hiển thị hình ảnh-->
-                            <a href="..//products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                <picture class="img-hidden-when-hover">
-                                    <img class="lazyloaded  rounded-3"
-                                         src="images/product/kinh_mat/anhsangxanh2_zinmy-blue-sun-1.60.png"
-                                         alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                </picture>
-                                <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                <picture class="img-show-when-hover">
-                                    <img class="lazyloaded  rounded-3"
-                                         src="images/product/kinh_mat/anhsangxanh1_zinmy-blue-protect-1.58.png"
-                                         alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                </picture>
-                            </a>
-                        </div>
-
-                        <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                        <div class="pro-loop-sold position-absolute">
-                            <label>
-                                <img src="images/hot.jpg" alt="pro-loop-sold">
-                            </label>
-                        </div>
-
-                        <!--Hiển thị tên thương hiệu-->
-                        <div class="pro-loop-brand text-center">
-                            <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                        </div>
-
-                        <!--Hiển thị tên sản phẩm-->
-                        <h3 class="pro-loop-name text-center">
-                            <a href="..//products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                        </h3>
-
-
-                        <!--hiển thị giá-->
-                        <div class="pro-loop-price text-center mt-0">
-                            <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                            <del>250,000 <span> ₫</span></del>
-                        </div>
-
-                        <!--Hiển thị đánh giá và số lượng bán-->
-                        <div class="sold_qty text-center">
-                            <!--Phần đánh giá sao-->
-                            <div class="prod-review-loop   d-inline-block">
-                                <!--Danh sách ngôi sao-->
-                                <div class="onirvapp--shape-container d-inline-block">
-                                    <ul class="list-group list-group-horizontal">
-                                        <!--Các li có class checked là sao hoàn thiện-->
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <!--số lượng đánh giá-->
-                                <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                            </div>
-
-                            <!--Đường cắt ngang-->
-                            <span class="h-line d-inline-block"></span>
-
-                            <!--Phần hiển thị số lượng đã bán-->
-                            <div class="sold_qty_num  d-inline-block">
-                                <p class="m-0">
-                                    Đã bán: <span>12</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <!--2 nút thao tác-->
-                        <div class="pro-loop-bottom">
-                            <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                Thêm vào giỏ hàng
-                            </button>
-                            <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--End 1 ô sản phẩm-->
-
-                <!--Ô hiển thị-->
-                <div class="pro-loop col rounded-3">
-                    <!--Phạm vi hiển thị trong ô-->
-                    <div class="pro-loop-wrap position-relative">
-                        <!--Phần hình ảnh-->
-                        <div class="pro-loop-image position-relative">
-
-                            <!--Hiển thị hêt hàng-->
-                            <div class="pro-loop-sd z-2 position-absolute">
-                                <span>Hết hàng</span>
-                            </div>
-
-                            <!--Hiển thị quà tặng-->
-                            <div class="gift product_gift_label d-none z-1" data-id="1012829436">
-                                <img class="lazyload" src="images/qua_tang.jpg" alt="icon quà tặng">
-                            </div>
-
-                            <!--Hiển thị hình ảnh-->
-                            <a href="..//products/kinh-mat-gap-tron-oem-2015" class="pro-loop-image-item d-block">
-                                <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
-                                <picture class="img-hidden-when-hover">
-                                    <img class="lazyloaded  rounded-3"
-                                         src="images/product/kinh_mat/anhsangxanh2_zinmy-blue-sun-1.60.png"
-                                         alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                </picture>
-                                <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
-                                <picture class="img-show-when-hover">
-                                    <img class="lazyloaded  rounded-3"
-                                         src="images/product/kinh_mat/anhsangxanh1_zinmy-blue-protect-1.58.png"
-                                         alt=" Kính Mát Gập Tròn OEM 2015 ">
-                                </picture>
-                            </a>
-                        </div>
-
-                        <!--hiển thị sản phẩm đang là sản phẩm hot-->
-                        <div class="pro-loop-sold position-absolute">
-                            <label>
-                                <img src="images/hot.jpg" alt="pro-loop-sold">
-                            </label>
-                        </div>
-
-                        <!--Hiển thị tên thương hiệu-->
-                        <div class="pro-loop-brand text-center">
-                            <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
-                        </div>
-
-                        <!--Hiển thị tên sản phẩm-->
-                        <h3 class="pro-loop-name text-center">
-                            <a href="..//products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm">Tên sản phẩm</a>
-                        </h3>
-
-
-                        <!--hiển thị giá-->
-                        <div class="pro-loop-price text-center mt-0">
-                            <p class="fw-bold d-inline me-3">200,000 <span> ₫</span></p>
-                            <del>250,000 <span> ₫</span></del>
-                        </div>
-
-                        <!--Hiển thị đánh giá và số lượng bán-->
-                        <div class="sold_qty text-center">
-                            <!--Phần đánh giá sao-->
-                            <div class="prod-review-loop   d-inline-block">
-                                <!--Danh sách ngôi sao-->
-                                <div class="onirvapp--shape-container d-inline-block">
-                                    <ul class="list-group list-group-horizontal">
-                                        <!--Các li có class checked là sao hoàn thiện-->
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li class="checked">
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <!--số lượng đánh giá-->
-                                <span class="onireviewapp-loopitem-title">(0 đánh giá)</span>
-                            </div>
-
-                            <!--Đường cắt ngang-->
-                            <span class="h-line d-inline-block"></span>
-
-                            <!--Phần hiển thị số lượng đã bán-->
-                            <div class="sold_qty_num  d-inline-block">
-                                <p class="m-0">
-                                    Đã bán: <span>12</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <!--2 nút thao tác-->
-                        <div class="pro-loop-bottom">
-                            <button type="button" class="f-button setAddCartLoop" data-type="add-cart" data-id="">
-                                Thêm vào giỏ hàng
-                            </button>
-                            <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">Mua
-                                ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--End 1 ô sản phẩm-->
-
                 <!--Ô hiển thị-->
                 <div class="pro-loop col rounded-3">
                     <!--Phạm vi hiển thị trong ô-->
@@ -946,17 +672,17 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="../../policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
+                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
                             online</a></li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách
                             thanh toán, giao nhận</a></li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a>
+                        <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a>
                         </li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a>
+                        <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a>
                         </li>
-                        <li><a class="hover" href="../../policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách
                             đổi trả và hoàn tiền</a></li>
-                        <li><a class="hover" href="../../policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
+                        <li><a class="hover" href="policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
 
@@ -977,28 +703,12 @@
 
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/thong_tin_san_pham.js"></script>
-
-<script>
-    var listImg = [
-        `../images/product/trong-kinh/trong-kinh-mau/Trong-Kinh-Mat-Trang-Guong-Phan-Cuc-Optimax/optimax-201_016d79edc75b4c35bfb80e48db80ba6c_master.png`,
-        `../images/product/trong-kinh/trong-kinh-mau/Trong-Kinh-Mat-Trang-Guong-Phan-Cuc-Optimax/optimax-201_016d79edc75b4c35bfb80e48db80ba6c_master.png`,
-        `../images/product/trong-kinh/trong-kinh-mau/Trong-Kinh-Mat-Trang-Guong-Phan-Cuc-Optimax/optimax-201_016d79edc75b4c35bfb80e48db80ba6c_master.png`,
-        `../images/product/trong-kinh/trong-kinh-mau/Trong-Kinh-Mat-Trang-Guong-Phan-Cuc-Optimax/optimax-201_016d79edc75b4c35bfb80e48db80ba6c_master.png`,
-        `../images/product/trong-kinh/trong-kinh-mau/Trong-Kinh-Mat-Trang-Guong-Phan-Cuc-Optimax/optimax-201_016d79edc75b4c35bfb80e48db80ba6c_master.png`,
-    ]
-
-    var review = new Review("../logo.png", 'Nguyễn Đình Lam', 5, 'Sản phẩm thật là tuyệt vời. Quá đỉnh, shop thật tuyệt vời. Tôi sẽ quay trở lại', listImg, '13/05/2003');
-
-    const listReview = [review, review, review, review, review, review];
-
-    displayListReview(listReview);
-</script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setAvatar("<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>

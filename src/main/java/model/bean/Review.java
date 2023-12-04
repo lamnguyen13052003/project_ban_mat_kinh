@@ -1,11 +1,15 @@
 package model.bean;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Review {
-    private Integer id, productId, billId, userId, numberOfStar;
+    private Integer id, productId, billId, userId, numberStar;
     private String comment;
-    private ArrayList<String> images;
+    private List<String> images;
+    private User user;
+    private LocalDateTime date;
 
     public Review() {
     }
@@ -42,12 +46,12 @@ public class Review {
         this.userId = userId;
     }
 
-    public Integer getNumberOfStar() {
-        return numberOfStar;
+    public Integer getNumberStar() {
+        return numberStar;
     }
 
-    public void setNumberOfStar(Integer numberOfStar) {
-        this.numberOfStar = numberOfStar;
+    public void setNumberStar(Integer numberStar) {
+        this.numberStar = numberStar;
     }
 
     public String getComment() {
@@ -58,17 +62,25 @@ public class Review {
         this.comment = comment;
     }
 
-    public ArrayList<String> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<String> images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 
     public void addImage(String image) {
-        images = images == null ? new ArrayList<String>() : images;
+        images = images == null ? new ArrayList<>() : images;
         images.add(image);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -78,9 +90,20 @@ public class Review {
                 ", productId=" + productId +
                 ", billId=" + billId +
                 ", userId=" + userId +
-                ", numberOfStar=" + numberOfStar +
+                ", numberOfStar=" + numberStar +
                 ", comment='" + comment + '\'' +
                 ", images=" + images +
+                ", user=" + user +
+                ", date=" + date +
                 '}';
     }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
 }

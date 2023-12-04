@@ -21,11 +21,9 @@ public class ProductDAO extends DAO {
     private final Map<String, String> MAP_SQL_FILTER = new HashMap<>();
     private final int LIMIT = 20;
     private static ProductDAO instance;
-
     public ProductDAO() {
         initMapSQL();
     }
-
     private void initMapSQL() {
         if (MAP_SQL_SORT.isEmpty()) {
             MAP_SQL_SORT.put("sort-price", " p.price = ? ");
@@ -39,11 +37,9 @@ public class ProductDAO extends DAO {
             MAP_SQL_FILTER.put("filter-price", " price BETWEEN ? AND ? OR ");
         }
     }
-
     public static ProductDAO getInstance() {
         return instance == null ? new ProductDAO() : instance;
     }
-
     public List<Product> getProduct(String id) {
         List<Product> result;
         int index = 0;
@@ -57,7 +53,20 @@ public class ProductDAO extends DAO {
                         .list()
         );
     }
+    private String initSQLGetProduct(String select) {
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+        sql.append(JOIN_2);
+        sql.append(WHERE_JOIN_3);
 
+        return sql.toString();
+    }
+    /**
+     * Lấy ra danh sách sản phẩm theo bộ lọc và quy tắc sắp xếp tương ứng
+     * @param mapInfRoot chứa thông tin về mã nhóm danh mục, mã danh mục và mã phân trang
+     * @param mapFilter chứa cặp khóa và giá cho câu điều kiên where
+     * @param mapSort chứa cặp khóa và giá trị sắp xếp
+     * @return danh sách săn phẩm từ các thông tin cho trong các map trên
+     */
     public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         List<Product> result;
         int index = 0, page = mapInfRoot.get("page"),
@@ -77,7 +86,6 @@ public class ProductDAO extends DAO {
 
         return result;
     }
-
     public int totalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         int result;
         String select = " COUNT(P.id) ";
@@ -92,7 +100,14 @@ public class ProductDAO extends DAO {
 
         return result % 20 == 0 ? result / 20 : result / 20 + 1;
     }
-
+    /**
+     * khởi tạo câu query theo bộ lọc và quy tắc sắp xếp tương ứng
+     * @param select các trường thông tin muốn lấy.
+     * @param mapInfRoot chứa thông tin về mã nhóm danh mục, mã danh mục và mã phân trang
+     * @param mapFilter chứa cặp khóa và giá cho câu điều kiên where
+     * @param mapSort chứa cặp khóa và giá trị sắp xếp
+     * @return một câu query hoàn chỉnh chứa các truờng có trong map
+     */
     private String initSQLGetProducts(String select, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         int idCategoryGroup = 0, idCategory = 0, id = 0;
         idCategory = mapInfRoot.get("id-category");
@@ -116,15 +131,6 @@ public class ProductDAO extends DAO {
         sql.append(getSQLSort(mapSort));
         return sql.toString();
     }
-
-    private String initSQLGetProduct(String select) {
-        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
-        sql.append(JOIN_2);
-        sql.append(WHERE_JOIN_3);
-
-        return sql.toString();
-    }
-
     private String getSQLFilter(Map<String, List<String>> mapFilter) {
         StringBuilder sql = new StringBuilder();
         if (mapFilter.isEmpty()) return sql.toString();
@@ -153,7 +159,6 @@ public class ProductDAO extends DAO {
 
         return sql.toString();
     }
-
     private String getSQLSort(Map<String, String> mapSort) {
         StringBuilder sql = new StringBuilder();
         if (mapSort.isEmpty()) return sql.toString();
