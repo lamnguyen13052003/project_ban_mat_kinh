@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.bean.Product;
+import model.bean.Review;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,5 +32,16 @@ public class ReviewDAO extends DAO {
         }
 
         return result;
+    }
+
+    public List<Review> getReviews(int productId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT r.id, r.userId, r.`comment`, r.numberStar, r.date " +
+                                "FROM reviews AS r " +
+                                "WHERE r.productId = ?;")
+                        .bind(0, productId)
+                        .mapToBean(Review.class)
+                        .list()
+        );
     }
 }

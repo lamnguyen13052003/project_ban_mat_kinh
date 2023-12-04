@@ -84,10 +84,20 @@ input::-webkit-inner-spin-button {
 
 #main .productWrap .productWrapDetail .productPrice {
     border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
-    font-size: 15px;
     font-weight: bold;
+}
+
+#main .productWrap .productWrapDetail .productPrice p{
+    font-size: 18pt;
+    margin-right: 10px;
     color: #f30;
 }
+
+#main .productWrap .productWrapDetail .productPrice del{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 
 #main .productWrap .productWrapDetail .product-swatch .dflex-new {
     font-size: 10px;

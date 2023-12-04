@@ -1,3 +1,4 @@
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -53,26 +54,26 @@
                 <div class="cart col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
                     <a href="../gio_hang.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
-                            <p class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</p>
-                            <p class="icon d-flex">
-                            <p class="material-symbols-outlined">
-                                shopping_cart
-                            </p>
-                            <p id="amount-product" class="amount-product">0</p>
-                            </p>
+                            <span class="d-lg-inline d-md-none  d-sm-none">Giỏ hàng</span>
+                            <span class="icon d-flex">
+                                <span class="material-symbols-outlined">
+                                    shopping_cart
+                                </span>
+                                <span id="amount-product" class="amount-product">0</span>
+                            </span>
                         </button>
                     </a>
                 </div>
                 <div class="menu-product col-lg-12 col-md-1 col-sm-1">
                     <!--Icon 3 dấu gạch mang hiển thị menu-->
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar"
-                            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                            data-bs-target="#offcanvasNavbarPolicy"
+                            aria-controls="offcanvasNavbarPolicy" aria-label="Toggle navigation">
                         <p class="navbar-toggler-icon"></p>
                     </button>
                     <!--Các mục trong menu-->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                         aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarPolicy"
+                         aria-labelledby="offcanvasNavbarPolicyLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -228,22 +229,18 @@
 
                     </div>
                     <ul>
-                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i>
-                            <p class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</p>
+                        <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span class="px-1">Khu phố 6, Phường Linh Trung, Quận Thủ Đức, TP. Hồ Chí Minh</span>
                         </li>
-                        <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><p
-                                class="px-1">0855354919</p></b> ( 9:00 - 21:00 )
+                        <li class="contact-2"><i class="fa-solid fa-phone px-1"></i><b><span
+                                class="px-1">0855354919</span></b> ( 9:00 - 21:00 )
                         </li>
-                        <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i>
-                            <p class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</p>
+                        <li class="contact-3"><i class="fa-solid fa-business-time px-1"></i><span class="px-1">9:00 - 20:00 ( Kể cả T7 và CN )</span>
                         </li>
-                        <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i>
-                            <p class="px-1">matkinhkimi@gmail.com</p>
+                        <li class="contact-4"><i class="fa-solid fa-envelope px-1"></i><span class="px-1">matkinhkimi@gmail.com</span>
                         </li>
                         <li class="contact-5"><a href="https://www.facebook.com/profile.php?id=100045667640701"><i
-                                class="fa-brands fa-facebook-f px-1"></i>
-                            <p
-                                    class="px-1 hover"><b>KIMI</b></p></a></li>
+                                class="fa-brands fa-facebook-f px-1"></i><span
+                                class="px-1 hover"><b>KIMI</b> </span></a></li>
                         <li class="contact-6"><p>Kiểm tra thị lực miễn phí &amp; cắt kính lấy liền.</p></li>
                         <li class="contact-7"><p>Hỗ trợ trả góp lãi suất 0% thẻ tín dụng.</p></li>
                     </ul>
@@ -276,10 +273,10 @@
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="../index.jsp">
                     <img src="../logo.png" alt="logo.png">
-                    <p>KIMI</p>
+                    <span>KIMI</span>
                 </a>
             </div>
-            <div class="col"><p>© 2023 - Tất cả các quyền thuộc về KIMI</p></div>
+            <div class="col"><span>© 2023 - Tất cả các quyền thuộc về KIMI</span></div>
         </div>
     </div>
 </footer>
@@ -291,7 +288,7 @@
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setAvatar("../<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>

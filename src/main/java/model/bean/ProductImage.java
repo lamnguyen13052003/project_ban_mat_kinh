@@ -1,9 +1,8 @@
 package model.bean;
 
 public class ProductImage {
-    private Integer productId;
+    private Integer id, productId;
     private String urlImage, type;
-
 
     public Integer getProductId() {
         return productId;

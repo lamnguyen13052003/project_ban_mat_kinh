@@ -10,6 +10,7 @@ public class ProductService {
     public static ProductService instance;
     private ProductDAO productDAO = ProductDAO.getInstance();
     private static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
+    private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
     static {
         MAP_PAGE.put(0, "Khuyến mãi");
@@ -61,88 +62,117 @@ public class ProductService {
         return null;
     }
 
+    public Product getProduct(String id) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProduct(id);
+        setOtherFieldsProduct(products, false);
+
+        return products.get(0);
+    }
     /**
      * Lấy các sản phẩm theo câu query
-     *
-     * @param query câu query từ thanh URL
      */
-    public List<Product> getProducts(String query) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         ProductDAO productDAO = ProductDAO.getInstance();
-        Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
-        Map<String, List<String>> mapFilter = new LinkedHashMap<>();
-        Map<String, String> mapSort = new LinkedHashMap<>();
 
-        initMapQueryRequest(query, mapInfRoot, mapFilter, mapSort);
         List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
-        System.out.println("result: " + products.size());
-        setOtherFieldsProduct(products);
+        setOtherFieldsProduct(products, true);
 
         return products;
     }
-
-    /**
-     * Khởi tạo các map query
-     *
-     * @param query      cấu query lấy từ thanh URL
-     * @param mapInfRoot chứa các dữ liệu liên quan đến id nhóm danh mục, id danh muc va trang đang đứng
-     * @param mapFilter  chứa các giá trị bộ lọc
-     * @param mapSort    chứa các giá trị liên quan đến sắp xếp
-     */
-    private void initMapQueryRequest(String query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public Map<String, List<String>> getMapFilter(String query) {
+        Map<String, List<String>> mapFilter = new LinkedHashMap<>();
         List<String> values;
-        String oldRequest = query.substring(0, query.lastIndexOf("&"));
-        String newRequest = query.substring(query.lastIndexOf("&"), query.length());
         StringTokenizer tk;
         String name;
         String valueStr;
-        int valueInt;
-
-        if (oldRequest.contains(newRequest)) {
-            query = oldRequest.replace(newRequest, "");
-        }
 
         tk = new StringTokenizer(query, "&=");
         while (tk.hasMoreTokens()) {
             name = tk.nextToken();
             if (name.startsWith("filter")) {
                 valueStr = tk.nextToken();
-
-                if (!newRequest.contains("filter-none")) {
-                    values = mapFilter.get(name) == null ? new ArrayList<>() : mapFilter.get(name);
-                    values.add(valueStr);
-                    mapFilter.put(name, values);
-                }
+                values = mapFilter.get(name);
+                values = values == null ? new ArrayList<>() : values;
+                values.add(valueStr);
+                mapFilter.put(name, values);
             }
+        }
 
+        return mapFilter;
+    }
+    public Map<String, String> getMapSort(String query) {
+        Map<String, String> mapSort = new LinkedHashMap<>();
+        StringTokenizer tk;
+        String name;
+        String valueStr;
+
+        tk = new StringTokenizer(query, "&=");
+        while (tk.hasMoreTokens()) {
+            name = tk.nextToken();
             if (name.startsWith("sort")) {
                 valueStr = tk.nextToken();
                 if (!query.contains("sort-none")) mapSort.put(name, valueStr);
             }
+        }
 
-            if (!name.startsWith("filter") && !name.startsWith("sort")) {
+        return mapSort;
+    }
+    public Map<String, Integer> getMapInfRoot(String query) {
+        Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
+        StringTokenizer tk;
+        String name;
+        int valueInt;
+
+        tk = new StringTokenizer(query, "&=");
+        while (tk.hasMoreTokens()) {
+            name = tk.nextToken();
+
+            if (name.startsWith("id") || name.startsWith("page")) {
                 valueInt = Integer.parseInt(tk.nextToken());
                 mapInfRoot.put(name, valueInt);
             }
         }
-    }
 
+        return mapInfRoot;
+    }
+    public int getTotalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        return productDAO.totalPages(mapInfRoot, mapFilter, mapSort);
+    }
     /*
      * Xữ lý lại địa chỉ thanh URL cho hợp lý
      * */
-    public String getSQLQueryRequest(String query) {
+    public String formatQueryRequest(String query) {
         StringTokenizer tk = new StringTokenizer(query, "&=");
         String oldRequest = query.substring(0, query.lastIndexOf("&"));
         String newRequest = query.substring(query.lastIndexOf("&"), query.length());
         String name;
         StringBuilder sb = new StringBuilder();
 
+
         if (oldRequest.contains(newRequest)) {
             return oldRequest.replace(newRequest, "");
+        }
+
+        for (String key : REPlAY) {
+            if (oldRequest.contains(key) && newRequest.startsWith(key)) {
+                int indexFirstFound = oldRequest.indexOf(key), indexBright = query.indexOf("&", indexFirstFound + 1), length = oldRequest.length();
+                if (key.startsWith("&page"))
+                    return oldRequest.substring(0, indexFirstFound)
+                            + newRequest
+                            + oldRequest.substring(indexBright, length);
+                return oldRequest.substring(0, indexFirstFound)
+                        + newRequest;
+            }
         }
 
         if (newRequest.contains("sort-none") || newRequest.contains("filter-none")) {
             while (tk.hasMoreTokens()) {
                 name = tk.nextToken();
+
                 if (name.startsWith("sort") || name.startsWith("filter")) {
                     tk.nextToken();
                 } else {
@@ -158,31 +188,52 @@ public class ProductService {
 
         return query;
     }
-
-    /**/
-    public void setOtherFieldsProduct(List<Product> products) {
-        setImageDemo(products);
+    private void setOtherFieldsProduct(List<Product> products, boolean limit) {
+        if (!limit) {
+            setModel(products);
+            setDescribeImage(products);
+            setReview(products);
+        }
+        setProductImage(products, limit);
         setStarNumber(products);
         setReducedPrice(products);
         setTotalQuantitySold(products);
     }
-    public void setOtherFieldsProductByStar(List<Product> products) {
-        setImageDemo(products);
-        setStarNumberDescending(products);
-        setReducedPrice(products);
-        setTotalQuantitySold(products);
-    }
-
-    private void setImageDemo(List<Product> products) {
-        ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages = productImageService.getImageDemoProduct(products);
+    private void setReview(List<Product> products) {
+        ReviewService reviewService = ReviewService.getInstance();
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setImages((ArrayList<String>) mapProductImages.get(id));
+            product.setReviews(reviewService.getReviews(id));
         }
     }
 
+    private void setModel(List<Product> products) {
+        ModelService modelService = new ModelService();
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setModels(modelService.getModels(id));
+        }
+    }
+    private void setDescribeImage(List<Product> products) {
+        ProductImageService productImageService = new ProductImageService();
+        Map<Integer, List<String>> mapProductImages = productImageService.getDescribeImage(products);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
+        }
+    }
+    private void setProductImage(List<Product> products, boolean limit) {
+        ProductImageService productImageService = new ProductImageService();
+        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, limit);
+        int id;
+        for (Product product : products) {
+            id = product.getId();
+            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+        }
+    }
     private void setStarNumber(List<Product> products) {
         ReviewService reviewService = new ReviewService();
         Map<Integer, InfReview> mapStarNumber = reviewService.getInfReview(products);
@@ -225,7 +276,6 @@ public class ProductService {
             product.setDiscount(discount);
         }
     }
-
     private void setTotalQuantitySold(List<Product> products) {
         BillDetailService billDetailService = new BillDetailService();
         Map<Integer, Integer> mapTotalQuantitySold = billDetailService.getTotalQuantitySold(products);
@@ -234,6 +284,12 @@ public class ProductService {
             id = product.getId();
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
+    }
+    public static void main(String[] args) {
+        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
+        ProductService productService = new ProductService();
+
+        System.out.println(productService.formatQueryRequest(query));
     }
     public List<Product> getInfoProminentProductByStart(){
         return ProductDAO.getInstance().getInfoProminentProductByStart();

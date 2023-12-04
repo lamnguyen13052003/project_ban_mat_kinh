@@ -7,6 +7,20 @@ public class User {
     private String avatar, fullName, sex, email, password;
     private LocalDateTime birthDay;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", role=" + role +
+                ", avatar='" + avatar + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", sex='" + sex + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", birthDay=" + birthDay +
+                '}';
+    }
+
     public User() {
     }
 
@@ -66,20 +80,6 @@ public class User {
         this.birthDay = birthDay;
     }
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", avatar='" + avatar + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", sex='" + sex + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", birthDay=" + birthDay + '\'' +
-                ", role=" + role +
-                '}';
-    }
 
     public Integer getRole() {
         return role;

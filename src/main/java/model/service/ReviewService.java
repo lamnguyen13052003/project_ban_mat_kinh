@@ -1,12 +1,22 @@
 package model.service;
 
 import model.DAO.ReviewDAO;
+import model.DAO.ReviewImageDAO;
 import model.bean.Product;
+import model.bean.Review;
+import model.bean.User;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class ReviewService {
+    private static ReviewService instance;
+    public static ReviewService getInstance() {
+        return instance == null ? new ReviewService() : instance;
+    }
+
     public Map<Integer, InfReview> getInfReview(List<Product> products){
         ReviewDAO reviewDAO = ReviewDAO.getInstance();
         Map<Integer, List<Integer>> reviews = reviewDAO.getInfReview(products);
@@ -45,9 +55,32 @@ public class ReviewService {
         residual = sum/(double)size - sum/size;
         return residual >= 0.5 ? sum/size + 1 : sum/size;
     }
+
+    public List<Review> getReviews(int productId){
+        List<Review> reviews = ReviewDAO.getInstance().getReviews(productId);
+        setUser(reviews);
+        setImage(reviews);
+        return reviews;
+    }
+
+    private void setUser(List<Review> reviews){
+        UserService userService = UserService.getInstance();
+        Map<Integer, User> mapUsers = userService.getUserForReviewProduct(reviews);
+        for(Review review : reviews){
+            review.setUser(mapUsers.get(review.getId()));
+        }
+    }
+
+    private void setImage(List<Review> reviews){
+        ReviewImageService reviewImageService = ReviewImageService.getInstance();
+        Map<Integer, List<String>> mapReviewImage = reviewImageService.mapReviewImage(reviews);
+        for(Review review : reviews){
+            review.setImages(mapReviewImage.get(review.getId()));
+        }
+    }
 }
 
-class InfReview {
+class InfReview{
     private int starNumber, totalReview;
 
     public InfReview(int starNumber, int totalReview) {
