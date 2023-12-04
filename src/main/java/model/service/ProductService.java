@@ -235,13 +235,8 @@ public class ProductService {
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
     }
-    public List<Product> getImageByProminentStart(){
-        return ProductDAO.getInstance().getImageByProminentStart();
+    public List<Product> getInfoProminentProductByStart(){
+        return ProductDAO.getInstance().getInfoProminentProductByStart();
     }
 
-    public static void main(String[] args) {
-        List<Product> prominentProducts = ProductService.getInstance().getImageByProminentStart(); // prominent
-        ProductService.getInstance().setOtherFieldsProductByStar(prominentProducts);
-        System.out.println(prominentProducts);
-    }
 }

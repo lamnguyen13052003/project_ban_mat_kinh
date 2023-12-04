@@ -20,7 +20,7 @@ public class IndexController extends HttpServlet {
         request.setAttribute("bannerImages", urlBannerImages); // slide
         request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
 
-        List<Product> prominentProducts = ProductService.getInstance().getImageByProminentStart(); // prominent
+        List<Product> prominentProducts = ProductService.getInstance().getInfoProminentProductByStart(); // prominent
         ProductService.getInstance().setOtherFieldsProductByStar(prominentProducts);
         request.setAttribute("prominentProducts", prominentProducts); // prominent
 

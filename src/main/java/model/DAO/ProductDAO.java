@@ -234,10 +234,10 @@ public class ProductDAO extends DAO {
     }
 
     /*
-    lay danh sach hinh anh noi bat tren trang chu
+    lay danh sach thong tin san pham noi bat tren trang chu
     dk: sap xep theo so sao
      */
-    public List<Product> getImageByProminentStart(){
+    public List<Product> getInfoProminentProductByStart(){
         List<Product> products = connector.withHandle(handle ->
             handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p")
                     .mapToBean(Product.class).list()
