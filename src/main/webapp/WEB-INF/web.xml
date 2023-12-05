@@ -7,4 +7,13 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+
+  <filter>
+    <filter-name>AdminAccessFilter</filter-name>
+    <filter-class>controller.AdminAccessController</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminAccessFilter</filter-name>
+    <url-pattern>/admin_pages/*</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+  </filter-mapping>
 </web-app>
