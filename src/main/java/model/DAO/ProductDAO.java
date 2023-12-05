@@ -228,9 +228,12 @@ public class ProductDAO extends DAO {
         return index;
     }
 
+    public List<Product> getProductDiscount(){
+        return null;
+    }
+
     /*
     lay danh sach thong tin san pham noi bat tren trang chu
-    dk: sap xep theo so sao
      */
     public List<Product> getInfoProminentProductByStart(){
         List<Product> products = connector.withHandle(handle ->

@@ -19,11 +19,10 @@ public class IndexController extends HttpServlet {
         BannerImage urlBannerPRImages = BannerService.getInstance().getBannerPRImages(); // banner pr
         request.setAttribute("bannerImages", urlBannerImages); // slide
         request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
-
-        List<Product> prominentProducts = ProductService.getInstance().getInfoProminentProductByStart(); // prominent
-        ProductService.getInstance().setOtherFieldsProductByStar(prominentProducts);
-        request.setAttribute("prominentProducts", prominentProducts); // prominent
-
+        //get discount products
+        request.setAttribute("list-product-discount", ProductService.getInstance().getProductDiscount());
+        //get prominent products
+        request.setAttribute("list-product-prominent", ProductService.getInstance().getInfoProminentProductByStart());
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

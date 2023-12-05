@@ -245,17 +245,6 @@ public class ProductService {
             product.setTotalReview(infReview.getTotalReview());
         }
     }
-    private void setStarNumberDescending(List<Product> products) {
-        ReviewService reviewService = new ReviewService();
-        Map<Integer, InfReview> mapStarNumber = reviewService.getInfReviewDescendingByStart(products);
-        int id;
-        for (Product product : products) {
-            id = product.getId();
-            InfReview infReview = mapStarNumber.get(id);
-            product.setStarNumber(infReview.getStarNumber());
-            product.setTotalReview(infReview.getTotalReview());
-        }
-    }
 
     private void setReducedPrice(List<Product> products) {
         ProductDiscountService productDiscountService = new ProductDiscountService();
@@ -285,14 +274,30 @@ public class ProductService {
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
     }
-    public static void main(String[] args) {
-        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
-        ProductService productService = new ProductService();
 
-        System.out.println(productService.formatQueryRequest(query));
+    public List<Product> getProductDiscount(){
+        Map<String, Integer> mapinfoRoot = new HashMap<String, Integer>();
+        mapinfoRoot.put("page", 1);
+        mapinfoRoot.put("id-category-group", 0);
+        mapinfoRoot.put("id-category", 0);
+        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>());
+    }
+    public static void main(String[] args) {
+//        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
+//        ProductService productService = new ProductService();
+//        System.out.println(productService.formatQueryRequest(query));
+
     }
     public List<Product> getInfoProminentProductByStart(){
-        return ProductDAO.getInstance().getInfoProminentProductByStart();
+        List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart();
+        setOtherFieldsProduct(list,true);
+        Collections.sort(list, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return - o1.getStarNumber().compareTo(o2.getStarNumber());
+            }
+        });
+        return list;
     }
 
 }

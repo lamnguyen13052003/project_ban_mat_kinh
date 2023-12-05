@@ -6,9 +6,7 @@ import model.bean.Product;
 import model.bean.Review;
 import model.bean.User;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ReviewService {
@@ -26,21 +24,6 @@ public class ReviewService {
             result.put(entry.getKey(), new InfReview(averageStarNumber, entry.getValue().size()));
         }
 
-        return result;
-    }
-    public Map<Integer, InfReview> getInfReviewDescendingByStart(List<Product> products){
-        ReviewDAO reviewDAO = ReviewDAO.getInstance();
-        Map<Integer, List<Integer>> reviews = reviewDAO.getInfReview(products);
-        Map<Integer, InfReview> result = new HashMap<Integer, InfReview>();
-        // Chuyển đổi HashMap thành một danh sách Map.Entry
-        List<Map.Entry<Integer, InfReview>> entryList = new ArrayList<>(result.entrySet());
-        // Sắp xếp danh sách sử dụng Comparator cho giá trị giam dan
-        Collections.sort(entryList, Collections.reverseOrder(Comparator.comparingInt(entry -> entry.getValue().getStarNumber())));
-
-        for(Entry<Integer, List<Integer>> entry : reviews.entrySet()){
-            int averageStarNumber = averageStarNumber(entry.getValue());
-            result.put(entry.getKey(), new InfReview(averageStarNumber, entry.getValue().size()));
-        }
         return result;
     }
 

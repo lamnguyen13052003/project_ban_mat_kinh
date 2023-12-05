@@ -12,6 +12,11 @@ public class ProductDiscountDAO extends DAO{
         return instance == null ? new ProductDiscountDAO() : instance;
     }
 
+    /*
+    get Map<productId, pricePercentage>
+    @param List<Product> products
+    @return Map<Integer, Double>
+     */
     public Map<Integer, Double> getPricePercentages(List<Product> products){
         Map<Integer, Double> result = new LinkedHashMap<Integer, Double>();
         double pricePercentage;
