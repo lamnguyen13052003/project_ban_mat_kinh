@@ -5,6 +5,9 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="model.bean.Cart" %>
+<%@ page import="model.bean.Model" %>
+<%@ page import="model.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
@@ -74,7 +77,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -619,17 +628,13 @@
 
                             <!--2 nút thao tác-->
                             <div class="pro-loop-bottom">
-                                <a href="shopping-cart?id-product=<%=product.getId()%>">
-                                    <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                            data-id="">
-                                        + Giỏ hàng
-                                    </button>
-                                </a>
-                                <a href="">
-                                    <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                        Mua ngay
-                                    </button>
-                                </a>
+                                <button type="button" product-id="<%=product.getId()%>"
+                                        class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                    Xem nhanh
+                                </button>
+                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
+                                    Mua ngay
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -639,6 +644,24 @@
             </section>
             <!--end hiển thị danh sách sản phẩm-->
 
+            <button type="button" hidden="" id="show-modal" data-bs-toggle="modal" data-bs-target="#modal">
+            </button>
+
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalLabel">Chọn mẫu bạn mong muốn</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body position-relative">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!--Phần chuyển trang (<- 1 2 3 ... ->)-->
             <section id="navigation_change_page">

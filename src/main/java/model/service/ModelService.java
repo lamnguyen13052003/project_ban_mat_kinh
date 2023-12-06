@@ -14,4 +14,8 @@ public class ModelService {
     public ArrayList<Model> getModels(int productId){
         return ModelDAO.getInstance().getModels(productId);
     }
+
+    public Model getModel(int modelId){
+        return ModelDAO.getInstance().getModel(modelId);
+    }
 }

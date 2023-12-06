@@ -7,18 +7,30 @@ import java.util.ArrayList;
 
 public class ModelDAO extends DAO {
     private static ModelDAO instance;
-    public static ModelDAO getInstance(){
+
+    public static ModelDAO getInstance() {
         return instance == null ? new ModelDAO() : instance;
     }
 
     public ArrayList<Model> getModels(int productId) {
         return (ArrayList<Model>) connector.withHandle(handle ->
-                handle.createQuery("SELECT m.urlIamge, m.name " +
+                handle.createQuery("SELECT m.id, m.urlIamge, m.name " +
                                 "FROM models AS m " +
                                 "WHERE m.productId = ?;")
                         .bind(0, productId)
                         .mapToBean(Model.class)
                         .list()
+        );
+    }
+
+    public Model getModel(int modelId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT m.urlIamge, m.name " +
+                                "FROM models AS m " +
+                                "WHERE m.id = ?;")
+                        .bind(0, modelId)
+                        .mapToBean(Model.class)
+                        .findFirst().orElse(null)
         );
     }
 }

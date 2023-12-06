@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Objects;
+
 public class Model {
     private Integer id, idProduct;
     private String name, urlIamge;
@@ -44,5 +46,18 @@ public class Model {
                 ", name='" + name + '\'' +
                 ", image='" + urlIamge + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Model model = (Model) o;
+        return Objects.equals(id, model.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, idProduct, name, urlIamge);
     }
 }

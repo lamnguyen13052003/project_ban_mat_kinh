@@ -17,7 +17,7 @@ public class ProductImageDAO extends DAO {
         return instance == null ? new ProductImageDAO() : instance;
     }
 
-    public List<String> getProductImagesNonLimit(int productId) {
+    public List<String> getProductImagesNonLimit(int productId, String type) {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT pimg.urlImage " +
                                 "FROM product_images AS pimg " +
@@ -25,27 +25,13 @@ public class ProductImageDAO extends DAO {
                                 "pimg.productId = ? AND " +
                                 "pimg.`type` = ?;")
                         .bind(0, productId)
-                        .bind(1, "product")
+                        .bind(1, type)
                         .mapTo(String.class)
                         .list()
         );
     }
 
-    public List<String> getProductImagesDescribe(int productId) {
-        return connector.withHandle(handle ->
-                handle.createQuery("SELECT pimg.urlImage " +
-                                "FROM product_images AS pimg " +
-                                "WHERE " +
-                                "pimg.productId = ? AND " +
-                                "pimg.`type` = ?;")
-                        .bind(0, productId)
-                        .bind(1, "describe")
-                        .mapTo(String.class)
-                        .list()
-        );
-    }
-
-    public List<String> getProductImagesLimit(int productId) {
+    public List<String> getProductImagesLimit(int productId, String type, int limit) {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT pimg.urlImage " +
                                        "FROM product_images AS pimg " +
@@ -54,8 +40,8 @@ public class ProductImageDAO extends DAO {
                                         "pimg.`type` = ? " +
                                         "LIMIT ?;")
                         .bind(0, productId)
-                        .bind(1, "product")
-                        .bind(2, 2)
+                        .bind(1, type)
+                        .bind(2, limit)
                         .mapTo(String.class)
                         .list()
         );
