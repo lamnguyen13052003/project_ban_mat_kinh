@@ -194,7 +194,7 @@
                                 <button data-bs-target="1">Lịch sử mua hàng</button>
                             </li>
                             <li>
-                                <button id="signout">Đăng xuất</button>
+                                <button id="signout"><a href="/LogOut">Đăng xuất</a></button>
                             </li>
                         </ul>
                     </div>
