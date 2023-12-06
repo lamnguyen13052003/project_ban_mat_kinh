@@ -1,5 +1,5 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -56,24 +56,26 @@
                 <div class="menu-product col-lg-12 col-md-1 col-sm-1">
                     <!--Icon 3 dấu gạch mang hiển thị menu-->
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar"
-                            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                            data-bs-target="#offcanvasNavbarAdmin"
+                            aria-controls="offcanvasNavbarAdmin" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!--Các mục trong menu-->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                         aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarAdmin"
+                         aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài khoản</a>
+                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài
+                                        khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded ">Danh sách sản
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded active">Danh sách hóa đơn</a>
+                                    <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded active">Danh sách hóa
+                                        đơn</a>
                                 </li>
                             </ul>
                         </div>
@@ -90,8 +92,13 @@
         <div class="in4-bill-top d-flex justify-content-between">
             <div class="in4-left">
                 <div class="id-bill-and-in4-ship d-flex align-items-center justify-content-around">
-                    <div class="id-bill "><p>
-                        <h3 class="fw-bold">Hóa đơn: #<span>xxx</span></h3></p></div>
+                    <div class="id-bill">
+                        <p>
+                        <h3 class="fw-bold">
+                            Hóa đơn: #<span>xxx</span>
+                        </h3>
+                        </p>
+                    </div>
                     <div class="in4-ship px-3 mx-5"><span>Đang trên đường giao</span></div>
                 </div>
                 <div class="time-order py-2"><p><span>dd/mm/yyyy, </span><span>hh:mm</span></p></div>
@@ -292,7 +299,7 @@
                     <div class="show-total-money py-3 mx-5 d-flex align-items-center justify-content-end">
                         <div class="show-total px-3 ">
                             <ul>
-                                <li><span>Tổng hóa đơn:</span><span>130,000,000 <span>₫</span></span> </li>
+                                <li><span>Tổng hóa đơn:</span><span>130,000,000 <span>₫</span></span></li>
                                 <li><span>Phí vận chuyển:</span><span>20,000 <span>₫</span></span></li>
                                 <li><span>Tổng tiền phải trả:</span><span>130,020,000 <span>₫</span></span></li>
                             </ul>
@@ -304,7 +311,7 @@
 
             <div class="p-3 col-4">
                 <!--                thông tin khách hàng-->
-                <div class="in4-customer " >
+                <div class="in4-customer ">
                     <div class="col-name-in4-customer"><h4 class="px-3 py-3 mb-2">Thông tin khách hàng</h4></div>
                     <div class=" d-flex px-3 py-1">
                         <div class="avatar-customer">
@@ -316,7 +323,8 @@
                         </div>
                     </div>
                     <div class="tong-san-pham d-flex align-items-start justify-content-start  px-3 pt-1 pb-3">
-                        <div class="icon-cart d-flex align-items-center justify-content-center"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <div class="icon-cart d-flex align-items-center justify-content-center"><i
+                                class="fa-solid fa-cart-shopping"></i></div>
                         <p>Tổng sản phẩm: <span>12</span></p>
                     </div>
                     <div class="address  px-3 pb-2 pt-2">
@@ -331,30 +339,38 @@
                         <!-- Button trigger modal -->
 
                         <!-- Modal -->
-                        <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Chỉnh sửa thông tin</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body" id="form">
                                         <div class="mb-3">
                                             <label for="input-email" class="form-label">Họ và tên</label>
-                                            <input type="text" class="form-control" id="input-email" placeholder="Nhập email">
+                                            <input type="text" class="form-control" id="input-email"
+                                                   placeholder="Nhập email">
                                         </div>
                                         <div class="mb-3">
                                             <label for="input-phone-number" class="form-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="input-phone-number" placeholder="Nhập số điện thoại">
+                                            <input type="text" class="form-control" id="input-phone-number"
+                                                   placeholder="Nhập số điện thoại">
                                         </div>
                                         <div class="mb-3">
                                             <label for="input-address" class="form-label">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="input-address" placeholder="Nhập địa chỉ">
+                                            <input type="text" class="form-control" id="input-address"
+                                                   placeholder="Nhập địa chỉ">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                        <button id="save" type="button" class="btn"  data-bs-dismiss="modal" style="background-color: var(--color-blue-origin); color: #FFFFFF">Lưu</button>
+                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Đóng
+                                        </button>
+                                        <button id="save" type="button" class="btn" data-bs-dismiss="modal"
+                                                style="background-color: var(--color-blue-origin); color: #FFFFFF">Lưu
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -364,26 +380,26 @@
                 </div>
             </div>
         </div>
-<!--        lộ trình vận chuyển-->
+        <!--        lộ trình vận chuyển-->
         <div class="trip-ship  p-4">
             <p class="p-2" style="font-size: 20px">Lộ trình vận chuyển hàng</p>
             <div class="show-list-trip p-3">
-<!--                bắt đầu một lộ trình-->
+                <!--                bắt đầu một lộ trình-->
                 <div class="trip d-flex justify-content-between">
                     <div class="in4-trip">
                         <div class="icon-trip d-flex justify-content-between">
                             <span><i class="fa-solid fa-circle"></i></span>
-                           <div class="has-one-line px-2">
-                               <p>Đã nhận đơn hàng</p>
-                               <p>Đã nhận đơn hàng mã: <span>#<span>xxxxx</span></span></p>
-                           </div>
+                            <div class="has-one-line px-2">
+                                <p>Đã nhận đơn hàng</p>
+                                <p>Đã nhận đơn hàng mã: <span>#<span>xxxxx</span></span></p>
+                            </div>
                         </div>
                     </div>
                     <div class="time-trip">
                         <span><span>dd/mm/yyy</span>, <span>hh:mm</span></span>
                     </div>
                 </div>
-<!--                kết thúc một lộ trình-->
+                <!--                kết thúc một lộ trình-->
 
                 <!--                bắt đầu một lộ trình-->
                 <div class="trip d-flex justify-content-between">
@@ -506,7 +522,7 @@
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setAvatar("../<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>

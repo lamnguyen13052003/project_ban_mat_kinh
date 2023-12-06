@@ -46,7 +46,7 @@ public class BillDetail {
 
     @Override
     public String toString() {
-        return "BillDetail{" +
+        return "BillDetailDAO{" +
                 "billId=" + billId +
                 ", productId=" + productId +
                 ", modelId=" + modelId +

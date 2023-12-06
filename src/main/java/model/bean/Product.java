@@ -1,14 +1,16 @@
 package model.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Product {
-    private Integer id, categoryId, quantity;
-    private String name, brandName, describe, material, type;
+    private Integer id, categoryId, quantity, starNumber, totalReview, totalQuantitySold;
+    private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
-
     private ArrayList<Model> models;
-    private ArrayList<String> images;
+    private List<Review> reviews;
+    private ArrayList<String> productImages;
+    private ArrayList<String> describeImages;
 
     public Product() {
     }
@@ -37,16 +39,24 @@ public class Product {
         this.models = models;
     }
 
-    public void addImage(String image) {
-        if(images == null) images =  new ArrayList<>();
-
-        images.add(image);
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void addModel(Model model) {
-        if(models == null) models =  new ArrayList<>();
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
-        models.add(model);
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setProductImages(ArrayList<String> productImages) {
+        this.productImages = productImages;
     }
 
     public double getDiscount() {
@@ -109,8 +119,72 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public Integer getStarNumber() {
+        return starNumber;
+    }
+
+    public void setStarNumber(Integer starNumber) {
+        this.starNumber = starNumber;
+    }
+
+    public boolean hasDiscount() {
+        return Double.compare(this.discount, 0) != 0;
+    }
+
+    public Integer getTotalReview() {
+        return totalReview;
+    }
+
+    public void setTotalReview(Integer totalReview) {
+        this.totalReview = totalReview;
+    }
+
+    public ArrayList<String> getProductImages() {
+        return productImages;
+    }
+
+    public Integer getTotalQuantitySold() {
+        return totalQuantitySold;
+    }
+
+    public void setTotalQuantitySold(Integer totalQuantitySold) {
+        this.totalQuantitySold = totalQuantitySold;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public ArrayList<String> getDescribeImages() {
+        return describeImages;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setDescribeImages(ArrayList<String> describeImages) {
+        this.describeImages = describeImages;
+    }
+
+    public boolean available() {
+        return (quantity - totalQuantitySold) > 0;
     }
 
     @Override
@@ -119,15 +193,19 @@ public class Product {
                 "id=" + id +
                 ", categoryId=" + categoryId +
                 ", quantity=" + quantity +
+                ", starNumber=" + starNumber +
+                ", totalReview=" + totalReview +
+                ", totalQuantitySold=" + totalQuantitySold +
                 ", name='" + name + '\'' +
                 ", brandName='" + brandName + '\'' +
                 ", describe='" + describe + '\'' +
                 ", material='" + material + '\'' +
                 ", type='" + type + '\'' +
+                ", categoryName='" + categoryName + '\'' +
                 ", price=" + price +
                 ", discount=" + discount +
                 ", models=" + models +
-                ", images=" + images +
+                ", images=" + productImages +
                 '}';
     }
 }

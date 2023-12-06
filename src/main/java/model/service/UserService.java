@@ -1,8 +1,12 @@
 package model.service;
 
 import model.DAO.UserDAO;
+import model.bean.Review;
 import model.bean.User;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.List;
+import java.util.Map;
 
 public class UserService {
     private static UserService instance;
@@ -65,5 +69,9 @@ public class UserService {
     }
     public boolean containEmail(String email){
         return userDAO.getEmail(email) != null;
+    }
+
+    public Map<Integer, User> getUserForReviewProduct(List<Review> reviews) {
+        return UserDAO.getInstance().getUserForReviewProduct(reviews);
     }
 }

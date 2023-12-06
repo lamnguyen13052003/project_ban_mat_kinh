@@ -4,10 +4,12 @@ import model.bean.*;
 import db.JDBIConnector;
 import org.jdbi.v3.core.Jdbi;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class UserDAO {
-    private Jdbi connector;
+public class UserDAO extends DAO {
     private static UserDAO INSTANCE;
 
     public static UserDAO getInstance() {
@@ -65,5 +67,25 @@ public class UserDAO {
         );
         if(users.size() == 0) return null;
         return users.get(0);
+    }
+
+    public Map<Integer, User> getUserForReviewProduct(List<Review> reviews) {
+        Map<Integer, User> mapUsers = new HashMap<>();
+        User user = null;
+        for (Review review : reviews) {
+            int userId = review.getUserId();
+            user = connector.withHandle(handle ->
+                    handle.createQuery("SELECT u.fullName, u.avatar " +
+                                    "FROM users AS u " +
+                                    "WHERE u.id = ?")
+                            .bind(0, userId)
+                            .mapToBean(User.class)
+                            .findFirst().orElse(null)
+            );
+
+            mapUsers.put(review.getId(), user);
+        }
+
+        return mapUsers;
     }
 }
