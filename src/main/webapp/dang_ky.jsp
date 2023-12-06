@@ -173,7 +173,7 @@
                         ĐĂNG KÝ
                     </h5>
                     <div class="login-form-body">
-                        <form accept-charset="UTF-8" action="/account/login" id="customer_login" method="post">
+                        <form accept-charset="UTF-8" action="/register" id="customer_login" method="post">
                             <input name="form_type" type="hidden" value="customer_login">
                             <input name="utf8" type="hidden" value="✓">
                             <div class="form-group mb-3">
@@ -224,16 +224,39 @@
                                 <label for="signup-email">Email*</label>
                                 <input type="email" id="signup-email" placeholder="Email" class="form-control"
                                        name="customer[email]" required="">
+                                <%String error_email = (String) request.getAttribute("signup_error_email");%>
+                                <%
+                                    if(error_email != null){
+                                %>
+                                <small style="color: red"><%=error_email%></small>
+                                <%
+                                    }
+                                %>
                             </div>
                             <div class="form-group  mb-3">
                                 <label for="signup-password">Mật khẩu*</label>
                                 <input type="password" id="signup-password" placeholder="Mật khẩu" class="form-control"
                                        name="customer[password]" required="">
+                                <%String error_pass = (String) request.getAttribute("signup_error_pass");%>
+                                <%
+                                if(error_pass != null){
+                                %>
+                                <small style="color: red"><%=error_pass%></small>
+                                <%
+                                   }
+                                %>
                             </div>
                             <div class="form-group ">
                                 <label for="signup-repassword">Nhập mật khẩu*</label>
                                 <input type="password" id="signup-repassword" placeholder="Nhập lại mật khẩu"
-                                       class="form-control" name="customer[password]" required="">
+                                       class="form-control" name="customer[repassword]" required="">
+                                <%
+                                    if(error_pass != null){
+                                %>
+                                <small style="color: red"><%=error_pass%></small>
+                                <%
+                                    }
+                                %>
                             </div>
 
                             <div class="form-group mt-2 d-flex-center">
@@ -265,7 +288,7 @@
         </div>
     </div>
 </main>
-<hr>
+<hr>e
 <footer id="footer" class="footer">
     <div class="container ">
         <div class="footer-top row">
