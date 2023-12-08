@@ -4,6 +4,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.bean.Product" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
 <%User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -23,6 +25,13 @@
 
     <title>Trag chủ</title>
 </head>
+<%! public String currentVietnames(double amount){
+    Locale localeVN = new Locale("vi", "VN");
+    NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+    return currencyVN.format(amount);
+}
+
+%>
 <body>
 <header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
@@ -304,8 +313,8 @@
 
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
-                                        <p class="fw-bold d-inline me-3"><%=prominentProducts.get(i).getDiscount()%> <span> ₫</span></p>
-                                        <del><%=prominentProducts.get(i).getPrice()%><span> ₫</span></del>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(i).getDiscount())%></p>
+                                        <del><%=currentVietnames(prominentProducts.get(i).getPrice())%></del>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
@@ -427,8 +436,8 @@
 
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
-                                        <p class="fw-bold d-inline me-3"><%=prominentProducts.get(i).getDiscount()%> <span> ₫</span></p>
-                                        <del><%=prominentProducts.get(i).getPrice()%><span> ₫</span></del>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(i).getDiscount())%></p>
+                                        <del><%=currentVietnames(prominentProducts.get(i).getPrice())%></del>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
@@ -549,8 +558,8 @@
 
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
-                                        <p class="fw-bold d-inline me-3"><%=prominentProducts.get(i).getDiscount()%> <span> ₫</span></p>
-                                        <del><%=prominentProducts.get(i).getPrice()%><span> ₫</span></del>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(i).getDiscount())%></p>
+                                        <del><%=currentVietnames(prominentProducts.get(i).getPrice())%></del>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
@@ -733,8 +742,8 @@
 
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
-                                        <p class="fw-bold d-inline me-3"><%=discountProducts.get(i).getDiscount()%> <span> ₫</span></p>
-                                        <del><%=discountProducts.get(i).getPrice()%><span> ₫</span></del>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(i).getDiscount())%></p>
+                                        <del><%=currentVietnames(discountProducts.get(i).getPrice())%></del>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
@@ -853,8 +862,8 @@
 
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
-                                        <p class="fw-bold d-inline me-3"><%=discountProducts.get(i).getDiscount()%> <span> ₫</span></p>
-                                        <del><%=discountProducts.get(i).getPrice()%><span> ₫</span></del>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(i).getDiscount())%></p>
+                                        <del><%=currentVietnames(discountProducts.get(i).getPrice())%></del>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
@@ -974,8 +983,8 @@
 
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
-                                        <p class="fw-bold d-inline me-3"><%=discountProducts.get(i).getDiscount()%> <span> ₫</span></p>
-                                        <del><%=discountProducts.get(i).getPrice()%><span> ₫</span></del>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(i).getDiscount())%></p>
+                                        <del><%=currentVietnames(discountProducts.get(i).getPrice())%></del>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
