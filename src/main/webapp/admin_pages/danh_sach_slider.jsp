@@ -1,6 +1,6 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.bean.ReviewImage" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -17,7 +17,6 @@
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
-
     <title>Danh sách hình ảnh trong thanh trượt</title>
 </head>
 <body>
@@ -80,7 +79,7 @@
                                         đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../banner" class="nav-link px-4 rounded active">Danh sách hình
+                                    <a href="../banner-manager" class="nav-link px-4 rounded active">Danh sách hình
                                         ảnh thanh trượt</a>
                                 </li>
                             </ul>
@@ -99,35 +98,22 @@
             <div class="col-10">
                 <div class="edit-img row row-cols-2">
                     <%
-                            List<ReviewImage>   urls = (List<ReviewImage>) request.getAttribute("slideShowImages");
-                            for(ReviewImage ri : urls){
+                        BannerImage loginBanner = (BannerImage) request.getAttribute("bannerLoginImages");
+                        BannerImage signupBanner = (BannerImage) request.getAttribute("bannerSignupImages");
+                        BannerImage prBanner = (BannerImage) request.getAttribute("bannerPRImages");
+                        BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages");
+                            List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
+                            for(BannerImage ri : urls){
                     %>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " name="slideShowImages"  src="<%=ri.getUrlImage()%>" alt="">
+                            <img class="img-fluid " src="<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
                                 <input class="form-check-input " type="checkbox" id="check-img-01">
                             </div>
                         </div>
                     </div>
-                    <% }
-                   %>
-                    <div class="p-3 d-none">
-                        <div class="item-img col">
-                            <img class="img-fluid z-0" src="images/img_slide/slideShow_2.png" alt="">
-                            <div class="check-box-img">
-                                <input class="form-check-input " type="checkbox" value="" id="check-img-02">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3 d-none">
-                        <div class="item-img col">
-                            <img class="img-fluid z-0" src="images/img_slide/slideShow_3_resize1.png" alt="">
-                            <div class="check-box-img">
-                                <input class="form-check-input " type="checkbox" value="" id="check-img-03">
-                            </div>
-                        </div>
-                    </div>
+                    <% }%>
                 </div>
             </div>
             <div class="col-2 p-4">
@@ -148,11 +134,11 @@
                 <div class="edit-img row row-cols-2">
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " src="images/img_slide/slideShow_1.png" alt="">
+                            <img class="img-fluid " src="<%=loginBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng nhập</span></div>
                             <div class="upload-img">
-                                <input class="form-check-input " type="file" value="" name="banner-login"
-                                       id="banner-login" accept="image/png, image/jpg" hidden>
+                                <input class="form-check-input" type="file" value="" name="banner-login"
+                                       id="banner-login" accept="image/*" hidden>
                                 <label for="banner-login"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
@@ -160,33 +146,33 @@
 
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0 " src="images/img_slide/slideShow_2.png" alt="">
+                            <img class="img-fluid z-0 " src="<%=signupBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng ký</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-signup"
-                                       id="banner-signup" accept="image/png, image/jpg" hidden>
+                                       id="banner-signup" accept="image/*" hidden>
                                 <label for="banner-signup"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0 " src="images/img_slide/slideShow_3_resize1.png" alt="">
+                            <img class="img-fluid z-0 " src="<%=prBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Quảng cáo</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-pr" id="banner-pr"
-                                       accept="image/png, image/jpg" hidden>
+                                       accept="image/*" hidden>
                                 <label for="banner-pr"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0" src="images/img_slide/slideShow_3_resize1.png" alt="">
+                            <img class="img-fluid z-0" src="<%=logoBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Logo</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input " type="file" value="" name="banner-logo"
-                                       id="banner-logo" accept="image/png, image/jpg" hidden>
+                                       id="banner-logo" accept="image/*" hidden>
                                 <label for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
