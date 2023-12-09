@@ -17,7 +17,7 @@ public class Cart {
         return cart;
     }
 
-    private String getKey(int productId, int modelId){
+    public static String getKey(int productId, int modelId) {
         return productId + "-" + modelId;
     }
 
@@ -53,11 +53,23 @@ public class Cart {
         return cart.get(key).reduce(quantity);
     }
 
-    public List<ProductCart> getAllProductCart(){
-        return (List<ProductCart>) cart.values();
+    public List<ProductCart> getAllProductCart() {
+        return cart.values().stream().toList();
     }
 
-    public int totalProductCart(){
+    public int totalProductCart() {
         return cart.size();
+    }
+
+    public double getTotalPriceProduct(int productId, int modelId) {
+        return this.cart.get(getKey(productId, modelId)).totalPrice();
+    }
+
+    public int getQuantity(int productId, int modelId) {
+        return this.cart.get(getKey(productId, modelId)).getQuantity();
+    }
+
+    public ProductCart getProductCart(int productId, int modelId) {
+        return this.cart.get(getKey(productId, modelId));
     }
 }

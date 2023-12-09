@@ -35,7 +35,6 @@ public class JDBIConnector {
     public static Jdbi get() {
         if (jdbi == null) makeConnect();
 
-        System.out.println("Done");
         return jdbi;
     }
 

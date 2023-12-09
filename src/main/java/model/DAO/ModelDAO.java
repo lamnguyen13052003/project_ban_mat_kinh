@@ -25,12 +25,23 @@ public class ModelDAO extends DAO {
 
     public Model getModel(int modelId) {
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT m.urlIamge, m.name " +
+                handle.createQuery("SELECT m.id, m.urlIamge, m.name " +
                                 "FROM models AS m " +
                                 "WHERE m.id = ?;")
                         .bind(0, modelId)
                         .mapToBean(Model.class)
                         .findFirst().orElse(null)
+        );
+    }
+
+    public int getQuantity(Integer billId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT m.quantity " +
+                                        "FROM models AS m " +
+                                        "WHERE m.id = ?;")
+                        .bind(0, billId)
+                        .mapTo(Integer.class)
+                        .findFirst().orElse(0)
         );
     }
 }

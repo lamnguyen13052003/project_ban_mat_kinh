@@ -76,7 +76,7 @@ public class ProductDAO extends DAO {
     public List<Product> getProductCart(int id){
         List<Product> result;
         int index = 0;
-        String select = " p.id, p.name, p.price ";
+        String select = " p.id, p.name, p.price, p.quantity ";
 
         String sql = initSQLGetProduct(select), name;
         return connector.withHandle(handle ->

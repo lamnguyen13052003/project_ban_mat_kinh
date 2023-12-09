@@ -18,4 +18,9 @@ public class ModelService {
     public Model getModel(int modelId){
         return ModelDAO.getInstance().getModel(modelId);
     }
+
+    public int getQuantity(Integer billId) {
+        ModelDAO modelDAO = ModelDAO.getInstance();
+        return modelDAO.getQuantity(billId);
+    }
 }

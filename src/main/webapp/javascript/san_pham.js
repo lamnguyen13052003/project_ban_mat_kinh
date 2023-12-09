@@ -122,7 +122,7 @@ function actionFastSee() {
                             </div>
                         </div>`
 
-                $(".modal-body").html(html);
+                $("#modal .modal-body").html(html);
                 changeAmount();
                 selectOption();
                 addProductCart();
@@ -150,6 +150,7 @@ function selectOption() {
     $(".product .product-model button").click(function () {
         $(".product .product-model button").removeClass("active");
         $(this).addClass("active")
+        $("#quantity").val(1);
     });
 }
 
@@ -161,14 +162,22 @@ function addProductCart(){
                 action: "add",
                 productId: $(this).attr("product-id"),
                 modelId: $("button.model.active").attr("model-id"),
-                quantity: $("#quantity").val()
+                quantity: $("#quantity").val(),
+                checked: "false"
             },
-            method: 'GET',
-            dataType: 'text',
+            method: 'POST',
+            dataType: 'json',
             success: function (data) {
-                $("#amount-product").text(data);
+                $("#amount-product").text(data.amountProduct);
+                $("#close-modal").click();
+                $("#quantity").val(1);
+                $("#show-complete-modal").click();
             }
         });
     });
 }
+
+$("#close-complete-modal").click(function () {
+    $("#show-modal").click();
+});
 

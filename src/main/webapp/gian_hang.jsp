@@ -644,20 +644,35 @@
             </section>
             <!--end hiển thị danh sách sản phẩm-->
 
-            <button type="button" hidden="" id="show-modal" data-bs-toggle="modal" data-bs-target="#modal">
-            </button>
-
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel"
-                 aria-hidden="true">
+            <button hidden="" type="button"  id="show-modal" data-bs-toggle="modal" data-bs-target="#modal"></button>
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modalLabel">Chọn mẫu bạn mong muốn</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body position-relative">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <button hidden="" type="button"  id="show-complete-modal" data-bs-toggle="modal" data-bs-target="#complete-modal"></button>
+            <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Thành công</h1>
+                            <button id="close-complete-modal"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body position-relative">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
+                                <p class="fs-1 ms-2">Hoàn Thành</p>
+                            </div>
                         </div>
                     </div>
                 </div>

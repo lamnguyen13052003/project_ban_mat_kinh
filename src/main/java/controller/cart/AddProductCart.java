@@ -1,13 +1,14 @@
 package controller.cart;
 
-import model.bean.Cart;
+import controller.Action;
 import model.service.CartService;
+import org.json.JSONObject;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-public class AddProductCart implements ActionCart {
+public class AddProductCart implements Action {
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         CartService cart = (CartService) session.getAttribute("cart");
@@ -23,10 +24,14 @@ public class AddProductCart implements ActionCart {
             response.sendRedirect("error.jsp");
         }
 
-        if (!cart.addProductCart(productId, modelId, quantity)) response.sendRedirect("error.jsp");
+        if (!cart.addProductCart(productId, modelId, quantity)) response.getWriter().write("error");
         else {
             session.setAttribute("cart", cart);
-            response.getWriter().write(String.valueOf(cart.getTotalProduct()));
+            JSONObject json = new JSONObject();
+            json.put("amountProduct", cart.getTotalProduct());
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json.toString());
         }
     }
 }

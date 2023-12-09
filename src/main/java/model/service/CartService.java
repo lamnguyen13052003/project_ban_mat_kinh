@@ -50,4 +50,25 @@ public class CartService {
     public int getTotalProduct() {
         return cart.totalProductCart();
     }
+
+    public double getTotalPriceProduct(int productId, int modelId) {
+        return this.cart.getTotalPriceProduct(productId, modelId);
+    }
+
+    public int getQuantity(int productId, int modelId) {
+        return this.cart.getQuantity(productId, modelId);
+    }
+
+    public double totalPrice() {
+        double totalPrice = 0;
+        for(ProductCart p : this.cart.getAllProductCart()){
+            totalPrice += p.totalPrice();
+        }
+
+        return totalPrice;
+    }
+
+    public ProductCart getProductCart(int productId, int modelId) {
+        return this.cart.getProductCart(productId, modelId);
+    }
 }

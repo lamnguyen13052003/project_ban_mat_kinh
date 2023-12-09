@@ -9,7 +9,6 @@ public class BillStatus implements Comparator<BillStatus> {
     private Integer billId, status;
     private String describe;
     private LocalDateTime date;
-    
     private Boolean canEdit;
 
     private static final Map<Integer, String> mapStatusCodes = new HashMap<>();
@@ -18,6 +17,12 @@ public class BillStatus implements Comparator<BillStatus> {
         mapStatusCodes.put(0, "Nhận đơn");
     }
 
+    public BillStatus(Integer status, String describe, LocalDateTime date, Boolean canEdit) {
+        this.status = status;
+        this.describe = describe;
+        this.date = date;
+        this.canEdit = canEdit;
+    }
 
     public Integer getBillId() {
         return billId;

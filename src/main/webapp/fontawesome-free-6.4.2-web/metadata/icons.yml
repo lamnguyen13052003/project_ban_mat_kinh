@@ -242,7 +242,7 @@ address-book:
     - 6.2.0
     - 6.3.0
     - 6.4.0
-  label: Address Book
+  label: AddressManager Book
   search:
     terms:
       - contact
@@ -273,7 +273,7 @@ address-card:
     - 6.2.0
     - 6.3.0
     - 6.4.0
-  label: Address Card
+  label: AddressManager Card
   search:
     terms:
       - about

@@ -82,7 +82,6 @@ public class ProductService {
         List<Product> products = productDAO.getProductCart(id);
         Product product = products.get(0);
         product.setModel(ModelService.getInstance().getModel(modelId));
-        setProductImage(products, "product", 1);
         setReducedPrice(products);
         return product;
     }
