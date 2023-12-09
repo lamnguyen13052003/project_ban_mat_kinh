@@ -17,13 +17,12 @@
 
     <title>Quản lý tài khoản</title>
 </head>
-<body>
 <header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="danh_sach_tai_khoan.html" class="navbar-brand me-5">
+                    <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
                         <img src="../logo.png" alt="logo.png">
                         KIMI
                     </a>
@@ -65,7 +64,7 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_tai_khoan.html" class="nav-link px-4 rounded active">Danh sách
+                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded active">Danh sách
                                         tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -417,7 +416,7 @@
         </div>
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                <a href="danh_sach_tai_khoan.html">
+                <a href="danh_sach_tai_khoan.jsp">
                     <img src="../logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>

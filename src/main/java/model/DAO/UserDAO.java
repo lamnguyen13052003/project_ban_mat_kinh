@@ -19,11 +19,11 @@ public class UserDAO extends DAO {
     public void addUser(User user) {
     }
 
-    public User getUser(String eamil, String password) {
+    public User getUser(String email, String password) {
         connector = JDBIConnector.get();
         List<User> users = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.role FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
-                        .bind(0, eamil)
+                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
+                        .bind(0, email)
                         .bind(1, password)
                         .bind(2, 1)
                         .bind(3, 0)
@@ -66,5 +66,20 @@ public class UserDAO extends DAO {
         }
 
         return mapUsers;
+    }
+
+    public boolean checkLogin(String email, String password) {
+        connector = JDBIConnector.get();
+        List<User> users = connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.role FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
+                        .bind(0, email)
+                        .bind(1, password)
+                        .bind(2, 1)
+                        .bind(3, 0)
+                        .mapToBean(User.class)
+                        .list()
+        );
+
+        return !users.isEmpty() && users.size() == 1 ? true : false;
     }
 }
