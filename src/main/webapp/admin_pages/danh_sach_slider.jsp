@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="../logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -57,30 +57,28 @@
                 <div class="menu-product col-lg-12 col-md-1 col-sm-1">
                     <!--Icon 3 dấu gạch mang hiển thị menu-->
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasNavbar"
-                            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                            data-bs-target="#offcanvasNavbarAdmin"
+                            aria-controls="offcanvasNavbarAdmin" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!--Các mục trong menu-->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                         aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarAdmin"
+                         aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
-                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách khách
-                                        hàng</a>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
+                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded active">Danh sách
+                                        tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded">Danh sách sản
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded ">Danh sách hóa
-                                        đơn</a>
+                                    <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../banner-manager" class="nav-link px-4 rounded active">Danh sách hình
-                                        ảnh thanh trượt</a>
+                                    <a href="../banner-manager" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -109,7 +107,7 @@
                         <div class="item-img col">
                             <img class="img-fluid " src="<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
-                                <input class="form-check-input " type="checkbox" id="check-img-01">
+                                <input class="form-check-input" type="checkbox" id="check-img-01">
                             </div>
                         </div>
                     </div>
@@ -134,11 +132,11 @@
                 <div class="edit-img row row-cols-2">
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " src="<%=loginBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid" id="login-img" src="<%=loginBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng nhập</span></div>
                             <div class="upload-img">
-                                <input class="form-check-input" type="file" value="" name="banner-login"
-                                       id="banner-login" accept="image/*" hidden>
+                                <input class="form-check-input imageInput" type="file" value="" name="banner-login"
+                                       id="banner-login" accept="image/*" data-preview="login-img" style="height: 100px; width: 100%">
                                 <label for="banner-login"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
@@ -146,33 +144,33 @@
 
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0 " src="<%=signupBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0 " id="signup-img" src="<%=signupBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng ký</span></div>
                             <div class="upload-img">
-                                <input class="form-check-input " type="file" value="" name="banner-signup"
-                                       id="banner-signup" accept="image/*" hidden>
+                                <input class="form-check-input imageInput " type="file" value="" name="banner-signup"
+                                       id="banner-signup" accept="image/*" data-preview="signup-img" hidden>
                                 <label for="banner-signup"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0 " src="<%=prBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0 " id="pr-img" src="<%=prBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Quảng cáo</span></div>
                             <div class="upload-img">
-                                <input class="form-check-input " type="file" value="" name="banner-pr" id="banner-pr"
-                                       accept="image/*" hidden>
+                                <input class="form-check-input imageInput " type="file" value="" name="banner-pr" id="banner-pr"
+                                       accept="image/*" data-preview="pr-img" hidden>
                                 <label for="banner-pr"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid z-0" src="<%=logoBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0" id="logo-img" src="<%=logoBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Logo</span></div>
                             <div class="upload-img">
-                                <input class="form-check-input " type="file" value="" name="banner-logo"
-                                       id="banner-logo" accept="image/*" hidden>
+                                <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
+                                       id="banner-logo" accept="image/*" data-preview="logo-img" hidden>
                                 <label for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </div>
                         </div>

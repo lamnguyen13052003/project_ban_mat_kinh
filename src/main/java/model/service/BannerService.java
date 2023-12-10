@@ -48,7 +48,13 @@ public class BannerService {
 
         return  BannnerDAO.getInstance().getLogoImages().get(0);
     }
-
+    /*
+    upload banner image
+     */
+    public void uploadBannerImage(String url, BannerImage bannerImage) {
+        System.out.println("service run");
+        BannnerDAO.getInstance().updateBannerImage(url, bannerImage);
+    }
     public static void main(String[] args) {
 
 

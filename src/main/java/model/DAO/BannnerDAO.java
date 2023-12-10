@@ -6,6 +6,7 @@ import model.bean.Review;
 import model.bean.ReviewImage;
 import org.jdbi.v3.core.Jdbi;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ public class BannnerDAO extends  DAO{
         String slide = "slide%";
         // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE bi.description LIKE ?")
+                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
                 .mapToBean(BannerImage.class).list());
     }
@@ -30,7 +31,7 @@ public class BannnerDAO extends  DAO{
         String slide = "%banner%logo%";
         // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE bi.description LIKE ?")
+                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
                         .mapToBean(BannerImage.class).list());
     }
@@ -38,7 +39,7 @@ public class BannnerDAO extends  DAO{
         String slide = "%banner%login%";
         // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE bi.description LIKE ?")
+                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
                         .mapToBean(BannerImage.class).list());
     }
@@ -46,7 +47,7 @@ public class BannnerDAO extends  DAO{
         String slide = "%banner%signup%";
         // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE bi.description LIKE ?")
+                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
                         .mapToBean(BannerImage.class).list());
     }
@@ -54,8 +55,20 @@ public class BannnerDAO extends  DAO{
         String slide = "%banner%pr%";
         // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage FROM banner_images bi WHERE bi.description LIKE ?")
+                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
                         .mapToBean(BannerImage.class).list());
+    }
+
+    /**
+     * update image banner
+     */
+    public boolean updateBannerImage(String url, BannerImage bannerId) {
+        System.out.println("dao run");
+      return  connector.withHandle(handle ->
+                handle.createQuery("update banner_images set urlImage = :urlImage where id = :id")
+                        .bind("urlImage",url)
+                        .bind("id", bannerId.getId())
+                        .mapToBean(BannerImage.class).findFirst().isEmpty());
     }
 }

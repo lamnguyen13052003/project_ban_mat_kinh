@@ -10,9 +10,16 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "BannerImageController", value = "/banner-manager")
+//@MultipartConfig
 public class BannerImageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Xác định phần tử input có type="file" bằng cách sử dụng tên của nó
+//        Part filePart = request.getPart("banner-login");
+//        // Lấy thông tin về tệp tin
+//        String fileName = filePart.getSubmittedFileName();
+//        uploadImage(fileName);
+
         List<BannerImage> urlBannerImages = BannerService.getInstance().getSlideShowImages(); // slide
         BannerImage urlBannerPRImages = BannerService.getInstance().getBannerPRImages(); // banner pr
         BannerImage urlBannerLoginImages = BannerService.getInstance().getBannerLoginImages(); // banner login
@@ -24,7 +31,14 @@ public class BannerImageController extends HttpServlet {
         request.setAttribute("bannerLoginImages", urlBannerLoginImages); // banner login
         request.setAttribute("bannerSignupImages", urlBannerSignupImages); // banner Signup
         request.setAttribute("bannerLogoImages", urlBannerLogoImages); // banner logo
+
+//        response.setContentType("text/plain;charset=UTF-8");
         request.getRequestDispatcher("admin_pages/danh_sach_slider.jsp").forward(request, response);
+    }
+
+    private void uploadImage(String uploadPRBanner) {
+        System.out.println(uploadPRBanner);
+//        BannerService.getInstance().uploadBannerImage(uploadPRBanner, bannerImage);
     }
 
     @Override
