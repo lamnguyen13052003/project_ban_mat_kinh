@@ -13,6 +13,7 @@ public class ProductService {
     private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
     static {
+        MAP_PAGE.put(-1, "Tất cả");
         MAP_PAGE.put(0, "Khuyến mãi");
         MAP_PAGE.put(1, "Kính mát nam");
         MAP_PAGE.put(2, "Kính mát nữ");
@@ -48,8 +49,6 @@ public class ProductService {
      * @param idCategory      id danh mục
      */
     public String getTitle(int idCategoryGroup, int idCategory) {
-        ProductService productService = ProductService.getInstance();
-
         if (idCategoryGroup == 0 && idCategory == 0) {
             return MAP_PAGE.get(idCategory);
         }
@@ -89,10 +88,10 @@ public class ProductService {
     /**
      * Lấy các sản phẩm theo câu query
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
+        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort, limit);
         setOtherFieldsProduct(products, 2);
 
         return products;
@@ -167,12 +166,9 @@ public class ProductService {
      * Xữ lý lại địa chỉ thanh URL cho hợp lý
      * */
     public String formatQueryRequest(String query) {
-        StringTokenizer tk = new StringTokenizer(query, "&=");
         String oldRequest = query.substring(0, query.lastIndexOf("&"));
         String newRequest = query.substring(query.lastIndexOf("&"), query.length());
         String name;
-        StringBuilder sb = new StringBuilder();
-
 
         if (oldRequest.contains(newRequest)) {
             return oldRequest.replace(newRequest, "");
@@ -190,6 +186,8 @@ public class ProductService {
             }
         }
 
+        StringTokenizer tk = new StringTokenizer(query, "&=");
+        StringBuilder sb = new StringBuilder();
         if (newRequest.contains("sort-none") || newRequest.contains("filter-none")) {
             while (tk.hasMoreTokens()) {
                 name = tk.nextToken();
@@ -292,11 +290,8 @@ public class ProductService {
         }
     }
 
-    public static void main(String[] args) {
-        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
-        ProductService productService = new ProductService();
-
-        System.out.println(productService.formatQueryRequest(query));
+    public List<String> getBrandNames() {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        return productDAO.getBrandNames();
     }
-
 }

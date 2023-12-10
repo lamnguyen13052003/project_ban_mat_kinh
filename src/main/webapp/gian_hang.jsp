@@ -804,7 +804,8 @@
 
     $(".filter-list").find("button").removeClass("checked");
     $(".sort-list").find("button").removeClass("checked");
-    <%Map<String, List<String>> mapFilter = (Map<String, List<String>>)request.getAttribute("mapFilter");
+    <%Map<String, List<String>> mapInfRoot = (Map<String, List<String>>)request.getAttribute("mapInfRoot");
+    Map<String, List<String>> mapFilter = (Map<String, List<String>>)request.getAttribute("mapFilter");
     Map<String, String> mapSort = (Map<String, String>)request.getAttribute("mapSort");
     for(List<String> values : mapFilter.values()){
         for(String id : values){%>
@@ -813,6 +814,7 @@
     for(Map.Entry<String, String> id : mapSort.entrySet()){%>
     $("#<%=id.getKey()%>-<%=id.getValue()%>").addClass("checked");
     <%}%>
+    $("a[id-category-group=<%=mapInfRoot.get("id-category-group")%>]").addClass("active")
 </script>
 </body>
 </html>

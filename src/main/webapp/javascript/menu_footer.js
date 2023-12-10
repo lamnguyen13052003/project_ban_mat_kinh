@@ -93,7 +93,7 @@ function linkMenuDisplayProduct() {
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product-booth?id-category-group=1&id-category=0&page=1"
+                                    <a id-category-group="1" href="product-booth?id-category-group=1&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         <span>Kính mát</span>
@@ -114,7 +114,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product-booth?id-category-group=2&id-category=0&page=1"
+                                    <a id-category-group="2" href="product-booth?id-category-group=2&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded" type="button">
                                         Mắt kính trẻ em
                                     </a>
@@ -128,7 +128,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product-booth?id-category-group=3&id-category=0&page=1"
+                                    <a id-category-group="3" href="product-booth?id-category-group=3&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Gọng kính
@@ -145,7 +145,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product-booth?id-category-group=4&id-category=0&page=1"
+                                    <a id-category-group="4" href="product-booth?id-category-group=4&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Tròng kính
@@ -164,7 +164,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="product-booth?id-category-group=0&id-category=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a id-category-group="0" href="product-booth?id-category-group=0&id-category=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -177,7 +177,7 @@ function linkMenuDisplayProduct() {
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product-booth?id-category-group=1&id-category=0&page=1"
+                                    <a id-category-group="1" href="../product-booth?id-category-group=1&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         <span>Kính mát</span>
@@ -198,7 +198,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product-booth?id-category-group=2&id-category=0&page=1"
+                                    <a id-category-group="2" href="../product-booth?id-category-group=2&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded" type="button">
                                         Mắt kính trẻ em
                                     </a>
@@ -212,7 +212,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product-booth?id-category-group=3&id-category=0&page=1"
+                                    <a id-category-group="3" href="../product-booth?id-category-group=3&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Gọng kính
@@ -229,7 +229,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product-booth?id-category-group=4&id-category=0&page=1"
+                                    <a id-category-group="4" href="../product-booth?id-category-group=4&id-category=0&page=1"
                                        class="nav-link dropdown-toggle px-4 rounded"
                                        type="button">
                                         Tròng kính
@@ -248,7 +248,7 @@ function linkMenuDisplayProduct() {
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../product-booth?id-category-group=0&id-category=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a id-category-group="0" href="../product-booth?id-category-group=0&id-category=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="../lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
