@@ -41,17 +41,30 @@ public class ProductDAO extends DAO {
     public static ProductDAO getInstance() {
         return instance == null ? new ProductDAO() : instance;
     }
-    public List<Product> getProduct(String id) {
+    public List<Product> getProduct(int id) {
         List<Product> result;
         int index = 0;
         String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.quantity, p.describe ";
 
-        String sql = initSQLGetProduct(select), name;
+        String sql = initSQLGetProduct(select);
         return connector.withHandle(handle ->
                 handle.createQuery(sql)
                         .bind(0, id)
                         .mapToBean(Product.class)
                         .list()
+        );
+    }
+    public String getNameProduct(int id) {
+        List<Product> result;
+        int index = 0;
+        String select = " p.name ";
+
+        String sql = initSQLGetProduct(select);
+        return connector.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, id)
+                        .mapTo(String.class)
+                        .findFirst().orElse("null")
         );
     }
     private String initSQLGetProduct(String select) {
@@ -60,6 +73,19 @@ public class ProductDAO extends DAO {
         sql.append(WHERE_JOIN_3);
 
         return sql.toString();
+    }
+    public List<Product> getProductCart(int id){
+        List<Product> result;
+        int index = 0;
+        String select = " p.id, p.name, p.price, p.quantity ";
+
+        String sql = initSQLGetProduct(select), name;
+        return connector.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .list()
+        );
     }
     /**
      * Lấy ra danh sách sản phẩm theo bộ lọc và quy tắc sắp xếp tương ứng
@@ -173,7 +199,6 @@ public class ProductDAO extends DAO {
         sql.delete(sql.length() - 2, sql.length());
         return sql.toString();
     }
-
     private int setValuesQuery(Query query, Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         String name;
         StringTokenizer tk;

@@ -9,8 +9,6 @@ import java.util.Map;
 
 public class UserService {
     private static UserService instance;
-    private User user;
-
     private UserDAO userDAO;
 
     private final String INSERT_USER = "INSERT INTO Users(avatar, fullName, sex, birthday, email, password, role, verify, lock) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -25,13 +23,8 @@ public class UserService {
         userDAO = UserDAO.getInstance();
     }
 
-    public boolean canLogin(String eamil, String password) {
-        user = userDAO.getUser(eamil, password);
-        return  user != null;
-    }
-
-    public User getUser() {
-        return user;
+    public User login(String email, String password) {
+        return userDAO.getUser(email, password);
     }
 
     public void signup(User user) {

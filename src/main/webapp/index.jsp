@@ -6,6 +6,7 @@
 <%@ page import="model.bean.Product" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
+<%@ page import="model.service.CartService" %>
 <%User user = (User) session.getAttribute("user");%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -75,7 +76,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                 <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -546,7 +553,7 @@
 
                                     <!--Hiển thị tên thương hiệu-->
                                     <div class="pro-loop-brand text-center">
-                                        <span class="pro-loop-vendor d-block"><%=prominentProducts.get(i).getBrandName()%></span>
+                                        <span class="pro-loop-vendor d-block">Tên thương hiệu</span>
                                     </div>
 
                                     <!--Hiển thị tên sản phẩm-->

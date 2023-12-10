@@ -175,7 +175,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
+                            <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình B</p>
@@ -206,7 +206,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
+                            <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình C</p>
@@ -237,7 +237,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
+                            <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình D</p>
@@ -268,7 +268,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
+                            <img src="../logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình E</p>
@@ -420,8 +420,8 @@
         </div>
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                <a href="danh_sach_tai_khoan.html">
-                    <img src="logo.png" alt="logo.png">
+                <a href="danh_sach_tai_khoan.jsp">
+                    <img src="../logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
