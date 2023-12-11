@@ -1,5 +1,7 @@
 /**main**/
 $(document).ready(function () {
+    showBtnMoveSlide();
+
     var currentSlide = 0;
     var totalSlides = $('#silder-section .slide').length;
 
@@ -49,10 +51,15 @@ $(document).ready(function () {
             interval = setInterval(autoSlide, 5000);
         }
     );
-
     showSlide(currentSlide);
 });
 
+function showBtnMoveSlide() {
+    var numberOfSlides = $('.container-slider .carousel .carousel-inner .slide').length;
+    if (numberOfSlides > 1) return;
+    $('.container-slider .carousel .carousel-inner .pre-next-slide').addClass('d-none');
+    $('.container-slider .carousel .carousel-inner .slick-dots ').addClass('d-none');
+}
 
 
 

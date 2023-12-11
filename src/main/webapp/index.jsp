@@ -203,12 +203,14 @@
                             </div>
                             <%}%>
                         </div>
-                        <button type="button" class="slick-prev slick-arrow z-3 left">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                        <button type="button" class="slick-next slick-arrow z-3 right">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                        <div class="pre-next-slide">
+                            <button type="button" class="slick-prev slick-arrow z-3 left">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                            <button type="button" class="slick-next slick-arrow z-3 right">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
                         <ul class="slick-dots  z-3" style="display: flex;" role="tablist">
                             <li class=" px-1" role="presentation">
                                 <button class="slick-active slick" type="button" role="tab" id="slick-slide-control0"
