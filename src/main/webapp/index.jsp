@@ -663,7 +663,7 @@
                 <h2>TRÒNG KÍNH CRIZAL ROCK GIẢM 20%</h2>
                 <p>BỀN BỈ GẤP 3 LẦN THẾ HỆ TRƯỚC
                 </p>
-                <a href="#">Mua ngay</a>
+                <a href="DisplayProduct?idCategoryGroup=3&page=1">Mua ngay</a>
             </div>
             <div class="home-banner-wrap-right col">
                 <%
