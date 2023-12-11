@@ -53,9 +53,6 @@ $(document).ready(function () {
     showSlide(currentSlide);
 });
 
-const  loadSlide = false;
-
-
 
 
 

@@ -211,23 +211,27 @@
                         </button>
                         <ul class="slick-dots  z-3" style="display: flex;" role="tablist">
                             <li class=" px-1" role="presentation">
-                                <button class="slick-active slick" type="button" role="tab" id="slick-slide-control00"
-                                        aria-controls="slick-slide00"
-                                        aria-label="1 of 3" tabindex="-1">
+                                <button class="slick-active slick" type="button" role="tab" id="slick-slide-control0"
+                                        aria-controls="slick-slide0"
+                                        aria-label="1 of <%=slides.size()%>"
+                                        tabindex="-1">
                                 </button>
                             </li>
+                            <%
+                                if(slides.size() > 1){
+                                    for (int i = 1; i < slides.size(); i++) {
+                            %>
                             <li class="px-1" role="presentation">
-                                <button class=" slick" id="slick-slide-control01" type="button" role="tab"
-                                        aria-controls="slick-slide01"
-                                        aria-label="2 of 3" tabindex="-1">
+                                <button class=" slick" id="slick-slide-control<%=i%>" type="button" role="tab"
+                                        aria-controls="slick-slide<%=i%>"
+                                        aria-label="<%=i+1%> of <%=slides.size()%>"
+                                        tabindex="-1">
                                 </button>
                             </li>
-                            <li role="presentation" class="px-1">
-                                <button class="slick" id="slick-slide-control02" type="button" role="tab"
-                                        aria-controls="slick-slide02"
-                                        aria-label="3 of 3" tabindex="0" aria-selected="true">
-                                </button>
-                            </li>
+                            <%
+                                    }
+                                }
+                            %>
                         </ul>
                     </div>
                 </div>
@@ -332,21 +336,23 @@
                                             <div class="onirvapp--shape-container d-inline-block">
                                                 <ul class="list-group list-group-horizontal">
                                                     <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        for (int j = 1; j <= 5; j++) {
+                                                            if(prominentProducts.get(i).getStarNumber() >= j){
+                                                    %>
+                                                    <li class="checked">
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                            }else{
+                                                    %>
                                                     <li class="checked">
                                                         <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                                     </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
                                             </div>
 
@@ -455,21 +461,23 @@
                                             <div class="onirvapp--shape-container d-inline-block">
                                                 <ul class="list-group list-group-horizontal">
                                                     <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        for (int j = 1; j <= 5; j++) {
+                                                            if(prominentProducts.get(i).getStarNumber() >= j){
+                                                    %>
+                                                    <li class="checked">
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                    }else{
+                                                    %>
                                                     <li class="checked">
                                                         <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                                     </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
                                             </div>
 
@@ -577,21 +585,23 @@
                                             <div class="onirvapp--shape-container d-inline-block">
                                                 <ul class="list-group list-group-horizontal">
                                                     <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        for (int j = 1; j <= 5; j++) {
+                                                            if(prominentProducts.get(i).getStarNumber() >= j){
+                                                    %>
+                                                    <li class="checked">
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                    }else{
+                                                    %>
                                                     <li class="checked">
                                                         <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                                     </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
                                             </div>
 
@@ -761,21 +771,23 @@
                                             <div class="onirvapp--shape-container d-inline-block">
                                                 <ul class="list-group list-group-horizontal">
                                                     <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        for (int j = 1; j <= 5; j++) {
+                                                            if(discountProducts.get(i).getStarNumber() >= j){
+                                                    %>
+                                                    <li class="checked">
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                    }else{
+                                                    %>
                                                     <li class="checked">
                                                         <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                                     </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
                                             </div>
 
@@ -881,21 +893,23 @@
                                             <div class="onirvapp--shape-container d-inline-block">
                                                 <ul class="list-group list-group-horizontal">
                                                     <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        for (int j = 1; j <= 5; j++) {
+                                                            if(discountProducts.get(i).getStarNumber() >= j){
+                                                    %>
+                                                    <li class="checked">
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                    }else{
+                                                    %>
                                                     <li class="checked">
                                                         <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                                     </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
                                             </div>
 
@@ -1002,21 +1016,23 @@
                                             <div class="onirvapp--shape-container d-inline-block">
                                                 <ul class="list-group list-group-horizontal">
                                                     <!--Các li có class checked là sao hoàn thiện-->
+                                                    <%
+                                                        for (int j = 1; j <= 5; j++) {
+                                                            if(discountProducts.get(i).getStarNumber() >= j){
+                                                    %>
+                                                    <li class="checked">
+                                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                                    </li>
+                                                    <%
+                                                    }else{
+                                                    %>
                                                     <li class="checked">
                                                         <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                                     </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li class="checked">
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                                    </li>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </ul>
                                             </div>
 
@@ -1145,6 +1161,9 @@
     <%} else{%>
         hidenMenuAccount();
     <%}%>
+</script>
+<script type="text/javascript">
+
 </script>
 </body>
 </html>
