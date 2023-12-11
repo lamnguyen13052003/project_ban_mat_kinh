@@ -2,7 +2,6 @@ package model.service;
 
 import model.DAO.ProductDAO;
 import model.bean.Product;
-
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -299,15 +298,10 @@ public class ProductService {
         mapinfoRoot.put("id-category", 0);
         return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>());
     }
-    public static void main(String[] args) {
-        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
-        ProductService productService = new ProductService();
 
-        System.out.println(productService.formatQueryRequest(query));
-    }
     public List<Product> getInfoProminentProductByStart(){
         List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart();
-        setOtherFieldsProduct(list,true);
+        setOtherFieldsProduct(list,2);
         Collections.sort(list, new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {

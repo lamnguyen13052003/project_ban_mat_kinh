@@ -8,17 +8,18 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
-  <servlet>
-    <servlet-name>index</servlet-name>
-    <servlet-class>controller.IndexController</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>index</servlet-name>
-    <url-pattern>/index</url-pattern>
-  </servlet-mapping>
-
-
+  <filter>
+    <filter-name>index</filter-name>
+    <filter-class>filter.IndexFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>index</filter-name>
+    <url-pattern>/</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>index</filter-name>
+    <url-pattern>/index.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+  </filter-mapping>
 
   <filter>
     <filter-name>AdminAccessFilter</filter-name>
