@@ -529,7 +529,7 @@
 
                                 <!--Hiển thị hình ảnh-->
                                 <div class="pro-loop-image-item">
-                                    <a href="more-info-product-booth?id=<%=product.getId()%>">
+                                    <a href="more-info-product?id=<%=product.getId()%>">
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
                                             <img class="lazyloaded  rounded-3"
@@ -560,7 +560,7 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="more-info-product-booth?id=<%=product.getId()%>"
+                                <a href="more-info-product?id=<%=product.getId()%>"
                                    title="<%=product.getName()%>"><%=product.getName()%>
                                 </a>
                             </h3>
@@ -644,13 +644,14 @@
             </section>
             <!--end hiển thị danh sách sản phẩm-->
 
-            <button hidden="" type="button"  id="show-modal" data-bs-toggle="modal" data-bs-target="#modal"></button>
+            <button hidden="" type="button" id="show-modal" data-bs-toggle="modal" data-bs-target="#modal"></button>
             <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modalLabel">Chọn mẫu bạn mong muốn</h1>
-                            <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body position-relative">
@@ -659,13 +660,15 @@
                 </div>
             </div>
 
-            <button hidden="" type="button"  id="show-complete-modal" data-bs-toggle="modal" data-bs-target="#complete-modal"></button>
+            <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
+                    data-bs-target="#complete-modal"></button>
             <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5">Thành công</h1>
-                            <button id="close-complete-modal"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body position-relative">
@@ -791,30 +794,33 @@
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/san_pham.js"></script>
 <script type="text/javascript">
-    <%User user = (User) session.getAttribute("user");
-    if(user != null){%>
-    const user = new User();
-    user.setId(<%=user.getId()%>);
-    user.setAvatar("<%=user.getAvatar()%>");
-    user.setFullName("<%=user.getFullName()%>");
-    displayMenuAccount(user);
-    <%} else{%>
-    hidenMenuAccount();
-    <%}%>
+    $(document).ready(function () {
+        <%User user = (User) session.getAttribute("user");
+   if(user != null){%>
+        const user = new User();
+        user.setId(<%=user.getId()%>);
+        user.setAvatar("<%=user.getAvatar()%>");
+        user.setFullName("<%=user.getFullName()%>");
+        displayMenuAccount(user);
+        <%} else{%>
+        hidenMenuAccount();
+        <%}%>
 
-    $(".filter-list").find("button").removeClass("checked");
-    $(".sort-list").find("button").removeClass("checked");
-    <%Map<String, List<String>> mapInfRoot = (Map<String, List<String>>)request.getAttribute("mapInfRoot");
-    Map<String, List<String>> mapFilter = (Map<String, List<String>>)request.getAttribute("mapFilter");
-    Map<String, String> mapSort = (Map<String, String>)request.getAttribute("mapSort");
-    for(List<String> values : mapFilter.values()){
-        for(String id : values){%>
-    $("#<%=id%>").addClass("checked");
-    <%}};
-    for(Map.Entry<String, String> id : mapSort.entrySet()){%>
-    $("#<%=id.getKey()%>-<%=id.getValue()%>").addClass("checked");
-    <%}%>
-    $("a[id-category-group=<%=mapInfRoot.get("id-category-group")%>]").addClass("active")
+        $(".filter-list").find("button").removeClass("checked");
+        $(".sort-list").find("button").removeClass("checked");
+        <%Map<String, List<String>> mapInfRoot = (Map<String, List<String>>)request.getAttribute("mapInfRoot");
+        Map<String, List<String>> mapFilter = (Map<String, List<String>>)request.getAttribute("mapFilter");
+        Map<String, String> mapSort = (Map<String, String>)request.getAttribute("mapSort");
+        for(List<String> values : mapFilter.values()){
+            for(String id : values){%>
+        $("#<%=id%>").addClass("checked");
+        <%}};
+        for(Map.Entry<String, String> id : mapSort.entrySet()){%>
+        $("#<%=id.getKey()%>-<%=id.getValue()%>").addClass("checked");
+        <%}%>
+
+        $("a[id-category-group=<%=mapInfRoot.get("id-category-group")%>]").addClass("active")
+    });
 </script>
 </body>
 </html>

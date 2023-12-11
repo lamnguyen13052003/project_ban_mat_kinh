@@ -206,7 +206,9 @@ public class Product {
                 ", price=" + price +
                 ", discount=" + discount +
                 ", models=" + models +
-                ", images=" + productImages +
+                ", reviews=" + reviews +
+                ", productImages=" + productImages +
+                ", describeImages=" + describeImages +
                 '}';
     }
 

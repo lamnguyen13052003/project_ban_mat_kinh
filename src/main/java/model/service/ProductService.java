@@ -244,7 +244,9 @@ public class ProductService {
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+            if (type.equals("product"))
+                product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+            else product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
         }
     }
 

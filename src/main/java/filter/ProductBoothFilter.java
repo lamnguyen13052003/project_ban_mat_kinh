@@ -3,6 +3,7 @@ package filter;
 import model.bean.Product;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,11 +16,9 @@ public class ProductBoothFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        chain.doFilter(request, response);
         List<Product> products = (List<Product>) request.getAttribute("products");
         if(products != null){
             chain.doFilter(request, response);
-            return;
         }
 
         request.getRequestDispatcher("product-booth").forward(request, response);
