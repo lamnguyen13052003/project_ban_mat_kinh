@@ -67,7 +67,7 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded active">Danh sách
+                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách
                                         tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -78,7 +78,7 @@
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="../banner-manager" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
+                                    <a href="../banner-manager" class="nav-link px-4 rounded active">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -92,7 +92,7 @@
 <div id="main" class="mt-5 pb-5">
     <div class="container">
         <div class="frame-boder row p-3 my-5">
-            <div class="title"><span>Danh sách hình ảnh trong thanh trượt</span></div>
+            <div class="title"><span>Danh such hình ảnh trong thanh trượt</span></div>
             <div class="col-10">
                 <div class="edit-img row row-cols-2">
                     <%
