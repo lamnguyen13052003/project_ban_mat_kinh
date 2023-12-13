@@ -2,7 +2,6 @@ package model.service;
 
 import model.DAO.ProductDAO;
 import model.bean.Product;
-
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -13,7 +12,6 @@ public class ProductService {
     private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
     static {
-        MAP_PAGE.put(-1, "Tất cả");
         MAP_PAGE.put(0, "Khuyến mãi");
         MAP_PAGE.put(1, "Kính mát nam");
         MAP_PAGE.put(2, "Kính mát nữ");
@@ -49,6 +47,8 @@ public class ProductService {
      * @param idCategory      id danh mục
      */
     public String getTitle(int idCategoryGroup, int idCategory) {
+        ProductService productService = ProductService.getInstance();
+
         if (idCategoryGroup == 0 && idCategory == 0) {
             return MAP_PAGE.get(idCategory);
         }
@@ -88,10 +88,10 @@ public class ProductService {
     /**
      * Lấy các sản phẩm theo câu query
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort, limit);
+        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
         setOtherFieldsProduct(products, 2);
 
         return products;
@@ -166,9 +166,12 @@ public class ProductService {
      * Xữ lý lại địa chỉ thanh URL cho hợp lý
      * */
     public String formatQueryRequest(String query) {
+        StringTokenizer tk = new StringTokenizer(query, "&=");
         String oldRequest = query.substring(0, query.lastIndexOf("&"));
         String newRequest = query.substring(query.lastIndexOf("&"), query.length());
         String name;
+        StringBuilder sb = new StringBuilder();
+
 
         if (oldRequest.contains(newRequest)) {
             return oldRequest.replace(newRequest, "");
@@ -186,8 +189,6 @@ public class ProductService {
             }
         }
 
-        StringTokenizer tk = new StringTokenizer(query, "&=");
-        StringBuilder sb = new StringBuilder();
         if (newRequest.contains("sort-none") || newRequest.contains("filter-none")) {
             while (tk.hasMoreTokens()) {
                 name = tk.nextToken();
@@ -244,9 +245,7 @@ public class ProductService {
         int id;
         for (Product product : products) {
             id = product.getId();
-            if (type.equals("product"))
-                product.setProductImages((ArrayList<String>) mapProductImages.get(id));
-            else product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
+            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
         }
     }
 
@@ -292,8 +291,23 @@ public class ProductService {
         }
     }
 
-    public List<String> getBrandNames() {
-        ProductDAO productDAO = ProductDAO.getInstance();
-        return productDAO.getBrandNames();
+    public List<Product> getProductDiscount(){
+        Map<String, Integer> mapinfoRoot = new HashMap<String, Integer>();
+        mapinfoRoot.put("page", 1);
+        mapinfoRoot.put("id-category-group", 0);
+        mapinfoRoot.put("id-category", 0);
+        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>());
+    }
+
+    public List<Product> getInfoProminentProductByStart(){
+        List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart();
+        setOtherFieldsProduct(list,2);
+        Collections.sort(list, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return - o1.getStarNumber().compareTo(o2.getStarNumber());
+            }
+        });
+        return list;
     }
 }
