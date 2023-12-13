@@ -21,43 +21,39 @@ public class BannnerDAO extends  DAO{
 
     public List<BannerImage> getSlideShowImages() {
         String slide = "slide%";
-        // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
                 handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
                 .mapToBean(BannerImage.class).list());
     }
-    public List<BannerImage> getLogoImages() {
+    public BannerImage getLogoImages() {
         String slide = "%banner%logo%";
-        // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
                 handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
-                        .mapToBean(BannerImage.class).list());
+                        .mapToBean(BannerImage.class).findFirst().orElse(null));
     }
-    public List<BannerImage> getBannerLoginImages() {
+    public BannerImage getBannerLoginImages() {
         String slide = "%banner%login%";
-        // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
                 handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
-                        .mapToBean(BannerImage.class).list());
+                        .mapToBean(BannerImage.class).findFirst().orElse(null));
     }
-    public List<BannerImage> getBannerSignupImages() {
+    public BannerImage getBannerSignupImages() {
         String slide = "%banner%signup%";
-        // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
                 handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
-                        .mapToBean(BannerImage.class).list());
+                        .mapToBean(BannerImage.class).findFirst().orElse(null));
     }
-    public List<BannerImage> getBannerPRImages() {
+    public BannerImage getBannerPRImages() {
         String slide = "%banner%pr%";
         // lay data cot id va comment cua table Review
         return  connector.withHandle(handle ->
                 handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
                         .bind(0,slide)
-                        .mapToBean(BannerImage.class).list());
+                        .mapToBean(BannerImage.class).findFirst().orElse(null));
     }
 
     /**

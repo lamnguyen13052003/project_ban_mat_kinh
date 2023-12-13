@@ -25,28 +25,28 @@ public class BannerService {
     */
     public BannerImage getBannerSignupImages() {
 
-        return  BannnerDAO.getInstance().getBannerSignupImages().get(0);
+        return  BannnerDAO.getInstance().getBannerSignupImages();
     }
     /*
        get banner login images
     */
     public BannerImage getBannerLoginImages() {
 
-        return  BannnerDAO.getInstance().getBannerLoginImages().get(0);
+        return  BannnerDAO.getInstance().getBannerLoginImages();
     }
     /*
        get banner pr images
     */
     public BannerImage getBannerPRImages() {
 
-        return  BannnerDAO.getInstance().getBannerPRImages().get(0);
+        return  BannnerDAO.getInstance().getBannerPRImages();
     }
     /*
        get slide show images
     */
     public BannerImage getLogoImages() {
 
-        return  BannnerDAO.getInstance().getLogoImages().get(0);
+        return  BannnerDAO.getInstance().getLogoImages();
     }
     /*
     upload banner image
