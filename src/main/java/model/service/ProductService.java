@@ -310,5 +310,4 @@ public class ProductService {
         });
         return list;
     }
-
 }
