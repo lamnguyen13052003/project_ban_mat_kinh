@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="../images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>

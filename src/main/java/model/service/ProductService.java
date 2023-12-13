@@ -246,7 +246,8 @@ public class ProductService {
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+            if(type.equals("product")) product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+            else product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
         }
     }
 
@@ -312,7 +313,7 @@ public class ProductService {
         return list;
     }
 
-    public List<String> getBrandName(){
-        return ProductDAO.getInstance().getBrandName();
+    public List<String> getBrandNames(){
+        return ProductDAO.getInstance().getBrandNames();
     }
 }

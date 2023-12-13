@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/chi_tiet_hoa_don.css">
-    <link rel="icon" href="../logo_icon.png">
+    <link rel="icon" href="../images/logo/logo_icon.png">
 
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="../images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -318,7 +318,7 @@
                     <div class="col-name-in4-customer"><h4 class="px-3 py-3 mb-2">Thông tin khách hàng</h4></div>
                     <div class=" d-flex px-3 py-1">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -508,7 +508,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                    <img src="../images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
