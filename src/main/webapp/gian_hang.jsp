@@ -8,6 +8,7 @@
 <%@ page import="model.bean.Cart" %>
 <%@ page import="model.bean.Model" %>
 <%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
@@ -26,7 +27,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/san_pham.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="icon" type="image/x-icon" href="logo_icon.png">
+    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -41,7 +42,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -243,7 +244,7 @@
                         <div class="col mt-2">
                             <button id="removeCheckedFilterAll" class="button border-0" type="button"
                                     data-action="close-filter">
-                                <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-none=filter-none")%>">
+                                <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-none=filter-none")%>">
                                     <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15"
                                          height="15">
                                         <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none"
@@ -267,14 +268,14 @@
                         <ul class="filter-list">
                             <li>
                                 <button class="border-0" id="bandName-1">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
+                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
                                         Brand 1
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="bandName-2">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
+                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
                                         Brand 2
                                     </a>
                                 </button>
@@ -282,14 +283,14 @@
                             <!--Danh sách brand bị ẩn-->
                             <li class="d-none hidden">
                                 <button class="border-0" id="bandName-3">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
+                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
                                         Brand 3
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
                                 <button class="border-0" id="bandName-4">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
+                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
                                         Brand 4
                                     </a>
                                 </button>
@@ -781,7 +782,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

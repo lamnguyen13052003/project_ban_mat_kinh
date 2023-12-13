@@ -37,7 +37,7 @@
                     </form>
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="dang_nhap.jsp">
+                    <a href="../dang_nhap.jsp">
                         <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
@@ -45,7 +45,7 @@
                     </a>
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="dang_ky.jsp">
+                    <a href="../dang_ky.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>

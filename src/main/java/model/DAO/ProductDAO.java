@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.bean.Product;
+import model.bean.Review;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
@@ -256,12 +257,27 @@ public class ProductDAO extends DAO {
         return index;
     }
 
+    public List<Product> getProductDiscount(){
+        return null;
+    }
+
+    /*
+    lay danh sach thong tin san pham noi bat tren trang chu
+     */
+    public List<Product> getInfoProminentProductByStart(){
+        List<Product> products = connector.withHandle(handle ->
+            handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p")
+                    .mapToBean(Product.class).list()
+        );
+        return products;
+    }
+
     public List<String> getBrandNames() {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
-                        "FROM products AS p;")
-                .mapTo(String.class)
-                .list()
+                                "FROM products AS p;")
+                        .mapTo(String.class)
+                        .list()
         );
     }
 }

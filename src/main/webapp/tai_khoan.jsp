@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/tai_khoan.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -179,7 +179,7 @@
                     <div class="account-sidebar-header list-group align-items-center">
                         <div class="account-sidevar-avatar list-group-item  border-0">
                             <div class="display-avatar p-3 rounded-circle d-flex align-items-center justify-content-center">
-                                <img src="logo.png" alt="" width="100px" id="avatar">
+                                <img src="images/logo/logo.png" alt="" width="100px" id="avatar">
                             </div>
                             <div class="change-avatar position-absolute">
                                 <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
@@ -317,7 +317,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

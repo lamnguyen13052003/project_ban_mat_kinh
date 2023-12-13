@@ -17,6 +17,18 @@
     <url-pattern>/admin_pages/*</url-pattern> &lt;!&ndash; Chỉ áp dụng Filter cho các URL trong thư mục admin_pages &ndash;&gt;
   </filter-mapping>-->
   <filter>
+    <filter-name>index</filter-name>
+    <filter-class>filter.IndexFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>index</filter-name>
+    <url-pattern>/</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>index</filter-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </filter-mapping>
+  <filter>
     <filter-name>product_manager</filter-name>
     <filter-class>filter.ProductManagerFilter</filter-class>
   </filter>

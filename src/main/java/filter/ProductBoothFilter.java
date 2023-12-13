@@ -21,6 +21,7 @@ public class ProductBoothFilter implements Filter {
             chain.doFilter(request, response);
         }
 
+
         request.getRequestDispatcher("product-booth").forward(request, response);
     }
 }

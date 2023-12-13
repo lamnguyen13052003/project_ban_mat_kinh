@@ -6,9 +6,7 @@ import model.bean.Product;
 import model.bean.Review;
 import model.bean.User;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ReviewService {
@@ -87,5 +85,11 @@ class InfReview{
     public int getTotalReview() {
         return totalReview;
     }
+
+    public void setTotalReview(int totalReview) {
+        this.totalReview = totalReview;
+    }
+
+
 
 }
