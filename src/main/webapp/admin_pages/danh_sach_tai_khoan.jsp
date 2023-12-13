@@ -10,20 +10,21 @@
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/danh_sach_tai_khoan.css">
-    <link rel="icon" href="../logo_icon.png">
+    <link rel="icon" href="../images/logo/logo_icon.png">
 
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
 
     <title>Quản lý tài khoản</title>
 </head>
+<body>
 <header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="../images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -36,7 +37,7 @@
                     </form>
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../dang_nhap.jsp">
+                    <a href="dang_nhap.jsp">
                         <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
@@ -44,7 +45,7 @@
                     </a>
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="../dang_ky.jsp">
+                    <a href="dang_ky.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
@@ -73,6 +74,9 @@
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="banner-manager" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -140,7 +144,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình A</p>
@@ -171,7 +175,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình B</p>
@@ -202,7 +206,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình C</p>
@@ -233,7 +237,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình D</p>
@@ -264,7 +268,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình E</p>
@@ -295,7 +299,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình F</p>
@@ -326,7 +330,7 @@
                     <!--Phần avatar và text, coppy-->
                     <div class="col-4 d-flex">
                         <div class="avatar-account">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">Nguyễn Đình G</p>
@@ -417,7 +421,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                    <img src="../images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

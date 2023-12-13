@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="../images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -74,6 +74,9 @@
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded active">Danh sách hóa
                                         đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="banner-manager" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -138,7 +141,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -158,7 +161,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình B</p>
@@ -178,7 +181,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình C</p>
@@ -198,7 +201,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -218,7 +221,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -238,7 +241,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -258,7 +261,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -278,7 +281,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -298,7 +301,7 @@
                     <div class="time-order col-2"><span>dd/mm/yy, </span><span>hh:mm</span></div>
                     <div class="col-3 d-flex">
                         <div class="avatar-customer">
-                            <img src="../logo.png" alt="avatar.png">
+                            <img src="../images/logo/logo.png" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer">Nguyễn Đình A</p>
@@ -375,7 +378,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                    <img src="../images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

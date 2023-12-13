@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                        <img src="../images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -64,15 +64,18 @@
                          aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
-                                <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài khoản</a>
                                 </li>
-                                <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded active">Danh sách sản
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded">Danh sách sản
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="banner-manager" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
                                 </li>
                             </ul>
                         </div>
@@ -360,7 +363,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                    <img src="../images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -372,7 +375,7 @@
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/them_san_pham.js"></script>
-<script src="/javascript/form_des.js"></script>
+<script src="../javascript/form_des.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
