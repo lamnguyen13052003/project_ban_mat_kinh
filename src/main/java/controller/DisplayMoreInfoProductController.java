@@ -9,7 +9,6 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
 @WebServlet(name = "DisplayMoreInfoProductController", value = "/more-info-product")
 public class DisplayMoreInfoProductController extends HttpServlet {
     @Override

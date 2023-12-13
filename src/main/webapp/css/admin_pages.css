@@ -151,3 +151,41 @@
 }
 
 
+.filter-item .dropdown ul,
+.filter-item .dropdown button {
+    width: 300px;
+}
+
+.filter-item .dropdown button {
+    background: #fff;
+    text-align: left;
+    color: black;
+    border: 2px black solid;
+}
+
+.filter-item .dropdown button.btn-secondary {
+    --bs-btn-active-color: black;
+    --bs-btn-active-bg: #fff;
+    --bs-btn-active-border-color: #fff;
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    top: 18px;
+    left: 275px;
+}
+
+.dropdown .dropdown-menu {
+    --bs-dropdown-link-active-color: black;
+    --bs-dropdown-link-active-bg: #fff;
+}
+
+.dropdown .dropdown-menu.show {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.dropdown .dropdown-menu .dropdown-title{
+    padding-left: 16px;
+}

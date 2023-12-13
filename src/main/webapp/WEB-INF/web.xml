@@ -3,30 +3,33 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Web Application</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
-  <filter>
-    <filter-name>index</filter-name>
-    <filter-class>filter.IndexFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>index</filter-name>
-    <url-pattern>/</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>index</filter-name>
-    <url-pattern>/index.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
-  </filter-mapping>
-
-  <filter>
+<!--  <filter>
     <filter-name>AdminAccessFilter</filter-name>
-    <filter-class>controller.AdminAccessController</filter-class>
+    <filter-class>filter.AdminAccessFilterlter-class>
   </filter>
   <filter-mapping>
     <filter-name>AdminAccessFilter</filter-name>
-    <url-pattern>/admin_pages/*</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+    <url-pattern>/admin_pages/*</url-pattern> &lt;!&ndash; Chỉ áp dụng Filter cho các URL trong thư mục admin_pages &ndash;&gt;
+  </filter-mapping>-->
+  <filter>
+    <filter-name>product_manager</filter-name>
+    <filter-class>filter.ProductManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>product_manager</filter-name>
+    <url-pattern>/admin_pages/danh_sach_san_pham.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+  </filter-mapping>
+  <filter>
+    <filter-name>product_booth</filter-name>
+    <filter-class>filter.ProductBoothFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>product_booth</filter-name>
+    <url-pattern>/gian_hang.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
   </filter-mapping>
 </web-app>

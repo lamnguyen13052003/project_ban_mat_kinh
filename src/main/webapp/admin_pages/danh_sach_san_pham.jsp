@@ -1,19 +1,23 @@
 <%@ page import="model.bean.User" %>
+<%@ page import="model.bean.Product" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="stylesheet" href="css/danh_san_san_pham.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../css/menu_footer.css">
+    <link rel="stylesheet" href="../css/admin_pages.css">
+    <link rel="icon" href="../logo_icon.png">
 
-    <script src="jquery/jquery-3.7.1.slim.min.js"></script>
-    <script src="jquery/jquery-3.7.1.min.js"></script>
+    <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
+    <script src="../jquery/jquery-3.7.1.min.js"></script>
 
     <title>Quản lý sản phẩm</title>
 </head>
@@ -24,7 +28,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="../logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -37,7 +41,7 @@
                     </form>
                 </div>
                 <div class="login col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="dang_nhap.jsp">
+                    <a href="../dang_nhap.jsp">
                         <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2">
                             <span class="d-lg-inline d-md-none d-sm-none">Đăng nhập</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">login</span>
@@ -45,7 +49,7 @@
                     </a>
                 </div>
                 <div class="sign-up col-lg-1 col-md-1 col-sm-1 border-0 px-lg-0">
-                    <a href="dang_ky.jsp">
+                    <a href="../dang_ky.jsp">
                         <button type="button" class="btn d-flex float-lg-none">
                             <span class="d-lg-inline d-md-none  d-sm-none">Đăng ký</span>
                             <span class="d-lg-none d-md-line material-symbols-outlined ms-1">logout</span>
@@ -74,9 +78,6 @@
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
                                 </li>
-                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="banner" class="nav-link px-4 rounded">Danh sách hình ảnh thanh trượt</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -97,31 +98,79 @@
                 <div class="filter-body row">
                     <div class="option-filter col-4">
                         <div class="filter-item">
-                            <select class="rounded" name="status">
-                                <option value="" disabled selected>Trạng thái</option>
-                                <option value="còn hàng">Còn hàng</option>
-                                <option value="Hết hàng">Hết hàng</option>
-                            </select>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Trạng thái
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                                    <li><a class="dropdown-item" href="#">Còn hàng</a></li>
+                                    <li> <a class="dropdown-item" href="#">Hết hàng</a> </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
                     <div class="option-filter col-4">
                         <div class="filter-item">
-                            <select class="rounded" name="brand">
-                                <option value="" disabled selected>Thương hiệu</option>
-                                <option value="còn hàng">Thương hiệu a</option>
-                                <option value="Hết hàng">Thương hiệu b</option>
-                            </select>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ---------------Thương hiệu---------------
+                                </button>
+                                <ul class="dropdown-menu" id="list-brand-name">
+                                    <div class="dropdown-title text-secondary">---------------Thương hiệu---------------</div>
+                                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
                     <div class="option-filter col-4">
                         <div class="filter-item">
-                            <select class="rounded" name="type">
-                                <option value="" disabled selected>Loại sản phẩm</option>
-                                <option value="còn hàng">Kính mắt trẻ em</option>
-                                <option value="Hết hàng">Kính mát</option>
-                            </select>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ---------------Danh mục---------------
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <div class="dropdown-title text-secondary">---------------Danh mục---------------</div>
+                                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                                    <li><a class="dropdown-item" href="#">Kính mát</a></li>
+                                    <li>
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Kính mát nam</a></li>
+                                            <li><a class="dropdown-item" href="#">Kính mát nữ</a></li>
+                                            <li><a class="dropdown-item" href="#">Kính đi ngày và đêm</a></li>
+                                            <li><a class="dropdown-item" href="#">Kính đổi màu</a></li>
+                                            <li><a class="dropdown-item" href="#">Kính lọc ánh sáng xanh</a></li>
+                                            <li><a class="dropdown-item" href="#">Kính mắt clip on 2 lớp</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Mắt kính trẻ em</a></li>
+                                    <li>
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Gọng kính trẻ en</a></li>
+                                            <li><a class="dropdown-item" href="#">Kính mát trẻ em</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Gọng kính</a></li>
+                                    <li>
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Gọng kính nữa khung</a></li>
+                                            <li><a class="dropdown-item" href="#">Gọng kính khoan</a></li>
+                                            <li><a class="dropdown-item" href="#">Gọng kính tròn</a></li>
+                                            <li><a class="dropdown-item" href="#">Gọng kính titan</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Tròng kính</a></li>
+                                    <li>
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Tròng kính chống ánh sáng xanh</a></li>
+                                            <li><a class="dropdown-item" href="#">Tròng kính đổi màu</a></li>
+                                            <li><a class="dropdown-item" href="#">Tròng kính màu</a></li>
+                                            <li><a class="dropdown-item" href="#">Tròng kính cho gọng khoan</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -166,14 +215,18 @@
 
                 <!--phần thân-->
                 <div class="body-table">
+                    <%
+                        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
+                        List<Product> products = (List<Product>) request.getAttribute("products");
+                    for(Product product : products){%>
                     <div class="product row ps-4">
                         <div class="col-4 d-flex">
                             <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
+                                <img src="../logo.png" alt="hinh_anh.png">
                             </div>
                             <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
+                                <p class="name-product"><%=product.getName()%></p>
+                                <p class="id-product">#<%=product.getId()%></p>
                                 <select>
                                     <option value="">Đỏ</option>
                                     <option value="">Xanh</option>
@@ -184,142 +237,11 @@
                         <div class="col-2 type-product">Kính mắt trẻ em</div>
                         <div class="col-1 amount-product te">2222</div>
                         <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
+                        <div class="col-2 price"><%=nf.format(product.getPrice())%></div>
                         <div class="col-1 status">Còn hàng</div>
                         <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
                     </div>
-                    <div class="product row ps-4">
-                        <div class="col-4 d-flex">
-                            <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
-                            </div>
-                            <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
-                                <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                        <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                    </div>
-                    <div class="product row ps-4">
-                        <div class="col-4 d-flex">
-                            <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
-                            </div>
-                            <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
-                                <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                        <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                    </div>
-                    <div class="product row ps-4">
-                        <div class="col-4 d-flex">
-                            <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
-                            </div>
-                            <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
-                                <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                        <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                    </div>
-                    <div class="product row ps-4">
-                        <div class="col-4 d-flex">
-                            <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
-                            </div>
-                            <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
-                                <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                        <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                    </div>
-                    <div class="product row ps-4">
-                        <div class="col-4 d-flex">
-                            <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
-                            </div>
-                            <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
-                                <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                        <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                    </div>
-                    <div class="product row ps-4">
-                        <div class="col-4 d-flex">
-                            <div class="img-product">
-                                <img src="logo.png" alt="hinh_anh.png">
-                            </div>
-                            <div class="info-product ms-2 w-100">
-                                <p class="name-product">Sản phảm A</p>
-                                <p class="id-product">#abc</p>
-                                <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price">1,200,000 <span class="text-decoration-underline">đ</span></div>
-                        <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
-                    </div>
+                    <%}%>
                 </div>
                 <!--kết thúc thân-->
 
@@ -391,7 +313,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="../logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -400,8 +322,9 @@
     </div>
 </footer>
 
-<script src="javascript/menu_footer.js"></script>
-<script src="javascript/admin_page.js"></script>
+<script src="../javascript/menu_footer.js"></script>
+<script src="../javascript/admin_page.js"></script>
+<script src="../javascript/product_manager.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
