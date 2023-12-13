@@ -94,17 +94,17 @@ public class ProductDAO extends DAO {
      * @param mapSort chứa cặp khóa và giá trị sắp xếp
      * @return danh sách săn phẩm từ các thông tin cho trong các map trên
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
         List<Product> result;
         int index = 0, page = mapInfRoot.get("page"),
-                offset = (page - 1) * 20;
+                offset = (page - 1) * limit;
         String select = " p.id, p.name, p.brandName, p.price, p.quantity ";
         String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort), name;
         sql += LIMIT_OFFSET;
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
         index = setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
-        query.bind(index++, LIMIT);
+        query.bind(index++, limit);
         query.bind(index, offset);
         result = query.mapToBean(Product.class).list();
 
@@ -266,6 +266,5 @@ public class ProductDAO extends DAO {
                     .mapToBean(Product.class).list()
         );
         return products;
-
     }
 }
