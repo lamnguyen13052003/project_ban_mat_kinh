@@ -21,7 +21,7 @@ function displayButtonSignOut() {
 
     $("#signout").click(function () {
         $.get("/maven_war/LogOut", function (){
-            window.location.replace("index.jsp");
+            window.location.replace("../index.jsp");
         });
     });
 }
