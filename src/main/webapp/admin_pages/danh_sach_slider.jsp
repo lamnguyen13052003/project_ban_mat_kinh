@@ -7,17 +7,19 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="stylesheet" href="css/danh_sach_slider.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../css/menu_footer.css">
+    <link rel="stylesheet" href="../css/admin_pages.css">
+    <link rel="stylesheet" href="../css/danh_sach_slider.css">
+    <link rel="icon" href="../images/logo/logo_icon.png">
 
-    <script src="jquery/jquery-3.7.1.slim.min.js"></script>
-    <script src="jquery/jquery-3.7.1.min.js"></script>
-    <title>Danh sách hình ảnh trong thanh trượt</title>
+    <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
+    <script src="../jquery/jquery-3.7.1.min.js"></script>
+
+    <title>Quản lý banner</title>
 </head>
 <body>
 <header id="menu">
@@ -92,7 +94,7 @@
 <div id="main" class="mt-5 pb-5">
     <div class="container">
         <div class="frame-boder row p-3 my-5">
-            <div class="title"><span>Danh such hình ảnh trong thanh trượt</span></div>
+            <div class="title"><span>Danh sách hình ảnh trong thanh trượt</span></div>
             <div class="col-10">
                 <div class="edit-img row row-cols-2">
                     <%
@@ -105,7 +107,7 @@
                     %>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " src="<%=ri.getUrlImage()%>" alt="">
+                            <img class="img-fluid " src="../<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
                                 <input class="form-check-input" type="checkbox" id="check-img-01">
                             </div>
@@ -132,7 +134,7 @@
                 <div class="edit-img row row-cols-2">
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid" id="login-img" src="<%=loginBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid" id="login-img" src="../<%=loginBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng nhập</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input imageInput" type="file" value="" name="banner-login"
@@ -144,7 +146,7 @@
 
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0 " id="signup-img" src="<%=signupBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0 " id="signup-img" src="../<%=signupBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng ký</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-signup"
@@ -155,7 +157,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0 " id="pr-img" src="<%=prBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0 " id="pr-img" src="../<%=prBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Quảng cáo</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-pr" id="banner-pr"
@@ -166,7 +168,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0" id="logo-img" src="<%=logoBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0" id="logo-img" src="../<%=logoBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Logo</span></div>
                             <div class="upload-img">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
@@ -214,7 +216,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="danh_sach_tai_khoan.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="../images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -223,15 +225,15 @@
     </div>
 </footer>
 
-<script src="javascript/menu_footer.js"></script>
-<script src="javascript/admin_page.js"></script>
-<script src="javascript/danh_sach_slider.js"></script>
+<script src="../javascript/menu_footer.js"></script>
+<script src="../javascript/admin_page.js"></script>
+<script src="../javascript/danh_sach_slider.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("../images/avatar/<%=user.getAvatar()%>");
+    user.setAvatar("../<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
