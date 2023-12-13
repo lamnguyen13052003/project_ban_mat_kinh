@@ -1,5 +1,6 @@
 package model.service;
 
+import model.DAO.DAO;
 import model.DAO.ProductDAO;
 import model.bean.Product;
 import java.text.NumberFormat;
@@ -88,10 +89,10 @@ public class ProductService {
     /**
      * Lấy các sản phẩm theo câu query
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
+        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort, limit);
         setOtherFieldsProduct(products, 2);
 
         return products;
@@ -296,7 +297,7 @@ public class ProductService {
         mapinfoRoot.put("page", 1);
         mapinfoRoot.put("id-category-group", 0);
         mapinfoRoot.put("id-category", 0);
-        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>());
+        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>(), 20);
     }
 
     public List<Product> getInfoProminentProductByStart(){
@@ -309,5 +310,9 @@ public class ProductService {
             }
         });
         return list;
+    }
+
+    public List<String> getBrandName(){
+        return ProductDAO.getInstance().getBrandName();
     }
 }

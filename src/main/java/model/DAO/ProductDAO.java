@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.bean.Product;
+import model.bean.Review;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
@@ -93,17 +94,17 @@ public class ProductDAO extends DAO {
      * @param mapSort chứa cặp khóa và giá trị sắp xếp
      * @return danh sách săn phẩm từ các thông tin cho trong các map trên
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         List<Product> result;
         int index = 0, page = mapInfRoot.get("page"),
-                offset = (page - 1) * limit;
+                offset = (page - 1) * 20;
         String select = " p.id, p.name, p.brandName, p.price, p.quantity ";
         String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort), name;
         sql += LIMIT_OFFSET;
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
         index = setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
-        query.bind(index++, limit);
+        query.bind(index++, LIMIT);
         query.bind(index, offset);
         result = query.mapToBean(Product.class).list();
 
@@ -256,12 +257,27 @@ public class ProductDAO extends DAO {
         return index;
     }
 
+    public List<Product> getProductDiscount(){
+        return null;
+    }
+
+    /*
+    lay danh sach thong tin san pham noi bat tren trang chu
+     */
+    public List<Product> getInfoProminentProductByStart(){
+        List<Product> products = connector.withHandle(handle ->
+            handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p")
+                    .mapToBean(Product.class).list()
+        );
+        return products;
+    }
+
     public List<String> getBrandNames() {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
-                        "FROM products AS p;")
-                .mapTo(String.class)
-                .list()
+                                "FROM products AS p;")
+                        .mapTo(String.class)
+                        .list()
         );
     }
 }
