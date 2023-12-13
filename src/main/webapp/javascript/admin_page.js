@@ -7,6 +7,12 @@ $(document).ready(function () {
             window.location.replace("../index.jsp");
         });
     });
+
+    $(".filter-item .dropdown a").click(function () {
+        const title = $(this).text();
+        const button = $(this).parents(".dropdown").find("button");
+        button.text(title);
+    });
 });
 
 function displayButtonSignOut() {

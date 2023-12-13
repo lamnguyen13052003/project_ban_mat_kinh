@@ -1,7 +1,6 @@
 package model.DAO;
 
 import model.bean.Product;
-import model.bean.Review;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
@@ -94,17 +93,17 @@ public class ProductDAO extends DAO {
      * @param mapSort chứa cặp khóa và giá trị sắp xếp
      * @return danh sách săn phẩm từ các thông tin cho trong các map trên
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
         List<Product> result;
         int index = 0, page = mapInfRoot.get("page"),
-                offset = (page - 1) * 20;
+                offset = (page - 1) * limit;
         String select = " p.id, p.name, p.brandName, p.price, p.quantity ";
         String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort), name;
         sql += LIMIT_OFFSET;
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
         index = setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
-        query.bind(index++, LIMIT);
+        query.bind(index++, limit);
         query.bind(index, offset);
         result = query.mapToBean(Product.class).list();
 
@@ -140,17 +139,17 @@ public class ProductDAO extends DAO {
         idCategory = mapInfRoot.get("id-category");
         idCategoryGroup = mapInfRoot.get("id-category-group");
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
-        if (idCategoryGroup == 0) {
+        if (idCategoryGroup == 0 && idCategory == 0) {
             sql.append(JOIN_1);
             sql.append(WHERE_JOIN_1);
         }
 
-        if ((idCategoryGroup != 0 && idCategory == 0) || id != 0) {
+        if ((idCategoryGroup > 0 && idCategory == 0) || id != 0) {
             sql.append(JOIN_2);
             sql.append(WHERE_JOIN_2);
         }
 
-        if (idCategoryGroup != 0 && idCategory != 0) {
+        if (idCategoryGroup > 0 && idCategory != 0) {
             sql.append(WHERE_NOT_JOIN);
         }
 
@@ -214,16 +213,20 @@ public class ProductDAO extends DAO {
             System.out.println("Thong tin chi tiet san pham");
         }
 
-        if (idCategoryGroup == 0 && id == 0) {
+        if (idCategoryGroup == 0 && idCategory == 0) {
             System.out.println("Khuyen mai");
         }
 
-        if (idCategoryGroup != 0 && idCategory == 0) {
+        if (idCategoryGroup == -1) {
+            System.out.println("Tất cả");
+        }
+
+        if (idCategoryGroup > 0 && idCategory == 0) {
             System.out.println("Nhom danh muc");
             query.bind(index++, idCategoryGroup);
         }
 
-        if (idCategoryGroup != 0 && idCategory != 0) {
+        if (idCategoryGroup > 0 && idCategory > 0) {
             System.out.println("Danh muc");
             query.bind(index++, idCategory);
         }
@@ -253,19 +256,12 @@ public class ProductDAO extends DAO {
         return index;
     }
 
-    public List<Product> getProductDiscount(){
-        return null;
-    }
-
-    /*
-    lay danh sach thong tin san pham noi bat tren trang chu
-     */
-    public List<Product> getInfoProminentProductByStart(){
-        List<Product> products = connector.withHandle(handle ->
-            handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p")
-                    .mapToBean(Product.class).list()
+    public List<String> getBrandNames() {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT DISTINCT p.brandName " +
+                        "FROM products AS p;")
+                .mapTo(String.class)
+                .list()
         );
-        return products;
-
     }
 }
