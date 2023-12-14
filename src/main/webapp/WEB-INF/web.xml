@@ -34,7 +34,7 @@
   </filter>
   <filter-mapping>
     <filter-name>product_manager</filter-name>
-    <url-pattern>/admin_pages/danh_sach_san_pham.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+    <url-pattern>/admin_pages/quan_ly_san_pham.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
   </filter-mapping>
   <filter>
     <filter-name>product_booth</filter-name>
@@ -43,5 +43,14 @@
   <filter-mapping>
     <filter-name>product_booth</filter-name>
     <url-pattern>/gian_hang.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
+  </filter-mapping>
+
+  <filter>
+    <filter-name>banner_manager</filter-name>
+    <filter-class>filter.BannerManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>banner_manager</filter-name>
+    <url-pattern>/admin_pages/quan_ly_banner.jsp</url-pattern>
   </filter-mapping>
 </web-app>

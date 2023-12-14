@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "BannerImageController", value = "/admin_pages/banner-manager")
+@WebServlet(name = "BannerImageController", value = "/admin_pages/banner_manager")
 //@MultipartConfig
 public class BannerImageController extends HttpServlet {
     @Override
@@ -40,7 +40,7 @@ public class BannerImageController extends HttpServlet {
         request.setAttribute("bannerLogoImages", urlBannerLogoImages); // banner logo
 
 //        response.setContentType("text/plain;charset=UTF-8");
-        request.getRequestDispatcher("danh_sach_slider.jsp").forward(request, response);
+        request.getRequestDispatcher("quan_ly_banner.jsp").forward(request, response);
     }
 
     private void uploadImage(String uploadPRBanner) {
