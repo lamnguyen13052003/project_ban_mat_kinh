@@ -4,6 +4,8 @@ import model.DAO.DAO;
 import model.bean.Bill;
 import model.service.BillDetailService;
 
+import java.util.List;
+
 public class BillDAO extends DAO {
     public int insert(Bill bill) {
         int transfer = bill.isTransfer() ? 1 : 0;
@@ -35,5 +37,12 @@ public class BillDAO extends DAO {
                 .findFirst().orElse(1)
         ) + 1;
     }
-
+    /*
+    lay id va thong tin user
+     */
+    public List<Bill> getInfIdAndUser(){
+        List<Bill> bills = connector.withHandle(handle ->
+                handle.createQuery("SELECT b.id, b.userId, b.userName, b.email, b.transfer FROM bills b").mapToBean(Bill.class).list());
+        return bills;
+    }
 }
