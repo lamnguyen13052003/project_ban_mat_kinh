@@ -16,6 +16,7 @@
     <filter-name>AdminAccessFilter</filter-name>
     <url-pattern>/admin_pages/*</url-pattern> &lt;!&ndash; Chỉ áp dụng Filter cho các URL trong thư mục admin_pages &ndash;&gt;
   </filter-mapping>-->
+  <!--Phần filler trang chủ-->
   <filter>
     <filter-name>index</filter-name>
     <filter-class>filter.IndexFilter</filter-class>
@@ -28,6 +29,7 @@
     <filter-name>index</filter-name>
     <url-pattern>/index.jsp</url-pattern>
   </filter-mapping>
+  <!--Phần filler trang quản lý sản phẩm-->
   <filter>
     <filter-name>product_manager</filter-name>
     <filter-class>filter.ProductManagerFilter</filter-class>
@@ -36,6 +38,7 @@
     <filter-name>product_manager</filter-name>
     <url-pattern>/admin_pages/quan_ly_san_pham.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
   </filter-mapping>
+  <!--Phần filler trang gian hàng-->
   <filter>
     <filter-name>product_booth</filter-name>
     <filter-class>filter.ProductBoothFilter</filter-class>
@@ -44,7 +47,7 @@
     <filter-name>product_booth</filter-name>
     <url-pattern>/gian_hang.jsp</url-pattern> <!-- Chỉ áp dụng Filter cho các URL trong thư mục admin_pages -->
   </filter-mapping>
-
+  <!--Phần filler trang quan lý banner-->
   <filter>
     <filter-name>banner_manager</filter-name>
     <filter-class>filter.BannerManagerFilter</filter-class>
@@ -53,4 +56,13 @@
     <filter-name>banner_manager</filter-name>
     <url-pattern>/admin_pages/quan_ly_banner.jsp</url-pattern>
   </filter-mapping>
+  <!--Phần filler trang reivew
+  <filter>
+    <filter-name>review</filter-name>
+    <filter-class>filter.ReviewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>review</filter-name>
+    <url-pattern>/danh_gia.jsp</url-pattern>
+  </filter-mapping>-->
 </web-app>

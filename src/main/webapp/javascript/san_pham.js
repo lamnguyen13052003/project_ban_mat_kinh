@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $(".account").find("a").attr("href", "../../tai_khoan.jsp");
-    fixSlide();
     addActionFilterMore();
     actionFastSee();
+    loadBanner();
 });
 
 
@@ -22,15 +22,6 @@ function addActionFilterMore() {
     });
 }
 
-
-function fixSlide() {
-    $("#carouselExampleIndicators").attr("id", "carouselIndicators");
-    const carouse = $("#carouselIndicators");
-    carouse.find(".carousel-indicators").removeClass("carousel-indicators").addClass("my-carousel-indicators");
-    carouse.find(".carousel-inner").removeClass("carousel-inner").addClass("my-carousel-inner");
-    carouse.find(".carousel-control-prev").removeClass("carousel-control-prev").addClass("my-carousel-control-prev").html(`<span class="material-symbols-outlined">arrow_back </span>`);
-    carouse.find(".carousel-control-next").removeClass("carousel-control-next").addClass("my-carousel-control-next").html(`<span class="material-symbols-outlined">arrow_forward </span>`);
-}
 function actionFastSee() {
     $(".add-cart").click(function () {
         const productId = $(this).attr("product-id");
@@ -63,7 +54,6 @@ function actionFastSee() {
                                 `
                     }
                 }
-
 
                 html += `               </div>
                                             <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -106,7 +96,6 @@ function actionFastSee() {
                                 `
                     }
                 }
-
 
                 html += `</div>
                             <div class="groupAdd d-flex flex-column align-items-center mb-2 position-absolute">
@@ -155,16 +144,11 @@ function selectOption() {
 }
 
 function addProductCart(){
+    let data = new FormData();
     $("#addToCart").click(function (){
         $.ajax({
             url: 'cart',
-            data: {
-                action: "add",
-                productId: $(this).attr("product-id"),
-                modelId: $("button.model.active").attr("model-id"),
-                quantity: $("#quantity").val(),
-                checked: "false"
-            },
+            data: data,
             method: 'POST',
             dataType: 'json',
             success: function (data) {
@@ -180,4 +164,35 @@ function addProductCart(){
 $("#close-complete-modal").click(function () {
     $("#show-modal").click();
 });
+
+function loadBanner(){
+    $.ajax({
+        url: "banner",
+        data: {
+            action: "banner"
+        },
+        dataType: "json",
+        method: "GET",
+        success: function (data) {
+            var bannerInner = $("#banner-inner");
+            var bannerIndicators = $("#banner-indicators");
+            for(var i = 0; i < data.banners.length; i++){
+                const url = data.banners[i].urlImage;
+                var aBanner = bannerInner.html() + `<div class="carousel-item w-100">
+                    <img class="w-100" src="${url}" alt="banner${i}.png">
+                </div>`;
+                var aBannerIndicators = bannerIndicators.html() + `<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="${i}"
+                        aria-current="false" aria-label="Slide ${i + 1}"></button>`;
+                bannerInner.html(aBanner);
+                bannerIndicators.html(aBannerIndicators);
+            }
+            var banners = bannerInner.find(".carousel-item");
+            if(banners.length){
+                banners.first().addClass("active");
+                bannerIndicators.find("button").first().addClass("active");
+                bannerIndicators.find("button").first().attr("aria-current", true);
+            }
+        }
+    });
+}
 
