@@ -278,9 +278,11 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
+                                        <%if (!prominentProducts.get(i).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
+                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -323,11 +325,20 @@
 
                                     </h3>
 
-
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
+                                        <%
+                                            if(prominentProducts.get(i).getDiscount() > 0){
+                                        %>
                                         <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(i).getDiscount())%></p>
                                         <del><%=currentVietnames(prominentProducts.get(i).getPrice())%></del>
+                                        <%
+                                            }else{
+                                        %>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(i).getPrice())%></p>
+                                        <%
+                                            }
+                                        %>
                                     </div>
 
                                     <!--Hiển thị đánh giá và số lượng bán-->
@@ -403,9 +414,11 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
+                                        <%if (!prominentProducts.get(i).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
+                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -527,9 +540,11 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
+                                        <%if (!prominentProducts.get(i).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
+                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -713,9 +728,11 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
+                                        <%if (!discountProducts.get(i).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
+                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -835,9 +852,11 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
+                                        <%if (!discountProducts.get(i).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
+                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -958,9 +977,11 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
+                                        <%if (!discountProducts.get(i).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
+                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">

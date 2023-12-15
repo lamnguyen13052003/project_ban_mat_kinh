@@ -316,4 +316,8 @@ public class ProductService {
     public List<String> getBrandNames(){
         return ProductDAO.getInstance().getBrandNames();
     }
+
+    public static void main(String[] args) {
+        System.out.println(getInstance().getInfoProminentProductByStart());
+    }
 }
