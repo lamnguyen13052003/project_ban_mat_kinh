@@ -27,12 +27,17 @@ public class LogInController extends HttpServlet {
 
         UserService userService = UserService.getInstance();
         User user = userService.login(email, password);
-        if(user != null){
-            request.getSession().setAttribute("user", user);
-            response.sendRedirect( "admin_pages/danh_sach_tai_khoan.jsp");
-        }else{
+        if(user == null){
             request.setAttribute("login_error", "Đăng nhập không thành công!");
             request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
+            return;
+        }
+
+        request.getSession().setAttribute("user", user);
+        if(user.isAdmin()){
+            response.sendRedirect( "admin_pages/quan_ly_tai_khoan.jsp");
+        }else{
+            response.sendRedirect( "index.jsp");
         }
     }
 }
