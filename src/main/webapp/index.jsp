@@ -290,7 +290,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                        <a href="<%=prominentProducts.get(i).getName()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -321,7 +321,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
+                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -386,13 +386,12 @@
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                                data-id="">
-                                            Thêm vào giỏ hàng
+                                        <button type="button" product-id="<%=prominentProducts.get(i).getId()%>"
+                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                            Xem nhanh
                                         </button>
                                         <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                            Mua
-                                            ngay
+                                            Mua ngay
                                         </button>
                                     </div>
                                 </div>
@@ -426,7 +425,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                        <a href="<%=prominentProducts.get(i).getName()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -457,7 +456,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
+                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -513,13 +512,12 @@
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                                data-id="">
-                                            Thêm vào giỏ hàng
+                                        <button type="button" product-id="<%=prominentProducts.get(i).getId()%>"
+                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                            Xem nhanh
                                         </button>
                                         <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                            Mua
-                                            ngay
+                                            Mua ngay
                                         </button>
                                     </div>
                                 </div>
@@ -552,7 +550,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                        <a href="<%=prominentProducts.get(i).getName()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -583,7 +581,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
+                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -639,13 +637,12 @@
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                                data-id="">
-                                            Thêm vào giỏ hàng
+                                        <button type="button" product-id="<%=prominentProducts.get(i).getId()%>"
+                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                            Xem nhanh
                                         </button>
                                         <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                            Mua
-                                            ngay
+                                            Mua ngay
                                         </button>
                                     </div>
                                 </div>
@@ -740,7 +737,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                        <a href="<%=prominentProducts.get(i).getName()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -771,7 +768,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
+                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -827,13 +824,12 @@
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                                data-id="">
-                                            Thêm vào giỏ hàng
+                                        <button type="button" product-id="<%=discountProducts.get(i).getId()%>"
+                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                            Xem nhanh
                                         </button>
                                         <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                            Mua
-                                            ngay
+                                            Mua ngay
                                         </button>
                                     </div>
                                 </div>
@@ -864,7 +860,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                        <a href="<%=prominentProducts.get(i).getName()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -895,7 +891,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
+                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -951,13 +947,12 @@
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                                data-id="">
-                                            Thêm vào giỏ hàng
+                                        <button type="button" product-id="<%=discountProducts.get(i).getId()%>"
+                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                            Xem nhanh
                                         </button>
                                         <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                            Mua
-                                            ngay
+                                            Mua ngay
                                         </button>
                                     </div>
                                 </div>
@@ -989,7 +984,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015"
+                                        <a href="<%=prominentProducts.get(i).getName()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -1020,7 +1015,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="/products/kinh-mat-gap-tron-oem-2015" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
+                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -1076,13 +1071,12 @@
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" class="f-button setAddCartLoop" data-type="add-cart"
-                                                data-id="">
-                                            Thêm vào giỏ hàng
+                                        <button type="button" product-id="<%=discountProducts.get(i).getId()%>"
+                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                            Xem nhanh
                                         </button>
                                         <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
-                                            Mua
-                                            ngay
+                                            Mua ngay
                                         </button>
                                     </div>
                                 </div>
@@ -1109,6 +1103,43 @@
         </div>
     </div>
 </section>
+<%--hien thi modal--%>
+<button hidden="" type="button" id="show-modal" data-bs-toggle="modal" data-bs-target="#modal"></button>
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalLabel">Chọn mẫu bạn mong muốn</h1>
+                <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body position-relative">
+            </div>
+        </div>
+    </div>
+</div>
+
+<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
+        data-bs-target="#complete-modal"></button>
+<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Thành công</h1>
+                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body position-relative">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
+                    <p class="fs-1 ms-2">Hoàn Thành</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <footer id="footer" class="footer">
     <div class="container">
         <div class="footer-top row">
