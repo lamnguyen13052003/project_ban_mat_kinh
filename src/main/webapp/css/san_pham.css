@@ -1,45 +1,11 @@
 /*********************************************************Phần Silde***********************************************************/
-@keyframes slide {
-    100%{left: 0}
-}
-
-#carouselIndicators,
-#carouselIndicators .my-carousel-inner img {
-    height: 300px;
-}
-
-#carouselIndicators .my-carousel-inner{
-    overflow-x: hidden;
-}
-
-#carouselIndicators .my-carousel-inner .carousel-item{
-    position: relative;
-    display: none;
-}
-
-#carouselIndicators .my-carousel-inner .carousel-item.active{
-    display: block;
-}
-
-#carouselIndicators .my-carousel-inner .carousel-item.active.prev_slide{
-    animation: slide 1s forwards;
-    left: 100%;
-}
-
-#carouselIndicators .my-carousel-inner .carousel-item.active.next_slide{
-    animation: slide 1s forwards;
-    left: -100%;
-}
-
-#carouselIndicators .my-carousel-indicators {
-    position: absolute;
-    top: 270px;
-    z-index: 1;
-    left: 48%;
-}
-
-#carouselIndicators .my-carousel-indicators button.active{
+#banner-indicators button.active{
     background-color: var(--color-blue-origin);
+}
+
+#banner-inner .carousel-item img,
+#banner-inner .carousel-item{
+    height: 300px;
 }
 
 #carouselIndicators > button {
@@ -381,4 +347,8 @@ input::-webkit-inner-spin-button {
     background-color: #f30;
     border: none;
     margin-left: 15px;
+}
+
+#banner image{
+
 }

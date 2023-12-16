@@ -22,6 +22,7 @@ function addActionFilterMore() {
     });
 }
 
+
 function actionFastSee() {
     $(".add-cart").click(function () {
         const productId = $(this).attr("product-id");
@@ -54,6 +55,7 @@ function actionFastSee() {
                                 `
                     }
                 }
+
 
                 html += `               </div>
                                             <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -96,6 +98,7 @@ function actionFastSee() {
                                 `
                     }
                 }
+
 
                 html += `</div>
                             <div class="groupAdd d-flex flex-column align-items-center mb-2 position-absolute">
@@ -144,11 +147,16 @@ function selectOption() {
 }
 
 function addProductCart(){
-    let data = new FormData();
     $("#addToCart").click(function (){
         $.ajax({
             url: 'cart',
-            data: data,
+            data: {
+                action: "add",
+                productId: $(this).attr("product-id"),
+                modelId: $("button.model.active").attr("model-id"),
+                quantity: $("#quantity").val(),
+                checked: "false"
+            },
             method: 'POST',
             dataType: 'json',
             success: function (data) {
