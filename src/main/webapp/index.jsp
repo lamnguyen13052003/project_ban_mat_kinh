@@ -290,7 +290,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="<%=prominentProducts.get(i).getName()%>"
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -321,7 +321,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -425,7 +425,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="<%=prominentProducts.get(i).getName()%>"
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -456,7 +456,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -550,7 +550,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="<%=prominentProducts.get(i).getName()%>"
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -581,7 +581,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>" title="Tên sản phẩm"><%=prominentProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -737,7 +737,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="<%=prominentProducts.get(i).getName()%>"
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -768,7 +768,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -860,7 +860,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="<%=prominentProducts.get(i).getName()%>"
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -891,7 +891,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
 
                                     </h3>
 
@@ -984,7 +984,7 @@
                                         </div>
 
                                         <!--Hiển thị hình ảnh-->
-                                        <a href="<%=prominentProducts.get(i).getName()%>"
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>"
                                            class="pro-loop-image-item d-block">
                                             <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                             <picture class="img-hidden-when-hover">
@@ -1015,7 +1015,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="<%=prominentProducts.get(i).getName()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
+                                        <a href="more-info-product?id=<%=prominentProducts.get(i).getId()%>" title="Tên sản phẩm"><%=discountProducts.get(i).getName()%></a>
 
                                     </h3>
 

@@ -53,9 +53,6 @@ $(document).ready(function () {
     );
     showSlide(currentSlide);
 });
-$(document).ready(function () {
-
-});
 function showBtnMoveSlide() {
     var numberOfSlides = $('.container-slider .carousel .carousel-inner .slide').length;
     if (numberOfSlides > 1) return;
