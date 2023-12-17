@@ -15,7 +15,7 @@ public class AdressDAO extends DAO{
     }
     public District getDistrict(int code, int provinceCode){
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT d.code, d.fullName, d.provinceCode FROM district d WHERE p.code = ? AND p.provinceCode = ?")
+                handle.createQuery("SELECT d.code, d.fullName, d.provinceCode FROM districts d WHERE d.code = ? AND d.provinceCode = ?")
                         .bind(0, code)
                         .bind(1, provinceCode)
                         .mapToBean(District.class).findFirst().orElse(null)

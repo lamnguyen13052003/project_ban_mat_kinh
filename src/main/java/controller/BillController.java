@@ -3,6 +3,7 @@ package controller;
 import model.bean.Bill;
 import model.bean.Review;
 import model.bean.User;
+import model.service.AdressService;
 import model.service.BillService;
 import model.service.BillStatusService;
 import model.service.CartService;
@@ -43,7 +44,10 @@ public class BillController extends HttpServlet implements Action {
         String province = request.getParameter("provinces").trim();
         String district = request.getParameter("districts").trim();
         String ward = request.getParameter("wards").trim();
-        String fullAddress = request.getParameter("full-address").trim() + " - "+ward+ " - "+district+ " - "+province;
+
+        AdressService addressService = new AdressService();
+        String fullAddress = request.getParameter("full-address").trim() +
+                " - "+addressService.getAddress(Integer.parseInt(province), Integer.parseInt( district), Integer.parseInt(ward));
         boolean transfer = request.getParameter("pay-option").equals("transfer") ? true : false;
         String message = null, title = null;
 

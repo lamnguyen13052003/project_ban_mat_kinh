@@ -229,8 +229,9 @@
                     <%
                         double total = 0;
                         for(BillDetail bd : bill.getDetails()){
-                            total += bd.getPrice();
+                            total += bd.getPrice() * bd.getQuantity();
                         }
+                        total += bill.getTransportFee();
                     %>
                     <span class="right"><%=nf.format(total)%></span>
                 </div>
