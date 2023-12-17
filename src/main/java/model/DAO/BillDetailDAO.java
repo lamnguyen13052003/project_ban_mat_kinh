@@ -25,12 +25,12 @@ public class BillDetailDAO extends DAO {
         for (Product product : products) {
             int id = product.getId();
             Integer totalQuantitySold = connector.withHandle(handle ->
-                    handle.createQuery("SELECT count(bd.id) " +
+                    handle.createQuery("SELECT sum(bd.quantity) " +
                                     "FROM bill_details AS bd " +
                                     "WHERE bd.productId = ?;")
                             .bind(0, id)
                             .mapTo(Integer.class)
-                            .findFirst().orElse(null)
+                            .findFirst().orElse(0)
             );
 
             result.put(id, totalQuantitySold);

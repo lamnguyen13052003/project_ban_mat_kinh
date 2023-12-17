@@ -27,7 +27,8 @@ public class ReviewDAO extends DAO {
             List<Integer> stars = connector.withHandle(handle ->
                     handle.createQuery("SELECT r.numberStar " +
                                     "FROM reviews AS r " +
-                                    "WHERE r.productId = ?;")
+                                    "WHERE r.productId = ? " +
+                                    "AND r.date IS NOT NULL;")
                             .bind(0, id)
                             .mapTo(Integer.class)
                             .list()
@@ -38,6 +39,7 @@ public class ReviewDAO extends DAO {
 
         return result;
     }
+
     /*
         get information from Review by product id
         @param product id
@@ -52,5 +54,14 @@ public class ReviewDAO extends DAO {
                         .mapToBean(Review.class)
                         .list()
         );
+    }
+
+    public void insertTempReview(Review review) {
+        connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO reviews(userId, billId, productId) VALUES (?, ?, ?)")
+                        .bind(0, review.getUserId())
+                        .bind(1, review.getBillId())
+                        .bind(2, review.getProductId())
+                        .execute());
     }
 }

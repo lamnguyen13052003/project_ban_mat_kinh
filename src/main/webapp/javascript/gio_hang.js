@@ -3,7 +3,7 @@ $(document).ready(function () {
     downValueInputNumber();
     removeProduct();
     selectProvince();
-    selectdistrict();
+    selectDistrict();
     checkProduct();
     $.ajax({
         url: "address",
@@ -113,7 +113,7 @@ function selectProvince() {
     });
 }
 
-function selectdistrict() {
+function selectDistrict() {
     $("#districts").change(function (e) {
         const code = e.target.value;
         $.ajax({

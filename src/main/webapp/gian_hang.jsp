@@ -246,14 +246,14 @@
                         <ul class="filter-list">
                             <li>
                                 <button class="border-0" id="bandName-1">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
                                         Brand 1
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="bandName-2">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
                                         Brand 2
                                     </a>
                                 </button>
@@ -261,14 +261,14 @@
                             <!--Danh sách brand bị ẩn-->
                             <li class="d-none hidden">
                                 <button class="border-0" id="bandName-3">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
                                         Brand 3
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
                                 <button class="border-0" id="bandName-4">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
                                         Brand 4
                                     </a>
                                 </button>

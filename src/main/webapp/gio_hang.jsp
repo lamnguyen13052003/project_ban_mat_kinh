@@ -403,9 +403,11 @@
                         </div>
                         <%if (session.getAttribute("title") != null && ((String) session.getAttribute("title")).contains("đăng nhập")) {%>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">
-                                <a href="dang_nhap.jsp" style="color:#000;">OK</a>
-                            </button>
+                            <a href="dang_nhap.jsp" style="color:#fff;">
+                                <button type="button" class="btn btn-primary">
+                                    OK
+                                </button>
+                            </a>
                         </div>
                         <%}%>
                     </div>

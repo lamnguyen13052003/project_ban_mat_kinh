@@ -316,4 +316,12 @@ public class ProductService {
     public List<String> getBrandNames(){
         return ProductDAO.getInstance().getBrandNames();
     }
+
+    public Product getProductForReview(int productId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProductForReview(productId);
+
+        return products.get(0);
+    }
 }
