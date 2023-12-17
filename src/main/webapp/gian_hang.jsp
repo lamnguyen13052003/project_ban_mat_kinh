@@ -193,38 +193,16 @@
 <main id="main" class="mt-5 pb-5">
     <div class="container">
         <!--Phần slide-->
-        <div id="carouselExampleIndicators" class="carousel slide mb-5">
-            <!--Các nút bên dưới hình-->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+        <div id="carouselIndicators" class="carousel slide">
+            <div class="carousel-indicators" id="banner-indicators">
             </div>
-
-            <!--Danh sách các hình-->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
-                </div>
+            <div class="carousel-inner" id="banner-inner">
             </div>
-
-            <!--2 Nút chuyển qua và lại-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                <span class="material-symbols-outlined">arrow_back </span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                <span class="material-symbols-outlined">arrow_forward </span>
             </button>
         </div>
         <!--End phần slide-->
@@ -268,14 +246,14 @@
                         <ul class="filter-list">
                             <li>
                                 <button class="border-0" id="bandName-1">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
                                         Brand 1
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="bandName-2">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
                                         Brand 2
                                     </a>
                                 </button>
@@ -283,14 +261,14 @@
                             <!--Danh sách brand bị ẩn-->
                             <li class="d-none hidden">
                                 <button class="border-0" id="bandName-3">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
                                         Brand 3
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
                                 <button class="border-0" id="bandName-4">
-                                    <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
                                         Brand 4
                                     </a>
                                 </button>

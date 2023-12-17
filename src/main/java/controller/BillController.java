@@ -1,8 +1,10 @@
 package controller;
 
 import model.bean.Bill;
+import model.bean.Review;
 import model.bean.User;
 import model.service.BillService;
+import model.service.CartService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -129,12 +131,16 @@ public class BillController extends HttpServlet implements Action {
         bill.setAddress(fullAddress);
         bill.setTransportFee(20000.0);
         bill.setTransfer(transfer);
-        if(billService.saveBill(bill)) response.sendRedirect("thanh_toan_thanh_cong.jsp");
+        if (billService.saveBill(bill)) {
+            CartService cart = (CartService) session.getAttribute("cart");
+            cart.bought(bill);
+            request.getSession().setAttribute("cart", cart);
+            response.sendRedirect("thanh_toan_thanh_cong.jsp");
+        }
         else {
             title = "Thanh toán không thành công";
             message = "1 trong sản phẩm trong danh sách sản phẩm vừa hết hàng.";
             response.sendRedirect("gio_hang.jsp");
         }
-
     }
 }

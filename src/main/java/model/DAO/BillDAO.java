@@ -4,8 +4,6 @@ import model.DAO.DAO;
 import model.bean.Bill;
 import model.service.BillDetailService;
 
-import java.util.List;
-
 public class BillDAO extends DAO {
     public int insert(Bill bill) {
         int transfer = bill.isTransfer() ? 1 : 0;
@@ -37,12 +35,20 @@ public class BillDAO extends DAO {
                 .findFirst().orElse(1)
         ) + 1;
     }
-    /*
-    lay id va thong tin user
-     */
-    public List<Bill> getInfIdAndUser(){
-        List<Bill> bills = connector.withHandle(handle ->
-                handle.createQuery("SELECT b.id, b.userId, b.userName, b.email, b.transfer FROM bills b").mapToBean(Bill.class).list());
-        return bills;
+
+    public boolean bought(int userId, int productId, int modelId) {
+        int count = connector.withHandle(handle -> handle.createQuery("SELECT COUNT(bd.id) " +
+                        "FROM bills AS b " +
+                        "JOIN bill_details AS bd ON bd.billId = b.id " +
+                        "WHERE " +
+                        "b.userId = ? AND bd.productId = ? AND bd.modelId = ?")
+                .bind(0, userId)
+                .bind(1, productId)
+                .bind(2, modelId)
+                .mapTo(Integer.class)
+                .findFirst().orElse(0)
+        );
+
+        return count != 0;
     }
 }

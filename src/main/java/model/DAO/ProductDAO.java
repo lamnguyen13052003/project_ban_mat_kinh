@@ -280,4 +280,18 @@ public class ProductDAO extends DAO {
                         .list()
         );
     }
+
+    public List<Product> getProductForReview(int id) {
+        List<Product> result;
+        int index = 0;
+        String select = " p.id, p.name ";
+
+        String sql = initSQLGetProduct(select);
+        return connector.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
 }
