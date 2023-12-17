@@ -10,6 +10,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
     <title>CKEditor Sample</title>
     <script src="ckeditor/ckeditor.js"></script>
     <script src="ckeditor/samples/js/sample.js"></script>
+    <script src="ckfinder/ckfinder.js"></script>
     <link rel="stylesheet" href="ckeditor/samples/css/samples.css">
     <link rel="stylesheet" href="ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,9 +23,8 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 </main>
 
 <script>
-    CKEDITOR.replace('editor', {
-        filebrowserBrowseUrl: 'http://localhost:8080/ckfinder/static/ckfinder.html?CKEditor=editor2&CKEditorFuncNum=0&langCode=vi',
-    });
+    const ckeditor = CKEDITOR.replace('editor');
+    CKFinder.setupCKEditor(ckeditor, "ckfinder/ckfinder.html")
 </script>
 
 </body>
