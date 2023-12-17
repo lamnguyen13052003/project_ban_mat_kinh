@@ -87,7 +87,9 @@ public class BillService {
             billDetailService.insert(id, bill.getDetails());
             bill.setId(id);
             reviewService.insertTempReview(bill);
-            reviewStatusService.insert(new BillStatus(id, 1, "Đã xác nhận đơn hàng của bạn", true));
+            BillStatus status = new BillStatus(id, 1, "Đã xác nhận đơn hàng của bạn", true);
+            bill.addStatus(status);
+            reviewStatusService.insert(status);
         }
         return check;
     }

@@ -16,7 +16,13 @@ public class BillStatusDAO extends DAO{
         );
         return result;
     }
-
+    public BillStatus getInfDateStatus(int billId){
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT bs.id, bs.billId, bs.status, bs.date FROM bill_statuses bs WHERE bs.billId = ?")
+                        .bind(0, billId)
+                        .mapToBean(BillStatus.class).findFirst().orElse(null)
+        );
+    }
     public void insert(BillStatus status) {
         connector.withHandle(handle ->
                 handle.createUpdate("INSERT INTO bill_statuses(billId, `date`, `status`, `describe`, canEdit) VALUES (?, ?, ?, ?, ?)")

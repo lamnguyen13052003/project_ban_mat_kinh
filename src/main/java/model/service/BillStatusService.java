@@ -8,4 +8,7 @@ public class BillStatusService {
         BillStatusDAO billStatusDAO = new BillStatusDAO();
         billStatusDAO.insert(status);
     }
+    public BillStatus getInfDateStatus(int billId){
+        return new BillStatusDAO().getInfDateStatus(billId);
+    }
 }

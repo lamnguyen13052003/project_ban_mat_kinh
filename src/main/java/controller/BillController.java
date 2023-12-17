@@ -4,12 +4,14 @@ import model.bean.Bill;
 import model.bean.Review;
 import model.bean.User;
 import model.service.BillService;
+import model.service.BillStatusService;
 import model.service.CartService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -41,7 +43,7 @@ public class BillController extends HttpServlet implements Action {
         String province = request.getParameter("provinces").trim();
         String district = request.getParameter("districts").trim();
         String ward = request.getParameter("wards").trim();
-        String fullAddress = request.getParameter("full-address").trim();
+        String fullAddress = request.getParameter("full-address").trim() + " - "+ward+ " - "+district+ " - "+province;
         boolean transfer = request.getParameter("pay-option").equals("transfer") ? true : false;
         String message = null, title = null;
 
@@ -135,7 +137,8 @@ public class BillController extends HttpServlet implements Action {
             CartService cart = (CartService) session.getAttribute("cart");
             cart.bought(bill);
             request.getSession().setAttribute("cart", cart);
-            response.sendRedirect("thanh_toan_thanh_cong.jsp");
+            request.setAttribute("bill", bill);
+            request.getRequestDispatcher("thanh_toan_thanh_cong.jsp").forward(request, response);
         }
         else {
             title = "Thanh toán không thành công";

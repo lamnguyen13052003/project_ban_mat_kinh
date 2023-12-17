@@ -1,5 +1,11 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.Bill" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="model.bean.BillDetail" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -169,7 +175,12 @@
         </div>
     </nav>
 </header>
-
+<%
+    NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
+    Bill bill = (Bill) request.getAttribute("bill");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    String formattedDateTime = bill.getStatuses().get(0).getDate().format(formatter);
+%>
 <section id="thanh-toan-thanh-cong" class="p-md-5">
     <div class="tttv-frame">
         <div class="container">
@@ -180,23 +191,48 @@
                 </div>
                 <div class="time-tttc">
                     <p>
-                        <span class="hours">hh</span>:<span class="minutes">mm</span>:<span class="seconds">ss</span>
-                        <span class="days">dd</span>/<span class="months">MM</span>/<span class="years">YYYY</span>
+                        <span><%=formattedDateTime%></span>
                     </p>
                 </div>
             </div>
             <div class="tttc-bot">
                 <div class="ma-giao-dich">
                     <span class="left">Mã đơn hàng</span>
-                    <span class="right">xxxxxxx</span>
+                    <span class="right"><%=bill.getId()%></span>
+                </div>
+                <div class="username">
+                    <span class="left">Tên</span>
+                    <span class="right"><%=bill.getUserName()%></span>
+                </div>
+                <div class="phone-number">
+                    <span class="left">Số điện thoại</span>
+                    <span class="right"><%=bill.getPhoneNumber()%></span>
+                </div>
+                <div class="email">
+                    <span class="left">Email</span>
+                    <span class="right"><%=bill.getEmail()%></span>
+                </div>
+                <div class="adress">
+                    <span class="left">Địa chỉ</span>
+                    <span class="right"><%=bill.getAddress()%></span>
                 </div>
                 <div class="phuong-thuc-thanh-toan">
                     <span class="left">Phương thức thanh toán</span>
-                    <span class="right">xxxxxxx</span>
+                   <% if(!bill.isTransfer()){ %>
+                    <span class="right">Thanh toán trực tiếp</span>
+                    <%}else{%>
+                    <span class="right">Chuyển khoản</span>
+                    <%}%>
                 </div>
                 <div class="so-tien">
                     <span class="left">Tổng số tiền</span>
-                    <span class="right">xxxxxxx (VNĐ)</span>
+                    <%
+                        double total = 0;
+                        for(BillDetail bd : bill.getDetails()){
+                            total += bd.getPrice();
+                        }
+                    %>
+                    <span class="right"><%=nf.format(total)%></span>
                 </div>
             </div>
             <div class="btn-tttc py-md-5">
