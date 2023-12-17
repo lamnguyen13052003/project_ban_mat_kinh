@@ -293,16 +293,16 @@ public class ProductService {
         }
     }
 
-    public List<Product> getProductDiscount(){
+    public List<Product> getProductDiscount(int limit){
         Map<String, Integer> mapinfoRoot = new HashMap<String, Integer>();
         mapinfoRoot.put("page", 1);
         mapinfoRoot.put("id-category-group", 0);
         mapinfoRoot.put("id-category", 0);
-        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>(), 20);
+        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>(), limit);
     }
 
-    public List<Product> getInfoProminentProductByStart(){
-        List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart();
+    public List<Product> getInfoProminentProductByStart(int limit){
+        List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart(limit);
         setOtherFieldsProduct(list,2);
         Collections.sort(list, new Comparator<Product>() {
             @Override

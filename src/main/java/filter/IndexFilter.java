@@ -29,8 +29,8 @@ public class IndexFilter implements Filter {
 
         urlBannerImages = urlBannerPRImages == null ? BannerService.getInstance().getSlideShowImages() : urlBannerImages; // slide
         urlBannerPRImages = urlBannerPRImages == null ? BannerService.getInstance().getBannerPRImages() : urlBannerPRImages; // banner pr
-        productDiscount = productDiscount == null ? ProductService.getInstance().getProductDiscount() : productDiscount;
-        productProminent = productProminent == null ? ProductService.getInstance().getInfoProminentProductByStart() : productProminent;
+        productDiscount = productDiscount == null ? ProductService.getInstance().getProductDiscount(12) : productDiscount;
+        productProminent = productProminent == null ? ProductService.getInstance().getInfoProminentProductByStart(12) : productProminent;
 
         request.setAttribute("bannerImages", urlBannerImages); // slide
         request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
