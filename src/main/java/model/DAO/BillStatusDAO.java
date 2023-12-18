@@ -2,7 +2,21 @@ package model.DAO;
 
 import model.bean.BillStatus;
 
-public class BillStatusDAO extends DAO {
+import java.util.List;
+
+public class BillStatusDAO extends DAO{
+    /*
+    lay thong in trang thai
+     */
+    public List<BillStatus> getInfStatus(int billId){
+        List<BillStatus> result = connector.withHandle(handle ->
+        handle.createQuery("SELECT bs.status, bs.date FROM bill_statuses bs WHERE bs.billId = :billId")
+                .bind("billId", billId)
+                .mapToBean(BillStatus.class).list()
+        );
+        return result;
+    }
+
     public void insert(BillStatus status) {
         connector.withHandle(handle ->
                 handle.createUpdate("INSERT INTO bill_statuses(billId, `date`, `status`, `describe`, canEdit) VALUES (?, ?, ?, ?, ?)")

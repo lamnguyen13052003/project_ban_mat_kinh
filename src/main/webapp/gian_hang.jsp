@@ -193,7 +193,7 @@
 <main id="main" class="mt-5 pb-5">
     <div class="container">
         <!--Phần slide-->
-        <div id="carouselIndicators" class="carousel slide">
+        <div id="carouselIndicators" class="carousel slide mb-3" data-bs-ride="carousel">
             <div class="carousel-indicators" id="banner-indicators">
             </div>
             <div class="carousel-inner" id="banner-inner">

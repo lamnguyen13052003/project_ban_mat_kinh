@@ -264,9 +264,10 @@ public class ProductDAO extends DAO {
     /*
     lay danh sach thong tin san pham noi bat tren trang chu
      */
-    public List<Product> getInfoProminentProductByStart(){
+    public List<Product> getInfoProminentProductByStart(int  limit){
         List<Product> products = connector.withHandle(handle ->
-            handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p")
+            handle.createQuery("SELECT p.id, p.name, p.brandName, p.price, p.quantity FROM products p LIMIT ?")
+                    .bind(0, limit)
                     .mapToBean(Product.class).list()
         );
         return products;
