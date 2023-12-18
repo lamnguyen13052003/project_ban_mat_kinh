@@ -491,7 +491,7 @@ section:not(#silder-section) {
     border-radius: 10px;
 }
 
-.home-banner .home-banner-wrap .home-banner-wrap-left a:hover {
+.home-banner .home-banner-wrap .home-banner-wrap-left a:hover{
     background-color: #FFFFFF;
     color: var(--color-blue-origin);
 

@@ -21,6 +21,6 @@ public class ProductManagerFilter implements Filter {
             return;
         }
 
-        request.getRequestDispatcher("../product_manager").forward(request, response);
+        request.getRequestDispatcher("product_manager").forward(request, response);
     }
 }

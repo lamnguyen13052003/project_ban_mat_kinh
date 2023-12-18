@@ -2,6 +2,7 @@ package model.bean;
 
 import model.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,5 +72,13 @@ public class Cart {
 
     public ProductCart getProductCart(int productId, int modelId) {
         return this.cart.get(getKey(productId, modelId));
+    }
+
+    public void bought(Bill bill) {
+        ArrayList<BillDetail> billDetails = bill.getDetails();
+        for(BillDetail billDetail : billDetails){
+            String key = Cart.getKey(billDetail.getProductId(), billDetail.getModelId());
+            cart.remove(key);
+        }
     }
 }

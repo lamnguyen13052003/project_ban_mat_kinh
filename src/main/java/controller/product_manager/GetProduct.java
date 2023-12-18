@@ -39,7 +39,7 @@ public class GetProduct implements Action {
         request.setAttribute("mapInfRoot", mapInfRoot);
         request.setAttribute("mapFilter", mapFilter);
         request.setAttribute("mapSort", mapSort);
-        request.getRequestDispatcher("admin_pages/danh_sach_san_pham.jsp").forward(request, response);
+        request.getRequestDispatcher("quan_ly_san_pham.jsp").forward(request, response);
     }
 
 }

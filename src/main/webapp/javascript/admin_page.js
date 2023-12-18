@@ -2,11 +2,6 @@ $(document).ready(function () {
     $("#menu .account a").attr("href", "");
     $("#menu").find(".account").attr("class", "account col-lg-2 col-md-1 col-sm-1 border-0 px-lg-0");
     displayButtonSignOut();
-    $("#signout").click(function () {
-        $.get("/maven_war/LogOut", function (){
-            window.location.replace("../index.jsp");
-        });
-    });
 
     $(".filter-item .dropdown a").click(function () {
         const title = $(this).text();
@@ -23,6 +18,12 @@ function displayButtonSignOut() {
             </button>
         </div>
     `);
+
+    $("#signout").click(function () {
+        $.get("/maven_war/LogOut", function (){
+            window.location.replace("../index.jsp");
+        });
+    });
 }
 
 

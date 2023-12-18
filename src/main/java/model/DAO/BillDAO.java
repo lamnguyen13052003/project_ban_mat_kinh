@@ -36,4 +36,19 @@ public class BillDAO extends DAO {
         ) + 1;
     }
 
+    public boolean bought(int userId, int productId, int modelId) {
+        int count = connector.withHandle(handle -> handle.createQuery("SELECT COUNT(bd.id) " +
+                        "FROM bills AS b " +
+                        "JOIN bill_details AS bd ON bd.billId = b.id " +
+                        "WHERE " +
+                        "b.userId = ? AND bd.productId = ? AND bd.modelId = ?")
+                .bind(0, userId)
+                .bind(1, productId)
+                .bind(2, modelId)
+                .mapTo(Integer.class)
+                .findFirst().orElse(0)
+        );
+
+        return count != 0;
+    }
 }

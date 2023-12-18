@@ -1,9 +1,8 @@
 package model.service;
 
-import model.bean.Cart;
-import model.bean.Product;
-import model.bean.ProductCart;
+import model.bean.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,5 +69,9 @@ public class CartService {
 
     public ProductCart getProductCart(int productId, int modelId) {
         return this.cart.getProductCart(productId, modelId);
+    }
+
+    public void bought(Bill bill){
+        cart.bought(bill);
     }
 }

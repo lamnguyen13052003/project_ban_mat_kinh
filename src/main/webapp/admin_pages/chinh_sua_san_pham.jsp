@@ -1,5 +1,5 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -26,8 +26,8 @@
         <div class="container-xxl m-md-auto mt-2">
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                    <a href="danh_sach_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../logo.png" alt="logo.png">
+                    <a href="quan_ly_tai_khoan.jsp" class="navbar-brand me-5">
+                        <img src="../images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -67,16 +67,18 @@
                          aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
-                                <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài
-                                        khoản</a>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
                                 </li>
-                                <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded active">Danh sách sản
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="quan_ly_san_pham.jsp" class="nav-link px-4 rounded">Quản lý sản
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="danh_sach_hoa_don.jsp" class="nav-link px-4 rounded">Danh sách hóa đơn</a>
+                                    <a href="quan_ly_hoa_don.jsp" class="nav-link px-4 rounded">Quản lý hóa đơn</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="quan_ly_banner.jsp" class="nav-link px-4 rounded">Quản lý banner</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,91 +141,6 @@
 
                     <div class="input-expanded-info-product">
                         <textarea id="editor" name="editor"></textarea>
-                        <%-- <div class="input-expanded-info-product-header text-editor-header">
-                             <button type="button" class="btn"
-                                     data-element="bold">
-                                 <i class="fa fa-bold"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="italic">
-                                 <i class="fa fa-italic"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="underline">
-                                 <i class="fa fa-underline"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="insertUnorderedList">
-                                 <i class="fa fa-list-ul"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="insertOrderedList">
-                                 <i class="fa fa-list-ol"></i>
-                             </button>
-
-                             <button type="button" class="btn"
-                                     data-element="justifyLeft">
-                                 <i class="fa fa-align-left"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="justifyCenter">
-                                 <i class="fa fa-align-center"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="justifyRight">
-                                 <i class="fa fa-align-right"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="justifyFull">
-                                 <i class="fa fa-align-justify"></i>
-                             </button>
-                             <button type="button" class="btn"
-                                     data-element="createLink">
-                                 <i class="fa fa-link"></i>
-                             </button>
-                             <label type="button" class="btn" data-element="insertImage"
-                                    for="input-img-for-expanded-info-product">
-                                 <i class="fa fa-image"></i>
-                                 <input type="file" hidden="" id="input-img-for-expanded-info-product"
-                                        accept="image/png,image/jpeg">
-                             </label>
-                         </div>
-
-                         <div class="input-expanded-info-product-body" id="frame-content">
-                             <div class="content-product ms-2 me-2" contenteditable="true">
-                                 <div>
-                                     <br>
-                                 </div>
-                             </div>
-                         </div>--%>
-                    </div>
-
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#dialog-input-link"
-                            id="button-show-input-link" hidden="">
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="dialog-input-link" tabindex="-1" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Link</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="url" id="input-link" value="">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                            id="button-save-url">Save changes
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -318,12 +235,12 @@
                 <div class="button-action row">
                     <div class="col-6">
                         <button class="w-100  py-2 rounded" type="reset">
-                            <a class="text-light rounded" href="danh_sach_san_pham.jsp">Hủy</a>
+                            <a class="text-light rounded" href="quan_ly_san_pham.jsp">Hủy</a>
                         </button>
                     </div>
                     <div class="col-6">
                         <button class="w-100 rounded py-2" type="submit">
-                            <a class="text-light " href="danh_sach_san_pham.jsp">Lưu</a></button>
+                            <a class="text-light " href="quan_ly_san_pham.jsp">Lưu</a></button>
                     </div>
                 </div>
             </section>
@@ -363,8 +280,8 @@
         </div>
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
-                <a href="danh_sach_tai_khoan.jsp">
-                    <img src="../logo.png" alt="logo.png">
+                <a href="quan_ly_tai_khoan.jsp">
+                    <img src="../images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -376,6 +293,7 @@
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/them_san_pham.js"></script>
+<script src="../javascript/form_des.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

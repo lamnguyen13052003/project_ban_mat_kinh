@@ -6,29 +6,8 @@ import java.util.List;
 public class Bill {
     private Integer id, userId, codeProvince, codeDistrict, codeWard;
     private String userName, phoneNumber, address, email;
-
-    @Override
-    public String toString() {
-        return "Bill{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", codeProvince=" + codeProvince +
-                ", codeDistrict=" + codeDistrict +
-                ", codeWard=" + codeWard +
-                ", userName='" + userName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", transfer=" + transfer +
-                ", transportFee=" + transportFee +
-                ", statuses=" + statuses +
-                ", details=" + details +
-                '}';
-    }
-
     private Boolean transfer;
     private Double transportFee;
-
     private List<BillStatus> statuses;
     private ArrayList<BillDetail> details;
     public Integer getId() {
@@ -96,7 +75,7 @@ public class Bill {
     }
 
     public void addStatus(BillStatus status) {
-        if(statuses == null){
+        if (statuses == null) {
             statuses = new ArrayList<>();
         }
 
@@ -104,7 +83,7 @@ public class Bill {
     }
 
     public void addDetail(BillDetail detail) {
-        if(details == null){
+        if (details == null) {
             details = new ArrayList<BillDetail>();
         }
 
@@ -141,5 +120,24 @@ public class Bill {
 
     public String getEmail() {
         return this.email;
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", codeProvince=" + codeProvince +
+                ", codeDistrict=" + codeDistrict +
+                ", codeWard=" + codeWard +
+                ", userName='" + userName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", transfer=" + transfer +
+                ", transportFee=" + transportFee +
+                ", statuses=" + statuses +
+                ", details=" + details +
+                '}';
     }
 }

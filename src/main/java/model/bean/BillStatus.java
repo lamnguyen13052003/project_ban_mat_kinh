@@ -17,10 +17,11 @@ public class BillStatus implements Comparator<BillStatus> {
         mapStatusCodes.put(0, "Nhận đơn");
     }
 
-    public BillStatus(Integer status, String describe, LocalDateTime date, Boolean canEdit) {
+    public BillStatus(Integer billId, Integer status, String describe, Boolean canEdit) {
+        this.billId = billId;
         this.status = status;
         this.describe = describe;
-        this.date = date;
+        this.date = LocalDateTime.now();
         this.canEdit = canEdit;
     }
 
@@ -56,8 +57,8 @@ public class BillStatus implements Comparator<BillStatus> {
         this.date = date;
     }
 
-    public Boolean isCanEdit() {
-        return canEdit;
+    public int isCanEdit() {
+        return canEdit == true ? 1 : 0;
     }
 
     public void setCanEdit(Boolean canEdit) {

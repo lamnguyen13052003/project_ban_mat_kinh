@@ -1,14 +1,9 @@
 package model.service;
 
 import model.DAO.ReviewDAO;
-import model.DAO.ReviewImageDAO;
-import model.bean.Product;
-import model.bean.Review;
-import model.bean.User;
+import model.bean.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ReviewService {
@@ -63,6 +58,18 @@ public class ReviewService {
             review.setImages(mapReviewImage.get(review.getId()));
         }
     }
+
+    public void insertTempReview(Bill bill){
+        ReviewDAO reviewDAO = new ReviewDAO();
+        Review review = new Review();
+        review.setUserId(bill.getUserId());
+        review.setBillId(bill.getId());
+        for(BillDetail bd : bill.getDetails()){
+            review.setProductId(bd.getProductId());
+            reviewDAO.insertTempReview(review);
+        }
+
+    }
 }
 
 class InfReview{
@@ -87,5 +94,11 @@ class InfReview{
     public int getTotalReview() {
         return totalReview;
     }
+
+    public void setTotalReview(int totalReview) {
+        this.totalReview = totalReview;
+    }
+
+
 
 }

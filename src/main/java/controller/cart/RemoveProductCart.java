@@ -39,7 +39,6 @@ public class RemoveProductCart implements Action {
         }
         cart.removeProductCart(productId, modelId);
         session.setAttribute("cart", cart);
-        session.setAttribute("cart", cart);
         json.put("amountProduct", cart.getTotalProduct());
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

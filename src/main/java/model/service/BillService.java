@@ -71,19 +71,28 @@ public class BillService {
             if (product.getProduct().hasDiscount()) billDetail.setPrice(product.getRducedPrice());
             result.addDetail(billDetail);
         }
-        result.addStatus(new BillStatus(0, "Đã nhận được đơn đặc hàng", LocalDateTime.now(), true));
+//        result.addStatus(new BillStatus(0, "Đã nhận được đơn đặc hàng", LocalDateTime.now(), true));
         return result;
     }
 
     public boolean saveBill(Bill bill) {
         BillDAO billDAO = new BillDAO();
         BillDetailService billDetailService = new BillDetailService();
+        ReviewService reviewService = new ReviewService();
+        BillStatusService reviewStatusService = new BillStatusService();
         int id = 0;
         boolean check = billDetailService.checkQuantity(bill);
         if (check) {
             id = billDAO.insert(bill);
             billDetailService.insert(id, bill.getDetails());
+            bill.setId(id);
+            reviewService.insertTempReview(bill);
+            reviewStatusService.insert(new BillStatus(id, 1, "Đã xác nhận đơn hàng của bạn", true));
         }
         return check;
+    }
+
+    public boolean bought(int userId, int productId, int modelId) {
+        return  new BillDAO().bought(userId, productId, modelId);
     }
 }

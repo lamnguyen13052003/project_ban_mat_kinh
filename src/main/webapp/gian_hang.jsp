@@ -8,6 +8,7 @@
 <%@ page import="model.bean.Cart" %>
 <%@ page import="model.bean.Model" %>
 <%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
@@ -26,7 +27,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/san_pham.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="icon" type="image/x-icon" href="logo_icon.png">
+    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -41,7 +42,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -192,38 +193,16 @@
 <main id="main" class="mt-5 pb-5">
     <div class="container">
         <!--Phần slide-->
-        <div id="carouselExampleIndicators" class="carousel slide mb-5">
-            <!--Các nút bên dưới hình-->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+        <div id="carouselIndicators" class="carousel slide">
+            <div class="carousel-indicators" id="banner-indicators">
             </div>
-
-            <!--Danh sách các hình-->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%201.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/product/kinh_mat/slide/demo%20slide%202.png" class="d-block w-100" alt="...">
-                </div>
+            <div class="carousel-inner" id="banner-inner">
             </div>
-
-            <!--2 Nút chuyển qua và lại-->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                <span class="material-symbols-outlined">arrow_back </span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                <span class="material-symbols-outlined">arrow_forward </span>
             </button>
         </div>
         <!--End phần slide-->
@@ -243,7 +222,7 @@
                         <div class="col mt-2">
                             <button id="removeCheckedFilterAll" class="button border-0" type="button"
                                     data-action="close-filter">
-                                <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-none=filter-none")%>">
+                                <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-none=filter-none")%>">
                                     <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15"
                                          height="15">
                                         <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none"
@@ -781,7 +760,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
