@@ -6,14 +6,17 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/them_san_pham.css">
     <link rel="icon" href="../logo_icon.png">
 
+    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
+    <script src="../ckeditor/ckeditor.js"></script>
+    <script src="../ckeditor/samples/js/sample.js"></script>
+    <script src="../ckfinder/ckfinder.js"></script>
 
     <title>Chỉnh sửa sản phẩm</title>
 </head>
@@ -137,92 +140,7 @@
                     </div>
 
                     <div class="input-expanded-info-product">
-                        <div class="input-expanded-info-product-header text-editor-header">
-                            <button type="button" class="btn"
-                                    data-element="bold">
-                                <i class="fa fa-bold"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="italic">
-                                <i class="fa fa-italic"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="underline">
-                                <i class="fa fa-underline"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="insertUnorderedList">
-                                <i class="fa fa-list-ul"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="insertOrderedList">
-                                <i class="fa fa-list-ol"></i>
-                            </button>
-
-                            <button type="button" class="btn"
-                                    data-element="justifyLeft">
-                                <i class="fa fa-align-left"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="justifyCenter">
-                                <i class="fa fa-align-center"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="justifyRight">
-                                <i class="fa fa-align-right"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="justifyFull">
-                                <i class="fa fa-align-justify"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="createLink">
-                                <i class="fa fa-link"></i>
-                            </button>
-                            <label type="button" class="btn" data-element="insertImage"
-                                   for="input-img-for-expanded-info-product">
-                                <i class="fa fa-image"></i>
-                                <input type="file" hidden="" id="input-img-for-expanded-info-product"
-                                       accept="image/png,image/jpeg">
-                            </label>
-                        </div>
-
-
-                        <div class="input-expanded-info-product-body" id="frame-content">
-                            <div class="content-product ms-2 me-2" contenteditable="true">
-                                <div>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#dialog-input-link"
-                            id="button-show-input-link" hidden="">
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="dialog-input-link" tabindex="-1" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Link</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="url" id="input-link" value="">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                            id="button-save-url">Save changes
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <textarea id="editor" name="editor"></textarea>
                     </div>
                 </div>
 
