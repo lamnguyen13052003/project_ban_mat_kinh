@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 <div class="" style="width: 50%; height: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin: auto; font-family: Tahoma, Arial, sans-serif;">
     <div class="tttc-top" style="text-align: center">
