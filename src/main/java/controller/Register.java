@@ -59,7 +59,8 @@ public class Register extends HttpServlet {
             request.getSession().setAttribute("email_verify", email);
             request.getSession().setAttribute("tom_verify", email);
 
-
+            /*Đừng bao giờ push các file trong .idea nữa. nói từ đầu là hk push cái j khác trừ src mà tr.*/
+            /*Cũng đừng bao giờ sửa code ng khác viết nha. lỗi hk bk sữa làm sao.*/
             SendMail.Send(email,"Xác Nhận Đăng Ký", "Vui lòng nhấn vào đường dẫn để hoàn tất đăng ký \n" +
                     "Đường dẫn chỉ có thời gian là 10p \n"+
                     "http://" + request.getHeader("host") + "/verify_account?token=" + generatedString);
