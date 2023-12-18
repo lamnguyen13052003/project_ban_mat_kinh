@@ -1,19 +1,22 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
-    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/them_san_pham.css">
     <link rel="icon" href="../logo_icon.png">
 
+    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
+    <script src="../ckeditor/ckeditor.js"></script>
+    <script src="../ckeditor/samples/js/sample.js"></script>
+    <script src="../ckfinder/ckfinder.js"></script>
 
     <title>Chỉnh sửa sản phẩm</title>
 </head>
@@ -65,7 +68,8 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài khoản</a>
+                                    <a href="danh_sach_tai_khoan.jsp" class="nav-link px-4 rounded">Danh sách tài
+                                        khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
                                     <a href="danh_sach_san_pham.jsp" class="nav-link px-4 rounded active">Danh sách sản
@@ -134,64 +138,64 @@
                     </div>
 
                     <div class="input-expanded-info-product">
-                        <div class="input-expanded-info-product-header text-editor-header">
-                            <button type="button" class="btn"
-                                    data-element="bold">
-                                <i class="fa fa-bold"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="italic">
-                                <i class="fa fa-italic"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="underline">
-                                <i class="fa fa-underline"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="insertUnorderedList">
-                                <i class="fa fa-list-ul"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="insertOrderedList">
-                                <i class="fa fa-list-ol"></i>
-                            </button>
+                        <textarea id="editor" name="editor"></textarea>
+                        <%-- <div class="input-expanded-info-product-header text-editor-header">
+                             <button type="button" class="btn"
+                                     data-element="bold">
+                                 <i class="fa fa-bold"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="italic">
+                                 <i class="fa fa-italic"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="underline">
+                                 <i class="fa fa-underline"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="insertUnorderedList">
+                                 <i class="fa fa-list-ul"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="insertOrderedList">
+                                 <i class="fa fa-list-ol"></i>
+                             </button>
 
-                            <button type="button" class="btn"
-                                    data-element="justifyLeft">
-                                <i class="fa fa-align-left"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="justifyCenter">
-                                <i class="fa fa-align-center"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="justifyRight">
-                                <i class="fa fa-align-right"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="justifyFull">
-                                <i class="fa fa-align-justify"></i>
-                            </button>
-                            <button type="button" class="btn"
-                                    data-element="createLink">
-                                <i class="fa fa-link"></i>
-                            </button>
-                            <label type="button" class="btn" data-element="insertImage"
-                                   for="input-img-for-expanded-info-product">
-                                <i class="fa fa-image"></i>
-                                <input type="file" hidden="" id="input-img-for-expanded-info-product"
-                                       accept="image/png,image/jpeg">
-                            </label>
-                        </div>
+                             <button type="button" class="btn"
+                                     data-element="justifyLeft">
+                                 <i class="fa fa-align-left"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="justifyCenter">
+                                 <i class="fa fa-align-center"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="justifyRight">
+                                 <i class="fa fa-align-right"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="justifyFull">
+                                 <i class="fa fa-align-justify"></i>
+                             </button>
+                             <button type="button" class="btn"
+                                     data-element="createLink">
+                                 <i class="fa fa-link"></i>
+                             </button>
+                             <label type="button" class="btn" data-element="insertImage"
+                                    for="input-img-for-expanded-info-product">
+                                 <i class="fa fa-image"></i>
+                                 <input type="file" hidden="" id="input-img-for-expanded-info-product"
+                                        accept="image/png,image/jpeg">
+                             </label>
+                         </div>
 
-
-                        <div class="input-expanded-info-product-body" id="frame-content">
-                            <div class="content-product ms-2 me-2" contenteditable="true">
-                                <div>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
+                         <div class="input-expanded-info-product-body" id="frame-content">
+                             <div class="content-product ms-2 me-2" contenteditable="true">
+                                 <div>
+                                     <br>
+                                 </div>
+                             </div>
+                         </div>--%>
                     </div>
 
                     <button type="button" data-bs-toggle="modal" data-bs-target="#dialog-input-link"
@@ -372,7 +376,6 @@
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/them_san_pham.js"></script>
-<script src="/javascript/form_des.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
