@@ -14,12 +14,20 @@ import java.util.Map;
 public class DisplayProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String query = request.getQueryString();
+        if (query == null) query = "";
+        if (!query.contains("page")) query = query + "&page=1";
+        if (!query.contains("id-category-group")) query = "id-category-group=0" + query;
+        int index = query.indexOf("&");
+        if (query.indexOf("id-category", index) == -1)
+            query = query.substring(0, index) + "&id-category=0" + query.substring(index, query.length());
+
         ProductService productService = ProductService.getInstance();
-        String formatQuery = productService.formatQueryRequest(request.getQueryString());
+        String formatQuery = productService.formatQueryRequest(query);
         Map<String, List<String>> mapFilter = productService.getMapFilter(formatQuery);
         Map<String, String> mapSort = productService.getMapSort(formatQuery);
         Map<String, Integer> mapInfRoot = productService.getMapInfRoot(formatQuery);
-        List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort);
+        List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort, 20);
         int totalPages = productService.getTotalPages(mapInfRoot, mapFilter, mapSort);
 
         int idCategory = mapInfRoot.get("id-category"),

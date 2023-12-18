@@ -5,6 +5,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.bean.Model" %>
 <%@ page import="model.bean.Review" %>
+<%@ page import="model.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/thong_tin_san_pham.css">
-    <link rel="icon" type="image/x-icon" href="logo_icon.png">
+    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -30,7 +31,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -66,7 +67,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -191,10 +198,10 @@
                         <li class="list-group-item">
                             <%if (i == 0) {%>
                             <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="<%=i%>"
-                                    class="active" aria-current="true" aria-label="Slide <%=i%>>">
+                                    class="active" aria-current="true" aria-label="Slide <%=i%>">
                                     <%}else{%>
                                 <button type="button" data-bs-target="#carouselExampleAutoplaying"
-                                        data-bs-slide-to="<%=i%>" aria-current="true" aria-label="Slide <%=i%>>">
+                                        data-bs-slide-to="<%=i%>" aria-current="true" aria-label="Slide <%=i%>">
                                     <%}%>
                                     <img src="<%=images.get(i)%>"
                                          class="d-block w-100" alt="<%=product.getName()%>.png">
@@ -207,15 +214,16 @@
                 <%--khung hien thi anh lon--%>
                 <div class="carousel-inner">
                     <%for (int i = 0; i < images.size(); i++) {%>
-                    <%if (i == 0) {%>
-                    <div class="carousel-item active">
+                        <%if (i == 0) {%>
+                            <div class="carousel-item active">
                         <%} else {%>
-                        <div class="carousel-item">
-                            <%}%>
-                            <img src="<%=images.get(i)%>"
-                                 class="d-block w-100" alt="<%=product.getName()%>.png">
-                        </div>
+                            <div class="carousel-item">
                         <%}%>
+
+                                <img src="<%=images.get(i)%>"
+                                     class="d-block w-100" alt="<%=product.getName()%>.png">
+                            </div>
+                    <%}%>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                             data-bs-slide="prev">
@@ -395,9 +403,6 @@
                     <div style="height: 500px;" class="active overflow-hidden">
                         <strong>THÔNG TIN SẢN PHẨM:</strong>
                         <%=product.getDescribe()%>
-                        <!--Ảnh demo nên lấy trực tiếp trên mạng-->
-                        <!--Lúc làm ae phải tải ành về máy-->
-                        <!--Lưu ý cực mạnh cho ae-->
                         <%for (String url : product.getDescribeImages()) {%>
                         <p style="text-align: center"><img
                                 src="<%=url%>"
@@ -691,7 +696,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

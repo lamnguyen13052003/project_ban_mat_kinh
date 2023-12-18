@@ -10,8 +10,6 @@ import java.util.Map;
 
 public class UserService {
     private static UserService instance;
-    private User user;
-
     private UserDAO userDAO;
 
     private final String INSERT_USER = "INSERT INTO Users(avatar, fullName, sex, birthday, email, password, role, verify, lock) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -26,36 +24,28 @@ public class UserService {
         userDAO = UserDAO.getInstance();
     }
 
-    public boolean canLogin(String email, String password) {
-        user = userDAO.getUser(email);
-        if(user == null) return false;
-        System.out.println(user.getPassword() + "_" + password);
-        boolean rs = checkPassword(user.getPassword(),password);
-        return  rs;
+    public User login(String email, String password) {
+        return userDAO.login(email, password);
     }
+
 
     public boolean findUserByMail(String mail){
-        return userDAO.getEmail(mail) != null;
+        return userDAO.containsEmail(mail);
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public boolean  signup(User user) {
+    public boolean signup(User user) {
         user.setPassword(hashPassword(user.getPassword()));
         int rs =  userDAO.addUser(user);
         if(rs == 1) return true;
 
         return false;
-
     }
 
     public void forgetPassword(String email){
-
+        /*Anh làm phần quen mật khẩu chơa. alo. nge , anh quên mất @@. chịu,*/
     }
     public boolean verifyByEmail(String email){
-        int rs =  userDAO.veryAccountByEmail(email);
+        int rs =  userDAO.verìfyAccountByEmail(email);
         if(rs == 1) return true;
         return false;
     }
@@ -67,10 +57,9 @@ public class UserService {
     private boolean checkPassword(String hashpass, String pass){
         return BCrypt.checkpw(pass, hashpass);
     }
-    public boolean containEmail(String email){
-        return userDAO.getEmail(email) != null;
+    public boolean containsEmail(String email){
+        return userDAO.containsEmail(email);
     }
-
     public Map<Integer, User> getUserForReviewProduct(List<Review> reviews) {
         return UserDAO.getInstance().getUserForReviewProduct(reviews);
     }

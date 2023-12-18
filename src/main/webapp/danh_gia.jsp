@@ -1,5 +1,8 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.Product" %>
+<%@ page import="model.bean.Model" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -10,7 +13,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/danh_gia.css">
-    <link rel="icon" type="image/x-icon" href="logo_icon.png">
+    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -24,7 +27,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -60,7 +63,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -92,9 +101,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -149,7 +160,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -172,22 +184,36 @@
             </a>
         </button>
 
-        <div class="review-product mt-3">
+        <%
+            Product product = (Product) request.getAttribute("product");
+            Model model;
+            /*test*/
+            product = new Product();
+            product.setName("Sản phẩm demo");
+            product.setId(123);
+            model = new Model();
+            model.setId(123);
+            model.setName("Mẫu thử");
+            model.setUrlIamge("images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg");
+            product.setModel(model);
+            /*test*/
+            model = product.getModels().get(0);
+        %>
+        <div class="review-product mt-3" product-id="<%=product.getId()%>">
             <div class="review-product header mb-2">
-                <h3>Đánh giá sản phẩm</h3>
             </div>
-
             <div class="review-product-body">
                 <div class="info-product">
                     <div class="name-product">
-                        <p>Gọng kính abc</p>
+                        <p><%=product.getName()%>
+                        </p>
                     </div>
                     <div class="option-product">
                         <span>Màu: </span>
-                        <span>Xanh</span>
+                        <span><%=model.getName()%></span>
                     </div>
                     <div class="img-product">
-                        <img src="images/product/giong-kinh/gong-kinh-baron-8859/0.jpg" alt="">
+                        <img src="<%=model.getUrlIamge()%>" alt="">
                     </div>
                 </div>
 
@@ -195,7 +221,7 @@
                     <form action="">
                         <div class="quality-product" id="input-star">
                             <p class="fs-4 d-block">Chất lượng sản phẩm</p>
-                            <ul class="d-inline-flex list-star">
+                            <ul class="d-inline-flex list-star ps-0">
                                 <!--Các li có class checked là sao hoàn thiện-->
                                 <li>
                                     <i class="fa-regular fa-star" style="color: #fdd836;" star="1"></i>
@@ -220,21 +246,18 @@
                                 <span class="fs-4">Đánh giá</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <textarea class="mt-1" placeholder="Nhập thông tin đánh giá" rows="5" name="comment" id="comment"
-                                      required></textarea>
+                            <textarea class="mt-1 p-2" placeholder="Nhập thông tin đánh giá" rows="5" name="comment"
+                                      id="comment" required></textarea>
                         </div>
                         <div class="img-product mt-3">
                             <span class="fs-4">Hình ảnh: </span>
                             <span class="text-secondary">(Tối đa 5 sản phẩm)</span><br>
-
                             <div class="list-img-review-product d-flex mt-1">
-                                <input id="input-img-review" type="file" hidden="">
-                                <label for="input-img-review">
+                                <label for="input-img-review" id="label-upload-image">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                 </label>
                             </div>
                         </div>
-
                         <button class="mt-3" type="submit" id="submit-review">
                             Đánh giá
                         </button>
@@ -243,7 +266,7 @@
             </div>
         </div>
 
-
+        <input type="file" id="input-img-review" name="input-img-review" hidden="">
     </div>
 </main>
 
@@ -303,7 +326,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

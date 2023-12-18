@@ -151,13 +151,20 @@ label.radio input:checked + span {
 }
 
 .info-payer {
+    display: block;
+    border-radius: 5px;
+    padding: 5px 8px;
+    width: 100%;
     background: rgb(102, 102, 221);
     color: #fff !important;
     border-color: rgb(102, 102, 221);
+    outline: rgb(102, 102, 221);
+    box-shadow: rgba(47, 24, 154, 1);
 }
 
 .info-payer:focus {
-    box-shadow: none;
+    box-shadow: rgba(47, 24, 154, 1);
+    outline: rgb(102, 102, 221);
 }
 
 .info-payer::placeholder {
@@ -206,17 +213,17 @@ label.radio input:checked + span {
     border-radius: 0 5px 5px 0;
 }
 
-.items .amount-product {
+.items .amount-product-item {
     width: 50px;
 }
 
-.items .amount-product:focus {
+.items .amount-product-item:focus {
     box-shadow: none;
     outline: none;
 }
 
-.items .amount-product::-webkit-outer-spin-button,
-.items .amount-product::-webkit-inner-spin-button {
+.items .amount-product-item::-webkit-outer-spin-button,
+.items .amount-product-item::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }

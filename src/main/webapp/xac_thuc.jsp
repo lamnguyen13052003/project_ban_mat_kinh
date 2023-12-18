@@ -1,3 +1,4 @@
+<%@ page import="model.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/xac_thuc.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -24,7 +25,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -60,7 +61,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -240,7 +247,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

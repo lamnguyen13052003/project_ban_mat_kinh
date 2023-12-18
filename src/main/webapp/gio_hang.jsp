@@ -1,5 +1,16 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="model.service.CartService" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="model.bean.ProductCart" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="model.service.BillService" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+    session.setAttribute("bill", new BillService());
+%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -12,7 +23,7 @@
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/gio_hang.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -26,7 +37,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -62,7 +73,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                 <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -94,9 +111,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -151,7 +170,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -167,153 +187,85 @@
 
 <main id="main" class="mt-5 pb-5">
     <div class="container rounded cart">
-        <form>
-            <div class="row no-gutters">
-                <div class="col-md-8">
-                    <div class="product-details mr-2">
-                        <!--Quay về-->
-                        <div class="d-flex flex-row align-items-center">
-                            <a href="index.jsp">
-                                <i class="fa fa-long-arrow-left"></i>
-                                <span class="ms-2">Quay lại trang chủ</span>
-                            </a>
-                        </div>
-                        <hr>
-                        <!--Phần header-->
-                        <div class="cart-header">
-                            <h6 class="mb-0">Giỏ hàng</h6>
-                            <div class="d-flex justify-content-between">
-                                <span>Bạn đang có 4 sản phẩm</span>
-                            </div>
-                        </div>
-                        <!--Danh sách sản phẩm-->
-                        <div class="list-product cart-body" id="list-product">
-                            <!--Sản phẩm-->
-                            <div class="product">
-                                <input type="checkbox" name="select-product">
-                                <div class="info-product">
-                                    <img class="rounded"
-                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
-                                    <div class="ms-2">
-                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 1</span>
-                                        <span class="option">Màu xanh</span>
-                                    </div>
-                                </div>
-                                <div class="change-amount">
-                                    <button type="button" class="down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="amount-product" min="1" value="1" disabled>
-                                    <button type="button" class="up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="price">
-                                    <span class="price">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <div class="total-price">
-                                    <span class="total-money">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <button class="cancel text-danger">x</button>
-                            </div>
-                            <!--Kết thúc sản phẩm-->
-                            <!--Sản phẩm-->
-                            <div class="product">
-                                <input type="checkbox" name="select-product">
-                                <div class="info-product">
-                                    <img class="rounded"
-                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
-                                    <div class="ms-2">
-                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 2</span>
-                                        <span class="option">Màu xanh</span>
-                                    </div>
-                                </div>
-                                <div class="change-amount">
-                                    <button type="button" class="down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="amount-product " min="1" value="1" disabled>
-                                    <button type="button" class="up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="price">
-                                    <span class="price">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <div class="total-price">
-                                    <span class="total-money">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <button class="cancel text-danger">x</button>
-                            </div>
-                            <!--Kết thúc sản phẩm-->
-                            <!--Sản phẩm-->
-                            <div class="product">
-                                <input type="checkbox" name="select-product">
-                                <div class="info-product">
-                                    <img class="rounded"
-                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
-                                    <div class="ms-2">
-                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 3</span>
-                                        <span class="option">Màu xanh</span>
-                                    </div>
-                                </div>
-                                <div class="change-amount">
-                                    <button type="button" class="down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="amount-product " min="1" value="1" disabled>
-                                    <button type="button" class="up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="price">
-                                    <span class="price">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <div class="total-price">
-                                    <span class="total-money">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <button class="cancel text-danger">x</button>
-                            </div>
-                            <!--Kết thúc sản phẩm-->
-                            <!--Sản phẩm-->
-                            <div class="product">
-                                <input type="checkbox" name="select-product">
-                                <div class="info-product">
-                                    <img class="rounded"
-                                         src="images/product/mat-kinh-tre-em/gong-kinh-tre-em/Gong-Kinh-Can-Tre-Em-TR90-JC052/gong-kinh-can-tre-em-hato-052-s01_master.png">
-                                    <div class="ms-2">
-                                        <span class="fw-bold d-block name-product">Gọng kính cận trẻ em 4</span>
-                                        <span class="option">Màu xanh</span>
-                                    </div>
-                                </div>
-                                <div class="change-amount">
-                                    <button type="button" class="down"><span
-                                            class="material-symbols-outlined">arrow_left</span></button>
-                                    <input type="number" name="amount-product"
-                                           class="amount-product " min="1" value="1" disabled>
-                                    <button type="button" class="up"><span
-                                            class="material-symbols-outlined">arrow_right</span></button>
-                                </div>
-                                <div class="price">
-                                    <span class="price">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <div class="total-price">
-                                    <span class="total-money">120,000</span>
-                                    <span>₫</span>
-                                </div>
-                                <button class="cancel text-danger">x</button>
-                            </div>
-                            <!--Kết thúc sản phẩm-->
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="product-details mr-2">
+                    <!--Quay về-->
+                    <div class="d-flex flex-row align-items-center">
+                        <a href="index.jsp">
+                            <i class="fa fa-long-arrow-left"></i>
+                            <span class="ms-2">Quay lại trang chủ</span>
+                        </a>
+                    </div>
+                    <hr>
+                    <!--Phần header-->
+                    <div class="cart-header">
+                        <h6 class="mb-0">Giỏ hàng</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Bạn đang có <span
+                                    class="amount-product"><%=cart.getTotalProduct()%></span> sản phẩm</span>
                         </div>
                     </div>
+                    <!--Danh sách sản phẩm-->
+                    <div class="list-product cart-body" id="list-product">
+                        <%
+                            NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
+                            List<ProductCart> productCartList = cart.getAllProductCart();
+                            for (ProductCart productCart : productCartList) {
+                        %>
+                        <!--Sản phẩm-->
+                        <div class="product">
+                            <input class="product-checkbox" type="checkbox"
+                                   product-id="<%=productCart.getProduct().getId()%>"
+                                   model-id="<%=productCart.getModel().getId()%>">
+                            <div class="info-product">
+                                <img class="rounded" src="<%=productCart.getModel().getUrlIamge()%>">
+                                <div class="ms-2">
+                                    <span class="fw-bold d-block name-product"><%=productCart.getProduct().getName()%></span>
+                                    <span class="option"><%=productCart.getModel().getName()%></span>
+                                </div>
+                            </div>
+                            <div class="change-amount">
+                                <button type="button" product-id="<%=productCart.getProduct().getId()%>"
+                                        model-id="<%=productCart.getModel().getId()%>" type="button" class="down"><span
+                                        class="material-symbols-outlined">arrow_left</span></button>
+                                <input type="number" name="amount-product-item"
+                                       product-id="<%=productCart.getProduct().getId()%>"
+                                       model-id="<%=productCart.getModel().getId()%>"
+                                       class="amount-product-item" min="1"
+                                       max="<%=productCart.getProduct().getQuantity()%>"
+                                       value="<%=productCart.getQuantity()%>" disabled>
+                                <button type="button" product-id="<%=productCart.getProduct().getId()%>"
+                                        model-id="<%=productCart.getModel().getId()%>" type="button" class="up"><span
+                                        class="material-symbols-outlined">arrow_right</span></button>
+                            </div>
+                            <div class="price">
+                                    <span class="price">
+                                      <%if (productCart.hasDiscount()) {%>
+                                      <%=nf.format(productCart.getRducedPrice())%>
+                                      <%} else {%>
+                                      <%=nf.format(productCart.getPrice())%>
+                                      <%}%>
+                                    </span>
+                            </div>
+                            <div class="total-price">
+                                    <span class="total-money">
+                                      <%=nf.format(productCart.totalPrice())%>
+                                    </span>
+                            </div>
+                            <button type="button" product-id="<%=productCart.getProduct().getId()%>"
+                                    model-id="<%=productCart.getModel().getId()%>" class="cancel text-danger">x
+                            </button>
+                        </div>
+                        <!--Kết thúc sản phẩm-->
+                        <%}%>
+                    </div>
                 </div>
-                <!--Thanh toán-->
-                <div class="col-md-4" id="pay">
-                    <div class="payment-info">
+            </div>
+            <!--Thanh toán-->
+            <div class="col-md-4" id="pay">
+                <div class="payment-info">
+                    <form accept-charset="UTF-8" action="bill" method="POST" id="form-info-customer">
                         <div class="d-flex justify-content-between align-items-center">
                             <span>Thanh toán</span>
                         </div>
@@ -322,115 +274,146 @@
                             <span class="type d-block mt-3 mb-1">Hình thức thanh toán</span>
                             <div class="list-option-pay pb-2">
                                 <label class="radio" for="cash">
-                                    <input type="radio" name="pay" value="cash" id="cash" checked>
+                                    <input type="radio" name="pay-option" value="cash" id="cash" checked>
                                     <span>
-                                        <img src="images/icon/cash.png" alt="cash.png" >
-                                    </span>
+                                    <img src="images/icon/cash.png" alt="cash.png">
+                                </span>
                                 </label>
                                 <label for="transfer" class="radio" data-bs-toggle="modal" data-bs-target="#qr-pay">
-                                    <input type="radio" name="pay" value="transfer" id="transfer">
+                                    <input type="radio" name="pay-option" value="transfer" id="transfer">
                                     <span>
-                                        <img src="images/icon/transfer.png" alt="cash.png">
-                                    </span>
+                                    <img src="images/icon/transfer.png" alt="cash.png">
+                                </span>
                                 </label>
                             </div>
                         </div>
                         <div class="form-info">
-                            <form action="">
-                                <div>
-                                    <label class="credit-pay-label" for="full-name">Họ và tên <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control info-payer" placeholder="Họ và tên"
-                                           id="full-name"></div>
-                                <div>
-                                    <label class="credit-pay-label" for="phone-number">Số điện thoại <span
-                                            class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control info-payer" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
-                                           placeholder="Nhập số điện thoại"
-                                           id="phone-number">
+                            <div>
+                                <label for="full-name">Họ và tên <span class="text-danger">*</span></label>
+                                <input required type="text" class="info-payer" placeholder="Họ và tên" name="full-name"
+                                       id="full-name">
+                            </div>
+                            <div>
+                                <label for="phone-number">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="info-payer" required placeholder="Nhập email" name="email"
+                                       id="email">
+                            </div>
+                            <div>
+                                <label for="phone-number">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" class="info-payer" pattern="[0-9]{4}[0-9]{3}[0-9]{3}" required
+                                       placeholder="Nhập số điện thoại" name="phone-number" id="phone-number">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="provinces">Thành phố/Tỉnh <span class="text-danger">*</span></label>
+                                    <select class="info-payer" name="provinces" id="provinces" required>
+                                        <option selected value="" disabled style="color: #fff">Chọn thành phố/tỉnh
+                                        </option>
+                                    </select>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="credit-pay-label" for="tp-tinh">Thành phố/Tỉnh:</label>
-                                        <select class="form-control info-payer" id="tp-tinh">
-                                            <option value="hanoi">Hà Nội</option>
-                                            <option value="hochiminh">Hồ Chí Minh</option>
-                                            <option value="danang">Đà Nẵng</option>
-                                            <option value="hue">Huế</option>
-                                            <option value="haiduong">Hải Dương</option>
-                                            <!-- Thêm các tỉnh/thành phố khác ở đây -->
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="credit-pay-label" for="quan-huyen">Quận/Huyện</label>
-                                        <select id="quan-huyen" name="quan-huyen" class="form-control info-payer">
-                                            <option value="quan1">Quận 1</option>
-                                            <option value="quan2">Quận 2</option>
-                                            <option value="quan3">Quận 3</option>
-                                            <option value="quan4">Quận 4</option>
-                                            <option value="quan5">Quận 5</option>
-                                            <!-- Thêm các quận/huyện khác ở đây -->
-                                        </select>
-                                    </div>
+                                <div class="col-md-6">
+                                    <label for="districts">Quận/Huyện <span class="text-danger">*</span></label>
+                                    <select id="districts" name="districts" class="info-payer" required>
+                                        <option selected value="" disabled style="color: #fff">Chọn quận/huyện</option>
+                                    </select>
                                 </div>
-                                <div>
-                                    <label class="credit-pay-label" for="full-address">Địa chỉ cụ thể <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control info-payer" required
-                                           placeholder="số xx, thôn xx, huyện xx, tỉnh xx" id="full-address">
+
+                                <div class="col-md-12">
+                                    <label for="wards">Phường/Xã <span class="text-danger">*</span></label>
+                                    <select class="info-payer" id="wards" name="wards" required>
+                                        <option selected value="" disabled style="color: #fff">Chọn phường/xã</option>
+                                    </select>
                                 </div>
-                            </form>
+                            </div>
+                            <div>
+                                <label for="full-address">Địa chỉ cụ thể <span class="text-danger">*</span></label>
+                                <input type="text" name="full-address" class="info-payer" required
+                                       placeholder="số xx, thôn xx, xã xx, huyện xx, tỉnh xx" id="full-address">
+                            </div>
                         </div>
                         <hr class="line">
                         <div class="money">
                             <div class="d-flex justify-content-between information">
                                 <span>Tổng hóa đơn</span>
-                                <p class="m-0 p-0">
-                                    <span>3,000,000</span>
-                                    <span>₫</span>
+                                <p class="m-0 p-0" id="totalBill">
+                                    <%=nf.format(0)%>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between information">
+                                <span>Giảm</span>
+                                <p class="m-0 p-0" id="totalPriceReduced">
+                                    <%=nf.format(0)%>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between information">
                                 <span>Phí ship</span>
-                                <p class="m-0 p-0">
-                                    <span>20,000</span>
-                                    <span>₫</span>
+                                <p class="m-0 p-0" id="shippingFee">
+                                    <%=nf.format(0)%>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between information">
                                 <span>Tổng trả: </span>
-                                <p class="m-0 p-0">
-                                    <span>3,020,000</span>
-                                    <span>₫</span>
+                                <p class="m-0 p-0" id="totalPay">
+                                    <%=nf.format(0)%>
                                 </p>
                             </div>
-                            <a href="thanh_toan_thanh_cong.jsp">
-                                <button class="btn btn-primary btn-block d-flex justify-content-center mt-3 w-100"
-                                        type="button">
-                                    <span>Thanh toán<i class="fa fa-long-arrow-right ms-1"></i></span>
-                                </button>
-                            </a>
                         </div>
-                    </div>
+                        <button id="button-pay"
+                                class="btn btn-primary btn-block d-flex justify-content-center mt-2 w-100"
+                                type="submit">
+                            <span>Thanh toán<i class="fa fa-long-arrow-right ms-1"></i></span>
+                        </button>
+                    </form>
                 </div>
+            </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="qr-pay" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Mã thanh toán</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="images/qr.png" alt="qr.png">
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="qr-pay" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Mã thanh toán</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="images/qr.png" alt="qr.png">
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+
+            <button hidden="" id="button-error-select-product" data-bs-toggle="modal"
+                    data-bs-target="#error-select-product"></button>
+            <div class="modal fade" id="error-select-product" data-bs-backdrop="static" data-bs-keyboard="false"
+                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Lỗi</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h3><%=session.getAttribute("title")%>
+                            </h3>
+                            <p><%=session.getAttribute("message")%>
+                            </p>
+                        </div>
+                        <%if (session.getAttribute("title") != null && ((String) session.getAttribute("title")).contains("đăng nhập")) {%>
+                        <div class="modal-footer">
+                            <a href="dang_nhap.jsp" style="color:#fff;">
+                                <button type="button" class="btn btn-primary">
+                                    OK
+                                </button>
+                            </a>
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -477,7 +460,8 @@
                             toán, giao nhận</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả và
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả
+                            và
                             hoàn tiền</a></li>
                         <li><a class="hover" href="policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
@@ -488,7 +472,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
@@ -508,6 +492,12 @@
     displayMenuAccount(user);
     <%} else{%>
     hidenMenuAccount();
+    <%}%>
+
+    <%if(session.getAttribute("title") != null){%>
+    $("#button-error-select-product").click();
+    <%session.removeAttribute("title");
+    session.removeAttribute("message");%>
     <%}%>
 </script>
 </body>

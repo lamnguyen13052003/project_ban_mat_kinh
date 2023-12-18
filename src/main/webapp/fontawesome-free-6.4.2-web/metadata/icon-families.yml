@@ -328,7 +328,7 @@ address-book:
         style: solid
       - family: classic
         style: regular
-  label: Address Book
+  label: AddressManager Book
   search:
     terms:
       - contact
@@ -367,7 +367,7 @@ address-card:
         style: solid
       - family: classic
         style: regular
-  label: Address Card
+  label: AddressManager Card
   search:
     terms:
       - about

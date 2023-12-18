@@ -2,6 +2,7 @@ package model.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Product {
     private Integer id, categoryId, quantity, starNumber, totalReview, totalQuantitySold;
@@ -205,7 +206,27 @@ public class Product {
                 ", price=" + price +
                 ", discount=" + discount +
                 ", models=" + models +
-                ", images=" + productImages +
+                ", reviews=" + reviews +
+                ", productImages=" + productImages +
+                ", describeImages=" + describeImages +
                 '}';
+    }
+
+    public void setModel(Model model) {
+        models = models == null ? new ArrayList<>() : models;
+        models.add(model);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) && Objects.equals(models, product.models);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, models);
     }
 }

@@ -2,7 +2,7 @@
     height: auto;
 }
 
-#main .review-product .review form > button,
+#submit-review,
 #main button.back-to-home {
     background-color: var(--color-blue-origin);
     color: #fff;

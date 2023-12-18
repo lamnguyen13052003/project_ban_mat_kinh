@@ -88,4 +88,8 @@ public class User {
     public void setRole(Integer role) {
         this.role = role;
     }
+
+    public boolean isAdmin() {
+        return role == 0;
+    }
 }

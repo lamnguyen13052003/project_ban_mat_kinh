@@ -4,76 +4,43 @@ section:not(#silder-section) {
 
 /***************************************Main**********************************/
 /************section 1*****************/
-#slider {
-    margin-bottom: 40px;
+#autoCarouselIndicators .carousel-item img,
+#autoCarouselIndicators .carousel-item{
+    height: 450px;
 }
 
-#section_slide .container-slider {
-    width: 100%;
-    height: auto;
-}
-
-#section_slider .item img {
-    width: 100%;
-    height: 460px;
-    object-fit: cover;
-
-}
-
-#section_slider .item {
-    display: none;
-}
-
-#section_slider .item.active {
-    display: block;
-}
-
-#myCarousel {
-    position: relative;
-}
-
-#section_slider .slick-next, #section_slider .slick-prev {
+#autoCarouselIndicators > button {
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
+    top: 45%;
+    z-index: 2;
+    border: rgba(0, 0, 0) solid 2px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: #FFFFFF;
-    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 40%;
 }
 
-#section_slider .slick-next {
-    right: 0;
+#autoCarouselIndicators > button:hover{
+    background-color: var(--color-blue-origin);
+    color: #fff;
+    opacity: 100%;
 }
 
-#section_slider .slick-prev {
-    left: 32px;
+#autoCarouselIndicators > button>span{
+    font-weight: bold;
 }
 
-#section_slider #myCarousel button:hover {
-    background: var(--color-blue-origin);
-    color: #FFFFFF;
+#autoCarouselIndicators > button:nth-of-type(1){
+    left: 15px;
 }
 
-#section_slider .carousel ul {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#autoCarouselIndicators > button:nth-of-type(2){
+    right: 15px;
 }
-
-#section_slider ul li button {
-    width: 12px;
-    height: 6px;
-    background: #FFFFFF;
-    border: #FFFFFF;
-}
-
-#section_slider .slick-active {
-    background: var(--color-blue-origin);
-    border: var(--color-blue-origin);
-}
+/*********************************************************Kết thức Phần Silde***********************************************************/
 
 /*****section fsale************/
 .home-fSale-wrap {
@@ -491,7 +458,7 @@ section:not(#silder-section) {
     border-radius: 10px;
 }
 
-.home-banner .home-banner-wrap .home-banner-wrap-left a:hover {
+.home-banner .home-banner-wrap .home-banner-wrap-left a:hover{
     background-color: #FFFFFF;
     color: var(--color-blue-origin);
 

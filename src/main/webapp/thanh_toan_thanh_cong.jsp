@@ -1,4 +1,11 @@
 <%@ page import="model.bean.User" %>
+<%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.Bill" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="model.bean.BillDetail" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -10,7 +17,7 @@
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/thanh_toan_thanh_cong.css">
-    <link rel="icon" href="logo_icon.png">
+    <link rel="icon" href="images/logo/logo_icon.png">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -24,7 +31,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="logo.png" alt="logo.png">
+                        <img src="images/logo/logo.png" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -60,7 +67,13 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">0</span>
+                                <span id="amount-product" class="amount-product">
+                                    <%
+                                        CartService cart = (CartService) session.getAttribute("cart");
+                                        if (cart == null) cart = new CartService();
+                                    %>
+                                    <%=cart.getTotalProduct()%>
+                                </span>
                             </span>
                         </button>
                     </a>
@@ -162,7 +175,12 @@
         </div>
     </nav>
 </header>
-
+<%
+    NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
+    Bill bill = (Bill) session.getAttribute("billPayed");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    String formattedDateTime = bill.getStatuses().get(0).getDate().format(formatter);
+%>
 <section id="thanh-toan-thanh-cong" class="p-md-5">
     <div class="tttv-frame">
         <div class="container">
@@ -173,23 +191,42 @@
                 </div>
                 <div class="time-tttc">
                     <p>
-                        <span class="hours">hh</span>:<span class="minutes">mm</span>:<span class="seconds">ss</span>
-                        <span class="days">dd</span>/<span class="months">MM</span>/<span class="years">YYYY</span>
+                        <span><%=formattedDateTime%></span>
                     </p>
                 </div>
             </div>
             <div class="tttc-bot">
                 <div class="ma-giao-dich">
                     <span class="left">Mã đơn hàng</span>
-                    <span class="right">xxxxxxx</span>
+                    <span class="right">#<%=bill.getId()%></span>
+                </div>
+                <div class="username">
+                    <span class="left">Tên</span>
+                    <span class="right"><%=bill.getUserName()%></span>
+                </div>
+                <div class="phone-number">
+                    <span class="left">Số điện thoại</span>
+                    <span class="right"><%=bill.getPhoneNumber()%></span>
+                </div>
+                <div class="email">
+                    <span class="left">Email</span>
+                    <span class="right"><%=bill.getEmail()%></span>
+                </div>
+                <div class="address">
+                    <span class="left">Địa chỉ</span>
+                    <span class="right text-end"><%=bill.getAddress()%></span>
                 </div>
                 <div class="phuong-thuc-thanh-toan">
                     <span class="left">Phương thức thanh toán</span>
-                    <span class="right">xxxxxxx</span>
+                   <% if(!bill.isTransfer()){ %>
+                    <span class="right">Thanh toán trực tiếp</span>
+                    <%}else{%>
+                    <span class="right">Chuyển khoản</span>
+                    <%}%>
                 </div>
                 <div class="so-tien">
                     <span class="left">Tổng số tiền</span>
-                    <span class="right">xxxxxxx (VNĐ)</span>
+                    <span class="right"><%=nf.format(bill.totalBill())%></span>
                 </div>
             </div>
             <div class="btn-tttc py-md-5">
@@ -256,7 +293,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="logo.png" alt="logo.png">
+                    <img src="images/logo/logo.png" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

@@ -1,8 +1,8 @@
 package model.service;
 
+import model.DAO.DAO;
 import model.DAO.ProductDAO;
 import model.bean.Product;
-
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -62,25 +62,42 @@ public class ProductService {
         return null;
     }
 
-    public Product getProduct(String id) {
+    public Product getProduct(int id) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         List<Product> products = productDAO.getProduct(id);
-        setOtherFieldsProduct(products, false);
+        setOtherFieldsProduct(products, 0);
 
         return products.get(0);
     }
+
+    public String getNameProduct(int productId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        return productDAO.getNameProduct(productId);
+    }
+
+    public Product getProductCart(int id, int modelId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProductCart(id);
+        Product product = products.get(0);
+        product.setModel(ModelService.getInstance().getModel(modelId));
+        setReducedPrice(products);
+        return product;
+    }
+
     /**
      * Lấy các sản phẩm theo câu query
      */
-    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
+    public List<Product> getProducts(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort, int limit) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort);
-        setOtherFieldsProduct(products, true);
+        List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort, limit);
+        setOtherFieldsProduct(products, 2);
 
         return products;
     }
+
     public Map<String, List<String>> getMapFilter(String query) {
         Map<String, List<String>> mapFilter = new LinkedHashMap<>();
         List<String> values;
@@ -102,6 +119,7 @@ public class ProductService {
 
         return mapFilter;
     }
+
     public Map<String, String> getMapSort(String query) {
         Map<String, String> mapSort = new LinkedHashMap<>();
         StringTokenizer tk;
@@ -119,6 +137,7 @@ public class ProductService {
 
         return mapSort;
     }
+
     public Map<String, Integer> getMapInfRoot(String query) {
         Map<String, Integer> mapInfRoot = new LinkedHashMap<>();
         StringTokenizer tk;
@@ -137,11 +156,13 @@ public class ProductService {
 
         return mapInfRoot;
     }
+
     public int getTotalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         return productDAO.totalPages(mapInfRoot, mapFilter, mapSort);
     }
+
     /*
      * Xữ lý lại địa chỉ thanh URL cho hợp lý
      * */
@@ -188,17 +209,19 @@ public class ProductService {
 
         return query;
     }
-    private void setOtherFieldsProduct(List<Product> products, boolean limit) {
-        if (!limit) {
+
+    private void setOtherFieldsProduct(List<Product> products, int limit) {
+        if (limit == 0) {
             setModel(products);
-            setDescribeImage(products);
+            setProductImage(products, "describe", limit);
             setReview(products);
         }
-        setProductImage(products, limit);
+        setProductImage(products, "product", limit);
         setStarNumber(products);
         setReducedPrice(products);
         setTotalQuantitySold(products);
     }
+
     private void setReview(List<Product> products) {
         ReviewService reviewService = ReviewService.getInstance();
         int id;
@@ -216,24 +239,18 @@ public class ProductService {
             product.setModels(modelService.getModels(id));
         }
     }
-    private void setDescribeImage(List<Product> products) {
+
+    private void setProductImage(List<Product> products, String type, int limit) {
         ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages = productImageService.getDescribeImage(products);
+        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, type, limit);
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
+            if(type.equals("product")) product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+            else product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
         }
     }
-    private void setProductImage(List<Product> products, boolean limit) {
-        ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, limit);
-        int id;
-        for (Product product : products) {
-            id = product.getId();
-            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
-        }
-    }
+
     private void setStarNumber(List<Product> products) {
         ReviewService reviewService = new ReviewService();
         Map<Integer, InfReview> mapStarNumber = reviewService.getInfReview(products);
@@ -245,6 +262,7 @@ public class ProductService {
             product.setTotalReview(infReview.getTotalReview());
         }
     }
+
     private void setReducedPrice(List<Product> products) {
         ProductDiscountService productDiscountService = new ProductDiscountService();
         Map<Integer, Double> mapProductPricePercentage = productDiscountService.getPricePercentages(products);
@@ -264,6 +282,7 @@ public class ProductService {
             product.setDiscount(discount);
         }
     }
+
     private void setTotalQuantitySold(List<Product> products) {
         BillDetailService billDetailService = new BillDetailService();
         Map<Integer, Integer> mapTotalQuantitySold = billDetailService.getTotalQuantitySold(products);
@@ -273,10 +292,36 @@ public class ProductService {
             product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
         }
     }
-    public static void main(String[] args) {
-        String query = "abc=1&hsc=2&page=1&adfafd=sfdf&adfasdf=fasdfasf&page=4";
-        ProductService productService = new ProductService();
 
-        System.out.println(productService.formatQueryRequest(query));
+    public List<Product> getProductDiscount(int limit){
+        Map<String, Integer> mapinfoRoot = new HashMap<String, Integer>();
+        mapinfoRoot.put("page", 1);
+        mapinfoRoot.put("id-category-group", 0);
+        mapinfoRoot.put("id-category", 0);
+        return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>(), limit);
+    }
+
+    public List<Product> getInfoProminentProductByStart(int limit){
+        List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart(limit);
+        setOtherFieldsProduct(list,2);
+        Collections.sort(list, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return - o1.getStarNumber().compareTo(o2.getStarNumber());
+            }
+        });
+        return list;
+    }
+
+    public List<String> getBrandNames(){
+        return ProductDAO.getInstance().getBrandNames();
+    }
+
+    public Product getProductForReview(int productId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProductForReview(productId);
+
+        return products.get(0);
     }
 }

@@ -17,31 +17,27 @@ public class LogInController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getMethod().toLowerCase().equals("get")){
+            response.sendRedirect("dang_nhap.jsp");
+            return;
+        }
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         UserService userService = UserService.getInstance();
-
-        if(userService.canLogin(email, password)){
-            User user = userService.getUser();
-            goToPage(user, request, response);
-        }else{
+        User user = userService.login(email, password);
+        if(user == null){
             request.setAttribute("login_error", "Đăng nhập không thành công!");
             request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
+            return;
         }
-    }
 
-    private void goToPage(User user, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int role = user.getRole();
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        switch (role){
-            case 0 ->{
-               response.sendRedirect("admin_pages/danh_sach_tai_khoan.jsp");
-            }
-            case 1 ->{
-                response.sendRedirect("index.jsp");
-            }
+        request.getSession().setAttribute("user", user);
+        if(user.isAdmin()){
+            response.sendRedirect( "admin_pages/quan_ly_tai_khoan.jsp");
+        }else{
+            response.sendRedirect( "index.jsp");
         }
     }
 }

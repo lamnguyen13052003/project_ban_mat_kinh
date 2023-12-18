@@ -1,17 +1,15 @@
 package model.bean;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
+import java.util.List;
 
 public class Bill {
-    private Integer id, userId;
-    private String userName, phoneNumber, address;
+    private Integer id, userId, codeProvince, codeDistrict, codeWard;
+    private String userName, phoneNumber, address, email;
     private Boolean transfer;
     private Double transportFee;
-
-    private TreeSet<BillStatus> statuses;
+    private List<BillStatus> statuses;
     private ArrayList<BillDetail> details;
-
     public Integer getId() {
         return id;
     }
@@ -64,7 +62,7 @@ public class Bill {
         return transfer;
     }
 
-    public TreeSet<BillStatus> getStatuses() {
+    public List<BillStatus> getStatuses() {
         return statuses;
     }
 
@@ -77,19 +75,51 @@ public class Bill {
     }
 
     public void addStatus(BillStatus status) {
-        if(statuses == null){
-            statuses = new TreeSet<>();
+        if (statuses == null) {
+            statuses = new ArrayList<>();
         }
 
         statuses.add(status);
     }
 
     public void addDetail(BillDetail detail) {
-        if(details == null){
+        if (details == null) {
             details = new ArrayList<BillDetail>();
         }
 
         details.add(detail);
+    }
+
+    public Integer getCodeProvince() {
+        return codeProvince;
+    }
+
+    public void setCodeProvince(Integer codeProvince) {
+        this.codeProvince = codeProvince;
+    }
+
+    public Integer getCodeDistrict() {
+        return codeDistrict;
+    }
+
+    public void setCodeDistrict(Integer codeDistrict) {
+        this.codeDistrict = codeDistrict;
+    }
+
+    public Integer getCodeWard() {
+        return codeWard;
+    }
+
+    public void setCodeWard(Integer codeWard) {
+        this.codeWard = codeWard;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 
     @Override
@@ -97,13 +127,25 @@ public class Bill {
         return "Bill{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", userName=" + userName +
+                ", codeProvince=" + codeProvince +
+                ", codeDistrict=" + codeDistrict +
+                ", codeWard=" + codeWard +
+                ", userName='" + userName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
                 ", transfer=" + transfer +
                 ", transportFee=" + transportFee +
                 ", statuses=" + statuses +
                 ", details=" + details +
                 '}';
+    }
+
+    public double totalBill(){
+        double total = 0;
+        for(BillDetail bd : this.getDetails()){
+            total += bd.getPrice() * bd.getQuantity();
+        }
+        return total + transportFee;
     }
 }
