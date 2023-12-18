@@ -30,7 +30,7 @@ public class BillStatusDAO extends DAO{
                         .bind(1, status.getDate())
                         .bind(2, status.getStatus())
                         .bind(3, status.getDescribe())
-                        .bind(4, 0)
+                        .bind(4, status.isCanEdit())
                         .execute());
     }
 }

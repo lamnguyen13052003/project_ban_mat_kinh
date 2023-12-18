@@ -46,8 +46,8 @@ public class BillController extends HttpServlet implements Action {
         String ward = request.getParameter("wards").trim();
 
         AdressService addressService = new AdressService();
-        String fullAddress = request.getParameter("full-address").trim() +
-                " - "+addressService.getAddress(Integer.parseInt(province), Integer.parseInt( district), Integer.parseInt(ward));
+        String fullAddress = addressService.getAddress(Integer.parseInt(province), Integer.parseInt( district), Integer.parseInt(ward)) +
+                "<br>" + request.getParameter("full-address").trim();
         boolean transfer = request.getParameter("pay-option").equals("transfer") ? true : false;
         String message = null, title = null;
 
@@ -140,9 +140,10 @@ public class BillController extends HttpServlet implements Action {
         if (billService.saveBill(bill)) {
             CartService cart = (CartService) session.getAttribute("cart");
             cart.bought(bill);
+            session.setAttribute("bill", new BillService());
             request.getSession().setAttribute("cart", cart);
-            request.setAttribute("bill", bill);
-            request.getRequestDispatcher("thanh_toan_thanh_cong.jsp").forward(request, response);
+            request.getSession().setAttribute("billPayed", bill);
+            response.sendRedirect("thanh_toan_thanh_cong.jsp");
         }
         else {
             title = "Thanh toán không thành công";

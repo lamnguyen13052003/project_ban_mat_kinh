@@ -71,7 +71,6 @@ public class BillService {
             if (product.getProduct().hasDiscount()) billDetail.setPrice(product.getRducedPrice());
             result.addDetail(billDetail);
         }
-//        result.addStatus(new BillStatus(0, "Đã nhận được đơn đặc hàng", LocalDateTime.now(), true));
         return result;
     }
 
@@ -79,7 +78,7 @@ public class BillService {
         BillDAO billDAO = new BillDAO();
         BillDetailService billDetailService = new BillDetailService();
         ReviewService reviewService = new ReviewService();
-        BillStatusService reviewStatusService = new BillStatusService();
+        BillStatusService billStatusService = new BillStatusService();
         int id = 0;
         boolean check = billDetailService.checkQuantity(bill);
         if (check) {
@@ -89,7 +88,7 @@ public class BillService {
             reviewService.insertTempReview(bill);
             BillStatus status = new BillStatus(id, 1, "Đã xác nhận đơn hàng của bạn", true);
             bill.addStatus(status);
-            reviewStatusService.insert(status);
+            billStatusService.insert(status);
         }
         return check;
     }
