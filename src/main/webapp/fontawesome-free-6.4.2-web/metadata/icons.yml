@@ -6700,7 +6700,7 @@ cash-register:
     - 6.2.0
     - 6.3.0
     - 6.4.0
-  label: Cash Register
+  label: Cash RegisterController
   search:
     terms:
       - buy

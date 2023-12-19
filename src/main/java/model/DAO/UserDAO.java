@@ -2,8 +2,11 @@ package model.DAO;
 
 import model.bean.*;
 import db.JDBIConnector;
+import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +18,9 @@ public class UserDAO extends DAO {
         return INSTANCE != null ? INSTANCE : new UserDAO();
     }
 
-    public int addUser(User user) {
-        connector = JDBIConnector.get();
+    public int insertUser(User user, String codeVerify) {
         return connector.withHandle(handle ->
-                handle.createUpdate("INSERT INTO `users` (`id`, `avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                handle.createUpdate("INSERT INTO `users` (`avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
                         .bind(0, user.getAvatar())
                         .bind(1, user.getFullName())
                         .bind(2, user.getSex())
@@ -26,13 +28,14 @@ public class UserDAO extends DAO {
                         .bind(4, user.getEmail())
                         .bind(5, user.getPassword())
                         .bind(6, user.getRole())
-                        .bind(7, 0)
-                        .bind(8, 0).execute()
+                        .bind(7, codeVerify)
+                        .bind(8, 0)
+                        .bind(9, LocalTime.now())
+                        .execute()
         );
     }
 
-    public int verìfyAccountByEmail(String email) {
-        System.out.println(email);
+    public int verifyAccountByEmail(String email) {
         connector = JDBIConnector.get();
         return connector.withHandle(handle ->
                 handle.createUpdate("Update users set verify = 1 where email = ?")
@@ -43,27 +46,34 @@ public class UserDAO extends DAO {
 
     public User login(String email, String password) {
         connector = JDBIConnector.get();
-        List<User> users = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
+        User user = connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role FROM users AS u WHERE u.email = ?  AND u.verify IS NULL AND u.lock = ?")
                         .bind(0, email)
-                        .bind(1, password)
-                        .bind(2, 1)
-                        .bind(3, 0)
+                        .bind(1, 0)
                         .mapToBean(User.class)
-                        .list()
+                        .findFirst().orElse(null)
         );
 
-        return !users.isEmpty() && users.size() == 1 ? users.get(0) : null;
+        if(user == null) return null;
+        String hashPass = user.getPassword();
+        if(BCrypt.checkpw(password, hashPass)) {
+            user.setPassword(null);
+            return user;
+        }
+        return null;
     }
 
     public boolean containsEmail(String email) {
         connector = JDBIConnector.get();
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id FROM users AS u WHERE u.email = ? AND u.verify = ? AND u.lock = ?")
+                handle.createQuery("SELECT u.email " +
+                                "FROM users AS u " +
+                                "WHERE u.email = ? " +
+                                "AND u.lock = ? " +
+                                "ORDER BY id DESC")
                         .bind(0, email)
                         .bind(1, 0)
-                        .bind(2, 0)
-                        .mapTo(User.class).findFirst().orElse(null)
+                        .mapTo(String.class).findFirst().orElse(null)
         ) != null;
     }
 
@@ -86,4 +96,41 @@ public class UserDAO extends DAO {
 
         return mapUsers;
     }
+
+    public int verifyAccount(String email, String codeVerify) {
+        User user = connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.verify, u.registrationTime " +
+                                "FROM users AS u " +
+                                "WHERE u.email = ? " +
+                                "AND u.lock = ? " +
+                                "ORDER BY id DESC")
+                        .bind(0, email)
+                        .bind(1, 0)
+                        .mapToBean(User.class).findFirst().orElse(null)
+        );
+
+        if(user == null) return -1;
+        int result = user.isVerify(codeVerify);
+        switch (result){
+            case 1 ->{
+                connector.withHandle(handle ->
+                        handle.createUpdate("UPDATE users SET verify = NULL " +
+                                        "WHERE id = ?;")
+                                .bind(0, user.getId())
+                                .execute()
+                );
+            }
+            case 0 ->{
+                connector.withHandle(handle ->
+                        handle.createUpdate("DELETE FROM user WHERE id = ?" +
+                                        "WHERE id = ?;")
+                                .bind(0, user.getId())
+                                .execute()
+                );
+            }
+        }
+
+        return result;
+    }
 }
+

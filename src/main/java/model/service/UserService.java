@@ -28,14 +28,9 @@ public class UserService {
         return userDAO.login(email, password);
     }
 
-
-    public boolean findUserByMail(String mail){
-        return userDAO.containsEmail(mail);
-    }
-
-    public boolean signup(User user) {
+    public boolean signup(User user, String codeVerify) {
         user.setPassword(hashPassword(user.getPassword()));
-        int rs =  userDAO.addUser(user);
+        int rs =  userDAO.insertUser(user, codeVerify);
         if(rs == 1) return true;
 
         return false;
@@ -45,7 +40,7 @@ public class UserService {
         /*Anh làm phần quen mật khẩu chơa. alo. nge , anh quên mất @@. chịu,*/
     }
     public boolean verifyByEmail(String email){
-        int rs =  userDAO.verìfyAccountByEmail(email);
+        int rs =  userDAO.verifyAccountByEmail(email);
         if(rs == 1) return true;
         return false;
     }
@@ -62,5 +57,9 @@ public class UserService {
     }
     public Map<Integer, User> getUserForReviewProduct(List<Review> reviews) {
         return UserDAO.getInstance().getUserForReviewProduct(reviews);
+    }
+
+    public int verifyAccount(String email, String codeVerify) {
+        return UserDAO.getInstance().verifyAccount(email, codeVerify);
     }
 }

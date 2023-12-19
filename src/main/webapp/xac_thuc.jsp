@@ -1,5 +1,5 @@
 <%@ page import="model.service.CartService" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -99,9 +99,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -156,7 +158,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -174,20 +177,13 @@
     <div class="container position-relative">
         <div class="verify">
             <div class="verify-header mb-3">
-                <label for="input-verify">
-                    <h2>Xác thực tài khoản <span>kiminonawa1305@gmail.com</span></h2>
-                </label>
-            </div>
-            <div class="verify-body">
-                <form action="" method="GET">
-                    <input class="p-2 mb-2 rounded w-25" type="text" name="input-verify" id="input-verify"
-                           placeholder="Nhập mã xác thực tại đây" required><br>
-                    <button class="text-light p-2 rounded" type="submit">Xác thực</button>
-                </form>
+                <h2>Vui lòng xác thực tài khoản email: <br>
+                    <a class="text-primary text-decoration-underline" href="https://mail.google.com/" target="_blank"><span>kiminonawa1305@gmail.com</span></a>
+                    của bạn!</h2>
             </div>
         </div>
         <div class="background">
-            <img src="images/bannerAccount.png" alt="background">
+            <img src="images/bannerAccount.png" alt="background" class="rounded-2">
         </div>
     </div>
 </main>

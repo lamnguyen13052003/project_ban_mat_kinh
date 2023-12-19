@@ -12,6 +12,7 @@ import java.util.Properties;
 public class SendMail {
 
     private static Session session;
+
     private SendMail() {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
@@ -29,23 +30,34 @@ public class SendMail {
         session = Session.getInstance(props, auth);
     }
 
-    public static void Send(String to, String subject, String body) {
+    public static boolean Send(String to, String subject, String body) {
         if (session == null) new SendMail();
         try {
             Message msg = new MimeMessage(session);
 
             msg.setFrom(new InternetAddress("Shop"));
-            InternetAddress[] toAddresses = { new InternetAddress(to) };
+            InternetAddress[] toAddresses = {new InternetAddress(to)};
             msg.setRecipients(Message.RecipientType.TO, toAddresses);
             msg.setSubject(subject);
             msg.setSentDate(new Date());
             msg.setContent(body, "text/html;  charset=UTF-8");
             Transport.send(msg);
-
+            return true;
         } catch (MessagingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            return false;
         }
-        System.out.println("Gui mail thanh cong");
+    }
+
+    public static String getMessage(String url, String fullName, String email, String code) {
+        return "<div style=\"width: 500px; background: #2F189A; color: #fff; padding: 15px; border-radius: 10px\">" +
+                "    <h3 style=\"margin-top: 0;\">Xin chào " + fullName + "!</h3>" +
+                "    <p>Bạn vừa đăng ký thành công tài khoản của mình." +
+                "        Để hoàn tất quá trình đăng ký vui lòng xác thực để hoàn tất quá đăng nhập." +
+                "    </p>" +
+                "    <p>Mail xác thực chỉ khả dụng tối đa 10' tính từ thời điểm nhận mail</p>" +
+                "    <a href=\"" + url + "?" + "email=" + email + "&code=" + code + "\">" +
+                "        <button type=\"submit\" style=\"background: #ff3300; color: #fff; padding: 10px; border: none; border-radius: 5px; font-size: 15px; font-weight: bold\">Nhấp để xác thực</button>" +
+                "    </a>" +
+                "</div>";
     }
 }

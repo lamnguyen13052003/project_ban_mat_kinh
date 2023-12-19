@@ -1,6 +1,6 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="model.service.CartService" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -99,9 +99,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -156,7 +158,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -199,7 +202,9 @@
                                 <button data-bs-target="1">Lịch sử mua hàng</button>
                             </li>
                             <li>
-                                <button id="signout"><a href="/LogOut">Đăng xuất</a></button>
+                                <a href="logout">
+                                    <button id="signout">Đăng xuất</button>
+                                </a>
                             </li>
                         </ul>
                     </div>
