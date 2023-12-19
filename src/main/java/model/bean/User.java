@@ -3,14 +3,14 @@ package model.bean;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class User {
     private Integer id, role;
     private String avatar, fullName, sex, email, password, verify;
     private LocalDate birthDay;
-    private LocalTime registrationTime;
+    private LocalDateTime registrationTime;
 
     @Override
     public String toString() {
@@ -101,13 +101,13 @@ public class User {
     /**
      * @return -1 Nếu mã không khớp, 0 Nếu như hết thời gian, 1 Nếu verify thành công
      * **/
-    public int isVerify(String codeVerify) {
+    public int isVerify(String hashCode) {
         if (timeOut()) return 0;
-        return BCrypt.checkpw(verify, codeVerify) ? 1 : -1;
+        return BCrypt.checkpw(verify, hashCode) ? 1 : -1;
     }
 
     private boolean timeOut() {
-        return registrationTime.until(LocalTime.now(), ChronoUnit.MINUTES) > 10;
+        return registrationTime.until(LocalDateTime.now(), ChronoUnit.MINUTES) > 10;
     }
 
     public String getVerify() {
@@ -118,11 +118,11 @@ public class User {
         this.verify = verify;
     }
 
-    public LocalTime getRegistrationTime() {
+    public LocalDateTime getRegistrationTime() {
         return registrationTime;
     }
 
-    public void setRegistrationTime(LocalTime registrationTime) {
+    public void setRegistrationTime(LocalDateTime registrationTime) {
         this.registrationTime = registrationTime;
     }
 }

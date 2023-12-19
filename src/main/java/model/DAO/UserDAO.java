@@ -4,9 +4,8 @@ import model.bean.*;
 import db.JDBIConnector;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class UserDAO extends DAO {
                         .bind(6, user.getRole())
                         .bind(7, codeVerify)
                         .bind(8, 0)
-                        .bind(9, LocalTime.now())
+                        .bind(9, LocalDateTime.now())
                         .execute()
         );
     }
@@ -54,9 +53,9 @@ public class UserDAO extends DAO {
                         .findFirst().orElse(null)
         );
 
-        if(user == null) return null;
+        if (user == null) return null;
         String hashPass = user.getPassword();
-        if(BCrypt.checkpw(password, hashPass)) {
+        if (BCrypt.checkpw(password, hashPass)) {
             user.setPassword(null);
             return user;
         }
@@ -69,10 +68,8 @@ public class UserDAO extends DAO {
                 handle.createQuery("SELECT u.email " +
                                 "FROM users AS u " +
                                 "WHERE u.email = ? " +
-                                "AND u.lock = ? " +
                                 "ORDER BY id DESC")
                         .bind(0, email)
-                        .bind(1, 0)
                         .mapTo(String.class).findFirst().orElse(null)
         ) != null;
     }
@@ -97,22 +94,24 @@ public class UserDAO extends DAO {
         return mapUsers;
     }
 
-    public int verifyAccount(String email, String codeVerify) {
-        User user = connector.withHandle(handle ->
+    private User getUserForVerify(String email) {
+        return connector.withHandle(handle ->
                 handle.createQuery("SELECT u.id, u.verify, u.registrationTime " +
                                 "FROM users AS u " +
                                 "WHERE u.email = ? " +
-                                "AND u.lock = ? " +
                                 "ORDER BY id DESC")
                         .bind(0, email)
-                        .bind(1, 0)
                         .mapToBean(User.class).findFirst().orElse(null)
         );
+    }
 
-        if(user == null) return -1;
+    public int registerVerify(String email, String codeVerify) {
+        User user = getUserForVerify(email);
+
+        if (user == null) return -1;
         int result = user.isVerify(codeVerify);
-        switch (result){
-            case 1 ->{
+        switch (result) {
+            case 1 -> {
                 connector.withHandle(handle ->
                         handle.createUpdate("UPDATE users SET verify = NULL " +
                                         "WHERE id = ?;")
@@ -120,9 +119,27 @@ public class UserDAO extends DAO {
                                 .execute()
                 );
             }
-            case 0 ->{
+            case 0 -> {
                 connector.withHandle(handle ->
-                        handle.createUpdate("DELETE FROM user WHERE id = ?" +
+                        handle.createUpdate("DELETE FROM user WHERE id = ?;")
+                                .bind(0, user.getId())
+                                .execute()
+                );
+            }
+        }
+
+        return result;
+    }
+
+    public int forgetPasswordVerify(String email, String codeVerify) {
+        User user = getUserForVerify(email);
+
+        if (user == null) return -1;
+        int result = user.isVerify(codeVerify);
+        switch (result) {
+            case 1 -> {
+                connector.withHandle(handle ->
+                        handle.createUpdate("UPDATE users SET verify = NULL " +
                                         "WHERE id = ?;")
                                 .bind(0, user.getId())
                                 .execute()
@@ -131,6 +148,30 @@ public class UserDAO extends DAO {
         }
 
         return result;
+    }
+
+    public void updateCodeVerify(String email, String code) {
+        connector.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET " +
+                                "verify = ? " +
+                                ", registrationTime = ? " +
+                                "WHERE email = ?;")
+                        .bind(0, code)
+                        .bind(1, LocalDateTime.now())
+                        .bind(2, email)
+                        .execute()
+        );
+    }
+
+    public int resetPassword(String email, String password) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET " +
+                                "`password` = ? " +
+                                "WHERE email = ?;")
+                        .bind(0, password)
+                        .bind(1, email)
+                        .execute()
+        );
     }
 }
 

@@ -20,7 +20,7 @@ function displayButtonSignOut() {
     `);
 
     $("#signout").click(function () {
-        $.get("/maven_war/LogOut", function (){
+        $.get("/maven_war/logout", function (){
             window.location.replace("../index.jsp");
         });
     });

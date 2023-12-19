@@ -177,9 +177,32 @@
     <div class="container position-relative">
         <div class="verify">
             <div class="verify-header mb-3">
-                <h2>Vui lòng xác thực tài khoản email: <br>
-                    <a class="text-primary text-decoration-underline" href="https://mail.google.com/" target="_blank"><span>kiminonawa1305@gmail.com</span></a>
+                <%
+                    String email = (String) session.getAttribute("email"),
+                            error = (String) request.getAttribute("error"),
+                            fullName = (String) session.getAttribute("fullName"),
+                            action = (String) session.getAttribute("action");
+                %>
+                <h2 class="mb-1">Vui lòng xác thực tài khoản email: <br>
+                    <a class="text-primary text-decoration-underline" href="https://mail.google.com/"
+                       target="_blank"><span><%=email%></span></a>
                     của bạn!</h2>
+                <form action="re_send_code_verify" method="post">
+                    <%if (fullName != null) {%>
+                    <input type="hidden" name="fullName" value="<%=fullName%>">
+                    <%}%>
+                    <input type="hidden" name="email" value="<%=email%>">
+                    <input type="hidden" name="action" value="<%=action%>">
+                    <input hidden="" id="re-send" class="bg-primary text-white px-3 py-1 border-0 rounded-2" type="submit" value="Gửi lại">
+                </form>
+
+                <%if (error != null) {%>
+                <small class="text-danger mt-2"><%=error%>
+                </small>
+                <%
+                    }
+                    session.removeAttribute("email");
+                %>
             </div>
         </div>
         <div class="background">
@@ -253,5 +276,10 @@
 </footer>
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/index.js"></script>
+<script>
+    setTimeout(function (){
+        $("#re-send").removeAttr("hidden");
+    }, 600000);
+</script>
 </body>
 </html>

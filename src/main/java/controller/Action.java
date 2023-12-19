@@ -9,4 +9,8 @@ import java.io.IOException;
 @MultipartConfig
 public interface Action {
     void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    static void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("error.jsp");
+    }
 }

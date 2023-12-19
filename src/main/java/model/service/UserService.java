@@ -59,7 +59,19 @@ public class UserService {
         return UserDAO.getInstance().getUserForReviewProduct(reviews);
     }
 
-    public int verifyAccount(String email, String codeVerify) {
-        return UserDAO.getInstance().verifyAccount(email, codeVerify);
+    public int registerVerify(String email, String codeVerify) {
+        return UserDAO.getInstance().registerVerify(email, codeVerify);
+    }
+
+    public int forgetPasswordVerify(String email, String hashCode) {
+        return UserDAO.getInstance().forgetPasswordVerify(email, hashCode);
+    }
+
+    public void updateCodeVerify(String email, String code){
+        UserDAO.getInstance().updateCodeVerify(email, code);
+    }
+
+    public int resetPassword(String email, String password) {
+        return UserDAO.getInstance().resetPassword(email, password);
     }
 }

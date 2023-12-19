@@ -1,27 +1,21 @@
-package controller;
+package controller.register;
 
+import controller.Action;
 import helper.SendMail;
 import model.bean.User;
 import model.service.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
-@WebServlet(name = "RegisterController", value = "/register")
-public class RegisterController extends HttpServlet {
+public class Register implements Action {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -60,13 +54,16 @@ public class RegisterController extends HttpServlet {
             return;
         }
         user.setFullName(fullname);
+        String url = request.getRequestURL().toString() + "?action=verify";
         String codeVerify = UUID.randomUUID().toString();
         userService.signup(user, codeVerify);
-        String url = request.getRequestURL().toString().replace("register", "verify");
-        boolean sendMail = SendMail.Send(user.getEmail(), "Xác Nhận Đăng Ký", SendMail.getMessage(url, user.getFullName(), user.getEmail(), BCrypt.hashpw(codeVerify, BCrypt.gensalt(12))));
-        if (sendMail) response.sendRedirect("xac_thuc.jsp");
-        else {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+        boolean sendMail = SendMail.Send(user.getEmail(), "Xác Nhận Đăng Ký", SendMail.getFormRegister(url, user.getFullName(), user.getEmail(), BCrypt.hashpw(codeVerify, BCrypt.gensalt(12))));
+        if (sendMail) {
+            request.getSession().setAttribute("email", user.getEmail());
+            request.getSession().setAttribute("action", "register");
+            request.getSession().setAttribute("fullName", user.getFullName());
+            response.sendRedirect("xac_thuc.jsp");
+        } else
+            Action.error(request, response);
     }
 }

@@ -188,7 +188,7 @@
                                 <input type="text" id="login-email" placeholder="Email" class="form-control"
                                        name="email" required="">
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-1">
                                 <label for="login-password">Mật khẩu*</label>
                                 <input type="password" id="login-password" placeholder="Mật khẩu" class="form-control" name="password" required="">
                             </div>
@@ -197,8 +197,8 @@
                                 if(error != null){%><span class="text-danger"><%=error%></span> <%}%>
                             </div>
                             <div class="mt-1" style="display: flex; justify-content: flex-end;">
-                                <a style="font-size: 13px; color: blue;" href="#" data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal">Quên mật khẩu</a>
+                                <button type="button" style="font-size: 13px; color: blue; background: none; border: none;" id="forget-password" href="#" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">Quên mật khẩu</button>
                             </div>
                             <div class="form-group mt-2 d-flex-center">
                                 <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity" id="signin">
@@ -219,6 +219,9 @@
     </div>
 </main>
 
+<%
+    String error_not_found_email_forget_password = (String) request.getAttribute("error-not-found-email-forget-password");
+%>
 <!-- Modal -->
 <%-- Form quên mật khầu --%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -226,24 +229,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Quên mật khẩu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" id="close-modal-forget-password" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body form-forgot">
-                <form accept-charset="UTF-8" action="/account/login" id="customer_forget_password" method="post">
+                <form accept-charset="UTF-8" action="forget_password" id="customer_forget_password" method="post">
                     <div class="form-group mb-3">
-                        <label for="login-email">Email*</label>
-                        <input type="email" id="forgot-email" placeholder="Email" class="form-control"
-                               name="customer[email]" required="">
+                        <input name="action" type="hidden" value="check_mail">
+                        <label for="email">Email<span class="text-danger">*</span></label>
+                        <input type="email" id="email" placeholder="Email" class="form-control"
+                               name="email" required="">
+                        <%if(error_not_found_email_forget_password != null) {%>
+                            <small class="text-danger"><%=error_not_found_email_forget_password%></small>
+                        <%}%>
                     </div>
-                    <div class="form-group mt-2 d-flex-center">
+                    <div class="form-group mt-4 d-flex-center">
                         <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
                             Quên mật khẩu
                         </button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -315,5 +319,10 @@
 </footer>
 
 <script src="javascript/menu_footer.js"></script>
+<script>
+    <%if(error_not_found_email_forget_password != null) {%>
+        $("#forget-password").click();
+    <%}%>
+</script>
 </body>
 </html>

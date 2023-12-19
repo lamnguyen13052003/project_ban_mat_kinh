@@ -203,7 +203,7 @@
                             </li>
                             <li>
                                 <a href="logout">
-                                    <button id="signout">Đăng xuất</button>
+                                    <button id="logout">Đăng xuất</button>
                                 </a>
                             </li>
                         </ul>
