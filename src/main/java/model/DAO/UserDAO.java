@@ -2,9 +2,10 @@ package model.DAO;
 
 import model.bean.*;
 import db.JDBIConnector;
-import org.jdbi.v3.core.Jdbi;
+import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,36 +17,61 @@ public class UserDAO extends DAO {
         return INSTANCE != null ? INSTANCE : new UserDAO();
     }
 
-    public void addUser(User user) {
+    public int insertUser(User user, String codeVerify) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO `users` (`avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                        .bind(0, user.getAvatar())
+                        .bind(1, user.getFullName())
+                        .bind(2, user.getSex())
+                        .bind(3, user.getBirthDay())
+                        .bind(4, user.getEmail())
+                        .bind(5, user.getPassword())
+                        .bind(6, user.getRole())
+                        .bind(7, codeVerify)
+                        .bind(8, 0)
+                        .bind(9, LocalDateTime.now())
+                        .execute()
+        );
     }
 
-    public User getUser(String email, String password) {
+    public int verifyAccountByEmail(String email) {
         connector = JDBIConnector.get();
-        List<User> users = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
-                        .bind(0, email)
-                        .bind(1, password)
-                        .bind(2, 1)
-                        .bind(3, 0)
-                        .mapToBean(User.class)
-                        .list()
-        );
+        return connector.withHandle(handle ->
+                handle.createUpdate("Update users set verify = 1 where email = ?")
+                        .bind(0, email).execute()
 
-        return !users.isEmpty() && users.size() == 1 ? users.get(0) : null;
+        );
     }
 
-    public boolean getEmail(String email) {
+    public User login(String email, String password) {
         connector = JDBIConnector.get();
-        List<User> users = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id FROM users AS u WHERE u.email = ? u.verify = ? AND u.lock = ?")
+        User user = connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role FROM users AS u WHERE u.email = ?  AND u.verify IS NULL AND u.lock = ?")
                         .bind(0, email)
-                        .bind(1, 1)
-                        .bind(2, 0)
+                        .bind(1, 0)
                         .mapToBean(User.class)
-                        .list()
+                        .findFirst().orElse(null)
         );
 
-        return !users.isEmpty();
+        if (user == null) return null;
+        String hashPass = user.getPassword();
+        if (BCrypt.checkpw(password, hashPass)) {
+            user.setPassword(null);
+            return user;
+        }
+        return null;
+    }
+
+    public boolean containsEmail(String email) {
+        connector = JDBIConnector.get();
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT u.email " +
+                                "FROM users AS u " +
+                                "WHERE u.email = ? " +
+                                "ORDER BY id DESC")
+                        .bind(0, email)
+                        .mapTo(String.class).findFirst().orElse(null)
+        ) != null;
     }
 
     public Map<Integer, User> getUserForReviewProduct(List<Review> reviews) {
@@ -68,18 +94,84 @@ public class UserDAO extends DAO {
         return mapUsers;
     }
 
-    public boolean checkLogin(String email, String password) {
-        connector = JDBIConnector.get();
-        List<User> users = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.role FROM users AS u WHERE u.email = ? AND u.password = ? AND u.verify = ? AND u.lock = ?")
+    private User getUserForVerify(String email) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.verify, u.registrationTime " +
+                                "FROM users AS u " +
+                                "WHERE u.email = ? " +
+                                "ORDER BY id DESC")
                         .bind(0, email)
-                        .bind(1, password)
-                        .bind(2, 1)
-                        .bind(3, 0)
-                        .mapToBean(User.class)
-                        .list()
+                        .mapToBean(User.class).findFirst().orElse(null)
         );
+    }
 
-        return !users.isEmpty() && users.size() == 1 ? true : false;
+    public int registerVerify(String email, String codeVerify) {
+        User user = getUserForVerify(email);
+
+        if (user == null) return -1;
+        int result = user.isVerify(codeVerify);
+        switch (result) {
+            case 1 -> {
+                connector.withHandle(handle ->
+                        handle.createUpdate("UPDATE users SET verify = NULL " +
+                                        "WHERE id = ?;")
+                                .bind(0, user.getId())
+                                .execute()
+                );
+            }
+            case 0 -> {
+                connector.withHandle(handle ->
+                        handle.createUpdate("DELETE FROM user WHERE id = ?;")
+                                .bind(0, user.getId())
+                                .execute()
+                );
+            }
+        }
+
+        return result;
+    }
+
+    public int forgetPasswordVerify(String email, String codeVerify) {
+        User user = getUserForVerify(email);
+
+        if (user == null) return -1;
+        int result = user.isVerify(codeVerify);
+        switch (result) {
+            case 1 -> {
+                connector.withHandle(handle ->
+                        handle.createUpdate("UPDATE users SET verify = NULL " +
+                                        "WHERE id = ?;")
+                                .bind(0, user.getId())
+                                .execute()
+                );
+            }
+        }
+
+        return result;
+    }
+
+    public void updateCodeVerify(String email, String code) {
+        connector.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET " +
+                                "verify = ? " +
+                                ", registrationTime = ? " +
+                                "WHERE email = ?;")
+                        .bind(0, code)
+                        .bind(1, LocalDateTime.now())
+                        .bind(2, email)
+                        .execute()
+        );
+    }
+
+    public int resetPassword(String email, String password) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET " +
+                                "`password` = ? " +
+                                "WHERE email = ?;")
+                        .bind(0, password)
+                        .bind(1, email)
+                        .execute()
+        );
     }
 }
+

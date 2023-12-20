@@ -140,4 +140,12 @@ public class Bill {
                 ", details=" + details +
                 '}';
     }
+
+    public double totalBill(){
+        double total = 0;
+        for(BillDetail bd : this.getDetails()){
+            total += bd.getPrice() * bd.getQuantity();
+        }
+        return total + transportFee;
+    }
 }

@@ -8228,7 +8228,7 @@ cash-register:
     pro:
       - family: classic
         style: solid
-  label: Cash Register
+  label: Cash RegisterController
   search:
     terms:
       - buy

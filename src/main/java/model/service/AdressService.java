@@ -15,8 +15,4 @@ public class AdressService {
         Ward ward = dao.getWard(wardCode, districtCode);
         return ward.getFullName() + " - " + district.getFullName() + " - " + province.getFullName();
     }
-
-    public static void main(String[] args) {
-        System.out.println(new AdressService().getAddress(60, 596, 23035));
-    }
 }

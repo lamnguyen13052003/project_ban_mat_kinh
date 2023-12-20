@@ -177,7 +177,7 @@
 </header>
 <%
     NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
-    Bill bill = (Bill) request.getAttribute("bill");
+    Bill bill = (Bill) session.getAttribute("billPayed");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String formattedDateTime = bill.getStatuses().get(0).getDate().format(formatter);
 %>
@@ -198,7 +198,7 @@
             <div class="tttc-bot">
                 <div class="ma-giao-dich">
                     <span class="left">Mã đơn hàng</span>
-                    <span class="right"><%=bill.getId()%></span>
+                    <span class="right">#<%=bill.getId()%></span>
                 </div>
                 <div class="username">
                     <span class="left">Tên</span>
@@ -212,9 +212,9 @@
                     <span class="left">Email</span>
                     <span class="right"><%=bill.getEmail()%></span>
                 </div>
-                <div class="adress">
+                <div class="address">
                     <span class="left">Địa chỉ</span>
-                    <span class="right"><%=bill.getAddress()%></span>
+                    <span class="right text-end"><%=bill.getAddress()%></span>
                 </div>
                 <div class="phuong-thuc-thanh-toan">
                     <span class="left">Phương thức thanh toán</span>
@@ -226,14 +226,7 @@
                 </div>
                 <div class="so-tien">
                     <span class="left">Tổng số tiền</span>
-                    <%
-                        double total = 0;
-                        for(BillDetail bd : bill.getDetails()){
-                            total += bd.getPrice() * bd.getQuantity();
-                        }
-                        total += bill.getTransportFee();
-                    %>
-                    <span class="right"><%=nf.format(total)%></span>
+                    <span class="right"><%=nf.format(bill.totalBill())%></span>
                 </div>
             </div>
             <div class="btn-tttc py-md-5">

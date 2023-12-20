@@ -1,11 +1,16 @@
 package model.bean;
 
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class User {
     private Integer id, role;
-    private String avatar, fullName, sex, email, password;
-    private LocalDateTime birthDay;
+    private String avatar, fullName, sex, email, password, verify;
+    private LocalDate birthDay;
+    private LocalDateTime registrationTime;
 
     @Override
     public String toString() {
@@ -72,11 +77,11 @@ public class User {
         this.password = password;
     }
 
-    public LocalDateTime getBirthDay() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDateTime birthDay) {
+    public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -91,5 +96,33 @@ public class User {
 
     public boolean isAdmin() {
         return role == 0;
+    }
+
+    /**
+     * @return -1 Nếu mã không khớp, 0 Nếu như hết thời gian, 1 Nếu verify thành công
+     * **/
+    public int isVerify(String hashCode) {
+        if (timeOut()) return 0;
+        return BCrypt.checkpw(verify, hashCode) ? 1 : -1;
+    }
+
+    private boolean timeOut() {
+        return registrationTime.until(LocalDateTime.now(), ChronoUnit.MINUTES) > 10;
+    }
+
+    public String getVerify() {
+        return verify;
+    }
+
+    public void setVerify(String verify) {
+        this.verify = verify;
+    }
+
+    public LocalDateTime getRegistrationTime() {
+        return registrationTime;
+    }
+
+    public void setRegistrationTime(LocalDateTime registrationTime) {
+        this.registrationTime = registrationTime;
     }
 }

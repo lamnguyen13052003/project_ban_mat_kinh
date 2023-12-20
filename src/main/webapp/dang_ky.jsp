@@ -178,8 +178,8 @@
                         ĐĂNG KÝ
                     </h5>
                     <div class="login-form-body">
-                        <form accept-charset="UTF-8" action="/account/login" id="customer_login" method="post">
-                            <input name="form_type" type="hidden" value="customer_login">
+                        <form accept-charset="UTF-8" action="register" id="customer_login" method="post">
+                            <input name="action" type="hidden" value="register">
                             <input name="utf8" type="hidden" value="✓">
                             <div class="form-group mb-3">
                                 <label for="signup-fullName">Họ và tên*</label>
@@ -194,34 +194,44 @@
 
                                 <div class="row">
                                     <div class="col-2 mt-1">
-                                        <input type="radio" id="register-gender-0" value="0" name="customer[gender]"
+                                        <input type="radio" id="register-gender-0" value="Nữ" name="customer[gender]"
                                                checked="">
                                         <label for="register-gender-0">Nữ</label>
                                     </div>
                                     <div class="col-3 mt-1">
-                                        <input type="radio" id="register-gender-1" value="1" name="customer[gender]"
+                                        <input type="radio" id="register-gender-1" value="Nam" name="customer[gender]"
                                                data-gtm-form-interact-field-id="0">
                                         <label for="register-gender-1">Nam</label>
                                     </div>
 
                                     <div class="ngay_sinh col-7 p-0 d-flex">
-                                        <input class="col-2  p-1" type="text" name="day" id="day" placeholder="DD">
+                                        <input class="col-2  p-1" type="number" name="day" id="day" placeholder="DD">
                                         <select class="col-5 p-1" name="month" id="month">
-                                            <option value="thang 1">Tháng 1</option>
-                                            <option value="thang 2">Tháng 2</option>
-                                            <option value="thang 3">Tháng 3</option>
-                                            <option value="thang 4">Tháng 4</option>
-                                            <option value="thang 5">Tháng 5</option>
-                                            <option value="thang 6">Tháng 6</option>
-                                            <option value="thang 7">Tháng 7</option>
-                                            <option value="thang 8">Tháng 8</option>
-                                            <option value="thang 9">Tháng 9</option>
-                                            <option value="thang 10">Tháng 10</option>
-                                            <option value="thang 11">Tháng 11</option>
-                                            <option value="thang 12">Tháng 12</option>
+                                            <option value="1">Tháng 1</option>
+                                            <option value="2">Tháng 2</option>
+                                            <option value="3">Tháng 3</option>
+                                            <option value="4">Tháng 4</option>
+                                            <option value="5">Tháng 5</option>
+                                            <option value="6">Tháng 6</option>
+                                            <option value="7">Tháng 7</option>
+                                            <option value="8">Tháng 8</option>
+                                            <option value="9">Tháng 9</option>
+                                            <option value="10">Tháng 10</option>
+                                            <option value="11">Tháng 11</option>
+                                            <option value="12">Tháng 12</option>
                                         </select>
-                                        <input class="col-4  p-1" type="text" name="year" id="year" placeholder="YYYY">
+                                        <input class="col-4  p-1" type="number"  name="year" id="year" placeholder="YYYY">
                                     </div>
+                                    <%String error_birthday = (String) request.getAttribute("signup_error_birthday");%>
+                                    <%
+                                        if(error_birthday != null){
+                                    %>
+                                    <div class="error_birthday text-end">
+                                        <small class="text-danger "><%=error_birthday%></small>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                             </div>
 
@@ -229,16 +239,39 @@
                                 <label for="signup-email">Email*</label>
                                 <input type="email" id="signup-email" placeholder="Email" class="form-control"
                                        name="customer[email]" required="">
+                                <%String error_email = (String) request.getAttribute("signup_error_email");%>
+                                <%
+                                    if(error_email != null){
+                                %>
+                                <small style="color: red"><%=error_email%></small>
+                                <%
+                                    }
+                                %>
                             </div>
                             <div class="form-group  mb-3">
                                 <label for="signup-password">Mật khẩu*</label>
                                 <input type="password" id="signup-password" placeholder="Mật khẩu" class="form-control"
                                        name="customer[password]" required="">
+                                <%String error_pass = (String) request.getAttribute("signup_error_pass");%>
+                                <%
+                                if(error_pass != null){
+                                %>
+                                <small style="color: red"><%=error_pass%></small>
+                                <%
+                                   }
+                                %>
                             </div>
                             <div class="form-group ">
                                 <label for="signup-repassword">Nhập mật khẩu*</label>
                                 <input type="password" id="signup-repassword" placeholder="Nhập lại mật khẩu"
-                                       class="form-control" name="customer[password]" required="">
+                                       class="form-control" name="customer[repassword]" required="">
+                                <%
+                                    if(error_pass != null){
+                                %>
+                                <small style="color: red"><%=error_pass%></small>
+                                <%
+                                    }
+                                %>
                             </div>
 
                             <div class="form-group mt-2 d-flex-center">
@@ -249,17 +282,6 @@
                             <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc</p>
                             <p style="text-align: center; font-size: 13px;">Bạn đã có tài khoản? <a
                                     style="font-size: 13px; color: blue;" href="dang_nhap.jsp">Đăng nhập</a></p>
-
-
-                            <input id="4acb11b585ff413fa278159c73db7b9f" name="g-recaptcha-response" type="hidden"
-                                   value="03AFcWeA4KJfpetZhNC6KEwIGBSiKVxBaK_FGjMxzfIlhzQgM056f9OHsepLE8lAPA_2t8bHXRmjbLqdmy3pz19RQTi4GjWJ7qB2qzBhzpLdfYUFR7nrBPnPqot6p3831ygPsCD9xJOufcQc960KZfu28-My5JLKiFC74irZ9Q26n-ttZ-JfvNYX4gWtw9sA-XAU6r_ROWClf-PZhPT2ATEeCf5YHgeLPPxGcLYleQZhLDgzSo8qmiREwucZ4_Uaw8fiG4NqKVkjtn62jS_YMyzJevJsdqu6ifcIiIe7GkrFLQD7sU64Wv4fo7TPAr9Dq-BI4nQKU_sHtUDG45z-wo4ahle6YsFfmCT9Fh_QJ7cj4feeqm2jhDtnLftPwqQSoI1L-b_B63TeOSQ2-Tr1GAE54OHMFL_YtejxRyMhFHWQHPgahGG3q9KulZsxMqly1utBkGZlg27j_bbGH4oJXwigAbTk74dQTIVrtcM_VSeNVHBsPrhoxs_S6xUtOhyBCILdpQ-r_X9nmYBvP-RcT2V6LBC7myuZG35w">
-                            <noscript
-                                    data-src="https://www.google.com/recaptcha/api.js?render=6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-"></noscript>
-                            <noscript>grecaptcha.ready(function()
-                                {grecaptcha.execute('6LdD18MUAAAAAHqKl3Avv8W-tREL6LangePxQLM-', {action:
-                                'submit'}).then(function(token)
-                                {document.getElementById('4acb11b585ff413fa278159c73db7b9f').value = token;});});
-                            </noscript>
                         </form>
                     </div>
                 </div>
@@ -335,5 +357,6 @@
 </footer>
 
 <script src="javascript/menu_footer.js"></script>
+<script src="javascript/dang_ky.js"></script>
 </body>
 </html>
