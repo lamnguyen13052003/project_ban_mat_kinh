@@ -1,20 +1,14 @@
 package controller;
 
 import model.bean.Bill;
-import model.bean.Review;
 import model.bean.User;
-import model.service.AdressService;
 import model.service.BillService;
-import model.service.BillStatusService;
 import model.service.CartService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
 @WebServlet(name = "BillController", value = "/bill")
 public class BillController extends HttpServlet implements Action {
@@ -45,9 +39,7 @@ public class BillController extends HttpServlet implements Action {
         String district = request.getParameter("districts").trim();
         String ward = request.getParameter("wards").trim();
 
-        AdressService addressService = new AdressService();
-        String fullAddress = addressService.getAddress(Integer.parseInt(province), Integer.parseInt( district), Integer.parseInt(ward)) +
-                "<br>" + request.getParameter("full-address").trim();
+        String fullAddress = request.getParameter("full-address").trim();
         boolean transfer = request.getParameter("pay-option").equals("transfer") ? true : false;
         String message = null, title = null;
 
@@ -141,8 +133,8 @@ public class BillController extends HttpServlet implements Action {
             CartService cart = (CartService) session.getAttribute("cart");
             cart.bought(bill);
             session.setAttribute("bill", new BillService());
-            request.getSession().setAttribute("cart", cart);
-            request.getSession().setAttribute("billPayed", bill);
+            session.setAttribute("cart", cart);
+            session.setAttribute("billPayed", bill);
             response.sendRedirect("thanh_toan_thanh_cong.jsp");
         }
         else {

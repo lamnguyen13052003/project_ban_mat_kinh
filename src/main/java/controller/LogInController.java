@@ -7,6 +7,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @WebServlet(name = "LogInController", value = "/login")
 public class LogInController extends HttpServlet {
@@ -17,7 +19,9 @@ public class LogInController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getMethod().toLowerCase().equals("get")){
+        HttpSession session = request.getSession();
+
+        if (request.getMethod().toLowerCase().equals("get")) {
             response.sendRedirect("dang_nhap.jsp");
             return;
         }
@@ -27,17 +31,26 @@ public class LogInController extends HttpServlet {
 
         UserService userService = UserService.getInstance();
         User user = userService.login(email, password);
-        if(user == null){
-            request.setAttribute("login_error", "Đăng nhập không thành công!");
+        if (user == null) {
+            request.setAttribute("login_error", "Tài khoản hoặc mật khẩu không chính xác!");
             request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
             return;
         }
 
-        request.getSession().setAttribute("user", user);
-        if(user.isAdmin()){
-            response.sendRedirect( "admin_pages/quan_ly_tai_khoan.jsp");
-        }else{
-            response.sendRedirect( "index.jsp");
+        if (user.getVerify() != null) {
+            request.setAttribute("verify_error", "Tài khoản của bạn chưa được xác thực.<br> Vui lòng xác thực tài khoản của bạn");
+            request.setAttribute("action", "register");
+            request.setAttribute("email", user.getEmail());
+            request.setAttribute("fullName", user.getFullName());
+            request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
+            return;
+        }
+
+        session.setAttribute("user", user);
+        if (user.isAdmin()) {
+            response.sendRedirect("admin_pages/quan_ly_tai_khoan.jsp");
+        } else {
+            response.sendRedirect("index.jsp");
         }
     }
 }

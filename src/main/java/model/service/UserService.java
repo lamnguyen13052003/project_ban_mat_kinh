@@ -5,6 +5,7 @@ import model.bean.Review;
 import model.bean.User;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -59,16 +60,12 @@ public class UserService {
         return UserDAO.getInstance().getUserForReviewProduct(reviews);
     }
 
-    public int registerVerify(String email, String codeVerify) {
-        return UserDAO.getInstance().registerVerify(email, codeVerify);
+    public int verify(String email, String codeVerify) {
+        return UserDAO.getInstance().verify(email, codeVerify);
     }
 
-    public int forgetPasswordVerify(String email, String hashCode) {
-        return UserDAO.getInstance().forgetPasswordVerify(email, hashCode);
-    }
-
-    public void updateCodeVerify(String email, String code){
-        UserDAO.getInstance().updateCodeVerify(email, code);
+    public void updateCodeVerify(String email, String code, LocalDateTime time){
+        UserDAO.getInstance().updateCodeVerify(email, code, time);
     }
 
     public int resetPassword(String email, String password) {

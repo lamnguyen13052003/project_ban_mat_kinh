@@ -179,14 +179,16 @@
             <div class="verify-header mb-3">
                 <%
                     String email = (String) session.getAttribute("email"),
-                            error = (String) request.getAttribute("error"),
+                            message = (String) session.getAttribute("message"),
                             fullName = (String) session.getAttribute("fullName"),
                             action = (String) session.getAttribute("action");
                 %>
                 <h2 class="mb-1">Vui lòng xác thực tài khoản email: <br>
                     <a class="text-primary text-decoration-underline" href="https://mail.google.com/"
-                       target="_blank"><span><%=email%></span></a>
-                    của bạn!</h2>
+                       target="_blank"><span><%=email%></span></a>của bạn!</h2>
+                <%if (message != null) {%>
+                <small class="text-danger mt-2"><%=message%></small>
+                <%}%>
                 <form action="re_send_code_verify" method="post">
                     <%if (fullName != null) {%>
                     <input type="hidden" name="fullName" value="<%=fullName%>">
@@ -195,14 +197,6 @@
                     <input type="hidden" name="action" value="<%=action%>">
                     <input hidden="" id="re-send" class="bg-primary text-white px-3 py-1 border-0 rounded-2" type="submit" value="Gửi lại">
                 </form>
-
-                <%if (error != null) {%>
-                <small class="text-danger mt-2"><%=error%>
-                </small>
-                <%
-                    }
-                    session.removeAttribute("email");
-                %>
             </div>
         </div>
         <div class="background">

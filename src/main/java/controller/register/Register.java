@@ -9,6 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -16,9 +17,7 @@ import java.util.UUID;
 public class Register implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
+        HttpSession session = request.getSession();
         UserService userService = UserService.getInstance();
         String email = request.getParameter("customer[email]");
         String password = request.getParameter("customer[password]");
@@ -53,17 +52,15 @@ public class Register implements Action {
             request.getRequestDispatcher("dang_ky.jsp").forward(request, response);
             return;
         }
+
         user.setFullName(fullname);
         String url = request.getRequestURL().toString() + "?action=verify";
         String codeVerify = UUID.randomUUID().toString();
         userService.signup(user, codeVerify);
-        boolean sendMail = SendMail.Send(user.getEmail(), "Xác Nhận Đăng Ký", SendMail.getFormRegister(url, user.getFullName(), user.getEmail(), BCrypt.hashpw(codeVerify, BCrypt.gensalt(12))));
-        if (sendMail) {
-            request.getSession().setAttribute("email", user.getEmail());
-            request.getSession().setAttribute("action", "register");
-            request.getSession().setAttribute("fullName", user.getFullName());
-            response.sendRedirect("xac_thuc.jsp");
-        } else
-            Action.error(request, response);
+        SendMail.Send(user.getEmail(), "Xác Nhận Đăng Ký", SendMail.getFormRegister(url, user.getFullName(), user.getEmail(), BCrypt.hashpw(codeVerify, BCrypt.gensalt(12))));
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("action", "register");
+        session.setAttribute("fullName", user.getFullName());
+        response.sendRedirect("xac_thuc.jsp");
     }
 }

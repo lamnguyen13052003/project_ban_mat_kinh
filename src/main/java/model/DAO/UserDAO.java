@@ -5,7 +5,6 @@ import db.JDBIConnector;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +45,7 @@ public class UserDAO extends DAO {
     public User login(String email, String password) {
         connector = JDBIConnector.get();
         User user = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role FROM users AS u WHERE u.email = ?  AND u.verify IS NULL AND u.lock = ?")
+                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = ?")
                         .bind(0, email)
                         .bind(1, 0)
                         .mapToBean(User.class)
@@ -105,33 +104,7 @@ public class UserDAO extends DAO {
         );
     }
 
-    public int registerVerify(String email, String codeVerify) {
-        User user = getUserForVerify(email);
-
-        if (user == null) return -1;
-        int result = user.isVerify(codeVerify);
-        switch (result) {
-            case 1 -> {
-                connector.withHandle(handle ->
-                        handle.createUpdate("UPDATE users SET verify = NULL " +
-                                        "WHERE id = ?;")
-                                .bind(0, user.getId())
-                                .execute()
-                );
-            }
-            case 0 -> {
-                connector.withHandle(handle ->
-                        handle.createUpdate("DELETE FROM user WHERE id = ?;")
-                                .bind(0, user.getId())
-                                .execute()
-                );
-            }
-        }
-
-        return result;
-    }
-
-    public int forgetPasswordVerify(String email, String codeVerify) {
+    public int verify(String email, String codeVerify) {
         User user = getUserForVerify(email);
 
         if (user == null) return -1;
@@ -150,14 +123,14 @@ public class UserDAO extends DAO {
         return result;
     }
 
-    public void updateCodeVerify(String email, String code) {
+    public void updateCodeVerify(String email, String code, LocalDateTime time) {
         connector.withHandle(handle ->
                 handle.createUpdate("UPDATE users SET " +
                                 "verify = ? " +
                                 ", registrationTime = ? " +
                                 "WHERE email = ?;")
                         .bind(0, code)
-                        .bind(1, LocalDateTime.now())
+                        .bind(1, time)
                         .bind(2, email)
                         .execute()
         );

@@ -214,7 +214,7 @@
                 </div>
                 <div class="address">
                     <span class="left">Địa chỉ</span>
-                    <span class="right text-end"><%=bill.getAddress()%></span>
+                    <span class="right text-end"><%=request.getAttribute("addressDetails")%></span>
                 </div>
                 <div class="phuong-thuc-thanh-toan">
                     <span class="left">Phương thức thanh toán</span>

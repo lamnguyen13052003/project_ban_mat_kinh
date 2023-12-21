@@ -1,10 +1,11 @@
 <%@ page import="model.service.CartService" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
@@ -99,9 +100,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -156,7 +159,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -190,18 +194,25 @@
                             </div>
                             <div class="form-group mb-1">
                                 <label for="login-password">Mật khẩu*</label>
-                                <input type="password" id="login-password" placeholder="Mật khẩu" class="form-control" name="password" required="">
+                                <input type="password" id="login-password" placeholder="Mật khẩu" class="form-control"
+                                       name="password" required="">
                             </div>
                             <div class="login-error mt-1">
-                                <%String error = (String)request.getAttribute("login_error");
-                                if(error != null){%><span class="text-danger"><%=error%></span> <%}%>
+                                <%
+                                    String error = (String) request.getAttribute("login_error");
+                                    if (error != null) {
+                                %><span class="text-danger"><%=error%></span> <%}%>
                             </div>
                             <div class="mt-1" style="display: flex; justify-content: flex-end;">
-                                <button type="button" style="font-size: 13px; color: blue; background: none; border: none;" id="forget-password" href="#" data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal">Quên mật khẩu</button>
+                                <button type="button"
+                                        style="font-size: 13px; color: blue; background: none; border: none;"
+                                        id="forget-password" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Quên mật khẩu
+                                </button>
                             </div>
                             <div class="form-group mt-2 d-flex-center">
-                                <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity" id="signin">
+                                <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity"
+                                        id="signin">
                                     Đăng nhập
                                 </button>
                             </div>
@@ -221,6 +232,8 @@
 
 <%
     String error_not_found_email_forget_password = (String) request.getAttribute("error-not-found-email-forget-password");
+    String message = (String) session.getAttribute("message");
+    String verifyError = (String) request.getAttribute("verify_error");
 %>
 <!-- Modal -->
 <%-- Form quên mật khầu --%>
@@ -229,7 +242,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Quên mật khẩu</h5>
-                <button type="button" id="close-modal-forget-password" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" id="close-modal-forget-password" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
             <div class="modal-body form-forgot">
                 <form accept-charset="UTF-8" action="forget_password" id="customer_forget_password" method="post">
@@ -238,8 +252,9 @@
                         <label for="email">Email<span class="text-danger">*</span></label>
                         <input type="email" id="email" placeholder="Email" class="form-control"
                                name="email" required="">
-                        <%if(error_not_found_email_forget_password != null) {%>
-                            <small class="text-danger"><%=error_not_found_email_forget_password%></small>
+                        <%if (error_not_found_email_forget_password != null) {%>
+                        <small class="text-danger"><%=error_not_found_email_forget_password%>
+                        </small>
                         <%}%>
                     </div>
                     <div class="form-group mt-4 d-flex-center">
@@ -252,9 +267,66 @@
         </div>
     </div>
 </div>
+<%if (message != null) {%>
+<%--Model thông báo đăng ký hoặc đổi quên mật khẩu thành công--%>
+<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
+        data-bs-target="#complete-modal"></button>
+<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Thành công</h1>
+                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body position-relative">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
+                    <p class="fs-3 ms-2"><%=message%>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%
+    }
+    if (verifyError != null) {
+%>
+<button hidden="" type="button" id="show-verify-error-modal" data-bs-toggle="modal"
+        data-bs-target="#verify-error-modal"></button>
+<div class="modal fade" id="verify-error-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Lỗi xác thực</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body position-relative">
+                <div class="d-flex align-items-centerr">
+                    <img style="width: 50px" src="images/icon/verify_error.png" alt="verify_error.png">
+                    <p class="ms-2 fs-6"><%=verifyError%>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <form accept-charset="UTF-8" action="re_send_code_verify" method="post">
+                    <input type="hidden" name="fullName" value="<%=request.getAttribute("fullName")%>">
+                    <input type="hidden" name="email" value="<%=request.getAttribute("email")%>">
+                    <input type="hidden" name="action" value="<%=request.getAttribute("action")%>">
+                    <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<%}%>
 <hr>
-
-
 <footer id="footer" class="footer">
     <div class="container ">
         <div class="footer-top row">
@@ -292,13 +364,16 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng online</a>
+                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
+                            online</a>
                         </li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh toán,
+                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh
+                            toán,
                             giao nhận</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả và
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả
+                            và
                             hoàn tiền</a></li>
                         <li><a class="hover" href="policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>
@@ -321,8 +396,20 @@
 <script src="javascript/menu_footer.js"></script>
 <script>
     <%if(error_not_found_email_forget_password != null) {%>
-        $("#forget-password").click();
-    <%}%>
+    $("#forget-password").click();
+    <%
+     session.removeAttribute("error-not-found-email-forget-password");
+    }
+    if(message != null){%>
+    $("#show-complete-modal").click();
+    <%
+      session.removeAttribute("message");
+    }
+    if (verifyError != null) {%>
+    $("#show-verify-error-modal").click();
+    <%
+    session.removeAttribute("verify_error");
+    }%>
 </script>
 </body>
 </html>

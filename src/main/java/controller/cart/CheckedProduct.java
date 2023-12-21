@@ -10,13 +10,15 @@ import org.json.JSONWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CheckedProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String checked = request.getParameter("checked");
-        BillService billService = (BillService) request.getSession().getAttribute("bill");
+        HttpSession session = request.getSession();
+        BillService billService = (BillService) session.getAttribute("bill");
         int productId = 0;
         int modelId = 0;
         try {
@@ -27,7 +29,7 @@ public class CheckedProduct implements Action {
         }
 
         if (checked.equalsIgnoreCase("true")) {
-            CartService cartService = (CartService) request.getSession().getAttribute("cart");
+            CartService cartService = (CartService) session.getAttribute("cart");
             billService.put(Cart.getKey(productId, modelId), cartService.getProductCart(productId, modelId));
         } else billService.remove(Cart.getKey(productId, modelId));
         JSONObject json = new JSONObject();
