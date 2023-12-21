@@ -1,5 +1,5 @@
 <%@ page import="model.service.CartService" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -98,9 +98,11 @@
                                             đi ngày và đêm</a></li>
                                         <li><a class="dropdown-item" href="DisplayProduct?idCategory=4&page=1">Kính đổi
                                             màu</a></li>
-                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc ánh sáng
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=5&page=1">Kính lọc
+                                            ánh sáng
                                             xanh</a></li>
-                                        <li><a class="dropdown-item"  href="DisplayProduct?idCategory=6&page=1">Kính Mắt Clip on 2
+                                        <li><a class="dropdown-item" href="DisplayProduct?idCategory=6&page=1">Kính Mắt
+                                            Clip on 2
                                             Lớp</a></li>
                                     </ul>
                                 </li>
@@ -155,7 +157,8 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="DisplayProduct?idCategory=0&page=1" class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
+                                    <a href="DisplayProduct?idCategory=0&page=1"
+                                       class="menu-item nav-link px-4 rounded">Khuyến mãi</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="lien_he.jsp" class="nav-link px-4 rounded">Liên hệ</a>
@@ -220,14 +223,16 @@
                                             <option value="11">Tháng 11</option>
                                             <option value="12">Tháng 12</option>
                                         </select>
-                                        <input class="col-4  p-1" type="number"  name="year" id="year" placeholder="YYYY">
+                                        <input class="col-4  p-1" type="number" name="year" id="year"
+                                               placeholder="YYYY">
                                     </div>
                                     <%String error_birthday = (String) request.getAttribute("signup_error_birthday");%>
                                     <%
-                                        if(error_birthday != null){
+                                        if (error_birthday != null) {
                                     %>
                                     <div class="error_birthday text-end">
-                                        <small class="text-danger "><%=error_birthday%></small>
+                                        <small class="text-danger "><%=error_birthday%>
+                                        </small>
                                     </div>
                                     <%
                                         }
@@ -241,9 +246,10 @@
                                        name="customer[email]" required="">
                                 <%String error_email = (String) request.getAttribute("signup_error_email");%>
                                 <%
-                                    if(error_email != null){
+                                    if (error_email != null) {
                                 %>
-                                <small style="color: red"><%=error_email%></small>
+                                <small style="color: red"><%=error_email%>
+                                </small>
                                 <%
                                     }
                                 %>
@@ -254,11 +260,12 @@
                                        name="customer[password]" required="">
                                 <%String error_pass = (String) request.getAttribute("signup_error_pass");%>
                                 <%
-                                if(error_pass != null){
+                                    if (error_pass != null) {
                                 %>
-                                <small style="color: red"><%=error_pass%></small>
+                                <small style="color: red"><%=error_pass%>
+                                </small>
                                 <%
-                                   }
+                                    }
                                 %>
                             </div>
                             <div class="form-group ">
@@ -266,9 +273,10 @@
                                 <input type="password" id="signup-repassword" placeholder="Nhập lại mật khẩu"
                                        class="form-control" name="customer[repassword]" required="">
                                 <%
-                                    if(error_pass != null){
+                                    if (error_pass != null) {
                                 %>
-                                <small style="color: red"><%=error_pass%></small>
+                                <small style="color: red"><%=error_pass%>
+                                </small>
                                 <%
                                     }
                                 %>
@@ -330,13 +338,16 @@
 
                     </div>
                     <ul>
-                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng online</a>
+                        <li><a class="hover" href="policy_pages/huong_dan_mua_hang_online.jsp">Hướng dẫn mua hàng
+                            online</a>
                         </li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh toán,
+                        <li><a class="hover" href="policy_pages/chinh_sach_thanh_toan_va_giao_nhan.jsp">Chính sách thanh
+                            toán,
                             giao nhận</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_mat.jsp">Chính sách bảo mật</a></li>
                         <li><a class="hover" href="policy_pages/chinh_sach_bao_hanh.jsp">Chính sách bảo hành</a></li>
-                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả và
+                        <li><a class="hover" href="policy_pages/chinh_sach_doi_tra_va_hoan_tien.jsp">Chính sách đổi trả
+                            và
                             hoàn tiền</a></li>
                         <li><a class="hover" href="policy_pages/kiem_tra_don_hang.jsp">Kiểm tra đơn hàng</a></li>
                     </ul>

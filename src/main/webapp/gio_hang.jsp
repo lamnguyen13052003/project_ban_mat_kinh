@@ -7,14 +7,11 @@
 <%@ page import="model.service.BillService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    request.setCharacterEncoding("UTF-8");
-    response.setCharacterEncoding("UTF-8");
     session.setAttribute("bill", new BillService());
 %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">

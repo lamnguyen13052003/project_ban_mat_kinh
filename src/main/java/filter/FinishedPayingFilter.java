@@ -2,7 +2,7 @@ package filter;
 
 
 import model.bean.Bill;
-import model.service.BillService;
+import model.service.AddressService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +16,13 @@ public class FinishedPayingFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        Bill bill = (Bill) ((HttpServletRequest)request).getSession().getAttribute("billPayed");
+        Bill bill = (Bill) ((HttpServletRequest) request).getSession().getAttribute("billPayed");
         if (bill != null) {
+            String addressDetails = new AddressService().getAddress(bill.getCodeProvince(), bill.getCodeDistrict(), bill.getCodeWard()) +
+                    "<br>" + bill.getAddress();
+            request.setAttribute("addressDetails", addressDetails);
             chain.doFilter(request, response);
-        }else{
+        } else {
             ((HttpServletResponse) response).sendRedirect("gio_hang.jsp");
         }
     }

@@ -30,7 +30,7 @@ public class ReduceProductCart implements Action {
             response.sendRedirect("error.jsp");
         }
 
-        if (!cart.reduceProductCart(productId, modelId, 1))  response.getWriter().write("error");
+        if (!cart.reduceProductCart(productId, modelId, 1)) response.getWriter().write("error");
         else {
             JSONObject json = new JSONObject();
             NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
