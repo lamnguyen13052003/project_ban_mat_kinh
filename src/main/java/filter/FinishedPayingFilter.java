@@ -1,6 +1,7 @@
 package filter;
 
 
+import helper.SendMail;
 import model.bean.Bill;
 import model.service.AddressService;
 
@@ -21,6 +22,8 @@ public class FinishedPayingFilter implements Filter {
             String addressDetails = new AddressService().getAddress(bill.getCodeProvince(), bill.getCodeDistrict(), bill.getCodeWard()) +
                     "<br>" + bill.getAddress();
             request.setAttribute("addressDetails", addressDetails);
+            String url = ((HttpServletRequest) request).getRequestURL().toString().replace("thanh_toan_thanh_cong.jsp", "policy_pages/kiem_tra_don_hang.jsp");
+            SendMail.SendMailWithImage(bill.getEmail(), "Thanh toán thành công", SendMail.getFormBill(url, bill, addressDetails));
             chain.doFilter(request, response);
         } else {
             ((HttpServletResponse) response).sendRedirect("gio_hang.jsp");

@@ -1,9 +1,11 @@
 package controller;
 
+import helper.SendMail;
 import model.bean.Bill;
 import model.bean.User;
 import model.service.BillService;
 import model.service.CartService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -135,6 +137,7 @@ public class BillController extends HttpServlet implements Action {
             session.setAttribute("bill", new BillService());
             session.setAttribute("cart", cart);
             session.setAttribute("billPayed", bill);
+            String url = request.getRequestURL().toString().replace("re_send_code_verify", "register") + "?action=verify";
             response.sendRedirect("thanh_toan_thanh_cong.jsp");
         }
         else {
