@@ -122,7 +122,7 @@ function addSaleProduct() {
 }
 
 const ckeditor = CKEDITOR.replace('editor');
-CKFinder.setupCKEditor(ckeditor, "ckfinder/");
+CKFinder.setupCKEditor(ckeditor, "../ckfinder/");
 ckeditor.setData(localStorage.getItem("describe") + `<div><br></div>`);
 ckeditor.on('change', function (evt) {
     localStorage.setItem("describe", evt.editor.getData());

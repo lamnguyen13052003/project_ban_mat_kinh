@@ -15,7 +15,6 @@
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
     <script src="../ckeditor/ckeditor.js"></script>
-    <script src="../ckeditor/samples/js/sample.js"></script>
     <script src="../ckfinder/ckfinder.js"></script>
 
     <title>Chỉnh sửa sản phẩm</title>
