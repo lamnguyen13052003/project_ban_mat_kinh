@@ -36,7 +36,8 @@ public class SendMailProperties {
 
     private static String
             email = prop.getProperty("send_mail.email"),
-            password = prop.getProperty("send_mail.password");
+            password = prop.getProperty("send_mail.password"),
+            emailContact = prop.getProperty("email_contact");
 
 
     public static String getEmail() {
@@ -45,6 +46,9 @@ public class SendMailProperties {
 
     public static String getPassword() {
         return password;
+    }
+    public static String getEmailContact() {
+        return emailContact;
     }
 
 }

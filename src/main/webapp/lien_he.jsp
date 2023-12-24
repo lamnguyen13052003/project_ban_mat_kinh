@@ -198,7 +198,7 @@
 <main id="main" class="contact-form mt-5 pb-5">
     <div class="contact-info">
         <h4>Liên hệ với chúng tôi</h4>
-        <form>
+        <form method="POST" action="/contact">
             <div class="form-group">
                 <label for="name">Tên của bạn <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="name" name="name" required>
