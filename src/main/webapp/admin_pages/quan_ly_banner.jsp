@@ -123,8 +123,8 @@
                     <button class="select-all-img col" type="button"><span><i
                             class="fa-solid fa-check-double"></i></span><span class="px-2">Chọn tất cả</span></button>
                     <label class="add-img col" for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket px-2"></i>Thêm ảnh</label>
-                    <form class="upload-img " action="uploadServlet" method="post" enctype="multipart/form-data">
-                        <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
+                    <form class="upload-img " action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
+                        <input id="add-image" class="form-check-input imageInput " type="file" value="" name="banner-logo"
                                accept="image/*" data-preview="logo-img" hidden>
                     </form>
                 </div>
@@ -139,7 +139,7 @@
                         <div class="item-img col">
                             <img class=" img-fluid" id="login-img" src="../<%=loginBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng nhập</span></div>
-                            <form class="upload-img" action="uploadServlet" method="post" enctype="multipart/form-data">
+                            <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput" type="file" value="" name="banner-login"
                                        id="banner-login" accept="image/*" data-preview="login-img" style="height: 100px; width: 100%">
                                 <label for="banner-login"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
@@ -151,7 +151,7 @@
                         <div class="item-img col">
                             <img class=" img-fluid z-0 " id="signup-img" src="../<%=signupBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng ký</span></div>
-                            <form class="upload-img" action="uploadServlet" method="post" enctype="multipart/form-data">
+                            <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-signup"
                                        id="banner-signup" accept="image/*" data-preview="signup-img" hidden>
                                 <label for="banner-signup"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
@@ -162,7 +162,7 @@
                         <div class="item-img col">
                             <img class=" img-fluid z-0 " id="pr-img" src="../<%=prBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Quảng cáo</span></div>
-                            <form class="upload-img">
+                            <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-pr" id="banner-pr"
                                        accept="image/*" data-preview="pr-img" hidden>
                                 <label for="banner-pr"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
@@ -173,7 +173,7 @@
                         <div class="item-img col">
                             <img class=" img-fluid z-0" id="logo-img" src="../<%=logoBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Logo</span></div>
-                            <form class="upload-img" action="uploadServlet" method="post" enctype="multipart/form-data">
+                            <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
                                        id="banner-logo" accept="image/*" data-preview="logo-img" hidden>
                                 <label for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>

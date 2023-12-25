@@ -1,58 +1,51 @@
-// $(document).ready(function () {
-//     $(".imageInput").on("change", function (event) {
-//         const input = event.target;
-//         const previewId = $(input).data("preview");
-//         previewImage(event, previewId);
+// const elements = document.querySelectorAll(".upload-img input[id]");
+//
+// elements.forEach(function(element) {
+//     element.addEventListener("change", function (){
+//         uploadFile(element);
 //     });
 //
-//     function previewImage(event, previewId) {
-//         console.log("run")
-//         const input = event.target;
-//         const reader = new FileReader();
+// })
+// function uploadFile(element) {
+//     let file = element.files[0];
 //
-//         reader.onload = function () {
-//             $("#" + previewId).attr("src", reader.result);
-//         };
+//     var formData = new FormData();
+//     formData.append(element.id, file);
 //
-//         reader.readAsDataURL(input.files[0]);
+//     let xhr = new XMLHttpRequest();
+//
+//     // Mở kết nối và gửi yêu cầu POST
+//     xhr.open('POST', 'upload-file-on-banner-management', true);
+//
+//
+//     xhr.onload = function () {
+//         if(xhr.status === 200){
+//             console.log('File uploaded successfully.');
+//         }else{
+//             console.error('Error uploading file.');
+//         }
+//
 //     }
-// });
-
-
-// document.getElementById("banner-login").addEventListener("change", function() {
-//     var fileInput = this;
-//
-//     // Kiểm tra xem có tệp tin nào đã được chọn hay không
-//     if (fileInput.files.length > 0) {
-//         // Lấy đối tượng File đại diện cho tệp tin đã chọn
-//         var file = fileInput.files[0];
-//
-//         // Hiển thị thông tin về tệp tin
-//         console.log("File Name:", file.name);
-//         console.log("File Size:", file.size, "bytes");
-//         console.log("File Type:", file.type);
-//     } else {
-//         console.log("No file selected.");
-//     }
-// });
-
-
-let removeButton = document.querySelector('#banner-login');
-removeButton.addEventListener("change", function () {
-    //create ajax request
-    let xhr = new XMLHttpRequest();
-
-    //prepare the request
-    xhr.open("GET","banner-manager", true);
-
-    // send the request
-    xhr.send();
-
-    //process the request
-    xhr.onload = () => {
-      if(xhr.status === 200) {
-          // let data = xhr.responseText;
-          console.log("xhr run");
-      }
-    };
+//     xhr.send(formData);
+// }
+$(document).ready(function(){
+  uploadFile();
 })
+function uploadFile() {
+    $(".upload-img input").change(function (){
+        const bannerId = $(this).attr("id");
+        $.ajax({
+            url : '../upload-file-on-banner-management',
+            data: bannerId,
+            method: 'POST',
+            success: function (data){
+                console.log("upload file successfully");
+            },
+            error: function (){
+                console.log("error uploading file");
+            }
+        }) ;
+
+
+    });
+}
