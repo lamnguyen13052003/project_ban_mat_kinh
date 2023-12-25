@@ -25,7 +25,7 @@ public class UploadFileOnBannerManagement extends HttpServlet {
         try {
             Part filePath = request.getPart("upload-file-on-banner-management");
 
-            String fileName = filePath.getSubmittedFileName();
+            String fileName = filePath.getSubmittedFileName().replaceAll(" ", "-");
             long fileSize = filePath.getSize();
 
             if (fileSize > MAX_FILE_SIZE) throw new IOException("File size exceeds the limit of 5 MB.");
@@ -34,6 +34,9 @@ public class UploadFileOnBannerManagement extends HttpServlet {
             String pathFile = servletContext.getRealPath("/") +"images/banner/";
             File uploadDirectory = new File(pathFile);
             if(!uploadDirectory.exists()) uploadDirectory.mkdirs();
+
+            response.setContentType("application/x-www-form-urlencoded");
+            response.setCharacterEncoding("UTF-8");
 
             try {
                 InputStream fileContent  = filePath.getInputStream();
