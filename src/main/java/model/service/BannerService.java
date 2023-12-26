@@ -51,12 +51,13 @@ public class BannerService {
     /*
     upload banner image
      */
-    public void uploadBannerImage(String url, BannerImage bannerImage) {
-        System.out.println("service run");
-        BannnerDAO.getInstance().updateBannerImage(url, bannerImage);
+    public void uploadBannerImage(BannerImage bannerImage) {
+        BannnerDAO.getInstance().updateBannerImage(bannerImage);
     }
-    public static void main(String[] args) {
-
-
+    /*
+    insert slide image
+     */
+    public void insertSlideShowImages(BannerImage bannerImage){
+        BannnerDAO.getInstance().insertSlideImage(bannerImage);
     }
 }

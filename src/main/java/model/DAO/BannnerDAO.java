@@ -59,12 +59,29 @@ public class BannnerDAO extends  DAO{
     /**
      * update image banner
      */
-    public boolean updateBannerImage(String url, BannerImage bannerId) {
-        System.out.println("dao run");
+    public int updateBannerImage(BannerImage banner) {
       return  connector.withHandle(handle ->
-                handle.createQuery("update banner_images set urlImage = :urlImage where id = :id")
-                        .bind("urlImage",url)
-                        .bind("id", bannerId.getId())
-                        .mapToBean(BannerImage.class).findFirst().isEmpty());
+                handle.createUpdate("update banner_images set urlImage = ? where description LIKE ?")
+                        .bind(0,banner.getUrlImage())
+                        .bind(1, banner.getDescription())
+                        .execute()
+      );
+    }
+    /**
+     * insert image slide
+     */
+    public int insertSlideImage(BannerImage slide) {
+        return  connector.withHandle(handle ->
+                handle.createUpdate("insert into banner_images values (?, ?, ?)")
+                        .bind(0,slide.getId())
+                        .bind(1, slide.getUrlImage())
+                        .bind(2, slide.getDescription())
+                        .execute()
+        );
+    }
+
+    public int nextId(){
+        return  connector.withHandle(handle ->
+                handle.createUpdate("SELECT MAX(id) FROM banner_images").execute());
     }
 }
