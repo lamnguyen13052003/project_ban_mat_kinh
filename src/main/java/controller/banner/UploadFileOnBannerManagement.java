@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @WebServlet(name = "UploadFileOnBannerManagement", value = "/upload-file-on-banner-management")
-@MultipartConfig(maxFileSize = 5 * 1024 * 1024) // Giới hạn kích thước tệp tối đa là 5 MB
+@MultipartConfig(maxFileSize = 5 * 1024 * 1024, maxRequestSize = 50 *1024*1024) // Giới hạn kích thước tệp tối đa là 5 MB
 public class UploadFileOnBannerManagement extends HttpServlet {
     public static final int MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -35,18 +35,14 @@ public class UploadFileOnBannerManagement extends HttpServlet {
                     if (fileSize > MAX_FILE_SIZE) throw new IOException("File size exceeds the limit of 5 MB.");
 
                     ServletContext servletContext = request.getServletContext();
-                    String pathFile = servletContext.getRealPath("/") + "images/banner/";
+                    String pathFile = servletContext.getRealPath("/") + "images\\banner\\";
                     File file = new File(pathFile);
                     if (!file.exists()) file.mkdirs();
-
                     fullFilePath = pathFile + fileName;
                     subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
                     // Lưu tệp tải lên vào thư mục trên server
-                    Path targetPath = Path.of(file.getAbsolutePath(), fileName);
-
-                    try (InputStream inputStream = part.getInputStream()) {
-                        Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
-                    }
+                    part.write(fullFilePath);
+//
 
                     //update db
                     BannerImage bannerImage = new BannerImage();
@@ -56,11 +52,13 @@ public class UploadFileOnBannerManagement extends HttpServlet {
                     if(description.indexOf("banner") != -1) {
                         BannerService.getInstance().uploadBannerImage(bannerImage);
                     }else{
+                        bannerImage.setId(BannerService.getInstance().nextIdOfSlide() + 1);
                         BannerService.getInstance().insertSlideShowImages(bannerImage);
                     }
 
-                    System.out.println("File saved at: " + targetPath.toString());
+                        System.out.println("File saved at: " + fullFilePath);
                     response.getWriter().println("File uploaded successfully!");
+
                 }
             }
 
