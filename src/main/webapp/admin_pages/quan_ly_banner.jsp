@@ -124,8 +124,8 @@
                             class="fa-solid fa-check-double"></i></span><span class="px-2">Chọn tất cả</span></button>
                     <label class="add-img col" for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket px-2"></i>Thêm ảnh</label>
                     <form class="upload-img " action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
-                        <input id="add-image" class="form-check-input imageInput " type="file" value="" name="banner-logo"
-                               accept="image/*" data-preview="logo-img" hidden>
+                        <input id="add-image-slide" class="form-check-input imageInput " type="file" value="" name="add-image-slide"
+                               accept="image/*" data-preview="add-image-slide" hidden>
                     </form>
                 </div>
             </div>

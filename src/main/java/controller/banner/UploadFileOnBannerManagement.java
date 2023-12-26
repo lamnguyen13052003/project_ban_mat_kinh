@@ -22,32 +22,35 @@ public class UploadFileOnBannerManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Part filePart = request.getPart("banner-login");
+            String fullFilePath, subFilePath;
+            for (Part part : request.getParts()) {
+                if (part.getContentType() != null) {
+                    String fileName = part.getSubmittedFileName().replaceAll(" ", "-");
+                    System.out.println(fileName);
+                    long fileSize = part.getSize();
 
-            String fileName = filePart.getSubmittedFileName().replaceAll(" ", "-");
-            System.out.println(fileName);
-            long fileSize = filePart.getSize();
+                    if (fileSize > MAX_FILE_SIZE) throw new IOException("File size exceeds the limit of 5 MB.");
 
-            if (fileSize > MAX_FILE_SIZE) throw new IOException("File size exceeds the limit of 5 MB.");
+                    ServletContext servletContext = request.getServletContext();
+                    String pathFile = servletContext.getRealPath("/") + "images/banner/";
+                    File file = new File(pathFile);
+                    if (!file.exists()) file.mkdirs();
 
-            ServletContext servletContext = request.getServletContext();
-            String pathFile = servletContext.getRealPath("/") +"images/banner/";
-            File file = new File(pathFile);
-            if(!file.exists()) file.mkdirs();
-            // Lưu tệp tải lên vào thư mục trên server
-            Path targetPath = Path.of(file.getAbsolutePath(), fileName);
-
-            try (InputStream inputStream = filePart.getInputStream()) {
-//                byte[] bytes = new byte[1024];
-//                int readByte;
-//                while ((readByte = inputStream.read(bytes)) != -1){
-//                  response.
-//                }
-                Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                    fullFilePath = pathFile + fileName;
+                    System.out.println(fullFilePath);
+                    subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
+                    System.out.println(subFilePath);
+                    // Lưu tệp tải lên vào thư mục trên server
+//                    Path targetPath = Path.of(file.getAbsolutePath(), fileName);
+//
+//                    try (InputStream inputStream = part.getInputStream()) {
+//                        Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+//                    }
+//
+//                    System.out.println("File saved at: " + targetPath.toString());
+                    response.getWriter().println("File uploaded successfully!");
+                }
             }
-
-            System.out.println("File saved at: " + targetPath.toString());
-            response.getWriter().println("File uploaded successfully!");
 
         }catch (Exception e) {
             e.printStackTrace();
