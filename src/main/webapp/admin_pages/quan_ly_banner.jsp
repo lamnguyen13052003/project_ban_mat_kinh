@@ -141,7 +141,7 @@
                             <div class="text-banner"><span>Đăng nhập</span></div>
                             <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput" type="file" value="" name="banner-login"
-                                       id="banner-login" accept="image/*" data-preview="login-img" style="height: 100px; width: 100%">
+                                       id="banner-login" accept="image/*" data-preview="login-img" style="height: 100px; width: 100%" hidden>
                                 <label for="banner-login"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </form>
                         </div>

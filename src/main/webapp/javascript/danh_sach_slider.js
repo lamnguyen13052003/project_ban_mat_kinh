@@ -15,9 +15,9 @@
 //     let xhr = new XMLHttpRequest();
 //
 //     // Mở kết nối và gửi yêu cầu POST
-//     xhr.open('POST', 'upload-file-on-banner-management', true);
-//
-//
+//     xhr.open('POST', '../upload-file-on-banner-management', true);
+//     // xhr.setRequestHeader("Content-Type", "multipart/form-data");
+//     xhr.send(formData);
 //     xhr.onload = function () {
 //         if(xhr.status === 200){
 //             console.log('File uploaded successfully.');
@@ -26,7 +26,7 @@
 //         }
 //
 //     }
-//     xhr.send(formData);
+//
 // }
 $(document).ready(function(){
   uploadFile();
@@ -34,10 +34,16 @@ $(document).ready(function(){
 function uploadFile() {
     $(".upload-img input").change(function (){
         const bannerId = $(this).attr("id");
+        var file = $(this)[0].files[0];
+        console.log(file);
+        let formData = new FormData();
+        formData.append(bannerId, file);
         $.ajax({
             url : '../upload-file-on-banner-management',
-            data: bannerId,
+            data: formData,
             method: 'POST',
+            processData: false,
+            contentType: false,
             success: function (data){
                 console.log("upload file successfully");
             },

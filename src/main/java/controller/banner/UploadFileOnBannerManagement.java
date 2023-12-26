@@ -3,11 +3,10 @@ package controller.banner;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @WebServlet(name = "UploadFileOnBannerManagement", value = "/upload-file-on-banner-management")
@@ -23,30 +22,31 @@ public class UploadFileOnBannerManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Part filePath = request.getPart("upload-file-on-banner-management");
+            Part filePart = request.getPart("banner-login");
 
-            String fileName = filePath.getSubmittedFileName().replaceAll(" ", "-");
-            long fileSize = filePath.getSize();
+            String fileName = filePart.getSubmittedFileName().replaceAll(" ", "-");
+            System.out.println(fileName);
+            long fileSize = filePart.getSize();
 
             if (fileSize > MAX_FILE_SIZE) throw new IOException("File size exceeds the limit of 5 MB.");
 
             ServletContext servletContext = request.getServletContext();
             String pathFile = servletContext.getRealPath("/") +"images/banner/";
-            File uploadDirectory = new File(pathFile);
-            if(!uploadDirectory.exists()) uploadDirectory.mkdirs();
+            File file = new File(pathFile);
+            if(!file.exists()) file.mkdirs();
+            // Lưu tệp tải lên vào thư mục trên server
+            Path targetPath = Path.of(file.getAbsolutePath(), fileName);
 
-            response.setContentType("application/x-www-form-urlencoded");
-            response.setCharacterEncoding("UTF-8");
-
-            try {
-                InputStream fileContent  = filePath.getInputStream();
-                Path file = Path.of(uploadDirectory.getAbsolutePath(), fileName);
-                Files.copy(fileContent, file, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("File uploaded successfully to: " + file);
-            }catch (Exception e) {
-                e.printStackTrace();
+            try (InputStream inputStream = filePart.getInputStream()) {
+//                byte[] bytes = new byte[1024];
+//                int readByte;
+//                while ((readByte = inputStream.read(bytes)) != -1){
+//                  response.
+//                }
+                Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
             }
 
+            System.out.println("File saved at: " + targetPath.toString());
             response.getWriter().println("File uploaded successfully!");
 
         }catch (Exception e) {
