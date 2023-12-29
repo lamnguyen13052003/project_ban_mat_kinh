@@ -2,6 +2,7 @@ package controller;
 
 import model.bean.BannerImage;
 import model.service.BannerService;
+import org.json.JSONObject;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,11 +16,6 @@ import java.util.List;
 public class BannerImageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Xác định phần tử input có type="file" bằng cách sử dụng tên của nó
-//        Part filePart = request.getPart("banner-login");
-//        // Lấy thông tin về tệp tin
-//        String fileName = filePart.getSubmittedFileName();
-//        uploadImage(fileName);
 
         List<BannerImage> urlBannerImages = BannerService.getInstance().getSlideShowImages(); // slide
         BannerImage urlBannerPRImages = BannerService.getInstance().getBannerPRImages(); // banner pr
@@ -39,15 +35,9 @@ public class BannerImageController extends HttpServlet {
         request.setAttribute("bannerSignupImages", urlBannerSignupImages); // banner Signup
         request.setAttribute("bannerLogoImages", urlBannerLogoImages); // banner logo
 
-//        response.setContentType("text/plain;charset=UTF-8");
+
         request.getRequestDispatcher("quan_ly_banner.jsp").forward(request, response);
     }
-
-    private void uploadImage(String uploadPRBanner) {
-        System.out.println(uploadPRBanner);
-//        BannerService.getInstance().uploadBannerImage(uploadPRBanner, bannerImage);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

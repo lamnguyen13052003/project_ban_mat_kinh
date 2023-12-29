@@ -102,14 +102,16 @@
                         BannerImage signupBanner = (BannerImage) request.getAttribute("bannerSignupImages");
                         BannerImage prBanner = (BannerImage) request.getAttribute("bannerPRImages");
                         BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages");
-                            List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
+                        List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
+                        int index = 0;
                             for(BannerImage ri : urls){
+                                index++;
                     %>
-                    <div class="p-3">
+                    <div class="slide-management p-3">
                         <div class="item-img col">
-                            <img class="img-fluid " src="../<%=ri.getUrlImage()%>" alt="">
+                            <img class="img-fluid" data-banner="slide-added-<%=index%>" src="../<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
-                                <input class="form-check-input" type="checkbox" id="check-img-01">
+                                <input class="form-check-input" type="checkbox" id="check-img-<%=index%>">
                             </div>
                         </div>
                     </div>
@@ -137,7 +139,7 @@
                 <div class="edit-img row row-cols-2">
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid" id="login-img" src="../<%=loginBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid" data-banner="banner-login" id="login-img" src="../<%=loginBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng nhập</span></div>
                             <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput" type="file" value="" name="banner-login"
@@ -149,7 +151,7 @@
 
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0 " id="signup-img" src="../<%=signupBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0 " data-banner="banner-signup" id="signup-img" src="../<%=signupBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Đăng ký</span></div>
                             <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-signup"
@@ -160,7 +162,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0 " id="pr-img" src="../<%=prBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0 " data-banner="banner-pr" id="pr-img" src="../<%=prBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Quảng cáo</span></div>
                             <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-pr" id="banner-pr"
@@ -171,7 +173,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0" id="logo-img" src="../<%=logoBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0" data-banner="banner-logo" id="logo-img" src="../<%=logoBanner.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Logo</span></div>
                             <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
