@@ -82,6 +82,6 @@ public class BannnerDAO extends  DAO{
 
     public int nextId(){
         return  connector.withHandle(handle ->
-                handle.createUpdate("SELECT MAX(id) FROM banner_images").execute());
+                handle.createUpdate("SELECT MAX(id) FROM banner_images").execute())  + 1;
     }
 }
