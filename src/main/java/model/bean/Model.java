@@ -1,10 +1,38 @@
 package model.bean;
 
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Model {
-    private Integer id, idProduct;
-    private String name, urlIamge;
+    private Integer id, productId, quantity, totalQuantitySold;
+    private String name, urlImage;
+
+    public Model(Integer productId, String data) {
+        this.productId = productId;
+        StringTokenizer tk = new StringTokenizer(data, ",");
+        this.name = tk.nextToken();
+        this.quantity = Integer.parseInt(tk.nextToken());
+        this.urlImage = tk.nextToken();
+    }
+
+    public Model() {
+    }
+
+    public Integer getTotalQuantitySold() {
+        return totalQuantitySold;
+    }
+
+    public void setTotalQuantitySold(Integer totalQuantitySold) {
+        this.totalQuantitySold = totalQuantitySold;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public Integer getId() {
         return id;
@@ -14,12 +42,12 @@ public class Model {
         this.id = id;
     }
 
-    public Integer getIdProduct() {
-        return idProduct;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -30,21 +58,21 @@ public class Model {
         this.name = name;
     }
 
-    public String getUrlIamge() {
-        return urlIamge;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setUrlIamge(String urlIamge) {
-        this.urlIamge = urlIamge;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     @Override
     public String toString() {
         return "Model{" +
                 "id=" + id +
-                ", idProduct=" + idProduct +
+                ", idProduct=" + productId +
                 ", name='" + name + '\'' +
-                ", image='" + urlIamge + '\'' +
+                ", image='" + urlImage + '\'' +
                 '}';
     }
 
@@ -58,6 +86,10 @@ public class Model {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idProduct, name, urlIamge);
+        return Objects.hash(id, productId, name, urlImage);
+    }
+
+    public boolean available() {
+        return this.quantity > this.totalQuantitySold;
     }
 }

@@ -3,24 +3,21 @@ package model.service;
 import model.DAO.ModelDAO;
 import model.bean.Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ModelService {
     private static ModelService instance;
-    public static ModelService getInstance(){
+
+    public static ModelService getInstance() {
         return instance == null ? new ModelService() : instance;
     }
 
-    public ArrayList<Model> getModels(int productId){
-        return ModelDAO.getInstance().getModels(productId);
+    public List<Model> getModelsByProductId(int productId) {
+        List<Model> models = ModelDAO.getInstance().getModelsByProductId(productId);
+        return models;
     }
 
-    public Model getModel(int modelId){
+    public Model getModel(int modelId) {
         return ModelDAO.getInstance().getModel(modelId);
-    }
-
-    public int getQuantity(Integer billId) {
-        ModelDAO modelDAO = ModelDAO.getInstance();
-        return modelDAO.getQuantity(billId);
     }
 }

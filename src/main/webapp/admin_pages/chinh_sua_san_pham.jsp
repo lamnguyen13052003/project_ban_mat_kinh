@@ -1,5 +1,5 @@
 <%@ page import="model.bean.User" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
+    <link href="../select2/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/them_san_pham.css">
     <link rel="icon" href="../logo_icon.png">
+
 
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
+    <script src="../select2/select2.min.js"></script>
     <script src="../ckeditor/ckeditor.js"></script>
     <script src="../ckfinder/ckfinder.js"></script>
 
@@ -89,161 +92,176 @@
 </header>
 
 <main id="main" class=" mt-5 pb-5">
-    <div class="container position-relative">
-        <form action="">
-            <section class="left">
-                <div class="input-info-product input">
-                    <h4 class="input-info-product-title title">
-                        Thông tin sản phẩm
-                    </h4>
+    <div class="container position-relative" id="product-id" product-id="<%=session.getAttribute("product-id")%>">
+        <section class="left">
+            <div class="input-info-product input">
+                <h4 class="input-info-product-title title">
+                    Thông tin sản phẩm
+                </h4>
 
-                    <div class="input-info-product-body mb-4">
-                        <div class="row mb-4">
-                            <div class="col">
-                                <input type="text" class="w-100" name="name-product" id="name-product"
-                                       placeholder="Tên sản phẩm" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <select class="w-100" type="text" name="type-product" id="type-product" required>
-                                    <optgroup label="Kính mát">
-                                        <option value="kinh_mat_nam">Kính mát nam</option>
-                                        <option value="kinh_mat_nu">Kính mát nữ</option>
-                                        <option value="kinh_di_ngay_va_dem">Kính đi ngày và đêm</option>
-                                        <option value="kinh_doi_mau">Kinh đổi màu</option>
-                                        <option value="kinh_loc_anh_sang_xanh">Kính lọc ánh sánh xanh</option>
-                                        <option value="kinh_mat_clip_on_2_lop">Kính mắt clip on 2 lớp</option>
-                                    </optgroup>
-                                    <optgroup label="Mắt kính trẻ em">
-                                        <option value="gong_kinh_tre_em">Gọng kính trẻ em</option>
-                                        <option value="kinh_mat_tre_em">Kính mát trẻ em</option>
-                                    </optgroup>
-                                    <optgroup label="Gọng kính">
-                                        <option value="gong_kinh_nua_khung">Gọng kính nữa khung</option>
-                                        <option value="gong_kinh_khoan">Gọng kính khoan</option>
-                                        <option value="gong_kinh_tron">Gọng kính tròn</option>
-                                        <option value="gong_kinh_titan">Gọng kính titan</option>
-                                    </optgroup>
-                                    <optgroup label="Tròng kính">
-                                        <option value="trong_kinh_trong_anh_sang_xanh">Tròng kính chống ánh sáng xanh
-                                        </option>
-                                        <option value="trong_kinh_doi_mau">Tròng kính đổi màu</option>
-                                        <option value="trong_kinh_mau">Tròng kính màu</option>
-                                        <option value="trong_kinh_cho_gong_khoan">Tròng kính cho gọng khoan</option>
-                                    </optgroup>
-                                </select>
-                            </div>
+                <div class="input-info-product-body mb-4">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <input autocomplete="false" type="text" class="w-100" name="name-product" id="product-name"
+                                   placeholder="Tên sản phẩm" required>
+                            <small class="text-danger" hidden="">Tên sản phẩm không được bỏ trống!</small>
                         </div>
                     </div>
 
-                    <div class="input-expanded-info-product">
-                        <textarea id="editor" name="editor"></textarea>
-                    </div>
-                </div>
-
-                <div class="input-img-product input">
-                    <h4 class="input-img-product-title title">
-                        Ảnh minh họa
-                    </h4>
-
-                    <div class="input-img-product-body">
-                        <div class="input" id="input-img">
-                            <label for="input-img-product" class="d-"><span
-                                    class="material-symbols-outlined">cloud_upload</span></label>
-                            <input type="file" name="input-img-product" id="input-img-product"
-                                   accept="image/jpeg,image/png" hidden="">
+                    <div class="row">
+                        <div class="col-12">
+                            <select class="w-100" type="text" name="product-category-id" id="product-category-id"
+                                    required>
+                                <optgroup label="Kính mát">
+                                    <option value="1">Kính mát nam</option>
+                                    <option value="2">Kính mát nữ</option>
+                                    <option value="3">Kính đi ngày và đêm</option>
+                                    <option value="4">Kinh đổi màu</option>
+                                    <option value="5">Kính lọc ánh sánh xanh</option>
+                                    <option value="6">Kính mắt clip on 2 lớp</option>
+                                </optgroup>
+                                <optgroup label="Mắt kính trẻ em">
+                                    <option value="7">Gọng kính trẻ em</option>
+                                    <option value="8">Kính mát trẻ em</option>
+                                </optgroup>
+                                <optgroup label="Gọng kính">
+                                    <option value="9">Gọng kính nữa khung</option>
+                                    <option value="10">Gọng kính khoan</option>
+                                    <option value="11">Gọng kính tròn</option>
+                                    <option value="12">Gọng kính titan</option>
+                                </optgroup>
+                                <optgroup label="Tròng kính">
+                                    <option value="13">Tròng kính chống ánh sáng xanh</option>
+                                    <option value="14">Tròng kính đổi màu</option>
+                                    <option value="15">Tròng kính màu</option>
+                                    <option value="16">Tròng kính cho gọng khoan</option>
+                                </optgroup>
+                            </select>
+                            <small class="text-danger" hidden="">Vui lòng chọn danh mục cho sản phẩm!</small>
                         </div>
                     </div>
                 </div>
 
-                <div class="input-option-product input">
-                    <h4 class="input-option-product-title title">
-                        Sự lựa chọn
-                    </h4>
+                <div class="input-expanded-info-product">
+                    <textarea id="editor" name="editor"></textarea>
+                </div>
+            </div>
 
-                    <div class="input-option-product-body" id="frame-input-option-product">
-                        <div id="input-option-product"></div>
-                    </div>
+            <div class="input-product-image input">
+                <h4 class="input-product-image-title title">
+                    Ảnh sản phẩm
+                </h4>
 
-                    <div class="input-option-product-footer">
-                        <button type="button" class="btn button-add" id="add-option">
-                            Thêm sự lựa chọn sản phẩm
-                        </button>
+                <div class="input-product-image-body" id="input-product-image-body">
+                    <div class="input" id="input-img">
+                        <label for="input-product-image" class="d-"><span
+                                class="material-symbols-outlined">cloud_upload</span></label>
+                        <input type="file" name="input-product-image" id="input-product-image"
+                               accept="image/jpeg,image/png" hidden="">
                     </div>
                 </div>
+                <small class="text-danger ps-4 error-product-image" hidden="">Vui lòng thêm ảnh cho sản phẩm của
+                    bạn!</small>
+            </div>
 
-                <div class="input-amount-and-release-date-product input">
-                    <h4 class="input-amount-and-release-date-product-title title">
-                        Số lượng
-                    </h4>
+            <div class="input-option-product input">
+                <h4 class="input-option-product-title title">
+                    Mẫu
+                </h4>
 
-                    <div class="input-amount-and-release-date-product-body">
-                        <div class="input-amount-product mb-0">
-                            <label for="amount-product">Số lượng sản phẩm</label>
-                            <input type="text" class="amount-product" required id="amount-product" placeholder="100">
+                <div class="input-option-product-body" id="frame-input-option-product">
+                    <div class="row a-input-option-product align-items-center mb-2 model">
+                        <div class="col-2 text-center">
+                            <img src="../images/avatar/default_avatar.png" alt="hinh_anh.png">
+                        </div>
+                        <div class="col-3">
+                            <label>Tên mẫu</label>
+                            <input class="model-name" type="Text" required name="model-name" placeholder="Tên mẫu"
+                                   value="Mặc định">
+                            <small hidden="" class="text-danger">Tên mẫu không được bỏ trống!</small>
+                        </div>
+                        <div class="col-3">
+                            <label>Số lượng</label>
+                            <input class="model-quantity" type="number" required name="model-quantity"
+                                   placeholder="Số lượng mẫu">
+                            <small hidden="" class="text-danger">Số lượng mẫu không được bỏ trống!</small>
+                        </div>
+                        <div class="col-3">
+                            <label>Lựa chọn hình</label>
+                            <select class="select-img-option-product model-url-iamge" name="model-url-iamge">
+                                <option value="../images/avatar/default_avatar.png">Mặc định</option>
+                            </select>
+                            <small hidden="" class="text-danger">Vui lòng chọn hình cho mẫu!</small>
                         </div>
                     </div>
+                    <div id="input-option-product"></div>
                 </div>
-            </section>
-            <section class="right">
-                <div class="input-price-product input">
-                    <h4 class="input-price-product-title title">
-                        Giá sản phẩm
-                    </h4>
+                <small hidden="" class="text-danger ps-4 error-input-model">Vui lòng thêm mẫu cho sản phẩm của
+                    bạn!</small>
 
-                    <div class="input-price-product-body">
-                        <input type="number" class="w-100 mb-0" name="price-product" id="price-product"
-                               placeholder="Giá sản phẩm" required>
-                        <div class="list-sale-product">
-                            <div id="input-sale-product"></div>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <div class="input-price-product-footer mt-3">
-                        <button type="button" class="btn button-add" id="add-sale-product">Thêm giảm giá</button>
-                    </div>
+                <div class="input-option-product-footer">
+                    <button type="button" class="btn button-add" id="add-option">
+                        Thêm sự lựa chọn sản phẩm
+                    </button>
                 </div>
+            </div>
+        </section>
+        <section class="right">
+            <div class="input-price-product input">
+                <h4 class="input-price-product-title title">
+                    Giá sản phẩm
+                </h4>
 
-                <div class="input-filter-product input">
-                    <h4 class="input-filter-product-title title">
-                        Bộ lọc sản phẩm
-                    </h4>
-
-                    <div class="input-filter-product-body">
-                        <select class="w-100" name="select-brand-product" id="select-brand-product">
-                            <option value="brand_1">Thương hiệu 1</option>
-                            <option value="brand_2">Thương hiệu 2</option>
-                            <option value="brand_3">Thương hiệu 3</option>
-                        </select>
-                        <select class="w-100" name="select-material-product" id="select-material-product">
-                            <option value="material_1">Chất liệu a</option>
-                            <option value="material_2">Chất liệu b</option>
-                            <option value="material_3">Chất liệu c</option>
-                        </select>
-                        <select class="w-100" name="select-type-product" id="select-type-product">
-                            <option value="type_1">Kiểu 1</option>
-                            <option value="type_2">Kiểu 2</option>
-                            <option value="type_3">Kiểu 3</option>
-                        </select>
+                <div class="input-price-product-body">
+                    <input type="number" class="w-100 mb-0" name="price-product" id="price-product"
+                           placeholder="Giá sản phẩm" required>
+                    <small hidden="" class="text-danger">Giá sản phẩm không được bỏ trống!</small>
+                    <div class="list-sale-product">
+                        <div id="input-sale-product"></div>
                     </div>
                 </div>
 
-                <div class="button-action row">
-                    <div class="col-6">
-                        <button class="w-100  py-2 rounded" type="reset">
-                            <a class="text-light rounded" href="quan_ly_san_pham.jsp">Hủy</a>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button class="w-100 rounded py-2" type="submit">
-                            <a class="text-light " href="quan_ly_san_pham.jsp">Lưu</a></button>
-                    </div>
+                <hr>
+                <div class="input-price-product-footer mt-3">
+                    <button type="button" class="btn button-add" id="add-sale-product">Thêm giảm giá</button>
                 </div>
-            </section>
-        </form>
+            </div>
+
+            <div class="input-filter-product input">
+                <h4 class="input-filter-product-title title">
+                    Bộ lọc sản phẩm
+                </h4>
+
+                <div class="input-filter-product-body">
+                    <select class="w-100" data-tags="true" data-placeholder="Lựa chọn thương hiệu!"
+                            name="select-brand-product" id="select-brand-product">
+                    </select>
+                    <small hidden="" class="text-danger error-select-brand-product">Vui lòng chọn thương hiệu cho sản
+                        phẩm!</small>
+                    <select class="w-100" data-tags="true" data-placeholder="Lựa chọn chất liệu!"
+                            name="select-material-product" id="select-material-product">
+                    </select>
+                    <small hidden="" class="text-danger error-select-material-product">Vui lòng chọn chất liệu cho sản
+                        phẩm!</small>
+                    <select class="w-100" data-tags="true" data-placeholder="Lựa chọn kiểu!"
+                            name="select-type-product" id="select-type-product">
+                    </select>
+                    <small hidden="" class="text-danger error-select-type-product">Vui lòng chọn kiểu cho sản
+                        phẩm!</small>
+                </div>
+            </div>
+
+            <div class="button-action row">
+                <div class="col-6">
+                    <button class="w-100  py-2 rounded" type="reset">
+                        <a class="text-light rounded" href="quan_ly_san_pham.jsp">Hủy</a>
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="w-100 rounded py-2 text-light" action="add" id="submit" type="button">Lưu</button>
+                </div>
+            </div>
+        </section>
     </div>
 </main>
 
@@ -291,8 +309,8 @@
 
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
-<script src="../javascript/them_san_pham.js"></script>
 <script src="../javascript/form_des.js"></script>
+<script src="../javascript/them_san_pham.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

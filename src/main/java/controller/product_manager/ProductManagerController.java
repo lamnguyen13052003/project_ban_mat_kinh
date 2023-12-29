@@ -16,13 +16,15 @@ public class ProductManagerController extends HttpServlet {
         if(actionName == null) actionName = "product";
         switch (actionName) {
             case "band-name" ->{
-                action = new GetBrandName();
+                action = new GetBrandProduct();
+            }
+            case "add" ->{
+                action = new ChangePageAddProduct();
             }
             default ->{
                 action = new GetProduct();
             }
         }
-
 
         action.action(request, response);
     }

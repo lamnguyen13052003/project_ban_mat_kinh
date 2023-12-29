@@ -17,31 +17,27 @@ public class ProductImageDAO extends DAO {
         return instance == null ? new ProductImageDAO() : instance;
     }
 
-    public List<String> getProductImagesNonLimit(int productId, String type) {
+    public List<String> getProductImagesNonLimit(int productId) {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT pimg.urlImage " +
                                 "FROM product_images AS pimg " +
                                 "WHERE " +
-                                "pimg.productId = ? AND " +
-                                "pimg.`type` = ?;")
+                                "pimg.productId = ?;")
                         .bind(0, productId)
-                        .bind(1, type)
                         .mapTo(String.class)
                         .list()
         );
     }
 
-    public List<String> getProductImagesLimit(int productId, String type, int limit) {
+    public List<String> getProductImagesLimit(int productId, int limit) {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT pimg.urlImage " +
                                        "FROM product_images AS pimg " +
                                        "WHERE " +
-                                        "pimg.productId = ? AND " +
-                                        "pimg.`type` = ? " +
+                                        "pimg.productId = ? " +
                                         "LIMIT ?;")
                         .bind(0, productId)
-                        .bind(1, type)
-                        .bind(2, limit)
+                        .bind(1, limit)
                         .mapTo(String.class)
                         .list()
         );

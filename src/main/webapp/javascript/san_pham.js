@@ -27,101 +27,105 @@ function actionFastSee() {
     $(".add-cart").click(function () {
         const productId = $(this).attr("product-id");
         $.ajax({
-            url: 'show-models',
+            url: 'show_models',
             data: {
-                id: $(this).attr("product-id")
+                id: productId
             },
             method: 'GET',
             dataType: 'json',
             success: function (data) {
-                const modelsList = data.models;
-                var html = `<div class="product-swatch">
-                                        <div class="product-sw-line">
-                                            <ul class="product-sw-select">
-                                                <div id="carousel" class="carousel slide">
-                                                    <div class="carousel-inner">`
-                for (var i = 0; i < modelsList.length; i++) {
-                    if (i == 0) {
-                        html += `
-                                <div class="carousel-item active">
-                                   <img src="${modelsList[i].urlIamge}" class="d-block w-100" alt="${modelsList[i].name}.png"> 
-                                </div>
-                                `
-                    } else {
-                        html += `
-                                <div class="carousel-item">
-                                    <img src="${modelsList[i].urlIamge}" class="d-block w-100" alt="${modelsList[i].name}.png"> 
-                                </div>    
-                                `
-                    }
-                }
-
-
-                html += `               </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carousel"  data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!--Phần số lượng và đặt mua-->
-                            <div class="product position-absolute">
-                                <div class="product-name">
-                                    <h5>${data.productName}</h5>
-                                </div>
-                                <div class="product-model">`
-                for (var i = 0; i < modelsList.length; i++) {
-                    if (i == 0) {
-                        html += `
-                                 <li class="product-sw-select-item">
-                                        <button model-id="${modelsList[i].id}" type="button" class="active model" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
-                                            <img src="${modelsList[i].urlIamge}" alt="${modelsList[i].name}.png">
-                                            <span>${modelsList[i].name}</span>
-                                        </button>
-                                 </li>
-                                `
-                    } else {
-                        html += `
-                                 <li class="product-sw-select-item">
-                                        <button model-id="${modelsList[i].id}" type="button" class="model" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
-                                            <img src="${modelsList[i].urlIamge}" alt="${modelsList[i].name}.png">
-                                            <span>${modelsList[i].name}</span>
-                                        </button>
-                                 </li>    
-                                `
-                    }
-                }
-
-
-                html += `</div>
-                            <div class="groupAdd d-flex flex-column align-items-center mb-2 position-absolute">
-                                <div id="input-amount" class="input-group itemQuantity mb-2">
-                                    <button class="input-group-text qtyBtn minusQuan" data-type="minus">-</button>
-                                    <input type="number" disabled class="input-group-text form-control quantitySelector" id="quantity" aria-label="Username" value="1">
-                                    <button class="input-group-text qtyBtn plusQuan" data-type="plus">+</button>
-                                </div>
-                                <div class="productAction d-flex">
-                                    <button type="button" product-id="${productId}" class="hoverOpacity" id="addToCart">Thêm vào giỏ hàng</button>
-                                    <button type="button" class="hoverOpacity " id="buyNow">Mua ngay</button>
-                                </div>
-                            </div>
-                        </div>`
-
-                $("#modal .modal-body").html(html);
-                changeAmount();
-                selectOption();
-                addProductCart();
-                $("#show-modal").click();
+                const product = data.product;
+                console.log(product)
+                showModalModels(product)
             }
         });
     });
+}
+
+function showModalModels(product) {
+    const models = product.models;
+    let html = `<div class="product-swatch">
+                                       <div class="product-sw-line">
+                                           <ul class="product-sw-select">
+                                               <div id="carousel" class="carousel slide">
+                                                   <div class="carousel-inner">`
+    for (var i = 0; i < models.length; i++) {
+        const model = models[i];
+        if (i == 0) {
+            html += `
+                               <div class="carousel-item active">
+                                  <img src="${model.image}" class="d-block w-100" alt="${model.name}.png">
+                               </div>
+                               `
+        } else {
+            html += `
+                               <div class="carousel-item">
+                                   <img src="${model.image}" class="d-block w-100" alt="${model.name}.png">
+                               </div>
+                               `
+        }
+    }
+    html += `               </div>
+                                           <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                               <span class="visually-hidden">Previous</span>
+                                           </button>
+                                           <button class="carousel-control-next" type="button" data-bs-target="#carousel"  data-bs-slide="next">
+                                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                               <span class="visually-hidden">Next</span>
+                                           </button>
+                                       </div>
+                                   </ul>
+                               </div>
+                           </div>
+
+                           <!--Phần số lượng và đặt mua-->
+                           <div class="product position-absolute">
+                               <div class="product-name">
+                                   <h5>${product.name}</h5>
+                               </div>
+                               <div class="product-model">`
+    for (var i = 0; i < models.length; i++) {
+        const model = models[i]
+        if (i == 0) {
+            html += `
+                                <li class="product-sw-select-item">
+                                       <button model-id="${model.id}" type="button" class="active model" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
+                                           <img src="${model.image}" alt="${model.name}.png">
+                                           <span>${model.name}</span>
+                                       </button>
+                                </li>
+                               `
+        } else {
+            html += `
+                                <li class="product-sw-select-item">
+                                       <button model-id="${model.id}" type="button" class="model" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
+                                           <img src="${model.image}" alt="${model.name}.png">
+                                           <span>${model.name}</span>
+                                       </button>
+                                </li>
+                               `
+        }
+    }
+    html += `</div>
+                           <div class="groupAdd d-flex flex-column align-items-center mb-2 position-absolute">
+                               <div id="input-amount" class="input-group itemQuantity mb-2">
+                                   <button class="input-group-text qtyBtn minusQuan" data-type="minus">-</button>
+                                   <input type="number" disabled class="input-group-text form-control quantitySelector" id="quantity" aria-label="Username" value="1">
+                                   <button class="input-group-text qtyBtn plusQuan" data-type="plus">+</button>
+                               </div>
+                               <div class="productAction d-flex">
+                                   <button type="button" product-id="${product.id}" class="hoverOpacity" id="addToCart">Thêm vào giỏ hàng</button>
+                                   <button type="button" class="hoverOpacity " id="buyNow">Mua ngay</button>
+                               </div>
+                           </div>
+                       </div>`
+
+    $("#modal .modal-body").html(html);
+    changeAmount();
+    selectOption();
+    addProductCart();
+    $("#show-modal").click();
 }
 
 function changeAmount() {
@@ -146,8 +150,8 @@ function selectOption() {
     });
 }
 
-function addProductCart(){
-    $("#addToCart").click(function (){
+function addProductCart() {
+    $("#addToCart").click(function () {
         $.ajax({
             url: 'cart',
             data: {
@@ -173,7 +177,7 @@ $("#close-complete-modal").click(function () {
     $("#show-modal").click();
 });
 
-function loadBanner(){
+function loadBanner() {
     $.ajax({
         url: "banner",
         data: {
@@ -184,7 +188,7 @@ function loadBanner(){
         success: function (data) {
             var bannerInner = $("#banner-inner");
             var bannerIndicators = $("#banner-indicators");
-            for(var i = 0; i < data.banners.length; i++){
+            for (var i = 0; i < data.banners.length; i++) {
                 const url = data.banners[i].urlImage;
                 var aBanner = bannerInner.html() + `<div class="carousel-item w-100">
                     <img class="w-100" src="${url}" alt="banner${i}.png">
@@ -195,7 +199,7 @@ function loadBanner(){
                 bannerIndicators.html(aBannerIndicators);
             }
             var banners = bannerInner.find(".carousel-item");
-            if(banners.length){
+            if (banners.length) {
                 banners.first().addClass("active");
                 bannerIndicators.find("button").first().addClass("active");
                 bannerIndicators.find("button").first().attr("aria-current", true);

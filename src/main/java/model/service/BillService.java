@@ -80,12 +80,12 @@ public class BillService {
         ReviewService reviewService = new ReviewService();
         BillStatusService billStatusService = new BillStatusService();
         int id = 0;
-        boolean check = billDetailService.checkQuantity(bill);
+//        boolean check = billDetailService.checkQuantity(bill);
+        boolean check = true;
         if (check) {
             id = billDAO.insert(bill);
             billDetailService.insert(id, bill.getDetails());
             bill.setId(id);
-            reviewService.insertTempReview(bill);
             BillStatus status = new BillStatus(id, 1, "Đã xác nhận đơn hàng của bạn", true);
             bill.addStatus(status);
             billStatusService.insert(status);

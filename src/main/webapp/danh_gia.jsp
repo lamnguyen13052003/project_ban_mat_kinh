@@ -194,7 +194,7 @@
             model = new Model();
             model.setId(123);
             model.setName("Mẫu thử");
-            model.setUrlIamge("images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg");
+            model.setUrlImage("images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg");
             product.setModel(model);
             /*test*/
             model = product.getModels().get(0);
@@ -213,7 +213,7 @@
                         <span><%=model.getName()%></span>
                     </div>
                     <div class="img-product">
-                        <img src="<%=model.getUrlIamge()%>" alt="">
+                        <img src="<%=model.getUrlImage()%>" alt="">
                     </div>
                 </div>
 

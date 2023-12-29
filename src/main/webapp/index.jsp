@@ -287,11 +287,9 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
-                                        <%if (!prominentProducts.get(index).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
-                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -427,11 +425,9 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
-                                        <%if (!prominentProducts.get(index).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
-                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -652,11 +648,9 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
-                                        <%if (!discountProducts.get(index).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
-                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">
@@ -792,11 +786,9 @@
                                     <div class="pro-loop-image position-relative">
 
                                         <!--Hiển thị hêt hàng-->
-                                        <%if (!discountProducts.get(index).available()) {%>
                                         <div class="pro-loop-sd z-2 position-absolute">
                                             <span>Hết hàng</span>
                                         </div>
-                                        <%}%>
 
                                         <!--Hiển thị quà tặng-->
                                         <div class="gift product_gift_label d-none z-1" data-id="1012829436">

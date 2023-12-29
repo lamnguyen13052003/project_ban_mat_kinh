@@ -20,10 +20,10 @@ public class BillDetailService {
         billDetailDAO.insert(id, details);
     }
 
-    public boolean checkQuantity(Bill bill) {
-        BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();
-        return billDetailDAO.checkQuantity(bill.getDetails());
-    }
+//    public boolean checkQuantity(Bill bill) {
+//        BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();
+//        return billDetailDAO.checkQuantity(bill.getDetails());
+//    }
 
     public int getTotalSale(Integer billId) {
         BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();

@@ -198,10 +198,12 @@
             </div>
             <div class="carousel-inner" id="banner-inner">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                    data-bs-slide="prev">
                 <span class="material-symbols-outlined">arrow_back </span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                    data-bs-slide="next">
                 <span class="material-symbols-outlined">arrow_forward </span>
             </button>
         </div>
@@ -500,10 +502,10 @@
                             <!--Phần hình ảnh-->
                             <div class="pro-loop-image position-relative">
                                 <!--Hiển thị hêt hàng-->
-                                <%if (!product.available()) {%>
-                                <div class="pro-loop-sd z-2 position-absolute">
-                                    <span>Hết hàng</span>
-                                </div>
+                                <%if (product.available()) {%>
+                                    <div class="pro-loop-sd z-2 position-absolute">
+                                        <span>Hết hàng</span>
+                                    </div>
                                 <%}%>
 
                                 <!--Hiển thị hình ảnh-->
@@ -634,6 +636,7 @@
                         </div>
 
                         <div class="modal-body position-relative">
+
                         </div>
                     </div>
                 </div>
