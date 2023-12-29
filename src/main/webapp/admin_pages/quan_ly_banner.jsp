@@ -102,12 +102,13 @@
                         BannerImage signupBanner = (BannerImage) request.getAttribute("bannerSignupImages");
                         BannerImage prBanner = (BannerImage) request.getAttribute("bannerPRImages");
                         BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages");
+                        BannerImage contactBanner = (BannerImage) request.getAttribute("bannerContactImages");
                         List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
                         int index = 0;
                             for(BannerImage ri : urls){
                                 index++;
                     %>
-                    <div class="slide-management p-3">
+                        <div class="slide-management p-3">
                         <div class="item-img col">
                             <img class="img-fluid" data-banner="slide-added-<%=index%>" src="../<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
@@ -179,6 +180,17 @@
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
                                        id="banner-logo" accept="image/*" data-preview="logo-img" hidden>
                                 <label for="banner-logo"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <div class="item-img col">
+                            <img class=" img-fluid z-0" data-banner="banner-contact" id="contact-img" src="../<%=contactBanner.getUrlImage()%>" alt="">
+                            <div class="text-banner"><span>Liên hệ</span></div>
+                            <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
+                                <input class="form-check-input imageInput " type="file" value="" name="banner-contact"
+                                       id="banner-contact" accept="image/*" data-preview="contact-img" hidden>
+                                <label for="banner-contact"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </form>
                         </div>
                     </div>

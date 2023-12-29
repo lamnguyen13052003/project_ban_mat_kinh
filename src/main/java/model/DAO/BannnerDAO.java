@@ -55,6 +55,14 @@ public class BannnerDAO extends  DAO{
                         .bind(0,slide)
                         .mapToBean(BannerImage.class).findFirst().orElse(null));
     }
+    public BannerImage getBannerContactImages() {
+        String slide = "%banner%contact%";
+        // lay data cot id va comment cua table Review
+        return  connector.withHandle(handle ->
+                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
+                        .bind(0,slide)
+                        .mapToBean(BannerImage.class).findFirst().orElse(null));
+    }
 
     /**
      * update image banner

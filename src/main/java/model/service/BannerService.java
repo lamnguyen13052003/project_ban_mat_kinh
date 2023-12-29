@@ -20,33 +20,25 @@ public class BannerService {
 
         return  BannnerDAO.getInstance().getSlideShowImages();
     }
-    /*
-       get banner signup images
-    */
     public BannerImage getBannerSignupImages() {
 
         return  BannnerDAO.getInstance().getBannerSignupImages();
     }
-    /*
-       get banner login images
-    */
     public BannerImage getBannerLoginImages() {
 
         return  BannnerDAO.getInstance().getBannerLoginImages();
     }
-    /*
-       get banner pr images
-    */
     public BannerImage getBannerPRImages() {
 
         return  BannnerDAO.getInstance().getBannerPRImages();
     }
-    /*
-       get slide show images
-    */
     public BannerImage getLogoImages() {
 
         return  BannnerDAO.getInstance().getLogoImages();
+    }
+    public BannerImage getBannerContact() {
+
+        return  BannnerDAO.getInstance().getBannerContactImages();
     }
     /*
     upload banner image

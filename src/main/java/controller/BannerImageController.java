@@ -22,19 +22,21 @@ public class BannerImageController extends HttpServlet {
         BannerImage urlBannerLoginImages = BannerService.getInstance().getBannerLoginImages(); // banner login
         BannerImage urlBannerSignupImages = BannerService.getInstance().getBannerSignupImages(); // banner Signup
         BannerImage urlBannerLogoImages = BannerService.getInstance().getLogoImages(); // banner logo
+        BannerImage urlBannerContactImages = BannerService.getInstance().getBannerContact();
 
         urlBannerImages = urlBannerImages == null? new ArrayList<>() : urlBannerImages;
         urlBannerPRImages = urlBannerPRImages == null? new BannerImage() : urlBannerPRImages;
         urlBannerLoginImages = urlBannerLoginImages == null? new BannerImage() : urlBannerLoginImages;
         urlBannerSignupImages = urlBannerSignupImages == null? new BannerImage() : urlBannerSignupImages;
         urlBannerLogoImages = urlBannerLogoImages == null? new BannerImage() : urlBannerLogoImages;
+        urlBannerContactImages = urlBannerContactImages == null? new BannerImage() : urlBannerContactImages;
 
         request.setAttribute("bannerImages", urlBannerImages); // slide
         request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
         request.setAttribute("bannerLoginImages", urlBannerLoginImages); // banner login
         request.setAttribute("bannerSignupImages", urlBannerSignupImages); // banner Signup
         request.setAttribute("bannerLogoImages", urlBannerLogoImages); // banner logo
-
+        request.setAttribute("bannerContactImages", urlBannerContactImages);
 
         request.getRequestDispatcher("quan_ly_banner.jsp").forward(request, response);
     }
