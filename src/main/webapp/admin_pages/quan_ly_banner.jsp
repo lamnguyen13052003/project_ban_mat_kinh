@@ -103,6 +103,7 @@
                         BannerImage prBanner = (BannerImage) request.getAttribute("bannerPRImages");
                         BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages");
                         BannerImage contactBanner = (BannerImage) request.getAttribute("bannerContactImages");
+                        BannerImage authBanner = (BannerImage) request.getAttribute("bannerAuthImages");
                         List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
                         int index = 0;
                             for(BannerImage ri : urls){
@@ -191,6 +192,17 @@
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-contact"
                                        id="banner-contact" accept="image/*" data-preview="contact-img" hidden>
                                 <label for="banner-contact"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <div class="item-img col">
+                            <img class=" img-fluid z-0" data-banner="banner-auth" id="auth-img" src="../<%=authBanner.getUrlImage()%>" alt="">
+                            <div class="text-banner"><span>Xác thực</span></div>
+                            <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
+                                <input class="form-check-input imageInput " type="file" value="" name="banner-auth"
+                                       id="banner-auth" accept="image/*" data-preview="auth-img" hidden>
+                                <label for="banner-auth"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
                             </form>
                         </div>
                     </div>
