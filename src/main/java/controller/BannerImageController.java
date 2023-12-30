@@ -18,11 +18,12 @@ public class BannerImageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<BannerImage> urlBannerImages = BannerService.getInstance().getSlideShowImages(); // slide
-        BannerImage urlBannerPRImages = BannerService.getInstance().getBannerPRImages(); // banner pr
-        BannerImage urlBannerLoginImages = BannerService.getInstance().getBannerLoginImages(); // banner login
-        BannerImage urlBannerSignupImages = BannerService.getInstance().getBannerSignupImages(); // banner Signup
-        BannerImage urlBannerLogoImages = BannerService.getInstance().getLogoImages(); // banner logo
-        BannerImage urlBannerContactImages = BannerService.getInstance().getBannerContact();
+        BannerImage urlBannerPRImages = BannerService.getInstance().getBannerByDescription("%banner%pr%"); // banner pr
+        BannerImage urlBannerLoginImages = BannerService.getInstance().getBannerByDescription("%banner%login%"); // banner login
+        BannerImage urlBannerSignupImages = BannerService.getInstance().getBannerByDescription("%banner%signup%"); // banner Signup
+        BannerImage urlBannerLogoImages = BannerService.getInstance().getBannerByDescription("%banner%logo%"); // banner logo
+        BannerImage urlBannerContactImages = BannerService.getInstance().getBannerByDescription("%banner%contact%");
+        BannerImage urlBannerAuthImages = BannerService.getInstance().getBannerByDescription("%banner%auth%");
 
         urlBannerImages = urlBannerImages == null? new ArrayList<>() : urlBannerImages;
         urlBannerPRImages = urlBannerPRImages == null? new BannerImage() : urlBannerPRImages;
@@ -30,6 +31,7 @@ public class BannerImageController extends HttpServlet {
         urlBannerSignupImages = urlBannerSignupImages == null? new BannerImage() : urlBannerSignupImages;
         urlBannerLogoImages = urlBannerLogoImages == null? new BannerImage() : urlBannerLogoImages;
         urlBannerContactImages = urlBannerContactImages == null? new BannerImage() : urlBannerContactImages;
+        urlBannerAuthImages = urlBannerAuthImages == null? new BannerImage() : urlBannerAuthImages;
 
         request.setAttribute("bannerImages", urlBannerImages); // slide
         request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
@@ -37,6 +39,7 @@ public class BannerImageController extends HttpServlet {
         request.setAttribute("bannerSignupImages", urlBannerSignupImages); // banner Signup
         request.setAttribute("bannerLogoImages", urlBannerLogoImages); // banner logo
         request.setAttribute("bannerContactImages", urlBannerContactImages);
+        request.setAttribute("bannerAuthImages", urlBannerAuthImages);
 
         request.getRequestDispatcher("quan_ly_banner.jsp").forward(request, response);
     }

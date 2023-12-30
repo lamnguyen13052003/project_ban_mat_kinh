@@ -20,25 +20,9 @@ public class BannerService {
 
         return  BannnerDAO.getInstance().getSlideShowImages();
     }
-    public BannerImage getBannerSignupImages() {
+    public BannerImage getBannerByDescription(String descriptionBanner) {
 
-        return  BannnerDAO.getInstance().getBannerSignupImages();
-    }
-    public BannerImage getBannerLoginImages() {
-
-        return  BannnerDAO.getInstance().getBannerLoginImages();
-    }
-    public BannerImage getBannerPRImages() {
-
-        return  BannnerDAO.getInstance().getBannerPRImages();
-    }
-    public BannerImage getLogoImages() {
-
-        return  BannnerDAO.getInstance().getLogoImages();
-    }
-    public BannerImage getBannerContact() {
-
-        return  BannnerDAO.getInstance().getBannerContactImages();
+        return  BannnerDAO.getInstance().getBannerByDescription(descriptionBanner);
     }
     /*
     upload banner image
