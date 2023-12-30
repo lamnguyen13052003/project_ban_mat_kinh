@@ -35,15 +35,15 @@ function actionFastSee() {
             dataType: 'json',
             success: function (data) {
                 const product = data.product;
+                const models = data.models;
                 console.log(product)
-                showModalModels(product)
+                showModalModels(product, models)
             }
         });
     });
 }
 
-function showModalModels(product) {
-    const models = product.models;
+function showModalModels(product, models) {
     let html = `<div class="product-swatch">
                                        <div class="product-sw-line">
                                            <ul class="product-sw-select">
@@ -54,13 +54,13 @@ function showModalModels(product) {
         if (i == 0) {
             html += `
                                <div class="carousel-item active">
-                                  <img src="${model.image}" class="d-block w-100" alt="${model.name}.png">
+                                  <img src="${model.urlImage}" class="d-block w-100" alt="${model.name}.png">
                                </div>
                                `
         } else {
             html += `
                                <div class="carousel-item">
-                                   <img src="${model.image}" class="d-block w-100" alt="${model.name}.png">
+                                   <img src="${model.urlImage}" class="d-block w-100" alt="${model.name}.png">
                                </div>
                                `
         }
@@ -91,7 +91,7 @@ function showModalModels(product) {
             html += `
                                 <li class="product-sw-select-item">
                                        <button model-id="${model.id}" type="button" class="active model" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
-                                           <img src="${model.image}" alt="${model.name}.png">
+                                           <img src="${model.urlImage}" alt="${model.name}.png">
                                            <span>${model.name}</span>
                                        </button>
                                 </li>
@@ -100,7 +100,7 @@ function showModalModels(product) {
             html += `
                                 <li class="product-sw-select-item">
                                        <button model-id="${model.id}" type="button" class="model" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
-                                           <img src="${model.image}" alt="${model.name}.png">
+                                           <img src="${model.urlImage}" alt="${model.name}.png">
                                            <span>${model.name}</span>
                                        </button>
                                 </li>

@@ -1036,6 +1036,7 @@
 </footer>
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/index.js"></script>
+<script src="javascript/san_pham.js"></script>
 <script type="text/javascript">
     <%if(user != null){%>
     const user = new User();

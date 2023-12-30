@@ -7,6 +7,18 @@ public class Model {
     private Integer id, productId, quantity, totalQuantitySold;
     private String name, urlImage;
 
+    @Override
+    public String toString() {
+        return "Model{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                ", totalQuantitySold=" + totalQuantitySold +
+                ", name='" + name + '\'' +
+                ", urlImage='" + urlImage + '\'' +
+                '}';
+    }
+
     public Model(Integer productId, String data) {
         this.productId = productId;
         StringTokenizer tk = new StringTokenizer(data, ",");
@@ -64,16 +76,6 @@ public class Model {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
-    }
-
-    @Override
-    public String toString() {
-        return "Model{" +
-                "id=" + id +
-                ", idProduct=" + productId +
-                ", name='" + name + '\'' +
-                ", image='" + urlImage + '\'' +
-                '}';
     }
 
     @Override

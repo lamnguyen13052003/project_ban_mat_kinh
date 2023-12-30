@@ -1,5 +1,9 @@
 package model.bean;
 
+import com.google.gson.Gson;
+import org.json.JSONObject;
+import org.json.JSONWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +15,6 @@ public class Product {
     private List<Model> models;
     private List<Review> reviews;
     private List<String> productImages;
-
 
     private List<ProductDiscount> poroductDiscounts;
 
@@ -169,32 +172,10 @@ public class Product {
     }
 
     public boolean available() {
-        for(Model model : models){
-            if(model.available()) return true;
+        for (Model model : models) {
+            if (model.available()) return true;
         }
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", starNumber=" + starNumber +
-                ", totalReview=" + totalReview +
-                ", totalQuantitySold=" + totalQuantitySold +
-                ", name='" + name + '\'' +
-                ", brandName='" + brandName + '\'' +
-                ", describe='" + describe + '\'' +
-                ", material='" + material + '\'' +
-                ", type='" + type + '\'' +
-                ", categoryName='" + categoryName + '\'' +
-                ", price=" + price +
-                ", discount=" + discount +
-                ", models=" + models +
-                ", reviews=" + reviews +
-                ", productImages=" + productImages +
-                '}';
     }
 
     public void setModel(Model model) {
@@ -221,15 +202,38 @@ public class Product {
     }
 
     public void setModels(String[] models) {
-        for(String data: models){
+        for (String data : models) {
             Model model = new Model(this.id, data);
             setModel(model);
         }
     }
 
     public void setProductImages(String[] productImages) {
-        for(String data: productImages){
+        for (String data : productImages) {
             this.addProductImage(data);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", categoryId=" + categoryId +
+                ", starNumber=" + starNumber +
+                ", totalReview=" + totalReview +
+                ", totalQuantitySold=" + totalQuantitySold +
+                ", name='" + name + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", describe='" + describe + '\'' +
+                ", material='" + material + '\'' +
+                ", type='" + type + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", models=" + models +
+                ", reviews=" + reviews +
+                ", productImages=" + productImages +
+                ", poroductDiscounts=" + poroductDiscounts +
+                '}';
     }
 }

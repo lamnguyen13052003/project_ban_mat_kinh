@@ -77,7 +77,6 @@ public class ProductDAO extends DAO {
         String select = " p.id, p.name ";
 
         String sql = initSQLGetProduct(select);
-        System.out.println(sql);
         return connector.withHandle(handle ->
                 handle.createQuery(sql)
                         .bind(0, id)
