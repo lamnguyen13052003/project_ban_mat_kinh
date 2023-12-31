@@ -1,6 +1,5 @@
 package controller;
 
-import com.google.gson.Gson;
 import model.bean.Model;
 import model.bean.Product;
 import model.service.ModelService;

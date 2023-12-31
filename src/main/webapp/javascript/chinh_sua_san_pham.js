@@ -14,7 +14,12 @@ $(document).ready(function () {
 
 const ckeditor = CKEDITOR.replace('editor');
 CKFinder.setupCKEditor(ckeditor, "../ckfinder/");
-ckeditor.setData(localStorage.getItem("describe") + `<div><br></div>`);
+let describe = localStorage.getItem("describe");
+if (!describe) {
+    describe = ""
+}
+console.log(describe);
+ckeditor.setData(describe + `<div><br></div>`);
 ckeditor.on('change', function (evt) {
     localStorage.setItem("describe", evt.editor.getData());
 });
@@ -59,13 +64,13 @@ function updateSelectImgOption(element) {
 
 /*Thết lập event*/
 function setEvent() {
-    addImageProduct();
+    addProductImage();
     addOption();
     addSaleProduct();
 }
 
 /*Thêm hình vào sản phẩm*/
-function addImageProduct() {
+function addProductImage() {
     $("#input-product-image").change(function (event) {
         const selectedFile = this.files[0];
         // const imageUrl = window.URL.createObjectURL(selectedFile);
@@ -85,13 +90,10 @@ function addImageProduct() {
                                            <img src="../${data}" alt="image-product.png">
                                             <button type="button" path-file="${data}" class="text-danger cancel">x</button>
                                         </div>`);
-
                 const cancel = $("#main").find(".input-product-image-body").find(".product-image").last().find(".cancel");
-
                 cancel.click(function () {
                     removeImageProduct($(this).parent(), $(this));
                 });
-
                 const models = $(".a-input-option-product");
                 for (let i = 0; i < models.length; i++) {
                     updateSelectImgOption($(models[i]));
@@ -121,7 +123,6 @@ function removeImageProduct(parent, button) {
             for (let i = 0; i < models.length; i++) {
                 updateSelectImgOption($(models[i]));
             }
-            console.log(data);
         },
         error: function () {
             console.log("error");
@@ -206,7 +207,6 @@ function sumit() {
         const beforeSubmit = beforeSumit();
         const complete = beforeSubmit[0];
         const formData = beforeSubmit[1];
-        console.log(formData.get("product-name"));
         if (complete) {
             $.ajax({
                 url: "edit_product_manager",
@@ -280,6 +280,7 @@ function getProductName(formData) {
         $("#product-name").next().removeAttr("hidden");
         return false;
     }
+    $("#product-name").next().attr("hidden", "");
     formData.append("product-name", productName);
     return true;
 }
@@ -290,6 +291,7 @@ function getProductCategoryId(formData) {
         $("#product-category-id").next().removeAttr("hidden");
         return false;
     }
+    $("#product-category-id").next().attr("hidden", "");
     formData.append("product-category-id", productCategoryId);
     return true;
 }
@@ -310,12 +312,16 @@ function getModels(formData) {
         if (!modelName) {
             elementModel.find(".model-name").next().removeAttr("hidden");
             complete = false;
+        }else{
+            elementModel.find(".model-name").next().attr("hidden", "");
         }
 
         const modelQuantity = elementModel.find(".model-quantity").val();
         if (!modelQuantity) {
             elementModel.find(".model-quantity").next().removeAttr("hidden");
             complete = false;
+        }else{
+            elementModel.find(".model-quantity").next().attr("hidden", "");
         }
 
         let modelUrlIamge = elementModel.find(".model-url-iamge").val();
@@ -323,11 +329,13 @@ function getModels(formData) {
         if (!modelUrlIamge) {
             elementModel.find(".model-url-iamge").next().removeAttr("hidden");
             complete = false;
+        }else{
+            elementModel.find(".model-url-iamge").next().attr("hidden", "");
         }
         formData.append("model", [modelName, modelQuantity, modelUrlIamge]);
     }
     if (!complete) {
-        $(".error-input-model").removeAttr("hiddent");
+        $(".error-input-model").removeAttr("hidden");
         return false;
     }
 
@@ -335,22 +343,20 @@ function getModels(formData) {
 }
 
 function getProductImages(formData) {
-    let complete = true;
-    const elementProductImages = $(".product-image");
-    for (let i = 0; i < elementProductImages.length; i++) {
-        let productImage = $(elementProductImages[i]).find("img").attr("src").toString();
-        productImage = productImage.substring(3, productImage.length);
-        if (!productImage) {
-            complete = false;
-        }
-
-        formData.append("product-image", productImage);
-    }
+    const elementProductImages = $("#input-product-image-body .product-image");
+    const complete = elementProductImages.length > 0 ? true : false;
     if (!complete) {
         $(".error-product-image").removeAttr("hidden");
         return false;
     }
 
+    for (let i = 0; i < elementProductImages.length; i++) {
+        let productImage = $(elementProductImages[i]).find("img").attr("src").toString();
+        productImage = productImage.substring(3, productImage.length);
+        formData.append("product-image", productImage);
+    }
+
+    $(".error-product-image").attr("hidden", "");
     return complete;
 }
 
@@ -360,6 +366,7 @@ function getProductPrice(formData) {
         $("#price-product").next().removeAttr("hidden");
         return false;
     }
+    $("#price-product").next().attr("hidden", "");
     formData.append("product-price", productPrice);
     return true;
 }
@@ -391,10 +398,11 @@ function getProductDiscount(formData) {
         formData.append("product-discount", [pricePercentage, dateStart, dateEnd]);
     }
     if (!complete) {
-        $(".error-input-model").removeAttr("hiddent");
+        $(".error-input-model").removeAttr("hidden");
         return false;
     }
 
+    $(".error-input-model").attr("hidden", "");
     return complete;
 }
 
@@ -404,6 +412,7 @@ function getBrand(formData) {
         $(".error-select-brand-product").removeAttr("hidden");
         return false;
     }
+    $(".error-select-brand-product").attr("hidden", "");
     formData.append("brand", brand);
     return true;
 }
@@ -414,6 +423,7 @@ function getMaterial(formData) {
         $(".error-select-material-product").removeAttr("hidden");
         return false;
     }
+    $(".error-select-material-product").attr("hidden", "");
     formData.append("material", material);
     return true;
 }
@@ -424,6 +434,7 @@ function getType(formData) {
         $(".error-select-type-product").removeAttr("hidden");
         return false;
     }
+    $(".error-select-type-product").attr("hidden", "");
     formData.append("type", type);
     return true;
 }

@@ -310,7 +310,7 @@
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/form_des.js"></script>
-<script src="../javascript/them_san_pham.js"></script>
+<script src="../javascript/chinh_sua_san_pham.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

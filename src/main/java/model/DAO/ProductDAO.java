@@ -387,8 +387,6 @@ public class ProductDAO extends DAO {
             }
         });
 
-        System.out.println(result);
-
         return result;
     }
 }

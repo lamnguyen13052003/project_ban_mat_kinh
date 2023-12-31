@@ -3,6 +3,7 @@ package controller.edit_product;
 import controller.Action;
 import model.bean.Product;
 import model.service.ProductService;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -2,6 +2,7 @@ package model.service;
 
 import model.DAO.ProductDAO;
 import model.bean.Product;
+import model.bean.ProductImage;
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -338,6 +339,13 @@ public class ProductService {
     }
 
     public int update(Product product) {
-        return ProductDAO.getInstance().update(product);
+        int result = ProductDAO.getInstance().update(product);
+        if (result != 0) {
+            ModelService modelService = ModelService.getInstance();
+            modelService.insert(product.getModels());
+            ProductImageService productImageService = ProductImageService.getInstance();
+            productImageService.insert(product.getId(), product.getProductImages());
+        }
+        return result;
     }
 }
