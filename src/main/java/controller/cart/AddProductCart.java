@@ -20,9 +20,7 @@ public class AddProductCart implements Action {
             productId = Integer.parseInt(request.getParameter("productId"));
             modelId = Integer.parseInt(request.getParameter("modelId"));
             quantity = Integer.parseInt(request.getParameter("quantity"));
-        } catch (Exception e) {
-            response.sendRedirect("error.jsp");
-        }
+        } catch (NumberFormatException e) {}
 
         if (!cart.addProductCart(productId, modelId, quantity)) response.getWriter().write("error");
         else {

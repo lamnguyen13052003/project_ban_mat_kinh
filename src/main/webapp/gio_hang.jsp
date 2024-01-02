@@ -213,33 +213,33 @@
                         <!--Sản phẩm-->
                         <div class="product">
                             <input class="product-checkbox" type="checkbox"
-                                   product-id="<%=productCart.getProduct().getId()%>"
+                                   product-id="<%=productCart.getProductId()%>"
                                    model-id="<%=productCart.getModel().getId()%>">
                             <div class="info-product">
                                 <img class="rounded" src="<%=productCart.getModel().getUrlImage()%>">
                                 <div class="ms-2">
-                                    <span class="fw-bold d-block name-product"><%=productCart.getProduct().getName()%></span>
+                                    <span class="fw-bold d-block name-product"><%=productCart.getName()%></span>
                                     <span class="option"><%=productCart.getModel().getName()%></span>
                                 </div>
                             </div>
                             <div class="change-amount">
-                                <button type="button" product-id="<%=productCart.getProduct().getId()%>"
+                                <button type="button" product-id="<%=productCart.getProductId()%>"
                                         model-id="<%=productCart.getModel().getId()%>" type="button" class="down"><span
                                         class="material-symbols-outlined">arrow_left</span></button>
                                 <input type="number" name="amount-product-item"
-                                       product-id="<%=productCart.getProduct().getId()%>"
+                                       product-id="<%=productCart.getProductId()%>"
                                        model-id="<%=productCart.getModel().getId()%>"
                                        class="amount-product-item" min="1"
-                                       max="<%=productCart.getProduct().getQuantity()%>"
+                                       max="<%=productCart.getQuantity()%>"
                                        value="<%=productCart.getQuantity()%>" disabled>
-                                <button type="button" product-id="<%=productCart.getProduct().getId()%>"
+                                <button type="button" product-id="<%=productCart.getProductId()%>"
                                         model-id="<%=productCart.getModel().getId()%>" type="button" class="up"><span
                                         class="material-symbols-outlined">arrow_right</span></button>
                             </div>
                             <div class="price">
                                     <span class="price">
                                       <%if (productCart.hasDiscount()) {%>
-                                      <%=nf.format(productCart.getRducedPrice())%>
+                                      <%=nf.format(productCart.getDiscount())%>
                                       <%} else {%>
                                       <%=nf.format(productCart.getPrice())%>
                                       <%}%>
@@ -250,7 +250,7 @@
                                       <%=nf.format(productCart.totalPrice())%>
                                     </span>
                             </div>
-                            <button type="button" product-id="<%=productCart.getProduct().getId()%>"
+                            <button type="button" product-id="<%=productCart.getProductId()%>"
                                     model-id="<%=productCart.getModel().getId()%>" class="cancel text-danger">x
                             </button>
                         </div>

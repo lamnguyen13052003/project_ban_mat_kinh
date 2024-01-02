@@ -13,7 +13,7 @@ public class Model {
                 "id=" + id +
                 ", productId=" + productId +
                 ", quantity=" + quantity +
-                ", totalQuantitySold=" + totalQuantitySold +
+                ", totalQuantitySold=" + getTotalQuantitySold() +
                 ", name='" + name + '\'' +
                 ", urlImage='" + urlImage + '\'' +
                 '}';
@@ -31,7 +31,7 @@ public class Model {
     }
 
     public Integer getTotalQuantitySold() {
-        return totalQuantitySold;
+        return totalQuantitySold == null ? 0 : totalQuantitySold;
     }
 
     public void setTotalQuantitySold(Integer totalQuantitySold) {
@@ -92,6 +92,6 @@ public class Model {
     }
 
     public boolean available() {
-        return this.quantity > this.totalQuantitySold;
+        return this.quantity > this.getTotalQuantitySold();
     }
 }

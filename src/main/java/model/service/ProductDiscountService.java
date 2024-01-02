@@ -11,4 +11,9 @@ public class ProductDiscountService {
         ProductDiscountDAO productDiscountDAO = ProductDiscountDAO.getInstance();
         return productDiscountDAO.getPricePercentages(products);
     };
+
+    public Double getPricePercentage(int productId) {
+        ProductDiscountDAO productDiscountDAO = ProductDiscountDAO.getInstance();
+        return productDiscountDAO.getPricePercentage(productId);
+    }
 }

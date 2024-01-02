@@ -82,14 +82,10 @@ public class ProductService {
         return productDAO.getProductWithIdAndName(productId);
     }
 
-    public Product getProductCart(int id, int modelId) {
+    public Product getProductCart(int id) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProductCart(id);
-        if (products.isEmpty()) return null;
-        setReducedPrice(products);
-        Product product = products.get(0);
-        return product;
+        return productDAO.getProductCart(id);
     }
 
     /**

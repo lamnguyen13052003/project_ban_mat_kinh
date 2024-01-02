@@ -214,16 +214,16 @@
                 <%--khung hien thi anh lon--%>
                 <div class="carousel-inner">
                     <%for (int i = 0; i < images.size(); i++) {%>
-                        <%if (i == 0) {%>
-                            <div class="carousel-item active">
+                    <%if (i == 0) {%>
+                    <div class="carousel-item active">
                         <%} else {%>
-                            <div class="carousel-item">
-                        <%}%>
+                        <div class="carousel-item">
+                            <%}%>
 
-                                <img src="<%=images.get(i)%>"
-                                     class="d-block w-100" alt="<%=product.getName()%>.png">
-                            </div>
-                    <%}%>
+                            <img src="<%=images.get(i)%>"
+                                 class="d-block w-100" alt="<%=product.getName()%>.png">
+                        </div>
+                        <%}%>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                             data-bs-slide="prev">
@@ -328,31 +328,49 @@
                     <div class="product-swatch mb-5">
                         <div class="product-sw-line">
                             <div class="dflex-new">
-                                <div class="product-sw-title">
-                                    Màu sắc
+                                <div class="product-sw-title fw-bold">
+                                    Mẫu sản phẩm
                                 </div>
                             </div>
                             <!--Phần button select-->
                             <ul class="product-sw-select">
                                 <%
-                                    List<String> productimages = product.getProductImages();
-                                    for (int i = 0; i < models.size(); i++) {
-                                        for (index = 0; index < productimages.size(); index++) {
-                                            if (models.get(i).getUrlImage().equals(productimages.get(index))) {
+                                    List<String> productImages = product.getProductImages();
+                                    if(models.size() == 1){%>
+                                        <li class="product-sw-select-item">
+                                            <button type="button"
+                                                    class="active model"
+                                                    model-id="<%=models.get(0).getId()%>">
+                                                <img src="<%=models.get(0).getUrlImage()%>"
+                                                     alt="<%=models.get(0).getName()%>.png">
+                                                <span><%=models.get(0).getName()%></span>
+                                            </button>
+                                        </li>
+                                <%  }else {
+                                        for (int i = 0; i < models.size(); i++) {
+                                            for (index = 0; index < productImages.size(); index++) {
+                                                if (models.get(i).getUrlImage().equals(productImages.get(index))) {
                                 %>
-                                <li class="product-sw-select-item">
-                                    <button type="button" data-bs-target="#carouselExampleAutoplaying"
-                                            data-bs-slide-to="<%=index%>"
-                                            aria-label="Slide 0">
-                                        <img src="<%=models.get(i).getUrlImage()%>"
-                                             alt="<%=models.get(i).getName()%>.png">
-                                        <span><%=models.get(i).getName()%></span>
-                                    </button>
-                                </li>
-                                <% break;
-                                }
-                                }
-                                }
+                                                    <li class="product-sw-select-item">
+                                                        <button type="button" data-bs-target="#carouselExampleAutoplaying"
+                                                                data-bs-slide-to="<%=index%>"
+                                                                <%if(i == 0) {%>
+                                                                class="active model"
+                                                                <%} else {%>
+                                                                class="model"
+                                                                <%}%>
+                                                                aria-label="Slide 0"
+                                                                model-id="<%=models.get(i).getId()%>">
+                                                            <img src="<%=models.get(i).getUrlImage()%>"
+                                                                 alt="<%=models.get(i).getName()%>.png">
+                                                            <span><%=models.get(i).getName()%></span>
+                                                        </button>
+                                                    </li>
+                                <%                  break;
+                                                }
+                                            }
+                                        }
+                                    }
                                 %>
                             </ul>
                         </div>
@@ -370,7 +388,7 @@
                                 <button class="input-group-text qtyBtn plusQuan" data-type="plus">+</button>
                             </div>
                             <div class="productAction">
-                                <button type="button" class="hoverOpacity" id="addToCart">Thêm vào giỏ hàng</button>
+                                <button type="button" product-id="<%=product.getId()%>" class="hoverOpacity" id="addToCart">Thêm vào giỏ hàng</button>
                                 <button type="button" class="hoverOpacity " id="buyNow">Mua ngay</button>
                             </div>
                         </div>
@@ -400,17 +418,10 @@
                 <!--Phần nội dung-->
                 <div class="tab-pane fade show more-info_pro active" id="tabOne" role="tabpanel"
                      aria-labelledby="home-tab">
-                    <div style="height: 500px;" class="active overflow-hidden">
+                    <div style="max-height: 500px" class="active overflow-hidden product-describe">
                         <strong>THÔNG TIN SẢN PHẨM:</strong>
                         <%=product.getDescribe()%>
-                        <%for (String url : product.getDescribeImages()) {%>
-                        <p style="text-align: center"><img
-                                src="<%=url%>"
-                                alt="<%=product.getName()%>-describe.png">
-                        </p>
-                        <%}%>
                     </div>
-
                     <a href="javascript:void(0);" class="readmore open">
                         <div class="readmore_content d-flex align-items-center justify-content-center mx-auto">
                             <span>Xem thêm</span>
@@ -635,6 +646,29 @@
                     </div>
                 </div>
                 <!--End 1 ô sản phẩm-->
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
+                data-bs-target="#complete-modal"></button>
+        <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Thành công</h1>
+                        <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body position-relative">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
+                            <p class="fs-1 ms-2">Hoàn Thành</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -58,8 +58,7 @@ public class ProductDAO extends DAO {
         );
     }
 
-    public List<Product> getProductCart(int id) {
-        List<Product> result;
+    public Product getProductCart(int id) {
         int index = 0;
         String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe ";
 
@@ -68,7 +67,7 @@ public class ProductDAO extends DAO {
                 handle.createQuery(sql)
                         .bind(0, id)
                         .mapToBean(Product.class)
-                        .list()
+                        .findFirst().orElse(null)
         );
     }
 

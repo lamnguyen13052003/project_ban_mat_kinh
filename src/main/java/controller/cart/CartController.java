@@ -41,6 +41,6 @@ public class CartController extends HttpServlet {
 
         if (action != null) {
             actionCart.action(request, response);
-        } else response.sendRedirect("error.jsp");
+        } else throw new IOException("");
     }
 }
