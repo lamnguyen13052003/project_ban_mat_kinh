@@ -96,7 +96,7 @@
         <div class="frame-boder row p-3 my-5">
             <div class="title"><span>Danh sách hình ảnh trong thanh trượt</span></div>
             <div class="col-10">
-                <div class="edit-img row row-cols-2">
+                <div class="edit-img row row-cols-2" id="show-slides">
                     <%
                         BannerImage loginBanner = (BannerImage) request.getAttribute("bannerLoginImages");
                         BannerImage signupBanner = (BannerImage) request.getAttribute("bannerSignupImages");
@@ -109,7 +109,7 @@
                             for(BannerImage ri : urls){
                                 index++;
                     %>
-                    <div class="slide-management p-3">
+                    <div class="slide-management p-3" slide-id = "slide-<%=index%>">
                         <div class="item-img col">
                             <img class="img-fluid" data-banner="slide-added-<%=index%>" src="../<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
@@ -124,7 +124,7 @@
                 <div class="btn-edit-img row row-cols-1 ">
                     <button class="remove-img col" type="button"><span><i class="fa-solid fa-trash"></i></span><span
                             class="px-2">Xóa</span></button>
-                    <button class="select-all-img col" type="button"><span><i
+                    <button id="select-all-img" class="select-all-img col" type="button"><span><i
                             class="fa-solid fa-check-double"></i></span><span class="px-2">Chọn tất cả</span></button>
                     <label class="add-img col" for="slide-added"><i class="fa-solid fa-arrow-up-from-bracket px-2"></i>Thêm ảnh</label>
                     <form class="upload-img " action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
@@ -134,6 +134,29 @@
                 </div>
             </div>
         </div>
+        <%-----------------------------Modal of the remove buttom-----------------------------------%>
+                <!-- Button trigger modal -->
+        <button type="button" class="btn-show-model btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeNoticeModal" hidden></button>
+
+                 <!-- Modal -->
+        <div class="modal fade" id="removeNoticeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fa-solid fa-triangle-exclamation px-2"></i>Thông báo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       <span>Bạn có chắc chắn xóa không?</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button id="remove-img" type="button" class="btn" data-bs-dismiss="modal" style="color: #fff; background-color: #ff3300">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%--end--%>
         <%--        quan ly banner--%>
         <div class="frame-boder frame-banner row p-3">
             <div class="title"><span>Danh sách hình ảnh hiện thị</span></div>

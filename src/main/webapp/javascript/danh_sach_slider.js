@@ -1,6 +1,8 @@
 $(document).ready(function(){
   uploadFile();
-
+  allChecked();
+  removeSildes();
+    dissableRemoveButton();
 });
 function uploadFile() {
     $(".upload-img input").change(function (){
@@ -17,7 +19,7 @@ function uploadFile() {
             contentType: false,
             success: function (data){
                 if(bannerId === "slide-added"){
-                    var slide = $('.edit-img').html();
+                    var slide = $('#show-slides').html();
                     let index = $('.slide-management').length;
                     var addHtml = "<div class=\"slide-management p-3\">\n" +
                         "                        <div class=\"item-img col\">\n" +
@@ -28,7 +30,7 @@ function uploadFile() {
                         "                        </div>\n" +
                         "                    </div>"
                    slide+=addHtml;
-                    $('.edit-img').html(slide);
+                    $('#show-slides').html(slide);
                 }else{
                     $(`img[data-banner="${bannerId}"]`).attr("src", "../" + data.url);
                 }
@@ -39,4 +41,39 @@ function uploadFile() {
             }
         }) ;
     });
+}
+
+function allChecked() {
+    $("#select-all-img").on("click", function(){
+        $( ".form-check-input" ).prop("checked", true);
+    });
+}
+
+function removeSildes() {
+    showModel();
+    $("#remove-img").on("click", function(){
+      $('.slide-management').each(function(index, element){
+          var checked = $(element).find('input[type="checkbox"]').prop('checked');
+          if (checked){
+              nonChecked = true;
+             $(element).addClass('d-none')
+          }
+      })
+    });
+
+}
+function showModel() {
+    $('.remove-img').on('click', function(){
+        $('.btn-show-model').click();
+    });
+}
+function dissableRemoveButton() {
+    $('.form-check-input').on('change', () => {
+        console.log($(this).length);
+    })
+    // if(!check){
+    //     $('.remove-img').prop('disabled', true);
+    // }else{
+    //     $('.remove-img').prop('disabled', false);
+    // }
 }
