@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GetBrandName implements Action {
+public class GetBrandProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService productService = ProductService.getInstance();
-        List<String> brandNames = productService.getBrandNames();
+        List<String> brands = productService.getBrands();
         JSONObject json = new JSONObject();
-        json.put("brandNames", brandNames);
+        json.put("brands", brands);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());

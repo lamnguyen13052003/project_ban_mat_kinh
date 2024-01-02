@@ -1,8 +1,8 @@
 package model.service;
 
-import model.DAO.DAO;
 import model.DAO.ProductDAO;
 import model.bean.Product;
+
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -66,23 +66,28 @@ public class ProductService {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         List<Product> products = productDAO.getProduct(id);
-        setOtherFieldsProduct(products, 0);
+        setModel(products);
+        setProductImage(products, 0);
+        setStarNumber(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
+        setReview(products);
 
         return products.get(0);
     }
 
-    public String getNameProduct(int productId) {
+    public Product getProductWithIdAndName(int productId) {
         ProductDAO productDAO = ProductDAO.getInstance();
-        return productDAO.getNameProduct(productId);
+        return productDAO.getProductWithIdAndName(productId);
     }
 
     public Product getProductCart(int id, int modelId) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         List<Product> products = productDAO.getProductCart(id);
-        Product product = products.get(0);
-        product.setModel(ModelService.getInstance().getModel(modelId));
+        if (products.isEmpty()) return null;
         setReducedPrice(products);
+        Product product = products.get(0);
         return product;
     }
 
@@ -93,7 +98,11 @@ public class ProductService {
         ProductDAO productDAO = ProductDAO.getInstance();
 
         List<Product> products = productDAO.getProducts(mapInfRoot, mapFilter, mapSort, limit);
-        setOtherFieldsProduct(products, 2);
+        setModel(products);
+        setProductImage(products, 2);
+        setStarNumber(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
 
         return products;
     }
@@ -210,18 +219,6 @@ public class ProductService {
         return query;
     }
 
-    private void setOtherFieldsProduct(List<Product> products, int limit) {
-        if (limit == 0) {
-            setModel(products);
-            setProductImage(products, "describe", limit);
-            setReview(products);
-        }
-        setProductImage(products, "product", limit);
-        setStarNumber(products);
-        setReducedPrice(products);
-        setTotalQuantitySold(products);
-    }
-
     private void setReview(List<Product> products) {
         ReviewService reviewService = ReviewService.getInstance();
         int id;
@@ -236,18 +233,17 @@ public class ProductService {
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setModels(modelService.getModels(id));
+            product.setModels(modelService.getModelsByProductId(id));
         }
     }
 
-    private void setProductImage(List<Product> products, String type, int limit) {
+    private void setProductImage(List<Product> products, int limit) {
         ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, type, limit);
+        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, limit);
         int id;
         for (Product product : products) {
             id = product.getId();
-            if(type.equals("product")) product.setProductImages((ArrayList<String>) mapProductImages.get(id));
-            else product.setDescribeImages((ArrayList<String>) mapProductImages.get(id));
+            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
         }
     }
 
@@ -293,7 +289,7 @@ public class ProductService {
         }
     }
 
-    public List<Product> getProductDiscount(int limit){
+    public List<Product> getProductDiscount(int limit) {
         Map<String, Integer> mapinfoRoot = new HashMap<String, Integer>();
         mapinfoRoot.put("page", 1);
         mapinfoRoot.put("id-category-group", 0);
@@ -301,20 +297,24 @@ public class ProductService {
         return getProducts(mapinfoRoot, new HashMap<>(), new HashMap<>(), limit);
     }
 
-    public List<Product> getInfoProminentProductByStart(int limit){
-        List<Product> list = ProductDAO.getInstance().getInfoProminentProductByStart(limit);
-        setOtherFieldsProduct(list,2);
-        Collections.sort(list, new Comparator<Product>() {
+    public List<Product> getInfoProminentProductByStart(int limit) {
+        List<Product> products = ProductDAO.getInstance().getInfoProminentProductByStart(limit);
+        setModel(products);
+        setProductImage(products, 2);
+        setStarNumber(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
+        Collections.sort(products, new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                return - o1.getStarNumber().compareTo(o2.getStarNumber());
+                return -o1.getStarNumber().compareTo(o2.getStarNumber());
             }
         });
-        return list;
+        return products;
     }
 
-    public List<String> getBrandNames(){
-        return ProductDAO.getInstance().getBrandNames();
+    public List<String> getBrands() {
+        return ProductDAO.getInstance().getBrands();
     }
 
     public Product getProductForReview(int productId) {
@@ -323,5 +323,21 @@ public class ProductService {
         List<Product> products = productDAO.getProductForReview(productId);
 
         return products.get(0);
+    }
+
+    public List<String> getMaterials() {
+        return ProductDAO.getInstance().getMaterials();
+    }
+
+    public List<String> getTypes() {
+        return ProductDAO.getInstance().getTypes();
+    }
+
+    public int createProductTemp() {
+        return ProductDAO.getInstance().createProductTemp();
+    }
+
+    public int update(Product product) {
+        return ProductDAO.getInstance().update(product);
     }
 }

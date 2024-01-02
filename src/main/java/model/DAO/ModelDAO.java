@@ -1,9 +1,8 @@
 package model.DAO;
 
 import model.bean.Model;
-import model.service.ModelService;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ModelDAO extends DAO {
     private static ModelDAO instance;
@@ -12,12 +11,14 @@ public class ModelDAO extends DAO {
         return instance == null ? new ModelDAO() : instance;
     }
 
-    public ArrayList<Model> getModels(int productId) {
-        return (ArrayList<Model>) connector.withHandle(handle ->
-                handle.createQuery("SELECT m.id, m.urlIamge, m.name " +
+    public List<Model> getModelsByProductId(int productId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT m.id, m.urlImage, m.name, m.quantity, SUM(bd.quantity) AS totalQuantitySold " +
                                 "FROM models AS m " +
-                                "WHERE m.productId = ?;")
-                        .bind(0, productId)
+                                "JOIN bill_details AS bd ON bd.modelId = m.id AND bd.productId = m.productId " +
+                                "WHERE m.productId = :productId " +
+                                "GROUP BY m.id, m.urlImage, m.name, m.quantity;")
+                        .bind("productId", productId) // Bind giá trị cho :productId
                         .mapToBean(Model.class)
                         .list()
         );
@@ -25,23 +26,13 @@ public class ModelDAO extends DAO {
 
     public Model getModel(int modelId) {
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT m.id, m.urlIamge, m.name " +
+                handle.createQuery("SELECT m.id, m.urlImage, m.name, m.quantity, SUM(bd.quantity) AS totalQuantitySold " +
                                 "FROM models AS m " +
+                                "JOIN bill_details AS bd ON bd.modelId = m.id " +
                                 "WHERE m.id = ?;")
                         .bind(0, modelId)
                         .mapToBean(Model.class)
                         .findFirst().orElse(null)
-        );
-    }
-
-    public int getQuantity(Integer billId) {
-        return connector.withHandle(handle ->
-                handle.createQuery("SELECT m.quantity " +
-                                        "FROM models AS m " +
-                                        "WHERE m.id = ?;")
-                        .bind(0, billId)
-                        .mapTo(Integer.class)
-                        .findFirst().orElse(0)
         );
     }
 }

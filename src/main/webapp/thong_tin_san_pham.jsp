@@ -338,13 +338,13 @@
                                     List<String> productimages = product.getProductImages();
                                     for (int i = 0; i < models.size(); i++) {
                                         for (index = 0; index < productimages.size(); index++) {
-                                            if (models.get(i).getUrlIamge().equals(productimages.get(index))) {
+                                            if (models.get(i).getUrlImage().equals(productimages.get(index))) {
                                 %>
                                 <li class="product-sw-select-item">
                                     <button type="button" data-bs-target="#carouselExampleAutoplaying"
                                             data-bs-slide-to="<%=index%>"
                                             aria-label="Slide 0">
-                                        <img src="<%=models.get(i).getUrlIamge()%>"
+                                        <img src="<%=models.get(i).getUrlImage()%>"
                                              alt="<%=models.get(i).getName()%>.png">
                                         <span><%=models.get(i).getName()%></span>
                                     </button>

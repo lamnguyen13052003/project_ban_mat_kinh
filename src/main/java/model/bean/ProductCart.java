@@ -29,7 +29,7 @@ public class ProductCart {
     }
 
     public boolean increase(int quantity) {
-        if (this.quantity + quantity > product.getQuantity()) {
+        if (this.quantity + quantity > product.getModels().get(0).getQuantity()) {
             return false;
         }
         this.quantity += quantity;
@@ -44,19 +44,19 @@ public class ProductCart {
         return true;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return this.product.getPrice();
     }
 
-    public double getRducedPrice(){
+    public double getRducedPrice() {
         return this.product.getDiscount();
     }
 
-    public boolean hasDiscount(){
+    public boolean hasDiscount() {
         return this.product.hasDiscount();
     }
 
-    public Model getModel(){
+    public Model getModel() {
         return this.product.getModels().get(0);
     }
 
@@ -69,9 +69,9 @@ public class ProductCart {
     }
 
     public double totalPrice() {
-        if(hasDiscount())
-            return this.getRducedPrice()*this.quantity;
+        if (hasDiscount())
+            return this.getRducedPrice() * this.quantity;
         else
-            return this.getPrice()*this.quantity;
+            return this.getPrice() * this.quantity;
     }
 }

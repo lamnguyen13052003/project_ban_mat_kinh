@@ -55,17 +55,17 @@ public class BillDetailDAO extends DAO {
         handle.close();
     }
 
-    public boolean checkQuantity(ArrayList<BillDetail> details) {
-        for (BillDetail detail : details) {
-            int quantity = 0, totalSale = 0;
-            ModelService modelService = ModelService.getInstance();
-            BillDetailService billDetailService = new BillDetailService();
-            quantity = modelService.getQuantity(detail.getModelId());
-            totalSale = billDetailService.getTotalSale(detail.getModelId());
-            if((quantity - totalSale - detail.getQuantity()) < 0) return false;
-        }
-        return true;
-    }
+//    public boolean checkQuantity(ArrayList<BillDetail> details) {
+//        for (BillDetail detail : details) {
+//            int quantity = 0, totalSale = 0;
+//            ModelService modelService = ModelService.getInstance();
+//            BillDetailService billDetailService = new BillDetailService();
+//            quantity = modelService.getQuantity(detail.getModelId());
+//            totalSale = billDetailService.getTotalSale(detail.getModelId());
+//            if((quantity - totalSale - detail.getQuantity()) < 0) return false;
+//        }
+//        return true;
+//    }
 
     public int getTotalSale(Integer billId) {
         return connector.withHandle(handle ->

@@ -1,6 +1,7 @@
 package controller;
 
 import model.bean.Model;
+import model.bean.Product;
 import model.service.ModelService;
 import model.service.ProductService;
 import org.json.JSONObject;
@@ -9,9 +10,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "DisplayModalModels", value = "/show-models")
+@WebServlet(name = "DisplayModalModels", value = "/show_models")
 public class DisplayModalModels extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,12 +27,11 @@ public class DisplayModalModels extends HttpServlet {
 
         ModelService mService = ModelService.getInstance();
         ProductService pService = ProductService.getInstance();
-        String productName  = pService.getNameProduct(productId);
-        ArrayList<Model> models = mService.getModels(productId);
-        // Đảm bảo đưa các thuộc tính vào đối tượng JSON
+        Product product  = pService.getProductWithIdAndName(productId);
+        List<Model> models = mService.getModelsByProductId(productId);
+        product.setModels(models);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("productName", productName);
-        jsonObject.put("models", models);
+        jsonObject.put("product", product);
 
         // Gửi dữ liệu JSON về phía client
         response.getWriter().write(jsonObject.toString());

@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Product {
-    private Integer id, categoryId, quantity, starNumber, totalReview, totalQuantitySold;
+    private Integer id, categoryId, starNumber, totalReview, totalQuantitySold;
     private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
-    private ArrayList<Model> models;
+    private List<Model> models;
     private List<Review> reviews;
-    private ArrayList<String> productImages;
-    private ArrayList<String> describeImages;
+    private List<String> productImages;
+
+
+    private List<ProductDiscount> poroductDiscounts;
 
     public Product() {
     }
@@ -24,19 +26,12 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public ArrayList<Model> getModels() {
+    public List<Model> getModels() {
         return models;
     }
 
-    public void setModels(ArrayList<Model> models) {
+    public void setModels(List<Model> models) {
         this.models = models;
     }
 
@@ -46,10 +41,6 @@ public class Product {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public void setPrice(double price) {
@@ -140,7 +131,7 @@ public class Product {
         this.totalReview = totalReview;
     }
 
-    public ArrayList<String> getProductImages() {
+    public List<String> getProductImages() {
         return productImages;
     }
 
@@ -168,9 +159,6 @@ public class Product {
         this.discount = discount;
     }
 
-    public ArrayList<String> getDescribeImages() {
-        return describeImages;
-    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -180,12 +168,11 @@ public class Product {
         this.reviews = reviews;
     }
 
-    public void setDescribeImages(ArrayList<String> describeImages) {
-        this.describeImages = describeImages;
-    }
-
     public boolean available() {
-        return (quantity - totalQuantitySold) > 0;
+        for(Model model : models){
+            if(model.available()) return true;
+        }
+        return false;
     }
 
     @Override
@@ -193,7 +180,6 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", categoryId=" + categoryId +
-                ", quantity=" + quantity +
                 ", starNumber=" + starNumber +
                 ", totalReview=" + totalReview +
                 ", totalQuantitySold=" + totalQuantitySold +
@@ -208,13 +194,17 @@ public class Product {
                 ", models=" + models +
                 ", reviews=" + reviews +
                 ", productImages=" + productImages +
-                ", describeImages=" + describeImages +
                 '}';
     }
 
     public void setModel(Model model) {
         models = models == null ? new ArrayList<>() : models;
         models.add(model);
+    }
+
+    public void addProductImage(String url) {
+        productImages = productImages == null ? new ArrayList<>() : productImages;
+        productImages.add(url);
     }
 
     @Override
@@ -228,5 +218,18 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id, models);
+    }
+
+    public void setModels(String[] models) {
+        for(String data: models){
+            Model model = new Model(this.id, data);
+            setModel(model);
+        }
+    }
+
+    public void setProductImages(String[] productImages) {
+        for(String data: productImages){
+            this.addProductImage(data);
+        }
     }
 }

@@ -216,7 +216,7 @@
                                    product-id="<%=productCart.getProduct().getId()%>"
                                    model-id="<%=productCart.getModel().getId()%>">
                             <div class="info-product">
-                                <img class="rounded" src="<%=productCart.getModel().getUrlIamge()%>">
+                                <img class="rounded" src="<%=productCart.getModel().getUrlImage()%>">
                                 <div class="ms-2">
                                     <span class="fw-bold d-block name-product"><%=productCart.getProduct().getName()%></span>
                                     <span class="option"><%=productCart.getModel().getName()%></span>

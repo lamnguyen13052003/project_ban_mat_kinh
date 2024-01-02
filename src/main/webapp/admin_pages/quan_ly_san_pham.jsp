@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -102,13 +102,14 @@
                     <div class="option-filter col-4">
                         <div class="filter-item">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                     Trạng thái
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Tất cả</a></li>
                                     <li><a class="dropdown-item" href="#">Còn hàng</a></li>
-                                    <li> <a class="dropdown-item" href="#">Hết hàng</a> </li>
+                                    <li><a class="dropdown-item" href="#">Hết hàng</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -117,11 +118,14 @@
                     <div class="option-filter col-4">
                         <div class="filter-item">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                     ---------------Thương hiệu---------------
                                 </button>
                                 <ul class="dropdown-menu" id="list-brand-name">
-                                    <div class="dropdown-title text-secondary">---------------Thương hiệu---------------</div>
+                                    <div class="dropdown-title text-secondary">---------------Thương
+                                        hiệu---------------
+                                    </div>
                                     <li><a class="dropdown-item" href="#">Tất cả</a></li>
                                 </ul>
                             </div>
@@ -130,11 +134,13 @@
                     <div class="option-filter col-4">
                         <div class="filter-item">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                     ---------------Danh mục---------------
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <div class="dropdown-title text-secondary">---------------Danh mục---------------</div>
+                                    <div class="dropdown-title text-secondary">---------------Danh mục---------------
+                                    </div>
                                     <li><a class="dropdown-item" href="#">Tất cả</a></li>
                                     <li><a class="dropdown-item" href="#">Kính mát</a></li>
                                     <li>
@@ -166,7 +172,8 @@
                                     <li><a class="dropdown-item" href="#">Tròng kính</a></li>
                                     <li>
                                         <ul>
-                                            <li><a class="dropdown-item" href="#">Tròng kính chống ánh sáng xanh</a></li>
+                                            <li><a class="dropdown-item" href="#">Tròng kính chống ánh sáng xanh</a>
+                                            </li>
                                             <li><a class="dropdown-item" href="#">Tròng kính đổi màu</a></li>
                                             <li><a class="dropdown-item" href="#">Tròng kính màu</a></li>
                                             <li><a class="dropdown-item" href="#">Tròng kính cho gọng khoan</a></li>
@@ -185,7 +192,7 @@
                 </div>
 
                 <div class="search-body row">
-                    <div class="option-search col-10">
+                    <div class="option-search col-9">
                         <div class="search-item rounded">
                             <input type="text" name="search-name-product" id="search-name-product"
                                    placeholder="Nhập tên sản phẩm">
@@ -194,8 +201,8 @@
                         </div>
                     </div>
 
-                    <div class="addProduct col-2">
-                        <a href="chinh_sua_san_pham.jsp">
+                    <div class="addProduct  ms-5 col-3">
+                        <a href="product_manager?action=add">
                             <button class="btn d-flex" data-bs-toggle="modal" data-bs-target="#form-add-product">
                                 <span>Thêm sản phẩm</span>
                                 <span class="material-symbols-outlined">add</span>
@@ -221,15 +228,17 @@
                     <%
                         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
                         List<Product> products = (List<Product>) request.getAttribute("products");
-                    for(Product product : products){%>
+                        for (Product product : products) {%>
                     <div class="product row ps-4">
                         <div class="col-4 d-flex">
                             <div class="img-product">
                                 <img src="../images/logo/logo.png" alt="hinh_anh.png">
                             </div>
                             <div class="info-product ms-2 w-100">
-                                <p class="name-product"><%=product.getName()%></p>
-                                <p class="id-product">#<%=product.getId()%></p>
+                                <p class="name-product"><%=product.getName()%>
+                                </p>
+                                <p class="id-product">#<%=product.getId()%>
+                                </p>
                                 <select>
                                     <option value="">Đỏ</option>
                                     <option value="">Xanh</option>
@@ -240,7 +249,8 @@
                         <div class="col-2 type-product">Kính mắt trẻ em</div>
                         <div class="col-1 amount-product te">2222</div>
                         <div class="col-1 amount-product-bought">1231</div>
-                        <div class="col-2 price"><%=nf.format(product.getPrice())%></div>
+                        <div class="col-2 price"><%=nf.format(product.getPrice())%>
+                        </div>
                         <div class="col-1 status">Còn hàng</div>
                         <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
                     </div>
@@ -325,6 +335,32 @@
     </div>
 </footer>
 
+<%
+    String message = (String) session.getAttribute("message");
+    if (message != null) {
+%>
+<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
+        data-bs-target="#complete-modal"></button>
+<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Thành công</h1>
+                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body position-relative">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img style="width: 50px" src="../images/icon/complete.png" alt="complete.png">
+                    <p class="fs-1 ms-2"><%=message%></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%}%>
+
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/product_manager.js"></script>
@@ -339,6 +375,11 @@
     <%} else{%>
     hidenMenuAccount();
     <%}%>
+    <%if (message != null){%>
+    $("#show-complete-modal").click();
+    <%}
+    session.removeAttribute("message");
+    %>
 </script>
 </body>
 </html>
