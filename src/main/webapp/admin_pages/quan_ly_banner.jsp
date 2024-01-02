@@ -109,7 +109,7 @@
                             for(BannerImage ri : urls){
                                 index++;
                     %>
-                        <div class="slide-management p-3">
+                    <div class="slide-management p-3">
                         <div class="item-img col">
                             <img class="img-fluid" data-banner="slide-added-<%=index%>" src="../<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">

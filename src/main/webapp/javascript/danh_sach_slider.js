@@ -1,6 +1,6 @@
 $(document).ready(function(){
   uploadFile();
-    // showImageInBannerManagement();
+
 });
 function uploadFile() {
     $(".upload-img input").change(function (){
@@ -40,18 +40,3 @@ function uploadFile() {
         }) ;
     });
 }
-// function showImageInBannerManagement() {
-//     $.ajax({
-//         url: "../upload-file-on-banner-management",
-//         dataType: "json",
-//         method: "POST",
-//         success: function (data) {
-//
-//             console.log("show image in banner management");
-//         },
-//         error: function (data){
-//             console.log(data);
-//             console.log("error")
-//         }
-//     });
-// }
