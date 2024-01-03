@@ -2,7 +2,7 @@ $(document).ready(function(){
   uploadFile();
   allChecked();
   removeSildes();
-    dissableRemoveButton();
+  disableRemoveButton();
 });
 function uploadFile() {
     $(".upload-img input").change(function (){
@@ -55,10 +55,9 @@ function removeSildes() {
       $('.slide-management').each(function(index, element){
           var checked = $(element).find('input[type="checkbox"]').prop('checked');
           if (checked){
-              nonChecked = true;
              $(element).addClass('d-none')
           }
-      })
+      });
     });
 
 }
@@ -67,13 +66,30 @@ function showModel() {
         $('.btn-show-model').click();
     });
 }
-function dissableRemoveButton() {
+function disableRemoveButton() {
+    let disableBtn = $('.remove-img');
+    disableBtn.prop('disabled', true);
     $('.form-check-input').on('change', () => {
-        console.log($(this).length);
-    })
-    // if(!check){
-    //     $('.remove-img').prop('disabled', true);
-    // }else{
-    //     $('.remove-img').prop('disabled', false);
-    // }
+        disableBtn.prop('disabled', true);
+        $('.form-check-input').each(function(index, element){
+            let checked = $(element).prop('checked');
+            if (checked){
+                disableBtn.prop('disabled', false);
+            }
+        });
+    });
 }
+// function nonHover(element) {
+//         if(element.prop('disabled')){
+//             element.hover(() => {
+//                 element.css('background-color','#fff').css('color', 'rgba(255,255,255,0.5)')
+//                 .css('border','rgba(255,255,255,0) 2px solid')
+//
+//             },
+//                 () => {
+//                     element.css('background-color','#fff').css('color', 'rgba(255,255,255,0.5)')
+//                         .css('border','rgba(255,255,255,0.5) 2px solid')
+//                 }
+//                 )
+//         }
+// }
