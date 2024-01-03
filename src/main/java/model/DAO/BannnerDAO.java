@@ -61,4 +61,24 @@ public class BannnerDAO extends  DAO{
         return  connector.withHandle(handle ->
                 handle.createUpdate("SELECT MAX(id) FROM banner_images").execute())  + 1;
     }
+    public int countSlide(){
+        return  connector.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(bi.id) FROM banner_images bi WHERE bi.description LIKE ?")
+                        .bind(0,"%slide%")
+                        .mapTo(Integer.class).one());
+    }
+    /*
+    remove slide
+     */
+    public int removeSlide(BannerImage slide) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("DELETE FROM banner_images WHERE id = ?")
+                        .bind(0, slide.getId())
+                        .execute()
+        ) ;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new BannnerDAO().countSlide());
+    }
 }

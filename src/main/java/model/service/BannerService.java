@@ -37,4 +37,12 @@ public class BannerService {
         BannnerDAO.getInstance().insertSlideImage(bannerImage);
     }
     public int nextIdOfSlide() {return BannnerDAO.getInstance().nextId();}
+    public int countSlide(){
+        return BannnerDAO.getInstance().countSlide();
+    }
+
+    /*
+    remove slide
+     */
+    public void removeSlide(BannerImage bannerImage) {BannnerDAO.getInstance().removeSlide(bannerImage);}
 }

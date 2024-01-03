@@ -53,6 +53,8 @@ public class UploadFileOnBannerManagement extends HttpServlet {
                         BannerService.getInstance().uploadBannerImage(bannerImage);
                     }else{
                         bannerImage.setId(BannerService.getInstance().nextIdOfSlide());
+                        System.out.println(BannerService.getInstance().countSlide());
+                        bannerImage.setDescription("slide-"+ (BannerService.getInstance().countSlide() + 1));
                         BannerService.getInstance().insertSlideShowImages(bannerImage);
                     }
 
