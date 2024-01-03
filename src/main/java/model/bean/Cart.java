@@ -31,16 +31,17 @@ public class Cart {
 
         ProductService service = ProductService.getInstance();
         ModelService modelService = ModelService.getInstance();
-        ProductDiscountService productDiscountService = new ProductDiscountService();
+        ProductDiscountService productDiscountService = ProductDiscountService.getInstance();
 
-        Product product = service.getProductCart(productId);
-        if (product == null) return false;
+        productCart = service.getProductCart(productId);
+        if (productCart == null) return false;
         Model model = modelService.getModel(modelId);
         if (model == null) return false;
         Double productDiscount = productDiscountService.getPricePercentage(productId);
-        productDiscount = Double.compare(productDiscount, 0.0) != 0 ? (1.0 - productDiscount) * product.getPrice() : 0.0;
-
-        productCart = new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), productDiscount, model, quantity);
+        productDiscount = Double.compare(productDiscount, 0.0) != 0 ? (1.0 - productDiscount) * productCart.getPrice() : 0.0;
+        productCart.setDiscount(productDiscount);
+        productCart.setQuantity(quantity);
+        productCart.setModel(model);
 
         cart.put(key, productCart);
         return true;

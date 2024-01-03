@@ -32,6 +32,10 @@ public class ProductImageService {
     }
 
     public boolean insert(int id, List<String> productImages) {
-        return ProductImageDAO.getInstance().insert(id, productImages);
+        for(String url : productImages){
+            ProductImageDAO.getInstance().insert(id, url);
+        }
+
+        return true;
     }
 }

@@ -611,7 +611,7 @@
                                         class="f-button setAddCartLoop add-cart" data-type="add-cart">
                                     Xem nhanh
                                 </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
+                                <button type="button" product-id="<%=product.getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
                                     Mua ngay
                                 </button>
                             </div>
@@ -727,8 +727,7 @@
         </div>
     </div>
 
-    <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
-            data-bs-target="#complete-modal"></button>
+    <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal" data-bs-target="#complete-modal"></button>
     <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

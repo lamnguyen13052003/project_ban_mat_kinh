@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class ProductDAO extends DAO {
+    private final String WHERE_PRODUCT_DONT_DELETE = " WHERE p.`delete` = 0 ";
     private final String WHERE_NOT_JOIN = " WHERE p.categoryId = ? ";
     private final String WHERE_JOIN_1 = " WHERE CURRENT_TIMESTAMP() BETWEEN pd.dateStart AND pd.dateEnd ";
     private final String WHERE_JOIN_2 = " WHERE c.categoryGroupId = ? ";
@@ -89,6 +90,10 @@ public class ProductDAO extends DAO {
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
         sql.append(JOIN_2);
         sql.append(WHERE_JOIN_3);
+        sql.append(WHERE_PRODUCT_DONT_DELETE);
+
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
 
         return sql.toString();
     }
@@ -150,6 +155,7 @@ public class ProductDAO extends DAO {
         idCategory = mapInfRoot.get("id-category");
         idCategoryGroup = mapInfRoot.get("id-category-group");
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+
         if (idCategoryGroup == 0 && idCategory == 0) {
             sql.append(JOIN_1);
             sql.append(WHERE_JOIN_1);
@@ -163,6 +169,11 @@ public class ProductDAO extends DAO {
         if (idCategoryGroup > 0 && idCategory != 0) {
             sql.append(WHERE_NOT_JOIN);
         }
+
+        sql.append(WHERE_PRODUCT_DONT_DELETE);
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
+
 
         sql.append(getSQLFilter(mapFilter));
         sql.append(getSQLSort(mapSort));
@@ -223,25 +234,12 @@ public class ProductDAO extends DAO {
         if (mapInfRoot.containsKey("id-category-group")) idCategory = mapInfRoot.get("id-category");
         if (mapInfRoot.containsKey("id-category-group")) idCategoryGroup = mapInfRoot.get("id-category-group");
 
-        if (id != 0) {
-            System.out.println("Thong tin chi tiet san pham");
-        }
-
-        if (idCategoryGroup == 0 && idCategory == 0) {
-            System.out.println("Khuyen mai");
-        }
-
-        if (idCategoryGroup == -1) {
-            System.out.println("Tất cả");
-        }
 
         if (idCategoryGroup > 0 && idCategory == 0) {
-            System.out.println("Nhom danh muc");
             query.bind(index++, idCategoryGroup);
         }
 
         if (idCategoryGroup > 0 && idCategory > 0) {
-            System.out.println("Danh muc");
             query.bind(index++, idCategory);
         }
 
@@ -270,17 +268,17 @@ public class ProductDAO extends DAO {
         return index;
     }
 
-    public List<Product> getProductDiscount() {
-        return null;
-    }
-
     /*
     lay danh sach thong tin san pham noi bat tren trang chu
      */
     public List<Product> getInfoProminentProductByStart(int limit) {
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.brandName, p.price FROM products p ");
+        sql.append(WHERE_PRODUCT_DONT_DELETE);
+        sql.append(LIMIT_OFFSET);
         List<Product> products = connector.withHandle(handle ->
-                handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p LIMIT ?")
+                handle.createQuery(sql.toString())
                         .bind(0, limit)
+                        .bind(1, 0)
                         .mapToBean(Product.class).list()
         );
         return products;
@@ -290,7 +288,8 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL ;")
+                                "WHERE p.brandName IS NOT NULL AND `delete` = ?;")
+                        .bind(0, 0)
                         .mapTo(String.class)
                         .list()
         );
@@ -314,7 +313,8 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.material " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL ;")
+                                "WHERE p.brandName IS NOT NULL AND `delete` = ?;")
+                        .bind(0, 0)
                         .mapTo(String.class)
                         .list()
         );
@@ -324,7 +324,8 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.type " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL ;")
+                                "WHERE p.brandName IS NOT NULL AND `delete` = ?;")
+                        .bind(0, 0)
                         .mapTo(String.class)
                         .list()
         );
@@ -338,9 +339,10 @@ public class ProductDAO extends DAO {
                 int productId = nextProductId();
                 id = productId;
                 result = connector.withHandle(handle ->
-                        handle.createUpdate("INSERT INTO products(id) " +
-                                        "VALUES (?);")
+                        handle.createUpdate("INSERT INTO products(id, `delete`) " +
+                                        "VALUES (?, ?);")
                                 .bind(0, productId)
+                                .bind(1, 1)
                                 .execute()
                 );
             } catch (Exception e) {
@@ -361,31 +363,45 @@ public class ProductDAO extends DAO {
 
     public int update(Product product) {
         int result = connector.withHandle(handle -> {
-            try {
-                return handle.createUpdate("UPDATE products " +
-                                "SET `categoryId`=?, " +
-                                "name = ?, " +
-                                "brandName = ?, " +
-                                "price = ?, " +
-                                "`describe` = ?, " +
-                                "material = ?, " +
-                                "TYPE = ? " +
-                                "WHERE id = ?")
-                        .bind(0, product.getCategoryId())
-                        .bind(1, product.getName())
-                        .bind(2, product.getBrandName())
-                        .bind(3, product.getPrice())
-                        .bind(4, product.getDescribe())
-                        .bind(5, product.getMaterial())
-                        .bind(6, product.getType())
-                        .bind(7, product.getId())
-                        .execute();
-            } catch (Exception e) {
-                System.err.println("Lỗi: " + e.getMessage());
-                return 0; // Ném lại ngoại lệ để quản lý lỗi ở tầng cao hơn
-            }
+            return handle.createUpdate("UPDATE products " +
+                            "SET `categoryId`=?, " +
+                            "name = ?, " +
+                            "brandName = ?, " +
+                            "price = ?, " +
+                            "`describe` = ?, " +
+                            "material = ?, " +
+                            "TYPE = ?, " +
+                            "`delete` = ? " +
+                            "WHERE id = ?")
+                    .bind(0, product.getCategoryId())
+                    .bind(1, product.getName())
+                    .bind(2, product.getBrandName())
+                    .bind(3, product.getPrice())
+                    .bind(4, product.getDescribe())
+                    .bind(5, product.getMaterial())
+                    .bind(6, product.getType())
+                    .bind(7, 0)
+                    .bind(8, product.getId())
+                    .execute();
         });
 
         return result;
+    }
+
+    public boolean delete(int productId) {
+        return connector.withHandle(handle -> {
+            return handle.createUpdate("DELETE FROM products WHERE id = ?;")
+                    .bind(0, productId)
+                    .execute();
+        }) == 1 ? true : false;
+    }
+
+    public boolean lock(int productId) {
+        return connector.withHandle(handle -> {
+            return handle.createUpdate("UPDATE products SET `delete` = ? WHERE id = ?;")
+                    .bind(0, 1)
+                    .bind(1, productId)
+                    .execute();
+        }) == 1 ? true : false;
     }
 }

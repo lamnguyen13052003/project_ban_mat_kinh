@@ -2,6 +2,8 @@ package model.service;
 
 import model.DAO.ProductDAO;
 import model.bean.Product;
+import model.bean.ProductCart;
+import model.bean.ProductDiscount;
 import model.bean.ProductImage;
 
 import java.text.NumberFormat;
@@ -9,7 +11,6 @@ import java.util.*;
 
 public class ProductService {
     public static ProductService instance;
-    private ProductDAO productDAO = ProductDAO.getInstance();
     private static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
     private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
@@ -82,10 +83,10 @@ public class ProductService {
         return productDAO.getProductWithIdAndName(productId);
     }
 
-    public Product getProductCart(int id) {
+    public ProductCart getProductCart(int id) {
         ProductDAO productDAO = ProductDAO.getInstance();
-
-        return productDAO.getProductCart(id);
+        Product product = productDAO.getProductCart(id);
+        return new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), 0.0, null, 0);
     }
 
     /**
@@ -257,7 +258,7 @@ public class ProductService {
     }
 
     private void setReducedPrice(List<Product> products) {
-        ProductDiscountService productDiscountService = new ProductDiscountService();
+        ProductDiscountService productDiscountService = ProductDiscountService.getInstance();
         Map<Integer, Double> mapProductPricePercentage = productDiscountService.getPricePercentages(products);
         int id;
         double pricePercentage, discount;
@@ -336,12 +337,23 @@ public class ProductService {
 
     public int update(Product product) {
         int result = ProductDAO.getInstance().update(product);
+        System.out.println(result);
         if (result != 0) {
             ModelService modelService = ModelService.getInstance();
             modelService.insert(product.getModels());
             ProductImageService productImageService = ProductImageService.getInstance();
             productImageService.insert(product.getId(), product.getProductImages());
+            ProductDiscountService productDiscount = ProductDiscountService.getInstance();
+            productDiscount.insert(product.getId(), product.getProductDiscounts());
         }
         return result;
+    }
+
+    public boolean delete(int productId) {
+        return ProductDAO.getInstance().delete(productId);
+    }
+
+    public boolean lock(int productId) {
+        return ProductDAO.getInstance().lock(productId);
     }
 }

@@ -40,31 +40,44 @@ public class EditProductManagerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        String actionStr = request.getParameter("action");
-        System.out.println(actionStr);
-        Action action = null;
-        switch (actionStr) {
-            case "add" -> {
-                action = new AddProduct();
-            }
-            case "update" -> {
-            }
-        }
-
-        action.action(request, response);
     }
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Action action = new DeleteImageProduct();
+        String actionStr = request.getParameter("action");
+
+        Action action = null;
+        switch (actionStr) {
+            case "cancel-add-product" -> {
+                action = new CancelAddProduct();
+            }
+            case "lock-product" -> {
+                action = new LockProduct();
+            }
+            case "delete-product-image" -> {
+                action = new DeleteProductImage();
+            }
+        }
+
+        if (action == null) throw new IOException("action is null");
         action.action(request, response);
     }
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Action action = new AddImageProduct();
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String actionStr = request.getParameter("action");
+        Action action = null;
+        switch (actionStr) {
+            case "add-product" -> {
+                action = new AddProduct();
+            }
+            case "add-product-image" -> {
+                action = new AddProductImage();
+            }
+        }
+
         action.action(request, response);
     }
 

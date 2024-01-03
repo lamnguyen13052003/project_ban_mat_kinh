@@ -1,9 +1,5 @@
 package model.bean;
 
-import com.google.gson.Gson;
-import org.json.JSONObject;
-import org.json.JSONWriter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +12,7 @@ public class Product {
     private List<Review> reviews;
     private List<String> productImages;
 
-    private List<ProductDiscount> poroductDiscounts;
+    private List<ProductDiscount> productDiscounts;
 
     public Product() {
     }
@@ -233,7 +229,19 @@ public class Product {
                 ", models=" + models +
                 ", reviews=" + reviews +
                 ", productImages=" + productImages +
-                ", poroductDiscounts=" + poroductDiscounts +
+                ", poroductDiscounts=" + productDiscounts +
                 '}';
+    }
+
+    public void setProductDiscount(String[] parameterValues) {
+        productDiscounts = new ArrayList<>();
+        for(String productDiscountStr : parameterValues){
+            ProductDiscount productDiscount = new ProductDiscount(productDiscountStr);
+            productDiscounts.add(productDiscount);
+        }
+    }
+
+    public List<ProductDiscount> getProductDiscounts() {
+        return productDiscounts;
     }
 }

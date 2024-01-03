@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    $(".account").find("a").attr("href", "../../tai_khoan.jsp");
     addActionFilterMore();
     actionFastSee();
     changeAmount();
     addProductCart();
+    buyNow();
     loadBanner();
 });
 
@@ -46,6 +46,7 @@ function actionFastSee() {
         });
     });
 }
+
 
 function showModalModels(product, models) {
     let htmlModelImage = ``;
@@ -119,7 +120,7 @@ function addProductCart() {
                 quantity: $("#quantity").val(),
                 checked: "false"
             },
-            method: 'POST',
+            method: 'PUT',
             dataType: 'json',
             success: function (data) {
                 $("#amount-product").text(data.amountProduct);
@@ -131,8 +132,25 @@ function addProductCart() {
     });
 }
 
+function buyNow() {
+    $("#buy-now").click(function () {
+        const productId = $(this).attr("product-id");
+        const modelId =$("button.model.active").attr("model-id");
+        const quantity = $("#quantity").val();
+        const formBuyNow =
+            `<form hidden="" method="POST" action="buy_now">
+            <input type="text" name="productId" value="${productId}">
+            <input type="text" name="modelId" value="${modelId}">
+            <input type="number" name="quantity" value="${quantity}">
+            <input type="submit" id="sumit-buy-now"> 
+        </form>`;
+        $("body").append(formBuyNow);
+        $("#sumit-buy-now").click();
+    });
+}
+
 $("#close-complete-modal").click(function () {
-    $("#show-modal").click();
+    // $("#show-modal").click();
 });
 
 function loadBanner() {

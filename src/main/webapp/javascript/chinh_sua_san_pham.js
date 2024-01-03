@@ -1,5 +1,8 @@
 $(document).ready(function () {
-    setEvent();
+
+    addProductImage();
+    addOption();
+    addSaleProduct();
 
     $(".select-img-option-product").change(function (event) {
         const parent = $(this).parents(".a-input-option-product");
@@ -10,6 +13,8 @@ $(document).ready(function () {
     initSelectFilter("get-materials", $('#select-material-product'));
     initSelectFilter("get-types", $('#select-type-product'));
     sumit();
+    cancelAddProduct();
+    lockProduct();
 });
 
 const ckeditor = CKEDITOR.replace('editor');
@@ -62,22 +67,16 @@ function updateSelectImgOption(element) {
     element.find("img").attr("src", "../images/avatar/default_avatar.png");
 }
 
-/*Thết lập event*/
-function setEvent() {
-    addProductImage();
-    addOption();
-    addSaleProduct();
-}
 
 /*Thêm hình vào sản phẩm*/
 function addProductImage() {
     $("#input-product-image").change(function (event) {
         const selectedFile = this.files[0];
-        // const imageUrl = window.URL.createObjectURL(selectedFile);
 
         const formData = new FormData();
+        formData.append("action", "add-product-image");
         formData.append("image-product", selectedFile);
-        formData.append("product-id", $("product-id").attr("product-id"));
+        formData.append("product-id", $("#product-id").attr("product-id"));
         $.ajax({
             url: "edit_product_manager",
             data: formData,
@@ -92,7 +91,7 @@ function addProductImage() {
                                         </div>`);
                 const cancel = $("#main").find(".input-product-image-body").find(".product-image").last().find(".cancel");
                 cancel.click(function () {
-                    removeImageProduct($(this).parent(), $(this));
+                    removeProductImage($(this).parent(), $(this));
                 });
                 const models = $(".a-input-option-product");
                 for (let i = 0; i < models.length; i++) {
@@ -107,9 +106,10 @@ function addProductImage() {
     });
 }
 
-function removeImageProduct(parent, button) {
+function removeProductImage(parent, button) {
     const formData = new FormData();
     formData.append("path-file", button.attr("path-file"))
+    formData.append("action", "delete-product-image")
     $.ajax({
         url: "edit_product_manager",
         data: formData,
@@ -207,12 +207,13 @@ function sumit() {
         const beforeSubmit = beforeSumit();
         const complete = beforeSubmit[0];
         const formData = beforeSubmit[1];
+        formData.append("action", "add-product")
         if (complete) {
             $.ajax({
                 url: "edit_product_manager",
                 data: formData,
                 dataType: "text",
-                method: "POST",
+                method: "PUT",
                 processData: false, // Không xử lý dữ liệu gửi đi
                 contentType: false,
                 success: function (data) {
@@ -258,9 +259,7 @@ function beforeSumit() {
 }
 
 function getAction(formData) {
-    const action = $("#submit").attr("action");
-    if (!action) return false;
-    formData.append("action", action);
+    formData.append("action", "add-product");
     return true;
 }
 
@@ -312,7 +311,7 @@ function getModels(formData) {
         if (!modelName) {
             elementModel.find(".model-name").next().removeAttr("hidden");
             complete = false;
-        }else{
+        } else {
             elementModel.find(".model-name").next().attr("hidden", "");
         }
 
@@ -320,7 +319,7 @@ function getModels(formData) {
         if (!modelQuantity) {
             elementModel.find(".model-quantity").next().removeAttr("hidden");
             complete = false;
-        }else{
+        } else {
             elementModel.find(".model-quantity").next().attr("hidden", "");
         }
 
@@ -329,7 +328,7 @@ function getModels(formData) {
         if (!modelUrlIamge) {
             elementModel.find(".model-url-iamge").next().removeAttr("hidden");
             complete = false;
-        }else{
+        } else {
             elementModel.find(".model-url-iamge").next().attr("hidden", "");
         }
         formData.append("model", [modelName, modelQuantity, modelUrlIamge]);
@@ -381,18 +380,24 @@ function getProductDiscount(formData) {
         if (!pricePercentage) {
             elementProductDiscount.find(".price-percentage").next().removeAttr("hidden");
             complete = false;
+        }else{
+            elementProductDiscount.find(".price-percentage").next().attr("hidden", "");
         }
 
         const dateStart = elementProductDiscount.find(".date-start").val();
         if (!dateStart) {
             elementProductDiscount.find(".date-start").next().removeAttr("hidden");
             complete = false;
+        }else{
+            elementProductDiscount.find(".date-start").next().attr("hidden", "");
         }
 
         const dateEnd = elementProductDiscount.find(".date-end").val();
         if (!dateEnd) {
             elementProductDiscount.find(".date-end").next().removeAttr("hidden");
             complete = false;
+        }else{
+            elementProductDiscount.find(".date-end").next().attr("hidden", "");
         }
 
         formData.append("product-discount", [pricePercentage, dateStart, dateEnd]);
@@ -437,4 +442,48 @@ function getType(formData) {
     $(".error-select-type-product").attr("hidden", "");
     formData.append("type", type);
     return true;
+}
+
+function cancelAddProduct() {
+    $("#cancel-add-product").click(function () {
+        const formData = new FormData();
+        formData.append("action", "cancel-add-product");
+        formData.append("product-id", $("#product-id").attr("product-id"));
+        $.ajax({
+            url: "edit_product_manager",
+            data: formData,
+            dataType: "text",
+            method: "DELETE",
+            processData: false, // Không xử lý dữ liệu gửi đi
+            contentType: false,
+            success: function (data) {
+                localStorage.removeItem("describe");
+                window.location.replace("quan_ly_san_pham.jsp");
+            },
+            error: function (e) {
+            }
+        });
+    });
+}
+
+function lockProduct() {
+    $("#lock-product").click(function () {
+        const formData = new FormData();
+        formData.append("action", "lock-product");
+        formData.append("product-id", $("#product-id").attr("product-id"));
+        $.ajax({
+            url: "edit_product_manager",
+            data: formData,
+            dataType: "text",
+            method: "DELETE",
+            processData: false, // Không xử lý dữ liệu gửi đi
+            contentType: false,
+            success: function (data) {
+                localStorage.removeItem("describe");
+                window.location.replace("quan_ly_san_pham.jsp");
+            },
+            error: function (e) {
+            }
+        });
+    });
 }

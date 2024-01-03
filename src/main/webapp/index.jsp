@@ -374,7 +374,7 @@
                                                 class="f-button setAddCartLoop add-cart" data-type="add-cart">
                                             Xem nhanh
                                         </button>
-                                        <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
+                                        <button type="button" product-id="<%=prominentProducts.get(index).getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
                                     </div>
@@ -588,7 +588,7 @@
                                                 class="f-button setAddCartLoop add-cart" data-type="add-cart">
                                             Xem nhanh
                                         </button>
-                                        <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
+                                        <button type="button" product-id="<%=discountProducts.get(index).getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
                                     </div>

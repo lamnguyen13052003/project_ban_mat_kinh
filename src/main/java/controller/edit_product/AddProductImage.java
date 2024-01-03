@@ -10,7 +10,7 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 
-public class AddImageProduct implements Action {
+public class AddProductImage implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");

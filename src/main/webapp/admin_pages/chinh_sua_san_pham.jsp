@@ -253,12 +253,12 @@
 
             <div class="button-action row">
                 <div class="col-6">
-                    <button class="w-100  py-2 rounded" type="reset">
-                        <a class="text-light rounded" href="quan_ly_san_pham.jsp">Hủy</a>
+                    <button class="w-100  py-2 text-light rounded" id="<%=session.getAttribute("id-button-cancel")%>">
+                        Hủy
                     </button>
                 </div>
                 <div class="col-6">
-                    <button class="w-100 rounded py-2 text-light" action="add" id="submit" type="button">Lưu</button>
+                    <button class="w-100 rounded py-2 text-light" id="submit" type="button">Lưu</button>
                 </div>
             </div>
         </section>
