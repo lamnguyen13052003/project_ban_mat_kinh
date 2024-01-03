@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-@WebServlet(name = "UploadFileOnBannerManagement", value = "/upload-file-on-banner-management")
+@WebServlet(name = "UploadFileOnBannerManagement", value = "/admin_pages/upload-file-on-banner-management")
 @MultipartConfig(maxFileSize = 5 * 1024 * 1024, maxRequestSize = 50 *1024*1024) // Giới hạn kích thước tệp tối đa là 5 MB
 public class UploadFileOnBannerManagement extends HttpServlet {
     public static final int MAX_FILE_SIZE = 5 * 1024 * 1024;

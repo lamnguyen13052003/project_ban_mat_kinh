@@ -11,7 +11,7 @@ function uploadFile() {
         let formData = new FormData();
         formData.append(bannerId, file);
         $.ajax({
-            url : '../upload-file-on-banner-management',
+            url : 'upload-file-on-banner-management',
             data: formData,
             method: 'POST',
             dataType: 'json',
@@ -79,6 +79,12 @@ function disableRemoveButton() {
         });
     });
 }
+
+function removeSlides() {
+    
+}
+
+
 // function nonHover(element) {
 //         if(element.prop('disabled')){
 //             element.hover(() => {

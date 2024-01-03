@@ -31,4 +31,16 @@ public class BannerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Action action = null;
+        String actionStr = req.getParameter("action");
+        switch (actionStr) {
+            case "delete-file" ->{
+                action = new DeleteFileOnBannerManagement();
+            }
+        }
+        action.action(req, resp);
+    }
 }
