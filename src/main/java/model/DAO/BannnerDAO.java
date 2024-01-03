@@ -16,7 +16,7 @@ import java.util.Map;
 public class BannnerDAO extends  DAO{
     private static Jdbi conn;
     private static BannnerDAO INSTANCE;
-    private static final String QUERY_GET_BANNER = "SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?" ;
+    private static final String QUERY_GET_BANNER = "SELECT bi.urlImage, bi.id, bi.description FROM banner_images bi WHERE bi.description LIKE ?" ;
 
     public static BannnerDAO getInstance() {return INSTANCE != null ? INSTANCE : new BannnerDAO();}
 
@@ -78,7 +78,4 @@ public class BannnerDAO extends  DAO{
         ) ;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BannnerDAO().countSlide());
-    }
 }

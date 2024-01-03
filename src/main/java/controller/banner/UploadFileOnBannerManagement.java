@@ -25,6 +25,8 @@ public class UploadFileOnBannerManagement extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String SlideId =  request.getParameter("slide-id");
+        String nextId = (Integer.parseInt(SlideId.substring(6)) + 1)+"";
         try {
             ServletContext servletContext = request.getServletContext();
             String pathFile = servletContext.getRealPath("/") + "images/banner/";
@@ -48,13 +50,13 @@ public class UploadFileOnBannerManagement extends HttpServlet {
                     BannerImage bannerImage = new BannerImage();
                     bannerImage.setDescription(description);
                     bannerImage.setUrlImage(subFilePath);
-
+                    System.out.println(description);
+                    System.out.println(description.substring(6));
                     if(description.indexOf("banner") != -1) {
                         BannerService.getInstance().uploadBannerImage(bannerImage);
                     }else{
                         bannerImage.setId(BannerService.getInstance().nextIdOfSlide());
-                        System.out.println(BannerService.getInstance().countSlide());
-                        bannerImage.setDescription("slide-"+ (BannerService.getInstance().countSlide() + 1));
+                        bannerImage.setDescription("slide-"+ nextId);
                         BannerService.getInstance().insertSlideShowImages(bannerImage);
                     }
 

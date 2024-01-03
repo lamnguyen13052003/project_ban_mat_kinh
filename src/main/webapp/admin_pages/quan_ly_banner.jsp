@@ -105,15 +105,13 @@
                         BannerImage contactBanner = (BannerImage) request.getAttribute("bannerContactImages");
                         BannerImage authBanner = (BannerImage) request.getAttribute("bannerAuthImages");
                         List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
-                        int index = 0;
                             for(BannerImage ri : urls){
-                                index++;
                     %>
-                    <div class="slide-management p-3" slide-id = "slide-<%=index%>">
+                    <div class="slide-management p-3" slide-id = "<%=ri.getDescription()%>">
                         <div class="item-img col">
-                            <img class="img-fluid" data-banner="slide-added-<%=index%>" src="../<%=ri.getUrlImage()%>" alt="">
+                            <img class="img-fluid" data-banner="<%=ri.getDescription()%>" src="../<%=ri.getUrlImage()%>" alt="">
                             <div class="check-box-img">
-                                <input class="form-check-input" type="checkbox" id="check-img-<%=index%>">
+                                <input class="form-check-input" type="checkbox" id="check-img-<%=ri.getDescription().substring((6))%>">
                             </div>
                         </div>
                     </div>
