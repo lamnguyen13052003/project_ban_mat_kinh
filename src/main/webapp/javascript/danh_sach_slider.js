@@ -11,10 +11,10 @@ function uploadFile() {
         const bannerId = $(this).attr("id");
         var file = $(this)[0].files[0];
         const formData = new FormData();
-        // formData.append('slide-id', $('.slide-management').last().attr('slide-id'));
+        formData.append('action', 'upload-file');
         formData.append(bannerId, file);
         $.ajax({
-            url: 'upload-file-on-banner-management',
+            url: 'banner',
             data: formData,
             method: 'POST',
             dataType: 'json',
@@ -28,6 +28,30 @@ function uploadFile() {
             }
         });
     });
+}
+
+function addFile() {
+    const formData = new FormData();
+    formData.append('action', 'add-file');
+    formData.append('slideId', slideId);
+    formData.append("file-path", filePath);
+    $('#remove-img').click(() => {
+        $.ajax({
+            url: 'banner',
+            data: formData,
+            method: 'DELETE',
+            dataType: "text",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function () {
+                console.log("error");
+            }
+        })
+
+    })
 }
 
 function allChecked() {

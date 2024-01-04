@@ -5,23 +5,20 @@ import model.bean.BannerImage;
 import model.service.BannerService;
 import org.json.JSONObject;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
 
-public class UploadFileOnBannerManagement implements Action {
-
-
+public class AddFileOnBannerManagement implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             ServletContext servletContext = request.getServletContext();
-            String pathFile = servletContext.getRealPath("/") + "images/banner_management/banner/";
+            String pathFile = servletContext.getRealPath("/") + "images/banner_management/slide/";
             File file = new File(pathFile);
             if (!file.exists()) file.mkdirs();
             String fullFilePath, subFilePath;
@@ -43,13 +40,11 @@ public class UploadFileOnBannerManagement implements Action {
                     bannerImage.setDescription(description);
                     bannerImage.setUrlImage(subFilePath);
 
-                    BannerService.getInstance().uploadBannerImage(bannerImage);
 
-                    JSONObject json = new JSONObject();
-                    json.put("url", subFilePath);
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
-                    response.getWriter().write(json.toString());
+//                        bannerImage.setId(BannerService.getInstance().nextIdOfSlide());
+//                        bannerImage.setDescription("slide-"+ nextId);
+//                        BannerService.getInstance().insertSlideShowImages(bannerImage);
+
                 }
             }
 
