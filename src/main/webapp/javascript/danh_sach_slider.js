@@ -106,27 +106,12 @@ function disableButtonRemove() {
 
 function disableButtonSelectAllSlide(){
     const buttonSelectAllSlide = $("#select-all-img");
-    console.log($(`.slide-management`).length);
     if ($(`.slide-management`).length) {
         buttonSelectAllSlide.removeAttr("disabled");
     } else {
         buttonSelectAllSlide.attr("disabled", "true");
     }
 }
-
-/*function j tào lao quá.*/
-// function getSlideChecked() {
-//     $('.slide-management input[type="checkbox"]').on('change', () => {
-//         $('.slide-management input[type="checkbox"]').each((index, element) => {
-//             let checked = $(this).prop('checked');
-//             if (checked) {
-//                 let slideId = $(this).attr('slide-id');
-//                 let filePath = $(this).find('img').attr('src');
-//                 removeSlides(slideId, filePath);
-//             }
-//         })
-//     });
-// }
 
 /*ajax xóa 1 hình ảnh có id và đường dẫn hình đó*/
 function removeSlides(slideId, filePath) {
