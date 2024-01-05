@@ -124,10 +124,13 @@
 }
 
 /*Kết thúc phần avatar và text*/
-
 #main .table .body-table .product input {
     width: 25px;
     height: 25px;
+}
+
+#main .table .body-table .product .edit-product{
+    cursor: pointer;
 }
 
 /*footer-table*/

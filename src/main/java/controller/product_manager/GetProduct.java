@@ -15,31 +15,33 @@ import java.util.Map;
 public class GetProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String query = request.getQueryString();
-        if (query == null) query = "";
-        if (!query.contains("page")) query = query + "&page=1";
-        if (!query.contains("id-category-group")) query = "id-category-group=-1" + query;
-        int index = query.indexOf("&");
-        if (query.indexOf("id-category", index) == -1)
-            query = query.substring(0, index) + "&id-category=0" + query.substring(index, query.length());
+        String[] brandNames = request.getParameterValues("brand-name");
+        String[] categoryIds = request.getParameterValues("category-id");
+        String[] categoryGroupIds = request.getParameterValues("category-group-id");
+        String[] arrayAvailable = request.getParameterValues("available");
+        String[] pages = request.getParameterValues("page");
+        List<Product> products;
+        String brandName, requestStr = "";
+        ProductService productService;
+        int available = 0, page = 1, offset, totalProduct, categoryId = 0, categoryGroupId = -1;
+        brandName = brandNames == null ? "" : brandNames[brandNames.length - 1];
+        try {
+            available = Integer.parseInt(arrayAvailable == null ? "0" : arrayAvailable[arrayAvailable.length - 1]);
+            page = Integer.parseInt(pages == null ? "1" : pages[pages.length - 1]);
+            categoryId = Integer.parseInt(categoryIds == null ? "-1" : categoryIds[categoryIds.length - 1]);
+            categoryGroupId = Integer.parseInt(categoryGroupIds == null ? "-1" : categoryGroupIds[categoryGroupIds.length - 1]);
+        } catch (NumberFormatException e) {
+        }
+        offset = (page - 1) * 7;
+        productService = ProductService.getInstance();
+        products = productService.getProductForAdmin(categoryGroupId, categoryId, brandName, available, 7, offset);
+        totalProduct = productService.totalProduct(categoryGroupId, categoryId, brandName, available);
 
-        ProductService productService = ProductService.getInstance();
-        String formatQuery = productService.formatQueryRequest(query);
-        Map<String, Integer> mapInfRoot = productService.getMapInfRoot(formatQuery);
-        Map<String, List<String>> mapFilter = productService.getMapFilter(formatQuery);
-        Map<String, String> mapSort = productService.getMapSort(formatQuery);
-        List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort, 7);
-        int totalPages = productService.getTotalPages(mapInfRoot, mapFilter, mapSort);
-        int page = mapInfRoot.get("page");
-
+        requestStr = "product_manager?categoryGroupId" + categoryGroupId + "&categoryId" + categoryId + "&brandName" + brandName + "&available=" + available + "&page" + page;
         request.setAttribute("products", products);
-        request.setAttribute("request", formatQuery);
-        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("totalProduct", totalProduct);
         request.setAttribute("page", page);
-        request.setAttribute("mapInfRoot", mapInfRoot);
-        request.setAttribute("mapFilter", mapFilter);
-        request.setAttribute("mapSort", mapSort);
+        request.setAttribute("request", requestStr);
         request.getRequestDispatcher("quan_ly_san_pham.jsp").forward(request, response);
     }
-
 }
