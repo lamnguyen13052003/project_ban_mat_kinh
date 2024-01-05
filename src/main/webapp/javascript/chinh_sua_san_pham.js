@@ -1,33 +1,29 @@
 $(document).ready(function () {
-
+    let describe = localStorage.getItem("describe");
+    if (!describe) {
+        describe = ""
+    }
+    ckeditor.setData(describe + `<div><br></div>`);
+    ckeditor.on('change', function (evt) {
+        localStorage.setItem("describe", evt.editor.getData());
+    });
     addProductImage();
     addOption();
     addSaleProduct();
-
     $(".select-img-option-product").change(function (event) {
         const parent = $(this).parents(".a-input-option-product");
         parent.find("img").attr("src", event.target.value);
     });
-
     initSelectFilter("get-brands", $('#select-brand-product'));
     initSelectFilter("get-materials", $('#select-material-product'));
     initSelectFilter("get-types", $('#select-type-product'));
     sumit();
     cancelAddProduct();
-    lockProduct();
+    cancelEditProduct();
 });
 
 const ckeditor = CKEDITOR.replace('editor');
 CKFinder.setupCKEditor(ckeditor, "../ckfinder/");
-let describe = localStorage.getItem("describe");
-if (!describe) {
-    describe = ""
-}
-console.log(describe);
-ckeditor.setData(describe + `<div><br></div>`);
-ckeditor.on('change', function (evt) {
-    localStorage.setItem("describe", evt.editor.getData());
-});
 
 function initSelectFilter(action, select) {
     $.ajax({
@@ -38,7 +34,6 @@ function initSelectFilter(action, select) {
         },
         dataType: 'json',
         success: function (data) {
-            select.html(`<option value=""></option>`);
             const datas = data[Object.keys(data)[0]];
             datas.forEach(function (item) {
                 select.find(`option`).last().after(`<option value="${item}">${item}</option>`);
@@ -154,7 +149,7 @@ function addOption() {
                                 </select>
                                 <small hidden="" class="text-danger">Vui lòng chọn hình cho mẫu!</small>
                             </div>
-                            <button type="button" class="mx-auto cancel bg-danger rounded col-1"">x</button>
+                            <button type="button" class="mx-auto cancel bg-danger rounded col-1">x</button>
                         </div>`)
 
         $("#input-option-product").prev().find(".cancel").mouseup(function () {
@@ -380,7 +375,7 @@ function getProductDiscount(formData) {
         if (!pricePercentage) {
             elementProductDiscount.find(".price-percentage").next().removeAttr("hidden");
             complete = false;
-        }else{
+        } else {
             elementProductDiscount.find(".price-percentage").next().attr("hidden", "");
         }
 
@@ -388,7 +383,7 @@ function getProductDiscount(formData) {
         if (!dateStart) {
             elementProductDiscount.find(".date-start").next().removeAttr("hidden");
             complete = false;
-        }else{
+        } else {
             elementProductDiscount.find(".date-start").next().attr("hidden", "");
         }
 
@@ -396,7 +391,7 @@ function getProductDiscount(formData) {
         if (!dateEnd) {
             elementProductDiscount.find(".date-end").next().removeAttr("hidden");
             complete = false;
-        }else{
+        } else {
             elementProductDiscount.find(".date-end").next().attr("hidden", "");
         }
 
@@ -466,10 +461,10 @@ function cancelAddProduct() {
     });
 }
 
-function lockProduct() {
-    $("#lock-product").click(function () {
+function cancelEditProduct() {
+    $("#cancel-edit-product").click(function () {
         const formData = new FormData();
-        formData.append("action", "lock-product");
+        formData.append("action", "cancel-edit-product");
         formData.append("product-id", $("#product-id").attr("product-id"));
         $.ajax({
             url: "edit_product_manager",

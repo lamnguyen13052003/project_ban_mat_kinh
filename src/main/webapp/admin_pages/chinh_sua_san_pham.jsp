@@ -1,4 +1,6 @@
 <%@ page import="model.bean.User" %>
+<%@ page import="model.bean.Product" %>
+<%@ page import="model.bean.Model" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -92,6 +94,10 @@
 </header>
 
 <main id="main" class=" mt-5 pb-5">
+    <%
+        Product productEdit = (Product) session.getAttribute("product-edit");
+        productEdit = productEdit == null ? new Product() : productEdit;
+    %>
     <div class="container position-relative" id="product-id" product-id="<%=session.getAttribute("product-id")%>">
         <section class="left">
             <div class="input-info-product input">
@@ -103,7 +109,7 @@
                     <div class="row mb-4">
                         <div class="col">
                             <input autocomplete="false" type="text" class="w-100" name="name-product" id="product-name"
-                                   placeholder="Tên sản phẩm" required>
+                                   placeholder="Tên sản phẩm" required value="<%=productEdit.getName()%>">
                             <small class="text-danger" hidden="">Tên sản phẩm không được bỏ trống!</small>
                         </div>
                     </div>
@@ -153,6 +159,12 @@
                 </h4>
 
                 <div class="input-product-image-body" id="input-product-image-body">
+                    <%for (String url : productEdit.getProductImages()) {%>
+                    <div class="product-image">
+                        <img src="../<%=url%>" alt="image-product.png">
+                        <button type="button" path-file="<%=url%>" class="text-danger cancel">x</button>
+                    </div>
+                    <%}%>
                     <div class="input" id="input-img">
                         <label for="input-product-image" class="d-"><span
                                 class="material-symbols-outlined">cloud_upload</span></label>
@@ -170,13 +182,56 @@
                 </h4>
 
                 <div class="input-option-product-body" id="frame-input-option-product">
+                    <%
+                        for (int indexModel = 0; indexModel < productEdit.getModels().size(); indexModel++) {
+                            Model model = productEdit.getModels().get(indexModel);
+                    %>
+                    <div class="row a-input-option-product align-items-center mb-2 model">
+                        <div class="col-2 text-center">
+                            <img src="../<%=model.getUrlImage()%>" alt="hinh_anh.png">
+                        </div>
+                        <div class="col-3">
+                            <label>Tên mẫu</label>
+                            <input class="model-name" type="Text" required name="model-name" placeholder="Tên mẫu"
+                                   value="<%=model.getName()%>">
+                            <small hidden="" class="text-danger">Tên mẫu không được bỏ trống!</small>
+                        </div>
+                        <div class="col-3">
+                            <label>Số lượng</label>
+                            <input class="model-quantity" type="number" required name="model-quantity"
+                                   placeholder="Số lượng mẫu" value="<%=model.getQuantity()%>">
+                            <small hidden="" class="text-danger">Số lượng mẫu không được bỏ trống!</small>
+                        </div>
+                        <div class="col-3">
+                            <label>Lựa chọn hình</label>
+                            <select class="select-img-option-product model-url-iamge" name="model-url-iamge">
+                                <%
+                                    for (int indexProductImage = 0; indexProductImage < productEdit.getProductImages().size(); indexProductImage++) {
+                                        String url = productEdit.getProductImages().get(indexProductImage);
+                                %>
+                                <option value="../<%=url%>" <%if(model.getUrlImage().equals(url)) {%>selected<%}%>>
+                                    Hình <%=indexProductImage%>
+                                </option>
+                                <%}%>
+                            </select>
+                            <small hidden="" class="text-danger">Vui lòng chọn hình cho mẫu!</small>
+                        </div>
+                        <%if (indexModel != 0) {%>
+                        <button type="button" class="mx-auto cancel bg-danger rounded col-1">x</button>
+                        <%}%>
+                    </div>
+                    <%
+                        }
+                        if (productEdit.getModels().isEmpty()) {
+                    %>
                     <div class="row a-input-option-product align-items-center mb-2 model">
                         <div class="col-2 text-center">
                             <img src="../images/avatar/default_avatar.png" alt="hinh_anh.png">
                         </div>
                         <div class="col-3">
                             <label>Tên mẫu</label>
-                            <input class="model-name" type="Text" required name="model-name" placeholder="Tên mẫu"
+                            <input class="model-name" type="Text" required name="model-name"
+                                   placeholder="Tên mẫu"
                                    value="Mặc định">
                             <small hidden="" class="text-danger">Tên mẫu không được bỏ trống!</small>
                         </div>
@@ -188,12 +243,14 @@
                         </div>
                         <div class="col-3">
                             <label>Lựa chọn hình</label>
-                            <select class="select-img-option-product model-url-iamge" name="model-url-iamge">
+                            <select class="select-img-option-product model-url-iamge"
+                                    name="model-url-iamge">
                                 <option value="../images/avatar/default_avatar.png">Mặc định</option>
                             </select>
                             <small hidden="" class="text-danger">Vui lòng chọn hình cho mẫu!</small>
                         </div>
                     </div>
+                    <%}%>
                     <div id="input-option-product"></div>
                 </div>
                 <small hidden="" class="text-danger ps-4 error-input-model">Vui lòng thêm mẫu cho sản phẩm của
@@ -214,7 +271,7 @@
 
                 <div class="input-price-product-body">
                     <input type="number" class="w-100 mb-0" name="price-product" id="price-product"
-                           placeholder="Giá sản phẩm" required>
+                           placeholder="Giá sản phẩm" required value="<%=productEdit.getPrice()%>">
                     <small hidden="" class="text-danger">Giá sản phẩm không được bỏ trống!</small>
                     <div class="list-sale-product">
                         <div id="input-sale-product"></div>
@@ -235,16 +292,19 @@
                 <div class="input-filter-product-body">
                     <select class="w-100" data-tags="true" data-placeholder="Lựa chọn thương hiệu!"
                             name="select-brand-product" id="select-brand-product">
+                        <option value=""></option>
                     </select>
                     <small hidden="" class="text-danger error-select-brand-product">Vui lòng chọn thương hiệu cho sản
                         phẩm!</small>
                     <select class="w-100" data-tags="true" data-placeholder="Lựa chọn chất liệu!"
                             name="select-material-product" id="select-material-product">
+                        <option value=""></option>
                     </select>
                     <small hidden="" class="text-danger error-select-material-product">Vui lòng chọn chất liệu cho sản
                         phẩm!</small>
                     <select class="w-100" data-tags="true" data-placeholder="Lựa chọn kiểu!"
                             name="select-type-product" id="select-type-product">
+                        <option value=""></option>
                     </select>
                     <small hidden="" class="text-danger error-select-type-product">Vui lòng chọn kiểu cho sản
                         phẩm!</small>
@@ -310,6 +370,20 @@
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/form_des.js"></script>
+<%if (productEdit.getDescribe() != null) {%>
+<script type="text/javascript">
+    localStorage.setItem("describe", `<%=productEdit.getDescribe()%>`);
+    const optionProductCategory = $("#product-category-id").find("option");
+    optionProductCategory.each(function (option) {
+        if($(this).text() === "<%=productEdit.getBrandName()%>") $(this).attr("selected", "selected");
+    });
+    $(document).ready(function () {
+        $("#select-brand-product").val("<%=productEdit.getBrandName()%>").trigger('change');
+        $("#select-material-product").val("<%=productEdit.getMaterial()%>").trigger('change');
+        $("#select-type-product").val("<%=productEdit.getType()%>").select2().trigger('change');
+    })
+</script>
+<%}%>
 <script src="../javascript/chinh_sua_san_pham.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");

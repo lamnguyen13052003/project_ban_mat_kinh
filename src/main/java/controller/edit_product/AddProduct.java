@@ -35,6 +35,8 @@ public class AddProduct implements Action {
         product.setProductDiscount(request.getParameterValues("product-discount"));
         ProductService.getInstance().update(product);
         request.getSession().removeAttribute("product-id");
+        request.getSession().removeAttribute("id-button-cancel");
+        request.getSession().removeAttribute("product-edit");
         request.getSession().removeAttribute("submit-product");
         request.getSession().setAttribute("message", "Thêm sản phẩm thành thông!");
         response.getWriter().println("Thêm thành công!");

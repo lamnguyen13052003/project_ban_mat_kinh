@@ -26,9 +26,9 @@ public class ProductDiscountService {
     }
 
     public void insert(int id, List<ProductDiscount> productDiscounts) {
-        System.out.println("running");
         for (ProductDiscount productDiscount : productDiscounts) {
-            ProductDiscountDAO.getInstance().insert(id, productDiscount);
+            productDiscount.setProductId(id);
+            ProductDiscountDAO.getInstance().insert(productDiscount);
         }
     }
 }

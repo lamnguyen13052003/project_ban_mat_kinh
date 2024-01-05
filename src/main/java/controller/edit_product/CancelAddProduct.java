@@ -18,5 +18,7 @@ public class CancelAddProduct implements Action {
         }
 
         ProductService.getInstance().delete(productId);
+        request.getSession().removeAttribute("product-id");
+        request.getSession().removeAttribute("id-button-cancel");
     }
 }

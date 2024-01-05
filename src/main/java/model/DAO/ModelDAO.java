@@ -44,7 +44,7 @@ public class ModelDAO extends DAO {
                             .bind(3, model.getUrlImage())
                             .bind(4, model.getQuantity())
                             .execute()
-            ) == 1 ? true : false;
+            ) == 1;
         }
 
         return result;

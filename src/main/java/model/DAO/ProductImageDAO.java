@@ -43,13 +43,13 @@ public class ProductImageDAO extends DAO {
         );
     }
 
-    public boolean insert(int id, String url) {
+    public boolean insert(ProductImage productImage) {
         String sql = "INSERT INTO product_images(productId, urlImage) values(?, ?);";
         boolean result = true;
         result &= connector.withHandle(handle ->
                 handle.createUpdate(sql)
-                        .bind(0, id)
-                        .bind(1, url)
+                        .bind(0, productImage.getProductId())
+                        .bind(1, productImage.getUrlImage())
                         .execute()
         ) == 1 ? true : false;
         return result;

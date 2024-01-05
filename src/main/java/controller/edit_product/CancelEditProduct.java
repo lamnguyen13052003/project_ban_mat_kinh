@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LockProduct implements Action {
+public class CancelEditProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productId = 0;
@@ -17,6 +17,8 @@ public class LockProduct implements Action {
         } catch (NumberFormatException e) {
         }
 
-        ProductService.getInstance().lock(productId);
+        request.getSession().removeAttribute("product-id");
+        request.getSession().removeAttribute("product-edit");
+        request.getSession().removeAttribute("id-button-cancel");
     }
 }

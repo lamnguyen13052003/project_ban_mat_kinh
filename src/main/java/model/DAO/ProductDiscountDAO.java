@@ -46,10 +46,10 @@ public class ProductDiscountDAO extends DAO {
         );
     }
 
-    public void insert(int productId, ProductDiscount productDiscount) {
+    public void insert(ProductDiscount productDiscount) {
         connector.withHandle(handle ->
                 handle.createUpdate("INSERT INTO product_discounts(productId, pricePercentage, dateStart, dateEnd) VALUES (?, ?, ?, ?);")
-                        .bind(0, productId)
+                        .bind(0, productDiscount.getProductId())
                         .bind(1, productDiscount.getPricePercentage())
                         .bind(2, productDiscount.getDateStart().format(formatter))
                         .bind(3, productDiscount.getDateEnd().format(formatter))

@@ -2,6 +2,7 @@ package model.service;
 
 import model.DAO.ProductImageDAO;
 import model.bean.Product;
+import model.bean.ProductImage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,9 +32,10 @@ public class ProductImageService {
         return result;
     }
 
-    public boolean insert(int id, List<String> productImages) {
+    public boolean insert(int productId, List<String> productImages) {
         for(String url : productImages){
-            ProductImageDAO.getInstance().insert(id, url);
+            ProductImage productImage = new ProductImage(productId, url);
+            ProductImageDAO.getInstance().insert(productImage);
         }
 
         return true;

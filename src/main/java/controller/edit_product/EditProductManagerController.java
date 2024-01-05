@@ -51,8 +51,8 @@ public class EditProductManagerController extends HttpServlet {
             case "cancel-add-product" -> {
                 action = new CancelAddProduct();
             }
-            case "lock-product" -> {
-                action = new LockProduct();
+            case "cancel-edit-product" -> {
+                action = new CancelEditProduct();
             }
             case "delete-product-image" -> {
                 action = new DeleteProductImage();

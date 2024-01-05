@@ -3,8 +3,6 @@ package model.service;
 import model.DAO.ProductDAO;
 import model.bean.Product;
 import model.bean.ProductCart;
-import model.bean.ProductDiscount;
-import model.bean.ProductImage;
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -355,5 +353,19 @@ public class ProductService {
 
     public boolean lock(int productId) {
         return ProductDAO.getInstance().lock(productId);
+    }
+
+    public List<Product> getProductForAdmin(int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProductForAdmin(categoryGroupId, categoryId, "%" + brandName + "%", available, limit, offset);
+        setModel(products);
+
+        return products;
+    }
+
+
+    public int totalProduct(int categoryGroupId, int categoryId, String brandName, int available) {
+        return ProductDAO.getInstance().totalProduct(categoryGroupId, categoryId, "%" + brandName + "%", available);
     }
 }

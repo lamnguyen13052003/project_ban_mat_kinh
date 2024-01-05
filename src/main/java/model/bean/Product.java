@@ -15,6 +15,15 @@ public class Product {
     private List<ProductDiscount> productDiscounts;
 
     public Product() {
+        name = "";
+        brandName = "";
+        material = "";
+        type = "";
+        categoryName = "";
+        price = 0.0;
+        models = new ArrayList<>();
+        reviews = new ArrayList<>();
+        productImages = new ArrayList<>();
     }
 
     public int getCategoryId() {
@@ -235,7 +244,7 @@ public class Product {
 
     public void setProductDiscount(String[] parameterValues) {
         productDiscounts = new ArrayList<>();
-        for(String productDiscountStr : parameterValues){
+        for (String productDiscountStr : parameterValues) {
             ProductDiscount productDiscount = new ProductDiscount(productDiscountStr);
             productDiscounts.add(productDiscount);
         }

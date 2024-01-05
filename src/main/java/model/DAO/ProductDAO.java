@@ -4,10 +4,7 @@ import model.bean.Product;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class ProductDAO extends DAO {
     private final String WHERE_PRODUCT_DONT_DELETE = " WHERE p.`delete` = 0 ";
@@ -403,5 +400,129 @@ public class ProductDAO extends DAO {
                     .bind(1, productId)
                     .execute();
         }) == 1 ? true : false;
+    }
+
+    public List<Product> getProductForAdmin(int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+        String select = "DISTINCT p.id, p.name,p.brandName, c.name AS categoryName, p.price";
+        String groupBy = "p.id, p.name,p.brandName, c.name , p.price";
+        String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
+        List<Product> result = null;
+        Handle handle = connector.open();
+        Query query = handle.createQuery(sql);
+        if (categoryGroupId == -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, limit)
+                    .bind(2, offset)
+                    .mapToBean(Product.class).list();
+        }
+
+        if (categoryGroupId != -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, categoryGroupId)
+                    .bind(2, limit)
+                    .bind(3, offset)
+                    .mapToBean(Product.class).list();
+        }
+
+        if (categoryGroupId == -1 && categoryId != -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, categoryId)
+                    .bind(2, limit)
+                    .bind(3, offset)
+                    .mapToBean(Product.class).list();
+        }
+
+        query.close();
+        handle.close();
+        return result;
+    }
+
+    public int totalProduct(int categoryGroupId, int categoryId, String brandName, int available) {
+        String select = "COUNT(DISTINCT p.id)";
+        String groupBy = "";
+        String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
+        Handle handle = connector.open();
+        Query query = handle.createQuery(sql);
+        int result = 0;
+        if (categoryGroupId == -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, 9999999)
+                    .bind(2, 0)
+                    .mapTo(Integer.class).findFirst().orElse(0);
+        }
+
+        if (categoryGroupId != -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, categoryGroupId)
+                    .bind(2, 9999999)
+                    .bind(3, 0)
+                    .mapTo(Integer.class).findFirst().orElse(0);
+        }
+
+        if (categoryGroupId == -1 && categoryId != -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, categoryId)
+                    .bind(2, 9999999)
+                    .bind(3, 0)
+                    .mapTo(Integer.class).findFirst().orElse(0);
+        }
+
+        query.close();
+        handle.close();
+        return result;
+    }
+
+    private String getSQLForAdmin(int categoryGroupId, int categoryId, int available, String select, String groupBy) {
+        String stringReplace = "stringReplace";
+        String groupByStringReplace = "GROUP BY ";
+        StringBuilder sb = new StringBuilder("SELECT ")
+                .append(select)
+                .append(" FROM products AS p ")
+                .append("JOIN categories AS c JOIN category_groups AS cg ON cg.id = c.categoryGroupId ")
+                .append("ON c.id = p.categoryId ");
+        if (available != 0) {
+            sb.append("JOIN models AS m ON m.productId = p.id ")
+                    .append("LEFT JOIN bill_details AS bd ON bd.productId = p.id ")
+                    .append("WHERE p.brandName LIKE ? ")
+                    .append(stringReplace)
+                    .append(groupByStringReplace)
+                    .append(" HAVING ")
+                    .append("SUM(m.quantity) ");
+            if (available > 0) {
+                sb.append(">")
+                        .append(" SUM(bd.quantity) ")
+                        .append(" OR (SUM(m.quantity)")
+                        .append(">");
+            } else {
+                sb.append("<=")
+                        .append(" SUM(bd.quantity)")
+                        .append(" OR (SUM(m.quantity)")
+                        .append("<=");
+            }
+
+            sb.append("0 AND SUM(bd.quantity) IS NULL)");
+        } else {
+            sb.append("WHERE p.brandName LIKE ? ")
+                    .append(stringReplace)
+                    .append(groupByStringReplace);
+        }
+        sb.append(" LIMIT ? OFFSET ?");
+
+        if (groupBy != null && !groupBy.equals(""))
+            sb.replace(sb.indexOf(groupByStringReplace), sb.indexOf(groupByStringReplace) + groupByStringReplace.length(), groupByStringReplace + groupBy);
+        else
+            sb.delete(sb.indexOf(groupByStringReplace), sb.indexOf(groupByStringReplace) + groupByStringReplace.length());
+        if (categoryGroupId == -1 && categoryId == -1) {
+            sb.delete(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length());
+            return sb.toString();
+        }
+
+        if (categoryGroupId != -1) {
+            sb.replace(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length(), "AND cg.id = ? ");
+            return sb.toString();
+        }
+
+        sb.replace(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length(), "AND c.id = ? ");
+        return sb.toString();
     }
 }
