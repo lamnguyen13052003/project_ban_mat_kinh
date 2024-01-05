@@ -1,6 +1,10 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="model.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%User user = (User) session.getAttribute("user");%>
+<%@ page import="model.service.CartService" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -19,6 +23,36 @@
     <title>Tài khoản</title>
 </head>
 <body>
+<style>
+    .button {
+        background-color: #2f189a;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: block; /* Change from inline-block to block */
+        font-size: 16px;
+        margin-top: 4px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        margin-left: auto; /* Center horizontally */
+        margin-right: auto; /* Center horizontally */
+    }
+
+    .button1 {
+
+        color: white;
+
+    }
+
+
+
+</style>
+
+
+<div class="container">
+</div>
 <header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
@@ -61,7 +95,7 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                <span id="amount-product" class="amount-product">
+                                 <span id="amount-product" class="amount-product">
                                     <%
                                         CartService cart = (CartService) session.getAttribute("cart");
                                         if (cart == null) cart = new CartService();
@@ -172,7 +206,7 @@
         </div>
     </nav>
 </header>
-
+<!--    section 1-->
 <main id="main" class="mt-5 pb-5">
     <div id="account-page">
         <div class="container">
@@ -182,7 +216,7 @@
                     <div class="account-sidebar-header list-group align-items-center">
                         <div class="account-sidevar-avatar list-group-item  border-0">
                             <div class="display-avatar p-3 rounded-circle d-flex align-items-center justify-content-center">
-                                <img src="images/logo/logo.png" alt="" width="100px" id="avatar">
+                                <img src="<%=user.getAvatar()%>" alt="" width="100px" id="avatar">
                             </div>
                             <div class="change-avatar position-absolute">
                                 <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
@@ -190,7 +224,7 @@
                             </div>
                         </div>
                         <div class="account-sidevar-name list-group-item  border-0">
-                            <h3>Hi, <b>Nguyễn Lam</b></h3>
+                            <h3>Hi, <b><%=user.getFullName()%> </b></h3>
                         </div>
                     </div>
                     <div class="account-sidebar-menu mt-3">
@@ -211,6 +245,7 @@
                 </div>
 
                 <!--Phần trang-->
+
                 <div class="account-page col-9">
                     <!--Bắt đầu page-->
                     <div class="account-page-content active">
@@ -219,33 +254,36 @@
                         </h1>
                         <div class="account-page-detail account-page-info mt-3">
                             <div class="table-responsive">
-                                <div class="table overflow-x-hidden  pb-5">
-                                    <div class="row">
-                                        <div class="col-4"><span>Email</span></div>
-                                        <div class="col-8 "><span>kiminonawa1305@gmail.com</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Mật khẩu</span></div>
-                                        <div class="col-8 "><span>*********************</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Họ tên</span></div>
-                                        <div class="col-8 "><span>Nguyễn Đình Lam</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Giới tính</span></div>
-                                        <div class="col-8">
-                                            <span>Nam</span>
+                                <div class="table overflow-x-hidden">
+                                        <div class="row">
+                                            <div class="col-4"><span>Email</span></div>
+                                            <input style="width: 450px" readonly
+                                                   type="text" class="" aria-readonly="true" value="<%=user.getEmail()%>">
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Ngày sinh</span></div>
-                                        <div class="col-8"><span>13/05/2003</span></div>
+                                        <div class="row">
+                                            <div class="col-4"><span>Họ và tên</span></div>
+                                            <input  style="width: 450px"
+                                                    type="text" class="" name="fullName" id="fullname_edit" value="<%=user.getFullName()%>">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4"><span>Giới tính</span></div>
+                                            <select  style="width: 450px"  type="text"
+                                                     class="" name="sex" id="sex_edit" value="<%=user.getSex()%>">
+                                                <option value="Nam" <%=(user.equals("Nam"))?"selected='selected'":"" %> >Nam</option>
+                                                <option value="Nữ" <%=(user.equals("Nữ"))?"selected='selected'":"" %> >Nữ</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4"> <span>Ngày sinh</span> </div>
+                                            <input type="date" name="birthday" id="birthday_edit" style="width: 450px" class="" value="<%=user.getBirthDay()%>">
+                                        </div>
+                                        <button onclick="uploadProfile()" class="button button1">Lưu</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                     <!--Kết thúc page-->
 
                     <!--Bắt đầu page-->
@@ -332,9 +370,9 @@
 </footer>
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/tai_khoan.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-    <%User user = (User) session.getAttribute("user");
-    if(user != null){%>
+    <%if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
     user.setAvatar("<%=user.getAvatar()%>");
