@@ -20,12 +20,12 @@ public class DeleteFileOnBannerManagement implements Action {
         String subPathFile = request.getParameter("file-path").substring(2);
 
         BannerImage bannerImage = BannerService.getInstance().getBannerByDescription(slideId);
-        System.out.println(bannerImage.getDescription() + " " + bannerImage.getId());
         BannerService.getInstance().removeSlide(bannerImage);
 
         String pathFile = request.getServletContext().getRealPath("/") + subPathFile;
         File file = new File(pathFile);
         if(file.exists()) file.delete();
 
+        response.getWriter().write(slideId);
     }
 }

@@ -36,7 +36,7 @@ public class BannerService {
     public void insertSlideShowImages(BannerImage bannerImage){
         BannnerDAO.getInstance().insertSlideImage(bannerImage);
     }
-    public int nextIdOfSlide() {return BannnerDAO.getInstance().nextId();}
+    public int nextIdOfSlide() {return BannnerDAO.getInstance().nextId() + 1;}
     public int countSlide(){
         return BannnerDAO.getInstance().countSlide();
     }

@@ -22,37 +22,40 @@ public class AddFileOnBannerManagement implements Action {
             File file = new File(pathFile);
             if (!file.exists()) file.mkdirs();
             String fullFilePath, subFilePath;
-            for (Part part : request.getParts()) {
-                if (part.getContentType() != null) {
-                    String description = part.getName();
-                    String fileName = getFileName(part);
-                    long fileSize = part.getSize();
-                    if (fileSize > BannerController.MAX_FILE_SIZE) throw new IOException("File size exceeds the limit of 5 MB.");
-                    fullFilePath = pathFile + fileName;
-                    subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
+            Part part = request.getPart("path-file");
+            String fileName = getFileName(part);
 
-                    // Lưu tệp tải lên vào thư mục trên server
-                    String filePath = file + File.separator + fileName;
+            long fileSize = part.getSize();
+            if (fileSize > BannerController.MAX_FILE_SIZE)
+                throw new IOException("File size exceeds the limit of 5 MB.");
 
-                    part.write(fullFilePath);
-                    //update db
+            fullFilePath = pathFile + fileName;
+            subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
+
+            // Lưu tệp tải lên vào thư mục trên server
+            part.write(fullFilePath);
+
+            //update db
+            int slideId = BannerService.getInstance().nextIdOfSlide();
                     BannerImage bannerImage = new BannerImage();
-                    bannerImage.setDescription(description);
+                    bannerImage.setId(slideId);
                     bannerImage.setUrlImage(subFilePath);
+                    bannerImage.setDescription("slide-"+ slideId);
+                    BannerService.getInstance().insertSlideShowImages(bannerImage);
+            //responce
 
-
-//                        bannerImage.setId(BannerService.getInstance().nextIdOfSlide());
-//                        bannerImage.setDescription("slide-"+ nextId);
-//                        BannerService.getInstance().insertSlideShowImages(bannerImage);
-
-                }
-            }
-
-        }catch (Exception e) {
+            JSONObject json = new JSONObject();
+            json.put("slideId", slideId);
+            json.put("url", subFilePath);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json.toString());
+        } catch (Exception e) {
             e.printStackTrace();
             response.getWriter().println("Error uploading file:: " + e.getMessage());
         }
     }
+
     private String getFileName(Part part) {
         String contentDisposition = part.getHeader("content-disposition");
         String[] items = contentDisposition.split(";");

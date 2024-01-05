@@ -98,6 +98,7 @@
             <div class="col-10">
                 <div class="edit-img row row-cols-2" id="show-slides">
                     <%
+                        /*mấy cái attribute này class nào set*/
                         BannerImage loginBanner = (BannerImage) request.getAttribute("bannerLoginImages");
                         BannerImage signupBanner = (BannerImage) request.getAttribute("bannerSignupImages");
                         BannerImage prBanner = (BannerImage) request.getAttribute("bannerPRImages");
@@ -120,12 +121,14 @@
             </div>
             <div class="col-2 p-4">
                 <div class="btn-edit-img row row-cols-1 ">
-                    <button class="remove-img col" type="button"><span><i class="fa-solid fa-trash"></i></span><span
-                            class="px-2">Xóa</span></button>
+                    <button class="remove-img col" type="button" disabled>
+                        <span><i class="fa-solid fa-trash"></i></span>
+                        <span class="px-2">Xóa</span>
+                    </button>
                     <button id="select-all-img" class="select-all-img col" type="button"><span><i
                             class="fa-solid fa-check-double"></i></span><span class="px-2">Chọn tất cả</span></button>
                     <label class="add-img col" for="slide-added"><i class="fa-solid fa-arrow-up-from-bracket px-2"></i>Thêm ảnh</label>
-                    <form class="upload-img " action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
+                    <form class="add-img " action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                         <input id="slide-added" class="form-check-input imageInput " type="file" value="" name="slide-added"
                                accept="image/*" data-preview="slide-added" hidden>
                     </form>

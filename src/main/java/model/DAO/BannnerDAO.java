@@ -59,7 +59,7 @@ public class BannnerDAO extends  DAO{
 
     public int nextId(){
         return  connector.withHandle(handle ->
-                handle.createUpdate("SELECT MAX(id) FROM banner_images").execute())  + 1;
+                handle.createQuery("SELECT MAX(bi.id) FROM banner_images bi").mapTo(Integer.class).one());
     }
     public int countSlide(){
         return  connector.withHandle(handle ->

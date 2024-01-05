@@ -35,8 +35,6 @@ public class UploadFileOnBannerManagement implements Action {
                     subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
 
                     // Lưu tệp tải lên vào thư mục trên server
-                    String filePath = file + File.separator + fileName;
-
                     part.write(fullFilePath);
                     //update db
                     BannerImage bannerImage = new BannerImage();

@@ -1,13 +1,16 @@
 $(document).ready(function () {
     uploadFile();
-    allChecked();
-    showModel();
-    disableRemoveButton();
-    getSlideChecked();
+    addFile();
+    selectAllSlide();
+    eventRemoveSlides();
+    disableButtonSelectAllSlide();
+    $(".slide-management").change(function () {
+        disableButtonRemove();
+    });
 });
 
 function uploadFile() {
-    $(".upload-img input").change(function () {
+    $(".frame-banner .upload-img input").change(function () {
         const bannerId = $(this).attr("id");
         var file = $(this)[0].files[0];
         const formData = new FormData();
@@ -21,7 +24,7 @@ function uploadFile() {
             processData: false,
             contentType: false,
             success: function (data) {
-                    $(`img[data-banner="${bannerId}"]`).attr("src", "../" + data.url);
+                $(`img[data-banner="${bannerId}"]`).attr("src", "../" + data.url);
             },
             error: function () {
                 console.log("error uploading file");
@@ -31,93 +34,121 @@ function uploadFile() {
 }
 
 function addFile() {
-    const formData = new FormData();
-    formData.append('action', 'add-file');
-    formData.append('slideId', slideId);
-    formData.append("file-path", filePath);
-    $('#remove-img').click(() => {
+    /*Sao t hk tìm thấy input file này. */
+    $(".add-img input").change(function () {
+        var file = $(this)[0].files[0];
+        const formData = new FormData();
+        formData.append('action', 'add-file');
+        formData.append("path-file", file);
         $.ajax({
             url: 'banner',
             data: formData,
-            method: 'DELETE',
-            dataType: "text",
+            method: 'POST',
+            dataType: 'json',
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+                let show_slides = $('#show-slides').html();
+                let slide = '<div class="slide-management p-3" slide-id = "slide-' + data.slideId + '">\n' +
+                    '                        <div class="item-img col">\n' +
+                    '                            <img class="img-fluid" data-banner="slide-' + data.slideId + '" src="../' + data.url + '" alt="">\n' +
+                    '                            <div class="check-box-img">\n' +
+                    '                                <input class="form-check-input" type="checkbox" id="check-img-' + data.slideId + '">\n' +
+                    '                            </div>\n' +
+                    '                        </div>\n' +
+                    '                    </div>'
+                show_slides += slide;
+                $('#show-slides').html(show_slides);
+                $(".slide-management").change(function () {
+                    disableButtonRemove();
+                });
+                disableButtonSelectAllSlide();
             },
             error: function () {
                 console.log("error");
             }
         })
-
     })
+
 }
 
-function allChecked() {
+function selectAllSlide() {
     $("#select-all-img").click(function () {
         $('.slide-management input[type=\"checkbox\"]').prop("checked", true);
-        let disableBtn = $('.remove-img');
-        disableBtn.prop('disabled', false);
+        disableButtonRemove();
     });
 }
 
-function showModel() {
-    $('.remove-img').on('click', function () {
+function eventRemoveSlides() {
+    $('.remove-img').click(function () {
         $('.btn-show-model').click();
     });
-}
 
-function disableRemoveButton() {
-    let disableBtn = $('.remove-img');
-    disableBtn.prop('disabled', true);
-    $('.slide-management').on('change', function () {
-        $('.slide-management input[type=\"checkbox\"]').each(function getCheck(index, element) {
-            let checked = $(element).prop('checked');
-            if (checked) {
-                disableBtn.prop('disabled', false);
-                return false;
-            }
-            if(index === $(this).length - 1) {disableBtn.prop('disabled', true);}
-        })
-    });
-
-}
-
-function getSlideChecked() {
-    $('.slide-management input[type="checkbox"]').on('change', () => {
-        $('.slide-management input[type="checkbox"]').each((index, element) => {
-            let checked = $(element).prop('checked');
-            if (checked) {
-                disableRemoveButton(false)
-                let slideId = $(element).closest('.slide-management').attr('slide-id');
-                let filePath = $(element).closest('.slide-management').find('img').attr('src');
-                removeSlides(slideId, filePath);
-            }
-        })
+    $('#remove-img').click(function () {
+        $('.slide-management input[type="checkbox"]:checked').each(function (index) {
+            const slideId = $(this).parents('.slide-management').attr('slide-id');
+            const filePath = $(this).parents('.slide-management').find('img').attr('src');
+            removeSlides(slideId, filePath);
+        });
     });
 }
 
+
+/*vô hiệu hóa nút nhấn.*/
+function disableButtonRemove() {
+    let buttonDelete = $('.remove-img');
+    if (!$(`.slide-management`).length || !$(`.slide-management input[type="checkbox"]:checked`).length) {
+        buttonDelete.attr('disabled', "true");
+    } else {
+        buttonDelete.removeAttr('disabled');
+    }
+}
+
+function disableButtonSelectAllSlide(){
+    const buttonSelectAllSlide = $("#select-all-img");
+    console.log($(`.slide-management`).length);
+    if ($(`.slide-management`).length) {
+        buttonSelectAllSlide.removeAttr("disabled");
+    } else {
+        buttonSelectAllSlide.attr("disabled", "true");
+    }
+}
+
+/*function j tào lao quá.*/
+// function getSlideChecked() {
+//     $('.slide-management input[type="checkbox"]').on('change', () => {
+//         $('.slide-management input[type="checkbox"]').each((index, element) => {
+//             let checked = $(this).prop('checked');
+//             if (checked) {
+//                 let slideId = $(this).attr('slide-id');
+//                 let filePath = $(this).find('img').attr('src');
+//                 removeSlides(slideId, filePath);
+//             }
+//         })
+//     });
+// }
+
+/*ajax xóa 1 hình ảnh có id và đường dẫn hình đó*/
 function removeSlides(slideId, filePath) {
     const formData = new FormData();
     formData.append('slideId', slideId);
     formData.append("file-path", filePath);
-    $('#remove-img').click(() => {
-        $.ajax({
-            url: 'banner',
-            data: formData,
-            method: 'DELETE',
-            dataType: "text",
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                $('div[slide-id="' + slideId + '"]').remove();
-            },
-            error: function () {
-                console.log("error");
-            }
-        })
-
-    })
+    $.ajax({
+        url: 'banner',
+        data: formData,
+        method: 'DELETE',
+        dataType: "text",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            $('div[slide-id="' + data + '"]').remove();
+            disableButtonRemove();
+            disableButtonSelectAllSlide();
+        },
+        error: function () {
+            console.log("error");
+        }
+    });
 }
+
 
