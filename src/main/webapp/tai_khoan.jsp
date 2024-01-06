@@ -256,29 +256,27 @@
                             <div class="table-responsive">
                                 <div class="table overflow-x-hidden">
                                         <div class="row">
-                                            <div class="col-4"><span>Email</span></div>
-                                            <input style="width: 450px" readonly
-                                                   type="text" class="" aria-readonly="true" value="<%=user.getEmail()%>">
+                                            <div class="col-3"><span>Email</span></div>
+                                            <span class="d-block display-info"><%=user.getEmail()%></span>
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"><span>Họ và tên</span></div>
-                                            <input  style="width: 450px"
-                                                    type="text" class="" name="fullName" id="fullname_edit" value="<%=user.getFullName()%>">
+                                            <div class="col-3"><label class="d-inline" for="fullname_edit">Họ và tên</label></div>
+                                            <input type="text" class="display-info" name="fullName" id="fullname_edit" value="<%=user.getFullName()%>">
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"><span>Giới tính</span></div>
-                                            <select  style="width: 450px"  type="text"
-                                                     class="" name="sex" id="sex_edit" value="<%=user.getSex()%>">
+                                            <div class="col-3"><label  class="d-inline" for="sex_edit">Giới tính</label></div>
+                                            <select type="text"
+                                                     class="display-info" name="sex" id="sex_edit" value="<%=user.getSex()%>">
                                                 <option value="Nam" <%=(user.equals("Nam"))?"selected='selected'":"" %> >Nam</option>
                                                 <option value="Nữ" <%=(user.equals("Nữ"))?"selected='selected'":"" %> >Nữ</option>
                                             </select>
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"> <span>Ngày sinh</span> </div>
-                                            <input type="date" name="birthday" id="birthday_edit" style="width: 450px" class="" value="<%=user.getBirthDay()%>">
+                                            <div class="col-3"> <label class="d-inline" for="birthday_edit">Ngày sinh</label> </div>
+                                            <input type="date" name="birthday" id="birthday_edit"  class="display-info" value="<%=user.getBirthDay()%>">
                                         </div>
-                                        <button onclick="uploadProfile()" class="button button1">Lưu</button>
+                                        <button onclick="uploadProfile()" class="button button1 rounded">Lưu</button>
                                     </div>
                                 </div>
                             </div>
