@@ -1,9 +1,8 @@
 $(document).ready(function () {
-    getBrandName();
     editProduct();
 });
 
-function getBrandName() {
+function getBrandName(request) {
     $.ajax({
         url: "product_manager",
         method: "GET",
@@ -13,7 +12,8 @@ function getBrandName() {
         dataType: "JSON",
         success: function (data) {
             for (var i = 0; i < data.brands.length; i++) {
-                $("#list-brand-name li").last().after(`<li><a class="dropdown-item" href="link">${data.brands[i]}</a></li>`);
+                const brandName = data.brands[i];
+                $("#list-brand-name li").last().after(`<li><a class="dropdown-item" href="${request}&brand-name=${brandName}">${brandName}</a></li>`);
             }
         },
         error: function () {
