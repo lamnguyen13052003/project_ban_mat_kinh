@@ -402,7 +402,8 @@ public class ProductDAO extends DAO {
         }) == 1 ? true : false;
     }
 
-    public List<Product> getProductForAdmin(int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+    public List<Product> getProductForAdmin(String name, int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+        name = getNameFormatForQuery(name);
         String select = "DISTINCT p.id, p.name,p.brandName, c.name AS categoryName, p.price";
         String groupBy = "p.id, p.name,p.brandName, c.name , p.price";
         String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
@@ -411,24 +412,27 @@ public class ProductDAO extends DAO {
         Query query = handle.createQuery(sql);
         if (categoryGroupId == -1 && categoryId == -1) {
             result = query.bind(0, brandName)
-                    .bind(1, limit)
-                    .bind(2, offset)
+                    .bind(1, name)
+                    .bind(2, limit)
+                    .bind(3, offset)
                     .mapToBean(Product.class).list();
         }
 
         if (categoryGroupId != -1 && categoryId == -1) {
             result = query.bind(0, brandName)
-                    .bind(1, categoryGroupId)
-                    .bind(2, limit)
-                    .bind(3, offset)
+                    .bind(1, name)
+                    .bind(2, categoryGroupId)
+                    .bind(3, limit)
+                    .bind(4, offset)
                     .mapToBean(Product.class).list();
         }
 
         if (categoryGroupId == -1 && categoryId != -1) {
             result = query.bind(0, brandName)
-                    .bind(1, categoryId)
-                    .bind(2, limit)
-                    .bind(3, offset)
+                    .bind(1, name)
+                    .bind(2, categoryId)
+                    .bind(3, limit)
+                    .bind(4, offset)
                     .mapToBean(Product.class).list();
         }
 
@@ -437,7 +441,8 @@ public class ProductDAO extends DAO {
         return result;
     }
 
-    public int totalProduct(int categoryGroupId, int categoryId, String brandName, int available) {
+    public int totalProduct(String name, int categoryGroupId, int categoryId, String brandName, int available) {
+        name = getNameFormatForQuery(name);
         String select = "COUNT(DISTINCT p.id)";
         String groupBy = "";
         String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
@@ -446,24 +451,27 @@ public class ProductDAO extends DAO {
         int result = 0;
         if (categoryGroupId == -1 && categoryId == -1) {
             result = query.bind(0, brandName)
-                    .bind(1, 9999999)
-                    .bind(2, 0)
+                    .bind(1,  name)
+                    .bind(2, 9999999)
+                    .bind(3, 0)
                     .mapTo(Integer.class).findFirst().orElse(0);
         }
 
         if (categoryGroupId != -1 && categoryId == -1) {
             result = query.bind(0, brandName)
-                    .bind(1, categoryGroupId)
-                    .bind(2, 9999999)
-                    .bind(3, 0)
+                    .bind(1, name)
+                    .bind(2, categoryGroupId)
+                    .bind(3, 9999999)
+                    .bind(4, 0)
                     .mapTo(Integer.class).findFirst().orElse(0);
         }
 
         if (categoryGroupId == -1 && categoryId != -1) {
             result = query.bind(0, brandName)
-                    .bind(1, categoryId)
-                    .bind(2, 9999999)
-                    .bind(3, 0)
+                    .bind(1,  name)
+                    .bind(2, categoryId)
+                    .bind(3, 9999999)
+                    .bind(4, 0)
                     .mapTo(Integer.class).findFirst().orElse(0);
         }
 
@@ -484,6 +492,7 @@ public class ProductDAO extends DAO {
             sb.append("JOIN models AS m ON m.productId = p.id ")
                     .append("LEFT JOIN bill_details AS bd ON bd.productId = p.id ")
                     .append("WHERE p.brandName LIKE ? ")
+                    .append("AND p.name LIKE ? ")
                     .append(stringReplace)
                     .append(groupByStringReplace)
                     .append(" HAVING ")
@@ -524,5 +533,17 @@ public class ProductDAO extends DAO {
 
         sb.replace(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length(), "AND c.id = ? ");
         return sb.toString();
+    }
+
+    private String getNameFormatForQuery(String name){
+        StringTokenizer st = new StringTokenizer(name, " ");
+        StringBuilder nameSb = new StringBuilder("%");
+        while(st.hasMoreTokens()) {
+            nameSb.append(st.nextToken());
+            if(st.hasMoreTokens()) nameSb.append("%");
+        }
+        nameSb.append("%");
+
+        return nameSb.toString();
     }
 }

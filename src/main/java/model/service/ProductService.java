@@ -9,7 +9,7 @@ import java.util.*;
 
 public class ProductService {
     public static ProductService instance;
-    private static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
+    public static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
     private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
     static {
@@ -355,17 +355,17 @@ public class ProductService {
         return ProductDAO.getInstance().lock(productId);
     }
 
-    public List<Product> getProductForAdmin(int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+    public List<Product> getProductForAdmin(String name, int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProductForAdmin(categoryGroupId, categoryId, "%" + brandName + "%", available, limit, offset);
+        List<Product> products = productDAO.getProductForAdmin(name, categoryGroupId, categoryId, "%" + brandName + "%", available, limit, offset);
         setModel(products);
 
         return products;
     }
 
 
-    public int totalProduct(int categoryGroupId, int categoryId, String brandName, int available) {
-        return ProductDAO.getInstance().totalProduct(categoryGroupId, categoryId, "%" + brandName + "%", available);
+    public int totalProduct(String name, int categoryGroupId, int categoryId, String brandName, int available) {
+        return ProductDAO.getInstance().totalProduct(name, categoryGroupId, categoryId, "%" + brandName + "%", available);
     }
 }

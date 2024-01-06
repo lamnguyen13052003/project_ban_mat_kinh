@@ -105,33 +105,43 @@
                         <div class="filter-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    ---------------Trạng thái---------------
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="button-status">
+                                    <%=request.getAttribute("availableString")%>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <div class="dropdown-title text-secondary">---------------Trạng thái---------------</div>
+                                    <div class="dropdown-title text-secondary">
+                                        ---------------Trạng thái---------------
+                                    </div>
                                     <li><a class="dropdown-item" href="<%=requestString%>&available=0">Tất cả</a></li>
                                     <li><a class="dropdown-item" href="<%=requestString%>&available=1">Còn hàng</a></li>
-                                    <li><a class="dropdown-item" href="<%=requestString%>&available=-1">Hết hàng</a></li>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=-1">Hết hàng</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="option-filter col-4">
                         <div class="filter-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    ---------------Thương hiệu---------------
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="button-brand-name">
+                                    <%=request.getAttribute("brand-name")%>
                                 </button>
                                 <ul class="dropdown-menu" id="list-brand-name">
-                                    <div class="dropdown-title text-secondary">---------------Thương
-                                        hiệu---------------
+                                    <div class="dropdown-title text-secondary">
+                                        ---------------Thương hiệu---------------
                                     </div>
                                     <li><a class="dropdown-item"
-                                           href="<%=response.encodeURL(requestString + "&brand-name=")%>">Tất
-                                        cả</a></li>
+                                           href="<%=response.encodeURL(requestString + "&brand-name=")%>">Tất cả</a>
+                                    </li>
+                                    <%
+                                        List<String> brandName = (List<String>) request.getAttribute("list-brand-name");
+                                        for (String brand : brandName) {
+                                    %>
+                                    <li>
+                                        <a class="dropdown-item" href="<%=response.encodeURL(requestString + "&brand-name=" + brand)%>"><%=brand%></a>
+                                    </li>
+                                    <%}%>
                                 </ul>
                             </div>
                         </div>
@@ -140,8 +150,8 @@
                         <div class="filter-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    ---------------Danh mục---------------
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="button-category">
+                                    <%=request.getAttribute("category")%>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <div class="dropdown-title text-secondary">---------------Danh mục---------------
@@ -242,7 +252,11 @@
                     <div class="option-search col-9">
                         <div class="search-item rounded">
                             <input type="text" name="search-name-product" id="search-name-product"
-                                   placeholder="Nhập tên sản phẩm">
+                                   placeholder="Nhập tên sản phẩm"
+                                   available="<%=request.getAttribute("available")%>"
+                                   brand-name="<%=request.getAttribute("brand-name")%>"
+                                   category-id="<%=request.getAttribute("category-id")%>"
+                                   category-group-id="<%=request.getAttribute("category-group-id")%>">
                             <label for="search-name-product" class="d-flex align-items-center p-1"><span
                                     class="material-symbols-outlined ps-1 fs-3">search</span></label>
                         </div>
@@ -437,11 +451,6 @@
     <%}
     session.removeAttribute("message");
     %>
-
-    <%List<String> brandName = (List<String>) request.getAttribute("brand-name");
-    for(String brand : brandName) {%>
-    $("#list-brand-name li").last().after(`<li><a class="dropdown-item" href="<%=response.encodeURL(requestString + "&brand-name=" + brand)%>"><%=brand%></a></li>`);
-    <%}%>
 </script>
 </body>
 </html>
