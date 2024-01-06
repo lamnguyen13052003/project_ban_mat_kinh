@@ -3,6 +3,7 @@ package controller.product_manager;
 import controller.Action;
 import model.bean.Product;
 import model.service.ProductService;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,16 +40,18 @@ public class GetProduct implements Action {
         totalProduct = productService.totalProduct(name, categoryGroupId, categoryId, brandName, available);
         listBrandName = ProductService.getInstance().getBrands();
 
-        requestStr = "product_manager?categoryGroupId=" + categoryGroupId + "&categoryId=" + categoryId + "&brand-name=" + brandName + "&available=" + available + "&page=" + page;
+        requestStr = "product_manager?name=" + name + "&categoryGroupId=" + categoryGroupId + "&categoryId=" + categoryId + "&brand-name=" + brandName + "&available=" + available + "&page=" + page;
         request.setAttribute("products", products);
         request.setAttribute("totalProduct", totalProduct);
         request.setAttribute("page", page);
         request.setAttribute("request", requestStr);
         request.setAttribute("list-brand-name", listBrandName);
-        request.setAttribute("brand-name", getBrandName(brandName));
+        request.setAttribute("brand-name-string", getBrandName(brandName));
         request.setAttribute("category", getCategory(categoryGroupId, categoryId));
-        request.setAttribute("availableString", getAvailableString(available));
+        request.setAttribute("available-string", getAvailableString(available));
         request.setAttribute("page", page);
+        request.setAttribute("name", name);
+        request.setAttribute("brand-name", brandName);
         request.setAttribute("available", available);
         request.setAttribute("category-id", categoryId);
         request.setAttribute("category-group-id", categoryGroupId);

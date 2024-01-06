@@ -512,6 +512,7 @@ public class ProductDAO extends DAO {
             sb.append("0 AND SUM(bd.quantity) IS NULL)");
         } else {
             sb.append("WHERE p.brandName LIKE ? ")
+                    .append("AND p.name LIKE ? ")
                     .append(stringReplace)
                     .append(groupByStringReplace);
         }

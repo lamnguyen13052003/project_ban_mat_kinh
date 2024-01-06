@@ -106,7 +106,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" id="button-status">
-                                    <%=request.getAttribute("availableString")%>
+                                    <%=request.getAttribute("available-string")%>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <div class="dropdown-title text-secondary">
@@ -125,7 +125,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" id="button-brand-name">
-                                    <%=request.getAttribute("brand-name")%>
+                                    <%=request.getAttribute("brand-name-string")%>
                                 </button>
                                 <ul class="dropdown-menu" id="list-brand-name">
                                     <div class="dropdown-title text-secondary">
@@ -139,7 +139,9 @@
                                         for (String brand : brandName) {
                                     %>
                                     <li>
-                                        <a class="dropdown-item" href="<%=response.encodeURL(requestString + "&brand-name=" + brand)%>"><%=brand%></a>
+                                        <a class="dropdown-item"
+                                           href="<%=response.encodeURL(requestString + "&brand-name=" + brand)%>"><%=brand%>
+                                        </a>
                                     </li>
                                     <%}%>
                                 </ul>
@@ -250,16 +252,19 @@
 
                 <div class="search-body row">
                     <div class="option-search col-9">
-                        <div class="search-item rounded">
-                            <input type="text" name="search-name-product" id="search-name-product"
-                                   placeholder="Nhập tên sản phẩm"
-                                   available="<%=request.getAttribute("available")%>"
-                                   brand-name="<%=request.getAttribute("brand-name")%>"
-                                   category-id="<%=request.getAttribute("category-id")%>"
-                                   category-group-id="<%=request.getAttribute("category-group-id")%>">
-                            <label for="search-name-product" class="d-flex align-items-center p-1"><span
-                                    class="material-symbols-outlined ps-1 fs-3">search</span></label>
-                        </div>
+                        <form action="product_manager" method="GET" accept-charset="UTF-8">
+                            <div class="search-item rounded">
+                                <input type="text" name="name" id="search-name-product"
+                                       placeholder="Nhập tên sản phẩm" value="<%=request.getAttribute("name")%>">
+                                <label for="search-name-product" class="d-flex align-items-center p-1"><span
+                                        class="material-symbols-outlined ps-1 fs-3">search</span></label>
+                            </div>
+                            <input type="text" name="category-group-id" value="<%=request.getAttribute("category-group-id")%>" hidden>
+                            <input type="text" name="category-id" value="<%=request.getAttribute("category-id")%>" hidden>
+                            <input type="text" name="brand-name" value="<%=request.getAttribute("brand-name")%>" hidden>
+                            <input type="text" name="available" value="<%=request.getAttribute("available")%>" hidden>
+                            <input type="submit" value="" hidden="">
+                        </form>
                     </div>
 
                     <div class="addProduct  ms-5 col-3">
