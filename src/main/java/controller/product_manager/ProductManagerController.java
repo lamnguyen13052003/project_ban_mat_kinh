@@ -11,9 +11,11 @@ import java.io.IOException;
 public class ProductManagerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Action action = null;
         String actionName = request.getParameter("action");
-        if(actionName == null) actionName = "product";
+        if(actionName == null) actionName = "";
         switch (actionName) {
             case "band-name" ->{
                 action = new GetBrandProduct();
@@ -31,6 +33,18 @@ public class ProductManagerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        Action action = null;
+        String actionName = request.getParameter("action");
+        if(actionName == null) actionName = "";
+        switch (actionName) {
+            case "edit-product" ->{
+                action = new ChangePageEditProduct();
+            }
+            default ->{
+            }
+        }
+        action.action(request, response);
     }
 }

@@ -2,7 +2,12 @@ package model.bean;
 
 public class ProductImage {
     private Integer id, productId;
-    private String urlImage, type;
+    private String urlImage;
+
+    public ProductImage(Integer productId, String urlImage) {
+        this.productId = productId;
+        this.urlImage = urlImage;
+    }
 
     public Integer getProductId() {
         return productId;
@@ -20,20 +25,12 @@ public class ProductImage {
         this.urlImage = urlImage;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     @Override
     public String toString() {
         return "ProductImage{" +
                 "productId=" + productId +
                 ", urlImage='" + urlImage + '\'' +
-                ", type='" + type + '\'' +
                 '}';
     }
 }

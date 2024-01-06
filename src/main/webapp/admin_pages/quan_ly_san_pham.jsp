@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
+<%@ page import="model.bean.Model" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/admin_pages.css">
+    <link rel="stylesheet" href="../css/quan_ly_san_pham.css">
     <link rel="icon" href="../images/logo/logo_icon.png">
 
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
@@ -90,6 +92,7 @@
     </nav>
 </header>
 
+<%String requestString = (String) request.getAttribute("request");%>
 <main id="main" class=" mt-5 pb-5">
     <div class="container">
         <div class="display-product">
@@ -97,36 +100,50 @@
                 <div class="filter_header ms-4">
                     <span>Bộ lọc</span>
                 </div>
-
                 <div class="filter-body row">
                     <div class="option-filter col-4">
                         <div class="filter-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    Trạng thái
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="button-status">
+                                    <%=request.getAttribute("available-string")%>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                                    <li><a class="dropdown-item" href="#">Còn hàng</a></li>
-                                    <li><a class="dropdown-item" href="#">Hết hàng</a></li>
+                                    <div class="dropdown-title text-secondary">
+                                        ---------------Trạng thái---------------
+                                    </div>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=0">Tất cả</a></li>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=1">Còn hàng</a></li>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=-1">Hết hàng</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="option-filter col-4">
                         <div class="filter-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    ---------------Thương hiệu---------------
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="button-brand-name">
+                                    <%=request.getAttribute("brand-name-string")%>
                                 </button>
                                 <ul class="dropdown-menu" id="list-brand-name">
-                                    <div class="dropdown-title text-secondary">---------------Thương
-                                        hiệu---------------
+                                    <div class="dropdown-title text-secondary">
+                                        ---------------Thương hiệu---------------
                                     </div>
-                                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="<%=response.encodeURL(requestString + "&brand-name=")%>">Tất cả</a>
+                                    </li>
+                                    <%
+                                        List<String> brandName = (List<String>) request.getAttribute("list-brand-name");
+                                        for (String brand : brandName) {
+                                    %>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="<%=response.encodeURL(requestString + "&brand-name=" + brand)%>"><%=brand%>
+                                        </a>
+                                    </li>
+                                    <%}%>
                                 </ul>
                             </div>
                         </div>
@@ -135,48 +152,90 @@
                         <div class="filter-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    ---------------Danh mục---------------
+                                        data-bs-toggle="dropdown" aria-expanded="false" id="button-category">
+                                    <%=request.getAttribute("category")%>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <div class="dropdown-title text-secondary">---------------Danh mục---------------
                                     </div>
-                                    <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                                    <li><a class="dropdown-item" href="#">Kính mát</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="<%=requestString%>&category-group-id=-1&category-id=-1">Tất
+                                        cả</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="<%=requestString%>&category-group-id=1&category-id=-1">Kính
+                                        mát</a></li>
                                     <li>
                                         <ul>
-                                            <li><a class="dropdown-item" href="#">Kính mát nam</a></li>
-                                            <li><a class="dropdown-item" href="#">Kính mát nữ</a></li>
-                                            <li><a class="dropdown-item" href="#">Kính đi ngày và đêm</a></li>
-                                            <li><a class="dropdown-item" href="#">Kính đổi màu</a></li>
-                                            <li><a class="dropdown-item" href="#">Kính lọc ánh sáng xanh</a></li>
-                                            <li><a class="dropdown-item" href="#">Kính mắt clip on 2 lớp</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=1">Kính
+                                                mát nam</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=2">Kính
+                                                mát nữ</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=3">Kính
+                                                đi ngày và đêm</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=4">Kính
+                                                đổi màu</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=5">Kính
+                                                lọc ánh sáng xanh</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=6">Kính
+                                                mắt clip on 2 lớp</a></li>
                                         </ul>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Mắt kính trẻ em</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="<%=requestString%>&category-group-id=2&category-id=-1">Mắt
+                                        kính trẻ em</a></li>
                                     <li>
                                         <ul>
-                                            <li><a class="dropdown-item" href="#">Gọng kính trẻ en</a></li>
-                                            <li><a class="dropdown-item" href="#">Kính mát trẻ em</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=7">Gọng
+                                                kính trẻ en</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=8">Kính
+                                                mát trẻ em</a></li>
                                         </ul>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Gọng kính</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="<%=requestString%>&category-group-id=3&category-id=-1">Gọng
+                                        kính</a></li>
                                     <li>
                                         <ul>
-                                            <li><a class="dropdown-item" href="#">Gọng kính nữa khung</a></li>
-                                            <li><a class="dropdown-item" href="#">Gọng kính khoan</a></li>
-                                            <li><a class="dropdown-item" href="#">Gọng kính tròn</a></li>
-                                            <li><a class="dropdown-item" href="#">Gọng kính titan</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=9">Gọng
+                                                kính nữa khung</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=10">Gọng
+                                                kính khoan</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=11">Gọng
+                                                kính tròn</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=12">Gọng
+                                                kính titan</a></li>
                                         </ul>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Tròng kính</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="<%=requestString%>&category-group-id=4&category-id=-1">Tròng
+                                        kính</a></li>
                                     <li>
                                         <ul>
-                                            <li><a class="dropdown-item" href="#">Tròng kính chống ánh sáng xanh</a>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=13">Tròng
+                                                kính chống ánh sáng xanh</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="#">Tròng kính đổi màu</a></li>
-                                            <li><a class="dropdown-item" href="#">Tròng kính màu</a></li>
-                                            <li><a class="dropdown-item" href="#">Tròng kính cho gọng khoan</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=14">Tròng
+                                                kính đổi màu</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=15">Tròng
+                                                kính màu</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=16">Tròng
+                                                kính cho gọng khoan</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -193,12 +252,19 @@
 
                 <div class="search-body row">
                     <div class="option-search col-9">
-                        <div class="search-item rounded">
-                            <input type="text" name="search-name-product" id="search-name-product"
-                                   placeholder="Nhập tên sản phẩm">
-                            <label for="search-name-product" class="d-flex align-items-center p-1"><span
-                                    class="material-symbols-outlined ps-1 fs-3">search</span></label>
-                        </div>
+                        <form action="product_manager" method="GET" accept-charset="UTF-8">
+                            <div class="search-item rounded">
+                                <input type="text" name="name" id="search-name-product"
+                                       placeholder="Nhập tên sản phẩm" value="<%=request.getAttribute("name")%>">
+                                <label for="search-name-product" class="d-flex align-items-center p-1"><span
+                                        class="material-symbols-outlined ps-1 fs-3">search</span></label>
+                            </div>
+                            <input type="text" name="category-group-id" value="<%=request.getAttribute("category-group-id")%>" hidden>
+                            <input type="text" name="category-id" value="<%=request.getAttribute("category-id")%>" hidden>
+                            <input type="text" name="brand-name" value="<%=request.getAttribute("brand-name")%>" hidden>
+                            <input type="text" name="available" value="<%=request.getAttribute("available")%>" hidden>
+                            <input type="submit" value="" hidden="">
+                        </form>
                     </div>
 
                     <div class="addProduct  ms-5 col-3">
@@ -240,19 +306,28 @@
                                 <p class="id-product">#<%=product.getId()%>
                                 </p>
                                 <select>
-                                    <option value="">Đỏ</option>
-                                    <option value="">Xanh</option>
-                                    <option value="">Tím</option>
+                                    <%for (Model model : product.getModels()) {%>
+                                    <option value="<%=model.getId()%>"><%=model.getName()%>
+                                    </option>
+                                    <%}%>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-2 type-product">Kính mắt trẻ em</div>
-                        <div class="col-1 amount-product te">2222</div>
-                        <div class="col-1 amount-product-bought">1231</div>
+                        <div class="col-2 type-product"><%=product.getCategoryName()%>
+                        </div>
+                        <div class="col-1 amount-product"><%=product.getModels().get(0).getQuantity()%>
+                        </div>
+                        <div class="col-1 amount-product-bought"><%=product.getModels().get(0).getTotalQuantitySold()%>
+                        </div>
                         <div class="col-2 price"><%=nf.format(product.getPrice())%>
                         </div>
+                        <%if (product.getModels().get(0).available()) {%>
                         <div class="col-1 status">Còn hàng</div>
-                        <div class="col-1"><span class="material-symbols-outlined">edit</span></div>
+                        <%} else {%>
+                        <div class="col-1 status">Hết hàng</div>
+                        <%}%>
+                        <div class="col-1 edit-product" product-id="<%=product.getId()%>"><span
+                                class="material-symbols-outlined">edit</span></div>
                     </div>
                     <%}%>
                 </div>
@@ -353,7 +428,8 @@
             <div class="modal-body position-relative">
                 <div class="d-flex align-items-center justify-content-center">
                     <img style="width: 50px" src="../images/icon/complete.png" alt="complete.png">
-                    <p class="fs-1 ms-2"><%=message%></p>
+                    <p class="fs-1 ms-2"><%=message%>
+                    </p>
                 </div>
             </div>
         </div>
@@ -363,7 +439,7 @@
 
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
-<script src="../javascript/product_manager.js"></script>
+<script src="../javascript/quan_ly_san_pham.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

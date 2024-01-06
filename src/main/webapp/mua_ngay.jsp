@@ -207,12 +207,12 @@
                     <div class="list-product cart-body" id="list-product">
                         <%
                             NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
-                            List<ProductCart> productCartList = cart.getAllProductCart();
-                            for (ProductCart productCart : productCartList) {
+                            ProductCart productCart = (ProductCart) request.getAttribute("product-cart");
+                            if (productCart != null) {
                         %>
                         <!--Sản phẩm-->
                         <div class="product">
-                            <input class="product-checkbox" type="checkbox"
+                            <input hidden="" class="product-checkbox" type="checkbox" checked
                                    product-id="<%=productCart.getProductId()%>"
                                    model-id="<%=productCart.getModel().getId()%>">
                             <div class="info-product">
@@ -250,9 +250,6 @@
                                       <%=nf.format(productCart.totalPrice())%>
                                     </span>
                             </div>
-                            <button type="button" product-id="<%=productCart.getProductId()%>"
-                                    model-id="<%=productCart.getModel().getId()%>" class="cancel text-danger">x
-                            </button>
                         </div>
                         <!--Kết thúc sản phẩm-->
                         <%}%>

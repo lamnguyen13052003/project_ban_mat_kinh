@@ -20,4 +20,8 @@ public class ModelService {
     public Model getModel(int modelId) {
         return ModelDAO.getInstance().getModel(modelId);
     }
+
+    public boolean insert(List<Model> models) {
+        return ModelDAO.getInstance().insert(models);
+    }
 }

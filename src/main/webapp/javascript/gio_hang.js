@@ -33,7 +33,7 @@ function upValueInputNumber(input) {
                 modelId: $(this).attr("model-id"),
                 checked: checkbox
             },
-            method: "POST",
+            method: "OPTIONS",
             dataType: "json",
             success: function (data) {
                 product.find(".total-money").text(data.totalPriceProduct);
@@ -57,7 +57,7 @@ function downValueInputNumber(input) {
                 modelId: $(this).attr("model-id"),
                 checked: checkbox
             },
-            method: "POST",
+            method: "OPTIONS",
             dataType: "json",
             success: function (data) {
                 product.find(".total-money").text(data.totalPriceProduct);
@@ -80,7 +80,7 @@ function removeProduct() {
                 modelId: $(this).attr("model-id"),
                 checked: checkbox
             },
-            method: "POST",
+            method: "DELETE",
             dataType: "json",
             success: function (data) {
                 $(".amount-product").text(data.amountProduct);
@@ -139,7 +139,7 @@ function checkProduct() {
         const checkbox = $(this);
         $.ajax({
             url: "cart",
-            method: "POST",
+            method: "PUT",
             dataType: "json",
             data: {
                 action: "checked",

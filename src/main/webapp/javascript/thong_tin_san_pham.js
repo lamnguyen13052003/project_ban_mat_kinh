@@ -14,7 +14,8 @@ $(document).ready(function () {
     selectOption();
     changeAmount();
 
-    $(".account").find("a").attr("href", "../tai_khoan.jsp");;
+    $(".account").find("a").attr("href", "../tai_khoan.jsp");
+    ;
 });
 
 /******Nút xổ thêm thông tin mô tả của sản phẩm******/
@@ -28,7 +29,7 @@ function showMoreInfor() {
     $("#main .productTabsContent .tab-content .tab-pane a.readless  div").click(function () {
         $(this).parent().addClass("d-none");
         $("#main .productTabsContent .tab-content .tab-pane a.readmore").removeClass("d-none");
-        $("#main .productTabsContent .tab-content .tab-pane>div").addClass("overflow-hidden").attr("style", "height: 500px;");
+        $("#main .productTabsContent .tab-content .tab-pane>div").addClass("overflow-hidden").attr("style", "max-height: 500px;");
     });
 }
 
@@ -53,3 +54,23 @@ function changeAmount() {
         val.val(Number(val.val()) + 1);
     });
 }
+
+$("#addToCart").click(function () {
+    $.ajax({
+        url: 'cart',
+        data: {
+            action: "add",
+            productId: $(this).attr("product-id"),
+            modelId: $("button.model.active").attr("model-id"),
+            quantity: $("#quantity").val(),
+            checked: "false"
+        },
+        method: 'POST',
+        dataType: 'json',
+        success: function (data) {
+            $("#amount-product").text(data.amountProduct);
+            $("#quantity").val(1);
+            $("#show-complete-modal").click();
+        }
+    });
+});
