@@ -259,8 +259,10 @@
                                 <label for="search-name-product" class="d-flex align-items-center p-1"><span
                                         class="material-symbols-outlined ps-1 fs-3">search</span></label>
                             </div>
-                            <input type="text" name="category-group-id" value="<%=request.getAttribute("category-group-id")%>" hidden>
-                            <input type="text" name="category-id" value="<%=request.getAttribute("category-id")%>" hidden>
+                            <input type="text" name="category-group-id"
+                                   value="<%=request.getAttribute("category-group-id")%>" hidden>
+                            <input type="text" name="category-id" value="<%=request.getAttribute("category-id")%>"
+                                   hidden>
                             <input type="text" name="brand-name" value="<%=request.getAttribute("brand-name")%>" hidden>
                             <input type="text" name="available" value="<%=request.getAttribute("available")%>" hidden>
                             <input type="submit" value="" hidden="">
@@ -292,7 +294,8 @@
                 <!--phần thân-->
                 <div class="body-table">
                     <%
-                        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
+                        NumberFormat nfNumber = NumberFormat.getNumberInstance(Locale.of("vi", "VN"));
+                        NumberFormat nfCurrency = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
                         List<Product> products = (List<Product>) request.getAttribute("products");
                         for (Product product : products) {%>
                     <div class="product row ps-4">
@@ -319,7 +322,7 @@
                         </div>
                         <div class="col-1 amount-product-bought"><%=product.getModels().get(0).getTotalQuantitySold()%>
                         </div>
-                        <div class="col-2 price"><%=nf.format(product.getPrice())%>
+                        <div class="col-2 price"><%=nfCurrency.format(product.getPrice())%>
                         </div>
                         <%if (product.getModels().get(0).available()) {%>
                         <div class="col-1 status">Còn hàng</div>
@@ -335,32 +338,74 @@
 
                 <!--Phần footer, coppy-->
                 <div class="footer-table row p-4 d-flex align-items-center">
-                    <div class="text-amount-account col-8 ">
+                    <div class="text-amount-account col-7">
                         <span class="ps-0 pe-0">Tổng số sản phẩm: </span>
-                        <span class="amount ps-0 pe-0">100</span>
+                        <span class="amount ps-0 pe-0"><%=nfNumber.format(Integer.parseInt(String.valueOf(request.getAttribute("total-product"))))%></span>
                         <span class="ps-0 pe-0"> sản phẩm</span>
                     </div>
-                    <div class="change-page-display-list col-4 d-flex ps-5">
-                        <button id="prev" class="d-flex align-items-center justify-content-center"><span
-                                class="material-symbols-outlined">chevron_left</span></button>
-                        <button class="d-flex align-items-center justify-content-center button-number active"
-                                data-target="1">1
+                    <div class="change-page-display-list col-5 d-flex ps-5">
+                        <%
+                            int totalPage = Integer.parseInt(String.valueOf(request.getAttribute("total-page"))),
+                                    currentPage = Integer.parseInt(String.valueOf(request.getAttribute("page"))),
+                                    indexPage = 1;
+                            if (totalPage != 1) {
+                        %>
+                        <%if (currentPage != 1) {%>
+                        <a href="<%=requestString%>&page=<%=currentPage-1%>">
+                            <button id="prev" class="d-flex align-items-center justify-content-center"><span
+                                    class="material-symbols-outlined">chevron_left</span></button>
+                        </a>
+                        <%}%>
+                        <%
+                            for (indexPage = currentPage - 2; indexPage < currentPage; indexPage++) {
+                                if (indexPage > 0) {
+                        %>
+                        <a href="<%=requestString%>&page=<%=indexPage%>">
+                            <button class="d-flex align-items-center justify-content-center button-number"
+                                    data-target="<%=indexPage%>">
+                                <%=indexPage%>
+                            </button>
+                        </a>
+                        <%
+                                }
+                            }
+                        %>
+                        <%for (indexPage = currentPage; indexPage <= totalPage && (indexPage - currentPage) < (2 - ((currentPage - 3) > 0 ? 0 : (currentPage - 3))); indexPage++) {%>
+                        <a href="<%=requestString%>&page=<%=indexPage%>">
+                            <button class="d-flex align-items-center justify-content-center button-number <%if(currentPage == indexPage){%>active<%}%>"
+                                    data-target="<%=indexPage%>">
+                                <%=indexPage%>
+                            </button>
+                        </a>
+                        <%}%>
+                        <%if (indexPage < totalPage - 1) {%>
+                        <a href="#">
+                            <button class="d-flex align-items-center justify-content-center button-number"
+                                    data-target="">
+                                ...
+                            </button>
+                        </a>
+                        </a>
+                        <%}%>
+                        <% indexPage = indexPage <= totalPage - 2 ? totalPage - 1 : indexPage;
+                            for (; indexPage <= totalPage; indexPage++) {%>
+                        <a href="<%=requestString%>&page=<%=indexPage%>">
+                            <button class="d-flex align-items-center justify-content-center button-number <%if(currentPage == indexPage){%>active<%}%>"
+                                    data-target="<%=indexPage%>">
+                                <%=indexPage%>
+                            </button>
+                        </a>
+                        <%
+                            }
+                        %>
                         </button>
-                        <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2
-                        </button>
-                        <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3
-                        </button>
-                        <button class="d-flex align-items-center justify-content-center button-number" data-target="">
-                            ...
-                        </button>
-                        <button class="d-flex align-items-center justify-content-center button-number" data-target="14">
-                            14
-                        </button>
-                        <button class="d-flex align-items-center justify-content-center button-number" data-target="15">
-                            15
-                        </button>
-                        <button id="next" class="d-flex align-items-center justify-content-center"><span
-                                class="material-symbols-outlined">chevron_right</span></button>
+                        <%if (currentPage != totalPage) {%>
+                        <a href="<%=requestString%>&page=<%=currentPage+1%>">
+                            <button id="next" class="d-flex align-items-center justify-content-center"><span
+                                    class="material-symbols-outlined">chevron_right</span></button>
+                        </a>
+                        <%}%>
+                        <%}%>
                     </div>
                 </div>
                 <!--kết thúc footer-->

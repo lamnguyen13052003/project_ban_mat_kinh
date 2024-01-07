@@ -451,7 +451,7 @@ public class ProductDAO extends DAO {
         int result = 0;
         if (categoryGroupId == -1 && categoryId == -1) {
             result = query.bind(0, brandName)
-                    .bind(1,  name)
+                    .bind(1, name)
                     .bind(2, 9999999)
                     .bind(3, 0)
                     .mapTo(Integer.class).findFirst().orElse(0);
@@ -468,7 +468,7 @@ public class ProductDAO extends DAO {
 
         if (categoryGroupId == -1 && categoryId != -1) {
             result = query.bind(0, brandName)
-                    .bind(1,  name)
+                    .bind(1, name)
                     .bind(2, categoryId)
                     .bind(3, 9999999)
                     .bind(4, 0)
@@ -536,15 +536,45 @@ public class ProductDAO extends DAO {
         return sb.toString();
     }
 
-    private String getNameFormatForQuery(String name){
+    private String getNameFormatForQuery(String name) {
         StringTokenizer st = new StringTokenizer(name, " ");
         StringBuilder nameSb = new StringBuilder("%");
-        while(st.hasMoreTokens()) {
+        while (st.hasMoreTokens()) {
             nameSb.append(st.nextToken());
-            if(st.hasMoreTokens()) nameSb.append("%");
+            if (st.hasMoreTokens()) nameSb.append("%");
         }
         nameSb.append("%");
 
         return nameSb.toString();
+    }
+
+    public static void main(String[] args) {
+        int totalPage = 4,
+                currentPage = 2,
+                indexPage = 1;
+        if (totalPage != 1) {
+            if (currentPage != 1) {
+                System.out.println("Quay lại");
+            }
+            for (indexPage = currentPage - 2; indexPage < currentPage; indexPage++) {
+                if (indexPage > 0) {
+                    System.out.println("Các trang trước trang hiện tại: " + indexPage);
+                }
+            }
+            for (indexPage = currentPage; indexPage <= totalPage && (indexPage - currentPage) < (2-(currentPage - 3) > 0 ? 0 : (currentPage - 3)); indexPage++) {
+                System.out.println("Các trang từ trang hiện tại về sau:" + indexPage);
+            }
+            if (indexPage < totalPage - 1) {
+                System.out.println("...");
+            }
+            indexPage = indexPage <= totalPage - 2 ? totalPage - 1 : indexPage;
+            for (; indexPage <= totalPage; indexPage++) {
+                System.out.println("Các trang cuối:" + indexPage);
+            }
+            if (currentPage != totalPage) {
+                System.out.println("Tiếp theo");
+
+            }
+        }
     }
 }

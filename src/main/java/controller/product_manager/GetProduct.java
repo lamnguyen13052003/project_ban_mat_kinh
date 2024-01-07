@@ -24,7 +24,7 @@ public class GetProduct implements Action {
         List<String> listBrandName = null;
         String brandName, requestStr = "", name = null;
         ProductService productService;
-        int available = 0, page = 1, offset, totalProduct, categoryId = 0, categoryGroupId = -1;
+        int available = 0, page = 1, offset, totalProduct, categoryId = 0, categoryGroupId = -1, totalProductPerPage = 7;
         brandName = brandNames == null ? "" : brandNames[brandNames.length - 1];
         name = names == null ? "" : names[names.length - 1];
         try {
@@ -36,25 +36,25 @@ public class GetProduct implements Action {
         }
         offset = (page - 1) * 7;
         productService = ProductService.getInstance();
-        products = productService.getProductForAdmin(name, categoryGroupId, categoryId, brandName, available, 7, offset);
+        products = productService.getProductForAdmin(name, categoryGroupId, categoryId, brandName, available, totalProductPerPage, offset);
         totalProduct = productService.totalProduct(name, categoryGroupId, categoryId, brandName, available);
         listBrandName = ProductService.getInstance().getBrands();
 
         requestStr = "product_manager?name=" + name + "&categoryGroupId=" + categoryGroupId + "&categoryId=" + categoryId + "&brand-name=" + brandName + "&available=" + available + "&page=" + page;
-        request.setAttribute("products", products);
-        request.setAttribute("totalProduct", totalProduct);
-        request.setAttribute("page", page);
         request.setAttribute("request", requestStr);
+        request.setAttribute("products", products);
         request.setAttribute("list-brand-name", listBrandName);
-        request.setAttribute("brand-name-string", getBrandName(brandName));
-        request.setAttribute("category", getCategory(categoryGroupId, categoryId));
-        request.setAttribute("available-string", getAvailableString(available));
+        request.setAttribute("total-product", totalProduct);
         request.setAttribute("page", page);
+        request.setAttribute("total-page", getTotalPage(totalProduct, totalProductPerPage));
         request.setAttribute("name", name);
-        request.setAttribute("brand-name", brandName);
-        request.setAttribute("available", available);
+        request.setAttribute("category", getCategory(categoryGroupId, categoryId));
         request.setAttribute("category-id", categoryId);
         request.setAttribute("category-group-id", categoryGroupId);
+        request.setAttribute("brand-name", brandName);
+        request.setAttribute("brand-name-string", getBrandName(brandName));
+        request.setAttribute("available", available);
+        request.setAttribute("available-string", getAvailableString(available));
         request.getRequestDispatcher("quan_ly_san_pham.jsp").forward(request, response);
     }
 
@@ -94,5 +94,10 @@ public class GetProduct implements Action {
         }
 
         return "---------------Danh mục---------------";
+    }
+
+    private int getTotalPage(int totalProduct, int totalProductPerPage) {
+        int result = totalProduct / totalProductPerPage;
+        return totalProduct % totalProductPerPage == 0 ? result : result + 1;
     }
 }

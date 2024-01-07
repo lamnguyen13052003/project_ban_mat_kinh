@@ -966,12 +966,11 @@ CREATE TABLE IF NOT EXISTS `models` (
   CONSTRAINT `models_prouductId_products_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.models: ~4 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.models: ~3 rows (approximately)
 INSERT INTO `models` (`id`, `productId`, `name`, `urlImage`, `quantity`) VALUES
 	(1, 1, 'Vàng Đen', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/1.jpg', 100),
 	(2, 1, 'Xanh Tim', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg', 0),
-	(3, 2, 'Mặc định', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg', 1000),
-	(5, 3, 'Mặc định', 'images/avatar/default_avatar.png', 1000);
+	(3, 2, 'Mặc định', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg', 1000);
 
 -- Dumping structure for table mat_kinh_kimi.model_quantity
 CREATE TABLE IF NOT EXISTS `model_quantity` (
@@ -994,16 +993,16 @@ CREATE TABLE IF NOT EXISTS `products` (
   `describe` longtext DEFAULT NULL,
   `material` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
+  `delete` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `products_categoryId_categories_id_fk` (`categoryId`),
   CONSTRAINT `FK_products_categories` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.products: ~3 rows (approximately)
-INSERT INTO `products` (`id`, `categoryId`, `name`, `brandName`, `price`, `describe`, `material`, `type`) VALUES
-	(1, 1, 'Gọng kính Acetate titanium meriandy 00144', 'thương hiệu x', 1000000.00, '<p>mô tả 1</p>', 'chất liệu x', 'kiểu x'),
-	(2, 1, 'Gọng kính Acetate titanium meriandy 36025', 'thương hiệu x', 1000000.00, '<p>mô tả 2</p>', 'chất liệu x', 'kiểu x'),
-	(3, 1, 'Sản phẩm demo', 'thương hiệu x', 500000.00, '<p>Demo&nbsp;<img alt="" src="/maven_war/userfiles/images/4.jpg" style="height:667px; width:1000px" /></p>\r\n', 'chất liệu x', 'kiểu x');
+-- Dumping data for table mat_kinh_kimi.products: ~2 rows (approximately)
+INSERT INTO `products` (`id`, `categoryId`, `name`, `brandName`, `price`, `describe`, `material`, `type`, `delete`) VALUES
+	(1, 1, 'Gọng kính Acetate titanium meriandy 00144', 'thương hiệu x', 1000000.00, '<p>mô tả 1</p>', 'chất liệu x', 'kiểu x', b'0'),
+	(2, 1, 'Gọng kính Acetate titanium meriandy 36025', 'thương hiệu x', 1000000.00, '<p>mô tả 2</p>', 'chất liệu x', 'kiểu x', b'0');
 
 -- Dumping structure for table mat_kinh_kimi.product_discounts
 CREATE TABLE IF NOT EXISTS `product_discounts` (
@@ -1031,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   CONSTRAINT `product_images_productId_product_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.product_images: ~12 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.product_images: ~7 rows (approximately)
 INSERT INTO `product_images` (`id`, `productId`, `urlImage`) VALUES
 	(1, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg'),
 	(2, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/3.jpg'),
@@ -1039,12 +1038,7 @@ INSERT INTO `product_images` (`id`, `productId`, `urlImage`) VALUES
 	(4, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/0.jpg'),
 	(5, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg'),
 	(6, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/2.jpg'),
-	(7, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg'),
-	(8, 3, 'images/product/undefined/0.jpg'),
-	(9, 3, 'images/product/undefined/1.jpg'),
-	(10, 3, 'images/product/undefined/2.jpg'),
-	(11, 3, 'images/product/undefined/3.jpg'),
-	(12, 3, 'images/product/undefined/5.jpg');
+	(7, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg');
 
 -- Dumping structure for table mat_kinh_kimi.provinces
 CREATE TABLE IF NOT EXISTS `provinces` (
