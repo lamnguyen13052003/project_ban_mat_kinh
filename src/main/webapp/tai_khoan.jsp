@@ -5,6 +5,7 @@
 <%@ page import="model.service.CartService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -269,6 +270,7 @@
                                             <div class="col-4"><span>Giới tính</span></div>
                                             <select  style="width: 450px"  type="text"
                                                      class="" name="sex" id="sex_edit" value="<%=user.getSex()%>">
+                                                <option></option>
                                                 <option value="Nam" <%=(user.equals("Nam"))?"selected='selected'":"" %> >Nam</option>
                                                 <option value="Nữ" <%=(user.equals("Nữ"))?"selected='selected'":"" %> >Nữ</option>
                                             </select>
@@ -278,8 +280,14 @@
                                             <div class="col-4"> <span>Ngày sinh</span> </div>
                                             <input type="date" name="birthday" id="birthday_edit" style="width: 450px" class="" value="<%=user.getBirthDay()%>">
                                         </div>
-                                        <button onclick="uploadProfile()" class="button button1">Lưu</button>
+
+                                    <div style="display: flex;justify-content: flex-end">
+                                        <div style="width:400px">
+                                            <button onclick="uploadProfile()" style="background: #2F189A;padding: 10px;border: 1px solid white;border-radius: 5px;color:white;font-weight: 600">Lưu</button>
+                                            <button onclick="changePassword({email:'<%= user.getEmail() %>'})" style="background: #2F189A;padding: 10px;border: 1px solid white;border-radius: 5px;color:white;font-weight: 600">Đổi mật khẩu</button>
+                                        </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -381,6 +389,7 @@
     <%} else{%>
     hidenMenuAccount();
     <%}%>
+
 </script>
 </body>
 </html>
