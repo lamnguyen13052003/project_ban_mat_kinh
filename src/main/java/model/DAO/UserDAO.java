@@ -41,11 +41,23 @@ public class UserDAO extends DAO {
 
         );
     }
+    public int updateProdile(User user) {
+        connector = JDBIConnector.get();
+        return connector.withHandle(handle ->
+                handle.createUpdate("Update users set fullName = ?, sex = ?, birthday =?, avatar = ? where email = ?")
+                        .bind(0, user.getFullName())
+                        .bind(1, user.getSex())
+                        .bind(2, user.getBirthDay())
+                        .bind(3, user.getAvatar())
+                        .bind(4, user.getEmail())
+                        .execute()
 
+        );
+    }
     public User login(String email, String password) {
         connector = JDBIConnector.get();
         User user = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.fullName, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = ?")
+                handle.createQuery("SELECT u.id, u.birthday, u.fullName, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = ?")
                         .bind(0, email)
                         .bind(1, 0)
                         .mapToBean(User.class)
@@ -137,14 +149,23 @@ public class UserDAO extends DAO {
     }
 
     public int resetPassword(String email, String password) {
+            return connector.withHandle(handle ->
+                    handle.createUpdate("UPDATE users SET " +
+                                    "`password` = ? " +
+                                    "WHERE email = ?;")
+                            .bind(0, password)
+                            .bind(1, email)
+                            .execute()
+            );
+    }
+    public List<User> getAllUsers() {
         return connector.withHandle(handle ->
-                handle.createUpdate("UPDATE users SET " +
-                                "`password` = ? " +
-                                "WHERE email = ?;")
-                        .bind(0, password)
-                        .bind(1, email)
-                        .execute()
+                handle.createQuery("SELECT * FROM users")
+                        .mapToBean(User.class)
+                        .list()
         );
     }
+
+
 }
 
