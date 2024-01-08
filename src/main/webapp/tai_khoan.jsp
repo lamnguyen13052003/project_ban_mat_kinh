@@ -24,34 +24,6 @@
     <title>Tài khoản</title>
 </head>
 <body>
-<style>
-    .button {
-        background-color: #2f189a;
-        border: none;
-        color: white;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: block; /* Change from inline-block to block */
-        font-size: 16px;
-        margin-top: 4px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-        margin-left: auto; /* Center horizontally */
-        margin-right: auto; /* Center horizontally */
-    }
-
-    .button1 {
-
-        color: white;
-
-    }
-
-
-
-</style>
-
-
 <div class="container">
 </div>
 <header id="menu">
@@ -257,28 +229,23 @@
                             <div class="table-responsive">
                                 <div class="table overflow-x-hidden">
                                         <div class="row">
-                                            <div class="col-4"><span>Email</span></div>
-                                            <input style="width: 450px" readonly
-                                                   type="text" class="" aria-readonly="true" value="<%=user.getEmail()%>">
+                                            <div class="col-3"><span>Email</span></div>
+                                            <span readonly type="text" class="display-info d-inline-block" aria-readonly="true" ><%=user.getEmail()%></span>
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"><span>Họ và tên</span></div>
-                                            <input  style="width: 450px"
-                                                    type="text" class="" name="fullName" id="fullname_edit" value="<%=user.getFullName()%>">
+                                            <div class="col-3"><label for="fullname_edit">Họ và tên</label></div>
+                                            <input type="text" class="display-info" name="fullName" id="fullname_edit" value="<%=user.getFullName()%>">
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"><span>Giới tính</span></div>
-                                            <select  style="width: 450px"  type="text"
-                                                     class="" name="sex" id="sex_edit" value="<%=user.getSex()%>">
-                                                <option></option>
-                                                <option value="Nam" <%=(user.equals("Nam"))?"selected='selected'":"" %> >Nam</option>
-                                                <option value="Nữ" <%=(user.equals("Nữ"))?"selected='selected'":"" %> >Nữ</option>
+                                            <div class="col-3"><label for="sex_edit">Giới tính</label></div>
+                                            <select  type="text"  class="display-info" name="sex" id="sex_edit" value="<%=user.getSex()%>">
+                                                <option value="Nam" <%=(user.getSex().equals("Nam"))?"selected='selected'":"" %> >Nam</option>
+                                                <option value="Nữ" <%=(user.getSex().equals("Nữ"))?"selected='selected'":"" %> >Nữ</option>
                                             </select>
-
                                         </div>
                                         <div class="row">
-                                            <div class="col-4"> <span>Ngày sinh</span> </div>
-                                            <input type="date" name="birthday" id="birthday_edit" style="width: 450px" class="" value="<%=user.getBirthDay()%>">
+                                            <div class="col-3"> <label for="birthday_edit">Ngày sinh</label> </div>
+                                            <input type="date" name="birthday" id="birthday_edit" class="display-info" value="<%=user.getBirthDay()%>">
                                         </div>
 
                                     <div style="display: flex;justify-content: flex-end">
