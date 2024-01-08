@@ -149,14 +149,23 @@ public class UserDAO extends DAO {
     }
 
     public int resetPassword(String email, String password) {
+            return connector.withHandle(handle ->
+                    handle.createUpdate("UPDATE users SET " +
+                                    "`password` = ? " +
+                                    "WHERE email = ?;")
+                            .bind(0, password)
+                            .bind(1, email)
+                            .execute()
+            );
+    }
+    public List<User> getAllUsers() {
         return connector.withHandle(handle ->
-                handle.createUpdate("UPDATE users SET " +
-                                "`password` = ? " +
-                                "WHERE email = ?;")
-                        .bind(0, password)
-                        .bind(1, email)
-                        .execute()
+                handle.createQuery("SELECT * FROM users")
+                        .mapToBean(User.class)
+                        .list()
         );
     }
+
+
 }
 

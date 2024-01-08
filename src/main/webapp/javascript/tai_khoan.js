@@ -83,4 +83,80 @@ function uploadProfile() {
             })
         }
     });
+
+}
+function changePassword({email}){
+    console.log(email)
+    Swal.fire({
+        title: 'Đổi mật khẩu',
+        html:
+            '<input id="password" type="password" class="swal2-input" placeholder="Mật khẩu">' +
+            '<input id="confirmPassword" type="password" class="swal2-input" placeholder="Nhập lại mật khẩu">',
+        showCancelButton: true,
+        confirmButtonText: 'Gửi',
+        cancelButtonText: 'Hủy',
+        focusConfirm: false,
+        preConfirm: () => {
+            const password = Swal.getPopup().querySelector('#password').value;
+            const confirmPassword = Swal.getPopup().querySelector('#confirmPassword').value;
+
+            // Validate the passwords (you may want to add more validation)
+            if (password !== confirmPassword) {
+                Swal.showValidationMessage('Mật khẩu không hợp lệ!');
+            }
+            return { password: password, confirmPassword: confirmPassword };
+        }
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const password = result.value.password;
+            const rePassword = result.value.confirmPassword;
+            console.log({
+                email:email,
+                password:password,
+                rePassword:rePassword
+            })
+            const url = `/user/changePassword`;
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    mode: "cors",
+                    cache: "no-cache",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        rePassword: rePassword
+                    }),
+                });
+
+                const responseData = await response.json();
+                if (response.ok) {
+                    Swal.fire({
+                        title: 'Thay đổi mật khẩu thành công',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    // Handle server response when not OK (e.g., display an error message)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Thay đổi mật khẩu thất bại',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            } catch (err) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Shiba...',
+                    text: err,
+                    confirmButtonText: 'OK'
+                });
+            }
+
+
+        }
+    });
 }

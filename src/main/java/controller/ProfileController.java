@@ -29,7 +29,7 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
-        response.getWriter().println(user);
+        response.sendRedirect("/tai_khoan.jsp");
     }
     private String extractFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
