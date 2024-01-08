@@ -57,7 +57,7 @@ public class UserDAO extends DAO {
     public User login(String email, String password) {
         connector = JDBIConnector.get();
         User user = connector.withHandle(handle ->
-                handle.createQuery("SELECT u.id, u.birthday, u.fullName, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = ?")
+                handle.createQuery("SELECT u.id, u.birthday, u.fullName, u.sex, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = ?")
                         .bind(0, email)
                         .bind(1, 0)
                         .mapToBean(User.class)
