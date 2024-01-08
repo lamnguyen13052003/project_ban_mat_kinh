@@ -16,55 +16,66 @@ import java.util.Map;
 public class BannnerDAO extends  DAO{
     private static Jdbi conn;
     private static BannnerDAO INSTANCE;
+    private static final String QUERY_GET_BANNER = "SELECT bi.urlImage, bi.id, bi.description FROM banner_images bi WHERE bi.description LIKE ?" ;
 
     public static BannnerDAO getInstance() {return INSTANCE != null ? INSTANCE : new BannnerDAO();}
 
     public List<BannerImage> getSlideShowImages() {
         String slide = "slide%";
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
+                handle.createQuery(QUERY_GET_BANNER)
                         .bind(0,slide)
                 .mapToBean(BannerImage.class).list());
     }
-    public BannerImage getLogoImages() {
-        String slide = "%banner%logo%";
+    public BannerImage getBannerByDescription(String descriptionBanner) {
         return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
-                        .bind(0,slide)
+                handle.createQuery(QUERY_GET_BANNER)
+                        .bind(0,descriptionBanner)
                         .mapToBean(BannerImage.class).findFirst().orElse(null));
     }
-    public BannerImage getBannerLoginImages() {
-        String slide = "%banner%login%";
-        return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
-                        .bind(0,slide)
-                        .mapToBean(BannerImage.class).findFirst().orElse(null));
-    }
-    public BannerImage getBannerSignupImages() {
-        String slide = "%banner%signup%";
-        return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
-                        .bind(0,slide)
-                        .mapToBean(BannerImage.class).findFirst().orElse(null));
-    }
-    public BannerImage getBannerPRImages() {
-        String slide = "%banner%pr%";
-        // lay data cot id va comment cua table Review
-        return  connector.withHandle(handle ->
-                handle.createQuery("SELECT bi.urlImage, bi.id FROM banner_images bi WHERE bi.description LIKE ?")
-                        .bind(0,slide)
-                        .mapToBean(BannerImage.class).findFirst().orElse(null));
-    }
-
     /**
      * update image banner
      */
-    public boolean updateBannerImage(String url, BannerImage bannerId) {
-        System.out.println("dao run");
+    public int updateBannerImage(BannerImage banner) {
       return  connector.withHandle(handle ->
-                handle.createQuery("update banner_images set urlImage = :urlImage where id = :id")
-                        .bind("urlImage",url)
-                        .bind("id", bannerId.getId())
-                        .mapToBean(BannerImage.class).findFirst().isEmpty());
+                handle.createUpdate("update banner_images set urlImage = ? where description LIKE ?")
+                        .bind(0,banner.getUrlImage())
+                        .bind(1, banner.getDescription())
+                        .execute()
+      );
     }
+    /**
+     * insert image slide
+     */
+    public int insertSlideImage(BannerImage slide) {
+        return  connector.withHandle(handle ->
+                handle.createUpdate("insert into banner_images values (?, ?, ?)")
+                        .bind(0,slide.getId())
+                        .bind(1, slide.getUrlImage())
+                        .bind(2, slide.getDescription())
+                        .execute()
+        );
+    }
+
+    public int nextId(){
+        return  connector.withHandle(handle ->
+                handle.createQuery("SELECT MAX(bi.id) FROM banner_images bi").mapTo(Integer.class).one());
+    }
+    public int countSlide(){
+        return  connector.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(bi.id) FROM banner_images bi WHERE bi.description LIKE ?")
+                        .bind(0,"%slide%")
+                        .mapTo(Integer.class).one());
+    }
+    /*
+    remove slide
+     */
+    public int removeSlide(BannerImage slide) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("DELETE FROM banner_images WHERE id = ?")
+                        .bind(0, slide.getId())
+                        .execute()
+        ) ;
+    }
+
 }

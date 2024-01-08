@@ -30,14 +30,20 @@ body{
     object-fit: cover;
     border-radius: 8px;
 }
-.frame-boder div .btn-edit-img button{
+.frame-boder div .btn-edit-img button,
+.frame-boder div .btn-edit-img label
+{
     padding: 16px;
     margin: 10px;
     border-radius: 10px;
     background-color: #FFFFFF;
     font-weight: bold;
 }
-.frame-boder div .btn-edit-img button:hover{
+.frame-boder div .btn-edit-img label{
+    border: 2px solid #000;
+}
+.frame-boder div .btn-edit-img button:hover,
+.frame-boder div .btn-edit-img label:hover{
     background-color: var(--color-origan-origin);
     color: #FFFFFF;
     border: 2px solid var(--color-origan-origin);

@@ -15,12 +15,16 @@ public class BannerManagerFilter implements Filter {
         BannerImage urlBannerLoginImages = (BannerImage) request.getAttribute("bannerLoginImages"); // banner login
         BannerImage urlBannerSignupImages = (BannerImage) request.getAttribute("bannerSignupImages"); // banner Signup
         BannerImage urlBannerLogoImages = (BannerImage) request.getAttribute("bannerLogoImages"); // banner logo
+        BannerImage urlBannerContactImages = (BannerImage) request.getAttribute("bannerContactImages");
+        BannerImage urlBannerAuthImages = (BannerImage) request.getAttribute("bannerAuthImages");
 
         if (urlBannerImages != null
                 && urlBannerPRImages != null
                 && urlBannerLoginImages != null
                 && urlBannerSignupImages != null
-                && urlBannerLogoImages != null) {
+                && urlBannerLogoImages != null
+                && urlBannerContactImages != null
+                && urlBannerAuthImages != null) {
             chain.doFilter(request, response);
         }else{
             request.getRequestDispatcher("banner_manager").forward(request, response);

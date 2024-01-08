@@ -20,43 +20,29 @@ public class BannerService {
 
         return  BannnerDAO.getInstance().getSlideShowImages();
     }
-    /*
-       get banner signup images
-    */
-    public BannerImage getBannerSignupImages() {
+    public BannerImage getBannerByDescription(String descriptionBanner) {
 
-        return  BannnerDAO.getInstance().getBannerSignupImages();
-    }
-    /*
-       get banner login images
-    */
-    public BannerImage getBannerLoginImages() {
-
-        return  BannnerDAO.getInstance().getBannerLoginImages();
-    }
-    /*
-       get banner pr images
-    */
-    public BannerImage getBannerPRImages() {
-
-        return  BannnerDAO.getInstance().getBannerPRImages();
-    }
-    /*
-       get slide show images
-    */
-    public BannerImage getLogoImages() {
-
-        return  BannnerDAO.getInstance().getLogoImages();
+        return  BannnerDAO.getInstance().getBannerByDescription(descriptionBanner);
     }
     /*
     upload banner image
      */
-    public void uploadBannerImage(String url, BannerImage bannerImage) {
-        System.out.println("service run");
-        BannnerDAO.getInstance().updateBannerImage(url, bannerImage);
+    public void uploadBannerImage(BannerImage bannerImage) {
+        BannnerDAO.getInstance().updateBannerImage(bannerImage);
     }
-    public static void main(String[] args) {
-
-
+    /*
+    insert slide image
+     */
+    public void insertSlideShowImages(BannerImage bannerImage){
+        BannnerDAO.getInstance().insertSlideImage(bannerImage);
     }
+    public int nextIdOfSlide() {return BannnerDAO.getInstance().nextId() + 1;}
+    public int countSlide(){
+        return BannnerDAO.getInstance().countSlide();
+    }
+
+    /*
+    remove slide
+     */
+    public void removeSlide(BannerImage bannerImage) {BannnerDAO.getInstance().removeSlide(bannerImage);}
 }

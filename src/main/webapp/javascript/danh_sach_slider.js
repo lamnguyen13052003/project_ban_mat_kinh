@@ -1,58 +1,139 @@
-// $(document).ready(function () {
-//     $(".imageInput").on("change", function (event) {
-//         const input = event.target;
-//         const previewId = $(input).data("preview");
-//         previewImage(event, previewId);
-//     });
-//
-//     function previewImage(event, previewId) {
-//         console.log("run")
-//         const input = event.target;
-//         const reader = new FileReader();
-//
-//         reader.onload = function () {
-//             $("#" + previewId).attr("src", reader.result);
-//         };
-//
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// });
+$(document).ready(function () {
+    uploadFile();
+    addFile();
+    selectAllSlide();
+    eventRemoveSlides();
+    disableButtonSelectAllSlide();
+    $(".slide-management").change(function () {
+        disableButtonRemove();
+    });
+});
+
+function uploadFile() {
+    $(".frame-banner .upload-img input").change(function () {
+        const bannerId = $(this).attr("id");
+        var file = $(this)[0].files[0];
+        const formData = new FormData();
+        formData.append('action', 'upload-file');
+        formData.append(bannerId, file);
+        $.ajax({
+            url: 'banner',
+            data: formData,
+            method: 'POST',
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                $(`img[data-banner="${bannerId}"]`).attr("src", "../" + data.url);
+            },
+            error: function () {
+                console.log("error uploading file");
+            }
+        });
+    });
+}
+
+function addFile() {
+    /*Sao t hk tìm thấy input file này. */
+    $(".add-img input").change(function () {
+        var file = $(this)[0].files[0];
+        const formData = new FormData();
+        formData.append('action', 'add-file');
+        formData.append("path-file", file);
+        $.ajax({
+            url: 'banner',
+            data: formData,
+            method: 'POST',
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                let show_slides = $('#show-slides').html();
+                let slide = '<div class="slide-management p-3" slide-id = "slide-' + data.slideId + '">\n' +
+                    '                        <div class="item-img col">\n' +
+                    '                            <img class="img-fluid" data-banner="slide-' + data.slideId + '" src="../' + data.url + '" alt="">\n' +
+                    '                            <div class="check-box-img">\n' +
+                    '                                <input class="form-check-input" type="checkbox" id="check-img-' + data.slideId + '">\n' +
+                    '                            </div>\n' +
+                    '                        </div>\n' +
+                    '                    </div>'
+                show_slides += slide;
+                $('#show-slides').html(show_slides);
+                $(".slide-management").change(function () {
+                    disableButtonRemove();
+                });
+                disableButtonSelectAllSlide();
+            },
+            error: function () {
+                console.log("error");
+            }
+        })
+    })
+
+}
+
+function selectAllSlide() {
+    $("#select-all-img").click(function () {
+        $('.slide-management input[type=\"checkbox\"]').prop("checked", true);
+        disableButtonRemove();
+    });
+}
+
+function eventRemoveSlides() {
+    $('.remove-img').click(function () {
+        $('.btn-show-model').click();
+    });
+
+    $('#remove-img').click(function () {
+        $('.slide-management input[type="checkbox"]:checked').each(function (index) {
+            const slideId = $(this).parents('.slide-management').attr('slide-id');
+            const filePath = $(this).parents('.slide-management').find('img').attr('src');
+            removeSlides(slideId, filePath);
+        });
+    });
+}
 
 
-// document.getElementById("banner-login").addEventListener("change", function() {
-//     var fileInput = this;
-//
-//     // Kiểm tra xem có tệp tin nào đã được chọn hay không
-//     if (fileInput.files.length > 0) {
-//         // Lấy đối tượng File đại diện cho tệp tin đã chọn
-//         var file = fileInput.files[0];
-//
-//         // Hiển thị thông tin về tệp tin
-//         console.log("File Name:", file.name);
-//         console.log("File Size:", file.size, "bytes");
-//         console.log("File Type:", file.type);
-//     } else {
-//         console.log("No file selected.");
-//     }
-// });
+/*vô hiệu hóa nút nhấn.*/
+function disableButtonRemove() {
+    let buttonDelete = $('.remove-img');
+    if (!$(`.slide-management`).length || !$(`.slide-management input[type="checkbox"]:checked`).length) {
+        buttonDelete.attr('disabled', "true");
+    } else {
+        buttonDelete.removeAttr('disabled');
+    }
+}
+
+function disableButtonSelectAllSlide(){
+    const buttonSelectAllSlide = $("#select-all-img");
+    if ($(`.slide-management`).length) {
+        buttonSelectAllSlide.removeAttr("disabled");
+    } else {
+        buttonSelectAllSlide.attr("disabled", "true");
+    }
+}
+
+/*ajax xóa 1 hình ảnh có id và đường dẫn hình đó*/
+function removeSlides(slideId, filePath) {
+    const formData = new FormData();
+    formData.append('slideId', slideId);
+    formData.append("file-path", filePath);
+    $.ajax({
+        url: 'banner',
+        data: formData,
+        method: 'DELETE',
+        dataType: "text",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            $('div[slide-id="' + data + '"]').remove();
+            disableButtonRemove();
+            disableButtonSelectAllSlide();
+        },
+        error: function () {
+            console.log("error");
+        }
+    });
+}
 
 
-let removeButton = document.querySelector('#banner-login');
-removeButton.addEventListener("change", function () {
-    //create ajax request
-    let xhr = new XMLHttpRequest();
-
-    //prepare the request
-    xhr.open("GET","banner-manager", true);
-
-    // send the request
-    xhr.send();
-
-    //process the request
-    xhr.onload = () => {
-      if(xhr.status === 200) {
-          // let data = xhr.responseText;
-          console.log("xhr run");
-      }
-    };
-})

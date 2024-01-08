@@ -160,3 +160,16 @@ function setUpMoney(data) {
     $("#shippingFee").text(data.shippingFee);
     $("#totalPay").text(data.totalPay);
 }
+
+/*
+gui hoa don qua email user
+ */
+function sendBillToUser(){
+    $("#button-pay").click(function(){
+        $ajax({
+            url: "send-bill-to-user",
+            method: "POST",
+        });
+    });
+
+}
