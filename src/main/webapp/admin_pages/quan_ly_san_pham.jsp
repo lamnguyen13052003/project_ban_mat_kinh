@@ -301,14 +301,14 @@
                     <div class="product row ps-4">
                         <div class="col-4 d-flex">
                             <div class="img-product">
-                                <img src="../images/logo/logo.png" alt="hinh_anh.png">
+                                <img src="../<%=product.getModels().get(0).getUrlImage()%>" alt="hinh_anh.png">
                             </div>
                             <div class="info-product ms-2 w-100">
                                 <p class="name-product"><%=product.getName()%>
                                 </p>
                                 <p class="id-product">#<%=product.getId()%>
                                 </p>
-                                <select>
+                                <select class="select-model">
                                     <%for (Model model : product.getModels()) {%>
                                     <option value="<%=model.getId()%>"><%=model.getName()%>
                                     </option>
@@ -316,21 +316,27 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-2 type-product"><%=product.getCategoryName()%>
+                        <div class="col-2 type-product">
+                            <%=product.getCategoryName()%>
                         </div>
-                        <div class="col-1 amount-product"><%=product.getModels().get(0).getQuantity()%>
+                        <div class="col-1 amount-product">
+                            <%=nfNumber.format(product.getModels().get(0).getQuantity())%>
                         </div>
-                        <div class="col-1 amount-product-bought"><%=product.getModels().get(0).getTotalQuantitySold()%>
+                        <div class="col-1 amount-product-bought">
+                            <%=nfNumber.format(product.getModels().get(0).getTotalQuantitySold())%>
                         </div>
-                        <div class="col-2 price"><%=nfCurrency.format(product.getPrice())%>
+                        <div class="col-2 price">
+                            <%=nfCurrency.format(product.getPrice())%>
                         </div>
                         <%if (product.getModels().get(0).available()) {%>
                         <div class="col-1 status">Còn hàng</div>
                         <%} else {%>
                         <div class="col-1 status">Hết hàng</div>
                         <%}%>
-                        <div class="col-1 edit-product" product-id="<%=product.getId()%>"><span
-                                class="material-symbols-outlined">edit</span></div>
+                        <div class="col-1">
+                            <span class="material-symbols-outlined d-inline-block lock-product" product-id="<%=product.getId()%>" lock="<%=product.getDelete()%>"><%=product.isLock() ? "lock" : "lock_open"%></span>
+                            <span product-id="<%=product.getId()%>" class="material-symbols-outlined d-inline-block edit-product">edit</span>
+                        </div>
                     </div>
                     <%}%>
                 </div>
@@ -352,8 +358,9 @@
                         %>
                         <%if (currentPage != 1) {%>
                         <a href="<%=requestString%>&page=<%=currentPage-1%>">
-                            <button id="prev" class="d-flex align-items-center justify-content-center"><span
-                                    class="material-symbols-outlined">chevron_left</span></button>
+                            <button id="prev" class="d-flex align-items-center justify-content-center">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
                         </a>
                         <%}%>
                         <%

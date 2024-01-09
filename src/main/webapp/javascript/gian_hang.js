@@ -71,7 +71,7 @@ function showModalModels(product, models) {
         if (model.quantity > model.totalQuantitySold) {
             htmlOptionModel += `model`
         }
-        htmlOptionModel += `           " data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
+        htmlOptionModel += `" data-bs-target="#carousel" data-bs-slide-to="${i}" aria-label="Slide ${i}">
                                            <img src="${model.urlImage}" alt="${model.name}.png">
                                            <span>${model.name}</span>
                                        </button>
@@ -114,11 +114,11 @@ function addProductCart() {
         $.ajax({
             url: 'cart',
             data: {
-                action: "add",
-                productId: $(this).attr("product-id"),
-                modelId: $("button.model.active").attr("model-id"),
-                quantity: $("#quantity").val(),
-                checked: "false"
+                "action": "add",
+                "product-id": $(this).attr("product-id"),
+                "model-id": $("button.model.active").attr("model-id"),
+                "quantity": $("#quantity").val(),
+                "checked": "false"
             },
             method: 'PUT',
             dataType: 'json',

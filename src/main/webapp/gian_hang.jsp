@@ -514,13 +514,13 @@
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
                                             <img class="lazyloaded rounded-3"
-                                                 src="<%=product.getProductImages().get(0)%>"
+                                                 src="<%=product.getProductImages().get(0).getUrlImage()%>"
                                                  alt="<%=product.getName()%>.jsp">
                                         </picture>
                                         <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                         <picture class="img-show-when-hover">
                                             <img class="lazyloaded  rounded-3"
-                                                 src="<%=product.getProductImages().get(1)%>"
+                                                 src="<%=product.getProductImages().get(1).getUrlImage()%>"
                                                  alt="<%=product.getName()%>.jsp">
                                         </picture>
                                     </a>

@@ -33,20 +33,23 @@ public class ModelDAO extends DAO {
                         .findFirst().orElse(null));
     }
 
-    public boolean insert(List<Model> models) {
-        boolean result = true;
-        for (Model model : models) {
-            result &= connector.withHandle(handle ->
-                    handle.createUpdate("INSERT INTO models(id, productId, name, urlImage, quantity) VALUES (?, ?, ?, ?, ?)")
-                            .bind(0, model.getId())
-                            .bind(1, model.getProductId())
-                            .bind(2, model.getName())
-                            .bind(3, model.getUrlImage())
-                            .bind(4, model.getQuantity())
-                            .execute()
-            ) == 1;
-        }
+    public int insert(Model model) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO models(id, productId, name, urlImage, quantity) VALUES (?, ?, ?, ?, ?)")
+                        .bind(0, model.getId())
+                        .bind(1, model.getProductId())
+                        .bind(2, model.getName())
+                        .bind(3, model.getUrlImage())
+                        .bind(4, model.getQuantity())
+                        .execute()
+        );
+    }
 
-        return result;
+    public int removeByProductId(int productId) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("DELETE FROM models WHERE productId = ?")
+                        .bind(0, productId)
+                        .execute()
+        );
     }
 }

@@ -1,17 +1,25 @@
 package model.bean;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Product {
-    private Integer id, categoryId, starNumber, totalReview, totalQuantitySold;
+    @Getter
+    @Setter
+    private Integer id, categoryId, starNumber, totalReview, totalQuantitySold, delete;
     private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
+    @Getter
+    @Setter
     private List<Model> models;
     private List<Review> reviews;
-    private List<String> productImages;
-
+    @Getter
+    @Setter
+    private List<ProductImage> productImages;
     private List<ProductDiscount> productDiscounts;
 
     public Product() {
@@ -24,6 +32,7 @@ public class Product {
         models = new ArrayList<>();
         reviews = new ArrayList<>();
         productImages = new ArrayList<>();
+        productDiscounts = new ArrayList<>();
     }
 
     public int getCategoryId() {
@@ -39,7 +48,7 @@ public class Product {
         return models;
     }
 
-    public void setModels(List<Model> models) {
+    public void parseModels(List<Model> models) {
         this.models = models;
     }
 
@@ -55,8 +64,11 @@ public class Product {
         this.price = price;
     }
 
-    public void setProductImages(ArrayList<String> productImages) {
-        this.productImages = productImages;
+    public void parseProductImages(String[] dataProductImages) {
+        this.productImages = this.productImages == null ? new ArrayList<>() : this.productImages;
+        for (String dataProductImage : dataProductImages) {
+            this.productImages.add(new ProductImage(dataProductImage));
+        }
     }
 
     public double getDiscount() {
@@ -139,10 +151,6 @@ public class Product {
         this.totalReview = totalReview;
     }
 
-    public List<String> getProductImages() {
-        return productImages;
-    }
-
     public Integer getTotalQuantitySold() {
         return totalQuantitySold;
     }
@@ -183,15 +191,6 @@ public class Product {
         return false;
     }
 
-    public void setModel(Model model) {
-        models = models == null ? new ArrayList<>() : models;
-        models.add(model);
-    }
-
-    public void addProductImage(String url) {
-        productImages = productImages == null ? new ArrayList<>() : productImages;
-        productImages.add(url);
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -206,17 +205,35 @@ public class Product {
         return Objects.hash(id, models);
     }
 
-    public void setModels(String[] models) {
+    public void parseModels(String[] models) {
+        this.models = this.models == null ? new ArrayList<>() : this.models;
         for (String data : models) {
-            Model model = new Model(this.id, data);
-            setModel(model);
+            Model model = new Model(data);
+            this.models.add(model);
         }
     }
 
-    public void setProductImages(String[] productImages) {
-        for (String data : productImages) {
-            this.addProductImage(data);
+    public void parseProductDiscounts(String[] parameterValues) {
+        this.productDiscounts = this.productDiscounts == null ? new ArrayList<>() : this.productDiscounts;
+        productDiscounts = new ArrayList<>();
+        if (parameterValues == null) return;
+        for (String productDiscountStr : parameterValues) {
+            ProductDiscount productDiscount = new ProductDiscount(productDiscountStr);
+            this.productDiscounts.add(productDiscount);
         }
+    }
+
+    public List<ProductDiscount> getProductDiscounts() {
+        return productDiscounts;
+    }
+
+    public void parseProductDiscounts(List<ProductDiscount> productDiscounts) {
+        this.productDiscounts = productDiscounts;
+    }
+
+    public void setModel(Model model) {
+        this.models = this.models == null ? new ArrayList<>() : this.models;
+        this.models.add(model);
     }
 
     @Override
@@ -238,19 +255,11 @@ public class Product {
                 ", models=" + models +
                 ", reviews=" + reviews +
                 ", productImages=" + productImages +
-                ", poroductDiscounts=" + productDiscounts +
+                ", productDiscounts=" + productDiscounts +
                 '}';
     }
 
-    public void setProductDiscount(String[] parameterValues) {
-        productDiscounts = new ArrayList<>();
-        for (String productDiscountStr : parameterValues) {
-            ProductDiscount productDiscount = new ProductDiscount(productDiscountStr);
-            productDiscounts.add(productDiscount);
-        }
-    }
-
-    public List<ProductDiscount> getProductDiscounts() {
-        return productDiscounts;
+    public boolean isLock() {
+        return delete == 0 ? false : true;
     }
 }

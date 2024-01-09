@@ -1,30 +1,25 @@
 package model.bean;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.StringTokenizer;
+
 public class ProductImage {
+    @Getter
+    @Setter
     private Integer id, productId;
+    @Getter
+    @Setter
     private String urlImage;
 
-    public ProductImage(Integer productId, String urlImage) {
-        this.productId = productId;
-        this.urlImage = urlImage;
+    public ProductImage() {
     }
 
-    public Integer getProductId() {
-        return productId;
+    public ProductImage(String data) {
+        StringTokenizer tk = new StringTokenizer(data, ",");
+        this.urlImage = data;
     }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
-    }
-
 
     @Override
     public String toString() {

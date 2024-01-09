@@ -19,8 +19,7 @@ public class Model {
                 '}';
     }
 
-    public Model(Integer productId, String data) {
-        this.productId = productId;
+    public Model(String data) {
         StringTokenizer tk = new StringTokenizer(data, ",");
         this.name = tk.nextToken();
         this.quantity = Integer.parseInt(tk.nextToken());

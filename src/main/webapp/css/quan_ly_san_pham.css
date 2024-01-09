@@ -107,6 +107,7 @@
 #main .table .body-table .product .img-product img {
     width: 60px;
     height: 60px;
+    border-radius: 50%;
 }
 
 #main .table .body-table .info-product .name-product {
@@ -129,7 +130,8 @@
     height: 25px;
 }
 
-#main .table .body-table .product .edit-product{
+#main .table .body-table .product .edit-product,
+#main .table .body-table .product .lock-product{
     cursor: pointer;
 }
 

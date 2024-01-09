@@ -8,24 +8,29 @@ $(document).ready(function () {
         localStorage.setItem("describe", evt.editor.getData());
     });
     addProductImage();
-    addOption();
-    addSaleProduct();
+    addModel();
+    addProductDiscount();
     $(".select-img-option-product").change(function (event) {
         const parent = $(this).parents(".a-input-option-product");
         parent.find("img").attr("src", event.target.value);
     });
-    initSelectFilter("get-brands", $('#select-brand-product'));
-    initSelectFilter("get-materials", $('#select-material-product'));
-    initSelectFilter("get-types", $('#select-type-product'));
     sumit();
     cancelAddProduct();
     cancelEditProduct();
+
+    $("#input-product-discount").parent().find(".cancel").click(function () {
+        $(this).parents(".sale-product").remove();
+    });
+
+    $("#input-product-model").parent().find(".cancel").click(function () {
+        $(this).parent().remove();
+    });
 });
 
 const ckeditor = CKEDITOR.replace('editor');
 CKFinder.setupCKEditor(ckeditor, "../ckfinder/");
 
-function initSelectFilter(action, select) {
+function initSelectFilter(action, select, data_default) {
     $.ajax({
         url: 'edit_product_manager',
         method: "GET",
@@ -36,15 +41,19 @@ function initSelectFilter(action, select) {
         success: function (data) {
             const datas = data[Object.keys(data)[0]];
             datas.forEach(function (item) {
-                select.find(`option`).last().after(`<option value="${item}">${item}</option>`);
+                let option = `<option value="${item}">${item}</option>`;
+                if (item === data_default) {
+                    option = `<option value="${item}" selected>${item}</option>`;
+                }
+                select.find(`option`).last().after(option);
             });
+            select.select2();
         },
         error: function () {
             window.location.replace("../error.jsp");
         }
     });
 
-    select.select2();
     // select.change(function () {
     //     console.log(select.select2(`data`)[0].id);
     // });
@@ -125,9 +134,9 @@ function removeProductImage(parent, button) {
     });
 }
 
-function addOption() {
-    $("#add-option").click(function () {
-        $("#input-option-product").before(`<div class="row a-input-option-product align-items-center mb-2 model">
+function addModel() {
+    $("#add-model").click(function () {
+        $("#input-product-model").before(`<div class="row a-input-option-product align-items-center mb-2 model">
                             <hr>
                             <div class="col-2 text-center">
                                 <img src="../images/avatar/default_avatar.png" alt="hinh_anh.png">
@@ -152,22 +161,22 @@ function addOption() {
                             <button type="button" class="mx-auto cancel bg-danger rounded col-1">x</button>
                         </div>`)
 
-        $("#input-option-product").prev().find(".cancel").mouseup(function () {
+        $("#input-product-model").prev().find(".cancel").click(function () {
             $(this).parent().remove();
         });
 
-        updateSelectImgOption($("#input-option-product").prev());
+        updateSelectImgOption($("#input-product-model").prev());
 
-        $("#input-option-product").prev().find(".select-img-option-product").change(function (event) {
+        $("#input-product-model").prev().find(".select-img-option-product").change(function (event) {
             const parent = $(this).parents(".a-input-option-product");
             parent.find("img").attr("src", event.target.value);
         });
     });
 }
 
-function addSaleProduct() {
-    $("#add-sale-product").mouseup(function () {
-        $("#input-sale-product").before(`
+function addProductDiscount() {
+    $("#add-product-discount").click(function () {
+        $("#input-product-discount").before(`
                             <div class="sale-product product-discounts">
                                  <hr>
                                 <div class="row d-flex">
@@ -191,7 +200,7 @@ function addSaleProduct() {
                                     </div>
                                 </div>
                             </div>`);
-        $("#input-sale-product").prev().find(".cancel").mouseup(function () {
+        $("#input-product-discount").prev().find(".cancel").click(function () {
             $(this).parents(".sale-product").remove();
         });
     });
@@ -212,8 +221,11 @@ function sumit() {
                 processData: false, // Không xử lý dữ liệu gửi đi
                 contentType: false,
                 success: function (data) {
-                    localStorage.removeItem("describe");
-                    window.location.replace("quan_ly_san_pham.jsp");
+                    console.log(data);
+                    if (data !== "wait") {
+                        localStorage.removeItem("describe");
+                        window.location.replace("quan_ly_san_pham.jsp");
+                    }
                 },
                 error: function (e) {
                 }
@@ -254,7 +266,8 @@ function beforeSumit() {
 }
 
 function getAction(formData) {
-    formData.append("action", "add-product");
+    console.log($("#submit").attr("action"));
+    formData.append("action", $("#submit").attr("action"));
     return true;
 }
 
@@ -326,6 +339,7 @@ function getModels(formData) {
         } else {
             elementModel.find(".model-url-iamge").next().attr("hidden", "");
         }
+
         formData.append("model", [modelName, modelQuantity, modelUrlIamge]);
     }
     if (!complete) {
@@ -345,9 +359,9 @@ function getProductImages(formData) {
     }
 
     for (let i = 0; i < elementProductImages.length; i++) {
-        let productImage = $(elementProductImages[i]).find("img").attr("src").toString();
-        productImage = productImage.substring(3, productImage.length);
-        formData.append("product-image", productImage);
+        let urlProductImage = $(elementProductImages[i]).find("img").attr("src").toString();
+        urlProductImage = urlProductImage.substring(3, urlProductImage.length);
+        formData.append("product-image", urlProductImage);
     }
 
     $(".error-product-image").attr("hidden", "");
@@ -466,6 +480,7 @@ function cancelEditProduct() {
         const formData = new FormData();
         formData.append("action", "cancel-edit-product");
         formData.append("product-id", $("#product-id").attr("product-id"));
+        console.log( $("#product-id").attr("product-id"));
         $.ajax({
             url: "edit_product_manager",
             data: formData,

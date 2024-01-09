@@ -35,7 +35,11 @@ public class EditProductManagerController extends HttpServlet {
             }
         }
 
-        action.action(request, response);
+        if (action == null) {
+            Action.error(request, response);
+        } else {
+            action.action(request, response);
+        }
     }
 
     @Override
@@ -45,7 +49,6 @@ public class EditProductManagerController extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionStr = request.getParameter("action");
-
         Action action = null;
         switch (actionStr) {
             case "cancel-add-product" -> {
@@ -59,8 +62,11 @@ public class EditProductManagerController extends HttpServlet {
             }
         }
 
-        if (action == null) throw new IOException("action is null");
-        action.action(request, response);
+        if (action == null) {
+            Action.error(request, response);
+        } else {
+            action.action(request, response);
+        }
     }
 
     @Override
@@ -73,12 +79,19 @@ public class EditProductManagerController extends HttpServlet {
             case "add-product" -> {
                 action = new AddProduct();
             }
+            case "update-product" -> {
+                action = new UpdateProduct();
+            }
             case "add-product-image" -> {
                 action = new AddProductImage();
             }
         }
 
-        action.action(request, response);
+        if (action == null) {
+            Action.error(request, response);
+        } else {
+            action.action(request, response);
+        }
     }
 
     @Override

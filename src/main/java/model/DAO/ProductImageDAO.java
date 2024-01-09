@@ -17,41 +17,47 @@ public class ProductImageDAO extends DAO {
         return instance == null ? new ProductImageDAO() : instance;
     }
 
-    public List<String> getProductImagesNonLimit(int productId) {
+    public List<ProductImage> getProductImagesNonLimit(int productId) {
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT pimg.urlImage " +
+                handle.createQuery("SELECT pimg.id, pimg.urlImage " +
                                 "FROM product_images AS pimg " +
                                 "WHERE " +
                                 "pimg.productId = ?;")
                         .bind(0, productId)
-                        .mapTo(String.class)
+                        .mapToBean(ProductImage.class)
                         .list()
         );
     }
 
-    public List<String> getProductImagesLimit(int productId, int limit) {
+    public List<ProductImage> getProductImagesLimit(int productId, int limit) {
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT pimg.urlImage " +
+                handle.createQuery("SELECT pimg.id, pimg.urlImage " +
                                 "FROM product_images AS pimg " +
                                 "WHERE " +
                                 "pimg.productId = ? " +
                                 "LIMIT ?;")
                         .bind(0, productId)
                         .bind(1, limit)
-                        .mapTo(String.class)
+                        .mapToBean(ProductImage.class)
                         .list()
         );
     }
 
-    public boolean insert(ProductImage productImage) {
+    public int insert(ProductImage productImage) {
         String sql = "INSERT INTO product_images(productId, urlImage) values(?, ?);";
-        boolean result = true;
-        result &= connector.withHandle(handle ->
+        return connector.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind(0, productImage.getProductId())
                         .bind(1, productImage.getUrlImage())
                         .execute()
-        ) == 1 ? true : false;
-        return result;
+        );
+    }
+
+    public int remove(int productId) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("DELETE FROM product_images WHERE productid = ?")
+                        .bind(0, productId)
+                        .execute()
+        );
     }
 }

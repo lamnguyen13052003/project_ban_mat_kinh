@@ -1,7 +1,6 @@
 package model.service;
 
 import model.DAO.ProductDiscountDAO;
-import model.DAO.ProductImageDAO;
 import model.bean.Product;
 import model.bean.ProductDiscount;
 
@@ -25,10 +24,21 @@ public class ProductDiscountService {
         return productDiscountDAO.getPricePercentage(productId);
     }
 
-    public void insert(int id, List<ProductDiscount> productDiscounts) {
+    public boolean insert(int id, List<ProductDiscount> productDiscounts) {
+        boolean result = true;
         for (ProductDiscount productDiscount : productDiscounts) {
             productDiscount.setProductId(id);
-            ProductDiscountDAO.getInstance().insert(productDiscount);
+            result &= ProductDiscountDAO.getInstance().insert(productDiscount) == 1 ? true : false;
         }
+        return result;
+    }
+
+    public List<ProductDiscount> getProductDiscounts(int productId) {
+        return ProductDiscountDAO.getInstance().getProductDiscounts(productId);
+    }
+
+    public boolean update(int productId, List<ProductDiscount> productDiscounts) {
+        ProductDiscountDAO.getInstance().removeProductId(productId);
+        return insert(productId, productDiscounts);
     }
 }

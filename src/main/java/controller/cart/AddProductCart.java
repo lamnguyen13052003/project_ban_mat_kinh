@@ -17,12 +17,12 @@ public class AddProductCart implements Action {
         int modelId = 0;
         int quantity = 0;
         try {
-            productId = Integer.parseInt(request.getParameter("productId"));
-            modelId = Integer.parseInt(request.getParameter("modelId"));
+            productId = Integer.parseInt(request.getParameter("product-id"));
+            modelId = Integer.parseInt(request.getParameter("model-id"));
             quantity = Integer.parseInt(request.getParameter("quantity"));
-        } catch (NumberFormatException e) {}
+        } catch (NumberFormatException e) { }
 
-        if (!cart.addProductCart(productId, modelId, quantity)) response.getWriter().write("error");
+        if (!cart.addProductCart(productId, modelId, quantity)) response.getWriter().write(new JSONObject().put("message","Lỗi").toString());
         else {
             session.setAttribute("cart", cart);
             JSONObject json = new JSONObject();

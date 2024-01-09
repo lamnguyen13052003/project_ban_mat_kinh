@@ -56,6 +56,25 @@ public class ProductDAO extends DAO {
         );
     }
 
+    public List<Product> getProductEdit(int id) {
+        List<Product> result;
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.TYPE, p.material, p.price, p.describe ";
+
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+        sql.append(JOIN_2);
+        sql.append(WHERE_JOIN_3);
+
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
+
+        return connector.withHandle(handle ->
+                handle.createQuery(sql.toString())
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
     public Product getProductCart(int id) {
         int index = 0;
         String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe ";
@@ -285,8 +304,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL AND `delete` = ?;")
-                        .bind(0, 0)
+                                "WHERE p.brandName IS NOT NULL;")
                         .mapTo(String.class)
                         .list()
         );
@@ -310,8 +328,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.material " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL AND `delete` = ?;")
-                        .bind(0, 0)
+                                "WHERE p.brandName IS NOT NULL;")
                         .mapTo(String.class)
                         .list()
         );
@@ -321,8 +338,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.type " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL AND `delete` = ?;")
-                        .bind(0, 0)
+                                "WHERE p.brandName IS NOT NULL;")
                         .mapTo(String.class)
                         .list()
         );
@@ -404,7 +420,7 @@ public class ProductDAO extends DAO {
 
     public List<Product> getProductForAdmin(String name, int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
         name = getNameFormatForQuery(name);
-        String select = "DISTINCT p.id, p.name,p.brandName, c.name AS categoryName, p.price";
+        String select = "DISTINCT p.id, p.name,p.brandName, c.name AS categoryName, p.price, p.delete ";
         String groupBy = "p.id, p.name,p.brandName, c.name , p.price";
         String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
         List<Product> result = null;
@@ -548,33 +564,12 @@ public class ProductDAO extends DAO {
         return nameSb.toString();
     }
 
-    public static void main(String[] args) {
-        int totalPage = 4,
-                currentPage = 2,
-                indexPage = 1;
-        if (totalPage != 1) {
-            if (currentPage != 1) {
-                System.out.println("Quay lại");
-            }
-            for (indexPage = currentPage - 2; indexPage < currentPage; indexPage++) {
-                if (indexPage > 0) {
-                    System.out.println("Các trang trước trang hiện tại: " + indexPage);
-                }
-            }
-            for (indexPage = currentPage; indexPage <= totalPage && (indexPage - currentPage) < (2-(currentPage - 3) > 0 ? 0 : (currentPage - 3)); indexPage++) {
-                System.out.println("Các trang từ trang hiện tại về sau:" + indexPage);
-            }
-            if (indexPage < totalPage - 1) {
-                System.out.println("...");
-            }
-            indexPage = indexPage <= totalPage - 2 ? totalPage - 1 : indexPage;
-            for (; indexPage <= totalPage; indexPage++) {
-                System.out.println("Các trang cuối:" + indexPage);
-            }
-            if (currentPage != totalPage) {
-                System.out.println("Tiếp theo");
-
-            }
-        }
+    public boolean unlock(int productId) {
+        return connector.withHandle(handle -> {
+            return handle.createUpdate("UPDATE products SET `delete` = ? WHERE id = ?;")
+                    .bind(0, 0)
+                    .bind(1, productId)
+                    .execute();
+        }) == 1 ? true : false;
     }
 }

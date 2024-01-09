@@ -11,14 +11,16 @@ import java.io.IOException;
 public class CancelAddProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = 0;
+        int productId;
         try {
             productId = Integer.parseInt(request.getParameter("product-id"));
         } catch (NumberFormatException e) {
+            throw e;
         }
 
         ProductService.getInstance().delete(productId);
         request.getSession().removeAttribute("product-id");
+        request.getSession().removeAttribute("action-submit");
         request.getSession().removeAttribute("id-button-cancel");
     }
 }

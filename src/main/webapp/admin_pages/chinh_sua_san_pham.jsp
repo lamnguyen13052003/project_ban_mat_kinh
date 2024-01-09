@@ -1,6 +1,5 @@
-<%@ page import="model.bean.User" %>
-<%@ page import="model.bean.Product" %>
-<%@ page import="model.bean.Model" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="model.bean.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -159,8 +158,11 @@
                 </h4>
 
                 <div class="input-product-image-body" id="input-product-image-body">
-                    <%for (String url : productEdit.getProductImages()) {%>
-                    <div class="product-image">
+                    <%
+                        for (ProductImage productImage : productEdit.getProductImages()) {
+                            String url = productImage.getUrlImage();
+                    %>
+                    <div class="product-image" product-image-id="<%=productImage.getId()%>">
                         <img src="../<%=url%>" alt="image-product.png">
                         <button type="button" path-file="<%=url%>" class="text-danger cancel">x</button>
                     </div>
@@ -186,7 +188,7 @@
                         for (int indexModel = 0; indexModel < productEdit.getModels().size(); indexModel++) {
                             Model model = productEdit.getModels().get(indexModel);
                     %>
-                    <div class="row a-input-option-product align-items-center mb-2 model">
+                    <div class="row a-input-option-product align-items-center mb-2 model" model-id="<%=model.getId()%>">
                         <div class="col-2 text-center">
                             <img src="../<%=model.getUrlImage()%>" alt="hinh_anh.png">
                         </div>
@@ -207,7 +209,7 @@
                             <select class="select-img-option-product model-url-iamge" name="model-url-iamge">
                                 <%
                                     for (int indexProductImage = 0; indexProductImage < productEdit.getProductImages().size(); indexProductImage++) {
-                                        String url = productEdit.getProductImages().get(indexProductImage);
+                                        String url = productEdit.getProductImages().get(indexProductImage).getUrlImage();
                                 %>
                                 <option value="../<%=url%>" <%if(model.getUrlImage().equals(url)) {%>selected<%}%>>
                                     Hình <%=indexProductImage%>
@@ -251,13 +253,13 @@
                         </div>
                     </div>
                     <%}%>
-                    <div id="input-option-product"></div>
+                    <div id="input-product-model"></div>
                 </div>
                 <small hidden="" class="text-danger ps-4 error-input-model">Vui lòng thêm mẫu cho sản phẩm của
                     bạn!</small>
 
                 <div class="input-option-product-footer">
-                    <button type="button" class="btn button-add" id="add-option">
+                    <button type="button" class="btn button-add" id="add-model">
                         Thêm sự lựa chọn sản phẩm
                     </button>
                 </div>
@@ -274,13 +276,44 @@
                            placeholder="Giá sản phẩm" required value="<%=productEdit.getPrice()%>">
                     <small hidden="" class="text-danger">Giá sản phẩm không được bỏ trống!</small>
                     <div class="list-sale-product">
-                        <div id="input-sale-product"></div>
+                        <%for (ProductDiscount productDiscount : productEdit.getProductDiscounts()) {%>
+                        <div class="sale-product product-discounts" product-discount-id="<%=productDiscount.getId()%>">
+                            <hr>
+                            <div class="row d-flex">
+                                <div class="col-10">
+                                    <input type="number" class="w-100 price-percentage" name="pricePercentage"
+                                           placeholder="chiết khấu" required
+                                           value="<%=productDiscount.getPricePercentage()%>">
+                                    <small hidden="" class="text-danger">Phần trăm giá giảm không được bỏ trống!</small>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="w-100 h-100 cancel bg-danger rounded col-1" product-discount-id="<%=productDiscount.getId()%>">x</button>
+                                </div>
+                            </div>
+                            <div class="input-date-sale-product d-flex row align-items-center align-items-center">
+                                <div class="col-5 pe-0">
+                                    <input required type="date" class="w-100 mb-0 ps-1 date-start"
+                                           name="date-start-discount"
+                                           value="<%=productDiscount.getDateStart().toLocalDate()%>">
+                                    <small hidden="" class="text-danger">Ngày bắt đầu không được bỏ trống!</small>
+                                </div>
+                                <div class="col-2 px-0 mx-0 text-center">-</div>
+                                <div class="col-5 ps-0">
+                                    <input required type="date" class="w-100 mb-0 ps-1 date-end"
+                                           name="date-end-discount"
+                                           value="<%=productDiscount.getDateEnd().toLocalDate()%>">
+                                    <small hidden="" class="text-danger">Ngày kết thúc không được bỏ trống!</small>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                        <div id="input-product-discount"></div>
                     </div>
                 </div>
 
                 <hr>
                 <div class="input-price-product-footer mt-3">
-                    <button type="button" class="btn button-add" id="add-sale-product">Thêm giảm giá</button>
+                    <button type="button" class="btn button-add" id="add-product-discount">Thêm giảm giá</button>
                 </div>
             </div>
 
@@ -318,7 +351,7 @@
                     </button>
                 </div>
                 <div class="col-6">
-                    <button class="w-100 rounded py-2 text-light" id="submit" type="button">Lưu</button>
+                    <button class="w-100 rounded py-2 text-light" action="<%=session.getAttribute("action-submit")%>" id="submit" type="button">Lưu</button>
                 </div>
             </div>
         </section>
@@ -375,13 +408,8 @@
     localStorage.setItem("describe", `<%=productEdit.getDescribe()%>`);
     const optionProductCategory = $("#product-category-id").find("option");
     optionProductCategory.each(function (option) {
-        if($(this).text() === "<%=productEdit.getBrandName()%>") $(this).attr("selected", "selected");
+        if ($(this).text() === "<%=productEdit.getBrandName()%>") $(this).attr("selected", "selected");
     });
-    $(document).ready(function () {
-        $("#select-brand-product").val("<%=productEdit.getBrandName()%>").trigger('change');
-        $("#select-material-product").val("<%=productEdit.getMaterial()%>").trigger('change');
-        $("#select-type-product").val("<%=productEdit.getType()%>").select2().trigger('change');
-    })
 </script>
 <%}%>
 <script src="../javascript/chinh_sua_san_pham.js"></script>
@@ -396,6 +424,12 @@
     <%} else{%>
     hidenMenuAccount();
     <%}%>
+
+    $(document).ready(function (){
+        initSelectFilter("get-brands", $('#select-brand-product'), "<%=productEdit.getBrandName()%>");
+        initSelectFilter("get-materials", $('#select-material-product'), "<%=productEdit.getMaterial()%>");
+        initSelectFilter("get-types", $('#select-type-product'), "<%=productEdit.getType()%>");
+    });
 </script>
 </body>
 </html>

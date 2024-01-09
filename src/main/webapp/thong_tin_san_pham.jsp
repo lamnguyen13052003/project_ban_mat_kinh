@@ -1,11 +1,8 @@
-<%@ page import="model.bean.User" %>
-<%@ page import="model.bean.Product" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.bean.Model" %>
-<%@ page import="model.bean.Review" %>
 <%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -192,20 +189,15 @@
                 <div class="carousel-indicators">
                     <ul class="list-group">
                         <%
-                            List<String> images = (List<String>) product.getProductImages();
-                            for (int i = 0; i < images.size(); i++) {
+                            List<ProductImage> productImages = (List<ProductImage>) product.getProductImages();
+                            for (int i = 0; i < productImages.size(); i++) {
                         %>
                         <li class="list-group-item">
-                            <%if (i == 0) {%>
                             <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="<%=i%>"
-                                    class="active" aria-current="true" aria-label="Slide <%=i%>">
-                                    <%}else{%>
-                                <button type="button" data-bs-target="#carouselExampleAutoplaying"
-                                        data-bs-slide-to="<%=i%>" aria-current="true" aria-label="Slide <%=i%>">
-                                    <%}%>
-                                    <img src="<%=images.get(i)%>"
-                                         class="d-block w-100" alt="<%=product.getName()%>.png">
-                                </button>
+                                    class=" <%=i == 0 ? "active" : ""%>" aria-current="true" aria-label="Slide <%=i%>">
+                                <img src="<%=productImages.get(i).getUrlImage()%>"
+                                     class="d-block w-100" alt="<%=product.getName()%>.png">
+                            </button>
                         </li>
                         <%}%>
                     </ul>
@@ -213,192 +205,184 @@
 
                 <%--khung hien thi anh lon--%>
                 <div class="carousel-inner">
-                    <%for (int i = 0; i < images.size(); i++) {%>
-                    <%if (i == 0) {%>
-                    <div class="carousel-item active">
-                        <%} else {%>
-                        <div class="carousel-item">
-                            <%}%>
-
-                            <img src="<%=images.get(i)%>"
-                                 class="d-block w-100" alt="<%=product.getName()%>.png">
-                        </div>
-                        <%}%>
+                    <%for (int i = 0; i < productImages.size(); i++) {%>
+                    <div class="carousel-item <%=i==0 ? "active" : ""%>">
+                        <img src="<%=productImages.get(i).getUrlImage()%>"
+                             class="d-block w-100" alt="<%=product.getName()%>.png">
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <%}%>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!--Phần hiển thị thông tin và button thao tác-->
+            <div class="productWrapDetail ms-5 w-100">
+                <div class="productWrapDetailTitle">
+                    <h1 class="productTitle"><%=product.getName()%>
+                    </h1>
                 </div>
 
-                <!--Phần hiển thị thông tin và button thao tác-->
-                <div class="productWrapDetail ms-5 w-100">
-                    <div class="productWrapDetailTitle">
-                        <h1 class="productTitle"><%=product.getName()%>
-                        </h1>
-                    </div>
-
-                    <!--Phần đánh giá-->
-                    <div class="sold_qty d-flex align-items-center mt-3 mb-1">
-                        <div class="prod-review-loop d-flex">
-                            <div class="onirvapp--shape-container me-1">
-                                <ul class="list-group list-group-horizontal">
-                                    <!--Các li có class checked là sao hoàn thiện-->
-                                    <%
-                                        int index = 0;
-                                        for (; index < product.getStarNumber(); index++) {
-                                    %>
-                                    <li>
-                                        <i class="fa-solid fa-star" style="color: #fdd836;"></i>
-                                    </li>
-                                    <%
-                                        }
-                                        if (index < 5) {
-                                            for (; index < 5; index++) {
-                                    %>
-                                    <li>
-                                        <i class="fa-regular fa-star" style="color: #fdd836;"></i>
-                                    </li>
-                                    <%
-                                            }
-                                        }
-                                    %>
-                                </ul>
-                            </div>
-
-                            <span class="onireviewapp-loopitem-title">(<%=product.getTotalReview()%> đánh giá)</span>
-                        </div>
-
-                        <span class="h-line mx-2"></span>
-
-                        <div class="sold_qty_num">
-                            <p class="m-0">
-                                Đã bán: <span><%=product.getTotalQuantitySold()%></span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!--Phàn thông tin-->
-                    <div class="productInfoMain row row-cols-2 pb-3 mb-3">
-                        <div class="checkProduct productAvailable col">
-                            <strong>Tình trạng: </strong>
-                            <%if (product.available()) {%>
-                            Còn hàng
-                            <%} else {%>
-                            Hết hàng
-                            <%}%>
-                        </div>
-                        <div class="productSku col"><span><strong>Mã sản phẩm:</strong> </span><%=product.getId()%>
-                        </div>
-                        <div class="productVendor col">
-                            <strong>Thương hiệu: </strong>Palm Angels
-                        </div>
-                        <div class="productType col">
-                            <strong>Dòng sản phẩm: </strong><%=product.getCategoryName()%>
-                        </div>
-                    </div>
-
-                    <!--Phần giá-->
-                    <div class="productPrice pb-3 mb-3">
-                        <%if (product.hasDiscount()) {%>
-                        <p class="fw-bold d-inline me-3">
-                            <%=nf.format(product.getDiscount())%>
-                        </p>
-                        <del>
-                            <%=nf.format(product.getPrice())%>
-                        </del>
-                        <%} else {%>
-                        <p class="fw-bold d-inline me-3">
-                            <%=nf.format(product.getPrice())%>
-                        </p>
-                        <%}%>
-                    </div>
-
-                    <!--Phần lựa chọn option-->
-                    <%
-                        List<Model> models = product.getModels();
-                        if (!models.isEmpty()) {
-                    %>
-                    <div class="product-swatch mb-5">
-                        <div class="product-sw-line">
-                            <div class="dflex-new">
-                                <div class="product-sw-title fw-bold">
-                                    Mẫu sản phẩm
-                                </div>
-                            </div>
-                            <!--Phần button select-->
-                            <ul class="product-sw-select">
+                <!--Phần đánh giá-->
+                <div class="sold_qty d-flex align-items-center mt-3 mb-1">
+                    <div class="prod-review-loop d-flex">
+                        <div class="onirvapp--shape-container me-1">
+                            <ul class="list-group list-group-horizontal">
+                                <!--Các li có class checked là sao hoàn thiện-->
                                 <%
-                                    List<String> productImages = product.getProductImages();
-                                    if(models.size() == 1){%>
-                                        <li class="product-sw-select-item">
-                                            <button type="button"
-                                                    class="active model"
-                                                    model-id="<%=models.get(0).getId()%>">
-                                                <img src="<%=models.get(0).getUrlImage()%>"
-                                                     alt="<%=models.get(0).getName()%>.png">
-                                                <span><%=models.get(0).getName()%></span>
-                                            </button>
-                                        </li>
-                                <%  }else {
-                                        for (int i = 0; i < models.size(); i++) {
-                                            for (index = 0; index < productImages.size(); index++) {
-                                                if (models.get(i).getUrlImage().equals(productImages.get(index))) {
+                                    int index = 0;
+                                    for (; index < product.getStarNumber(); index++) {
                                 %>
-                                                    <li class="product-sw-select-item">
-                                                        <button type="button" data-bs-target="#carouselExampleAutoplaying"
-                                                                data-bs-slide-to="<%=index%>"
-                                                                <%if(i == 0) {%>
-                                                                class="active model"
-                                                                <%} else {%>
-                                                                class="model"
-                                                                <%}%>
-                                                                aria-label="Slide 0"
-                                                                model-id="<%=models.get(i).getId()%>">
-                                                            <img src="<%=models.get(i).getUrlImage()%>"
-                                                                 alt="<%=models.get(i).getName()%>.png">
-                                                            <span><%=models.get(i).getName()%></span>
-                                                        </button>
-                                                    </li>
-                                <%                  break;
-                                                }
-                                            }
+                                <li>
+                                    <i class="fa-solid fa-star" style="color: #fdd836;"></i>
+                                </li>
+                                <%
+                                    }
+                                    if (index < 5) {
+                                        for (; index < 5; index++) {
+                                %>
+                                <li>
+                                    <i class="fa-regular fa-star" style="color: #fdd836;"></i>
+                                </li>
+                                <%
                                         }
                                     }
                                 %>
                             </ul>
                         </div>
+
+                        <span class="onireviewapp-loopitem-title">(<%=product.getTotalReview()%> đánh giá)</span>
                     </div>
+
+                    <span class="h-line mx-2"></span>
+
+                    <div class="sold_qty_num">
+                        <p class="m-0">
+                            Đã bán: <span><%=product.getTotalQuantitySold()%></span>
+                        </p>
+                    </div>
+                </div>
+
+                <!--Phàn thông tin-->
+                <div class="productInfoMain row row-cols-2 pb-3 mb-3">
+                    <div class="checkProduct productAvailable col">
+                        <strong>Tình trạng: </strong>
+                        <%if (product.available()) {%>
+                        Còn hàng
+                        <%} else {%>
+                        Hết hàng
+                        <%}%>
+                    </div>
+                    <div class="productSku col"><span><strong>Mã sản phẩm:</strong> </span><%=product.getId()%>
+                    </div>
+                    <div class="productVendor col">
+                        <strong>Thương hiệu: </strong>Palm Angels
+                    </div>
+                    <div class="productType col">
+                        <strong>Dòng sản phẩm: </strong><%=product.getCategoryName()%>
+                    </div>
+                </div>
+
+                <!--Phần giá-->
+                <div class="productPrice pb-3 mb-3">
+                    <%if (product.hasDiscount()) {%>
+                    <p class="fw-bold d-inline me-3">
+                        <%=nf.format(product.getDiscount())%>
+                    </p>
+                    <del>
+                        <%=nf.format(product.getPrice())%>
+                    </del>
+                    <%} else {%>
+                    <p class="fw-bold d-inline me-3">
+                        <%=nf.format(product.getPrice())%>
+                    </p>
                     <%}%>
+                </div>
 
-                    <!--Phần số lượng và đặt mua-->
-                    <div class="productActionMain">
-                        <div class="groupAdd d-flex align-items-center mb-2">
-                            <div class="input-group itemQuantity">
-                                <button class="input-group-text qtyBtn minusQuan" data-type="minus">-</button>
-                                <input type="number" class="input-group-text form-control quantitySelector"
-                                       id="quantity"
-                                       aria-label="Username" value="1">
-                                <button class="input-group-text qtyBtn plusQuan" data-type="plus">+</button>
-                            </div>
-                            <div class="productAction">
-                                <button type="button" product-id="<%=product.getId()%>" class="hoverOpacity" id="addToCart">Thêm vào giỏ hàng</button>
-                                <button type="button" class="hoverOpacity " id="buyNow">Mua ngay</button>
+                <!--Phần lựa chọn option-->
+                <%
+                    List<Model> models = product.getModels();
+                    if (!models.isEmpty()) {
+                %>
+                <div class="product-swatch mb-5">
+                    <div class="product-sw-line">
+                        <div class="dflex-new">
+                            <div class="product-sw-title fw-bold">
+                                Mẫu sản phẩm
                             </div>
                         </div>
+                        <!--Phần button select-->
+                        <ul class="product-sw-select">
+                            <%
+                                if (models.size() == 1) {%>
+                            <li class="product-sw-select-item">
+                                <button type="button"
+                                        class="active model"
+                                        model-id="<%=models.get(0).getId()%>">
+                                    <img src="<%=models.get(0).getUrlImage()%>"
+                                         alt="<%=models.get(0).getName()%>.png">
+                                    <span><%=models.get(0).getName()%></span>
+                                </button>
+                            </li>
+                            <% } else {
+                                for (int i = 0; i < models.size(); i++) {
+                                    for (index = 0; index < productImages.size(); index++) {
+                                        if (models.get(i).getUrlImage().equals(productImages.get(index).getUrlImage())) {
+                            %>
+                            <li class="product-sw-select-item">
+                                <button type="button" data-bs-target="#carouselExampleAutoplaying"
+                                        data-bs-slide-to="<%=index%>"
+                                        class="<%=i == 0 ? "active" : ""%> model"
+                                        aria-label="Slide 0"
+                                        model-id="<%=models.get(i).getId()%>">
+                                    <img src="<%=models.get(i).getUrlImage()%>"
+                                         alt="<%=models.get(i).getName()%>.png">
+                                    <span><%=models.get(i).getName()%></span>
+                                </button>
+                            </li>
+                            <% break;
+                            }
+                            }
+                            }
+                            }
+                            %>
+                        </ul>
+                    </div>
+                </div>
+                <%}%>
 
-                        <div class="hotline-product text-center">
-                            <span>Gọi đặt mua hàng<a href="0855354919">&nbsp;<strong>0855.354.919</strong></a>&nbsp;( 9:00 - 20:00 )</span>
+                <!--Phần số lượng và đặt mua-->
+                <div class="productActionMain">
+                    <div class="groupAdd d-flex align-items-center mb-2">
+                        <div class="input-group itemQuantity">
+                            <button class="input-group-text qtyBtn minusQuan" data-type="minus">-</button>
+                            <input type="number" class="input-group-text form-control quantitySelector"
+                                   id="quantity"
+                                   aria-label="Username" value="1">
+                            <button class="input-group-text qtyBtn plusQuan" data-type="plus">+</button>
                         </div>
+                        <div class="productAction">
+                            <button type="button" product-id="<%=product.getId()%>" class="hoverOpacity"
+                                    id="addToCart">Thêm vào giỏ hàng
+                            </button>
+                            <button type="button" class="hoverOpacity " id="buyNow">Mua ngay</button>
+                        </div>
+                    </div>
+
+                    <div class="hotline-product text-center">
+                        <span>Gọi đặt mua hàng<a href="0855354919">&nbsp;<strong>0855.354.919</strong></a>&nbsp;( 9:00 - 20:00 )</span>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 

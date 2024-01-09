@@ -3,7 +3,6 @@ package controller.product_manager;
 import controller.Action;
 import model.bean.Product;
 import model.service.ProductService;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +20,8 @@ public class GetProduct implements Action {
                 pages = request.getParameterValues("page"),
                 names = request.getParameterValues("name");
         List<Product> products;
-        List<String> listBrandName = null;
-        String brandName, requestStr = "", name = null;
+        List<String> listBrandName;
+        String brandName, requestStr, name;
         ProductService productService;
         int available = 0, page = 1, offset, totalProduct, categoryId = 0, categoryGroupId = -1, totalProductPerPage = 7;
         brandName = brandNames == null ? "" : brandNames[brandNames.length - 1];
@@ -75,7 +74,7 @@ public class GetProduct implements Action {
     }
 
     private String getBrandName(String brandName) {
-        if (brandName == null || brandName.equals(""))
+        if (brandName == null || brandName.isEmpty())
             return "Tất cả";
 
         return brandName;
@@ -89,11 +88,7 @@ public class GetProduct implements Action {
             return ProductService.MAP_PAGE.get(categoryId);
         }
 
-        if (categoryGroupId == -1 && categoryId == -1) {
-            return "Tất cả";
-        }
-
-        return "---------------Danh mục---------------";
+        return "Tất cả";
     }
 
     private int getTotalPage(int totalProduct, int totalProductPerPage) {

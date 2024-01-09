@@ -4,6 +4,7 @@ import model.bean.Product;
 import model.bean.ProductDiscount;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,13 +47,37 @@ public class ProductDiscountDAO extends DAO {
         );
     }
 
-    public void insert(ProductDiscount productDiscount) {
-        connector.withHandle(handle ->
+    public int insert(ProductDiscount productDiscount) {
+        return connector.withHandle(handle ->
                 handle.createUpdate("INSERT INTO product_discounts(productId, pricePercentage, dateStart, dateEnd) VALUES (?, ?, ?, ?);")
                         .bind(0, productDiscount.getProductId())
                         .bind(1, productDiscount.getPricePercentage())
                         .bind(2, productDiscount.getDateStart().format(formatter))
                         .bind(3, productDiscount.getDateEnd().format(formatter))
+                        .execute()
+        );
+    }
+
+    public List<ProductDiscount> getProductDiscounts(int productId) {
+        try {
+            return connector.withHandle(handle ->
+                    handle.createQuery("SELECT pd.pricePercentage, pd.dateStart, pd.dateEnd " +
+                                    "FROM product_discounts AS pd " +
+                                    "WHERE pd.productId = ?;")
+                            .bind(0, productId)
+                            .mapToBean(ProductDiscount.class)
+                            .list()
+            );
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return new ArrayList<ProductDiscount>();
+    }
+
+    public int removeProductId(int productId) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("DELETE FROM product_discounts WHERE productId = ?")
+                        .bind(0, productId)
                         .execute()
         );
     }

@@ -1,12 +1,9 @@
 package model.service;
 
 import model.DAO.ProductImageDAO;
-import model.bean.Product;
 import model.bean.ProductImage;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ProductImageService {
     private static ProductImageService instance;
@@ -15,29 +12,28 @@ public class ProductImageService {
         return instance == null ? new ProductImageService() : instance;
     }
 
-    public Map<Integer, List<String>> getProductImage(List<Product> products, int limit) {
+    public List<ProductImage> getProductImage(int productId, int limit) {
         ProductImageDAO productImageDAO = ProductImageDAO.getInstance();
-        Map<Integer, List<String>> result = new HashMap<Integer, List<String>>();
-        List<String> images;
-        for (Product product : products) {
-            int id = product.getId();
-            images = productImageDAO.getProductImagesLimit(id, limit);
-            if (limit == 0) {
-                images = productImageDAO.getProductImagesNonLimit(id);
-            }
+        List<ProductImage> images;
+        if (limit == 0) {
+            return productImageDAO.getProductImagesNonLimit(productId);
+        }
 
-            result.put(id, images);
+        return productImageDAO.getProductImagesLimit(productId, limit);
+    }
+
+    public boolean insert(int productId, List<ProductImage> productImages) {
+        boolean result = true;
+        for (ProductImage productImage : productImages) {
+            productImage.setProductId(productId);
+            result &= ProductImageDAO.getInstance().insert(productImage) == 1 ? true : false;
         }
 
         return result;
     }
 
-    public boolean insert(int productId, List<String> productImages) {
-        for(String url : productImages){
-            ProductImage productImage = new ProductImage(productId, url);
-            ProductImageDAO.getInstance().insert(productImage);
-        }
-
-        return true;
+    public boolean update(int productId, List<ProductImage> productImages) {
+        ProductImageDAO.getInstance().remove(productId);
+        return insert(productId, productImages);
     }
 }

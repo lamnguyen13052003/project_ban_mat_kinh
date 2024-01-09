@@ -15,15 +15,22 @@ public class ProductManagerController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Action action = null;
         String actionName = request.getParameter("action");
-        if(actionName == null) actionName = "";
+        if (actionName == null) {
+            action = new GetProduct();
+            action.action(request, response);
+            return;
+        }
         switch (actionName) {
-            case "band-name" ->{
+            case "band-name" -> {
                 action = new GetBrandProduct();
             }
-            case "add" ->{
+            case "show-model" -> {
+                action = new ShowModel();
+            }
+            case "add" -> {
                 action = new ChangePageAddProduct();
             }
-            default ->{
+            default -> {
                 action = new GetProduct();
             }
         }
@@ -37,14 +44,18 @@ public class ProductManagerController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Action action = null;
         String actionName = request.getParameter("action");
-        if(actionName == null) actionName = "";
+        if (actionName == null) actionName = "";
         switch (actionName) {
-            case "edit-product" ->{
+            case "edit-product" -> {
                 action = new ChangePageEditProduct();
-            }
-            default ->{
+            }case "lock-product" -> {
+                action = new LockProduct();
             }
         }
-        action.action(request, response);
+        if(action == null){
+            Action.error(request, response);
+        }else{
+            action.action(request, response);
+        }
     }
 }
