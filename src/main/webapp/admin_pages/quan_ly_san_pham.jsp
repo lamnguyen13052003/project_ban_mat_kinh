@@ -13,14 +13,19 @@
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../notify/notify-metro.css"/>
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="stylesheet" href="../css/quan_ly_san_pham.css">
     <link rel="icon" href="../images/logo/logo_icon.png">
 
+    <%--jquery--%>
+    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
 
+    <%--notify--%>
+    <script src="../notify/notify.js"></script>
     <title>Quản lý sản phẩm</title>
 </head>
 <body>
@@ -462,33 +467,6 @@
     </div>
 </footer>
 
-<%
-    String message = (String) session.getAttribute("message");
-    if (message != null) {
-%>
-<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
-        data-bs-target="#complete-modal"></button>
-<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Thành công</h1>
-                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body position-relative">
-                <div class="d-flex align-items-center justify-content-center">
-                    <img style="width: 50px" src="../images/icon/complete.png" alt="complete.png">
-                    <p class="fs-1 ms-2"><%=message%>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<%}%>
-
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/quan_ly_san_pham.js"></script>
@@ -503,8 +481,9 @@
     <%} else{%>
     hidenMenuAccount();
     <%}%>
-    <%if (message != null){%>
-    $("#show-complete-modal").click();
+    <%String message = (String) session.getAttribute("message");
+    if (message != null){%>
+    $.notify("<%=message%>", "success");
     <%}
     session.removeAttribute("message");
     %>
