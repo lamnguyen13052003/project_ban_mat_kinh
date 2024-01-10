@@ -346,6 +346,7 @@
                                 </button>
                             </li>
                             <% } else {
+                                boolean haveActive = false;
                                 for (int i = 0; i < models.size(); i++) {
                                     for (index = 0; index < productImages.size(); index++) {
                                         if (models.get(i).getUrlImage().equals(productImages.get(index).getUrlImage())) {
@@ -353,7 +354,14 @@
                             <li class="product-sw-select-item">
                                 <button type="button" data-bs-target="#carouselExampleAutoplaying"
                                         data-bs-slide-to="<%=index%>"
-                                        class="<%=i == 0 ? "active " : ""%>"<%=models.get(i).available() ? "button-model" : ""%>"
+                                        class="<%if(models.get(i).available()) {%>
+                                            <%="button-model"%>
+                                            <%if(!haveActive) {
+                                            haveActive = true;
+                                            %>
+                                            <%=" active"%>
+                                            <%}%>
+                                        <%}%>"
                                         aria-label="Slide 0"
                                         model-id="<%=models.get(i).getId()%>">
                                     <img src="<%=models.get(i).getUrlImage()%>"
