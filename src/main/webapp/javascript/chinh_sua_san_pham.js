@@ -352,7 +352,7 @@ function getModels(formData) {
 
 function getProductImages(formData) {
     const elementProductImages = $("#input-product-image-body .product-image");
-    const complete = elementProductImages.length > 0 ? true : false;
+    const complete = elementProductImages.length >= 2 ? true : false;
     if (!complete) {
         $(".error-product-image").removeAttr("hidden");
         return false;
@@ -480,7 +480,7 @@ function cancelEditProduct() {
         const formData = new FormData();
         formData.append("action", "cancel-edit-product");
         formData.append("product-id", $("#product-id").attr("product-id"));
-        console.log( $("#product-id").attr("product-id"));
+        console.log($("#product-id").attr("product-id"));
         $.ajax({
             url: "edit_product_manager",
             data: formData,
