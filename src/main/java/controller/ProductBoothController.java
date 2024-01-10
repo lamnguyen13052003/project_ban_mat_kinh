@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "DisplayProductController", value = "/product-booth")
-public class DisplayProductController extends HttpServlet {
+@WebServlet(name = "ProductBoothController", value = "/product-booth")
+public class ProductBoothController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getQueryString();

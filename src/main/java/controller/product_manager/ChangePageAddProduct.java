@@ -13,6 +13,8 @@ public class ChangePageAddProduct implements Action {
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productId = ProductService.getInstance().createProductTemp();
         request.getSession().setAttribute("product-id", productId);
+        request.getSession().setAttribute("action-submit", "add-product");
+        request.getSession().setAttribute("id-button-cancel", "cancel-add-product");
         response.sendRedirect("chinh_sua_san_pham.jsp");
     }
 }

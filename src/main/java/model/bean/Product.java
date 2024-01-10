@@ -5,17 +5,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class Product {
-    private Integer id, categoryId, starNumber, totalReview, totalQuantitySold;
+    private Integer id, categoryId, starNumber, totalReview, totalQuantitySold, delete;
     private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
     private List<Model> models;
     private List<Review> reviews;
-    private List<String> productImages;
-
-
-    private List<ProductDiscount> poroductDiscounts;
+    private List<ProductImage> productImages;
+    private List<ProductDiscount> productDiscounts;
 
     public Product() {
+        name = "";
+        brandName = "";
+        material = "";
+        type = "";
+        categoryName = "";
+        price = 0.0;
+        models = new ArrayList<>();
+        reviews = new ArrayList<>();
+        productImages = new ArrayList<>();
+        productDiscounts = new ArrayList<>();
     }
 
     public int getCategoryId() {
@@ -31,7 +39,7 @@ public class Product {
         return models;
     }
 
-    public void setModels(List<Model> models) {
+    public void parseModels(List<Model> models) {
         this.models = models;
     }
 
@@ -47,8 +55,11 @@ public class Product {
         this.price = price;
     }
 
-    public void setProductImages(ArrayList<String> productImages) {
-        this.productImages = productImages;
+    public void parseProductImages(String[] dataProductImages) {
+        this.productImages = this.productImages == null ? new ArrayList<>() : this.productImages;
+        for (String dataProductImage : dataProductImages) {
+            this.productImages.add(new ProductImage(dataProductImage));
+        }
     }
 
     public double getDiscount() {
@@ -131,10 +142,6 @@ public class Product {
         this.totalReview = totalReview;
     }
 
-    public List<String> getProductImages() {
-        return productImages;
-    }
-
     public Integer getTotalQuantitySold() {
         return totalQuantitySold;
     }
@@ -169,10 +176,55 @@ public class Product {
     }
 
     public boolean available() {
-        for(Model model : models){
-            if(model.available()) return true;
+        for (Model model : models) {
+            if (model.available()) return true;
         }
         return false;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) && Objects.equals(models, product.models);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, models);
+    }
+
+    public void parseModels(String[] models) {
+        this.models = this.models == null ? new ArrayList<>() : this.models;
+        for (String data : models) {
+            Model model = new Model(data);
+            this.models.add(model);
+        }
+    }
+
+    public void parseProductDiscounts(String[] parameterValues) {
+        this.productDiscounts = this.productDiscounts == null ? new ArrayList<>() : this.productDiscounts;
+        productDiscounts = new ArrayList<>();
+        if (parameterValues == null) return;
+        for (String productDiscountStr : parameterValues) {
+            ProductDiscount productDiscount = new ProductDiscount(productDiscountStr);
+            this.productDiscounts.add(productDiscount);
+        }
+    }
+
+    public List<ProductDiscount> getProductDiscounts() {
+        return productDiscounts;
+    }
+
+    public void parseProductDiscounts(List<ProductDiscount> productDiscounts) {
+        this.productDiscounts = productDiscounts;
+    }
+
+    public void setModel(Model model) {
+        this.models = this.models == null ? new ArrayList<>() : this.models;
+        this.models.add(model);
     }
 
     @Override
@@ -194,42 +246,35 @@ public class Product {
                 ", models=" + models +
                 ", reviews=" + reviews +
                 ", productImages=" + productImages +
+                ", productDiscounts=" + productDiscounts +
                 '}';
     }
 
-    public void setModel(Model model) {
-        models = models == null ? new ArrayList<>() : models;
-        models.add(model);
+    public boolean isLock() {
+        return delete == 0 ? false : true;
     }
 
-    public void addProductImage(String url) {
-        productImages = productImages == null ? new ArrayList<>() : productImages;
-        productImages.add(url);
+    public Integer getDelete() {
+        return delete;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(models, product.models);
+    public void setDelete(Integer delete) {
+        this.delete = delete;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, models);
+    public void setModels(List<Model> models) {
+        this.models = models;
     }
 
-    public void setModels(String[] models) {
-        for(String data: models){
-            Model model = new Model(this.id, data);
-            setModel(model);
-        }
+    public List<ProductImage> getProductImages() {
+        return productImages;
     }
 
-    public void setProductImages(String[] productImages) {
-        for(String data: productImages){
-            this.addProductImage(data);
-        }
+    public void setProductImages(List<ProductImage> productImages) {
+        this.productImages = productImages;
+    }
+
+    public void setProductDiscounts(List<ProductDiscount> productDiscounts) {
+        this.productDiscounts = productDiscounts;
     }
 }

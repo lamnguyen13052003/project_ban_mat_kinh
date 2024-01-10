@@ -1,5 +1,7 @@
 package model.bean;
 
+import model.service.ModelService;
+import model.service.ProductDiscountService;
 import model.service.ProductService;
 
 import java.util.ArrayList;
@@ -24,16 +26,24 @@ public class Cart {
 
     public boolean addProduct(int productId, int modelId, int quantity) {
         String key = getKey(productId, modelId);
-        if (cart.containsKey(key)) {
-            ProductCart productCart = cart.get(key);
-            return productCart.increase(quantity);
-        }
+        ProductCart productCart = cart.get(key);
+        if (productCart != null) return productCart.increase(quantity);
 
         ProductService service = ProductService.getInstance();
-        Product product = service.getProductCart(productId, modelId);
-        if (product == null) return false;
+        ModelService modelService = ModelService.getInstance();
+        ProductDiscountService productDiscountService = ProductDiscountService.getInstance();
 
-        cart.put(key, new ProductCart(product, quantity));
+        productCart = service.getProductCart(productId);
+        if (productCart == null) return false;
+        Model model = modelService.getModelForCart(modelId);
+        if (model == null) return false;
+        Double productDiscount = productDiscountService.getPricePercentage(productId);
+        productDiscount = Double.compare(productDiscount, 0.0) != 0 ? (1.0 - productDiscount) * productCart.getPrice() : 0.0;
+        productCart.setDiscount(productDiscount);
+        productCart.setQuantity(quantity);
+        productCart.setModel(model);
+
+        cart.put(key, productCart);
         return true;
     }
 
@@ -76,7 +86,7 @@ public class Cart {
 
     public void bought(Bill bill) {
         ArrayList<BillDetail> billDetails = bill.getDetails();
-        for(BillDetail billDetail : billDetails){
+        for (BillDetail billDetail : billDetails) {
             String key = Cart.getKey(billDetail.getProductId(), billDetail.getModelId());
             cart.remove(key);
         }

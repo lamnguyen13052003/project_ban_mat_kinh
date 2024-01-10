@@ -35,37 +35,63 @@ public class EditProductManagerController extends HttpServlet {
             }
         }
 
-        action.action(request, response);
+        if (action == null) {
+            Action.error(request, response);
+        } else {
+            action.action(request, response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        String actionStr = request.getParameter("action");
-        System.out.println(actionStr);
-        Action action = null;
-        switch (actionStr) {
-            case "add" -> {
-                action = new AddProduct();
-            }
-            case "update" -> {
-            }
-        }
-
-        action.action(request, response);
     }
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Action action = new DeleteImageProduct();
-        action.action(request, response);
+        String actionStr = request.getParameter("action");
+        Action action = null;
+        switch (actionStr) {
+            case "cancel-add-product" -> {
+                action = new CancelAddProduct();
+            }
+            case "cancel-edit-product" -> {
+                action = new CancelEditProduct();
+            }
+            case "delete-product-image" -> {
+                action = new DeleteProductImage();
+            }
+        }
+
+        if (action == null) {
+            Action.error(request, response);
+        } else {
+            action.action(request, response);
+        }
     }
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Action action = new AddImageProduct();
-        action.action(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String actionStr = request.getParameter("action");
+        Action action = null;
+        switch (actionStr) {
+            case "add-product" -> {
+                action = new AddProduct();
+            }
+            case "update-product" -> {
+                action = new UpdateProduct();
+            }
+            case "add-product-image" -> {
+                action = new AddProductImage();
+            }
+        }
+
+        if (action == null) {
+            Action.error(request, response);
+        } else {
+            action.action(request, response);
+        }
     }
 
     @Override

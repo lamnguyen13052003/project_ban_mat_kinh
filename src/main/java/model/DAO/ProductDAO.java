@@ -4,12 +4,10 @@ import model.bean.Product;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class ProductDAO extends DAO {
+    private final String WHERE_PRODUCT_DONT_DELETE = " WHERE p.`delete` = 0 ";
     private final String WHERE_NOT_JOIN = " WHERE p.categoryId = ? ";
     private final String WHERE_JOIN_1 = " WHERE CURRENT_TIMESTAMP() BETWEEN pd.dateStart AND pd.dateEnd ";
     private final String WHERE_JOIN_2 = " WHERE c.categoryGroupId = ? ";
@@ -58,8 +56,26 @@ public class ProductDAO extends DAO {
         );
     }
 
-    public List<Product> getProductCart(int id) {
+    public List<Product> getProductEdit(int id) {
         List<Product> result;
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.TYPE, p.material, p.price, p.describe ";
+
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+        sql.append(JOIN_2);
+        sql.append(WHERE_JOIN_3);
+
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
+
+        return connector.withHandle(handle ->
+                handle.createQuery(sql.toString())
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .list()
+        );
+    }
+
+    public Product getProductCart(int id) {
         int index = 0;
         String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe ";
 
@@ -68,7 +84,7 @@ public class ProductDAO extends DAO {
                 handle.createQuery(sql)
                         .bind(0, id)
                         .mapToBean(Product.class)
-                        .list()
+                        .findFirst().orElse(null)
         );
     }
 
@@ -77,7 +93,6 @@ public class ProductDAO extends DAO {
         String select = " p.id, p.name ";
 
         String sql = initSQLGetProduct(select);
-        System.out.println(sql);
         return connector.withHandle(handle ->
                 handle.createQuery(sql)
                         .bind(0, id)
@@ -91,6 +106,10 @@ public class ProductDAO extends DAO {
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
         sql.append(JOIN_2);
         sql.append(WHERE_JOIN_3);
+        sql.append(WHERE_PRODUCT_DONT_DELETE);
+
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
 
         return sql.toString();
     }
@@ -152,6 +171,7 @@ public class ProductDAO extends DAO {
         idCategory = mapInfRoot.get("id-category");
         idCategoryGroup = mapInfRoot.get("id-category-group");
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+
         if (idCategoryGroup == 0 && idCategory == 0) {
             sql.append(JOIN_1);
             sql.append(WHERE_JOIN_1);
@@ -165,6 +185,11 @@ public class ProductDAO extends DAO {
         if (idCategoryGroup > 0 && idCategory != 0) {
             sql.append(WHERE_NOT_JOIN);
         }
+
+        sql.append(WHERE_PRODUCT_DONT_DELETE);
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
+
 
         sql.append(getSQLFilter(mapFilter));
         sql.append(getSQLSort(mapSort));
@@ -225,25 +250,12 @@ public class ProductDAO extends DAO {
         if (mapInfRoot.containsKey("id-category-group")) idCategory = mapInfRoot.get("id-category");
         if (mapInfRoot.containsKey("id-category-group")) idCategoryGroup = mapInfRoot.get("id-category-group");
 
-        if (id != 0) {
-            System.out.println("Thong tin chi tiet san pham");
-        }
-
-        if (idCategoryGroup == 0 && idCategory == 0) {
-            System.out.println("Khuyen mai");
-        }
-
-        if (idCategoryGroup == -1) {
-            System.out.println("Tất cả");
-        }
 
         if (idCategoryGroup > 0 && idCategory == 0) {
-            System.out.println("Nhom danh muc");
             query.bind(index++, idCategoryGroup);
         }
 
         if (idCategoryGroup > 0 && idCategory > 0) {
-            System.out.println("Danh muc");
             query.bind(index++, idCategory);
         }
 
@@ -272,17 +284,17 @@ public class ProductDAO extends DAO {
         return index;
     }
 
-    public List<Product> getProductDiscount() {
-        return null;
-    }
-
     /*
     lay danh sach thong tin san pham noi bat tren trang chu
      */
     public List<Product> getInfoProminentProductByStart(int limit) {
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.brandName, p.price FROM products p ");
+        sql.append(WHERE_PRODUCT_DONT_DELETE);
+        sql.append(LIMIT_OFFSET);
         List<Product> products = connector.withHandle(handle ->
-                handle.createQuery("SELECT p.id, p.name, p.brandName, p.price FROM products p LIMIT ?")
+                handle.createQuery(sql.toString())
                         .bind(0, limit)
+                        .bind(1, 0)
                         .mapToBean(Product.class).list()
         );
         return products;
@@ -292,7 +304,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL ;")
+                                "WHERE p.brandName IS NOT NULL;")
                         .mapTo(String.class)
                         .list()
         );
@@ -316,7 +328,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.material " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL ;")
+                                "WHERE p.brandName IS NOT NULL;")
                         .mapTo(String.class)
                         .list()
         );
@@ -326,7 +338,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.type " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL ;")
+                                "WHERE p.brandName IS NOT NULL;")
                         .mapTo(String.class)
                         .list()
         );
@@ -340,9 +352,10 @@ public class ProductDAO extends DAO {
                 int productId = nextProductId();
                 id = productId;
                 result = connector.withHandle(handle ->
-                        handle.createUpdate("INSERT INTO products(id) " +
-                                        "VALUES (?);")
+                        handle.createUpdate("INSERT INTO products(id, `delete`) " +
+                                        "VALUES (?, ?);")
                                 .bind(0, productId)
+                                .bind(1, 1)
                                 .execute()
                 );
             } catch (Exception e) {
@@ -363,33 +376,200 @@ public class ProductDAO extends DAO {
 
     public int update(Product product) {
         int result = connector.withHandle(handle -> {
-            try {
-                return handle.createUpdate("UPDATE products " +
-                                "SET `categoryId`=?, " +
-                                "name = ?, " +
-                                "brandName = ?, " +
-                                "price = ?, " +
-                                "`describe` = ?, " +
-                                "material = ?, " +
-                                "TYPE = ? " +
-                                "WHERE id = ?")
-                        .bind(0, product.getCategoryId())
-                        .bind(1, product.getName())
-                        .bind(2, product.getBrandName())
-                        .bind(3, product.getPrice())
-                        .bind(4, product.getDescribe())
-                        .bind(5, product.getMaterial())
-                        .bind(6, product.getType())
-                        .bind(7, product.getId())
-                        .execute();
-            } catch (Exception e) {
-                System.err.println("Lỗi: " + e.getMessage());
-                return 0; // Ném lại ngoại lệ để quản lý lỗi ở tầng cao hơn
-            }
+            return handle.createUpdate("UPDATE products " +
+                            "SET `categoryId`=?, " +
+                            "name = ?, " +
+                            "brandName = ?, " +
+                            "price = ?, " +
+                            "`describe` = ?, " +
+                            "material = ?, " +
+                            "TYPE = ?, " +
+                            "`delete` = ? " +
+                            "WHERE id = ?")
+                    .bind(0, product.getCategoryId())
+                    .bind(1, product.getName())
+                    .bind(2, product.getBrandName())
+                    .bind(3, product.getPrice())
+                    .bind(4, product.getDescribe())
+                    .bind(5, product.getMaterial())
+                    .bind(6, product.getType())
+                    .bind(7, 0)
+                    .bind(8, product.getId())
+                    .execute();
         });
 
-        System.out.println(result);
-
         return result;
+    }
+
+    public boolean delete(int productId) {
+        return connector.withHandle(handle -> {
+            return handle.createUpdate("DELETE FROM products WHERE id = ?;")
+                    .bind(0, productId)
+                    .execute();
+        }) == 1 ? true : false;
+    }
+
+    public boolean lock(int productId) {
+        return connector.withHandle(handle -> {
+            return handle.createUpdate("UPDATE products SET `delete` = ? WHERE id = ?;")
+                    .bind(0, 1)
+                    .bind(1, productId)
+                    .execute();
+        }) == 1 ? true : false;
+    }
+
+    public List<Product> getProductForAdmin(String name, int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+        name = getNameFormatForQuery(name);
+        String select = "DISTINCT p.id, p.name,p.brandName, c.name AS categoryName, p.price, p.delete ";
+        String groupBy = "p.id, p.name,p.brandName, c.name , p.price";
+        String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
+        List<Product> result = null;
+        Handle handle = connector.open();
+        Query query = handle.createQuery(sql);
+        if (categoryGroupId == -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, name)
+                    .bind(2, limit)
+                    .bind(3, offset)
+                    .mapToBean(Product.class).list();
+        }
+
+        if (categoryGroupId != -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, name)
+                    .bind(2, categoryGroupId)
+                    .bind(3, limit)
+                    .bind(4, offset)
+                    .mapToBean(Product.class).list();
+        }
+
+        if (categoryGroupId == -1 && categoryId != -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, name)
+                    .bind(2, categoryId)
+                    .bind(3, limit)
+                    .bind(4, offset)
+                    .mapToBean(Product.class).list();
+        }
+
+        query.close();
+        handle.close();
+        return result;
+    }
+
+    public int totalProduct(String name, int categoryGroupId, int categoryId, String brandName, int available) {
+        name = getNameFormatForQuery(name);
+        String select = "COUNT(DISTINCT p.id)";
+        String groupBy = "";
+        String sql = getSQLForAdmin(categoryGroupId, categoryId, available, select, groupBy);
+        Handle handle = connector.open();
+        Query query = handle.createQuery(sql);
+        int result = 0;
+        if (categoryGroupId == -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, name)
+                    .bind(2, 9999999)
+                    .bind(3, 0)
+                    .mapTo(Integer.class).findFirst().orElse(0);
+        }
+
+        if (categoryGroupId != -1 && categoryId == -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, name)
+                    .bind(2, categoryGroupId)
+                    .bind(3, 9999999)
+                    .bind(4, 0)
+                    .mapTo(Integer.class).findFirst().orElse(0);
+        }
+
+        if (categoryGroupId == -1 && categoryId != -1) {
+            result = query.bind(0, brandName)
+                    .bind(1, name)
+                    .bind(2, categoryId)
+                    .bind(3, 9999999)
+                    .bind(4, 0)
+                    .mapTo(Integer.class).findFirst().orElse(0);
+        }
+
+        query.close();
+        handle.close();
+        return result;
+    }
+
+    private String getSQLForAdmin(int categoryGroupId, int categoryId, int available, String select, String groupBy) {
+        String stringReplace = "stringReplace";
+        String groupByStringReplace = "GROUP BY ";
+        StringBuilder sb = new StringBuilder("SELECT ")
+                .append(select)
+                .append(" FROM products AS p ")
+                .append("JOIN categories AS c JOIN category_groups AS cg ON cg.id = c.categoryGroupId ")
+                .append("ON c.id = p.categoryId ");
+        if (available != 0) {
+            sb.append("JOIN models AS m ON m.productId = p.id ")
+                    .append("LEFT JOIN bill_details AS bd ON bd.productId = p.id ")
+                    .append("WHERE p.brandName LIKE ? ")
+                    .append("AND p.name LIKE ? ")
+                    .append(stringReplace)
+                    .append(groupByStringReplace)
+                    .append(" HAVING ")
+                    .append("SUM(m.quantity) ");
+            if (available > 0) {
+                sb.append(">")
+                        .append(" SUM(bd.quantity) ")
+                        .append(" OR (SUM(m.quantity)")
+                        .append(">");
+            } else {
+                sb.append("<=")
+                        .append(" SUM(bd.quantity)")
+                        .append(" OR (SUM(m.quantity)")
+                        .append("<=");
+            }
+
+            sb.append("0 AND SUM(bd.quantity) IS NULL)");
+        } else {
+            sb.append("WHERE p.brandName LIKE ? ")
+                    .append("AND p.name LIKE ? ")
+                    .append(stringReplace)
+                    .append(groupByStringReplace);
+        }
+        sb.append(" LIMIT ? OFFSET ?");
+
+        if (groupBy != null && !groupBy.equals(""))
+            sb.replace(sb.indexOf(groupByStringReplace), sb.indexOf(groupByStringReplace) + groupByStringReplace.length(), groupByStringReplace + groupBy);
+        else
+            sb.delete(sb.indexOf(groupByStringReplace), sb.indexOf(groupByStringReplace) + groupByStringReplace.length());
+        if (categoryGroupId == -1 && categoryId == -1) {
+            sb.delete(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length());
+            return sb.toString();
+        }
+
+        if (categoryGroupId != -1) {
+            sb.replace(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length(), "AND cg.id = ? ");
+            return sb.toString();
+        }
+
+        sb.replace(sb.indexOf(stringReplace), sb.indexOf(stringReplace) + stringReplace.length(), "AND c.id = ? ");
+        return sb.toString();
+    }
+
+    private String getNameFormatForQuery(String name) {
+        StringTokenizer st = new StringTokenizer(name, " ");
+        StringBuilder nameSb = new StringBuilder("%");
+        while (st.hasMoreTokens()) {
+            nameSb.append(st.nextToken());
+            if (st.hasMoreTokens()) nameSb.append("%");
+        }
+        nameSb.append("%");
+
+        return nameSb.toString();
+    }
+
+    public boolean unlock(int productId) {
+        return connector.withHandle(handle -> {
+            return handle.createUpdate("UPDATE products SET `delete` = ? WHERE id = ?;")
+                    .bind(0, 0)
+                    .bind(1, productId)
+                    .execute();
+        }) == 1 ? true : false;
     }
 }

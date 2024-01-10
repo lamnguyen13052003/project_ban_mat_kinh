@@ -25,12 +25,16 @@
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="css/san_pham.css">
+    <link rel="stylesheet" href="notify/notify-metro.css" />
+    <link rel="stylesheet" href="css/gian_hang.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
+    <%--jquery--%>
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
+
+    <%--notify--%>
+    <script src="notify/notify.js"></script>
 
     <title><%=request.getAttribute("title")%>
     </title>
@@ -502,10 +506,10 @@
                             <!--Phần hình ảnh-->
                             <div class="pro-loop-image position-relative">
                                 <!--Hiển thị hêt hàng-->
-                                <%if (product.available()) {%>
-                                    <div class="pro-loop-sd z-2 position-absolute">
-                                        <span>Hết hàng</span>
-                                    </div>
+                                <%if (!product.available()) {%>
+                                <div class="pro-loop-sd z-2 position-absolute">
+                                    <span>Hết hàng</span>
+                                </div>
                                 <%}%>
 
                                 <!--Hiển thị hình ảnh-->
@@ -513,14 +517,14 @@
                                     <a href="more-info-product?id=<%=product.getId()%>">
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
-                                            <img class="lazyloaded  rounded-3"
-                                                 src="<%=product.getProductImages().get(0)%>"
+                                            <img class="lazyloaded rounded-3"
+                                                 src="<%=product.getProductImages().get(0).getUrlImage()%>"
                                                  alt="<%=product.getName()%>.jsp">
                                         </picture>
                                         <!--Ảnh khi horver vào phẩn "Ô hiển thị"-->
                                         <picture class="img-show-when-hover">
                                             <img class="lazyloaded  rounded-3"
-                                                 src="<%=product.getProductImages().get(1)%>"
+                                                 src="<%=product.getProductImages().get(1).getUrlImage()%>"
                                                  alt="<%=product.getName()%>.jsp">
                                         </picture>
                                     </a>
@@ -579,14 +583,12 @@
                                             </li>
                                             <%
                                                 }
-                                                if (index < 5) {
-                                                    for (; index < 5; index++) {
+                                                for (; index < 5; index++) {
                                             %>
                                             <li>
                                                 <i class="fa-regular fa-star" style="color: #fdd836;"></i>
                                             </li>
                                             <%
-                                                    }
                                                 }
                                             %>
                                         </ul>
@@ -613,7 +615,7 @@
                                         class="f-button setAddCartLoop add-cart" data-type="add-cart">
                                     Xem nhanh
                                 </button>
-                                <button type="button" class="f-button setBuyNow" data-type="buy-now" data-id="">
+                                <button type="button" product-id="<%=product.getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
                                     Mua ngay
                                 </button>
                             </div>
@@ -624,44 +626,6 @@
                 </div>
             </section>
             <!--end hiển thị danh sách sản phẩm-->
-
-            <button hidden="" type="button" id="show-modal" data-bs-toggle="modal" data-bs-target="#modal"></button>
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalLabel">Chọn mẫu bạn mong muốn</h1>
-                            <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-body position-relative">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
-                    data-bs-target="#complete-modal"></button>
-            <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5">Thành công</h1>
-                            <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-body position-relative">
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
-                                <p class="fs-1 ms-2">Hoàn Thành</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!--Phần chuyển trang (<- 1 2 3 ... ->)-->
             <section id="navigation_change_page">
@@ -674,22 +638,26 @@
                         </li>
 
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center" target-page="1">
+                            <button class="page-link d-flex justify-content-center align-items-center"
+                                    target-page="1">
                                 1
                             </button>
                         </li>
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center" target-page="2">
+                            <button class="page-link d-flex justify-content-center align-items-center"
+                                    target-page="2">
                                 2
                             </button>
                         </li>
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center" target-page="3">
+                            <button class="page-link d-flex justify-content-center align-items-center"
+                                    target-page="3">
                                 3
                             </button>
                         </li>
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center" target-page="4">
+                            <button class="page-link d-flex justify-content-center align-items-center"
+                                    target-page="4">
                                 4
                             </button>
                         </li>
@@ -704,7 +672,84 @@
             </section>
             <!--End phần chuyển trang  (<- 1 2 3 ... ->)-->
         </div>
-        <!--End phần nội dung-->
+    </div>
+
+    <%--Hiển thị modal các model sản phẩm--%>
+    <button hidden="" type="button" id="show-modal" data-bs-toggle="modal" data-bs-target="#modal"></button>
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalLabel">Chọn mẫu bạn mong muốn</h1>
+                    <button id="close-modal" type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body position-relative">
+                    <div class="product-swatch">
+                        <div class="product-sw-line">
+                            <div id="carousel" class="carousel slide">
+                                <%--Phần hiển thị hình ảnh--%>
+                                <div class="carousel-inner" id="model-image">
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Phần số lượng và đặt mua-->
+                    <div class="product position-absolute">
+                        <div class="product-name" id="product-name">
+                        </div>
+                        <%--Phần hiển thị các option--%>
+                        <div class="product-model" id="option-model">
+                        </div>
+                        <div class="group-add d-flex flex-column align-items-center mb-2 position-absolute">
+                            <div id="input-amount" class="input-group item-quantity mb-2">
+                                <button class="input-group-text minus-quantity" data-type="minus">-</button>
+                                <input type="number" disabled class="input-group-text form-control quantity-selector"
+                                       id="quantity" value="1">
+                                <button class="input-group-text plus-quantity" data-type="plus">+</button>
+                            </div>
+                            <div class="product-action d-flex">
+                                <button type="button" class="hover-opacity" id="add-to-cart">Thêm vào giỏ hàng</button>
+                                <button type="button" class="hover-opacity " id="buy-now">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal" data-bs-target="#complete-modal"></button>
+    <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Thành công</h1>
+                    <button id="close-complete-modal" type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body position-relative">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
+                        <p class="fs-1 ms-2">Hoàn Thành</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -774,7 +819,7 @@
 </footer>
 
 <script src="javascript/menu_footer.js"></script>
-<script src="javascript/san_pham.js"></script>
+<script src="javascript/gian_hang.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         <%User user = (User) session.getAttribute("user");

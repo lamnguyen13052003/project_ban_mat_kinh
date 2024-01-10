@@ -8,21 +8,20 @@ import model.bean.ProductCart;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 public class BillService {
-    private Map<String, ProductCart> products;
+    private Map<String, ProductCart> productCartMap;
 
     public BillService() {
-        products = new HashMap<>();
+        productCartMap = new HashMap<>();
     }
 
     public double getTotalBill() {
         double total = 0;
-        for (ProductCart product : products.values()) {
+        for (ProductCart product : productCartMap.values()) {
             total += product.getPrice() * product.getQuantity();
         }
 
@@ -31,7 +30,7 @@ public class BillService {
 
     public double getTotalPriceReduced() {
         double total = 0;
-        for (ProductCart product : products.values()) {
+        for (ProductCart product : productCartMap.values()) {
             total += product.totalPrice();
         }
 
@@ -39,11 +38,11 @@ public class BillService {
     }
 
     public void put(String key, ProductCart value) {
-        this.products.put(key, value);
+        this.productCartMap.put(key, value);
     }
 
     public void remove(String key) {
-        this.products.remove(key);
+        this.productCartMap.remove(key);
     }
 
     public void setUpJSON(JSONObject json) {
@@ -60,15 +59,15 @@ public class BillService {
     @Override
     public String toString() {
         return "BillService{" +
-                "products=" + products +
+                "products=" + productCartMap +
                 '}';
     }
 
     public Bill getBill() {
         Bill result = new Bill();
-        for (ProductCart product : products.values()) {
-            BillDetail billDetail = new BillDetail(product.getProduct().getId(), product.getModel().getId(), product.getQuantity(), product.getPrice());
-            if (product.getProduct().hasDiscount()) billDetail.setPrice(product.getRducedPrice());
+        for (ProductCart productCart : productCartMap.values()) {
+            BillDetail billDetail = new BillDetail(productCart.getProductId(), productCart.getModel().getId(), productCart.getQuantity(), productCart.getPrice());
+            if (productCart.hasDiscount()) billDetail.setPrice(productCart.getDiscount());
             result.addDetail(billDetail);
         }
         return result;
@@ -94,6 +93,6 @@ public class BillService {
     }
 
     public boolean bought(int userId, int productId, int modelId) {
-        return  new BillDAO().bought(userId, productId, modelId);
+        return new BillDAO().bought(userId, productId, modelId);
     }
 }

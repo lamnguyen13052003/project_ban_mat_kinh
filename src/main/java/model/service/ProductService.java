@@ -2,14 +2,15 @@ package model.service;
 
 import model.DAO.ProductDAO;
 import model.bean.Product;
+import model.bean.ProductCart;
+import model.bean.ProductImage;
 
 import java.text.NumberFormat;
 import java.util.*;
 
 public class ProductService {
     public static ProductService instance;
-    private ProductDAO productDAO = ProductDAO.getInstance();
-    private static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
+    public static final Map<Integer, String> MAP_PAGE = new HashMap<Integer, String>();
     private final String[] REPlAY = {"&page", "&sort-name", "&sort-price"};
 
     static {
@@ -76,19 +77,16 @@ public class ProductService {
         return products.get(0);
     }
 
+
     public Product getProductWithIdAndName(int productId) {
         ProductDAO productDAO = ProductDAO.getInstance();
         return productDAO.getProductWithIdAndName(productId);
     }
 
-    public Product getProductCart(int id, int modelId) {
+    public ProductCart getProductCart(int id) {
         ProductDAO productDAO = ProductDAO.getInstance();
-
-        List<Product> products = productDAO.getProductCart(id);
-        if (products.isEmpty()) return null;
-        setReducedPrice(products);
-        Product product = products.get(0);
-        return product;
+        Product product = productDAO.getProductCart(id);
+        return new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), 0.0, null, 0);
     }
 
     /**
@@ -239,11 +237,10 @@ public class ProductService {
 
     private void setProductImage(List<Product> products, int limit) {
         ProductImageService productImageService = new ProductImageService();
-        Map<Integer, List<String>> mapProductImages = productImageService.getProductImage(products, limit);
         int id;
         for (Product product : products) {
             id = product.getId();
-            product.setProductImages((ArrayList<String>) mapProductImages.get(id));
+            product.setProductImages(productImageService.getProductImage(id, limit));
         }
     }
 
@@ -260,7 +257,7 @@ public class ProductService {
     }
 
     private void setReducedPrice(List<Product> products) {
-        ProductDiscountService productDiscountService = new ProductDiscountService();
+        ProductDiscountService productDiscountService = ProductDiscountService.getInstance();
         Map<Integer, Double> mapProductPricePercentage = productDiscountService.getPricePercentages(products);
         int id;
         double pricePercentage, discount;
@@ -337,7 +334,71 @@ public class ProductService {
         return ProductDAO.getInstance().createProductTemp();
     }
 
+    public int insert(Product product) {
+        int result = ProductDAO.getInstance().update(product);
+        if (result != 0) {
+            ModelService modelService = ModelService.getInstance();
+            modelService.insert(product.getId(), product.getModels());
+            ProductImageService productImageService = ProductImageService.getInstance();
+            productImageService.insert(product.getId(), product.getProductImages());
+            ProductDiscountService productDiscount = ProductDiscountService.getInstance();
+            productDiscount.insert(product.getId(), product.getProductDiscounts());
+        }
+        return result;
+    }
+
+    public boolean delete(int productId) {
+        return ProductDAO.getInstance().delete(productId);
+    }
+
+    public boolean lock(int productId) {
+        return ProductDAO.getInstance().lock(productId);
+    }
+
+    public List<Product> getProductForAdmin(String name, int categoryGroupId, int categoryId, String brandName, int available, int limit, int offset) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        List<Product> products = productDAO.getProductForAdmin(name, categoryGroupId, categoryId, "%" + brandName + "%", available, limit, offset);
+        setModel(products);
+
+        return products;
+    }
+
+
+    public int totalProduct(String name, int categoryGroupId, int categoryId, String brandName, int available) {
+        return ProductDAO.getInstance().totalProduct(name, categoryGroupId, categoryId, "%" + brandName + "%", available);
+    }
+
+    public Product getProductEdit(int id){
+        ProductDAO productDAO = ProductDAO.getInstance();
+        List<Product> products = productDAO.getProductEdit(id);
+        setModel(products);
+        setProductImage(products, 0);
+        setProductDiscounts(products);
+        return products.get(0);
+    }
+
+    private void setProductDiscounts(List<Product> products) {
+        ProductDiscountService productDiscountService = ProductDiscountService.getInstance();
+        for (Product product : products) {
+            product.parseProductDiscounts(productDiscountService.getProductDiscounts(product.getId()));
+        }
+    }
+
     public int update(Product product) {
-        return ProductDAO.getInstance().update(product);
+        int result = ProductDAO.getInstance().update(product);
+        if (result != 0) {
+            ModelService modelService = ModelService.getInstance();
+            modelService.update(product.getId(),product.getModels());
+            ProductImageService productImageService = ProductImageService.getInstance();
+            productImageService.update(product.getId(), product.getProductImages());
+            ProductDiscountService productDiscount = ProductDiscountService.getInstance();
+            productDiscount.update(product.getId(), product.getProductDiscounts());
+        }
+        return result;
+    }
+
+    public void unlock(int productId){
+        ProductDAO.getInstance().unlock(productId);
     }
 }
