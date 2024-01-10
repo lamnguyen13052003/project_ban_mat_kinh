@@ -120,13 +120,15 @@ function addProductCart() {
                 "quantity": $("#quantity").val(),
                 "checked": "false"
             },
-            method: 'PUT',
+            method: 'POST',
             dataType: 'json',
             success: function (data) {
                 $("#amount-product").text(data.amountProduct);
-                $("#close-modal").click();
                 $("#quantity").val(1);
-                $("#show-complete-modal").click();
+                $.notify("Thêm sản phẩm thành công!", "success");
+            },
+            error: function (){
+                $.notify("Sản phẩm đã hết!", "error");
             }
         });
     });

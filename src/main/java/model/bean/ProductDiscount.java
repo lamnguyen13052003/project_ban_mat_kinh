@@ -1,21 +1,13 @@
 package model.bean;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.StringTokenizer;
 
 public class ProductDiscount {
-    @Getter
-    @Setter
     private Integer productId, id;
-    @Getter
-    @Setter
     private Double pricePercentage;
 
-    @Getter
-    @Setter
     private LocalDateTime dateStart, dateEnd;
 
     public ProductDiscount(String productDiscountStr) {
@@ -64,6 +56,22 @@ public class ProductDiscount {
     public void parseDateEnd(String dataStr) {
         StringTokenizer tk = new StringTokenizer(dataStr, "-");
         this.dateEnd = LocalDateTime.of(Integer.parseInt(tk.nextToken()), Integer.parseInt(tk.nextToken()), Integer.parseInt(tk.nextToken()), 0, 0, 0);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDateStart(LocalDateTime dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public void setDateEnd(LocalDateTime dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     @Override

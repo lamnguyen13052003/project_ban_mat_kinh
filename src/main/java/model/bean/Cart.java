@@ -35,7 +35,7 @@ public class Cart {
 
         productCart = service.getProductCart(productId);
         if (productCart == null) return false;
-        Model model = modelService.getModel(modelId);
+        Model model = modelService.getModelForCart(modelId);
         if (model == null) return false;
         Double productDiscount = productDiscountService.getPricePercentage(productId);
         productDiscount = Double.compare(productDiscount, 0.0) != 0 ? (1.0 - productDiscount) * productCart.getPrice() : 0.0;

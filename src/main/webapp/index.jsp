@@ -15,14 +15,19 @@
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="notify/notify-metro.css"/>
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/gian_hang.css">
     <link rel="icon" href="images/logo/logo_icon.png">
 
+    <%--jquery--%>
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
+
+    <%--notify--%>
+    <script src="notify/notify.js"></script>
 
     <title>Trag chủ</title>
 </head>
@@ -374,7 +379,8 @@
                                                 class="f-button setAddCartLoop add-cart" data-type="add-cart">
                                             Xem nhanh
                                         </button>
-                                        <button type="button" product-id="<%=prominentProducts.get(index).getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
+                                        <button type="button" product-id="<%=prominentProducts.get(index).getId()%>"
+                                                class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
                                     </div>
@@ -588,7 +594,8 @@
                                                 class="f-button setAddCartLoop add-cart" data-type="add-cart">
                                             Xem nhanh
                                         </button>
-                                        <button type="button" product-id="<%=discountProducts.get(index).getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
+                                        <button type="button" product-id="<%=discountProducts.get(index).getId()%>"
+                                                class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
                                     </div>

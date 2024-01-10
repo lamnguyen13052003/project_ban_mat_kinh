@@ -26,7 +26,7 @@ public class ModelDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT m.id, m.urlImage, m.name, m.quantity, SUM(bd.quantity) AS totalQuantitySold "
                                 + "FROM models AS m "
-                                + "JOIN bill_details AS bd ON bd.modelId = m.id "
+                                + "LEFT JOIN bill_details AS bd ON bd.modelId = m.id "
                                 + "WHERE m.id = ?;")
                         .bind(0, modelId)
                         .mapToBean(Model.class)
@@ -51,5 +51,15 @@ public class ModelDAO extends DAO {
                         .bind(0, productId)
                         .execute()
         );
+    }
+
+    public Model getModelForCart(int modelId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT m.id, m.urlImage, m.name  "
+                                + "FROM models AS m "
+                                + "WHERE m.id = ?;")
+                        .bind(0, modelId)
+                        .mapToBean(Model.class)
+                        .findFirst().orElse(null));
     }
 }

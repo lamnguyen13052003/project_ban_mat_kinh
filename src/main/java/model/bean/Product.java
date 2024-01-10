@@ -1,24 +1,15 @@
 package model.bean;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Product {
-    @Getter
-    @Setter
     private Integer id, categoryId, starNumber, totalReview, totalQuantitySold, delete;
     private String name, brandName, describe, material, type, categoryName;
     private Double price, discount;
-    @Getter
-    @Setter
     private List<Model> models;
     private List<Review> reviews;
-    @Getter
-    @Setter
     private List<ProductImage> productImages;
     private List<ProductDiscount> productDiscounts;
 
@@ -261,5 +252,29 @@ public class Product {
 
     public boolean isLock() {
         return delete == 0 ? false : true;
+    }
+
+    public Integer getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Integer delete) {
+        this.delete = delete;
+    }
+
+    public void setModels(List<Model> models) {
+        this.models = models;
+    }
+
+    public List<ProductImage> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(List<ProductImage> productImages) {
+        this.productImages = productImages;
+    }
+
+    public void setProductDiscounts(List<ProductDiscount> productDiscounts) {
+        this.productDiscounts = productDiscounts;
     }
 }

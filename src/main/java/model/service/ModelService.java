@@ -20,6 +20,10 @@ public class ModelService {
         return ModelDAO.getInstance().getModel(modelId);
     }
 
+    public Model getModelForCart(int modelId) {
+        return ModelDAO.getInstance().getModel(modelId);
+    }
+
     public boolean insert(int productId, List<Model> models) {
         boolean result = true;
         for (Model model : models) {
