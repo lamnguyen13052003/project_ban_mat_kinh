@@ -413,7 +413,7 @@
                             }
                         %>
                         </button>
-                        <%if (currentPage != totalPage) {%>
+                        <%if (totalPage != 0 && currentPage != totalPage) {%>
                         <a href="<%=requestString%>&page=<%=currentPage+1%>">
                             <button id="next" class="d-flex align-items-center justify-content-center"><span
                                     class="material-symbols-outlined">chevron_right</span></button>
