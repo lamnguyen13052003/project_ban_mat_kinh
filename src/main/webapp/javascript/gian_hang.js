@@ -82,7 +82,7 @@ function showModalModels(product, models) {
     $("#option-model").html(htmlOptionModel);
     $("#product-name").html(`<h5>${product.name}</h5>`);
     $(".product-action").find("button").attr("product-id", product.id);
-    selectOption();
+    selectModel();
 
     $("#show-modal").click();
 }
@@ -101,9 +101,9 @@ function changeAmount() {
     });
 }
 
-function selectOption() {
-    $(".product .product-model button").click(function () {
-        $(".product .product-model button").removeClass("active");
+function selectModel() {
+    $(".product .product-model button.model").click(function () {
+        $(".product .product-model button.model").removeClass("active");
         $(this).addClass("active")
         $("#quantity").val(1);
     });

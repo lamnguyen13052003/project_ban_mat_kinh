@@ -338,7 +338,7 @@
                                 if (models.size() == 1) {%>
                             <li class="product-sw-select-item">
                                 <button type="button"
-                                        class="active button-model"
+                                        class="<%=models.get(0).available() ? "active button-model" : ""%>"
                                         model-id="<%=models.get(0).getId()%>">
                                     <img src="<%=models.get(0).getUrlImage()%>"
                                          alt="<%=models.get(0).getName()%>.png">
@@ -353,7 +353,7 @@
                             <li class="product-sw-select-item">
                                 <button type="button" data-bs-target="#carouselExampleAutoplaying"
                                         data-bs-slide-to="<%=index%>"
-                                        class="<%=i == 0 ? "active " : ""%>button-model"
+                                        class="<%=i == 0 ? "active " : ""%>"<%=models.get(i).available() ? "button-model" : ""%>"
                                         aria-label="Slide 0"
                                         model-id="<%=models.get(i).getId()%>">
                                     <img src="<%=models.get(i).getUrlImage()%>"
