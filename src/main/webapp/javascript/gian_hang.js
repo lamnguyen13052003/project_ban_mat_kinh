@@ -26,7 +26,7 @@ function addActionFilterMore() {
 
 
 function actionFastSee() {
-    $(".add-cart").click(function () {
+    $(".show-models").click(function () {
         const productId = $(this).attr("product-id");
         $.ajax({
             url: 'show_models',
@@ -80,24 +80,24 @@ function showModalModels(product, models) {
 
     $("#model-image").html(htmlModelImage);
     $("#option-model").html(htmlOptionModel);
-    $(".product-action").find("button").attr("product-id", product.id);
     $("#product-name").html(`<h5>${product.name}</h5>`);
+    $(".product-action").find("button").attr("product-id", product.id);
     selectOption();
 
     $("#show-modal").click();
 }
 
 function changeAmount() {
-    $("#input-amount button.minus-quantity").click(function () {
-        var val = $("#quantity");
-        if (Number(val.val()) > 1) {
-            val.val(Number(val.val()) - 1);
+    $("button.minus-quantity").click(function () {
+        var input = $(this).next();
+        if (Number(input.val()) > 1) {
+            input.val(Number(input.val()) - 1);
         }
     });
 
-    $("#input-amount button.plus-quantity").click(function () {
-        var val = $("#quantity");
-        val.val(Number(val.val()) + 1);
+    $("button.plus-quantity").click(function () {
+        var input = $(this).prev();
+        input.val(Number(input.val()) + 1);
     });
 }
 
@@ -110,7 +110,7 @@ function selectOption() {
 }
 
 function addProductCart() {
-    $("#add-to-cart").click(function () {
+    $("#add-cart").click(function () {
         $.ajax({
             url: 'cart',
             data: {
@@ -140,20 +140,18 @@ function buyNow() {
         const modelId =$("button.model.active").attr("model-id");
         const quantity = $("#quantity").val();
         const formBuyNow =
-            `<form hidden="" method="POST" action="buy_now">
-            <input type="text" name="productId" value="${productId}">
-            <input type="text" name="modelId" value="${modelId}">
+            `<form id="form-buy-now" hidden="" method="POST" action="buy_now">
+            <input type="text" name="action" value="buy-now">
+            <input type="text" name="product-id" value="${productId}">
+            <input type="text" name="model-id" value="${modelId}">
             <input type="number" name="quantity" value="${quantity}">
-            <input type="submit" id="sumit-buy-now"> 
+            <input type="submit" id="submit-buy-now"> 
         </form>`;
         $("body").append(formBuyNow);
-        $("#sumit-buy-now").click();
+        $("#submit-buy-now").click();
+        $("#form-buy-now").remove();
     });
 }
-
-$("#close-complete-modal").click(function () {
-    // $("#show-modal").click();
-});
 
 function loadBanner() {
     $.ajax({

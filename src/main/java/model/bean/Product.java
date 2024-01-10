@@ -183,19 +183,6 @@ public class Product {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) && Objects.equals(models, product.models);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, models);
-    }
-
     public void parseModels(String[] models) {
         this.models = this.models == null ? new ArrayList<>() : this.models;
         for (String data : models) {
@@ -276,5 +263,18 @@ public class Product {
 
     public void setProductDiscounts(List<ProductDiscount> productDiscounts) {
         this.productDiscounts = productDiscounts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

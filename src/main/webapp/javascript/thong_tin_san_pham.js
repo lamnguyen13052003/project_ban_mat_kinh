@@ -11,11 +11,9 @@ class Review {
 
 $(document).ready(function () {
     showMoreInfor();
-    selectOption();
-    changeAmount();
-
-    $(".account").find("a").attr("href", "../tai_khoan.jsp");
-    ;
+    selectModel();
+    buyProductNow();
+    addProductCartNow();
 });
 
 /******Nút xổ thêm thông tin mô tả của sản phẩm******/
@@ -33,44 +31,59 @@ function showMoreInfor() {
     });
 }
 
-function selectOption() {
-    $("#main .productWrap .productWrapDetail .product-swatch button").click(function () {
-        $("#main .productWrap .productWrapDetail .product-swatch button").removeClass("active");
-        $(this).addClass("active")
+/******Lựa chọn mẫu******/
+function selectModel() {
+    $(".button-model").click(function () {
+        $(".button-model").removeClass("active");
+        $(this).addClass("active");
+        $("#product-quantity").val(1);
     });
 }
 
-/*****Nút tăng giảm số lượng đặt hàng*****/
-function changeAmount() {
-    $("#main .productWrap .productWrapDetail .productActionMain button.minusQuan").click(function () {
-        var val = $("#quantity");
-        if (Number(val.val()) > 1) {
-            val.val(Number(val.val()) - 1);
-        }
-    });
-
-    $("#main .productWrap .productWrapDetail .productActionMain button.plusQuan").click(function () {
-        var val = $("#quantity");
-        val.val(Number(val.val()) + 1);
+function addProductCartNow(){
+    $("#add-product-cart").click(function () {
+        const productId = $(this).attr("product-id");
+        const modelId = $("button.button-model.active").attr("model-id");
+        const quantity = $("#product-quantity").val();
+        $.ajax({
+            url: 'cart',
+            data: {
+                "action": "add",
+                "product-id": productId,
+                "model-id": modelId,
+                "quantity": quantity,
+                "checked": "false"
+            },
+            method: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                $("#amount-product").text(data.amountProduct);
+                $("#product-quantity").val(1);
+                $.notify("Thêm sản phẩm thành công!", "success");
+            },
+            error: function () {
+                $.notify("Sản phẩm đã hết!", "error");
+            }
+        });
     });
 }
 
-$("#addToCart").click(function () {
-    $.ajax({
-        url: 'cart',
-        data: {
-            action: "add",
-            productId: $(this).attr("product-id"),
-            modelId: $("button.model.active").attr("model-id"),
-            quantity: $("#quantity").val(),
-            checked: "false"
-        },
-        method: 'POST',
-        dataType: 'json',
-        success: function (data) {
-            $("#amount-product").text(data.amountProduct);
-            $("#quantity").val(1);
-            $("#show-complete-modal").click();
-        }
+/******Mua ngay******/
+function buyProductNow() {
+    $("#buy-product-now").click(function () {
+        const productId = $(this).attr("product-id");
+        const modelId = $("button.button-model.active").attr("model-id");
+        const quantity = $("#product-quantity").val();
+        const formBuyNow =
+            `<form id="form-buy-now" hidden="" method="POST" action="buy_now">
+            <input type="text" name="product-id" value="${productId}">
+            <input type="text" name="action" value="buy-now">
+            <input type="text" name="model-id" value="${modelId}">
+            <input type="number" name="quantity" value="${quantity}">
+            <input type="submit" id="submit-buy-now"> 
+        </form>`;
+        $("body").append(formBuyNow);
+        $("#submit-buy-now").click();
+        $("#form-buy-now").remove();
     });
-});
+}

@@ -3,7 +3,6 @@ package model.service;
 import model.DAO.ProductDAO;
 import model.bean.Product;
 import model.bean.ProductCart;
-import model.bean.ProductImage;
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -103,6 +102,21 @@ public class ProductService {
         setTotalQuantitySold(products);
 
         return products;
+    }
+
+    public Product getRecentlyViewedProduct(int productId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        Product product = productDAO.getRecentlyViewedProduct(productId);
+        List<Product> products = new ArrayList<>();
+        products.add(product);
+        setModel(products);
+        setProductImage(products, 2);
+        setStarNumber(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
+
+        return products.get(0);
     }
 
     public Map<String, List<String>> getMapFilter(String query) {

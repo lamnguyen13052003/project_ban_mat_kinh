@@ -1,10 +1,7 @@
 package model.service;
 
 import model.DAO.BillDAO;
-import model.bean.Bill;
-import model.bean.BillDetail;
-import model.bean.BillStatus;
-import model.bean.ProductCart;
+import model.bean.*;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
@@ -94,5 +91,9 @@ public class BillService {
 
     public boolean bought(int userId, int productId, int modelId) {
         return new BillDAO().bought(userId, productId, modelId);
+    }
+
+    public ProductCart getProductCart(int productId, int modelId) {
+        return productCartMap.get(Cart.getKey(productId, modelId));
     }
 }
