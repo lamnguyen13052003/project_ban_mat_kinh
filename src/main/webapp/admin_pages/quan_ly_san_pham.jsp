@@ -20,7 +20,6 @@
     <link rel="icon" href="../images/logo/logo_icon.png">
 
     <%--jquery--%>
-    <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
 
@@ -339,8 +338,11 @@
                         <div class="col-1 status">Hết hàng</div>
                         <%}%>
                         <div class="col-1">
-                            <span class="material-symbols-outlined d-inline-block lock-product" product-id="<%=product.getId()%>" lock="<%=product.getDelete()%>"><%=product.isLock() ? "lock" : "lock_open"%></span>
-                            <span product-id="<%=product.getId()%>" class="material-symbols-outlined d-inline-block edit-product">edit</span>
+                            <span class="material-symbols-outlined d-inline-block lock-product"
+                                  product-id="<%=product.getId()%>"
+                                  lock="<%=product.getDelete()%>"><%=product.isLock() ? "lock" : "lock_open"%></span>
+                            <span product-id="<%=product.getId()%>"
+                                  class="material-symbols-outlined d-inline-block edit-product">edit</span>
                         </div>
                     </div>
                     <%}%>
