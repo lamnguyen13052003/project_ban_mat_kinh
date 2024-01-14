@@ -10,10 +10,9 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 
-public class AddImageProduct implements Action {
+public class AddProductImage implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
         String productId = request.getParameter("product-id");
         Part filePart = request.getPart("image-product");
         String fileName = filePart.getSubmittedFileName().replaceAll(" ", "-");
@@ -24,8 +23,12 @@ public class AddImageProduct implements Action {
         if (!file.exists()) file.mkdirs();
         String fullFilePath = pathFile + "/" + fileName;
         for (Part part : request.getParts()) {
-            if (part.getContentType() != null) {
-                part.write(fullFilePath);
+            try {
+                if (part.getContentType() != null) {
+                    part.write(fullFilePath);
+                }
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
 

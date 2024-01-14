@@ -7,8 +7,19 @@ public class Model {
     private Integer id, productId, quantity, totalQuantitySold;
     private String name, urlImage;
 
-    public Model(Integer productId, String data) {
-        this.productId = productId;
+    @Override
+    public String toString() {
+        return "Model{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                ", totalQuantitySold=" + getTotalQuantitySold() +
+                ", name='" + name + '\'' +
+                ", urlImage='" + urlImage + '\'' +
+                '}';
+    }
+
+    public Model(String data) {
         StringTokenizer tk = new StringTokenizer(data, ",");
         this.name = tk.nextToken();
         this.quantity = Integer.parseInt(tk.nextToken());
@@ -19,7 +30,7 @@ public class Model {
     }
 
     public Integer getTotalQuantitySold() {
-        return totalQuantitySold;
+        return totalQuantitySold == null ? 0 : totalQuantitySold;
     }
 
     public void setTotalQuantitySold(Integer totalQuantitySold) {
@@ -67,16 +78,6 @@ public class Model {
     }
 
     @Override
-    public String toString() {
-        return "Model{" +
-                "id=" + id +
-                ", idProduct=" + productId +
-                ", name='" + name + '\'' +
-                ", image='" + urlImage + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -90,6 +91,6 @@ public class Model {
     }
 
     public boolean available() {
-        return this.quantity > this.totalQuantitySold;
+        return this.quantity > this.getTotalQuantitySold();
     }
 }

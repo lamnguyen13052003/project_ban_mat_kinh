@@ -1,20 +1,18 @@
 package controller.cart;
 
 import controller.Action;
-import org.json.JSONObject;
+import controller.BuyNowController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 @WebServlet(name = "CartController", value = "/cart")
 public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
     @Override
@@ -25,9 +23,6 @@ public class CartController extends HttpServlet {
             case "add" -> {
                 actionCart = new AddProductCart();
             }
-            case "remove" -> {
-                actionCart = new RemoveProductCart();
-            }
             case "increase" -> {
                 actionCart = new IncreaseProductCart();
             }
@@ -37,10 +32,13 @@ public class CartController extends HttpServlet {
             case "checked" -> {
                 actionCart = new CheckedProduct();
             }
+            case "remove" -> {
+                actionCart = new RemoveProductCart();
+            }
         }
 
         if (action != null) {
             actionCart.action(request, response);
-        } else response.sendRedirect("error.jsp");
+        } else throw new IOException("");
     }
 }

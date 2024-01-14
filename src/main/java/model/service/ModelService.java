@@ -13,11 +13,28 @@ public class ModelService {
     }
 
     public List<Model> getModelsByProductId(int productId) {
-        List<Model> models = ModelDAO.getInstance().getModelsByProductId(productId);
-        return models;
+        return ModelDAO.getInstance().getModelsByProductId(productId);
     }
 
     public Model getModel(int modelId) {
         return ModelDAO.getInstance().getModel(modelId);
+    }
+
+    public Model getModelForCart(int modelId) {
+        return ModelDAO.getInstance().getModel(modelId);
+    }
+
+    public boolean insert(int productId, List<Model> models) {
+        boolean result = true;
+        for (Model model : models) {
+            model.setProductId(productId);
+            result &= ModelDAO.getInstance().insert(model) == 1 ? true : false;
+        }
+        return result;
+    }
+
+    public boolean update(int productId, List<Model> models) {
+        ModelDAO.getInstance().removeByProductId(productId);
+        return insert(productId, models);
     }
 }

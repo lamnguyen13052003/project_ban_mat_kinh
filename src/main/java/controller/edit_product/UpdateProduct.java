@@ -8,13 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
-public class AddProduct implements Action {
+public class UpdateProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productIdSubmit = (String) request.getSession().getAttribute("submit-product"),
                 productIdString = request.getParameter("product-id");
-        System.out.println(productIdSubmit + "=" + productIdString);
         if (productIdSubmit == null || !productIdSubmit.equals(productIdString)) {
             request.getSession().setAttribute("submit-product", request.getParameter("product-id"));
             Product product = new Product();
@@ -24,9 +24,11 @@ public class AddProduct implements Action {
                 product.setCategoryId(Integer.parseInt(request.getParameter("product-category-id")));
                 product.setPrice(Double.parseDouble(request.getParameter("product-price")));
             } catch (NumberFormatException e) {
-                response.setStatus(500);
-                throw e;
+                System.out.println(e);
             }
+            System.out.println(Arrays.toString(request.getParameterValues("model")));
+            System.out.println(Arrays.toString(request.getParameterValues("product-image")));
+            System.out.println(Arrays.toString(request.getParameterValues("product-discount")));
             product.setDescribe(request.getParameter("product-describe"));
             product.parseModels(request.getParameterValues("model"));
             product.parseProductImages(request.getParameterValues("product-image"));
@@ -35,14 +37,16 @@ public class AddProduct implements Action {
             product.setType(request.getParameter("type"));
             product.parseProductDiscounts(request.getParameterValues("product-discount"));
 
-            ProductService.getInstance().insert(product);
+            ProductService.getInstance().update(product);
             request.getSession().removeAttribute("product-id");
             request.getSession().removeAttribute("id-button-cancel");
             request.getSession().removeAttribute("product-edit");
-            request.getSession().removeAttribute("submit-product");
             request.getSession().removeAttribute("action-submit");
-            request.getSession().setAttribute("message", "Thêm sản phẩm thành thông!");
+            request.getSession().removeAttribute("submit-product");
+            request.getSession().setAttribute("message", "Cập nhật sản phẩm thành thông!");
             response.getWriter().println("Thêm thành công!");
+        }else{
+            response.getWriter().print("wait");
         }
     }
 }
