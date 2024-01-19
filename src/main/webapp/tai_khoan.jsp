@@ -188,7 +188,7 @@
                 <div class="account-page-sidebar col-3">
                     <div class="account-sidebar-header list-group align-items-center">
                         <div class="account-sidevar-avatar list-group-item  border-0">
-                            <div class="display-avatar p-3 rounded-circle d-flex align-items-center justify-content-center">
+                            <div class="display-avatar  rounded-circle d-flex align-items-center justify-content-center">
                                 <img src="<%=user.getAvatar()%>" alt="" width="100px" id="avatar">
                             </div>
                             <div class="change-avatar position-absolute">

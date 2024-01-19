@@ -20,10 +20,12 @@ public class ChangePassword extends HttpServlet {
 
    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       System.out.println(1);
         HttpSession session = request.getSession();
        ObjectMapper objectMapper = new ObjectMapper();
+       System.out.println(12);
        Map<String, String> jsonMap = objectMapper.readValue(request.getReader(), new TypeReference<Map<String, String>>() {});
-
+       System.out.println(123);
        String email = jsonMap.get("email");
        String password = jsonMap.get("password");
        String rePassword = jsonMap.get("rePassword");
