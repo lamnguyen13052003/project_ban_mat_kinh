@@ -25,6 +25,11 @@ $(document).ready(function () {
     $("#input-product-model").parent().find(".cancel").click(function () {
         $(this).parent().remove();
     });
+
+    const cancel = $("#input-img").parent().find(".cancel");
+    cancel.click(function () {
+        removeProductImage($(this).parent(), $(this));
+    });
 });
 
 const ckeditor = CKEDITOR.replace('editor');
@@ -93,7 +98,7 @@ function addProductImage() {
                                            <img src="../${data}" alt="image-product.png">
                                             <button type="button" path-file="${data}" class="text-danger cancel">x</button>
                                         </div>`);
-                const cancel = $("#main").find(".input-product-image-body").find(".product-image").last().find(".cancel");
+                const cancel = $("#input-img").prev().find(".cancel");
                 cancel.click(function () {
                     removeProductImage($(this).parent(), $(this));
                 });
@@ -352,7 +357,7 @@ function getModels(formData) {
 
 function getProductImages(formData) {
     const elementProductImages = $("#input-product-image-body .product-image");
-    const complete = elementProductImages.length > 0 ? true : false;
+    const complete = elementProductImages.length >= 2 ? true : false;
     if (!complete) {
         $(".error-product-image").removeAttr("hidden");
         return false;
@@ -480,7 +485,7 @@ function cancelEditProduct() {
         const formData = new FormData();
         formData.append("action", "cancel-edit-product");
         formData.append("product-id", $("#product-id").attr("product-id"));
-        console.log( $("#product-id").attr("product-id"));
+        console.log($("#product-id").attr("product-id"));
         $.ajax({
             url: "edit_product_manager",
             data: formData,

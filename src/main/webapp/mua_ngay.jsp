@@ -6,9 +6,6 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="model.service.BillService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-    session.setAttribute("bill", new BillService());
-%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -200,7 +197,7 @@
                         <h6 class="mb-0">Giỏ hàng</h6>
                         <div class="d-flex justify-content-between">
                             <span>Bạn đang có <span
-                                    class="amount-product"><%=cart.getTotalProduct()%></span> sản phẩm</span>
+                                    class="amount-product">0</span> sản phẩm</span>
                         </div>
                     </div>
                     <!--Danh sách sản phẩm-->
@@ -212,9 +209,9 @@
                         %>
                         <!--Sản phẩm-->
                         <div class="product">
-                            <input hidden="" class="product-checkbox" type="checkbox" checked
+                            <input class="product-checkbox" type="checkbox"
                                    product-id="<%=productCart.getProductId()%>"
-                                   model-id="<%=productCart.getModel().getId()%>">
+                                   model-id="<%=productCart.getModel().getId()%>" hidden="hidden" checked>
                             <div class="info-product">
                                 <img class="rounded" src="<%=productCart.getModel().getUrlImage()%>">
                                 <div class="ms-2">
@@ -223,18 +220,24 @@
                                 </div>
                             </div>
                             <div class="change-amount">
-                                <button type="button" product-id="<%=productCart.getProductId()%>"
-                                        model-id="<%=productCart.getModel().getId()%>" type="button" class="down"><span
-                                        class="material-symbols-outlined">arrow_left</span></button>
+                                <button type="button"
+                                        product-id="<%=productCart.getProductId()%>"
+                                        model-id="<%=productCart.getModel().getId()%>"
+                                        class="down">
+                                    <span class="material-symbols-outlined">arrow_left</span>
+                                </button>
                                 <input type="number" name="amount-product-item"
                                        product-id="<%=productCart.getProductId()%>"
                                        model-id="<%=productCart.getModel().getId()%>"
                                        class="amount-product-item" min="1"
                                        max="<%=productCart.getQuantity()%>"
                                        value="<%=productCart.getQuantity()%>" disabled>
-                                <button type="button" product-id="<%=productCart.getProductId()%>"
-                                        model-id="<%=productCart.getModel().getId()%>" type="button" class="up"><span
-                                        class="material-symbols-outlined">arrow_right</span></button>
+                                <button type="button"
+                                        product-id="<%=productCart.getProductId()%>"
+                                        model-id="<%=productCart.getModel().getId()%>"
+                                        class="up">
+                                    <span class="material-symbols-outlined">arrow_right</span>
+                                </button>
                             </div>
                             <div class="price">
                                     <span class="price">
@@ -259,7 +262,7 @@
             <!--Thanh toán-->
             <div class="col-md-4" id="pay">
                 <div class="payment-info">
-                    <form accept-charset="UTF-8" action="bill" method="POST" id="form-info-customer">
+                    <form accept-charset="UTF-8" action="bill_buy_now" method="POST" id="form-info-customer">
                         <div class="d-flex justify-content-between align-items-center">
                             <span>Thanh toán</span>
                         </div>
@@ -330,25 +333,25 @@
                             <div class="d-flex justify-content-between information">
                                 <span>Tổng hóa đơn</span>
                                 <p class="m-0 p-0" id="totalBill">
-                                    <%=nf.format(0)%>
+                                    <%=request.getAttribute("totalBill")%>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between information">
                                 <span>Giảm</span>
                                 <p class="m-0 p-0" id="totalPriceReduced">
-                                    <%=nf.format(0)%>
+                                    <%=request.getAttribute("totalPriceReduced")%>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between information">
                                 <span>Phí ship</span>
                                 <p class="m-0 p-0" id="shippingFee">
-                                    <%=nf.format(0)%>
+                                    <%=request.getAttribute("shippingFee")%>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between information">
                                 <span>Tổng trả: </span>
                                 <p class="m-0 p-0" id="totalPay">
-                                    <%=nf.format(0)%>
+                                    <%=request.getAttribute("totalPay")%>
                                 </p>
                             </div>
                         </div>
@@ -475,7 +478,7 @@
     </div>
 </footer>
 <script src="javascript/menu_footer.js"></script>
-<script src="javascript/gio_hang.js"></script>
+<script src="javascript/mua_ngay.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

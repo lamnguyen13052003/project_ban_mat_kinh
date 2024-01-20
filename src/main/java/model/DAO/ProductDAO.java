@@ -77,7 +77,7 @@ public class ProductDAO extends DAO {
 
     public Product getProductCart(int id) {
         int index = 0;
-        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe ";
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price ";
 
         String sql = initSQLGetProduct(select);
         return connector.withHandle(handle ->
@@ -571,5 +571,9 @@ public class ProductDAO extends DAO {
                     .bind(1, productId)
                     .execute();
         }) == 1 ? true : false;
+    }
+
+    public Product getRecentlyViewedProduct(int productId) {
+        return getProductCart(productId);
     }
 }

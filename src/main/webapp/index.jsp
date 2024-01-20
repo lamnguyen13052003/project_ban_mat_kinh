@@ -198,13 +198,13 @@
         List<BannerImage> bannerImages = (List<BannerImage>) request.getAttribute("bannerImages");
     %>
     <div id="autoCarouselIndicators" class="carousel slide" data-bs-ride="carousel">
+        <%for (int i = 0; i < bannerImages.size(); i++) {%>
         <div class="carousel-indicators">
-            <%for (int i = 0; i < bannerImages.size(); i++) {%>
             <button type="button" data-bs-target="#autoCarouselIndicators" data-bs-slide-to="<%=i%>"
                     <%if(i == 0) {%>class="active"<%}%>
                     aria-current="true" aria-label="Slide <%=i+1%>"></button>
-            <%}%>
         </div>
+        <%}%>
         <div class="carousel-inner">
             <%for (int i = 0; i < bannerImages.size(); i++) { %>
             <div class="carousel-item <%if (i == 0) {%>active<%}%>">
@@ -239,13 +239,13 @@
             %>
             <div id="carouselExampleIndicators" class="carousel slide mb-5 d-block position-relative ">
                 <!--Các nút bên dưới hình-->
+                <%for (int i = 0; i < pageProminentProducts; i++) {%>
                 <div class="carousel-indicators">
-                    <%for (int i = 0; i < pageProminentProducts; i++) {%>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i%>"
                             <%if(i == 0) {%>class="active"<%}%>
                             aria-current="true" aria-label="Slide <%=i+1%>"></button>
-                    <%}%>
                 </div>
+                <%}%>
 
                 <!--Danh sách các hình-->
                 <div class="carousel-inner">
@@ -376,11 +376,13 @@
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
                                         <button type="button" product-id="<%=prominentProducts.get(index).getId()%>"
-                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                                class="f-button setAddCartLoop <%=prominentProducts.get(index).available() ? "show-models" : ""%>"
+                                                data-type="show-models">
                                             Xem nhanh
                                         </button>
                                         <button type="button" product-id="<%=prominentProducts.get(index).getId()%>"
-                                                class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
+                                                class="f-button setBuyNow <%=prominentProducts.get(index).available() ? "show-models" : ""%>"
+                                                data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
                                     </div>
@@ -448,14 +450,14 @@
                 int pageDiscountProducts = discountProducts.size() % 4 == 0 ? discountProducts.size() / 4 - 1 : discountProducts.size() / 4;
             %>
             <div id="carouselExampleIndicators-01" class="carousel slide mb-5 d-block position-relative ">
+                <%for (int i = 0; i < pageDiscountProducts; i++) { %>
                 <!--Các nút bên dưới hình-->
                 <div class="carousel-indicators">
-                    <%for (int i = 0; i < pageDiscountProducts; i++) { %>
                     <button type="button" data-bs-target="#carouselExampleIndicators-01" data-bs-slide-to="<%=i%>"
                             <%if (i == 0) {%>class="active"<%}%>
                             aria-current="true" aria-label="Slide <%=i+1%>"></button>
-                    <%}%>
                 </div>
+                <%}%>
 
                 <!--Danh sách các hình-->
                 <div class="carousel-inner">
@@ -591,11 +593,13 @@
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
                                         <button type="button" product-id="<%=discountProducts.get(index).getId()%>"
-                                                class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                                class="f-button setAddCartLoop <%=discountProducts.get(index).available() ? "show-models" : ""%>"
+                                                data-type="show-models">
                                             Xem nhanh
                                         </button>
                                         <button type="button" product-id="<%=discountProducts.get(index).getId()%>"
-                                                class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
+                                                class="f-button setBuyNow <%=discountProducts.get(index).available() ? "show-models" : ""%>"
+                                                data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
                                     </div>
@@ -671,7 +675,7 @@
                             <button class="input-group-text plus-quantity" data-type="plus">+</button>
                         </div>
                         <div class="product-action d-flex">
-                            <button type="button" class="hover-opacity" id="add-to-cart">Thêm vào giỏ hàng</button>
+                            <button type="button" class="hover-opacity" id="add-cart">Thêm vào giỏ hàng</button>
                             <button type="button" class="hover-opacity " id="buy-now">Mua ngay</button>
                         </div>
                     </div>
@@ -680,27 +684,6 @@
         </div>
     </div>
 </div>
-
-<%--Hiển thị hoàn thành--%>
-<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
-        data-bs-target="#complete-modal"></button>
-<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Thành công</h1>
-                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body position-relative">
-                <div class="d-flex align-items-center justify-content-center">
-                    <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
-                    <p class="fs-1 ms-2">Hoàn Thành</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <footer id="footer" class="footer">
     <div class="container">
