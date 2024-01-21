@@ -103,8 +103,8 @@ public class BillService {
         return productCartMap.get(Cart.getKey(productId, modelId));
     }
 
-    public List<Bill> getBillsByUserId(int userId, String status) {
-        List<Bill> billList = new BillDAO().getBillsByUserId(userId, status);
+    public List<Bill> getBillsByUserId(int userId, String status, int offset) {
+        List<Bill> billList = new BillDAO().getBillsByUserId(userId, status, offset);
         BillStatusService billStatusService = BillStatusService.getInstance();
         for (Bill bill : billList) {
             try {

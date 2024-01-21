@@ -270,7 +270,7 @@
                                 Đã hủy
                             </button>
                         </div>
-                        <div class="display-content display-bills">
+                        <div class="display-content display-bills" id="display-bills">
                         </div>
                     </div>
                 </div>
@@ -292,9 +292,8 @@
                             <div class="body-bill-item row  align-items-center ms-2">
                                 <div class="bill-id col-2"><span>#3</span></div>
                                 <div class="col-9 d-flex">
-                                    <div>
-                                        <img style="width: 35px" class="rounded-circle" src="images/avatar/default_avatar.png"></img>
-                                    </div>
+                                    <img style="width: 35px" class="rounded-circle d-block"
+                                         src="images/avatar/default_avatar.png"></img>
                                     <div class="customer-info ms-2 w-100">
                                         <p class="customer-name">Nguyễn Đình Lam Đẹp Zai Nhất</p>
                                         <p class="customer-email">kiminonawa1305@gmail.com</p>
@@ -302,7 +301,7 @@
                                 </div>
                                 <div class="bill-edit col-1">
                                     <a href="review?action=write-review&bill-id=3&product-id=3">
-                                       <span class="material-symbols-outlined">rate_review</span>
+                                        <span class="material-symbols-outlined">rate_review</span>
                                     </a>
                                 </div>
                             </div>

@@ -11,20 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GetHistory implements Action {
+public class GetBillHistory implements Action {
 
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BillService billService = BillService.getInstance();
         String menuItem = request.getParameter("menu-item");
         String userIdString = request.getParameter("user-id");
+        String pageString = request.getParameter("page");
         int userId = 0;
+        int page = 0;
         try {
             userId = Integer.parseInt(userIdString);
+            page = Integer.parseInt(pageString);
         } catch (NumberFormatException e) {
             response.sendError(404);
         }
-        List<Bill> bills = billService.getBillsByUserId(userId, menuItem);
+        int offset = (page - 1) * 8;
+        System.out.println(offset);
+        List<Bill> bills = billService.getBillsByUserId(userId, menuItem, offset);
         JSONObject json = new JSONObject();
         json.put("bills", bills);
         json.put("userId", userIdString);

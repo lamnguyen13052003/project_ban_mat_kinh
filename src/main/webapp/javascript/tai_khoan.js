@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    let indexPageBills = 1;
     const button = $(".account-sidebar-menu").find("li>button");
     button.click(function () {
         button.removeClass("active");
@@ -14,7 +15,7 @@ $(document).ready(function () {
     });
 
     $(`.bill-history`).click(function () {
-        showBillHistory()
+        showBillHistory(true, indexPageBills)
     });
 
     $(`.menu-review-item`).click(function () {
@@ -23,11 +24,28 @@ $(document).ready(function () {
     });
 
     $(`.menu-bill-item`).click(function () {
+        $('#display-bills').off('scroll')
         $(`.menu-bill-item`).removeClass("active");
         $(this).addClass("active");
-        showBillHistory();
+        indexPageBills = 1;
+        $(".main-content .display-bills").html(``);
+        showBillHistory(true, indexPageBills);
     });
 });
+
+function lazyBillHistory(indexPageBills) {
+    var myDiv = $('#display-bills');
+    var totalScrollHeight = myDiv.prop('scrollHeight');
+
+    // Tính tổng chiều cao đã cuộn (scrollTop + clientHeight)
+    var scrolledHeight = myDiv.scrollTop() + myDiv.height();
+
+    // Kiểm tra xem người dùng đã cuộn đến cuối chưa
+    if (Math.ceil(scrolledHeight) === totalScrollHeight) {
+        indexPageBills++;
+        showBillHistory(false, indexPageBills)
+    }
+}
 
 function displayPageContent(index) {
     const page = $("div.page-content");
@@ -35,11 +53,12 @@ function displayPageContent(index) {
     page.eq(index).addClass("active");
 }
 
-function showBillHistory() {
+function showBillHistory(click, indexPage) {
     const data = {
         "action": `get`,
         "user-id": $("#main").attr("user-id"),
         "menu-item": $(".menu-bill-item.active").attr("data-action"),
+        "page": indexPage,
     };
     $.ajax({
         url: "bill_history",
@@ -47,8 +66,10 @@ function showBillHistory() {
         dataType: "JSON",
         method: "GET",
         success: function (data) {
-            const userId = data.userId;
-            let html = "";
+            let html = $(".main-content .display-bills").html();
+            if (data.bills.length < 8) {
+                $('#display-bills').off('scroll');
+            }
             data.bills.forEach((bill) => {
                 let httmBill = `
                  <div class="body-bill-item row  align-items-center ms-2">
@@ -72,10 +93,17 @@ function showBillHistory() {
                              </div>
                  `
 
+
                 html += httmBill;
             });
 
             $(".main-content .display-bills").html(html);
+
+           if(click) {
+               $('#display-bills').on('scroll', function () {
+                   lazyBillHistory(indexPage);
+               });
+           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);

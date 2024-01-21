@@ -1,7 +1,6 @@
 package model.DAO;
 
 import model.bean.Bill;
-import model.service.BillService;
 
 import java.util.List;
 
@@ -59,16 +58,19 @@ public class BillDAO extends DAO {
         return count != 0;
     }
 
-    public List<Bill> getBillsByUserId(int userId, String status) {
+    public List<Bill> getBillsByUserId(int userId, String status, int offset) {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT b.id, b.userId, b.userName, b.email, b.transfer " +
                                 "FROM bills AS b " +
                                 "JOIN bill_statuses AS bs ON bs.billId = b.id " +
                                 "WHERE bs.id in (SELECT MAX(bs2.id) FROM bill_statuses AS bs2 WHERE bs2.billId = b.id) " +
                                 "AND bs.`status` LIKE :status " +
-                                "AND b.userId = :userId;")
+                                "AND b.userId = :userId " +
+                                "ORDER BY b.id ASC " +
+                                "LIMIT 8 OFFSET :offset;")
                         .bind("status", "%" + status + "%")
                         .bind("userId", userId)
+                        .bind("offset", offset)
                         .mapToBean(Bill.class)
                         .list());
     }

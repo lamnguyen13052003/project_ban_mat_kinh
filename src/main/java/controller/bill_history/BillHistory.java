@@ -1,6 +1,5 @@
 package controller.bill_history;
 
-import controller.bill_detail.SeeDetail;
 import controller.Action;
 
 import javax.servlet.*;
@@ -18,7 +17,7 @@ public class BillHistory extends HttpServlet {
         Action action = null;
         switch (actionStr) {
             case "get" -> {
-                action = new GetHistory();
+                action = new GetBillHistory();
             }
             case "see-detail" -> {
                 action = new ChangeServletBillDetail();
