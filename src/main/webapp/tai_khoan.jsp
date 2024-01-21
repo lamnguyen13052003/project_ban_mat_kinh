@@ -18,6 +18,7 @@
 
     <title>Tài khoản</title>
 </head>
+<%User user = (User) session.getAttribute("user");%>
 <body>
 <header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
@@ -173,97 +174,144 @@
     </nav>
 </header>
 
-<main id="main" class="mt-5 pb-5">
-    <div id="account-page">
-        <div class="container">
-            <div class="row justify-content-center">
-                <!--Phần menu-->
-                <div class="account-page-sidebar col-3">
-                    <div class="account-sidebar-header list-group align-items-center">
-                        <div class="account-sidevar-avatar list-group-item  border-0">
-                            <div class="display-avatar p-3 rounded-circle d-flex align-items-center justify-content-center">
-                                <img src="images/logo/logo.png" alt="" width="100px" id="avatar">
-                            </div>
-                            <div class="change-avatar position-absolute">
-                                <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
-                                <label for="input-avatar"><i class="fa-solid fa-user-pen fs-5"></i></label>
-                            </div>
+<main id="main" class="mt-5 pb-5" user-id="<%=user.getId()%>">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!--Phần menu-->
+            <div class="account-page-sidebar col-3">
+                <div class="account-sidebar-header list-group align-items-center">
+                    <div class="account-sidebar-avatar list-group-item  border-0">
+                        <div class="display-avatar p-3 rounded-circle d-flex align-items-center justify-content-center">
+                            <img src="images/logo/logo.png" alt="" width="100px" id="avatar">
                         </div>
-                        <div class="account-sidevar-name list-group-item  border-0">
-                            <h3>Hi, <b>Nguyễn Lam</b></h3>
+                        <div class="change-avatar position-absolute">
+                            <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
+                            <label for="input-avatar"><i class="fa-solid fa-user-pen fs-5"></i></label>
                         </div>
                     </div>
-                    <div class="account-sidebar-menu mt-3">
-                        <ul>
-                            <li>
-                                <button class="active" data-bs-target="0">Thông tin tài khoản</button>
-                            </li>
-                            <li>
-                                <button data-bs-target="1">Lịch sử mua hàng</button>
-                            </li>
-                            <li>
-                                <a href="logout">
-                                    <button id="logout">Đăng xuất</button>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="account-sidevar-name list-group-item  border-0">
+                        <h3>Hi, <b>Nguyễn Lam</b></h3>
                     </div>
                 </div>
+                <div class="account-sidebar-menu mt-3">
+                    <ul>
+                        <li>
+                            <button class="active" data-bs-target="0">Thông tin tài khoản</button>
+                        </li>
+                        <li>
+                            <button data-bs-target="1" class="bill-history">Lịch sử mua hàng</button>
+                        </li>
+                        <li>
+                            <button data-bs-target="2">Đánh giá sản phẩm</button>
+                        </li>
+                        <li>
+                            <a href="logout">
+                                <button id="logout">Đăng xuất</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                <!--Phần trang-->
-                <div class="account-page col-9">
-                    <!--Bắt đầu page-->
-                    <div class="account-page-content active">
-                        <h1>
-                            <span>Thông tin tài khoản</span>
-                        </h1>
-                        <div class="account-page-detail account-page-info mt-3">
-                            <div class="table-responsive">
-                                <div class="table overflow-x-hidden  pb-5">
-                                    <div class="row">
-                                        <div class="col-4"><span>Email</span></div>
-                                        <div class="col-8 "><span>kiminonawa1305@gmail.com</span></div>
+            <!--Phần trang-->
+            <div class="main-content col-9">
+                <!--Bắt đầu page-->
+                <div class="page-content account-page-content active">
+                    <span class="fs-1 title-page-content">Thông tin tài khoản</span>
+                    <div class="body-page-content account-page-detail account-page-info mt-3">
+                        <div class="table-responsive">
+                            <div class="table overflow-x-hidden  pb-5">
+                                <div class="row">
+                                    <div class="col-4"><span>Email</span></div>
+                                    <div class="col-8 "><span>kiminonawa1305@gmail.com</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Mật khẩu</span></div>
+                                    <div class="col-8 "><span>*********************</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Họ tên</span></div>
+                                    <div class="col-8 "><span>Nguyễn Đình Lam</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Giới tính</span></div>
+                                    <div class="col-8">
+                                        <span>Nam</span>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Mật khẩu</span></div>
-                                        <div class="col-8 "><span>*********************</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Họ tên</span></div>
-                                        <div class="col-8 "><span>Nguyễn Đình Lam</span></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Giới tính</span></div>
-                                        <div class="col-8">
-                                            <span>Nam</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4"><span>Ngày sinh</span></div>
-                                        <div class="col-8"><span>13/05/2003</span></div>
-                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Ngày sinh</span></div>
+                                    <div class="col-8"><span>13/05/2003</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--Kết thúc page-->
+                </div>
+                <!--Kết thúc page-->
 
-                    <!--Bắt đầu page-->
-                    <div class="account-page-content">
-                        <h1>
-                            <span>Lịch sử mua hàng</span>
-                        </h1>
-                        <div class="account-page-detail account-page-order-list mt-2">
-                            <div class="table-responsive">
-                                <p class="text-center">Bạn chưa đặt mua sản phẩm nào!</p>
+                <!--Bắt đầu page-->
+                <div class="page-content bill-history-page-content">
+                    <span class="fs-1 title-page-content">Lịch sử mua hàng</span>
+                    <div class="body-page-content mt-2">
+                        <div class="menu menu-bill">
+                            <button type="button" class="menu-item menu-bill-item active" data-action="">
+                                Tất cả
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Chờ xác nhận">
+                                Chờ xác nhận
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Đang vận chuyển">
+                                Vận chuyển
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Thành công">
+                                Thành công
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Đã hủy">
+                                Đã hủy
+                            </button>
+                        </div>
+                        <div class="display-content display-bills">
+                        </div>
+                    </div>
+                </div>
+                <!--Kết thúc page-->
+
+                <!--Bắt đầu page-->
+                <div class="page-content review-page-content">
+                    <span class="fs-1 title-page-content">Đánh giá sản phẩm!</span>
+                    <div class="body-page-content mt-2">
+                        <div class="menu menu-review">
+                            <button type="button" class="menu-item menu-review-item active" data-action="Chưa đánh giá">
+                                Chưa đánh giá
+                            </button>
+                            <button type="button" class="menu-item menu-review-item" data-action="Đã đánh giá">
+                                Đã đánh giá
+                            </button>
+                        </div>
+                        <div class="display-content display-reviews">
+                            <div class="body-bill-item row  align-items-center ms-2">
+                                <div class="bill-id col-2"><span>#3</span></div>
+                                <div class="col-9 d-flex">
+                                    <div>
+                                        <img style="width: 35px" class="rounded-circle" src="images/avatar/default_avatar.png"></img>
+                                    </div>
+                                    <div class="customer-info ms-2 w-100">
+                                        <p class="customer-name">Nguyễn Đình Lam Đẹp Zai Nhất</p>
+                                        <p class="customer-email">kiminonawa1305@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="bill-edit col-1">
+                                    <a href="review?action=write-review&bill-id=3&product-id=3">
+                                       <span class="material-symbols-outlined">rate_review</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!--Kết thúc page-->
                 </div>
+                <!--Kết thúc page-->
             </div>
         </div>
-    </div>
     </div>
 </main>
 
@@ -275,7 +323,6 @@
                 </h5>
                 <div class="footer-content footer-contact">
                     <div class="ft_map">
-
                     </div>
                     <ul>
                         <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span
@@ -333,8 +380,7 @@
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/tai_khoan.js"></script>
 <script type="text/javascript">
-    <%User user = (User) session.getAttribute("user");
-    if(user != null){%>
+    <%if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
     user.setAvatar("<%=user.getAvatar()%>");

@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    const button = $("#account-page").find(".account-sidebar-menu").find("li>button");
+    const button = $(".account-sidebar-menu").find("li>button");
     button.click(function () {
         button.removeClass("active");
         const index = $(this).attr("data-bs-target");
         $(this).addClass("active");
-        display_account_page(index);
+        displayPageContent(index);
     });
 
     $("#input-avatar").change(function () {
@@ -13,15 +13,74 @@ $(document).ready(function () {
         $("#avatar").attr("src", imageUrl);
     });
 
-    $("#signout").click(function () {
-        $.get("/maven_war/LogOut", function (){
-            window.location.replace("index.jsp");
-        });
+    $(`.bill-history`).click(function () {
+        showBillHistory()
+    });
+
+    $(`.menu-review-item`).click(function () {
+        $(`.menu-review-item`).removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $(`.menu-bill-item`).click(function () {
+        $(`.menu-bill-item`).removeClass("active");
+        $(this).addClass("active");
+        showBillHistory();
     });
 });
 
-function display_account_page(index) {
-    const page = $("#account-page").find("div.account-page-content");
+function displayPageContent(index) {
+    const page = $("div.page-content");
     page.removeClass("active");
     page.eq(index).addClass("active");
+}
+
+function showBillHistory() {
+    const data = {
+        "action": `get`,
+        "user-id": $("#main").attr("user-id"),
+        "menu-item": $(".menu-bill-item.active").attr("data-action"),
+    };
+    $.ajax({
+        url: "bill_history",
+        data: data,
+        dataType: "JSON",
+        method: "GET",
+        success: function (data) {
+            const userId = data.userId;
+            let html = "";
+            data.bills.forEach((bill) => {
+                let httmBill = `
+                 <div class="body-bill-item row  align-items-center ms-2">
+                                 <div class="bill-id col-2"><span>#${bill.id}</span></div>
+                                 <div class="bill-time col-2"><span>${formatData(bill.statuses[0].date)}</span></div>
+                                 <div class="col-3 d-flex">
+                                     <div class="customer-info ms-2 w-100">
+                                         <p class="customer-name">${bill.userName}</p>
+                                         <p class="customer-email">${bill.email}</p>
+                                     </div>
+                                 </div>
+                                 <div class="bill-state col-2">${bill.statuses[0].status}</div>
+                                 <div class="bill-option-pay col-2">`;
+                httmBill += bill.statuses[0].transfer ? `Chuyển khoản` : `Tiền mặt`;
+                httmBill += `</div>
+                                 <div class="bill-edit col-1">
+                                 <a href="bill_history?action=see-detail&bill-id=${bill.id}">
+                                    <i class="fa-solid fa-eye"></i>
+                                 </a>
+                                 </div>
+                             </div>
+                 `
+
+                html += httmBill;
+            });
+
+            $(".main-content .display-bills").html(html);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
 }

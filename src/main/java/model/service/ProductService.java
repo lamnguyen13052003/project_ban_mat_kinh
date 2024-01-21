@@ -291,12 +291,11 @@ public class ProductService {
     }
 
     private void setTotalQuantitySold(List<Product> products) {
-        BillDetailService billDetailService = new BillDetailService();
-        Map<Integer, Integer> mapTotalQuantitySold = billDetailService.getTotalQuantitySold(products);
+        BillDetailService billDetailService = BillDetailService.getInstance();
         int id = 0;
         for (Product product : products) {
             id = product.getId();
-            product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
+            product.setTotalQuantitySold(billDetailService.getTotalQuantitySold(id));
         }
     }
 

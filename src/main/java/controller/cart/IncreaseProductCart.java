@@ -42,7 +42,7 @@ public class IncreaseProductCart implements Action {
                 billService.setUpJSON(json);
             }
             json.put("amountProduct", cart.getTotalProduct());
-            json.put("totalPriceProduct", nf.format(cart.getTotalPriceProduct(productId, modelId)));
+            json.put("totalPriceProduct", nf.format(cart.getTotalPriceProducts(productId, modelId)));
             json.put("quantity", cart.getQuantity(productId, modelId));
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

@@ -33,4 +33,30 @@ public class BillStatusDAO extends DAO{
                         .bind(4, status.isCanEdit())
                         .execute());
     }
+
+    public List<BillStatus> getBillStatus(int billId){
+        List<BillStatus> result = connector.withHandle(handle ->
+                handle.createQuery("SELECT bs.status, bs.date, bs.describe, bs.canEdit " +
+                                "FROM bill_statuses bs " +
+                                "WHERE bs.billId = :billId " +
+                                "ORDER BY bs.id;")
+                        .bind("billId", billId)
+                        .mapToBean(BillStatus.class).list()
+        );
+        return result;
+    }
+
+    public List<BillStatus> getLastBillStatus(int billId){
+        List<BillStatus> result = connector.withHandle(handle ->
+                handle.createQuery("SELECT bs.status, bs.date, bs.describe, bs.canEdit " +
+                                "FROM bill_statuses bs " +
+                                "WHERE bs.billId = :billId " +
+                                "AND bs.id = (SELECT MAX(bs2.id) FROM bill_statuses bs2 WHERE bs2.billId = bs.billId);")
+                        .bind("billId", billId)
+                        .mapToBean(BillStatus.class)
+                        .list()
+        );
+
+        return result;
+    }
 }

@@ -51,5 +51,15 @@
 
 
 </span>
+<script src="jquery/jquery-3.7.1.slim.min.js"></script>
+<script src="jquery/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+    $(document).keydown(function(e) {
+        if(e.keyCode === 116) {
+            e.preventDefault();
+            window.location.href = "index.jsp";
+        }
+    });
+</script>
 </body>
 </html>

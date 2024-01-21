@@ -273,7 +273,7 @@
 
                                         <!--Hiển thị hình ảnh-->
                                         <div class="pro-loop-image-item">
-                                            <a href="more-info-product?id=<%=product.getId()%>">
+                                            <a href="more_info_product?id=<%=product.getId()%>">
                                                 <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                                 <picture class="img-hidden-when-hover">
                                                     <img class="lazyloaded rounded-3"
@@ -304,7 +304,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="more-info-product?id=<%=prominentProducts.get(index).getId()%>"
+                                        <a href="more_info_product?id=<%=prominentProducts.get(index).getId()%>"
                                            title="Tên sản phẩm"><%=prominentProducts.get(index).getName()%>
                                         </a>
 
@@ -490,7 +490,7 @@
 
                                         <!--Hiển thị hình ảnh-->
                                         <div class="pro-loop-image-item">
-                                            <a href="more-info-product?id=<%=product.getId()%>">
+                                            <a href="more_info_product?id=<%=product.getId()%>">
                                                 <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                                 <picture class="img-hidden-when-hover">
                                                     <img class="lazyloaded rounded-3"
@@ -521,7 +521,7 @@
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="more-info-product?id=<%=discountProducts.get(index).getId()%>"
+                                        <a href="more_info_product?id=<%=discountProducts.get(index).getId()%>"
                                            title="Tên sản phẩm"><%=discountProducts.get(index).getName()%>
                                         </a>
 
