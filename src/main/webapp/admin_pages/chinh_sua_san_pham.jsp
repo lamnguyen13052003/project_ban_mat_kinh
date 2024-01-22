@@ -174,7 +174,7 @@
                                accept="image/jpeg,image/png" hidden="">
                     </div>
                 </div>
-                <small class="text-danger ps-4 error-product-image" hidden="">Vui lòng thêm ảnh cho sản phẩm của
+                <small class="text-danger ps-4 error-product-image" hidden="">Vui lòng thêm tối thiểu 2 hình ảnh cho sản phẩm của
                     bạn!</small>
             </div>
 

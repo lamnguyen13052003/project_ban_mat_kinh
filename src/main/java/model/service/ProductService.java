@@ -3,7 +3,7 @@ package model.service;
 import model.DAO.ProductDAO;
 import model.bean.Product;
 import model.bean.ProductCart;
-import model.bean.ProductImage;
+import model.bean.ProductReview;
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -103,6 +103,21 @@ public class ProductService {
         setTotalQuantitySold(products);
 
         return products;
+    }
+
+    public Product getRecentlyViewedProduct(int productId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+
+        Product product = productDAO.getRecentlyViewedProduct(productId);
+        List<Product> products = new ArrayList<>();
+        products.add(product);
+        setModel(products);
+        setProductImage(products, 2);
+        setStarNumber(products);
+        setReducedPrice(products);
+        setTotalQuantitySold(products);
+
+        return products.get(0);
     }
 
     public Map<String, List<String>> getMapFilter(String query) {
@@ -277,12 +292,11 @@ public class ProductService {
     }
 
     private void setTotalQuantitySold(List<Product> products) {
-        BillDetailService billDetailService = new BillDetailService();
-        Map<Integer, Integer> mapTotalQuantitySold = billDetailService.getTotalQuantitySold(products);
+        BillDetailService billDetailService = BillDetailService.getInstance();
         int id = 0;
         for (Product product : products) {
             id = product.getId();
-            product.setTotalQuantitySold(mapTotalQuantitySold.get(id));
+            product.setTotalQuantitySold(billDetailService.getTotalQuantitySold(id));
         }
     }
 
@@ -314,12 +328,20 @@ public class ProductService {
         return ProductDAO.getInstance().getBrands();
     }
 
-    public Product getProductForReview(int productId) {
+    public ProductReview getProductReview(int userId, int productId, int modelId) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        return productDAO.getProductReview(userId, productId, modelId);
+    }
+
+    public List<ProductReview> getProductReviewsHaveEvaluated(int userId, int offset) {
         ProductDAO productDAO = ProductDAO.getInstance();
 
-        List<Product> products = productDAO.getProductForReview(productId);
+        return productDAO.getProductReviewsHaveEvaluated(userId, offset);
+    }
 
-        return products.get(0);
+    public List<ProductReview> getProductReviewsNotYetRated(int userId, int offset) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        return productDAO.getProductReviewsNotYetRated(userId, offset);
     }
 
     public List<String> getMaterials() {
@@ -369,7 +391,7 @@ public class ProductService {
         return ProductDAO.getInstance().totalProduct(name, categoryGroupId, categoryId, "%" + brandName + "%", available);
     }
 
-    public Product getProductEdit(int id){
+    public Product getProductEdit(int id) {
         ProductDAO productDAO = ProductDAO.getInstance();
         List<Product> products = productDAO.getProductEdit(id);
         setModel(products);
@@ -389,7 +411,7 @@ public class ProductService {
         int result = ProductDAO.getInstance().update(product);
         if (result != 0) {
             ModelService modelService = ModelService.getInstance();
-            modelService.update(product.getId(),product.getModels());
+            modelService.update(product.getId(), product.getModels());
             ProductImageService productImageService = ProductImageService.getInstance();
             productImageService.update(product.getId(), product.getProductImages());
             ProductDiscountService productDiscount = ProductDiscountService.getInstance();
@@ -398,7 +420,7 @@ public class ProductService {
         return result;
     }
 
-    public void unlock(int productId){
+    public void unlock(int productId) {
         ProductDAO.getInstance().unlock(productId);
     }
 }

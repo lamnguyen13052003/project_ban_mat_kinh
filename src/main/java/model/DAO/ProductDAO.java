@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.bean.Product;
+import model.bean.ProductReview;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
@@ -77,7 +78,7 @@ public class ProductDAO extends DAO {
 
     public Product getProductCart(int id) {
         int index = 0;
-        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe ";
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price ";
 
         String sql = initSQLGetProduct(select);
         return connector.withHandle(handle ->
@@ -310,19 +311,55 @@ public class ProductDAO extends DAO {
         );
     }
 
-    public List<Product> getProductForReview(int id) {
-        List<Product> result;
-        int index = 0;
-        String select = " p.id, p.name ";
-
-        String sql = initSQLGetProduct(select);
+    public ProductReview getProductReview(int userId, int productId, int modelId) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT p.id AS productId, p.name AS productName, bd.price, bd.quantity,  m.urlImage, m.name AS modelName, m.id AS modelId ")
+                .append("FROM bills AS b ")
+                .append("JOIN bill_details AS bd ")
+                .append("JOIN products AS p ON p.id = bd.productId ")
+                .append("JOIN models AS m ON m.id = bd.modelId ")
+                .append("ON bd.billId = b.id ")
+                .append("JOIN bill_statuses AS bs ON bs.billId = b.id ")
+                .append("WHERE bs.`status` LIKE \"%Thành công%\" ")
+//                .append("AND p.id NOT IN (SELECT r.productId FROM reviews AS r WHERE r.userId = b.userId AND r.comment IS NOT NULL) ")
+                .append("AND bd.modelId = (SELECT MAX(bd2.modelId) FROM bill_details AS bd2 WHERE bd2.id = bd.id) ")
+                .append("AND m.id = :modelId ")
+                .append("AND p.id = :productId ")
+                .append("AND b.userId = :userId;");
         return connector.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind(0, id)
-                        .mapToBean(Product.class)
-                        .list()
+                handle.createQuery(sb.toString())
+                        .bind("userId", userId)
+                        .bind("productId", productId)
+                        .bind("modelId", modelId)
+                        .mapToBean(ProductReview.class)
+                        .findFirst().orElse(null)
         );
     }
+
+//    public ProductReview getProductReview(  int productId, int modelId) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("SELECT p.id AS productId, p.name AS productName, bd.price, bd.quantity,  m.urlImage, m.name AS modelName, m.id AS modelId ")
+//                .append("FROM bills AS b ")
+//                .append("JOIN bill_details AS bd ")
+//                .append("JOIN products AS p ON p.id = bd.productId ")
+//                .append("JOIN models AS m ON m.id = bd.modelId ")
+//                .append("ON bd.billId = b.id ")
+//                .append("JOIN bill_statuses AS bs ON bs.billId = b.id ")
+//                .append("WHERE bs.`status` LIKE \"%Thành công%\" ")
+//                .append("AND p.id NOT IN (SELECT r.productId FROM reviews AS r WHERE r.userId = b.userId AND r.comment IS NOT NULL) ")
+//                .append("AND bd.modelId = (SELECT MAX(bd2.modelId) FROM bill_details AS bd2 WHERE bd2.id = bd.id) ")
+//                .append("AND m.id = :modelId ")
+//                .append("AND p.id = :productId ")
+//                .append("AND b.userId = :userId;");
+//        return connector.withHandle(handle ->
+//                handle.createQuery(sb.toString())
+//                        .bind("userId", userId)
+//                        .bind("productId", productId)
+//                        .bind("modelId", modelId)
+//                        .mapToBean(ProductReview.class)
+//                        .findFirst().orElse(null)
+//        );
+//    }
 
     public List<String> getMaterials() {
         return connector.withHandle(handle ->
@@ -571,5 +608,55 @@ public class ProductDAO extends DAO {
                     .bind(1, productId)
                     .execute();
         }) == 1 ? true : false;
+    }
+
+    public Product getRecentlyViewedProduct(int productId) {
+        return getProductCart(productId);
+    }
+
+    public List<ProductReview> getProductReviewsHaveEvaluated(int userId, int offset) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT p.id AS productId, p.name AS productName, bd.price, bd.quantity,  m.urlImage, m.name AS modelName, m.id AS modelId ")
+                .append("FROM bills AS b ")
+                .append("JOIN bill_details AS bd ")
+                .append("JOIN products AS p ON p.id = bd.productId ")
+                .append("JOIN models AS m ON m.id = bd.modelId ")
+                .append("ON bd.billId = b.id ")
+                .append("JOIN bill_statuses AS bs ON bs.billId = b.id ")
+                .append("WHERE bs.`status` LIKE \"%Thành công%\" ")
+                .append("AND p.id IN (SELECT r.productId FROM reviews AS r WHERE r.userId = b.userId AND r.comment IS NOT NULL) ")
+                .append("AND bd.modelId = (SELECT MAX(bd2.modelId) FROM bill_details AS bd2 WHERE bd2.id = bd.id) ")
+                .append("AND b.userId = :userId ")
+                .append("LIMIT 8 OFFSET :offset;");
+        return connector.withHandle(handle ->
+                handle.createQuery(sb.toString())
+                        .bind("userId", userId)
+                        .bind("offset", offset)
+                        .mapToBean(ProductReview.class)
+                        .list()
+        );
+    }
+
+    public List<ProductReview> getProductReviewsNotYetRated(int userId, int offset) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT p.id AS productId, p.name AS productName, bd.price, bd.quantity,  m.urlImage, m.name AS modelName, m.id AS modelId ")
+                .append("FROM bills AS b ")
+                .append("JOIN bill_details AS bd ")
+                .append("JOIN products AS p ON p.id = bd.productId ")
+                .append("JOIN models AS m ON m.id = bd.modelId ")
+                .append("ON bd.billId = b.id ")
+                .append("JOIN bill_statuses AS bs ON bs.billId = b.id ")
+                .append("WHERE bs.`status` LIKE \"%Thành công%\" ")
+                .append("AND p.id NOT IN (SELECT r.productId FROM reviews AS r WHERE r.userId = b.userId AND r.comment IS NOT NULL) ")
+                .append("AND bd.modelId = (SELECT MAX(bd2.modelId) FROM bill_details AS bd2 WHERE bd2.id = bd.id) ")
+                .append("AND b.userId = :userId ")
+                .append("LIMIT 8 OFFSET :offset;");
+        return connector.withHandle(handle ->
+                handle.createQuery(sb.toString())
+                        .bind("userId", userId)
+                        .bind("offset", offset)
+                        .mapToBean(ProductReview.class)
+                        .list()
+        );
     }
 }

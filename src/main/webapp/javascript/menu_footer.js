@@ -257,3 +257,27 @@ function linkMenuDisplayProduct() {
                         </div>
         `);
 }
+
+function formatData(dateString) {
+
+// Chuyển đổi thành đối tượng Date
+    const date = new Date(dateString);
+
+// Lấy thông tin ngày, tháng, năm, giờ, phút, giây
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Tháng bắt đầu từ 0, nên cộng thêm 1
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    // Hàm để thêm số 0 trước các số từ 1 đến 9
+    const addLeadingZero = (number) => (number < 10 ? "0" : "") + number;
+
+    // Định dạng ngày tháng theo "dd/mm/yyyy hh:mm:ss"
+    const formattedDate =
+        `${addLeadingZero(day)}/${addLeadingZero(month)}/${year} ` +
+        `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
+
+    return formattedDate;
+}

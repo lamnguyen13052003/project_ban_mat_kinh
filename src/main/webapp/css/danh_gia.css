@@ -11,6 +11,13 @@
     border: none;
 }
 
+#main button.button-remove {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+}
+
 /***********************************Phẩn body*************************************/
 #main .review-product .review-product-body {
     position: relative;

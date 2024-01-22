@@ -37,6 +37,7 @@ input::-webkit-inner-spin-button {
 
 #carouselExampleAutoplaying .carousel-inner {
     width: 430px;
+    height: 430px;
     margin-left: 150px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -169,7 +170,7 @@ input::-webkit-inner-spin-button {
 }
 
 #main .productWrap .productWrapDetail .productActionMain .productAction button:nth-of-type(1):hover {
-    background-color: black;
+    background-color:  var(--color-blue-origin);
     color: #fff;
 }
 
@@ -218,34 +219,33 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
 }
 
-/****Phần danh sach liên quan***/
-#main .other-product .collection-wrap-product-list .other-product-title {
-    border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
-}
-
-#main .other-product .collection-wrap-product-list .pro-loop {
+/***************************Phần danh sách sản phẩm xem gần đây*********************************/
+.show-item-sale .pro-loop {
     padding: 0 10px;
     width: 300px;
     margin: 0 10px 10px 0;
-    height: 415px;
+    height: 425px;
+    background-color: #FFFFFF;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+.show-item-sale .pro-loop:hover {
+    background-color: #e5e5e5;
 }
 
 /*Phạm vi ô hiển thị*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-wrap {
-    padding-top: 10px;
+.show-item-sale .pro-loop .pro-loop-wrap {
+    top: 10px;
     padding-bottom: 10px;
 }
 
 /*Phần hình ảnh*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image{
-    position: relative;
+.show-item-sale .pro-loop .pro-loop-image,
+.show-item-sale .pro-loop .pro-loop-image picture{
+    width: 280px;
+    height: 280px;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image .pro-loop-sd {
+.show-item-sale .pro-loop .pro-loop-image .pro-loop-sd {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 2px 10px;
@@ -253,35 +253,35 @@ input::-webkit-inner-spin-button {
     left: 5px;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop:hover .pro-loop-image picture.img-hidden-when-hover,
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image picture.img-show-when-hover {
+.show-item-sale .pro-loop:hover .pro-loop-image picture.img-hidden-when-hover,
+.show-item-sale .pro-loop .pro-loop-image picture.img-show-when-hover {
     display: none;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop:hover .pro-loop-image picture.img-show-when-hover,
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image picture.img-hidden-when-hover {
+.show-item-sale .pro-loop .pro-loop-image picture.img-hidden-when-hover,
+.show-item-sale .pro-loop:hover .pro-loop-image picture.img-show-when-hover {
     display: block;
 }
 
-
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-image img {
-    width: 280px;
+.show-item-sale .pro-loop .pro-loop-image img {
+    width: 100%;
+    height: 100%;
 }
 
 /*Phần độ hot*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-sold {
-   display: none;
+.show-item-sale .pro-loop .pro-loop-sold {
+    display: none;
 }
 
 /*Phần tên brand*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-brand {
+.show-item-sale .pro-loop .pro-loop-brand {
     font-size: 9px;
     color: rgba(0, 0, 0, 0.5);
     margin: 5px 0;
 }
 
 /*Phần tên sản phẩm*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-name {
+.show-item-sale .pro-loop .pro-loop-name {
     font-size: 15px;
     height: 18px;
     width: 280px;
@@ -289,61 +289,59 @@ input::-webkit-inner-spin-button {
 }
 
 /*Phần giá sản phẩm*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-price p {
+.show-item-sale .pro-loop .pro-loop-price p {
     color: #F30;
     font-size: 15px;
     margin-bottom: 10px;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-price del {
+.show-item-sale .pro-loop .pro-loop-price del {
     color: rgba(0, 0, 0, 0.5);
     font-size: 10px;
 }
 
 /*Phần đánh giá và số lượng bán*/
-#main .other-product .collection-wrap-product-list .pro-loop .sold_qty {
+.show-item-sale .pro-loop .sold_qty {
     font-size: 11px;
     color: rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop .sold_qty .h-line {
+.show-item-sale .pro-loop .sold_qty .h-line {
     border: rgba(0, 0, 0, 0.5) solid 1px;
     margin: 0 5px;
     height: 10px;
 }
 
 /*Phần nút điều kiển*/
-#main .other-product .collection-wrap-product-list .pro-loop .pro-loop-bottom {
+.show-item-sale .pro-loop .pro-loop-bottom {
     display: none;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom {
+.show-item-sale .pro-loop:hover .pro-loop-bottom {
     display: block;
-    font-size: 10px;
+    font-size: 15px;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom button {
+.show-item-sale .pro-loop:hover .pro-loop-bottom button {
     border: none;
     padding: 5px;
     width: 120px;
     border-radius: 5px;
     font-weight: bold;
-}
-
-#main .other-product .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom button:nth-of-type(1) {
-    background-color: #F30;
-    margin-left: 15px;
     color: #fff;
 }
 
-#main .other-product .collection-wrap-product-list .pro-loop:hover .pro-loop-bottom button:nth-of-type(2) {
-    background-color: rgba(47, 24, 154, 0.6);
+.show-item-sale .pro-loop:hover .pro-loop-bottom button:nth-of-type(1) {
+    background-color: rgba(47, 24, 154, 1);
+    margin-left: 15px;
+}
+
+.show-item-sale .pro-loop:hover .pro-loop-bottom button:nth-of-type(2) {
+    background-color: #F30;
     float: right;
     margin-right: 5px;
 }
-
-
 /***********************Phần Review**********************/
 #onirvapp-review-list{
     max-height: 500px;
@@ -425,6 +423,107 @@ input::-webkit-inner-spin-button {
     top: -5px;
     right: 3px;
     cursor: pointer;
+}
+
+/*Phần hình ảnh*/
+.show-item-sale .pro-loop .pro-loop-image,
+.show-item-sale .pro-loop .pro-loop-image picture,
+.show-item-sale .pro-loop .pro-loop-image picture img{
+    width: 280px;
+    height: 280px;
+}
+
+.modal-dialog{
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 900px;
+}
+
+.modal-body .product-swatch .carousel,
+.modal-body .product-swatch .carousel-inner img {
+    height: 350px;
+    width: 350px;
+}
+
+.modal-body .product .product-name{
+    width: 470px;
+    padding-bottom: 10px;
+    border-bottom: 1px black dotted;
+    margin-bottom: 10px;
+}
+
+.modal-body .product .product-model div {
+    display: inline-block;
+    margin: 0 10px 5px 0;
+}
+
+.modal-body .product .product-model div button {
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    opacity: 0.8;
+}
+
+.modal-body .product .product-model div button.active {
+    border: 1px solid #f30;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.modal-body .product button img {
+    height: 30px;
+    padding: 5px;
+}
+
+.modal-body .product button span {
+    font-size: 10px;
+    padding: 8px 5px 0 0;
+}
+
+.modal-body .product{
+    top: 20px;
+    left: 400px;
+}
+
+.modal-body .product .group-add{
+    top: 250px;
+}
+
+.modal-body .product .input-group {
+    width: 310px;
+}
+
+.modal-body .product .input-group button {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.modal-body .product .input-group input {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: none;
+}
+
+.modal-body .product .input-group input:focus {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: none;
+}
+
+.modal-body .product .product-action button {
+    padding: 5px;
+    width: 150px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.modal-body .product .product-action button:nth-of-type(1) {
+    border: 1px solid black;
+    background-color: var(--color-blue-origin);
+}
+
+.modal-body .product .product-action button:nth-of-type(2) {
+    background-color: #f30;
+    border: none;
+    margin-left: 15px;
 }
 
 

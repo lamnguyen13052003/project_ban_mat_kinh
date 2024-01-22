@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="notify/notify-metro.css" />
     <link rel="stylesheet" href="css/gian_hang.css">
     <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
     <%--jquery--%>
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
@@ -36,8 +37,7 @@
     <%--notify--%>
     <script src="notify/notify.js"></script>
 
-    <title><%=request.getAttribute("title")%>
-    </title>
+    <title><%=request.getAttribute("title")%></title>
 </head>
 <body>
 <header id="menu">
@@ -514,7 +514,7 @@
 
                                 <!--Hiển thị hình ảnh-->
                                 <div class="pro-loop-image-item">
-                                    <a href="more-info-product?id=<%=product.getId()%>">
+                                    <a href="more_info_product?id=<%=product.getId()%>">
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
                                             <img class="lazyloaded rounded-3"
@@ -545,7 +545,7 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="more-info-product?id=<%=product.getId()%>"
+                                <a href="more_info_product?id=<%=product.getId()%>"
                                    title="<%=product.getName()%>"><%=product.getName()%>
                                 </a>
                             </h3>
@@ -612,10 +612,10 @@
                             <!--2 nút thao tác-->
                             <div class="pro-loop-bottom">
                                 <button type="button" product-id="<%=product.getId()%>"
-                                        class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                        class="f-button setAddCartLoop <%=product.available() ? "show-models" : ""%>" data-type="show-models">
                                     Xem nhanh
                                 </button>
-                                <button type="button" product-id="<%=product.getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
+                                <button type="button" product-id="<%=product.getId()%>" class="f-button setBuyNow <%=product.available() ? "show-models" : ""%>" data-type="buy-now" data-id="">
                                     Mua ngay
                                 </button>
                             </div>
@@ -721,31 +721,10 @@
                                 <button class="input-group-text plus-quantity" data-type="plus">+</button>
                             </div>
                             <div class="product-action d-flex">
-                                <button type="button" class="hover-opacity" id="add-to-cart">Thêm vào giỏ hàng</button>
+                                <button type="button" class="hover-opacity" id="add-cart">Thêm vào giỏ hàng</button>
                                 <button type="button" class="hover-opacity " id="buy-now">Mua ngay</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal" data-bs-target="#complete-modal"></button>
-    <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">Thành công</h1>
-                    <button id="close-complete-modal" type="button" class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body position-relative">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
-                        <p class="fs-1 ms-2">Hoàn Thành</p>
                     </div>
                 </div>
             </div>

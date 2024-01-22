@@ -15,10 +15,15 @@ import java.io.IOException;
 public class ReviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String actionStr = request.getParameter("action");
         Action action = null;
         switch (actionStr) {
             case "display" -> action = new DisplayReview();
+            case "get-product-reviews" -> action = new GetProductReview();
+            case "write-review" -> action = new ChangePageWriteReview();
+            case "edit-review" -> action = new ChangePageEditReview();
         }
 
         if (action == null) {
@@ -30,10 +35,15 @@ public class ReviewController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String actionStr = request.getParameter("action");
         Action action = null;
         switch (actionStr) {
-            case "add-image" -> action = new UploadImageReview();
+            case "add-image" -> action = new InsertReviewImage();
+            case "update" -> action = new UpdateReview();
+            case "remove-review-image" -> action = new RemoveReviewImage();
+            case "remove-review" -> action = new RemoveReview();
         }
 
         if (action == null) {

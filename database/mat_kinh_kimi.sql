@@ -153,29 +153,29 @@ CREATE TABLE IF NOT EXISTS `bill_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `billId` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `status` int(11) DEFAULT 0,
+  `status` varchar(50) DEFAULT NULL,
   `describe` varchar(255) DEFAULT NULL,
   `canEdit` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bill_statuses_billId_bills_id_fk` (`billId`),
   CONSTRAINT `bill_statuses_billId_bills_id_fk` FOREIGN KEY (`billId`) REFERENCES `bills` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.bill_statuses: ~13 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.bill_statuses: ~14 rows (approximately)
 INSERT INTO `bill_statuses` (`id`, `billId`, `date`, `status`, `describe`, `canEdit`) VALUES
-	(13, 2, '2023-12-21 12:50:18', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(14, 3, '2023-12-21 12:52:13', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(15, 4, '2023-12-21 15:41:38', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(16, 5, '2023-12-21 15:45:51', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(17, 6, '2023-12-21 20:28:51', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(18, 7, '2023-12-21 20:34:38', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(19, 8, '2023-12-22 09:15:29', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(20, 9, '2023-12-22 09:38:37', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(21, 10, '2023-12-22 10:13:03', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(22, 11, '2023-12-22 10:29:29', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(23, 12, '2023-12-22 10:34:51', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(24, 13, '2023-12-22 10:41:07', 1, 'Đã xác nhận đơn hàng của bạn', b'1'),
-	(25, 14, '2023-12-22 10:45:05', 1, 'Đã xác nhận đơn hàng của bạn', b'1');
+	(13, 2, '2023-12-21 12:50:18', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(14, 3, '2023-12-21 12:52:13', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(15, 4, '2023-12-21 15:41:38', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(16, 5, '2023-12-21 15:45:51', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(17, 6, '2023-12-21 20:28:51', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(18, 7, '2023-12-21 20:34:38', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(19, 8, '2023-12-22 09:15:29', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(20, 9, '2023-12-22 09:38:37', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(21, 10, '2023-12-22 10:13:03', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(22, 11, '2023-12-22 10:29:29', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(23, 12, '2023-12-22 10:34:51', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(24, 13, '2023-12-22 10:41:07', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1'),
+	(25, 14, '2023-12-22 10:45:05', 'Chờ xác nhận', 'Đã xác nhận đơn hàng của bạn', b'1');
 
 -- Dumping structure for table mat_kinh_kimi.brands
 CREATE TABLE IF NOT EXISTS `brands` (
@@ -964,13 +964,15 @@ CREATE TABLE IF NOT EXISTS `models` (
   PRIMARY KEY (`id`),
   KEY `models_prouductId_products_id_fk` (`productId`),
   CONSTRAINT `models_prouductId_products_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.models: ~3 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.models: ~5 rows (approximately)
 INSERT INTO `models` (`id`, `productId`, `name`, `urlImage`, `quantity`) VALUES
 	(1, 1, 'Vàng Đen', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/1.jpg', 100),
-	(2, 1, 'Xanh Tim', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg', 0),
-	(3, 2, 'Mặc định', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg', 1000);
+	(2, 1, 'Xanh Tim', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg', 2000),
+	(3, 2, 'Mặc định', 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/0.jpg', 300),
+	(4, 3, 'Mặc định', 'images/product/3/0.jpg', 200),
+	(5, 4, 'Mặc định', 'images/product/4/0.jpg', 2000);
 
 -- Dumping structure for table mat_kinh_kimi.model_quantity
 CREATE TABLE IF NOT EXISTS `model_quantity` (
@@ -999,10 +1001,12 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_products_categories` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.products: ~2 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.products: ~4 rows (approximately)
 INSERT INTO `products` (`id`, `categoryId`, `name`, `brandName`, `price`, `describe`, `material`, `type`, `delete`) VALUES
-	(1, 1, 'Gọng kính Acetate titanium meriandy 00144', 'thương hiệu x', 1000000.00, '<p>mô tả 1</p>', 'chất liệu x', 'kiểu x', b'0'),
-	(2, 1, 'Gọng kính Acetate titanium meriandy 36025', 'thương hiệu x', 1000000.00, '<p>mô tả 2</p>', 'chất liệu x', 'kiểu x', b'0');
+	(1, 1, 'Gọng kính Acetate titanium meriandy 00144', 'thương hiệu x', 1000000.00, '<p>M&ocirc; tả được chỉnh sửa</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'chất liệu x', 'kiếu mới demo', b'0'),
+	(2, 12, 'Gọng kính Acetate titanium meriandy 36025', 'thương hiệu x', 1000000.00, '<p>m&ocirc; tả 2</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'chất liệu x', 'kiếu mới demo', b'0'),
+	(3, 1, 'Sản phẩm demo', 'thương hiệu x', 1000000.00, '<p>M&ocirc; tả sản phẩm demo</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'chất liệu x', 'kiếu mới demo', b'0'),
+	(4, 8, 'Sản phẩm demo 2', 'thương hiệu x', 1000000.00, '<p>m&ocirc; tả cho sản phẩm demo 2</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'chất liệu demo 2', 'kiếu mới demo', b'0');
 
 -- Dumping structure for table mat_kinh_kimi.product_discounts
 CREATE TABLE IF NOT EXISTS `product_discounts` (
@@ -1014,11 +1018,12 @@ CREATE TABLE IF NOT EXISTS `product_discounts` (
   PRIMARY KEY (`id`),
   KEY `product_discounts_productId_product_id_fk` (`productId`),
   CONSTRAINT `product_discounts_productId_product_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.product_discounts: ~1 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.product_discounts: ~2 rows (approximately)
 INSERT INTO `product_discounts` (`id`, `productId`, `pricePercentage`, `dateStart`, `dateEnd`) VALUES
-	(1, 1, 0.10, '2023-11-26 00:00:00', '2024-11-26 00:00:00');
+	(4, 1, 0.30, '2024-01-10 00:00:00', '2024-01-11 00:00:00'),
+	(6, 4, 0.10, '2024-01-10 00:00:00', '2024-01-11 00:00:00');
 
 -- Dumping structure for table mat_kinh_kimi.product_images
 CREATE TABLE IF NOT EXISTS `product_images` (
@@ -1028,17 +1033,36 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   PRIMARY KEY (`id`),
   KEY `product_images_productId_product_id_fk` (`productId`),
   CONSTRAINT `product_images_productId_product_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=312 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.product_images: ~7 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.product_images: ~26 rows (approximately)
 INSERT INTO `product_images` (`id`, `productId`, `urlImage`) VALUES
-	(1, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg'),
-	(2, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/3.jpg'),
-	(3, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/1.jpg'),
-	(4, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/0.jpg'),
-	(5, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg'),
-	(6, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/2.jpg'),
-	(7, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg');
+	(251, 3, 'images/product/3/0.jpg'),
+	(252, 3, 'images/product/3/1.jpg'),
+	(253, 3, 'images/product/3/2.jpg'),
+	(254, 3, 'images/product/3/3.jpg'),
+	(255, 3, 'images/product/3/4.jpg'),
+	(256, 3, 'images/product/3/5.jpg'),
+	(257, 3, 'images/product/3/6.jpg'),
+	(258, 3, 'images/product/3/7.jpg'),
+	(259, 3, 'images/product/3/8.jpg'),
+	(260, 3, 'images/product/3/9.jpg'),
+	(261, 3, 'images/product/3/10.jpg'),
+	(262, 3, 'images/product/3/11.jpg'),
+	(263, 3, 'images/product/3/12.jpg'),
+	(293, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg'),
+	(294, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/3.jpg'),
+	(295, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/1.jpg'),
+	(296, 1, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/2.jpg'),
+	(303, 4, 'images/product/4/0.jpg'),
+	(304, 4, 'images/product/4/3.jpg'),
+	(305, 4, 'images/product/4/4.jpg'),
+	(306, 4, 'images/product/4/5.jpg'),
+	(307, 4, 'images/product/4/6.jpg'),
+	(308, 4, 'images/product/4/7.jpg'),
+	(309, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/0.jpg'),
+	(310, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg'),
+	(311, 2, 'images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-36025/1.jpg');
 
 -- Dumping structure for table mat_kinh_kimi.provinces
 CREATE TABLE IF NOT EXISTS `provinces` (
@@ -1194,7 +1218,7 @@ CREATE TABLE IF NOT EXISTS `wards` (
   CONSTRAINT `wards_district_code_fkey` FOREIGN KEY (`districtCode`) REFERENCES `districts` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.wards: ~10,598 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.wards: ~10,591 rows (approximately)
 INSERT INTO `wards` (`code`, `name`, `nameEn`, `fullName`, `fullNameEn`, `code_name`, `districtCode`, `administrativeUnitId`) VALUES
 	('00001', 'Phúc Xá', 'Phuc Xa', 'Phường Phúc Xá', 'Phuc Xa Ward', 'phuc_xa', '001', 8),
 	('00004', 'Trúc Bạch', 'Truc Bach', 'Phường Trúc Bạch', 'Truc Bach Ward', 'truc_bach', '001', 8),

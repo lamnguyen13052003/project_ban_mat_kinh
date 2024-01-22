@@ -20,39 +20,28 @@ public class BillDetailDAO extends DAO {
         return instance == null ? new BillDetailDAO() : instance;
     }
 
-    public Map<Integer, Integer> getTotalQuantitySold(List<Product> products) {
-        Map<Integer, Integer> result = new HashMap<>();
-        for (Product product : products) {
-            int id = product.getId();
-            Integer totalQuantitySold = connector.withHandle(handle ->
-                    handle.createQuery("SELECT sum(bd.quantity) " +
-                                    "FROM bill_details AS bd " +
-                                    "WHERE bd.productId = ?;")
-                            .bind(0, id)
-                            .mapTo(Integer.class)
-                            .findFirst().orElse(0)
-            );
-
-            result.put(id, totalQuantitySold);
-        }
-
-        return result;
+    public int getTotalQuantitySold(Integer productId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT sum(bd.quantity) " +
+                                "FROM bill_details AS bd " +
+                                "WHERE bd.productId = ?;")
+                        .bind(0, productId)
+                        .mapTo(Integer.class)
+                        .findFirst().orElse(0)
+        );
     }
 
-    public void insert(int id, List<BillDetail> details) {
-        Handle handle = connector.open();
-        Update update = handle.createUpdate("INSERT INTO bill_details(billId, productId, modelId, quantity, price) " +
-                "VALUES(?, ?, ?, ?, ?);");
-        for (BillDetail detail : details) {
-            update.bind(0, id)
-                    .bind(1, detail.getProductId())
-                    .bind(2, detail.getModelId())
-                    .bind(3, detail.getQuantity())
-                    .bind(4, detail.getPrice())
-                    .execute();
-        }
-        update.close();
-        handle.close();
+    public void insert(BillDetail detail) {
+        connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO bill_details(billId, productId, modelId, quantity, price) " +
+                                "VALUES(?, ?, ?, ?, ?);")
+                        .bind(0, detail.getBillId())
+                        .bind(1, detail.getProductId())
+                        .bind(2, detail.getModelId())
+                        .bind(3, detail.getQuantity())
+                        .bind(4, detail.getPrice())
+                        .execute()
+        );
     }
 
 //    public boolean checkQuantity(ArrayList<BillDetail> details) {
@@ -69,12 +58,22 @@ public class BillDetailDAO extends DAO {
 
     public int getTotalSale(Integer billId) {
         return connector.withHandle(handle ->
-                handle.createQuery("SELECT SUM(bd.quantity) AS sum_quantity\n" +
-                                "FROM bill_details AS bd\n" +
+                handle.createQuery("SELECT SUM(bd.quantity) AS sum_quantity " +
+                                "FROM bill_details AS bd " +
                                 "WHERE bd.modelId = ?")
                         .bind(0, billId)
                         .mapTo(Integer.class)
                         .findFirst().orElse(0)
+        );
+    }
+
+    public List<BillDetail> getBillDetails(Integer billId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT productId, modelId, quantity, price FROM bill_details WHERE billId = :billId")
+                        .bind("billId", billId)
+                        .mapToBean(BillDetail.class)
+                        .list()
+
         );
     }
 }

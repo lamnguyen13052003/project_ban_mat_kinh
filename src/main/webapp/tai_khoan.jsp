@@ -68,7 +68,7 @@
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
-                                 <span id="amount-product" class="amount-product">
+                                <span id="amount-product" class="amount-product">
                                     <%
                                         CartService cart = (CartService) session.getAttribute("cart");
                                         if (cart == null) cart = new CartService();
@@ -217,6 +217,41 @@
                     </div>
                 </div>
 
+            <!--Phần trang-->
+            <div class="main-content col-9">
+                <!--Bắt đầu page-->
+                <div class="page-content account-page-content active">
+                    <span class="fs-1 title-page-content">Thông tin tài khoản</span>
+                    <div class="body-page-content account-page-detail account-page-info mt-3">
+                        <div class="table-responsive">
+                            <div class="table overflow-x-hidden  pb-5">
+                                <div class="row">
+                                    <div class="col-4"><span>Email</span></div>
+                                    <div class="col-8 "><span>kiminonawa1305@gmail.com</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Mật khẩu</span></div>
+                                    <div class="col-8 "><span>*********************</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Họ tên</span></div>
+                                    <div class="col-8 "><span>Nguyễn Đình Lam</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Giới tính</span></div>
+                                    <div class="col-8">
+                                        <span>Nam</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"><span>Ngày sinh</span></div>
+                                    <div class="col-8"><span>13/05/2003</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Kết thúc page-->
                 <!--Phần trang-->
 
                 <div class="account-page col-9">
@@ -261,22 +296,52 @@
 
                     <!--Kết thúc page-->
 
-                    <!--Bắt đầu page-->
-                    <div class="account-page-content">
-                        <h1>
-                            <span>Lịch sử mua hàng</span>
-                        </h1>
-                        <div class="account-page-detail account-page-order-list mt-2">
-                            <div class="table-responsive">
-                                <p class="text-center">Bạn chưa đặt mua sản phẩm nào!</p>
-                            </div>
+                <!--Bắt đầu page-->
+                <div class="page-content bill-history-page-content">
+                    <span class="fs-1 title-page-content">Lịch sử mua hàng</span>
+                    <div class="body-page-content mt-2">
+                        <div class="menu menu-bill">
+                            <button type="button" class="menu-item menu-bill-item active" data-action="">
+                                Tất cả
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Chờ xác nhận">
+                                Chờ xác nhận
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Đang vận chuyển">
+                                Vận chuyển
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Thành công">
+                                Thành công
+                            </button>
+                            <button type="button" class="menu-item menu-bill-item" data-action="Đã hủy">
+                                Đã hủy
+                            </button>
+                        </div>
+                        <div class="display-content display-bills" id="display-bills">
                         </div>
                     </div>
-                    <!--Kết thúc page-->
                 </div>
+                <!--Kết thúc page-->
+
+                <!--Bắt đầu page-->
+                <div class="page-content review-page-content">
+                    <span class="fs-1 title-page-content">Đánh giá sản phẩm!</span>
+                    <div class="body-page-content mt-2">
+                        <div class="menu menu-review">
+                            <button type="button" class="menu-item menu-review-item active" data-action="Chưa đánh giá" have-evaluated="false">
+                                Chưa đánh giá
+                            </button>
+                            <button type="button" class="menu-item menu-review-item" data-action="Đã đánh giá" have-evaluated="true">
+                                Đã đánh giá
+                            </button>
+                        </div>
+                        <div class="display-content display-product-reviews"  id="display-product-reviews">
+                        </div>
+                    </div>
+                </div>
+                <!--Kết thúc page-->
             </div>
         </div>
-    </div>
     </div>
 </main>
 
@@ -288,7 +353,6 @@
                 </h5>
                 <div class="footer-content footer-contact">
                     <div class="ft_map">
-
                     </div>
                     <ul>
                         <li class="contact-1"><i class="fa-solid fa-map-location-dot px-1"></i><span
@@ -356,7 +420,6 @@
     <%} else{%>
     hidenMenuAccount();
     <%}%>
-
 </script>
 </body>
 </html>

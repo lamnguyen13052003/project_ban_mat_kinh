@@ -1,10 +1,16 @@
 package model.DAO;
 
-import model.DAO.DAO;
 import model.bean.Bill;
-import model.service.BillDetailService;
+
+import java.util.List;
 
 public class BillDAO extends DAO {
+    private static BillDAO dao;
+
+    public static BillDAO getInstance() {
+        return (dao = dao == null ? new BillDAO() : dao);
+    }
+
     public int insert(Bill bill) {
         int transfer = bill.isTransfer() ? 1 : 0;
         int billId = getNextId();
@@ -50,5 +56,55 @@ public class BillDAO extends DAO {
         );
 
         return count != 0;
+    }
+
+    public List<Bill> getBillsByUserId(int userId, String status, int offset) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT b.id, b.userId, b.userName, b.email, b.transfer " +
+                                "FROM bills AS b " +
+                                "JOIN bill_statuses AS bs ON bs.billId = b.id " +
+                                "WHERE bs.id in (SELECT MAX(bs2.id) FROM bill_statuses AS bs2 WHERE bs2.billId = b.id) " +
+                                "AND bs.`status` LIKE :status " +
+                                "AND b.userId = :userId " +
+                                "ORDER BY b.id ASC " +
+                                "LIMIT 8 OFFSET :offset;")
+                        .bind("status", "%" + status + "%")
+                        .bind("userId", userId)
+                        .bind("offset", offset)
+                        .mapToBean(Bill.class)
+                        .list());
+    }
+
+    public Bill getBill(int billId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT b.id, b.userId, b.userName, b.email, b.address, b.phoneNumber, b.transfer, b.transportFee, b.codeProvince, b.codeDistrict, b.codeWard " +
+                                "FROM bills AS b " +
+                                "WHERE b.id = :id;")
+                        .bind("id", billId)
+                        .mapToBean(Bill.class)
+                        .findFirst().orElse(null));
+    }
+
+    public boolean updateContact(Bill bill) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("UPDATE bills SET "
+                                + "userName = :userName, "
+                                + "email = :email, "
+                                + "phoneNumber = :phoneNumber, "
+                                + "address = :address, "
+                                + "codeProvince = :codeProvince, "
+                                + "codeDistrict = :codeDistrict, "
+                                + "codeWard = :codeWard "
+                                + "WHERE id = :billId;"
+                        )
+                        .bind("userName", bill.getUserName())
+                        .bind("email", bill.getEmail())
+                        .bind("phoneNumber", bill.getPhoneNumber())
+                        .bind("address", bill.getAddress())
+                        .bind("codeProvince", bill.getCodeProvince())
+                        .bind("codeDistrict", bill.getCodeDistrict())
+                        .bind("codeWard", bill.getCodeWard())
+                        .bind("billId", bill.getId())
+                        .execute()) == 1 ? true : false;
     }
 }
