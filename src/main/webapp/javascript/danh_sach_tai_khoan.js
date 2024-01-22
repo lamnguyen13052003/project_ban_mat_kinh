@@ -49,6 +49,34 @@ const handlePage = (page)=>{
     search_account()
 
 }
+const handleLockAcoount = (id) =>{
+    $.ajax({
+        url: '/maven_war/admin/account',
+        method: 'GET',
+        data: {
+            action: 'lock',
+            id: id
+        },
+        dataType: 'json',
+        success: function(data) {
+        }
+    })
+}
+const handleRoleAccount = (e, id) =>{
+    $.ajax({
+        url: '/maven_war/admin/account',
+        method: 'GET',
+        data: {
+            action: 'role',
+            id: id,
+            role: e.value
+        },
+        dataType: 'json',
+        success: function(data) {
+        }
+    })
+
+}
 const search_account = ()=>{
     const id = $("#search-account-id").val();
     const name = $("#search-account-name").val();
@@ -105,14 +133,14 @@ const search_account = ()=>{
                         <span class="money-spend-account">${formatCurrencyVND(tmp.sumPrice)}</span>
                     </div> 
                     <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="0" ${tmp.role == 1 ? "selected" : ""}>Tài khoản</option>
-                            <option value="1" ${tmp.role == 0 ? "selected" : ""}>Admin</option>
+                        <select name="account-role" class="rounded py-1" onchange="handleRoleAccount(this, ${tmp.id})">
+                            <option value="0" ${tmp.role == 0 ? "selected" : ""}>Admin</option>
+                            <option value="1" ${tmp.role == 1 ? "selected" : ""}>Tài khoản</option>
                             <option value="2" ${tmp.role == 2 ? "selected" : ""}>Shipper</option>
                         </select>
                     </div>
                     <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
+                        <input onclick="handleLockAcoount(${tmp.id})" type="checkbox" name="lock-account-account" ${tmp.lock ? "checked" : ""} value="#123">
                     </div>
                 </div>
             `

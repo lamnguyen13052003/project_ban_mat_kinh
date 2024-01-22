@@ -61,7 +61,7 @@ public class UserDAO extends DAO {
     }
     public List<UserManage> getPageUser(int page, int size, int id, String name, int role, int lock){
         connector = JDBIConnector.get();
-        String baseQuery = "SELECT id, fullName, sex, avatar, email, role, verify, (select count(*) from bills where userId = u.id) as countOrder, (select sum(price) from bill_details join bills on bills.id = bill_details.billId where userId = u.id) as sumPrice FROM users as u WHERE fullName LIKE :fullName ";
+        String baseQuery = "SELECT id, fullName, sex, avatar, email, role, verify, u.lock, (select count(*) from bills where userId = u.id) as countOrder, (select sum(price) from bill_details join bills on bills.id = bill_details.billId where userId = u.id) as sumPrice FROM users as u WHERE fullName LIKE :fullName ";
         StringBuilder queryBuilder = new StringBuilder(baseQuery);
         if (role != -1) {
             queryBuilder.append(" AND u.role = :role ");
@@ -92,8 +92,52 @@ public class UserDAO extends DAO {
         return users;
     }
 
+    public boolean updateRoleUser(int id, int role) {
+        connector = JDBIConnector.get();
+
+        User u =  connector.withHandle(handle ->
+                handle.createQuery("SELECT u.lock" +
+                                " FROM users AS u " +
+                                "WHERE u.id = ? ")
+                        .bind(0, id)
+                        .mapToBean(User.class).findFirst().orElse(null));
+
+        if(u == null) return false;
+        int rs = connector.withHandle(handle ->
+                handle.createUpdate("Update users set users.role = ? where id = ?")
+                        .bind(0,role)
+                        .bind(1, id).execute()
+
+        );
+        if(rs > 0 ) return true;
+        return false;
+    }
+    public boolean updateBlockUser(int id) {
+        connector = JDBIConnector.get();
+
+        User u =  connector.withHandle(handle ->
+                        handle.createQuery("SELECT u.lock" +
+                                        " FROM users AS u " +
+                                        "WHERE u.id = ? ")
+                                .bind(0, id)
+                                .mapToBean(User.class).findFirst().orElse(null));
+
+         if(u == null) return false;
+        int rs = connector.withHandle(handle ->
+                handle.createUpdate("Update users set users.lock = ? where id = ?")
+                        .bind(0, !u.getLock())
+                        .bind(1, id).execute()
+
+        );
+        if(rs > 0 ) return true;
+        return false;
+    }
 
 
+    public static void main(String[] args) {
+
+        new UserDAO().updateBlockUser(1);
+    }
     public int verifyAccountByEmail(String email) {
         connector = JDBIConnector.get();
         return connector.withHandle(handle ->

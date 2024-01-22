@@ -45,6 +45,14 @@ public class UserService {
        return pagi;
     }
 
+    public boolean updateLockUser(int id){
+        return userDAO.updateBlockUser(id);
+
+    }
+    public boolean updateRoleUser(int id, int role){
+        return userDAO.updateRoleUser(id, role);
+
+    }
     public void forgetPassword(String email){
         /*Anh làm phần quen mật khẩu chơa. alo. nge , anh quên mất @@. chịu,*/
     }

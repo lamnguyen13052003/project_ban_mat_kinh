@@ -4,6 +4,15 @@ public class UserManage {
     private Integer id, role;
     private String avatar, fullName, sex, email, verify;
     private long countOrder, sumPrice;
+    private boolean lock;
+
+    public boolean isLock() {
+        return lock;
+    }
+
+    public void setLock(boolean lock) {
+        this.lock = lock;
+    }
 
     public UserManage() {
     }
