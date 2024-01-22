@@ -67,14 +67,16 @@
 /*Phần avatar và text, coppy*/
 #main .table .body-table .account .avatar-account {
     border: rgba(0, 0, 0, 0.5) solid 2px;
-    width: fit-content;
+    width: 50px;
+    margin-right: 20px;
     border-radius: 50%;
     padding: 5px;
 }
 
 #main .table .body-table .account .avatar-account img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 
 #main .table .body-table .account .info-account p:nth-of-type(1) {

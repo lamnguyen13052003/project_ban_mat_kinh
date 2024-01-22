@@ -2,6 +2,7 @@ package model.DAO;
 
 import model.bean.*;
 import db.JDBIConnector;
+import model.dto.UserManage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDateTime;
@@ -32,6 +33,66 @@ public class UserDAO extends DAO {
                         .execute()
         );
     }
+    public int getTotalUserCount(int id, String fullName, int role, int lock) {
+        connector = JDBIConnector.get();
+        String baseQuery = "SELECT COUNT(*) FROM users as u WHERE fullName LIKE :fullName ";
+        StringBuilder queryBuilder = new StringBuilder(baseQuery);
+        if (role != -1) {
+            queryBuilder.append(" AND u.role = :role ");
+        }
+
+        if (lock != -1) {
+            queryBuilder.append(" AND `lock` = :lock ");
+        }
+
+        if (id != -1) {
+            queryBuilder.append(" AND `id` = :id ");
+        }
+
+        return connector.withHandle(handle ->
+                handle.createQuery(queryBuilder.toString())
+                        .bind("id", id)
+                        .bind("fullName", "%" + fullName + "%")
+                        .bind("role", role)
+                        .bind("lock", lock)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+    public List<UserManage> getPageUser(int page, int size, int id, String name, int role, int lock){
+        connector = JDBIConnector.get();
+        String baseQuery = "SELECT id, fullName, sex, avatar, email, role, verify, (select count(*) from bills where userId = u.id) as countOrder, (select sum(price) from bill_details join bills on bills.id = bill_details.billId where userId = u.id) as sumPrice FROM users as u WHERE fullName LIKE :fullName ";
+        StringBuilder queryBuilder = new StringBuilder(baseQuery);
+        if (role != -1) {
+            queryBuilder.append(" AND u.role = :role ");
+        }
+
+        if (lock != -1) {
+            queryBuilder.append(" AND `lock` = :lock ");
+        }
+
+        if (id != -1) {
+            queryBuilder.append(" AND `id` = :id ");
+        }
+
+
+        queryBuilder.append("LIMIT :start, :size");
+        System.out.println(queryBuilder);
+        List<UserManage> users = connector.withHandle(handle ->
+                handle.createQuery(queryBuilder.toString())
+                        .bind("id", id)
+                        .bind("fullName", "%" + name + "%")
+                        .bind("role", role)
+                        .bind("lock", lock)
+                        .bind("start", (page - 1) * size)
+                        .bind("size", size)
+                        .mapToBean(UserManage.class)
+                        .list()
+        );
+        return users;
+    }
+
+
 
     public int verifyAccountByEmail(String email) {
         connector = JDBIConnector.get();

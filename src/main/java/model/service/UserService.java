@@ -3,6 +3,8 @@ package model.service;
 import model.DAO.UserDAO;
 import model.bean.Review;
 import model.bean.User;
+import model.dto.Page;
+import model.dto.UserManage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDateTime;
@@ -35,6 +37,12 @@ public class UserService {
         if(rs == 1) return true;
 
         return false;
+    }
+    public Page<UserManage> getPageUser(int page, int id, String fullName, int role, int lock){
+       List<UserManage> users = userDAO.getPageUser(page, 10, id, fullName, role, lock);
+       int count = userDAO.getTotalUserCount(id, fullName, role, lock);
+       Page<UserManage> pagi = new Page<>(count,page,10, users);
+       return pagi;
     }
 
     public void forgetPassword(String email){

@@ -97,7 +97,7 @@
             <div class="option-search row">
                 <div class="col-3">
                     <div class="search-item rounded">
-                        <input type="text" name="search-account-id" id="search-account-id"
+                        <input type="text" name="search-account-id search" id="search-account-id"
                                placeholder="Nhập mã tài khoản">
                         <label for="search-account-id" class="d-flex align-items-center p-1"><span
                                 class="material-symbols-outlined ps-1 fs-3">search</span></label>
@@ -105,23 +105,23 @@
                 </div>
                 <div class="col-3">
                     <div class="search-item rounded">
-                        <input type="text" name="search-account-name" id="search-account-name"
+                        <input type="text" name="search-account-name search" id="search-account-name"
                                placeholder="Nhập tên tài khoản">
                         <label for="search-account-name" class="d-flex align-items-center p-1"><span
                                 class="material-symbols-outlined ps-1 fs-3">search</span></label>
                     </div>
                 </div>
                 <div class="col-3">
-                    <select class="py-2 rounded w-75" name="input-account-role" id="input-account-role">
-                        <option value="all" selected>tất cả</option>
-                        <option value="0">admin</option>
-                        <option value="2">shipper</option>
-                        <option value="1">tài khoản</option>
+                    <select class="py-2 rounded w-75 search" name="input-account-role" id="input-account-role">
+                        <option value="-1" selected>Tất cả</option>
+                        <option value="1">Tài khoản</option>
+                        <option value="0">Admin</option>
+                        <option value="2">Shipper</option>
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="py-2 rounded w-75" name="input-lock-account" id="input-lock-account">
-                        <option value="all" selected>tất cả</option>
+                    <select class="py-2 rounded w-75 search" name="input-lock-account" id="input-lock-account">
+                        <option value="-1" selected>Tất cả</option>
                         <option value="1">Đã khóa</option>
                         <option value="0">Không khóa</option>
                     </select>
@@ -131,257 +131,35 @@
         <div class="table">
             <div class="header-table row align-items-center ps-4">
                 <div class="col-2">Mã tài khoản</div>
-                <div class="col-4">tài khoản</div>
+                <div class="col-4">Tài khoản</div>
                 <div class="col-1 text-center">Giới tính</div>
                 <div class="col-1 text-center">Tổng đơn hàng đặt</div>
                 <div class="col-2 text-center">Tổng chi</div>
                 <div class="col-1 text-center">Vai trò</div>
                 <div class="col-1 text-center">Khóa tài khoản</div>
             </div>
-            <div class="body-table">
-                <div class="row account align-items-center ps-4" data-account-id="1" data-account-name="Nguyễn Đình A" data-lock-account="0" data-account-role="1">
-                    <div class="col-2 id-account">#1</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình A</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
-                </div>
-
-                <div class="row account align-items-center ps-4" data-account-id="2" data-account-name="Nguyễn Đình B" data-lock-account="0" data-account-role="0">
-                    <div class="col-2 id-account">#2</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="../images/logo/logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình B</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
-                </div>
-
-                <div class="row account align-items-center ps-4" data-account-id="3" data-account-name="Nguyễn Đình C" data-lock-account="0" data-account-role="0">
-                    <div class="col-2 id-account">#3</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="../images/logo/logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình C</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
-                </div>
-
-                <div class="row account align-items-center ps-4" data-account-id="4" data-account-name="Nguyễn Đình D" data-lock-account="1" data-account-role="1">
-                    <div class="col-2 id-account">#4</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="../images/logo/logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình D</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
-                </div>
-
-                <div class="row account align-items-center ps-4" data-account-id="5" data-account-name="Nguyễn Đình E" data-lock-account="0" data-account-role="2">
-                    <div class="col-2 id-account">#5</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="../images/logo/logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình E</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
-                </div>
-
-                <div class="row account align-items-center ps-4" data-account-id="6" data-account-name="Nguyễn Đình F" data-lock-account="1" data-account-role="2">
-                    <div class="col-2 id-account">#6</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình F</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
-                </div>
-
-                <div class="row account align-items-center ps-4" data-account-id="7" data-account-name="Nguyễn Đình G" data-lock-account="0" data-account-role="1">
-                    <div class="col-2 id-account">#7</div>
-                    <!--Phần avatar và text, coppy-->
-                    <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="logo.png" alt="avatar.png">
-                        </div>
-                        <div class="info-account ms-2 w-100">
-                            <p class="name-account">Nguyễn Đình G</p>
-                            <p class="email-account">kiminonawa1305@gmail.com</p>
-                        </div>
-                    </div>
-                    <!--Kết thức phần avatar và text-->
-                    <div class="col-1 text-center">Nam</div>
-                    <div class="col-1 text-center">200</div>
-                    <div class="col-2 text-center">
-                        <span class="money-spend-account">13,000,000</span>
-                        <span class="text-decoration-underline">đ</span>
-                    </div>
-                    <div class="col-1 px-0 text-center">
-                        <select name="account-role" class="rounded py-1">
-                            <option value="account">tài khoản</option>
-                            <option value="admin">admin</option>
-                            <option value="shipper">Shipper</option>
-                        </select>
-                    </div>
-                    <div class="col-1 text-center">
-                        <input type="checkbox" name="lock-account-account" value="#123">
-                    </div>
+            <div id="table-body">
+                <div class="body-table">
                 </div>
             </div>
+
 
             <!--Phần footer, coppy-->
             <div class="footer-table row p-4 d-flex align-items-center">
                 <div class="text-amount-account col-8 ">
                     <span class="ps-0 pe-0">Tổng số tài khoản: </span>
-                    <span class="amount ps-0 pe-0">100</span>
+                    <span class="amount ps-0 pe-0" id="count_user">0</span>
                     <span class="ps-0 pe-0"> tài khoản</span>
                 </div>
-                <div class="change-page-display-list col-4 d-flex ps-5">
-                    <button id="prev" class="d-flex align-items-center justify-content-center"><span
+                <div class="change-page-display-list col-4 d-flex ps-5 pagination_account">
+                    <%--<button id="prev" class="d-flex align-items-center justify-content-center"><span
                             class="material-symbols-outlined">chevron_left</span></button>
-                    <button class="d-flex align-items-center justify-content-center button-number active"
+                    &lt;%&ndash;<button class="d-flex align-items-center justify-content-center button-number active"
                             data-target="1">1
-                    </button>
-                    <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2
-                    </button>
-                    <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3
-                    </button>
-                    <button class="d-flex align-items-center justify-content-center button-number" data-target="">...
-                    </button>
-                    <button class="d-flex align-items-center justify-content-center button-number" data-target="14">14
-                    </button>
-                    <button class="d-flex align-items-center justify-content-center button-number" data-target="15">15
-                    </button>
+                    </button>&ndash;%&gt;
+
                     <button id="next" class="d-flex align-items-center justify-content-center"><span
-                            class="material-symbols-outlined">chevron_right</span></button>
+                            class="material-symbols-outlined">chevron_right</span></button>--%>
                 </div>
             </div>
             <!--kết thúc footer-->
@@ -389,7 +167,7 @@
     </div>
 </main>
 
-<footer id="footer" class="footer">
+<footer id="footer" class="footer"> 
     <div class="container ">
         <div class="footer-top row">
             <div class="footer-top-item col">
