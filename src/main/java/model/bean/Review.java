@@ -10,6 +10,7 @@ public class Review {
     private List<String> images;
     private User user;
     private LocalDateTime date;
+    private List<ReviewImage> reviewImages;
 
     public Review() {
     }
@@ -106,4 +107,11 @@ public class Review {
         this.date = date;
     }
 
+    public void setReviewImages(List<ReviewImage> reviewImages) {
+        this.reviewImages = reviewImages;
+    }
+
+    public List<ReviewImage> getReviewImages() {
+        return reviewImages;
+    }
 }

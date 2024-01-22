@@ -1,7 +1,5 @@
-<%@ page import="model.bean.User" %>
 <%@ page import="model.service.CartService" %>
-<%@ page import="model.bean.Product" %>
-<%@ page import="model.bean.Model" %>
+<%@ page import="model.bean.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -175,89 +173,105 @@
     </nav>
 </header>
 
-<main id="main" class="mt-5 pb-5">
+<%
+    int reviewId = (int) request.getAttribute("review-id");
+    ProductReview productReview = (ProductReview) request.getAttribute("product-review");
+    Review review = (Review) request.getAttribute("review");
+%>
+<main id="main" class="mt-5 pb-5" review-id="<%=reviewId%>">
     <div class="container">
-        <button class="back-to-home">
-            <a href="index.jsp" class="text-light">
-                <i class="fa-solid fa-house"></i>
-                <span>Quay về trang chủ</span>
-            </a>
+        <button type="button" id="<%=request.getAttribute("action-back")%>" class="back-to-home text-white">
+            <i class="fa-solid fa-house"></i>
+            <span>Quay về</span>
         </button>
 
-        <%
-            Product product = (Product) request.getAttribute("product");
-            Model model;
-            /*test*/
-            product = new Product();
-            product.setName("Sản phẩm demo");
-            product.setId(123);
-            model = new Model();
-            model.setId(123);
-            model.setName("Mẫu thử");
-            model.setUrlImage("images/product/gong-kinh/gong-kinh-acetate-titanium-merriandy-00144/0.jpg");
-            product.setModel(model);
-            /*test*/
-            model = product.getModels().get(0);
-        %>
-        <div class="review-product mt-3" product-id="<%=product.getId()%>">
+        <div class="review-product mt-3" product-id="<%=productReview.getProductId()%>">
             <div class="review-product header mb-2">
             </div>
             <div class="review-product-body">
                 <div class="info-product">
                     <div class="name-product">
-                        <p><%=product.getName()%>
+                        <p><%=productReview.getProductName()%>
                         </p>
                     </div>
                     <div class="option-product">
                         <span>Màu: </span>
-                        <span><%=model.getName()%></span>
+                        <span><%=productReview.getModelName()%></span>
                     </div>
                     <div class="img-product">
-                        <img src="<%=model.getUrlImage()%>" alt="">
+                        <img src="<%=productReview.getUrlImage()%>" alt="">
                     </div>
                 </div>
 
                 <div class="review">
-                    <form action="">
+                    <form action="review" method="post">
                         <div class="quality-product" id="input-star">
                             <p class="fs-4 d-block">Chất lượng sản phẩm</p>
                             <ul class="d-inline-flex list-star ps-0">
                                 <!--Các li có class checked là sao hoàn thiện-->
-                                <li>
-                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="1"></i>
+                                <li class="checked">
+                                    <i class="fa-solid fa-star" style="color: #fdd836;" star="1"></i>
                                 </li>
-                                <li>
-                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="2"></i>
+                                <li class="checked">
+                                    <i class="fa-solid fa-star" style="color: #fdd836;" star="2"></i>
                                 </li>
-                                <li>
-                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="3"></i>
+                                <li class="checked">
+                                    <i class="fa-solid fa-star" style="color: #fdd836;" star="3"></i>
                                 </li>
-                                <li>
-                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="4"></i>
+                                <li class="checked">
+                                    <i class="fa-solid fa-star" style="color: #fdd836;" star="4"></i>
                                 </li>
-                                <li>
-                                    <i class="fa-regular fa-star" style="color: #fdd836;" star="5"></i>
+                                <li class="checked">
+                                    <i class="fa-solid fa-star" style="color: #fdd836;" star="5"></i>
                                 </li>
                             </ul>
                             <span id="text-quality-product">Tuyệt vời</span>
+                            <input type="hidden" name="star" id="star" value="5">
                         </div>
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="review-id" value="<%=reviewId%>">
                         <div class="evaluate-product mt-3">
                             <label for="comment">
                                 <span class="fs-4">Đánh giá</span>
                                 <span class="text-danger">*</span>
                             </label>
                             <textarea class="mt-1 p-2" placeholder="Nhập thông tin đánh giá" rows="5" name="comment"
-                                      id="comment" required></textarea>
+                                      id="comment" required><%=review != null ? review.getComment() : ""%></textarea>
                         </div>
                         <div class="img-product mt-3">
                             <span class="fs-4">Hình ảnh: </span>
                             <span class="text-secondary">(Tối đa 5 sản phẩm)</span><br>
                             <div class="list-img-review-product d-flex mt-1">
+                                <%
+                                    if (review != null) {
+                                        for (ReviewImage reviewImage : review.getReviewImages()) {
+                                %>
+                                <div class="a-img-review-product">
+                                    <img src="<%=reviewImage.getUrlImage()%>" alt="img-review">
+                                    <button review-image-id="<%=reviewImage.getId()%>" type="button"
+                                            class="text-danger cancel">x
+                                    </button>
+                                </div>
+                                <%}%>
+                                <%if (review.getReviewImages().size() < 5) {%>
                                 <label for="input-img-review" id="label-upload-image">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                 </label>
+                                <%
+                                    }
+                                } else {
+                                %>
+                                <label for="input-img-review" id="label-upload-image">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </label>
+                                <%}%>
                             </div>
                         </div>
+                        <%if (review != null) {%>
+                        <button class="mt-3 bg-danger button-remove" type="button" id="remove-review">
+                            Xóa đánh giá
+                        </button>
+                        <%}%>
                         <button class="mt-3" type="submit" id="submit-review">
                             Đánh giá
                         </button>
@@ -338,11 +352,15 @@
 <script src="javascript/menu_footer.js"></script>
 <script src="javascript/danh_gia.js"></script>
 <script type="text/javascript">
+    <%if(review != null) {%>
+    setStar();
+    $("#input-star>ul>li>i").eq(<%=review.getNumberStar()%> -1).click();
+    <%}%>
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>
     const user = new User();
     user.setId(<%=user.getId()%>);
-    user.setAvatar("../<%=user.getAvatar()%>");
+    user.setAvatar("<%=user.getAvatar()%>");
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>

@@ -96,6 +96,7 @@ input[type='number']::-webkit-outer-spin-button {
     overflow-x: hidden;
 }
 
+.main-content .body-product-reviews-item,
 .main-content .body-bill-item{
     font-size: 12px;
     margin-bottom: 0;
@@ -103,6 +104,7 @@ input[type='number']::-webkit-outer-spin-button {
     padding: 5px 0;
 }
 
+.main-content .id,
 .main-content .body-bill-item .bill-id{
     font-weight: bold;
     color: var(--color-blue-origin);

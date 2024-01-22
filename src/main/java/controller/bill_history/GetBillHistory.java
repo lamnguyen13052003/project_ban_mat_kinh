@@ -28,7 +28,6 @@ public class GetBillHistory implements Action {
             response.sendError(404);
         }
         int offset = (page - 1) * 8;
-        System.out.println(offset);
         List<Bill> bills = billService.getBillsByUserId(userId, menuItem, offset);
         JSONObject json = new JSONObject();
         json.put("bills", bills);

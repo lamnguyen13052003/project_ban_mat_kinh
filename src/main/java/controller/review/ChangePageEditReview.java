@@ -2,16 +2,17 @@ package controller.review;
 
 import controller.Action;
 import model.bean.ProductReview;
+import model.bean.Review;
 import model.service.ProductService;
+import model.service.ReviewImageService;
 import model.service.ReviewService;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ChangePageWriteReview implements Action {
+public class ChangePageEditReview implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userIdString = request.getParameter("user-id"),
@@ -26,11 +27,14 @@ public class ChangePageWriteReview implements Action {
             Action.error(request, response);
         }
 
+        ReviewService reviewService = ReviewService.getInstance();
+        Review review = reviewService.getReview(userId, productId);
+        if (review == null) Action.error(request, response);
         ProductReview productReview = ProductService.getInstance().getProductReview(userId, productId, modelId);
-        Integer reviewId = ReviewService.getInstance().insertTempReview(userId, productId);
-        request.setAttribute("review-id", reviewId);
+        request.setAttribute("review", review);
+        request.setAttribute("review-id", review.getId());
         request.setAttribute("product-review", productReview);
-        request.setAttribute("action-back", "remove-review");
+        request.setAttribute("action-back", "back");
         request.getRequestDispatcher("danh_gia.jsp").forward(request, response);
     }
 }

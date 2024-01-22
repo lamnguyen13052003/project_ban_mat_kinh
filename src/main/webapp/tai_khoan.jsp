@@ -202,7 +202,7 @@
                             <button data-bs-target="1" class="bill-history">Lịch sử mua hàng</button>
                         </li>
                         <li>
-                            <button data-bs-target="2">Đánh giá sản phẩm</button>
+                            <button data-bs-target="2" class="product-reviews">Đánh giá sản phẩm</button>
                         </li>
                         <li>
                             <a href="logout">
@@ -281,30 +281,14 @@
                     <span class="fs-1 title-page-content">Đánh giá sản phẩm!</span>
                     <div class="body-page-content mt-2">
                         <div class="menu menu-review">
-                            <button type="button" class="menu-item menu-review-item active" data-action="Chưa đánh giá">
+                            <button type="button" class="menu-item menu-review-item active" data-action="Chưa đánh giá" have-evaluated="false">
                                 Chưa đánh giá
                             </button>
-                            <button type="button" class="menu-item menu-review-item" data-action="Đã đánh giá">
+                            <button type="button" class="menu-item menu-review-item" data-action="Đã đánh giá" have-evaluated="true">
                                 Đã đánh giá
                             </button>
                         </div>
-                        <div class="display-content display-reviews">
-                            <div class="body-bill-item row  align-items-center ms-2">
-                                <div class="bill-id col-2"><span>#3</span></div>
-                                <div class="col-9 d-flex">
-                                    <img style="width: 35px" class="rounded-circle d-block"
-                                         src="images/avatar/default_avatar.png"></img>
-                                    <div class="customer-info ms-2 w-100">
-                                        <p class="customer-name">Nguyễn Đình Lam Đẹp Zai Nhất</p>
-                                        <p class="customer-email">kiminonawa1305@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div class="bill-edit col-1">
-                                    <a href="review?action=write-review&bill-id=3&product-id=3">
-                                        <span class="material-symbols-outlined">rate_review</span>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="display-content display-product-reviews"  id="display-product-reviews">
                         </div>
                     </div>
                 </div>
