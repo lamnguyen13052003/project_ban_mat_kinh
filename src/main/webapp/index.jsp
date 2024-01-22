@@ -198,13 +198,13 @@
         List<BannerImage> bannerImages = (List<BannerImage>) request.getAttribute("bannerImages");
     %>
     <div id="autoCarouselIndicators" class="carousel slide" data-bs-ride="carousel">
-        <%for (int i = 0; i < bannerImages.size(); i++) {%>
         <div class="carousel-indicators">
+        <%for (int i = 0; i < bannerImages.size(); i++) {%>
             <button type="button" data-bs-target="#autoCarouselIndicators" data-bs-slide-to="<%=i%>"
                     <%if(i == 0) {%>class="active"<%}%>
                     aria-current="true" aria-label="Slide <%=i+1%>"></button>
-        </div>
         <%}%>
+        </div>
         <div class="carousel-inner">
             <%for (int i = 0; i < bannerImages.size(); i++) { %>
             <div class="carousel-item <%if (i == 0) {%>active<%}%>">
@@ -235,28 +235,28 @@
             </div>
             <%
                 List<Product> prominentProducts = (List<Product>) request.getAttribute("list-product-prominent");
-                int pageProminentProducts = prominentProducts.size() % 4 == 0 ? prominentProducts.size() / 4 - 1 : prominentProducts.size() / 4;
+                int amountPageProminentProducts = prominentProducts.size() % 4 == 0 ? prominentProducts.size() / 4 : (prominentProducts.size() / 4) + 1;
             %>
             <div id="carouselExampleIndicators" class="carousel slide mb-5 d-block position-relative ">
                 <!--Các nút bên dưới hình-->
-                <%for (int i = 0; i < pageProminentProducts; i++) {%>
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i%>"
-                            <%if(i == 0) {%>class="active"<%}%>
-                            aria-current="true" aria-label="Slide <%=i+1%>"></button>
+                    <%for (int indexPage = 0; indexPage < amountPageProminentProducts; indexPage++) {%>
+                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="<%=indexPage%>"
+                            class="<%=indexPage == 0 ? "active": ""%>"
+                            aria-current="true" aria-label="Slide <%=indexPage + 1%>"></button>
+                    <%}%>
                 </div>
-                <%}%>
-
                 <!--Danh sách các hình-->
                 <div class="carousel-inner">
                     <%
-                        for (int i = 0; i < pageProminentProducts + 1; i++) {
+                        for (int indexPage = 0; indexPage < amountPageProminentProducts; indexPage++) {
                     %>
-                    <div class="carousel-item <%if(i == 0) {%>active<%}%>">
+                    <div class="carousel-item <%if(indexPage == 0) {%>active<%}%>">
                         <div class="show-item-sale  row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4 d-flex justify-content-center py-3">
                             <%
-                                for (int index = i * 4; index < prominentProducts.size(); index++) {
-                                    Product product = prominentProducts.get(index);
+                                for (int indexProduct = 0; indexProduct + indexPage * 4 < prominentProducts.size() && indexProduct < 4; indexProduct++) {
+                                    Product product = prominentProducts.get(indexProduct + indexPage * 4);
                             %>
                             <div class="pro-loop col rounded-3">
                                 <!--Phạm vi hiển thị trong ô-->
@@ -299,13 +299,13 @@
 
                                     <!--Hiển thị tên thương hiệu-->
                                     <div class="pro-loop-brand text-center">
-                                        <span class="pro-loop-vendor d-block"><%=prominentProducts.get(index).getBrandName()%></span>
+                                        <span class="pro-loop-vendor d-block"><%=prominentProducts.get(indexProduct).getBrandName()%></span>
                                     </div>
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="more_info_product?id=<%=prominentProducts.get(index).getId()%>"
-                                           title="Tên sản phẩm"><%=prominentProducts.get(index).getName()%>
+                                        <a href="more_info_product?id=<%=prominentProducts.get(indexProduct).getId()%>"
+                                           title="Tên sản phẩm"><%=prominentProducts.get(indexProduct).getName()%>
                                         </a>
 
                                     </h3>
@@ -313,16 +313,16 @@
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
                                         <%
-                                            if (prominentProducts.get(index).getDiscount() > 0) {
+                                            if (prominentProducts.get(indexProduct).getDiscount() > 0) {
                                         %>
-                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(index).getDiscount())%>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(indexProduct).getDiscount())%>
                                         </p>
-                                        <del><%=currentVietnames(prominentProducts.get(index).getPrice())%>
+                                        <del><%=currentVietnames(prominentProducts.get(indexProduct).getPrice())%>
                                         </del>
                                         <%
                                         } else {
                                         %>
-                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(index).getPrice())%>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(prominentProducts.get(indexProduct).getPrice())%>
                                         </p>
                                         <%
                                             }
@@ -339,7 +339,7 @@
                                                     <!--Các li có class checked là sao hoàn thiện-->
                                                     <%
                                                         for (int j = 1; j <= 5; j++) {
-                                                            if (prominentProducts.get(index).getStarNumber() >= j) {
+                                                            if (prominentProducts.get(indexProduct).getStarNumber() >= j) {
                                                     %>
                                                     <li class="checked">
                                                         <i class="fa-solid fa-star" style="color: #fdd836;"></i>
@@ -358,7 +358,7 @@
                                             </div>
 
                                             <!--số lượng đánh giá-->
-                                            <span class="onireviewapp-loopitem-title">(<%=prominentProducts.get(index).getTotalReview()%> đánh giá)</span>
+                                            <span class="onireviewapp-loopitem-title">(<%=prominentProducts.get(indexProduct).getTotalReview()%> đánh giá)</span>
                                         </div>
 
                                         <!--Đường cắt ngang-->
@@ -368,20 +368,22 @@
                                         <div class="sold_qty_num  d-inline-block">
                                             <p class="m-0">
                                                 Đã bán:
-                                                <span><%=prominentProducts.get(index).getTotalQuantitySold()%></span>
+                                                <span><%=prominentProducts.get(indexProduct).getTotalQuantitySold()%></span>
                                             </p>
                                         </div>
                                     </div>
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" product-id="<%=prominentProducts.get(index).getId()%>"
-                                                class="f-button setAddCartLoop <%=prominentProducts.get(index).available() ? "show-models" : ""%>"
+                                        <button type="button"
+                                                product-id="<%=prominentProducts.get(indexProduct).getId()%>"
+                                                class="f-button setAddCartLoop <%=prominentProducts.get(indexProduct).available() ? "show-models" : ""%>"
                                                 data-type="show-models">
                                             Xem nhanh
                                         </button>
-                                        <button type="button" product-id="<%=prominentProducts.get(index).getId()%>"
-                                                class="f-button setBuyNow <%=prominentProducts.get(index).available() ? "show-models" : ""%>"
+                                        <button type="button"
+                                                product-id="<%=prominentProducts.get(indexProduct).getId()%>"
+                                                class="f-button setBuyNow <%=prominentProducts.get(indexProduct).available() ? "show-models" : ""%>"
                                                 data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
@@ -394,7 +396,7 @@
                     <%}%>
                 </div>
 
-                <%if (pageProminentProducts != 0) {%>
+                <%if (amountPageProminentProducts > 1) {%>
                 <!--2 Nút chuyển qua và lại-->
                 <button class="carousel-control-prev carousel-control-color " type="button"
                         data-bs-target="#carouselExampleIndicators"
@@ -447,28 +449,27 @@
             </div>
             <%
                 List<Product> discountProducts = (List<Product>) request.getAttribute("list-product-discount");
-                int pageDiscountProducts = discountProducts.size() % 4 == 0 ? discountProducts.size() / 4 - 1 : discountProducts.size() / 4;
+                int amountPageDiscountProducts = discountProducts.size() % 4 == 0 ? discountProducts.size() / 4 : (discountProducts.size() / 4) + 1;
             %>
             <div id="carouselExampleIndicators-01" class="carousel slide mb-5 d-block position-relative ">
-                <%for (int i = 0; i < pageDiscountProducts; i++) { %>
                 <!--Các nút bên dưới hình-->
                 <div class="carousel-indicators">
+                    <%for (int i = 0; i < amountPageDiscountProducts; i++) { %>
                     <button type="button" data-bs-target="#carouselExampleIndicators-01" data-bs-slide-to="<%=i%>"
-                            <%if (i == 0) {%>class="active"<%}%>
+                            class="<%=i == 0 ? "active" : ""%>"
                             aria-current="true" aria-label="Slide <%=i+1%>"></button>
+                    <%}%>
                 </div>
-                <%}%>
-
                 <!--Danh sách các hình-->
                 <div class="carousel-inner">
                     <%
-                        for (int i = 0; i < pageDiscountProducts + 1; i++) {
+                        for (int indexPage = 0; indexPage < amountPageDiscountProducts; indexPage++) {
                     %>
-                    <div class="carousel-item <%if(i == 0) {%>active <%}%>">
+                    <div class="carousel-item <%if(indexPage == 0) {%>active <%}%>">
                         <div class="show-item-sale  row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4 d-flex justify-content-center py-3">
                             <%
-                                for (int index = i * 4; index < discountProducts.size(); index++) {
-                                    Product product = discountProducts.get(index);
+                                for (int indexProduct = 0; indexProduct < 4 && (indexProduct + indexPage * 4) < discountProducts.size(); indexProduct++) {
+                                    Product product = discountProducts.get(indexProduct + indexPage * 4);
                             %>
                             <div class="pro-loop col rounded-3">
                                 <!--Phạm vi hiển thị trong ô-->
@@ -516,13 +517,13 @@
 
                                     <!--Hiển thị tên thương hiệu-->
                                     <div class="pro-loop-brand text-center">
-                                        <span class="pro-loop-vendor d-block"><%=discountProducts.get(index).getBrandName()%></span>
+                                        <span class="pro-loop-vendor d-block"><%=discountProducts.get(indexProduct).getBrandName()%></span>
                                     </div>
 
                                     <!--Hiển thị tên sản phẩm-->
                                     <h3 class="pro-loop-name text-center">
-                                        <a href="more_info_product?id=<%=discountProducts.get(index).getId()%>"
-                                           title="Tên sản phẩm"><%=discountProducts.get(index).getName()%>
+                                        <a href="more_info_product?id=<%=discountProducts.get(indexProduct).getId()%>"
+                                           title="Tên sản phẩm"><%=discountProducts.get(indexProduct).getName()%>
                                         </a>
 
                                     </h3>
@@ -530,16 +531,16 @@
                                     <!--hiển thị giá-->
                                     <div class="pro-loop-price text-center mt-0">
                                         <%
-                                            if (discountProducts.get(index).getDiscount() > 0) {
+                                            if (discountProducts.get(indexProduct).getDiscount() > 0) {
                                         %>
-                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(index).getDiscount())%>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(indexProduct).getDiscount())%>
                                         </p>
-                                        <del><%=currentVietnames(discountProducts.get(index).getPrice())%>
+                                        <del><%=currentVietnames(discountProducts.get(indexProduct).getPrice())%>
                                         </del>
                                         <%
                                         } else {
                                         %>
-                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(index).getPrice())%>
+                                        <p class="fw-bold d-inline me-3"><%=currentVietnames(discountProducts.get(indexProduct).getPrice())%>
                                         </p>
                                         <%
                                             }
@@ -556,7 +557,7 @@
                                                     <!--Các li có class checked là sao hoàn thiện-->
                                                     <%
                                                         for (int j = 1; j <= 5; j++) {
-                                                            if (discountProducts.get(index).getStarNumber() >= j) {
+                                                            if (discountProducts.get(indexProduct).getStarNumber() >= j) {
                                                     %>
                                                     <li class="checked">
                                                         <i class="fa-solid fa-star" style="color: #fdd836;"></i>
@@ -575,7 +576,7 @@
                                             </div>
 
                                             <!--số lượng đánh giá-->
-                                            <span class="onireviewapp-loopitem-title">(<%=discountProducts.get(index).getTotalReview()%> đánh giá)</span>
+                                            <span class="onireviewapp-loopitem-title">(<%=discountProducts.get(indexProduct).getTotalReview()%> đánh giá)</span>
                                         </div>
 
                                         <!--Đường cắt ngang-->
@@ -585,20 +586,22 @@
                                         <div class="sold_qty_num  d-inline-block">
                                             <p class="m-0">
                                                 Đã bán:
-                                                <span><%=discountProducts.get(index).getTotalQuantitySold()%></span>
+                                                <span><%=discountProducts.get(indexProduct).getTotalQuantitySold()%></span>
                                             </p>
                                         </div>
                                     </div>
 
                                     <!--2 nút thao tác-->
                                     <div class="pro-loop-bottom">
-                                        <button type="button" product-id="<%=discountProducts.get(index).getId()%>"
-                                                class="f-button setAddCartLoop <%=discountProducts.get(index).available() ? "show-models" : ""%>"
+                                        <button type="button"
+                                                product-id="<%=discountProducts.get(indexProduct).getId()%>"
+                                                class="f-button setAddCartLoop <%=discountProducts.get(indexProduct).available() ? "show-models" : ""%>"
                                                 data-type="show-models">
                                             Xem nhanh
                                         </button>
-                                        <button type="button" product-id="<%=discountProducts.get(index).getId()%>"
-                                                class="f-button setBuyNow <%=discountProducts.get(index).available() ? "show-models" : ""%>"
+                                        <button type="button"
+                                                product-id="<%=discountProducts.get(indexProduct).getId()%>"
+                                                class="f-button setBuyNow <%=discountProducts.get(indexProduct).available() ? "show-models" : ""%>"
                                                 data-type="buy-now" data-id="">
                                             Mua ngay
                                         </button>
@@ -611,7 +614,7 @@
                     <%}%>
                 </div>
 
-                <%if (pageDiscountProducts != 0) {%>
+                <%if (amountPageDiscountProducts != 0) {%>
                 <!--2 Nút chuyển qua và lại-->
                 <button class="carousel-control-prev carousel-control-color " type="button"
                         data-bs-target="#carouselExampleIndicators-01"
@@ -761,9 +764,6 @@
     <%} else{%>
     hidenMenuAccount();
     <%}%>
-</script>
-<script type="text/javascript">
-
 </script>
 </body>
 </html>

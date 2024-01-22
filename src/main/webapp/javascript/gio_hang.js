@@ -20,6 +20,9 @@ function loadProvinces(){
             for (var i = 0; i < data.provinces.length; i++) {
                 $("#provinces").find("option").last().before(`<option value="${data.provinces[i].code}">${data.provinces[i].fullName}</option>`);
             }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
         }
     });
 }

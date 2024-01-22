@@ -8,7 +8,7 @@ public class ProvinceDAO extends DAO{
     public List<Province> getAllProvince(){
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT pr.code, pr.fullName " +
-                                "FROM provinces AS pr;")
+                                "FROM `dia_chi`.provinces AS pr;")
                         .mapToBean(Province.class)
                         .list()
         );

@@ -180,6 +180,9 @@ function loadBanner() {
                 bannerIndicators.find("button").first().addClass("active");
                 bannerIndicators.find("button").first().attr("aria-current", true);
             }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
         }
     });
 }
