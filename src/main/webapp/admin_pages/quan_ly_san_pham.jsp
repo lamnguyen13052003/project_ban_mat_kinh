@@ -85,7 +85,7 @@
                                     <a href="quan_ly_hoa_don.jsp" class="nav-link px-4 rounded">Quản lý hóa đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="banner_manager" class="nav-link px-4 rounded">Quản lý banner</a>
+                                    <a href="quan_ly_banner.jsp" class="nav-link px-4 rounded">Quản lý banner</a>
                                 </li>
                             </ul>
                         </div>

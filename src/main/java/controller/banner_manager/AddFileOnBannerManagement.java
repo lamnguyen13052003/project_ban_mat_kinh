@@ -33,7 +33,9 @@ public class AddFileOnBannerManagement implements Action {
             subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
 
             // Lưu tệp tải lên vào thư mục trên server
-            part.write(fullFilePath);
+            try{
+                part.write(fullFilePath);
+            }catch (IOException e){}
 
             //update db
             int slideId = BannerService.getInstance().nextIdOfSlide();

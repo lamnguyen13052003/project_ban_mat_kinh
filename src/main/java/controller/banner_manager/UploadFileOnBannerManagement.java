@@ -30,12 +30,13 @@ public class UploadFileOnBannerManagement implements Action {
                     subFilePath = fullFilePath.substring(fullFilePath.indexOf("images"), fullFilePath.length());
 
                     // Lưu tệp tải lên vào thư mục trên server
-                    part.write(fullFilePath);
+                    try{
+                        part.write(fullFilePath);
+                    }catch (IOException e){ }
                     //update db
                     BannerImage bannerImage = new BannerImage();
                     bannerImage.setDescription(description);
                     bannerImage.setUrlImage(subFilePath);
-
                     BannerService.getInstance().uploadBannerImage(bannerImage);
 
                     JSONObject json = new JSONObject();

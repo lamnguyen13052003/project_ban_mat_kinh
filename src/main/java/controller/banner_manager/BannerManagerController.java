@@ -7,13 +7,14 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 @MultipartConfig(maxFileSize = 5 * 1024 * 1024, maxRequestSize = 50 *1024*1024)
-@WebServlet(name = "BannerManagerController", value = "/admin_pages/banner")
+@WebServlet(name = "BannerManagerController", value = "/admin_pages/banner_manager")
 public class BannerManagerController extends HttpServlet {
     public static final int MAX_FILE_SIZE = 5 * 1024 * 1024;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Action action = null;
         String actionStr = request.getParameter("action");
+        actionStr = actionStr == null ? "banner" : actionStr;
 
         switch (actionStr) {
             case "banner" ->{
