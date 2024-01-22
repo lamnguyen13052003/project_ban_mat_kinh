@@ -1,11 +1,6 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="model.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%User user = (User) session.getAttribute("user");%>
-<%@ page import="model.service.CartService" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -23,9 +18,8 @@
 
     <title>Tài khoản</title>
 </head>
+<%User user = (User) session.getAttribute("user");%>
 <body>
-<div class="container">
-</div>
 <header id="menu">
     <nav class="navbar navbar-expand-lg pb-0">
         <div class="container-xxl m-md-auto mt-2">
@@ -179,122 +173,100 @@
         </div>
     </nav>
 </header>
-<!--    section 1-->
-<main id="main" class="mt-5 pb-5">
-    <div id="account-page">
-        <div class="container">
-            <div class="row justify-content-center">
-                <!--Phần menu-->
-                <div class="account-page-sidebar col-3">
-                    <div class="account-sidebar-header list-group align-items-center">
-                        <div class="account-sidevar-avatar list-group-item  border-0">
-                            <div class="display-avatar  rounded-circle d-flex align-items-center justify-content-center">
-                                <img src="<%=user.getAvatar()%>" alt="" width="100px" id="avatar">
-                            </div>
-                            <div class="change-avatar position-absolute">
-                                <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
-                                <label for="input-avatar"><i class="fa-solid fa-user-pen fs-5"></i></label>
-                            </div>
+
+<main id="main" class="mt-5 pb-5" user-id="<%=user.getId()%>">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!--Phần menu-->
+            <div class="account-page-sidebar col-3">
+                <div class="account-sidebar-header list-group align-items-center">
+                    <div class="account-sidebar-avatar list-group-item  border-0">
+                        <div class="display-avatar  rounded-circle d-flex align-items-center justify-content-center">
+                            <img src="<%=user.getAvatar()%>" alt="" width="100px" id="avatar">
                         </div>
-                        <div class="account-sidevar-name list-group-item  border-0">
-                            <h3>Hi, <b><%=user.getFullName()%> </b></h3>
+                        <div class="change-avatar position-absolute">
+                            <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">
+                            <label for="input-avatar"><i class="fa-solid fa-user-pen fs-5"></i></label>
                         </div>
                     </div>
-                    <div class="account-sidebar-menu mt-3">
-                        <ul>
-                            <li>
-                                <button class="active" data-bs-target="0">Thông tin tài khoản</button>
-                            </li>
-                            <li>
-                                <button data-bs-target="1">Lịch sử mua hàng</button>
-                            </li>
-                            <li>
-                                <a href="logout">
-                                    <button id="logout">Đăng xuất</button>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="account-sidebar-name list-group-item  border-0">
+                        <h3>Hi, <b><%=user.getFullName()%>
+                        </b></h3>
                     </div>
                 </div>
+                <div class="account-sidebar-menu mt-3">
+                    <ul>
+                        <li>
+                            <button class="active" data-bs-target="0">Thông tin tài khoản</button>
+                        </li>
+                        <li>
+                            <button data-bs-target="1" class="bill-history">Lịch sử mua hàng</button>
+                        </li>
+                        <li>
+                            <button data-bs-target="2" class="product-reviews">Đánh giá sản phẩm</button>
+                        </li>
+                        <li>
+                            <a href="logout">
+                                <button id="logout">Đăng xuất</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             <!--Phần trang-->
             <div class="main-content col-9">
                 <!--Bắt đầu page-->
                 <div class="page-content account-page-content active">
                     <span class="fs-1 title-page-content">Thông tin tài khoản</span>
-                    <div class="body-page-content account-page-detail account-page-info mt-3">
+                    <div class="account-page-detail account-page-info mt-3">
                         <div class="table-responsive">
-                            <div class="table overflow-x-hidden  pb-5">
+                            <div class="table overflow-x-hidden">
                                 <div class="row">
-                                    <div class="col-4"><span>Email</span></div>
-                                    <div class="col-8 "><span>kiminonawa1305@gmail.com</span></div>
+                                    <div class="col-3"><span>Email</span></div>
+                                    <span readonly type="text" class="display-info d-inline-block"
+                                          aria-readonly="true"><%=user.getEmail()%></span>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4"><span>Mật khẩu</span></div>
-                                    <div class="col-8 "><span>*********************</span></div>
+                                    <div class="col-3"><label for="fullname_edit">Họ và tên</label></div>
+                                    <input type="text" class="display-info" name="fullName" id="fullname_edit"
+                                           value="<%=user.getFullName()%>">
                                 </div>
                                 <div class="row">
-                                    <div class="col-4"><span>Họ tên</span></div>
-                                    <div class="col-8 "><span>Nguyễn Đình Lam</span></div>
+                                    <div class="col-3"><label for="sex_edit">Giới tính</label></div>
+                                    <select type="text" class="display-info" name="sex" id="sex_edit"
+                                            value="<%=user.getSex()%>">
+                                        <option value="Nam" <%=(user.getSex().equals("Nam")) ? "selected='selected'" : "" %> >
+                                            Nam
+                                        </option>
+                                        <option value="Nữ" <%=(user.getSex().equals("Nữ")) ? "selected='selected'" : "" %> >
+                                            Nữ
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4"><span>Giới tính</span></div>
-                                    <div class="col-8">
-                                        <span>Nam</span>
+                                    <div class="col-3"><label for="birthday_edit">Ngày sinh</label></div>
+                                    <input type="date" name="birthday" id="birthday_edit" class="display-info"
+                                           value="<%=user.getBirthDay()%>">
+                                </div>
+
+                                <div style="display: flex;justify-content: flex-end">
+                                    <div style="width:400px">
+                                        <button onclick="uploadProfile()"
+                                                style="background: #2F189A;padding: 10px;border: 1px solid white;border-radius: 5px;color:white;font-weight: 600">
+                                            Lưu
+                                        </button>
+                                        <button onclick="changePassword({email:'<%= user.getEmail() %>'})"
+                                                style="background: #2F189A;padding: 10px;border: 1px solid white;border-radius: 5px;color:white;font-weight: 600">
+                                            Đổi mật khẩu
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4"><span>Ngày sinh</span></div>
-                                    <div class="col-8"><span>13/05/2003</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--Kết thúc page-->
-                <!--Phần trang-->
-
-                <div class="account-page col-9">
-                    <!--Bắt đầu page-->
-                    <div class="account-page-content active">
-                        <h1>
-                            <span>Thông tin tài khoản</span>
-                        </h1>
-                        <div class="account-page-detail account-page-info mt-3">
-                            <div class="table-responsive">
-                                <div class="table overflow-x-hidden">
-                                        <div class="row">
-                                            <div class="col-3"><span>Email</span></div>
-                                            <span readonly type="text" class="display-info d-inline-block" aria-readonly="true" ><%=user.getEmail()%></span>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3"><label for="fullname_edit">Họ và tên</label></div>
-                                            <input type="text" class="display-info" name="fullName" id="fullname_edit" value="<%=user.getFullName()%>">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3"><label for="sex_edit">Giới tính</label></div>
-                                            <select  type="text"  class="display-info" name="sex" id="sex_edit" value="<%=user.getSex()%>">
-                                                <option value="Nam" <%=(user.getSex().equals("Nam"))?"selected='selected'":"" %> >Nam</option>
-                                                <option value="Nữ" <%=(user.getSex().equals("Nữ"))?"selected='selected'":"" %> >Nữ</option>
-                                            </select>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3"> <label for="birthday_edit">Ngày sinh</label> </div>
-                                            <input type="date" name="birthday" id="birthday_edit" class="display-info" value="<%=user.getBirthDay()%>">
-                                        </div>
-
-                                    <div style="display: flex;justify-content: flex-end">
-                                        <div style="width:400px">
-                                            <button onclick="uploadProfile()" style="background: #2F189A;padding: 10px;border: 1px solid white;border-radius: 5px;color:white;font-weight: 600">Lưu</button>
-                                            <button onclick="changePassword({email:'<%= user.getEmail() %>'})" style="background: #2F189A;padding: 10px;border: 1px solid white;border-radius: 5px;color:white;font-weight: 600">Đổi mật khẩu</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <!--Kết thúc page-->
 
                 <!--Bắt đầu page-->
                 <div class="page-content bill-history-page-content">
@@ -328,14 +300,16 @@
                     <span class="fs-1 title-page-content">Đánh giá sản phẩm!</span>
                     <div class="body-page-content mt-2">
                         <div class="menu menu-review">
-                            <button type="button" class="menu-item menu-review-item active" data-action="Chưa đánh giá" have-evaluated="false">
+                            <button type="button" class="menu-item menu-review-item active" data-action="Chưa đánh giá"
+                                    have-evaluated="false">
                                 Chưa đánh giá
                             </button>
-                            <button type="button" class="menu-item menu-review-item" data-action="Đã đánh giá" have-evaluated="true">
+                            <button type="button" class="menu-item menu-review-item" data-action="Đã đánh giá"
+                                    have-evaluated="true">
                                 Đã đánh giá
                             </button>
                         </div>
-                        <div class="display-content display-product-reviews"  id="display-product-reviews">
+                        <div class="display-content display-product-reviews" id="display-product-reviews">
                         </div>
                     </div>
                 </div>

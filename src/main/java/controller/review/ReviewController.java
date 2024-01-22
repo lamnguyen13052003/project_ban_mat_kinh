@@ -20,7 +20,6 @@ public class ReviewController extends HttpServlet {
         String actionStr = request.getParameter("action");
         Action action = null;
         switch (actionStr) {
-            case "display" -> action = new DisplayReview();
             case "get-product-reviews" -> action = new GetProductReview();
             case "write-review" -> action = new ChangePageWriteReview();
             case "edit-review" -> action = new ChangePageEditReview();
