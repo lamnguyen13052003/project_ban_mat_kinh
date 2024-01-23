@@ -24,8 +24,8 @@ public class LoginFilter implements Filter {
         }
         logo = logo == null? BannerService.getInstance().getBannerByDescription("%banner%logo%") : logo;
         loginBanner = loginBanner == null? BannerService.getInstance().getBannerByDescription("%banner%login%") : loginBanner;
-        request.setAttribute("logo", logo); // banner logo
-        request.setAttribute("loginBanner", loginBanner); // banner logo
+        request.setAttribute("logo", logo);
+        request.setAttribute("loginBanner", loginBanner);
 
         request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
     }
