@@ -1,6 +1,8 @@
 package filter;
 
+import model.bean.BannerImage;
 import model.bean.Product;
+import model.service.BannerService;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -17,11 +19,11 @@ public class ProductBoothFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         List<Product> products = (List<Product>) request.getAttribute("products");
-        if(products != null){
+        BannerImage logo = (BannerImage) request.getAttribute("logo");
+
+        if(products != null && logo != null) {
             chain.doFilter(request, response);
         }
-
-
         request.getRequestDispatcher("product-booth").forward(request, response);
     }
 }

@@ -1,6 +1,8 @@
 package controller;
 
+import model.bean.BannerImage;
 import model.bean.Product;
+import model.service.BannerService;
 import model.service.ProductService;
 
 import javax.servlet.*;
@@ -35,7 +37,8 @@ public class ProductBoothController extends HttpServlet {
                 page = mapInfRoot.get("page");
 
         String title = productService.getTitle(idCategoryGroup, idCategory);
-
+        BannerImage logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
+        request.setAttribute("logo", logo);
         request.setAttribute("products", products);
         request.setAttribute("title", title);
         request.setAttribute("request", formatQuery);
