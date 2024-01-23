@@ -422,7 +422,7 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
 
     $(document).ready(function (){

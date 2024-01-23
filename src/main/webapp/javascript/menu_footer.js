@@ -2,7 +2,7 @@ class User {
     constructor() {
     }
 
-    init(id, fullname, avatar, email, password, birthday, sex){
+    init(id, fullname, avatar, email, password, birthday, sex) {
         this.id = id;
         this.fullname = fullname;
         this.avatar = avatar;
@@ -16,11 +16,11 @@ class User {
         this.id = id;
     }
 
-    setFullName(fullName){
+    setFullName(fullName) {
         this.fullName = fullName;
     }
 
-    setAvatar(avatar){
+    setAvatar(avatar) {
         this.avatar = avatar;
     }
 
@@ -28,15 +28,15 @@ class User {
         this.email = email;
     }
 
-    setPassword(password){
+    setPassword(password) {
         this.password = password;
     }
 
-    setBirthday(birthday){
+    setBirthday(birthday) {
         this.birthday = birthday;
     }
 
-    setSex(sex){
+    setSex(sex) {
         this.sex = sex;
     }
 }
@@ -47,6 +47,26 @@ $(document).ready(function () {
     });
 
     linkMenuDisplayProduct();
+    $("#search").parent().after(`
+                    <div id="display-product-search" hidden="" class="border border-top-0 border-secondary">
+                        
+                    </div>
+                `);
+    search();
+
+    $(document).on("click", function(e) {
+        var target = $(e.target);
+
+        // Kiểm tra nếu phần tử được nhấn không thuộc thẻ div
+        if (!target.closest("#menu .search").length) {
+            $("#display-product-search").attr("hidden", "true");
+            // Thêm mã xử lý tại đây
+        }
+    });
+
+    $("#search").on("click", function() {
+        $("#display-product-search").removeAttr("hidden");
+    })
 });
 
 function displayPlaceholder(element) {
@@ -82,7 +102,7 @@ function displayMenuAccount(user) {
     </div>`);
 }
 
-function hidenMenuAccount(){
+function hiddenMenuAccount() {
     $("#menu").find(".account").remove();
     $("#menu").find(".login").removeClass("d-none");
     $("#menu").find(".sign-up").removeClass("d-none");
@@ -281,3 +301,69 @@ function formatData(dateString) {
 
     return formattedDate;
 }
+
+function search() {
+    function debounce(func, wait, immediate) {
+        let timeout;
+        return function () {
+            let context = this, args = arguments;
+            let later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
+
+    $("#search").on("input", debounce(async function () {
+        const name = $(this).val();
+        if (name.replaceAll(" ", "") === "") return;
+        $.ajax({
+            url: "search",
+            dataType: "json",
+            data: {
+                "name": name,
+            },
+            method: "GET",
+            success: function (data) {
+                const products = data.products;
+                $("#display-product-search").removeAttr("hidden");
+                let htmlProduct = ``;
+                products.forEach(function (product) {
+                    htmlProduct += `
+                    <a href="more_info_product?id=${product.id}">
+                        <div class="product-search row mx-0">
+                            <div class="col-12 border border-top-0 border-end-0 border-start-0 border-secondary py-2 d-flex">
+                                <img src="${product.productImages[0].urlImage}" alt="product.png" class="me-2" style="width: 50px; height: 50px">
+                                    <div class="w-100">
+                                        <p class="overflow-x-hidden overflow-y-hidden" style="height: 25px">${product.name}</p>
+                                        <p class="text-secondary">${product.brandName}</p>
+                                    </div>
+                            </div>
+                        </div>
+                    </a>
+                    `;
+                })
+
+                if (products.length) {
+                    $("#display-product-search").html(htmlProduct);
+                } else {
+                    $("#display-product-search").html(`
+                    <div class="col-12 text-center py-2">
+                        <p>Không tìm thấy sản phẩm phù hợp!</p>
+                    </div>`);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+            }
+        });
+    }, 300));
+
+
+}
+

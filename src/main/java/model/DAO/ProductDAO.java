@@ -89,7 +89,7 @@ public class ProductDAO extends DAO {
         );
     }
 
-    public Product getProductWithIdAndName(int id) {
+    public Product getProductIdAndName(int id) {
         int index = 0;
         String select = " p.id, p.name ";
 
@@ -658,5 +658,30 @@ public class ProductDAO extends DAO {
                         .mapToBean(ProductReview.class)
                         .list()
         );
+    }
+
+    public List<Product> getSearchProducts(String name) {
+        String sql = "SELECT p.id, p.name, p.brandName FROM products AS p WHERE `delete` = 0 AND (";
+        Handle handle;
+        Query query;
+        System.out.println(name);
+        StringTokenizer tk = new StringTokenizer(name, " ");
+        int totalTk = tk.countTokens();
+        for (int i = 0; i < totalTk; i++)
+            sql += "p.name LIKE ? OR ";
+       if(totalTk == 0) {
+           sql = sql.substring(0, sql.length() - 5);
+       }else{
+           sql = sql.substring(0, sql.length() - 4);
+           sql += ");";
+       }
+        handle = connector.open();
+        query = handle.createQuery(sql);
+        for (int i = 0; i < totalTk; i++)
+            query.bind(i, "%" + tk.nextToken() + "%");
+        List<Product> products = query.mapToBean(Product.class).list();
+        query.close();
+        handle.close();
+        return products;
     }
 }

@@ -499,7 +499,7 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
 
     <%if(session.getAttribute("title") != null){%>

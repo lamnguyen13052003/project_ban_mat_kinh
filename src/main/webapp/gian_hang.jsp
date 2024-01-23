@@ -809,7 +809,7 @@
         user.setFullName("<%=user.getFullName()%>");
         displayMenuAccount(user);
         <%} else{%>
-        hidenMenuAccount();
+        hiddenMenuAccount();
         <%}%>
 
         $(".filter-list").find("button").removeClass("checked");

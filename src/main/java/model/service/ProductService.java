@@ -78,9 +78,9 @@ public class ProductService {
     }
 
 
-    public Product getProductWithIdAndName(int productId) {
+    public Product getProductIdAndName(int productId) {
         ProductDAO productDAO = ProductDAO.getInstance();
-        return productDAO.getProductWithIdAndName(productId);
+        return productDAO.getProductIdAndName(productId);
     }
 
     public ProductCart getProductCart(int id) {
@@ -422,5 +422,12 @@ public class ProductService {
 
     public void unlock(int productId) {
         ProductDAO.getInstance().unlock(productId);
+    }
+
+    public List<Product> getSearchProducts(String name) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        List<Product> products = productDAO.getSearchProducts(name);
+        setProductImage(products, 1);
+        return products;
     }
 }

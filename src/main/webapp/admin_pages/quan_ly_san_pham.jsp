@@ -481,7 +481,7 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
     <%String message = (String) session.getAttribute("message");
     if (message != null){%>
