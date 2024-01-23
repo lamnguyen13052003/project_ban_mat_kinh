@@ -49,7 +49,7 @@ const handlePage = (page)=>{
     search_account()
 
 }
-const handleLockAcoount = (id) =>{
+const handleLockAcoount = (e, id) =>{
     $.ajax({
         url: '/maven_war/admin/account',
         method: 'GET',
@@ -59,6 +59,15 @@ const handleLockAcoount = (id) =>{
         },
         dataType: 'json',
         success: function(data) {
+            if(data == 1){
+                let a = e.textContent
+                if(a == "lock"){
+                    e.textContent = "lock_open"
+                }else{
+                    e.textContent = "lock"
+                }
+
+            }
         }
     })
 }
@@ -119,8 +128,8 @@ const search_account = ()=>{
                             <div class="row account align-items-center ps-4" >
                     <div class="col-2 id-account">#${tmp.id}</div>
                     <div class="col-4 d-flex">
-                        <div class="avatar-account">
-                            <img src="${tmp.avatar ?? "../images/logo/logo.png"}" alt="img">
+                        <div class="avatar-account ">
+                            <img class="rounded-circle" width="50" height="50" src="../${tmp.avatar ?? "images/logo/logo.png"}" alt="img">
                         </div>
                         <div class="info-account ms-2 w-100">
                             <p class="name-account">${tmp.fullName}</p>
@@ -139,8 +148,8 @@ const search_account = ()=>{
                             <option value="2" ${tmp.role == 2 ? "selected" : ""}>Shipper</option>
                         </select>
                     </div>
-                    <div class="col-1 text-center">
-                        <input onclick="handleLockAcoount(${tmp.id})" type="checkbox" name="lock-account-account" ${tmp.lock ? "checked" : ""} value="#123">
+                    <div class="col-1 text-center" style="cursor: pointer">
+                        <span onclick="handleLockAcoount(this, ${tmp.id})" class="material-symbols-outlined d-inline-block lock">${tmp.lock ? "lock" : "lock_open"}</span>
                     </div>
                 </div>
             `
