@@ -17,6 +17,7 @@
   Time: 4:28 PM
   To change this template use File | Settings | File Templates.
 --%>
+<% BannerImage logo = (BannerImage) request.getAttribute("bannerLogoImages"); %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -28,7 +29,7 @@
     <link rel="stylesheet" href="notify/notify-metro.css" />
     <link rel="stylesheet" href="css/gian_hang.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
+    <link rel="icon" type="image/x-icon" href="<%=logo.getUrlImage()%>">
 
     <%--jquery--%>
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>

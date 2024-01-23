@@ -7,7 +7,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
-<%User user = (User) session.getAttribute("user");%>
+<%
+    User user = (User) session.getAttribute("user");
+    BannerImage logo = (BannerImage) request.getAttribute("bannerLogoImages");
+%>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/reset.css">
@@ -18,7 +21,7 @@
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="notify/notify-metro.css" />
     <link rel="stylesheet" href="css/chi_tiet_hoa_don.css">
-    <link rel="icon" href="images/logo/logo_icon.png">
+    <link rel="icon" href="<%=logo.getUrlImage()%>">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -35,7 +38,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="images/logo/logo.png" alt="logo.png">
+                        <img src="<%=logo.getUrlImage()%>" alt="logo.png">
                         KIMI
                     </a>
                 </div>

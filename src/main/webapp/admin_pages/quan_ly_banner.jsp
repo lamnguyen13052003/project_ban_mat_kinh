@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%  BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages"); %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="stylesheet" href="../css/danh_sach_slider.css">
-    <link rel="icon" href="../images/logo/logo_icon.png">
+    <link rel="icon" href="../<%=logoBanner.getUrlImage()%>">
 
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
@@ -98,11 +98,9 @@
             <div class="col-10">
                 <div class="edit-img row row-cols-2" id="show-slides">
                     <%
-                        /*mấy cái attribute này class nào set*/
                         BannerImage loginBanner = (BannerImage) request.getAttribute("bannerLoginImages");
                         BannerImage signupBanner = (BannerImage) request.getAttribute("bannerSignupImages");
                         BannerImage prBanner = (BannerImage) request.getAttribute("bannerPRImages");
-                        BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages");
                         BannerImage contactBanner = (BannerImage) request.getAttribute("bannerContactImages");
                         BannerImage authBanner = (BannerImage) request.getAttribute("bannerAuthImages");
                         List<BannerImage>   urls = (List<BannerImage>) request.getAttribute("bannerImages");
