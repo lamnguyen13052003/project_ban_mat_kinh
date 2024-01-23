@@ -46,7 +46,7 @@ public class ProductDAO extends DAO {
     public List<Product> getProduct(int id) {
         List<Product> result;
         int index = 0;
-        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe ";
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price, p.describe, p.`type`, p.`material` ";
 
         String sql = initSQLGetProduct(select);
         return connector.withHandle(handle ->
@@ -361,7 +361,7 @@ public class ProductDAO extends DAO {
 //        );
 //    }
 
-    public List<String> getMaterials() {
+    public List<String> getMaterialsForAdmin() {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.material " +
                                 "FROM products AS p " +
@@ -371,11 +371,31 @@ public class ProductDAO extends DAO {
         );
     }
 
-    public List<String> getTypes() {
+    public List<String> getTypesForAdmin() {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.type " +
                                 "FROM products AS p " +
                                 "WHERE p.brandName IS NOT NULL;")
+                        .mapTo(String.class)
+                        .list()
+        );
+    }
+
+    public List<String> getMaterials() {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT DISTINCT p.material " +
+                                "FROM products AS p " +
+                                "WHERE p.brandName IS NOT NULL AND `delete` = 0;")
+                        .mapTo(String.class)
+                        .list()
+        );
+    }
+
+    public List<String> getTypes() {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT DISTINCT p.type " +
+                                "FROM products AS p " +
+                                "WHERE p.brandName IS NOT NULL AND `delete` = 0;")
                         .mapTo(String.class)
                         .list()
         );

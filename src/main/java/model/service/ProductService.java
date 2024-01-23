@@ -344,6 +344,14 @@ public class ProductService {
         return productDAO.getProductReviewsNotYetRated(userId, offset);
     }
 
+    public List<String> getMaterialsForAdmin() {
+        return ProductDAO.getInstance().getMaterialsForAdmin();
+    }
+
+    public List<String> getTypesForAdmin() {
+        return ProductDAO.getInstance().getTypesForAdmin();
+    }
+
     public List<String> getMaterials() {
         return ProductDAO.getInstance().getMaterials();
     }

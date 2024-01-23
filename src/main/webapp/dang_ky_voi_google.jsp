@@ -1,11 +1,10 @@
 <%@ page import="model.service.CartService" %>
-<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="model.bean.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap-grid.css">
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
@@ -17,7 +16,7 @@
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
 
-    <title>Đăng nhập</title>
+    <title>Đăng ký</title>
 </head>
 <body>
 <header id="menu">
@@ -173,58 +172,123 @@
         </div>
     </nav>
 </header>
-
+<%User user = (User) request.getAttribute("user");%>
 <main class="my-4 main-login">
     <div class="modal-body form-login">
         <div class="row">
             <div class="col-6">
                 <div class="tab-pane fade active show" id="modalLogin" role="tabpanel" aria-labelledby="modalLoginTab">
                     <h5 class="text-center mb-2">
-                        ĐĂNG NHẬP
+                        ĐĂNG KÝ
                     </h5>
                     <div class="login-form-body">
-                        <form accept-charset="UTF-8" action="login" id="customer_login" method="post">
-                            <input name="form_type" type="hidden" value="customer_login">
+                        <form accept-charset="UTF-8" action="signup_with_google" id="customer_login" method="post">
                             <input name="utf8" type="hidden" value="✓">
+                            <div class="form-group mb-3">
+                                <label for="signup-fullName">Họ và tên*</label>
+                                <input type="text" id="signup-fullName" placeholder="Họ và tên" class="form-control"
+                                       name="customer[fullName]" required="">
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="row pb-1">
+                                    <div class="col-5"><label>Giới tính</label></div>
+                                    <div class="col p-0"><label>Ngày sinh</label></div>
+                                </div>
 
-                            <div class="form-group mb-2">
-                                <label for="login-email">Email*</label>
-                                <input type="text" id="login-email" placeholder="Email" class="form-control"
-                                       name="email" required="">
+                                <div class="row">
+                                    <div class="col-2 mt-1">
+                                        <input type="radio" id="register-gender-0" value="Nữ" name="customer[gender]"
+                                               checked="">
+                                        <label for="register-gender-0">Nữ</label>
+                                    </div>
+                                    <div class="col-3 mt-1">
+                                        <input type="radio" id="register-gender-1" value="Nam" name="customer[gender]"
+                                               data-gtm-form-interact-field-id="0">
+                                        <label for="register-gender-1">Nam</label>
+                                    </div>
+
+                                    <div class="ngay_sinh col-7 p-0 d-flex">
+                                        <input class="col-2  p-1" type="number" name="day" id="day" placeholder="DD">
+                                        <select class="col-5 p-1" name="month" id="month">
+                                            <option value="1">Tháng 1</option>
+                                            <option value="2">Tháng 2</option>
+                                            <option value="3">Tháng 3</option>
+                                            <option value="4">Tháng 4</option>
+                                            <option value="5">Tháng 5</option>
+                                            <option value="6">Tháng 6</option>
+                                            <option value="7">Tháng 7</option>
+                                            <option value="8">Tháng 8</option>
+                                            <option value="9">Tháng 9</option>
+                                            <option value="10">Tháng 10</option>
+                                            <option value="11">Tháng 11</option>
+                                            <option value="12">Tháng 12</option>
+                                        </select>
+                                        <input class="col-4  p-1" type="number" name="year" id="year"
+                                               placeholder="YYYY">
+                                    </div>
+                                    <%String error_birthday = (String) request.getAttribute("signup_error_birthday");%>
+                                    <%
+                                        if (error_birthday != null) {
+                                    %>
+                                    <div class="error_birthday text-end">
+                                        <small class="text-danger "><%=error_birthday%>
+                                        </small>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
+                                </div>
                             </div>
-                            <div class="form-group mb-1">
-                                <label for="login-password">Mật khẩu*</label>
-                                <input type="password" id="login-password" placeholder="Mật khẩu" class="form-control"
-                                       name="password" required="">
-                            </div>
-                            <div class="login-error mt-1">
+                            <div class="form-group mb-3 d-none">
+                                <label for="signup-email">Email*</label>
+                                <input type="email" id="signup-email" placeholder="Email" class="form-control"
+                                       name="customer[email]" value="<%=user.getEmail()%>" required="">
+                                <%String error_email = (String) request.getAttribute("signup_error_email");%>
                                 <%
-                                    String error = (String) request.getAttribute("login_error");
-                                    if (error != null) {
-                                %><span class="text-danger"><%=error%></span> <%}%>
+                                    if (error_email != null) {
+                                %>
+                                <small style="color: red"><%=error_email%>
+                                </small>
+                                <%
+                                    }
+                                %>
                             </div>
-                            <div class="mt-1" style="display: flex; justify-content: flex-end;">
-                                <button type="button"
-                                        style="font-size: 13px; color: blue; background: none; border: none;"
-                                        id="forget-password" href="#" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">Quên mật khẩu
-                                </button>
+                            <div class="form-group  mb-3">
+                                <label for="signup-password">Mật khẩu*</label>
+                                <input type="password" id="signup-password" placeholder="Mật khẩu" class="form-control"
+                                       name="customer[password]" required="">
+                                <%String error_pass = (String) request.getAttribute("signup_error_pass");%>
+                                <%
+                                    if (error_pass != null) {
+                                %>
+                                <small style="color: red"><%=error_pass%>
+                                </small>
+                                <%
+                                    }
+                                %>
                             </div>
+                            <div class="form-group ">
+                                <label for="signup-repassword">Nhập mật khẩu*</label>
+                                <input type="password" id="signup-repassword" placeholder="Nhập lại mật khẩu"
+                                       class="form-control" name="customer[repassword]" required="">
+                                <%
+                                    if (error_pass != null) {
+                                %>
+                                <small style="color: red"><%=error_pass%>
+                                </small>
+                                <%
+                                    }
+                                %>
+                            </div>
+
                             <div class="form-group mt-2 d-flex-center">
-                                <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity"
-                                        id="signin">
-                                    Đăng nhập
+                                <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
+                                    Đăng ký
                                 </button>
                             </div>
-                            <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc đăng nhập bằng</p>
-                            <p class="text-center">
-                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost/maven_war/login_google&response_type=code
-    &client_id=908243265697-739bs2s8pbobo6p2mo951ij9t86lsnuf.apps.googleusercontent.com&approval_prompt=force">
-                                    <img style="height: 25px; width: 25px" src="images/logo/google_logo.png" alt="google_logo.png">
-                                </a>
-                            </p>
-                            <p class="mt-2" style="text-align: center; font-size: 13px;">Bạn chưa có tài khoản? <a
-                                    style="font-size: 13px; color: blue;" href="dang_ky.jsp">Đăng ký</a></p>
+                            <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc</p>
+                            <p style="text-align: center; font-size: 13px;">Bạn đã có tài khoản? <a
+                                    style="font-size: 13px; color: blue;" href="dang_nhap.jsp">Đăng nhập</a></p>
                         </form>
                     </div>
                 </div>
@@ -235,103 +299,6 @@
         </div>
     </div>
 </main>
-
-<%
-    String error_not_found_email_forget_password = (String) request.getAttribute("error-not-found-email-forget-password");
-    String message = (String) session.getAttribute("message");
-    String verifyError = (String) request.getAttribute("verify_error");
-%>
-<!-- Modal -->
-<%-- Form quên mật khầu --%>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Quên mật khẩu</h5>
-                <button type="button" id="close-modal-forget-password" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body form-forgot">
-                <form accept-charset="UTF-8" action="forget_password" id="customer_forget_password" method="post">
-                    <div class="form-group mb-3">
-                        <input name="action" type="hidden" value="check_mail">
-                        <label for="email">Email<span class="text-danger">*</span></label>
-                        <input type="email" id="email" placeholder="Email" class="form-control"
-                               name="email" required="">
-                        <%if (error_not_found_email_forget_password != null) {%>
-                        <small class="text-danger"><%=error_not_found_email_forget_password%>
-                        </small>
-                        <%}%>
-                    </div>
-                    <div class="form-group mt-4 d-flex-center">
-                        <button type="submit" style="font-size: 13px;" class="btn btn-primary hoverOpacity ">
-                            Quên mật khẩu
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<%if (message != null) {%>
-<%--Model thông báo đăng ký hoặc đổi quên mật khẩu thành công--%>
-<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
-        data-bs-target="#complete-modal"></button>
-<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Thành công</h1>
-                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body position-relative">
-                <div class="d-flex align-items-center justify-content-center">
-                    <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
-                    <p class="fs-3 ms-2"><%=message%>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<%
-    }
-    if (verifyError != null) {
-%>
-<button hidden="" type="button" id="show-verify-error-modal" data-bs-toggle="modal"
-        data-bs-target="#verify-error-modal"></button>
-<div class="modal fade" id="verify-error-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Lỗi xác thực</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body position-relative">
-                <div class="d-flex align-items-centerr">
-                    <img style="width: 50px" src="images/icon/verify_error.png" alt="verify_error.png">
-                    <p class="ms-2 fs-6"><%=verifyError%>
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <form accept-charset="UTF-8" action="re_send_code_verify" method="post">
-                    <input type="hidden" name="fullName" value="<%=request.getAttribute("fullName")%>">
-                    <input type="hidden" name="email" value="<%=request.getAttribute("email")%>">
-                    <input type="hidden" name="action" value="<%=request.getAttribute("action")%>">
-                    <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-<%}%>
 <hr>
 <footer id="footer" class="footer">
     <div class="container ">
@@ -400,22 +367,6 @@
 </footer>
 
 <script src="javascript/menu_footer.js"></script>
-<script>
-    <%if(error_not_found_email_forget_password != null) {%>
-    $("#forget-password").click();
-    <%
-     session.removeAttribute("error-not-found-email-forget-password");
-    }
-    if(message != null){%>
-    $("#show-complete-modal").click();
-    <%
-      session.removeAttribute("message");
-    }
-    if (verifyError != null) {%>
-    $("#show-verify-error-modal").click();
-    <%
-    session.removeAttribute("verify_error");
-    }%>
-</script>
+<script src="javascript/dang_ky.js"></script>
 </body>
 </html>

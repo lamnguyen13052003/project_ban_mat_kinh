@@ -94,7 +94,7 @@ function displayMenuAccount(user) {
         <a href="tai_khoan.jsp">
             <button type="button" class="btn d-flex float-lg-end  me-xl-4 me-lg-2" id="button-account">
                 <div class="avatar p-1 bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 25px; height: 25px">
-                    <img src="${user.avatar}" alt="avatar.png"  class="d-md-line" width="18" height="18">
+                    <img src="${user.avatar}" alt="avatar.png"  class="d-md-line rounded-circle" width="18" height="18">
                 </div>
                 <span class="d-lg-block d-md-none ms-2 overflow-x-hidden d-block" style="max-width: 130px; white-space: nowrap">${user.fullName}</span>
             </button>

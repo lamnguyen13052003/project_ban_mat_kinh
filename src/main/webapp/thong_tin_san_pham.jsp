@@ -299,8 +299,14 @@
                     <div class="productVendor col">
                         <strong>Thương hiệu: </strong>Palm Angels
                     </div>
-                    <div class="productType col">
+                    <div class="productCategory col">
                         <strong>Dòng sản phẩm: </strong><%=product.getCategoryName()%>
+                    </div>
+                    <div class="productType col">
+                        <strong>Kiểu dáng: </strong><%=product.getType()%>
+                    </div>
+                    <div class="productMaterial col">
+                        <strong>Chất liệu: </strong><%=product.getMaterial()%>
                     </div>
                 </div>
 

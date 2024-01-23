@@ -28,6 +28,8 @@ public class ProductBoothController extends HttpServlet {
         Map<String, String> mapSort = productService.getMapSort(formatQuery);
         Map<String, Integer> mapInfRoot = productService.getMapInfRoot(formatQuery);
         List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort, 20);
+        List<String> materials = productService.getMaterials(),
+                types = productService.getTypes();
         int totalPages = productService.getTotalPages(mapInfRoot, mapFilter, mapSort);
 
         int idCategory = mapInfRoot.get("id-category"),
@@ -38,6 +40,8 @@ public class ProductBoothController extends HttpServlet {
 
         request.setAttribute("products", products);
         request.setAttribute("title", title);
+        request.setAttribute("materials", materials);
+        request.setAttribute("types", types);
         request.setAttribute("request", formatQuery);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("page", page);

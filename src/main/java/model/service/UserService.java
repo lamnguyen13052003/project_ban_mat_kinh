@@ -71,4 +71,14 @@ public class UserService {
     public int resetPassword(String email, String password) {
         return UserDAO.getInstance().resetPassword(email, password);
     }
+
+    public User getUser(String email) {
+        return UserDAO.getInstance().getUser(email);
+    }
+
+    public boolean signupWithGoogle(User user) {
+        user.setPassword(hashPassword(user.getPassword()));
+        int rs =  userDAO.insertUserNonVerify(user);
+        return rs != 0;
+    }
 }
