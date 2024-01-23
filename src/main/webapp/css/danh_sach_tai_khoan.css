@@ -4,6 +4,10 @@
     border: rgba(0, 0, 0, 0.3) solid 2px;
     margin: 0 -10px 15px;
 }
+#table-body .account{
+    border: rgba(0, 0, 0, 0.5) solid 2px;
+    border-top: unset;
+}
 
 #main .search .search_header{
     position: relative;
