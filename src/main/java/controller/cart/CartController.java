@@ -11,6 +11,8 @@ import java.io.IOException;
 public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Action loadLogo = new LoadBannerForCart();
+        loadLogo.action(request, response);
     }
 
     @Override

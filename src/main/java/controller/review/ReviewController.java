@@ -18,8 +18,10 @@ public class ReviewController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String actionStr = request.getParameter("action");
+        actionStr = actionStr == null? "load-logo" : actionStr;
         Action action = null;
         switch (actionStr) {
+            case "load-logo" -> action = new LoadBannerForReview();
             case "get-product-reviews" -> action = new GetProductReview();
             case "write-review" -> action = new ChangePageWriteReview();
             case "edit-review" -> action = new ChangePageEditReview();
