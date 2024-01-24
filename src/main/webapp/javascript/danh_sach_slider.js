@@ -25,6 +25,9 @@ function uploadFile() {
             contentType: false,
             success: function (data) {
                 $(`img[data-banner="${bannerId}"]`).attr("src", "../" + data.url);
+                if(bannerId === "banner-logo") {
+                $('.navbar-brand img').attr("src", "../" + data.url);
+                }
             },
             error: function () {
                 console.log("error uploading file");
