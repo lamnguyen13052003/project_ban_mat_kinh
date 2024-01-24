@@ -1,6 +1,8 @@
 package controller;
 
+import model.bean.BannerImage;
 import model.bean.Product;
+import model.service.BannerService;
 import model.service.ProductService;
 
 import javax.servlet.*;
@@ -26,6 +28,9 @@ public class DisplayMoreInfoProductController extends HttpServlet {
         }
 
         if(!recentlyViewedProducts.contains(recentlyViewedProduct)) recentlyViewedProducts.add(recentlyViewedProduct);
+
+        BannerImage logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
+        request.setAttribute("logo", logo);
 
         request.getSession().setAttribute("recently-viewed-products", recentlyViewedProducts);
 
