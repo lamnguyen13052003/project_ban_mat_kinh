@@ -1,5 +1,10 @@
 <%@ page import="model.service.CartService" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    BannerImage logo = (BannerImage) request.getAttribute("logo");
+    BannerImage auth = (BannerImage) request.getAttribute("authBanner");
+%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -11,7 +16,7 @@
     <link rel="stylesheet" href="css/menu_footer.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/xac_thuc.css">
-    <link rel="icon" href="images/logo/logo_icon.png">
+    <link rel="icon" href="<%=logo.getUrlImage()%>">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
@@ -25,7 +30,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="images/logo/logo.png" alt="logo.png">
+                        <img src="<%=logo.getUrlImage()%>" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -200,7 +205,7 @@
             </div>
         </div>
         <div class="background">
-            <img src="images/bannerAccount.png" alt="background" class="rounded-2">
+            <img src="<%=auth.getUrlImage()%>" alt="background" class="rounded-2">
         </div>
     </div>
 </main>
@@ -260,7 +265,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="index.jsp">
-                    <img src="images/logo/logo.png" alt="logo.png">
+                    <img src="<%=logo.getUrlImage()%>" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
