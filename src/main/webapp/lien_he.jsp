@@ -178,8 +178,8 @@
 </header>
 
 
-<main id="main" class="contact-form py-5">
-    <div class="container ">
+<main id="main" class="contact-form py-1">
+    <div class="container shadow p-3 mb-5 bg-body-tertiary rounded">
         <div class="row">
             <div class="contact-info col ">
                 <h4>Liên hệ với chúng tôi</h4>
