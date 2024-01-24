@@ -1,7 +1,9 @@
 package controller.product_manager;
 
 import controller.Action;
+import model.bean.BannerImage;
 import model.bean.Product;
+import model.service.BannerService;
 import model.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -40,6 +42,11 @@ public class GetProduct implements Action {
         listBrandName = ProductService.getInstance().getBrands();
 
         requestStr = "product_manager?name=" + name + "&categoryGroupId=" + categoryGroupId + "&categoryId=" + categoryId + "&brand-name=" + brandName + "&available=" + available + "&page=" + page;
+
+        //load logo hehe
+        BannerImage logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
+        request.setAttribute("logo", logo);
+
         request.setAttribute("request", requestStr);
         request.setAttribute("products", products);
         request.setAttribute("list-brand-name", listBrandName);
