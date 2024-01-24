@@ -1,7 +1,12 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="model.service.CartService" %>
 <%@ page import="model.bean.Cart" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    BannerImage logo = (BannerImage) request.getAttribute("logo");
+    BannerImage contact = (BannerImage) request.getAttribute("contact");
+%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -11,32 +16,10 @@
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="css/menu_footer.css">
-    <link rel="icon" href="images/logo/logo_icon.png">
+    <link rel="icon" href="<%=logo.getUrlImage()%>">
 
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
-
-    <style>
-        .contact-form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-info, .contact-image {
-            width: 640px;
-        }
-
-        .contact-info form textarea {
-            height: 150px; /* Đặt chiều cao 372.22px cho trường textarea */
-        }
-
-        .contact-image img {
-            max-width: 125%;
-            width: 105%; /* Đảm bảo hình ảnh điền vào phần còn lại của phần liên hệ */
-            height: auto; /* Giữ tỷ lệ khung hình */
-        }
-    </style>
 
     <title>Liên hệ</title>
 </head>
@@ -49,7 +32,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="index.jsp" class="navbar-brand me-5">
-                        <img src="images/logo/logo.png" alt="logo.png">
+                        <img src="<%=logo.getUrlImage()%>" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -195,37 +178,42 @@
 </header>
 
 
-<main id="main" class="contact-form mt-5 pb-5">
-    <div class="contact-info">
-        <h4>Liên hệ với chúng tôi</h4>
-        <form>
-            <div class="form-group">
-                <label for="name">Tên của bạn <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" name="name" required>
+<main id="main" class="contact-form py-5">
+    <div class="container ">
+        <div class="row">
+            <div class="contact-info col ">
+                <h4>Liên hệ với chúng tôi</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Tên của bạn <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Bình luận <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="comment" name="comment" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2 ">Gửi thông tin</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email">Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" id="email" name="email" required>
+            <div class="contact-image col" >
+                <img src="<%=contact.getUrlImage()%>" class="object-fit-cover border rounded overflow-hidden"
+                style="width: 100%; height: 424px"     alt="Hình ảnh liên hệ">
             </div>
-            <div class="form-group">
-                <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
-                <input type="tel" class="form-control" id="phone" name="phone" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-            </div>
-            <div class="form-group">
-                <label for="address">Địa chỉ <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="address" name="address" required>
-            </div>
-            <div class="form-group">
-                <label for="comment">Bình luận <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="comment" name="comment" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary mt-2">Gửi thông tin</button>
-        </form>
+        </div>
     </div>
-    <div class="contact-image">
-        <img src="https://cdn.hpdecor.vn/wp-content/uploads/2021/11/thiet-ke-cua-hang-kinh-mat-4.jpg" class="ps-3"
-             alt="Hình ảnh liên hệ">
-    </div>
+
 </main>
 
 
@@ -290,7 +278,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="#">
-                    <img src="images/logo/logo.png" alt="logo.png">
+                    <img src="<%=logo.getUrlImage()%>" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>
