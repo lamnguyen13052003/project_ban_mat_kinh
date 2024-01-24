@@ -7,17 +7,21 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "BillDetail", value = "/bill_detail")
+@WebServlet(name = "BillDetail", value = "/admin_pages/bill_detail")
 public class BillDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String actionString = request.getParameter("action");
+        actionString = actionString == null ? "load-logo" : actionString;
         Action action = null;
         switch (actionString){
             case "see-detail" -> {
                 action = new SeeDetail();
+            }
+            case "load-logo" -> {
+                action = new LoadBannerForBillDetailController();
             }
         }
 
