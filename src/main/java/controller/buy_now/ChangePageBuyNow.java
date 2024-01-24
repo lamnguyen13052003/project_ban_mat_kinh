@@ -1,13 +1,11 @@
 package controller.buy_now;
 
 import controller.Action;
+import model.bean.BannerImage;
 import model.bean.Cart;
 import model.bean.Model;
 import model.bean.ProductCart;
-import model.service.BillService;
-import model.service.ModelService;
-import model.service.ProductDiscountService;
-import model.service.ProductService;
+import model.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +51,10 @@ public class ChangePageBuyNow implements Action {
         double totalBill = billService.getTotalBill();
         double totalPriceReduced = billService.getTotalPriceReduced();
         double shippingFee = Double.compare(totalBill, 0) == 0 ? 0 : 20000;
+        //load logo
+        BannerImage logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
+        request.setAttribute("logo", logo);
+
         request.setAttribute("product-cart", productCart);
         request.setAttribute("totalBill", nf.format(totalBill));
         request.setAttribute("totalPriceReduced", nf.format(totalPriceReduced));
