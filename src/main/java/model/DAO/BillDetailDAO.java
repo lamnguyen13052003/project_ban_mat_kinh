@@ -8,10 +8,7 @@ import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 import org.jdbi.v3.core.statement.Update;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BillDetailDAO extends DAO {
     private static BillDetailDAO instance;
@@ -75,5 +72,32 @@ public class BillDetailDAO extends DAO {
                         .list()
 
         );
+    }
+
+    private void insertSampleData() {
+        Random rd = new Random(System.currentTimeMillis());
+        for (int i = 1; i <= 100; i++) {
+            int id = i;
+            int billId = rd.nextInt(1, 101);
+            int productId = rd.nextInt(1, 373);
+            int modelId = productId;
+            int quantity = rd.nextInt(1, 11);
+            double price = rd.nextDouble(100000, 10000000);
+            connector.withHandle(handle ->
+                    handle.createUpdate("INSERT INTO `mat_kinh_kimi`.`bill_details` (`id`, `billId`, `productId`, `modelId`, `quantity`, `price`) VALUES (?, ?, ?, ?, ?, ?);")
+                            .bind(0, id)
+                            .bind(1, billId)
+                            .bind(2, productId)
+                            .bind(3, modelId)
+                            .bind(4, quantity)
+                            .bind(5, price)
+                            .execute()
+            );
+        }
+    }
+
+    public static void main(String[] args) {
+        BillDetailDAO billDetailDAO = new BillDetailDAO();
+        billDetailDAO.insertSampleData();
     }
 }

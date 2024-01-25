@@ -438,4 +438,8 @@ public class ProductService {
         setProductImage(products, 1);
         return products;
     }
+
+    public List<Product> getProductsIdAndName(){
+        return ProductDAO.getInstance().getProductsIdAndName();
+    }
 }
