@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `models` (
   CONSTRAINT `models_prouductId_products_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.models: ~371 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.models: ~370 rows (approximately)
 INSERT INTO `models` (`id`, `productId`, `name`, `urlImage`, `quantity`) VALUES
 	(1, 1, 'Mặc định', 'images\\product\\1\\0.png', 85),
 	(2, 2, 'Mặc định', 'images\\product\\2\\0.jpg', 317),
@@ -839,7 +839,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_products_categories` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.products: ~371 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.products: ~370 rows (approximately)
 INSERT INTO `products` (`id`, `categoryId`, `name`, `brandName`, `price`, `describe`, `material`, `type`, `delete`) VALUES
 	(1, 11, 'Bread Cranberry Foccacia', 'equaline antacid', 7147917.06, 'orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu', 'Wood', 'Tam giác', b'1'),
 	(2, 5, 'Cocoa Powder - Natural', 'Ibuprofen', 6236348.33, 'dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non', 'Plexiglass', 'Tròn', b'1'),
