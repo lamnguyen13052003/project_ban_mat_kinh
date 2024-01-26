@@ -32,7 +32,7 @@ public class ProductDAO extends DAO {
         }
 
         if (MAP_SQL_FILTER.isEmpty()) {
-            MAP_SQL_FILTER.put("filter-brandName", " AND brandName IN ");
+            MAP_SQL_FILTER.put("filter-brand", " AND brandName IN ");
             MAP_SQL_FILTER.put("filter-material", " AND material IN ");
             MAP_SQL_FILTER.put("filter-type", " AND type IN ");
             MAP_SQL_FILTER.put("filter-price", " price BETWEEN ? AND ? OR ");
@@ -324,7 +324,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL;")
+                                "WHERE p.brandName IS NOT NULL  AND `delete` = 0;")
                         .mapTo(String.class)
                         .list()
         );
@@ -708,12 +708,12 @@ public class ProductDAO extends DAO {
         int totalTk = tk.countTokens();
         for (int i = 0; i < totalTk; i++)
             sql += "p.name LIKE ? OR ";
-       if(totalTk == 0) {
-           sql = sql.substring(0, sql.length() - 5);
-       }else{
-           sql = sql.substring(0, sql.length() - 4);
-           sql += ");";
-       }
+        if (totalTk == 0) {
+            sql = sql.substring(0, sql.length() - 5);
+        } else {
+            sql = sql.substring(0, sql.length() - 4);
+            sql += ");";
+        }
         handle = connector.open();
         query = handle.createQuery(sql);
         for (int i = 0; i < totalTk; i++)
@@ -722,5 +722,25 @@ public class ProductDAO extends DAO {
         query.close();
         handle.close();
         return products;
+    }
+
+    public void update() {
+        String sql = "UPDATE products SET price = :price WHERE id = :id";
+        Random rd = new Random(System.currentTimeMillis());
+        for (int i = 1; i <= 372; i++) {
+            int id = i;
+            double price = rd.nextDouble(0, 10000000);
+            connector.withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("price", price)
+                            .bind("id", id)
+                            .execute()
+            );
+        }
+    }
+
+    public static void main(String[] args) {
+        ProductDAO productDAO = new ProductDAO();
+        productDAO.update();
     }
 }
