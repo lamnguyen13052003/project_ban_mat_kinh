@@ -320,7 +320,7 @@
                     <div class="col-name-in4-customer"><h4 class="px-3 py-3 mb-2">Thông tin khách hàng</h4></div>
                     <div class=" d-flex px-3 py-1">
                         <div class="avatar-customer">
-                            <img src="<%=user.getAvatar()%>" alt="avatar.png">
+                            <img class="rounded-circle" src="<%=user.getAvatar()%>" alt="avatar.png">
                         </div>
                         <div class="info-customer ms-2 w-100">
                             <p class="name-customer"><%=user.getFullName()%>

@@ -89,6 +89,25 @@ public class ProductDAO extends DAO {
         );
     }
 
+    public Product getProductBill(int id) {
+        int index = 0;
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price ";
+
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+        sql.append(JOIN_2);
+        sql.append(WHERE_JOIN_3);
+
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
+
+        return connector.withHandle(handle ->
+                handle.createQuery(sql.toString())
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .findFirst().orElse(null)
+        );
+    }
+
     public Product getProductIdAndName(int id) {
         int index = 0;
         String select = " p.id, p.name ";
