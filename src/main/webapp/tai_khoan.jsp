@@ -182,7 +182,7 @@
                 <div class="account-sidebar-header list-group align-items-center">
                     <div class="account-sidebar-avatar list-group-item  border-0">
                         <div class="display-avatar  rounded-circle d-flex align-items-center justify-content-center">
-                            <img src="<%=user.getAvatar()%>" alt="" width="100px" id="avatar">
+                            <img class="rounded-circle" src="<%=user.getAvatar()%>" alt="" id="avatar">
                         </div>
                         <div class="change-avatar position-absolute">
                             <input class="d-none" type="file" accept="image/jpeg,image/png" id="input-avatar">

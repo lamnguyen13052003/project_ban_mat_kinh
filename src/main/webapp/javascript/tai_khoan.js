@@ -110,7 +110,7 @@ function showBillHistory(click, objectIndex) {
                 let httmBill = `
                  <div class="body-bill-item row  align-items-center ms-2">
                                  <div class="bill-id col-2"><span>#${bill.id}</span></div>
-                                 <div class="bill-time col-2"><span>${formatDataToArray(bill.statuses[0].date)}</span></div>
+                                 <div class="bill-time col-2"><span>${bill.statuses[0].date}</span></div>
                                  <div class="col-3 d-flex">
                                      <div class="customer-info ms-2 w-100">
                                          <p class="customer-name">${bill.userName}</p>
@@ -275,7 +275,7 @@ function changePassword({email}) {
             '<input id="password" type="password" class="swal2-input" placeholder="Mật khẩu">' +
             '<input id="confirmPassword" type="password" class="swal2-input" placeholder="Nhập lại mật khẩu">',
         showCancelButton: true,
-        confirmButtonText: 'Gửi',
+        confirmButtonText: 'Lưu',
         cancelButtonText: 'Hủy',
         focusConfirm: false,
         preConfirm: () => {

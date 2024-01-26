@@ -154,6 +154,9 @@ section:not(#silder-section) {
     font-size: 9px;
     color: rgba(0, 0, 0, 0.5);
     margin: 5px 0;
+    overflow: hidden;
+    height: 14px;
+    width: 280px;
 }
 
 /*Phần tên sản phẩm*/
