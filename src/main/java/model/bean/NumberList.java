@@ -2,7 +2,7 @@ package model.bean;
 
 public class NumberList {
     String name;
-    Integer quantity, month, year;
+    Integer quantity, time, year;
 
     public String getName() {
         return name;
@@ -20,12 +20,12 @@ public class NumberList {
         this.quantity = quantity;
     }
 
-    public Integer getMonth() {
-        return month;
+    public Integer getTime() {
+        return time;
     }
 
-    public void setMonth(Integer month) {
-        this.month = month;
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
     public Integer getYear() {

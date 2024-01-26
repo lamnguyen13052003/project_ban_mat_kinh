@@ -3,8 +3,8 @@ package model.service;
 import model.DAO.DashBoardDAO;
 import model.bean.NumberList;
 
+import java.time.YearMonth;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class DashBoardService {
     private static DashBoardService service;
@@ -15,7 +15,7 @@ public class DashBoardService {
         return (service = service == null ? new DashBoardService() : service);
     }
 
-    public Map<String, List<NumberList>> numberByCategory(boolean category, boolean quarter, int year) {
+    public Map<String, List<NumberList>> numberListByCategory(boolean category, boolean quarter, int year) {
         if (category) return numberListByCategory(quarter, year);
         if (!category) return numberListByCategoryGroup(quarter, year);
         return null;
@@ -24,7 +24,7 @@ public class DashBoardService {
     public Map<String, List<NumberList>> numberListByCategory(boolean quarter, int year) {
         updateCategoryName();
 
-        if (quarter) return numberByCategoryByQuarter(year);
+        if (quarter) return numberListByCategoryByQuarter(year);
         if (!quarter) return numberListCategoryByMonth(year);
         return null;
     }
@@ -54,9 +54,27 @@ public class DashBoardService {
         return formatNumberListByMonth(list, categoryName);
     }
 
-    public Map<String, List<NumberList>> numberByCategoryByQuarter(int year) {
+    public Map<String, List<NumberList>> numberListByCategoryByQuarter(int year) {
         List<NumberList> list = DashBoardDAO.getInstance().numberListByCategoryAndQuarter(year);
         return formatNumberListByQuarter(list, categoryName);
+    }
+
+    public List<NumberList> numberListByProduct(int productId, int month, int year) {
+        List<NumberList> list = DashBoardDAO.getInstance().numberListByProduct(productId, month, year);
+        YearMonth yearMonth = YearMonth.of(year, month);
+        for (int day = 1; day <= yearMonth.lengthOfMonth(); day++) {
+            for (NumberList nl : list) {
+                if (nl.getTime() == day) continue;
+            }
+
+            NumberList number = new NumberList();
+            number.setTime(day);
+            number.setQuantity(0);
+            list.add(number);
+        }
+
+        Collections.sort(list, sortByMonth());
+        return list;
     }
 
     public Map<String, List<NumberList>> formatNumberListByMonth(List<NumberList> list, List<String> names) {
@@ -75,11 +93,11 @@ public class DashBoardService {
             month:
             for (int month = 1; month <= 12; month++) {
                 for (NumberList nl : numberLists) {
-                    if (nl.getMonth() == month) continue month;
+                    if (nl.getTime() == month) continue month;
                 }
 
                 NumberList number = new NumberList();
-                number.setMonth(month);
+                number.setTime(month);
                 number.setQuantity(0);
                 numberLists.add(number);
             }
@@ -104,11 +122,11 @@ public class DashBoardService {
             quarter:
             for (int quarter = 1; quarter <= 4; quarter++) {
                 for (NumberList nl : numberLists) {
-                    if (nl.getMonth() == quarter) continue quarter;
+                    if (nl.getTime() == quarter) continue quarter;
                 }
 
                 NumberList number = new NumberList();
-                number.setMonth(quarter);
+                number.setTime(quarter);
                 number.setQuantity(0);
                 numberLists.add(number);
             }
@@ -134,7 +152,7 @@ public class DashBoardService {
         return new Comparator<NumberList>() {
             @Override
             public int compare(NumberList o1, NumberList o2) {
-                return o1.getMonth() - o2.getMonth();
+                return o1.getTime() - o2.getTime();
             }
         };
     }

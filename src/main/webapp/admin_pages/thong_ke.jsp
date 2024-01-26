@@ -17,15 +17,19 @@
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="stylesheet" href="../css/thong_the.css">
+    <link href="../select2/select2.min.css" rel="stylesheet"/>
     <link rel="icon" href="../images/logo/logo_icon.png">
 
     <%--jquery--%>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
 
+    <%--Select 2--%>
+    <script src="../select2/select2.min.js"></script>
+
     <%--notify--%>
     <script src="../notify/notify.js"></script>
-    <title>Quản lý sản phẩm</title>
+    <title>Thống kê</title>
 
     <%--chart--%>
     <script src="../chartjs/dist/chart.js"></script>
@@ -79,11 +83,14 @@
                          aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="thong_ke.jsp" class="nav-link px-4 rounded active">DashBoard</a>
+                                </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
                                     <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
-                                    <a href="quan_ly_san_pham.jsp" class="nav-link px-4 rounded active">Quản lý sản
+                                    <a href="quan_ly_san_pham.jsp" class="nav-link px-4 rounded">Quản lý sản
                                         phẩm</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -112,20 +119,20 @@
                 <div class="option-search row">
                     <div class="col-3">
                         <div class="search-item rounded w-75">
-                            <select class="number-by-category py-2 rounded w-100 border-0" name="input-category" id="input-category">
+                            <select class="number-list-by-category py-2 rounded w-100 border-0" name="input-category" id="input-category">
                                 <option value="0" selected>Nhóm danh mục</option>
                                 <option value="1">Danh mục</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
-                        <select class="number-by-category py-2 rounded w-75" name="input-quarter" id="input-category-quarter">
+                        <select class="number-list-by-category py-2 rounded w-75" name="input-quarter" id="input-category-quarter">
                             <option value="1" selected>Theo quý</option>
                             <option value="0">Theo tháng</option>
                         </select>
                     </div>
                     <div class="col-3">
-                        <select class="number-by-category py-2 rounded w-75" name="input-year" id="input-category-year">
+                        <select class="number-list-by-category py-2 rounded w-75" name="input-year" id="input-category-year">
                         </select>
                     </div>
                 </div>
@@ -140,17 +147,17 @@
 
                 <div class="option-search row">
                     <div class="col-3">
-                        <div class="number-by-product search-item rounded w-75">
+                        <div class="number-list-by-product search-item rounded w-75">
                             <select class="py-2 rounded w-100 border-0" name="input-product" id="input-product">
                             </select>
                         </div>
                     </div>
                     <div class="col-3">
-                        <select class="number-by-product py-2 rounded w-75" name="input-month" id="input-product-month">
+                        <select class="number-list-by-product py-2 rounded w-75" name="input-month" id="input-product-month">
                         </select>
                     </div>
                     <div class="col-3">
-                        <select class="number-by-product py-2 rounded w-75" name="input-year" id="input-product-year">
+                        <select class="number-list-by-product py-2 rounded w-75" name="input-year" id="input-product-year">
                         </select>
                     </div>
                 </div>

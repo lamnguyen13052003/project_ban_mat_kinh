@@ -14,40 +14,19 @@ $(document).ready(function () {
         );
     }
 
+    getProducts();
+
     const labelMonth = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
     const labelQuarter = ['Quý 1', 'Quý 2', 'Quý 3', 'Quý 4'];
-    const data = [
-        {
-            label: 'Tổng danh số',
-            data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
-        },
-        {
-            label: 'Kính mát',
-            data: [4, 3, 7, 4, 2, 25, 15, 20, 3, 7, 15, 20],
-        },
-        {
-            label: 'Mắt kính trẻ em',
-            data: [4, 3, 7, 4, 2, 25, 15, 20, 3, 7, 15, 20],
-        },
-        {
-            label: 'Gọng kính',
-            data: [4, 3, 7, 4, 2, 25, 15, 20, 3, 7, 15, 20],
-        },
-        {
-            label: 'Tròng kính',
-            data: [4, 3, 7, 4, 2, 25, 15, 20, 3, 7, 15, 20],
-        }
-    ];
 
-    const chartProduct = createChart($("#chart-product"));
-
-    const chartCategory = createChart($("#chart-category"));
+    const chartProduct = createChart($("#chart-product"), 'line');
+    const chartCategory = createChart($("#chart-category"), 'bar');
     let colorCategory = [];
     let colorCategoryGroup = [];
 
-    $(".number-by-category").change(function () {
+    $(".number-list-by-category").change(function () {
         const dataSend = {
-            "action": "number-by-category",
+            "action": "number-list-by-category",
             "category": $("#input-category").val(),
             "quarter": $("#input-category-quarter").val(),
             "year": $("#input-category-year").val(),
@@ -78,9 +57,29 @@ $(document).ready(function () {
         });
     });
 
-    $("#input-category").change();
+    $(".number-list-by-product").change(function () {
+        const dataSend = {
+            "action": "number-list-by-product",
+            "product-id": $("#input-product").val(),
+            "month": $("#input-product-month").val(),
+            "year": $("#input-product-year").val(),
+        }
 
-    getProducts();
+        $.ajax({
+            url: "dashboard",
+            dataType: "json",
+            data: dataSend,
+            method: "POST",
+            success: function (data) {
+                updateChartProduct(chartProduct, $("#input-product option:selected").text(), data.lengthOfMonth, data.data);
+            },
+            error: function (jqXHR, textStatus, errorTh) {
+                console.error("Lỗi");
+            }
+        });
+    });
+
+    $("#input-category").change();
 });
 
 function chartSell(chart, label, data) {
@@ -107,6 +106,8 @@ function getProducts() {
             )
 
             $("#input-product").html(html);
+            $("#input-product").change();
+            $("#input-product").select2();
         }
     })
 }
@@ -133,13 +134,12 @@ function createColor(data, colors) {
         colors.push(randomColor());
     });
 
-    console.log(colors);
     return colors;
 }
 
-function createChart(ctx) {
+function createChart(ctx, type) {
     return new Chart(ctx, {
-        type: 'bar',
+        type: type,
         data: {
             labels: [],
             datasets: [],
@@ -163,5 +163,20 @@ function randomColor() {
 
     return color;
 }
+
+function updateChartProduct(chart, productName, lengthOfMonth, data) {
+    let label = [];
+    for (let day = 0; day < lengthOfMonth; day++) label[day] = "Ngày " + (day + 1);
+    const dataset = [{
+        label: productName,
+        data: data.map(entry => entry.quantity)
+    }];
+    chart.type = 'line';
+    chart.data.labels = label;
+    chart.data.datasets = dataset;
+    chart.update();
+}
+
+
 
 

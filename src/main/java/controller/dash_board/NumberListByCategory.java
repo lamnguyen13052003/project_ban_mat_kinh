@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class NumberByCategory implements Action {
+public class NumberListByCategory implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String yearStr = request.getParameter("year");
@@ -23,7 +23,7 @@ public class NumberByCategory implements Action {
         }
 
         JSONObject json = new JSONObject();
-        json.put("data", DashBoardService.getInstance().numberByCategory(category, quarter, year));
+        json.put("data", DashBoardService.getInstance().numberListByCategory(category, quarter, year));
         response.getWriter().println(json.toString());
     }
 }

@@ -19,7 +19,7 @@ public class DashBoardDAO extends DAO {
     }
 
     public List<NumberList> numberListByCategoryGroupAndMonth(int year) {
-        String sql = "SELECT cg.name AS name, MONTH(bs.date) AS MONTH, SUM(bd.quantity) AS quantity FROM bill_details AS bd\n" +
+        String sql = "SELECT cg.name AS name, MONTH(bs.date) AS TIME, SUM(bd.quantity) AS quantity FROM bill_details AS bd\n" +
                 "JOIN products AS p \n" +
                 "\tJOIN categories AS c\n" +
                 "\t\tJOIN category_groups AS cg ON cg.id = c.categoryGroupId\n" +
@@ -38,7 +38,7 @@ public class DashBoardDAO extends DAO {
     }
 
     public List<NumberList> numberListByCategoryAndMonth(int year) {
-        String sql = "SELECT c.name AS name, MONTH(bs.date) AS MONTH, SUM(bd.quantity) AS quantity FROM bill_details AS bd\n" +
+        String sql = "SELECT c.name AS name, MONTH(bs.date) AS TIME, SUM(bd.quantity) AS quantity FROM bill_details AS bd\n" +
                 "JOIN products AS p \n" +
                 "\tJOIN categories AS c\n" +
                 "\t\tJOIN category_groups AS cg ON cg.id = c.categoryGroupId\n" +
@@ -64,7 +64,7 @@ public class DashBoardDAO extends DAO {
                 "\t\tWHEN MONTH(bs.date) IN (4, 5, 6) THEN 2\n" +
                 "\t\tWHEN MONTH(bs.date) IN (7, 8, 9) THEN 3\n" +
                 "\t\tELSE 4\n" +
-                "\tEND AS month, \n" +
+                "\tEND AS TIME, \n" +
                 "\tSUM(bd.quantity) AS quantity \n" +
                 "FROM bill_details AS bd\n" +
                 "JOIN products AS p\n" +
@@ -92,7 +92,7 @@ public class DashBoardDAO extends DAO {
                 "\t\tWHEN MONTH(bs.date) IN (4, 5, 6) THEN 2\n" +
                 "\t\tWHEN MONTH(bs.date) IN (7, 8, 9) THEN 3\n" +
                 "\t\tELSE 4 \n" +
-                "\tEND AS month, \n" +
+                "\tEND AS TIME, \n" +
                 "\tSUM(bd.quantity) AS quantity \n" +
                 "FROM bill_details AS bd\n" +
                 "JOIN products AS p\n" +
@@ -106,6 +106,26 @@ public class DashBoardDAO extends DAO {
                 "GROUP BY c.name, MONTH(bs.date) IN (1, 2, 3), MONTH(bs.date) IN (4, 5, 6), MONTH(bs.date) IN (7, 8, 9), MONTH(bs.date) IN (10, 11, 12);";
         return connector.withHandle(handle ->
                 handle.createQuery(sql)
+                        .bind("year", year)
+                        .mapToBean(NumberList.class)
+                        .list()
+        );
+    }
+
+    public List<NumberList> numberListByProduct(int productId, int month, int year) {
+        String sql = "SELECT p.name AS name, DAY(bs.date) AS TIME, SUM(bd.quantity) AS quantity\n" +
+                "FROM bills AS b\n" +
+                "JOIN bill_details AS bd\n" +
+                "\tJOIN products AS p ON p.id = bd.id\n" +
+                "ON bd.billId = b.id\n" +
+                "JOIN bill_statuses AS bs ON bs.billId = b.id\n" +
+                "WHERE bs.id = (SELECT MIN(id) FROM bill_statuses WHERE bill_statuses.billId = b.id)\n" +
+                "AND YEAR(bs.date) = :year AND MONTH(bs.date) = :month AND p.id = :productId\n" +
+                "GROUP BY p.name, DAY(bs.date)";
+        return connector.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("productId", productId)
+                        .bind("month", month)
                         .bind("year", year)
                         .mapToBean(NumberList.class)
                         .list()

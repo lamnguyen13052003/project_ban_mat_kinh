@@ -28,7 +28,8 @@ public class DashBoardController extends HttpServlet {
         String actionStr = request.getParameter("action");
         Action action = null;
         switch (actionStr){
-            case "number-by-category" -> action = new NumberByCategory();
+            case "number-list-by-category" -> action = new NumberListByCategory();
+            case "number-list-by-product" -> action = new NumberListByProduct();
         }
         action.action(request, response);
     }
