@@ -89,6 +89,12 @@ public class ProductService {
         return new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), 0.0, null, 0);
     }
 
+    public ProductCart getProductBill(int id) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        Product product = productDAO.getProductBill(id);
+        return new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), 0.0, null, 0);
+    }
+
     /**
      * Lấy các sản phẩm theo câu query
      */

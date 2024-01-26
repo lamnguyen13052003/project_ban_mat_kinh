@@ -32,7 +32,7 @@ public class ProductDAO extends DAO {
         }
 
         if (MAP_SQL_FILTER.isEmpty()) {
-            MAP_SQL_FILTER.put("filter-brandName", " AND brandName IN ");
+            MAP_SQL_FILTER.put("filter-brand", " AND brandName IN ");
             MAP_SQL_FILTER.put("filter-material", " AND material IN ");
             MAP_SQL_FILTER.put("filter-type", " AND type IN ");
             MAP_SQL_FILTER.put("filter-price", " price BETWEEN ? AND ? OR ");
@@ -83,6 +83,25 @@ public class ProductDAO extends DAO {
         String sql = initSQLGetProduct(select);
         return connector.withHandle(handle ->
                 handle.createQuery(sql)
+                        .bind(0, id)
+                        .mapToBean(Product.class)
+                        .findFirst().orElse(null)
+        );
+    }
+
+    public Product getProductBill(int id) {
+        int index = 0;
+        String select = " p.id, c.name as categoryName, p.name, p.brandName, p.price ";
+
+        StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
+        sql.append(JOIN_2);
+        sql.append(WHERE_JOIN_3);
+
+        int lastIndexOfWhere = sql.lastIndexOf("WHERE");
+        if (sql.indexOf("WHERE") != lastIndexOfWhere) sql.replace(lastIndexOfWhere, lastIndexOfWhere + 5, "AND ");
+
+        return connector.withHandle(handle ->
+                handle.createQuery(sql.toString())
                         .bind(0, id)
                         .mapToBean(Product.class)
                         .findFirst().orElse(null)
@@ -305,7 +324,7 @@ public class ProductDAO extends DAO {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT DISTINCT p.brandName " +
                                 "FROM products AS p " +
-                                "WHERE p.brandName IS NOT NULL;")
+                                "WHERE p.brandName IS NOT NULL  AND `delete` = 0;")
                         .mapTo(String.class)
                         .list()
         );
@@ -711,5 +730,25 @@ public class ProductDAO extends DAO {
                         .mapToBean(Product.class)
                         .list()
         );
+    }
+
+    public void update() {
+        String sql = "UPDATE products SET price = :price WHERE id = :id";
+        Random rd = new Random(System.currentTimeMillis());
+        for (int i = 1; i <= 372; i++) {
+            int id = i;
+            double price = rd.nextDouble(0, 10000000);
+            connector.withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("price", price)
+                            .bind("id", id)
+                            .execute()
+            );
+        }
+    }
+
+    public static void main(String[] args) {
+        ProductDAO productDAO = new ProductDAO();
+        productDAO.update();
     }
 }

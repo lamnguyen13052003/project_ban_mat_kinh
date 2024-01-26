@@ -44,7 +44,7 @@ public class SeeDetail implements Action {
             productId = billDetails.getProductId();
             modelId = billDetails.getModelId();
             quantity = billDetails.getQuantity();
-            productCart = service.getProductCart(productId);
+            productCart = service.getProductBill(productId);
             if (productCart == null) {
                 response.sendRedirect("error.jsp");
                 return;
