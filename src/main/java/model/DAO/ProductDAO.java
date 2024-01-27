@@ -165,7 +165,7 @@ public class ProductDAO extends DAO {
     public int totalPages(Map<String, Integer> mapInfRoot, Map<String, List<String>> mapFilter, Map<String, String> mapSort) {
         int result;
         String select = " COUNT(P.id) ";
-        String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort), name;
+        String sql = initSQLGetProducts(select, mapInfRoot, mapFilter, mapSort);
         Handle handle = connector.open();
         Query query = handle.createQuery(sql);
         setValuesQuery(query, mapInfRoot, mapFilter, mapSort);
@@ -193,16 +193,19 @@ public class ProductDAO extends DAO {
         StringBuilder sql = new StringBuilder("SELECT " + select + " FROM products AS p ");
 
         if (idCategoryGroup == 0 && idCategory == 0) {
+            System.out.println("Khuyến mãi");
             sql.append(JOIN_1);
             sql.append(WHERE_JOIN_1);
         }
 
         if ((idCategoryGroup > 0 && idCategory == 0) || id != 0) {
+            System.out.println("Nhóm danh mục");
             sql.append(JOIN_2);
             sql.append(WHERE_JOIN_2);
         }
 
         if (idCategoryGroup > 0 && idCategory != 0) {
+            System.out.println("Danh mục");
             sql.append(WHERE_NOT_JOIN);
         }
 

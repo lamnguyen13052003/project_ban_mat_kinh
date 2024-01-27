@@ -194,7 +194,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="phone" name="phone" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                        <input type="tel" class="form-control" id="phone" name="phone" required pattern="[0-9]{10}">
                     </div>
                     <div class="form-group">
                         <label for="address">Địa chỉ <span class="text-danger">*</span></label>

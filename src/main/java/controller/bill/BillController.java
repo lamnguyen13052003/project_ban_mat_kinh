@@ -137,12 +137,13 @@ public class BillController extends HttpServlet implements Action {
             session.setAttribute("bill", new BillService());
             session.setAttribute("cart", cart);
             session.setAttribute("billPayed", bill);
-            String url = request.getRequestURL().toString().replace("re_send_code_verify", "register") + "?action=verify";
             response.sendRedirect("thanh_toan_thanh_cong.jsp");
         }
         else {
             title = "Thanh toán không thành công";
             message = "1 trong sản phẩm trong danh sách sản phẩm vừa hết hàng.";
+            session.setAttribute("title", title);
+            session.setAttribute("message", message);
             response.sendRedirect("gio_hang.jsp");
         }
     }

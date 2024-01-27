@@ -18,9 +18,9 @@ public class ProductBoothController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String queryString = sqlSpace(request);
         ProductService productService = ProductService.getInstance();
+        Map<String, Integer> mapInfRoot = productService.getMapInfRoot(queryString);
         Map<String, List<String>> mapFilter = productService.getMapFilter(queryString);
         Map<String, String> mapSort = productService.getMapSort(queryString);
-        Map<String, Integer> mapInfRoot = productService.getMapInfRoot(queryString);
         List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort, 20);
         List<String> materials = productService.getMaterials(),
                 types = productService.getTypes(),
@@ -38,7 +38,7 @@ public class ProductBoothController extends HttpServlet {
         request.setAttribute("types", types);
         request.setAttribute("brands", brands);
         request.setAttribute("request", queryString);
-        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("total-page", totalPages);
         request.setAttribute("page", page);
         request.setAttribute("mapInfRoot", mapInfRoot);
         request.setAttribute("mapFilter", mapFilter);
@@ -54,14 +54,14 @@ public class ProductBoothController extends HttpServlet {
 
     public String sqlSpace(HttpServletRequest request) {
         String query = "id-category-group=";
-        String page = request.getParameter("page");
+        String[] pages = request.getParameterValues("page");
         String idCategoryGroup = request.getParameter("id-category-group");
         String idCategory = request.getParameter("id-category");
-        query += idCategoryGroup == null ? "1" : idCategoryGroup;
+        query += idCategoryGroup == null ? "0" : idCategoryGroup;
         query += "&id-category=";
-        query += idCategory == null ? "1" : idCategoryGroup;
+        query += idCategory == null ? "0" : idCategory;
         query += "&page=";
-        query += page == null ? "1" : page;
+        query += pages == null ? "1" : pages[pages.length - 1];
         if (request.getParameter("none") != null) return query;
 
         String[] arrayFilterBrand = request.getParameterValues("filter-brand");

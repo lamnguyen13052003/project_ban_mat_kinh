@@ -28,6 +28,13 @@ public class LoginGoogleController extends HttpServlet {
         User user;
         if (userService.containsEmail(email)) {
             user =  userService.getUser(email);
+
+            if (user == null) {
+                request.setAttribute("login_error", "Tài khoản của bạn đã bị khóa!");
+                request.getRequestDispatcher("dang_nhap.jsp").forward(request, response);
+                return;
+            }
+
             request.getSession().setAttribute("user", user);
             if (user.isAdmin()) {
                 response.sendRedirect("admin_pages/quan_ly_tai_khoan.jsp");

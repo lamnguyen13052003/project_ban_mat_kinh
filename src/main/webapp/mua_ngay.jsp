@@ -24,7 +24,7 @@
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="jquery/jquery-3.7.1.min.js"></script>
 
-    <title>Giỏ hàng</title>
+    <title>Mua ngay</title>
 </head>
 <body>
 <header id="menu">
@@ -264,7 +264,8 @@
             <!--Thanh toán-->
             <div class="col-md-4" id="pay">
                 <div class="payment-info">
-                    <form accept-charset="UTF-8" action="bill_buy_now" method="POST" id="form-info-customer">
+                    <form accept-charset="UTF-8" action="buy_now" method="POST" id="form-info-customer">
+                        <input type="text" name="action" hidden="" value="pay">
                         <div class="d-flex justify-content-between align-items-center">
                             <span>Thanh toán</span>
                         </div>

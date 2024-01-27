@@ -175,12 +175,12 @@ public class ProductService {
         tk = new StringTokenizer(query, "&=");
         while (tk.hasMoreTokens()) {
             name = tk.nextToken();
-
             if (name.startsWith("id") || name.startsWith("page")) {
                 valueInt = Integer.parseInt(tk.nextToken());
                 mapInfRoot.put(name, valueInt);
             }
         }
+
 
         return mapInfRoot;
     }

@@ -4,7 +4,6 @@ import controller.Action;
 import model.bean.Cart;
 import model.bean.ProductCart;
 import model.service.BillService;
-import model.service.CartService;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -18,7 +17,6 @@ import java.util.Locale;
 public class ReduceProductBuyNow implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("giam buy-now");
         HttpSession session = request.getSession();
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
         BillService billService = (BillService) session.getAttribute("bill-buy-now");

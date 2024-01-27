@@ -4,27 +4,14 @@ import controller.Action;
 import model.bean.Bill;
 import model.bean.User;
 import model.service.BillService;
-import model.service.CartService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "BillController", value = "/bill_buy_now")
-public class BillBuyNowController extends HttpServlet implements Action {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-    }
-
+public class PayBuyNow implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -117,7 +104,7 @@ public class BillBuyNowController extends HttpServlet implements Action {
         if (message != null) {
             session.setAttribute("title", title);
             session.setAttribute("message", message);
-            response.sendRedirect("gio_hang.jsp");
+            request.getRequestDispatcher("mua_ngay.jsp").forward(request, response);
             return;
         }
 
@@ -133,18 +120,15 @@ public class BillBuyNowController extends HttpServlet implements Action {
         bill.setTransportFee(20000.0);
         bill.setTransfer(transfer);
         if (billService.saveBill(bill)) {
-            CartService cart = (CartService) session.getAttribute("cart");
-            cart.bought(bill);
-            session.setAttribute("bill", new BillService());
-            session.setAttribute("cart", cart);
+            session.setAttribute("bill-buy-now", new BillService());
             session.setAttribute("billPayed", bill);
-            String url = request.getRequestURL().toString().replace("re_send_code_verify", "register") + "?action=verify";
             response.sendRedirect("thanh_toan_thanh_cong.jsp");
-        }
-        else {
+        } else {
             title = "Thanh toán không thành công";
             message = "1 trong sản phẩm trong danh sách sản phẩm vừa hết hàng.";
-            response.sendRedirect("gio_hang.jsp");
+            session.setAttribute("title", title);
+            session.setAttribute("message", message);
+            request.getRequestDispatcher("mua_ngay.jsp").forward(request, response);
         }
     }
 }

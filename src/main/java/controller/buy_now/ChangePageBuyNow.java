@@ -18,7 +18,6 @@ import java.util.Locale;
 public class ChangePageBuyNow implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("buy-now");
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.of("vi", "VN"));
         HttpSession session = request.getSession();
         BillService billService = new BillService();
@@ -51,9 +50,6 @@ public class ChangePageBuyNow implements Action {
         double totalBill = billService.getTotalBill();
         double totalPriceReduced = billService.getTotalPriceReduced();
         double shippingFee = Double.compare(totalBill, 0) == 0 ? 0 : 20000;
-        //load logo
-        BannerImage logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
-        request.setAttribute("logo", logo);
 
         request.setAttribute("product-cart", productCart);
         request.setAttribute("totalBill", nf.format(totalBill));

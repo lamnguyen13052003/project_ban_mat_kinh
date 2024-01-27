@@ -223,7 +223,8 @@
                 <div class="filter-header">
                     <div class="section-title-all row d-flex align-items-center">
                         <div class="col-11">
-                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (<%=request.getAttribute("totalFilter")%>lựa chọn) <i class="lnil lni-plus"></i>
+                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (<%=request.getAttribute("totalFilter")%>lựa
+                                chọn) <i class="lnil lni-plus"></i>
                             </h2>
                         </div>
                         <!--Nút hủy bộ lọc-->
@@ -259,7 +260,7 @@
                             <li class="<%=indexBrands > 4 ?"d-none hidden" : ""%>">
                                 <button class="border-0"
                                         value="<%=brands.get(indexBrands)%>">
-                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-brand=<%=brands.get(indexBrands)%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-brand=<%=brands.get(indexBrands)%>&page=1">
                                         <%=brands.get(indexBrands)%>
                                     </a>
                                 </button>
@@ -282,7 +283,7 @@
                             <li class="<%=indexMaterial > 4 ?"d-none hidden" : ""%>">
                                 <button class="border-0"
                                         value="<%=materials.get(indexMaterial)%>">
-                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-material=<%=materials.get(indexMaterial)%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-material=<%=materials.get(indexMaterial)%>&page=1">
                                         <%=materials.get(indexMaterial)%>
                                     </a>
                                 </button>
@@ -300,49 +301,49 @@
                         <ul class="filter-list">
                             <li>
                                 <button class="border-0" value="0-220000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=0-220000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=0-220000&page=1")%>">
                                         0 - 220,000
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" value="220000-500000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=220000-500000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=220000-500000&page=1")%>">
                                         220,000 - 500,000
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" value="500000-1000000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=500000-1000000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=500000-1000000&page=1")%>">
                                         500,000 - 1,000,000
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" value="1000000-2000000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=1000000-2000000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=1000000-2000000&page=1")%>">
                                         1,000,000 - 2,000,000
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
                                 <button class="border-0" value="2000000-3000000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=2000000-3000000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=2000000-3000000&page=1")%>">
                                         2,000,000 - 3,000,000
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
                                 <button class="border-0" value="3000000-5000000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=3000000-5000000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=3000000-5000000&page=1")%>">
                                         3,000,000 - 5,000,000
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
                                 <button class="border-0" value="5000000-10000000">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=5000000-10000000")%>">
+                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=5000000-10000000&page=1")%>">
                                         5,000,000 - 10,000,000
                                     </a>
                                 </button>
@@ -364,7 +365,7 @@
                             <li class="<%=indexType > 4 ? "d-none hidden" : ""%>">
                                 <button class="border-0"
                                         value="<%=types.get(indexType)%>">
-                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-type=<%=types.get(indexType)%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-type=<%=types.get(indexType)%>&page=1">
                                         <%=types.get(indexType)%>
                                     </a>
                                 </button>
@@ -411,7 +412,7 @@
                             </li>
                             <li>
                                 <button class="border-0" id="sort-name-decs">
-                                    <a href="product-booth?"<%=request.getAttribute("request")%>&sort-name=decs">
+                                    <a href="product-booth?" <%=request.getAttribute("request")%>&sort-name=decs">
                                         Tên: A-Z
                                     </a>
                                 </button>
@@ -583,42 +584,71 @@
             <section id="navigation_change_page">
                 <nav class="content-footer">
                     <ul class="pagination d-flex justify-content-center">
+                        <%
+                            int totalPage = Integer.parseInt(String.valueOf(request.getAttribute("total-page"))),
+                                    currentPage = Integer.parseInt(String.valueOf(request.getAttribute("page"))),
+                                    indexPage = 1;
+                            if (totalPage != 1) {
+                        %>
+                        <%if (currentPage != 1) {%>
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center">
-                                <span class="material-symbols-outlined d-flex">chevron_left</span>
-                            </button>
-                        </li>
-
-                        <li>
-                            <button class="page-link d-flex justify-content-center align-items-center"
-                                    target-page="1">
-                                1
-                            </button>
-                        </li>
-                        <li>
-                            <button class="page-link d-flex justify-content-center align-items-center"
-                                    target-page="2">
-                                2
-                            </button>
+                            <a href="product-booth?<%=request.getAttribute("request")%>&page=1">
+                                <button class="d-flex align-items-center justify-content-center">
+                                    <span class="material-symbols-outlined">keyboard_double_arrow_left</span>
+                                </button>
+                            </a>
                         </li>
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center"
-                                    target-page="3">
-                                3
-                            </button>
+                            <a href="product-booth?<%=request.getAttribute("request")%>&page=<%=currentPage-1%>">
+                                <button id="prev" class="d-flex align-items-center justify-content-center">
+                                    <span class="material-symbols-outlined">chevron_left</span>
+                                </button>
+                            </a>
+                        </li>
+                        <%}%>
+                        <%
+                            for (indexPage = currentPage - 2; indexPage < currentPage; indexPage++) {
+                                if (indexPage > 0) {
+                        %>
+                        <li>
+                            <a href="product-booth?<%=request.getAttribute("request")%>&page=<%=indexPage%>">
+                                <button class="d-flex align-items-center justify-content-center button-number"
+                                        data-target="<%=indexPage%>">
+                                    <%=indexPage%>
+                                </button>
+                            </a>
+                        </li>
+                        <%
+                                }
+                            }
+                        %>
+                        <%for (indexPage = currentPage; indexPage <= totalPage && (indexPage - currentPage) < (4 - ((currentPage - 3) > 0 ? 0 : (currentPage - 3))); indexPage++) {%>
+                        <li class="<%=currentPage == indexPage ? "active" : ""%>">
+                            <a href="product-booth?<%=request.getAttribute("request")%>&page=<%=indexPage%>">
+                                <button class="d-flex align-items-center justify-content-center button-number"
+                                        data-target="<%=indexPage%>">
+                                    <%=indexPage%>
+                                </button>
+                            </a>
+                        </li>
+                        <%}%>
+                        <%if (totalPage != 0 && currentPage != totalPage) {%>
+                        <li>
+                            <a href="product-booth?<%=request.getAttribute("request")%>&page=<%=currentPage+1%>">
+                                <button id="next" class="d-flex align-items-center justify-content-center">
+                                    <span class="material-symbols-outlined">chevron_right</span>
+                                </button>
+                            </a>
                         </li>
                         <li>
-                            <button class="page-link d-flex justify-content-center align-items-center"
-                                    target-page="4">
-                                4
-                            </button>
+                            <a href="product-booth?<%=request.getAttribute("request")%>&page=<%=totalPage%>">
+                                <button class="d-flex align-items-center justify-content-center">
+                                    <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+                                </button>
+                            </a>
                         </li>
-
-                        <li>
-                            <button class="page-link d-flex justify-content-center align-items-center">
-                                <span class="material-symbols-outlined d-flex">chevron_right</span>
-                            </button>
-                        </li>
+                        <%}%>
+                        <%}%>
                     </ul>
                 </nav>
             </section>
