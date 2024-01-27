@@ -146,6 +146,7 @@ public class UserDAO extends DAO {
 
         );
     }
+
     public int updateProdile(User user) {
         connector = JDBIConnector.get();
         return connector.withHandle(handle ->
@@ -159,6 +160,7 @@ public class UserDAO extends DAO {
 
         );
     }
+
     public User login(String email, String password) {
         connector = JDBIConnector.get();
         User user = connector.withHandle(handle ->
@@ -254,15 +256,16 @@ public class UserDAO extends DAO {
     }
 
     public int resetPassword(String email, String password) {
-            return connector.withHandle(handle ->
-                    handle.createUpdate("UPDATE users SET " +
-                                    "`password` = ? " +
-                                    "WHERE email = ?;")
-                            .bind(0, password)
-                            .bind(1, email)
-                            .execute()
-            );
+        return connector.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET " +
+                                "`password` = ? " +
+                                "WHERE email = ?;")
+                        .bind(0, password)
+                        .bind(1, email)
+                        .execute()
+        );
     }
+
     public List<User> getAllUsers() {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT * FROM users")
@@ -272,5 +275,28 @@ public class UserDAO extends DAO {
     }
 
 
+    public User getUser(String email) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.birthday, u.fullName, u.sex, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = 0")
+                        .bind(0, email)
+                        .mapToBean(User.class)
+                        .findFirst().orElse(null)
+        );
+    }
+
+    public int insertUserNonVerify(User user) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO `users` (`avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL)")
+                        .bind(0, user.getAvatar())
+                        .bind(1, user.getFullName())
+                        .bind(2, user.getSex())
+                        .bind(3, user.getBirthDay())
+                        .bind(4, user.getEmail())
+                        .bind(5, user.getPassword())
+                        .bind(6, user.getRole())
+                        .bind(8, 0)
+                        .execute()
+        );
+    }
 }
 

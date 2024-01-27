@@ -9,9 +9,15 @@ public class Bill {
     private Boolean transfer;
     private Double transportFee;
     private List<BillStatus> statuses;
-    private ArrayList<BillDetail> details;
+    private List<BillDetail> details;
+
+    private String addressDetail;
+
     public Integer getId() {
         return id;
+    }
+
+    public Bill() {
     }
 
     public void setId(Integer id) {
@@ -70,7 +76,7 @@ public class Bill {
         this.transfer = transfer;
     }
 
-    public ArrayList<BillDetail> getDetails() {
+    public List<BillDetail> getDetails() {
         return details;
     }
 
@@ -141,11 +147,39 @@ public class Bill {
                 '}';
     }
 
-    public double totalBill(){
+    public double totalBill() {
         double total = 0;
-        for(BillDetail bd : this.getDetails()){
+        for (BillDetail bd : this.getDetails()) {
             total += bd.getPrice() * bd.getQuantity();
         }
         return total + transportFee;
+    }
+
+    public void setStatuses(List<BillStatus> statuses) {
+        this.statuses = statuses;
+    }
+
+    public void setDetails(List<BillDetail> details) {
+        this.details = details;
+    }
+
+    public BillStatus getLastStatus() {
+        return this.statuses.get(this.statuses.size()-1);
+    }
+
+    public boolean canEdit() {
+        return getLastStatus().getCanEdit();
+    }
+
+    public Boolean getTransfer() {
+        return transfer;
+    }
+
+    public String getAddressDetail() {
+        return addressDetail;
+    }
+
+    public void setAddressDetail(String addressDetail) {
+        this.addressDetail = addressDetail;
     }
 }

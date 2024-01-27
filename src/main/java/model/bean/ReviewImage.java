@@ -1,7 +1,7 @@
 package model.bean;
 
 public class ReviewImage {
-    private Integer reviewId;
+    private Integer id, reviewId;
     private String urlImage;
 
     public Integer getReviewId() {
@@ -18,6 +18,14 @@ public class ReviewImage {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

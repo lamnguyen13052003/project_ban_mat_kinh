@@ -14,7 +14,7 @@ public class GetMaterialProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService productService = ProductService.getInstance();
-        List<String> materials = productService.getMaterials();
+        List<String> materials = productService.getMaterialsForAdmin();
         JSONObject json = new JSONObject();
         json.put("materials", materials);
         response.setContentType("application/json");

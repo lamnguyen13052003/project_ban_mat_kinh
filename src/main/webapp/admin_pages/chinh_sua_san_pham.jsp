@@ -71,6 +71,9 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="thong_ke.jsp" class="nav-link px-4 rounded">DashBoard</a>
+                                </li>
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
@@ -174,7 +177,7 @@
                                accept="image/jpeg,image/png" hidden="">
                     </div>
                 </div>
-                <small class="text-danger ps-4 error-product-image" hidden="">Vui lòng thêm ảnh cho sản phẩm của
+                <small class="text-danger ps-4 error-product-image" hidden="">Vui lòng thêm tối thiểu 2 hình ảnh cho sản phẩm của
                     bạn!</small>
             </div>
 
@@ -422,7 +425,7 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
 
     $(document).ready(function (){

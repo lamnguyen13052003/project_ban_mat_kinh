@@ -17,7 +17,7 @@ function uploadFile() {
         formData.append('action', 'upload-file');
         formData.append(bannerId, file);
         $.ajax({
-            url: 'banner',
+            url: 'banner_manager',
             data: formData,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ function addFile() {
         formData.append('action', 'add-file');
         formData.append("path-file", file);
         $.ajax({
-            url: 'banner',
+            url: 'banner_manager',
             data: formData,
             method: 'POST',
             dataType: 'json',
@@ -119,7 +119,7 @@ function removeSlides(slideId, filePath) {
     formData.append('slideId', slideId);
     formData.append("file-path", filePath);
     $.ajax({
-        url: 'banner',
+        url: 'banner_manager',
         data: formData,
         method: 'DELETE',
         dataType: "text",

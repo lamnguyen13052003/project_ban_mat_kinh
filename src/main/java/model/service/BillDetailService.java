@@ -10,14 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 public class BillDetailService {
-    public Map<Integer, Integer> getTotalQuantitySold(List<Product> products) {
+    private static BillDetailService service;
+
+    public static BillDetailService getInstance() {
+        return (service = service == null ? new BillDetailService() : service);
+    }
+
+    public int getTotalQuantitySold(Integer productId) {
         BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();
-        return billDetailDAO.getTotalQuantitySold(products);
+        return billDetailDAO.getTotalQuantitySold(productId);
     }
 
     public void insert(int id, List<BillDetail> details) {
         BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();
-        billDetailDAO.insert(id, details);
+        for(BillDetail billDetail : details) {
+            billDetail.setBillId(id);
+            billDetailDAO.insert(billDetail);
+        }
     }
 
 //    public boolean checkQuantity(Bill bill) {
@@ -28,5 +37,10 @@ public class BillDetailService {
     public int getTotalSale(Integer billId) {
         BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();
         return billDetailDAO.getTotalSale(billId);
+    }
+
+    public List<BillDetail> getBillDetails(Integer billId) {
+        BillDetailDAO billDetailDAO = BillDetailDAO.getInstance();
+        return billDetailDAO.getBillDetails(billId);
     }
 }

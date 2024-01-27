@@ -1,22 +1,26 @@
 package model.service;
 
 import model.DAO.BillDAO;
-import model.bean.Bill;
-import model.bean.BillDetail;
-import model.bean.BillStatus;
-import model.bean.ProductCart;
+import model.bean.*;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 public class BillService {
+    private static BillService service;
     private Map<String, ProductCart> productCartMap;
 
     public BillService() {
         productCartMap = new HashMap<>();
+    }
+
+    public static BillService getInstance() {
+        return (service = service == null ? new BillService() : service);
     }
 
     public double getTotalBill() {
@@ -76,7 +80,6 @@ public class BillService {
     public boolean saveBill(Bill bill) {
         BillDAO billDAO = new BillDAO();
         BillDetailService billDetailService = new BillDetailService();
-        ReviewService reviewService = new ReviewService();
         BillStatusService billStatusService = new BillStatusService();
         int id = 0;
 //        boolean check = billDetailService.checkQuantity(bill);
@@ -85,7 +88,7 @@ public class BillService {
             id = billDAO.insert(bill);
             billDetailService.insert(id, bill.getDetails());
             bill.setId(id);
-            BillStatus status = new BillStatus(id, 1, "Đã xác nhận đơn hàng của bạn", true);
+            BillStatus status = new BillStatus(id, "Chờ xác nhận", "Đã xác nhận đơn hàng của bạn", true);
             bill.addStatus(status);
             billStatusService.insert(status);
         }
@@ -94,5 +97,43 @@ public class BillService {
 
     public boolean bought(int userId, int productId, int modelId) {
         return new BillDAO().bought(userId, productId, modelId);
+    }
+
+    public ProductCart getProductCart(int productId, int modelId) {
+        return productCartMap.get(Cart.getKey(productId, modelId));
+    }
+
+    public List<Bill> getBillsByUserId(int userId, String status, int offset) {
+        List<Bill> billList = new BillDAO().getBillsByUserId(userId, status, offset);
+        BillStatusService billStatusService = BillStatusService.getInstance();
+        for (Bill bill : billList) {
+            try {
+                List<BillStatus> billStatuses = billStatusService.getLastStatus(bill.getId());
+                bill.setStatuses(billStatuses);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return billList;
+    }
+
+    public Bill getBill(int billId) {
+        Bill bill = new BillDAO().getBill(billId);
+        if(bill == null) return null;
+        BillStatusService billStatusService = BillStatusService.getInstance();
+        BillDetailService billDetailService = BillDetailService.getInstance();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String addressDetails = AddressService.getInstance().getAddress(bill.getCodeProvince(), bill.getCodeDistrict(), bill.getCodeWard()) +
+                "<br>" + bill.getAddress();
+        List<BillStatus> billStatuses = billStatusService.getBillStatus(bill.getId());
+        List<BillDetail> billDetails = billDetailService.getBillDetails(bill.getId());
+        bill.setAddressDetail(addressDetails);
+        bill.setStatuses(billStatuses);
+        bill.setDetails(billDetails);
+        return bill;
+    }
+
+    public boolean updateContact(Bill bill) {
+        return BillDAO.getInstance().updateContact(bill);
     }
 }

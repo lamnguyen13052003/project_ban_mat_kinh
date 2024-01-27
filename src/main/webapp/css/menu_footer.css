@@ -51,9 +51,18 @@ ul, li, a{
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
+#menu .search{
+    position: relative;
+}
+
 #menu .active {
     background-color: #2F189A;
     color: #ffffff;
+}
+
+#menu .navbar-brand img{
+    width: 35px;
+    height: 35px;
 }
 
 #menu .navbar .container-xxl .row .search form {
@@ -131,4 +140,17 @@ footer.hover:hover {
     color: #2F189A;
     cursor: pointer;
     font-weight: bold;
+}
+
+/*********************************************/
+#display-product-search{
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #FFF;
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    margin-top: -5px;
 }

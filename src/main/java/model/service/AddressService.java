@@ -4,6 +4,7 @@ import model.DAO.AdressDAO;
 import model.DAO.DistrictDAO;
 import model.DAO.ProvinceDAO;
 import model.DAO.WardDAO;
+import model.bean.Bill;
 import model.bean.address.District;
 import model.bean.address.Province;
 import model.bean.address.Ward;
@@ -11,6 +12,12 @@ import model.bean.address.Ward;
 import java.util.List;
 
 public class AddressService {
+    private static AddressService service;
+
+    public static AddressService getInstance() {
+        return (service = service == null ? new AddressService() : service);
+    }
+
     public List<Province> getAllProvider() {
         ProvinceDAO dao = new ProvinceDAO();
         return dao.getAllProvince();

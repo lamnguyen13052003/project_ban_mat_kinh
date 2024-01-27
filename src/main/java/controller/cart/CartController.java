@@ -1,12 +1,10 @@
 package controller.cart;
 
 import controller.Action;
-import controller.BuyNowController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet(name = "CartController", value = "/cart")

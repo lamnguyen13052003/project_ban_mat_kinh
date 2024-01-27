@@ -2,10 +2,7 @@ package model.service;
 
 import model.bean.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CartService {
     private Cart cart;
@@ -50,7 +47,7 @@ public class CartService {
         return cart.totalProductCart();
     }
 
-    public double getTotalPriceProduct(int productId, int modelId) {
+    public double getTotalPriceProducts(int productId, int modelId) {
         return this.cart.getTotalPriceProduct(productId, modelId);
     }
 
@@ -73,5 +70,10 @@ public class CartService {
 
     public void bought(Bill bill){
         cart.bought(bill);
+    }
+
+
+    public static double getTotalPriceProducts(List<ProductCart> productCarts) {
+        return productCarts.stream().mapToDouble(ProductCart::totalPrice).sum();
     }
 }

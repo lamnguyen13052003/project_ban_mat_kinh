@@ -13,14 +13,18 @@
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+    <link rel="stylesheet" href="../notify/notify-metro.css"/>
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="stylesheet" href="../css/quan_ly_san_pham.css">
     <link rel="icon" href="../images/logo/logo_icon.png">
 
+    <%--jquery--%>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
 
+    <%--notify--%>
+    <script src="../notify/notify.js"></script>
     <title>Quản lý sản phẩm</title>
 </head>
 <body>
@@ -70,6 +74,9 @@
                          aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="thong_ke.jsp" class="nav-link px-4 rounded">DashBoard</a>
+                                </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
                                     <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
                                 </li>
@@ -81,7 +88,7 @@
                                     <a href="quan_ly_hoa_don.jsp" class="nav-link px-4 rounded">Quản lý hóa đơn</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="banner_manager" class="nav-link px-4 rounded">Quản lý banner</a>
+                                    <a href="quan_ly_banner.jsp" class="nav-link px-4 rounded">Quản lý banner</a>
                                 </li>
                             </ul>
                         </div>
@@ -334,8 +341,11 @@
                         <div class="col-1 status">Hết hàng</div>
                         <%}%>
                         <div class="col-1">
-                            <span class="material-symbols-outlined d-inline-block lock-product" product-id="<%=product.getId()%>" lock="<%=product.getDelete()%>"><%=product.isLock() ? "lock" : "lock_open"%></span>
-                            <span product-id="<%=product.getId()%>" class="material-symbols-outlined d-inline-block edit-product">edit</span>
+                            <span class="material-symbols-outlined d-inline-block lock-product"
+                                  product-id="<%=product.getId()%>"
+                                  lock="<%=product.getDelete()%>"><%=product.isLock() ? "lock" : "lock_open"%></span>
+                            <span product-id="<%=product.getId()%>"
+                                  class="material-symbols-outlined d-inline-block edit-product">edit</span>
                         </div>
                     </div>
                     <%}%>
@@ -406,7 +416,7 @@
                             }
                         %>
                         </button>
-                        <%if (currentPage != totalPage) {%>
+                        <%if (totalPage != 0 && currentPage != totalPage) {%>
                         <a href="<%=requestString%>&page=<%=currentPage+1%>">
                             <button id="next" class="d-flex align-items-center justify-content-center"><span
                                     class="material-symbols-outlined">chevron_right</span></button>
@@ -462,33 +472,6 @@
     </div>
 </footer>
 
-<%
-    String message = (String) session.getAttribute("message");
-    if (message != null) {
-%>
-<button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal"
-        data-bs-target="#complete-modal"></button>
-<div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Thành công</h1>
-                <button id="close-complete-modal" type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body position-relative">
-                <div class="d-flex align-items-center justify-content-center">
-                    <img style="width: 50px" src="../images/icon/complete.png" alt="complete.png">
-                    <p class="fs-1 ms-2"><%=message%>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<%}%>
-
 <script src="../javascript/menu_footer.js"></script>
 <script src="../javascript/admin_page.js"></script>
 <script src="../javascript/quan_ly_san_pham.js"></script>
@@ -501,10 +484,11 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
-    <%if (message != null){%>
-    $("#show-complete-modal").click();
+    <%String message = (String) session.getAttribute("message");
+    if (message != null){%>
+    $.notify("<%=message%>", "success");
     <%}
     session.removeAttribute("message");
     %>

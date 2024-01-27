@@ -85,7 +85,7 @@ public class Cart {
     }
 
     public void bought(Bill bill) {
-        ArrayList<BillDetail> billDetails = bill.getDetails();
+        List<BillDetail> billDetails = bill.getDetails();
         for (BillDetail billDetail : billDetails) {
             String key = Cart.getKey(billDetail.getProductId(), billDetail.getModelId());
             cart.remove(key);

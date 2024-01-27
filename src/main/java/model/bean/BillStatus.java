@@ -1,23 +1,21 @@
 package model.bean;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BillStatus implements Comparator<BillStatus> {
-    private Integer billId, status;
+    private Integer billId;
+    private String status;
     private String describe;
     private LocalDateTime date;
     private Boolean canEdit;
 
-    private static final Map<Integer, String> mapStatusCodes = new HashMap<>();
+    public BillStatus() { }
 
-    static {
-        mapStatusCodes.put(0, "Nhận đơn");
-    }
-
-    public BillStatus(Integer billId, Integer status, String describe, Boolean canEdit) {
+    public BillStatus(Integer billId, String status, String describe, Boolean canEdit) {
         this.billId = billId;
         this.status = status;
         this.describe = describe;
@@ -33,11 +31,11 @@ public class BillStatus implements Comparator<BillStatus> {
         this.billId = billId;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -57,6 +55,10 @@ public class BillStatus implements Comparator<BillStatus> {
         this.date = date;
     }
 
+    public Boolean getCanEdit() {
+        return canEdit;
+    }
+
     public int isCanEdit() {
         return canEdit == true ? 1 : 0;
     }
@@ -65,16 +67,6 @@ public class BillStatus implements Comparator<BillStatus> {
         this.canEdit = canEdit;
     }
 
-    @Override
-    public String toString() {
-        return "BillStatus{" +
-                "billId=" + billId +
-                ", status=" + status +
-                ", describe='" + describe + '\'' +
-                ", date=" + date +
-                ", canEdit=" + canEdit +
-                '}';
-    }
 
     @Override
     public int compare(BillStatus o1, BillStatus o2) {

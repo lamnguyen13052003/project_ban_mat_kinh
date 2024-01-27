@@ -56,12 +56,63 @@ public class ReviewDAO extends DAO {
         );
     }
 
-    public void insertTempReview(Review review) {
-        connector.withHandle(handle ->
-                handle.createUpdate("INSERT INTO reviews(userId, billId, productId) VALUES (?, ?, ?)")
-                        .bind(0, review.getUserId())
-                        .bind(1, review.getBillId())
+    public int insertTempReview(Review review) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO reviews(id, userId, productId) VALUES (?, ?, ?)")
+                        .bind(0, review.getId())
+                        .bind(1, review.getUserId())
                         .bind(2, review.getProductId())
                         .execute());
+    }
+
+    public void remove(int reviewId) {
+        connector.withHandle(handle ->
+                handle.createUpdate("DELETE FROM reviews WHERE id = :id")
+                        .bind("id", reviewId)
+                        .execute());
+    }
+
+    public int nextReviewId() {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT MAX(r.id) FROM reviews AS r")
+                        .mapTo(Integer.class)
+                        .findFirst().orElse(0)
+        ) + 1;
+    }
+
+    public void update(int reviewId, int star, String comment) {
+        connector.withHandle(handle ->
+                handle.createUpdate("UPDATE reviews SET " +
+                        "numberStar = :star, " +
+                        "`comment` = :comment, " +
+                        "date = CURRENT_TIMESTAMP() " +
+                        "WHERE id = :id")
+                        .bind("id", reviewId)
+                        .bind("comment", comment)
+                        .bind("star", star)
+                        .execute()
+        );
+    }
+
+    public int getReviewId(int userId, int productId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT id FROM reviews WHERE userId = :userId AND productId = :productId")
+                        .bind("userId", userId)
+                        .bind("productId", productId)
+                        .mapTo(Integer.class)
+                        .findFirst().orElse(-1)
+        );
+    }
+
+    public Review getReview(int userId, int productId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT r.id, r.userId, r.`comment`, r.numberStar, r.date " +
+                                "FROM reviews AS r " +
+                                "WHERE r.userId = ? AND r.productId = ?;")
+                        .bind(0, userId)
+                        .bind(1, productId)
+                        .mapToBean(Review.class)
+                        .findFirst().orElse(null)
+        );
     }
 }

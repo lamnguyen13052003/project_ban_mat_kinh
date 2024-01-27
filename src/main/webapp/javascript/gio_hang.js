@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    selectProvinces()
+    loadProvinces()
     selectProvince();
     selectDistrict();
     upValueInputNumber();
@@ -8,7 +8,7 @@ $(document).ready(function () {
     removeProduct();
 })
 
-function selectProvinces(){
+function loadProvinces(){
     $.ajax({
         url: "address",
         method: "GET",
@@ -20,6 +20,9 @@ function selectProvinces(){
             for (var i = 0; i < data.provinces.length; i++) {
                 $("#provinces").find("option").last().before(`<option value="${data.provinces[i].code}">${data.provinces[i].fullName}</option>`);
             }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
         }
     });
 }
@@ -34,9 +37,9 @@ function selectProvince() {
                 code: code,
             },
             method: "GET",
-            dataType: "json",
+            dataType: "JSON",
             success: function (data) {
-                $("#districts").html(` <option selected value="" disabled style="color: #fff">Chọn quận/huyện</option>`);
+                $("#districts").html(`<option selected value="" disabled style="color: #fff">Chọn quận/huyện</option>`);
                 $("#wards").html('<option selected value="" disabled style="color: #fff">Chọn phường/xã</option>');
                 for (var i = 0; i < data.districts.length; i++) {
                     $("#districts").find("option").last().before(`<option value="${data.districts[i].code}">${data.districts[i].fullName}</option>`);
@@ -56,7 +59,7 @@ function selectDistrict() {
                 code: code,
             },
             method: "GET",
-            dataType: "json",
+            dataType: "JSON",
             success: function (data) {
                 $("#wards").html('<option selected value="" disabled style="color: #fff">Chọn phường/xã</option>');
                 for (var i = 0; i < data.wards.length; i++) {
@@ -67,7 +70,7 @@ function selectDistrict() {
     });
 }
 
-function upValueInputNumber(input) {
+function upValueInputNumber() {
     $(".product .change-amount button.up").click(function () {
         const product = $(this).parent().parent();
         const input = $(this).prev();
@@ -86,12 +89,17 @@ function upValueInputNumber(input) {
                 product.find(".total-money").text(data.totalPriceProduct);
                 input.val(data.quantity);
                 if (checkbox) setUpMoney(data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
             }
         });
     });
 }
 
-function downValueInputNumber(input) {
+function downValueInputNumber() {
     $(".product .change-amount button.down").click(function () {
         const product = $(this).parent().parent();
         const input = $(this).next();
@@ -110,6 +118,11 @@ function downValueInputNumber(input) {
                 product.find(".total-money").text(data.totalPriceProduct);
                 input.val(data.quantity);
                 if (checkbox) setUpMoney(data);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
             }
         });
     });

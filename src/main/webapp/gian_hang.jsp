@@ -25,9 +25,10 @@
     <link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
     <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css">
-    <link rel="stylesheet" href="notify/notify-metro.css" />
+    <link rel="stylesheet" href="notify/notify-metro.css"/>
     <link rel="stylesheet" href="css/gian_hang.css">
     <link rel="stylesheet" href="css/menu_footer.css">
+    <link rel="icon" type="image/x-icon" href="images/logo/logo_icon.png">
 
     <%--jquery--%>
     <script src="jquery/jquery-3.7.1.slim.min.js"></script>
@@ -221,14 +222,14 @@
                 <div class="filter-header">
                     <div class="section-title-all row d-flex align-items-center">
                         <div class="col-11">
-                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (0 lựa chọn) <i class="lnil lni-plus"></i>
+                            <h2 class="d-inline-block col-11 fs-4">Bộ lọc (<%=request.getAttribute("totalFilter")%>lựa chọn) <i class="lnil lni-plus"></i>
                             </h2>
                         </div>
                         <!--Nút hủy bộ lọc-->
                         <div class="col mt-2">
                             <button id="removeCheckedFilterAll" class="button border-0" type="button"
                                     data-action="close-filter">
-                                <a href="<%=response.encodeURL("product?" + request.getAttribute("request") + "&filter-none=filter-none")%>">
+                                <a href="product-booth?<%=request.getAttribute("request")%>&none=none">
                                     <svg class="Icon Icon--close" role="presentation" viewBox="0 0 16 14" width="15"
                                          height="15">
                                         <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none"
@@ -250,130 +251,96 @@
                     <div class="filter">
                         <h4>Thương hiệu</h4>
                         <ul class="filter-list">
-                            <li>
-                                <button class="border-0" id="bandName-1">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-1")%>">
-                                        Brand 1
+                            <%
+                                List<String> brands = (List<String>) request.getAttribute("brands");
+                                for (int indexBrands = 0; indexBrands < brands.size(); indexBrands++) {
+                            %>
+                            <li class="<%=indexBrands > 4 ?"d-none hidden" : ""%>">
+                                <button class="border-0"
+                                        value="<%=brands.get(indexBrands)%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-brand=<%=brands.get(indexBrands)%>">
+                                        <%=brands.get(indexBrands)%>
                                     </a>
                                 </button>
                             </li>
-                            <li>
-                                <button class="border-0" id="bandName-2">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-2")%>">
-                                        Brand 2
-                                    </a>
-                                </button>
-                            </li>
-                            <!--Danh sách brand bị ẩn-->
-                            <li class="d-none hidden">
-                                <button class="border-0" id="bandName-3">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-3")%>">
-                                        Brand 3
-                                    </a>
-                                </button>
-                            </li>
-                            <li class="d-none hidden">
-                                <button class="border-0" id="bandName-4">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-brandName=bandName-4")%>">
-                                        Brand 4
-                                    </a>
-                                </button>
-                            </li>
+                            <%}%>
                             <li class="filter-more">
                                 <span class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></span>
                             </li>
                         </ul>
                     </div>
 
-                    <!--Các trường lọc-->
+                    <!--Các trường lọc chất liệu-->
                     <div class="filter">
                         <h4>Chất liệu</h4>
                         <ul class="filter-list">
-                            <li>
-                                <button class="border-0 checked" id="material-1">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-material=material-1")%>">
-                                        Chất liệu 1
+                            <%
+                                List<String> materials = (List<String>) request.getAttribute("materials");
+                                for (int indexMaterial = 0; indexMaterial < materials.size(); indexMaterial++) {
+                            %>
+                            <li class="<%=indexMaterial > 4 ?"d-none hidden" : ""%>">
+                                <button class="border-0"
+                                        value="<%=materials.get(indexMaterial)%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-material=<%=materials.get(indexMaterial)%>">
+                                        <%=materials.get(indexMaterial)%>
                                     </a>
                                 </button>
                             </li>
-                            <li>
-                                <button class="border-0" id="material-2">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-material=material-2")%>">
-                                        Chất liệu 2
-                                    </a>
-                                </button>
-                            </li>
-
-                            <!--Danh sách brand bị ẩn-->
-                            <!--Nếu có danh sách bị ẩn thì li.filter-more không có "active"-->
-                            <li class="d-none hidden">
-                                <button class="border-0" id="material-3">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-material=material-3")%>">
-                                        Chất liệu 3
-                                    </a>
-                                </button>
-                            </li>
-                            <li class="d-none hidden">
-                                <button class="border-0" id="material-4">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-material=material-4")%>">
-                                        Chất liệu 4
-                                    </a>
-                                </button>
-                            </li>
+                            <%}%>
                             <li class="filter-more">
                                 <span class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></span>
                             </li>
                         </ul>
                     </div>
 
-                    <!--Các trường lọc-->
+                    <!--Các trường lọc Giá-->
                     <div class="filter">
                         <h4>Giá sản phẩm</h4>
                         <ul class="filter-list">
                             <li>
-                                <button class="border-0" id="0-220000">
+                                <button class="border-0" value="0-220000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=0-220000")%>">
                                         0 - 220,000
                                     </a>
                                 </button>
                             </li>
                             <li>
-                                <button class="border-0" id="220000-500000">
+                                <button class="border-0" value="220000-500000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=220000-500000")%>">
                                         220,000 - 500,000
                                     </a>
                                 </button>
                             </li>
                             <li>
-                                <button class="border-0" id="500000-1000000">
+                                <button class="border-0" value="500000-1000000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=500000-1000000")%>">
                                         500,000 - 1,000,000
                                     </a>
                                 </button>
                             </li>
                             <li>
-                                <button class="border-0" id="1000000-2000000">
+                                <button class="border-0" value="1000000-2000000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=1000000-2000000")%>">
                                         1,000,000 - 2,000,000
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
-                                <button class="border-0" id="2000000-3000000">
+                                <button class="border-0" value="2000000-3000000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=2000000-3000000")%>">
                                         2,000,000 - 3,000,000
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
-                                <button class="border-0" id="3000000-5000000">
+                                <button class="border-0" value="3000000-5000000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=3000000-5000000")%>">
                                         3,000,000 - 5,000,000
                                     </a>
                                 </button>
                             </li>
                             <li class="d-none hidden">
-                                <button class="border-0" id="5000000-10000000">
+                                <button class="border-0" value="5000000-10000000">
                                     <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-price=5000000-10000000")%>">
                                         5,000,000 - 10,000,000
                                     </a>
@@ -385,37 +352,26 @@
                         </ul>
                     </div>
 
-                    <!--Các trường lọc-->
+                    <!--Các trường lọc Kiểu-->
                     <div class="filter">
                         <h4>Kiểu dáng</h4>
                         <ul class="filter-list">
-                            <li>
-                                <button class="border-0" id="type-1">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-type=type-1")%>">
-                                        kiểu 1
+                            <%
+                                List<String> types = (List<String>) request.getAttribute("types");
+                                for (int indexType = 0; indexType < types.size(); indexType++) {
+                            %>
+                            <li class="<%=indexType > 4 ? "d-none hidden" : ""%>">
+                                <button class="border-0"
+                                        value="<%=types.get(indexType)%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&filter-type=<%=types.get(indexType)%>">
+                                        <%=types.get(indexType)%>
                                     </a>
                                 </button>
                             </li>
-                            <li>
-                                <button class="border-0" id="type-2">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-type=type-2")%>">
-                                        Kiểu 2
-                                    </a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="border-0" id="type-3">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-type=type-3")%>">
-                                        Kiểu 3
-                                    </a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="border-0" id="type-4">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&filter-type=type-4")%>">
-                                        Kiểu 4
-                                    </a>
-                                </button>
+                            <%}%>
+
+                            <li class="filter-more">
+                                <span class="border-0">Xem thêm <i class="fa-solid fa-arrow-right"></i></span>
                             </li>
                         </ul>
                     </div>
@@ -436,40 +392,32 @@
                 <div class="sort-body">
                     <div class="sort">
                         <h4>Sắp xếp theo</h4>
-
                         <!--Phần danh sách các tiêu chí sort-->
                         <ul class="sort-list">
                             <li>
-                                <button class="border-0" id="data-sort-p0" value="manual" name="sortFilter">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&sort-none=sort-none")%>">
-                                        Mặc định
-                                    </a>
-                                </button>
-                            </li>
-                            <li>
                                 <button class="border-0" id="sort-price-decs">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&sort-price=decs")%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&sort-price=decs">
                                         Giá:Tăng dần
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="sort-price-asc">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&sort-price=asc")%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&sort-price=asc">
                                         Giá: Giảm dần
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="sort-name-decs">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&sort-name=decs")%>">
+                                    <a href="product-booth?"<%=request.getAttribute("request")%>&sort-name=decs">
                                         Tên: A-Z
                                     </a>
                                 </button>
                             </li>
                             <li>
                                 <button class="border-0" id="sort-name-asc">
-                                    <a href="<%=response.encodeURL("product-booth?" + request.getAttribute("request") + "&sort-name=asc")%>">
+                                    <a href="product-booth?<%=request.getAttribute("request")%>&sort-name=asc">
                                         Tên: Z-A
                                     </a>
                                 </button>
@@ -498,6 +446,7 @@
                         List<Product> products = (List<Product>) request.getAttribute("products");
                         products = products == null ? new ArrayList<Product>() : products;
                         for (Product product : products) {
+                            System.out.println(product.getId());
                     %>
                     <!--Ô hiển thị-->
                     <div class="pro-loop col rounded-3">
@@ -514,7 +463,7 @@
 
                                 <!--Hiển thị hình ảnh-->
                                 <div class="pro-loop-image-item">
-                                    <a href="more-info-product?id=<%=product.getId()%>">
+                                    <a href="more_info_product?id=<%=product.getId()%>">
                                         <!--Ảnh khi chưa horver vào phần "Ô hiển thị"-->
                                         <picture class="img-hidden-when-hover">
                                             <img class="lazyloaded rounded-3"
@@ -545,7 +494,7 @@
 
                             <!--Hiển thị tên sản phẩm-->
                             <h3 class="pro-loop-name text-center">
-                                <a href="more-info-product?id=<%=product.getId()%>"
+                                <a href="more_info_product?id=<%=product.getId()%>"
                                    title="<%=product.getName()%>"><%=product.getName()%>
                                 </a>
                             </h3>
@@ -612,10 +561,13 @@
                             <!--2 nút thao tác-->
                             <div class="pro-loop-bottom">
                                 <button type="button" product-id="<%=product.getId()%>"
-                                        class="f-button setAddCartLoop add-cart" data-type="add-cart">
+                                        class="f-button setAddCartLoop <%=product.available() ? "show-models" : ""%>"
+                                        data-type="show-models">
                                     Xem nhanh
                                 </button>
-                                <button type="button" product-id="<%=product.getId()%>" class="f-button setBuyNow add-cart" data-type="buy-now" data-id="">
+                                <button type="button" product-id="<%=product.getId()%>"
+                                        class="f-button setBuyNow <%=product.available() ? "show-models" : ""%>"
+                                        data-type="buy-now" data-id="">
                                     Mua ngay
                                 </button>
                             </div>
@@ -721,31 +673,10 @@
                                 <button class="input-group-text plus-quantity" data-type="plus">+</button>
                             </div>
                             <div class="product-action d-flex">
-                                <button type="button" class="hover-opacity" id="add-to-cart">Thêm vào giỏ hàng</button>
+                                <button type="button" class="hover-opacity" id="add-cart">Thêm vào giỏ hàng</button>
                                 <button type="button" class="hover-opacity " id="buy-now">Mua ngay</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <button hidden="" type="button" id="show-complete-modal" data-bs-toggle="modal" data-bs-target="#complete-modal"></button>
-    <div class="modal fade" id="complete-modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">Thành công</h1>
-                    <button id="close-complete-modal" type="button" class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body position-relative">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <img style="width: 50px" src="images/icon/complete.png" alt="complete.png">
-                        <p class="fs-1 ms-2">Hoàn Thành</p>
                     </div>
                 </div>
             </div>
@@ -830,7 +761,7 @@
         user.setFullName("<%=user.getFullName()%>");
         displayMenuAccount(user);
         <%} else{%>
-        hidenMenuAccount();
+        hiddenMenuAccount();
         <%}%>
 
         $(".filter-list").find("button").removeClass("checked");
@@ -840,7 +771,7 @@
         Map<String, String> mapSort = (Map<String, String>)request.getAttribute("mapSort");
         for(List<String> values : mapFilter.values()){
             for(String id : values){%>
-        $("#<%=id%>").addClass("checked");
+        $(`button[value="<%=id%>"]`).addClass("checked");
         <%}};
         for(Map.Entry<String, String> id : mapSort.entrySet()){%>
         $("#<%=id.getKey()%>-<%=id.getValue()%>").addClass("checked");

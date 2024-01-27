@@ -3,108 +3,129 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 20px;
-  }
-  .sec-1,
-  .sec-2,
-  .sec-3,
-  .sec-4,
-  .sec-5,
-  .sec-6 {
+}
+
+.sec-1,
+.sec-2,
+.sec-3,
+.sec-4,
+.sec-5,
+.sec-6 {
     background-color: white;
     border-radius: 6px;
-  }
-  .sec-left {
+}
+
+.sec-left {
     flex: 2;
-  }
-  .sec-right {
+}
+
+.sec-right {
     flex: 1;
-  }
-  .holder1 {
+}
+
+.holder1 {
     display: flex;
     gap: 10px;
     border-radius: 6px;
-  }
-  .holder1 > input {
+}
+
+.holder1 > input {
     flex: 1;
-  }
-  .text1 {
+}
+
+.text1 {
     height: 200px;
-  }
-  .khung1 {
+}
+
+.khung1 {
     border: 1px solid lightgray;
     border-radius: 10px;
-  }
-  .icon1 {
+}
+
+.icon1 {
     display: flex;
     align-items: center;
     padding: left 10px;
     gap: 10px;
     padding-left: 10px;
-  }
-  .khung2 {
+}
+
+.khung2 {
     height: 150px;
     border: 1px solid lightgray;
     border-radius: 10px;
     padding-left: 20px;
-  }
-  .khung3 {
+}
+
+.khung3 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-  .ten-box {
+}
+
+.ten-box {
     flex: 1;
     padding: 3px 0;
     border-radius: 6px;
     padding: 10px 10px;
-  }
-  .filter {
+}
+
+.filter {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 15px;
-  }
-  .box-section {
+}
+
+.box-section {
     background-color: white;
     border-radius: 6px;
-  }
-  .holder2 {
+}
+
+.holder2 {
     display: flex;
-  }
-  
-  .ten-box-1 {
+}
+
+.ten-box-1 {
     width: 100%;
     display: flex;
     border-radius: 6px;
     gap: 20px;
     flex: 1;
     padding: 10px 10px;
-  }
-  .holder3 {
+}
+
+.holder3 {
     border-radius: 6px;
-  }
-  .main-content {
+}
+
+.main-content {
     border: 1px solid #c3c1c1;
     border-radius: 10px;
-  }
-  .btn {
+}
+
+.btn {
     border: none;
     outline: none;
-  }
-  .text-editor-header {
+}
+
+.text-editor-header {
     border-bottom: 1px solid #c3c1c1;
-  }
-  .content {
+}
+
+.content {
     outline: none;
     min-height: 200px;
     border: 1px solid white;
     border-radius: 10px;
-  }
-  ul {
+}
+
+ul {
     list-style-type: unset !important;
     padding-left: 30px;
-  }
-  li {
+}
+
+li {
     list-style-type: unset !important;
-  }
+}
   

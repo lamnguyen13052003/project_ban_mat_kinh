@@ -7,6 +7,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -14,20 +16,17 @@ import java.util.Map;
 public class ProductBoothController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String query = request.getQueryString();
-        if (query == null) query = "";
-        if (!query.contains("page")) query = query + "&page=1";
-        if (!query.contains("id-category-group")) query = "id-category-group=0" + query;
-        int index = query.indexOf("&");
-        if (query.indexOf("id-category", index) == -1)
-            query = query.substring(0, index) + "&id-category=0" + query.substring(index, query.length());
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String queryString = sqlSpace(request);
         ProductService productService = ProductService.getInstance();
-        String formatQuery = productService.formatQueryRequest(query);
-        Map<String, List<String>> mapFilter = productService.getMapFilter(formatQuery);
-        Map<String, String> mapSort = productService.getMapSort(formatQuery);
-        Map<String, Integer> mapInfRoot = productService.getMapInfRoot(formatQuery);
+        Map<String, List<String>> mapFilter = productService.getMapFilter(queryString);
+        Map<String, String> mapSort = productService.getMapSort(queryString);
+        Map<String, Integer> mapInfRoot = productService.getMapInfRoot(queryString);
         List<Product> products = productService.getProducts(mapInfRoot, mapFilter, mapSort, 20);
+        List<String> materials = productService.getMaterials(),
+                types = productService.getTypes(),
+                brands = productService.getBrands();
         int totalPages = productService.getTotalPages(mapInfRoot, mapFilter, mapSort);
 
         int idCategory = mapInfRoot.get("id-category"),
@@ -38,11 +37,15 @@ public class ProductBoothController extends HttpServlet {
 
         request.setAttribute("products", products);
         request.setAttribute("title", title);
-        request.setAttribute("request", formatQuery);
+        request.setAttribute("materials", materials);
+        request.setAttribute("types", types);
+        request.setAttribute("brands", brands);
+        request.setAttribute("request", queryString);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("page", page);
         request.setAttribute("mapInfRoot", mapInfRoot);
         request.setAttribute("mapFilter", mapFilter);
+        request.setAttribute("totalFilter", total(mapFilter));
         request.setAttribute("mapSort", mapSort);
         request.getRequestDispatcher("gian_hang.jsp").forward(request, response);
     }
@@ -50,5 +53,57 @@ public class ProductBoothController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    public String sqlSpace(HttpServletRequest request) {
+        String query = "id-category-group=";
+        String page = request.getParameter("page");
+        String idCategoryGroup = request.getParameter("id-category-group");
+        String idCategory = request.getParameter("id-category");
+        query += idCategoryGroup == null ? "1" : idCategoryGroup;
+        query += "&id-category=";
+        query += idCategory == null ? "1" : idCategoryGroup;
+        query += "&page=";
+        query += page == null ? "1" : page;
+        if (request.getParameter("none") != null) return query;
+
+        String[] arrayFilterBrand = request.getParameterValues("filter-brand");
+        String[] arrayFilterMaterial = request.getParameterValues("filter-material");
+        String[] arrayFilterPrice = request.getParameterValues("filter-price");
+        String[] arrayFilterType = request.getParameterValues("filter-type");
+        String[] arraySortName = request.getParameterValues("sort-name");
+        String[] arraySortPrice = request.getParameterValues("sort-price");
+        query += format("filter-brand", arrayFilterBrand);
+        query += format("filter-material", arrayFilterMaterial);
+        query += format("filter-price", arrayFilterPrice);
+        query += format("filter-type", arrayFilterType);
+        query += format("sort-name", arraySortName);
+        query += format("sort-price", arraySortPrice);
+        return query;
+    }
+
+    public String format(String filter, String[] array) {
+        StringBuilder sb = new StringBuilder();
+        if (array == null) return sb.toString();
+        for (String value : array) {
+            int index = sb.indexOf(value);
+            if (index == -1) sb.append("&" + filter + "=" + value);
+            else {
+                int length = 1 + filter.length() + value.length();
+                int start = index - (1 + filter.length());
+                sb.delete(start, start + length);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public int total(Map<String, List<String>> map) {
+        int total = 0;
+        for (List<String> list : map.values()) {
+            total += list.size();
+        }
+
+        return total;
     }
 }

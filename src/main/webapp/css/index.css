@@ -100,7 +100,7 @@ section:not(#silder-section) {
     padding: 0 10px;
     width: 300px;
     margin: 0 10px 10px 0;
-    height: 415px;
+    height: 425px;
     background-color: #FFFFFF;
 }
 
@@ -154,6 +154,9 @@ section:not(#silder-section) {
     font-size: 9px;
     color: rgba(0, 0, 0, 0.5);
     margin: 5px 0;
+    overflow: hidden;
+    height: 14px;
+    width: 280px;
 }
 
 /*Phần tên sản phẩm*/
@@ -196,7 +199,7 @@ section:not(#silder-section) {
 
 .show-item-sale .pro-loop:hover .pro-loop-bottom {
     display: block;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .show-item-sale .pro-loop:hover .pro-loop-bottom button {
@@ -205,19 +208,18 @@ section:not(#silder-section) {
     width: 120px;
     border-radius: 5px;
     font-weight: bold;
+    color: #fff;
 }
 
 .show-item-sale .pro-loop:hover .pro-loop-bottom button:nth-of-type(1) {
     background-color: rgba(47, 24, 154, 1);
     margin-left: 15px;
-    color: #fff;
 }
 
 .show-item-sale .pro-loop:hover .pro-loop-bottom button:nth-of-type(2) {
     background-color: #F30;
     float: right;
     margin-right: 5px;
-    color: #fff;
 }
 
 

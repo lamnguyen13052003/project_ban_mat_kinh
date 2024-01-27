@@ -228,18 +228,24 @@
                                 </div>
                             </div>
                             <div class="change-amount">
-                                <button type="button" product-id="<%=productCart.getProductId()%>"
-                                        model-id="<%=productCart.getModel().getId()%>" type="button" class="down"><span
-                                        class="material-symbols-outlined">arrow_left</span></button>
+                                <button type="button"
+                                        product-id="<%=productCart.getProductId()%>"
+                                        model-id="<%=productCart.getModel().getId()%>"
+                                        class="down">
+                                    <span class="material-symbols-outlined">arrow_left</span>
+                                </button>
                                 <input type="number" name="amount-product-item"
                                        product-id="<%=productCart.getProductId()%>"
                                        model-id="<%=productCart.getModel().getId()%>"
                                        class="amount-product-item" min="1"
                                        max="<%=productCart.getQuantity()%>"
                                        value="<%=productCart.getQuantity()%>" disabled>
-                                <button type="button" product-id="<%=productCart.getProductId()%>"
-                                        model-id="<%=productCart.getModel().getId()%>" type="button" class="up"><span
-                                        class="material-symbols-outlined">arrow_right</span></button>
+                                <button type="button"
+                                        product-id="<%=productCart.getProductId()%>"
+                                        model-id="<%=productCart.getModel().getId()%>"
+                                        class="up">
+                                    <span class="material-symbols-outlined">arrow_right</span>
+                                </button>
                             </div>
                             <div class="price">
                                     <span class="price">
@@ -493,7 +499,7 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
 
     <%if(session.getAttribute("title") != null){%>
