@@ -33,9 +33,9 @@ INSERT INTO `banner_images` (`id`, `urlImage`, `description`) VALUES
 	(2, 'images/bannerAccount.png', 'banner-login'),
 	(3, 'images/bannerAccount.png', 'banner-signup'),
 	(4, 'images/logo/logo.png', 'banner_logo'),
-	(5, 'images/img_slide/slideShow_1.png', 'slide-1'),
-	(6, 'images/img_slide/slideShow_2.png', 'slide-2'),
-	(7, 'images/img_slide/slideShow_3.jpg', 'slide-3');
+	(5, 'images/banner_management/slide/slideShow_1.png', 'slide-5'),
+	(6, 'images/banner_management/slide/slideShow_2.png', 'slide-6'),
+	(7, 'images/banner_management/slide/slideShow_3.jpg', 'slide-7');
 
 -- Dumping structure for table mat_kinh_kimi.bills
 CREATE TABLE IF NOT EXISTS `bills` (
@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `models` (
   CONSTRAINT `models_prouductId_products_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.models: ~370 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.models: ~371 rows (approximately)
 INSERT INTO `models` (`id`, `productId`, `name`, `urlImage`, `quantity`) VALUES
 	(1, 1, 'Mặc định', 'images\\product\\1\\0.png', 85),
 	(2, 2, 'Mặc định', 'images\\product\\2\\0.jpg', 317),
@@ -839,7 +839,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_products_categories` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.products: ~370 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.products: ~371 rows (approximately)
 INSERT INTO `products` (`id`, `categoryId`, `name`, `brandName`, `price`, `describe`, `material`, `type`, `delete`) VALUES
 	(1, 11, 'Bread Cranberry Foccacia', 'equaline antacid', 7147917.06, 'orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu', 'Wood', 'Tam giác', b'1'),
 	(2, 5, 'Cocoa Powder - Natural', 'Ibuprofen', 6236348.33, 'dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non', 'Plexiglass', 'Tròn', b'1'),
@@ -1237,7 +1237,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   CONSTRAINT `product_images_productId_product_id_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1997 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table mat_kinh_kimi.product_images: ~1,973 rows (approximately)
+-- Dumping data for table mat_kinh_kimi.product_images: ~1,980 rows (approximately)
 INSERT INTO `product_images` (`id`, `productId`, `urlImage`) VALUES
 	(1, 1, 'images\\product\\1\\0.png'),
 	(2, 1, 'images\\product\\1\\1.png'),
@@ -3266,8 +3266,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Dumping data for table mat_kinh_kimi.users: ~4 rows (approximately)
 INSERT INTO `users` (`id`, `avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES
-	(1, 'images/avatar/lamnguyen.png', 'Nguyễn Đình Lam', 'Nam', '2003-05-13', 'kiminonawa1305@gmail.com', '$2a$12$PuMVTFMUE.Jxcuslehn.V.WRaO4l0pUF5Nesnej/Xs1r.Ti5JvZ/C', 0, NULL, b'0', '2023-12-20 00:17:59'),
-	(2, 'images/avatar/hongphong@gmail_com/avatar.jpg', 'Lâm Hồng Phong đẹp zai', 'Nữ', '2003-01-17', 'hongphong@gmail.com', '$2a$12$9ddWWVKEPeJV3cP4hJg3zub7HWRsSwN39gnoy8l0TgSnKxGFGnbV.', 1, NULL, b'0', '2023-12-19 00:00:00'),
+	(1, 'images/avatar/lamnguyen.png', 'Nguyễn Đình Lam', 'Nam', '2003-05-13', 'kiminonawa1305@gmail.com', '$2a$12$PuMVTFMUE.Jxcuslehn.V.WRaO4l0pUF5Nesnej/Xs1r.Ti5JvZ/C', 0, NULL, b'1', '2023-12-20 00:17:59'),
+	(2, 'images/avatar/hongphong@gmail_com/avatar.jpg', 'Lâm Hồng Phong đẹp zai', 'Nữ', '2003-01-17', 'hongphong@gmail.com', '$2a$12$9ddWWVKEPeJV3cP4hJg3zub7HWRsSwN39gnoy8l0TgSnKxGFGnbV.', 2, NULL, b'0', '2023-12-19 00:00:00'),
 	(3, 'images/avatar/default_avatar.png', 'Nguyễn Đình Tuấn', 'Nam', '2003-01-01', 'tuanvtvc@gmail.com', '$2a$12$icQ1Y1ZQcVX/ZVDAeEEHCORUkyxZzYJKqEFiseXjZrvTfHGHBY0US', 1, NULL, b'0', '2023-12-21 20:30:20'),
 	(4, 'images/avatar/default_avatar.png', 'Nguyễn Đình Lam', 'Nam', '2003-05-13', 'maitien13052003@gmail.com', '$2a$12$Z.gQYmul4Ugv61mQnMjVZeHtPbbqqi70Mtq7oAw5uDb.psuX1174G', 1, NULL, b'0', '2023-12-22 10:12:06');
 

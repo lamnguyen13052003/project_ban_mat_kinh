@@ -9,7 +9,7 @@
 <html lang="vi">
 <%
     User user = (User) session.getAttribute("user");
-    BannerImage logo = (BannerImage) request.getAttribute("bannerLogoImages");
+    BannerImage logo = (BannerImage) session.getAttribute("bannerLogoImages");
 %>
 <head>
     <meta charset="UTF-8">

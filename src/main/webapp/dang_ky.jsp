@@ -2,8 +2,8 @@
 <%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-    BannerImage logo = (BannerImage) request.getAttribute("logo");
-    BannerImage signupBanner = (BannerImage) request.getAttribute("signupBanner");
+    BannerImage logo = (BannerImage) session.getAttribute("logo");
+    BannerImage signupBanner = (BannerImage) session.getAttribute("signupBanner");
 %>
 <!DOCTYPE html>
 <html lang="vi">

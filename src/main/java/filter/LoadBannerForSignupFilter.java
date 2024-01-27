@@ -8,22 +8,21 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoadBannerForContactFilter", value = "/lien_he.jsp")
-public class LoadBannerForContactFilter implements Filter {
+@WebFilter(filterName = "LoadBannerForSignupFilter", value = "/dang_ky.jsp")
+public class LoadBannerForSignupFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         BannerImage logo = (BannerImage) ((HttpServletRequest) request).getSession().getAttribute("logo");
-        BannerImage contact = (BannerImage) ((HttpServletRequest) request).getSession().getAttribute("contact");
+        BannerImage signupBanner = (BannerImage) ((HttpServletRequest) request).getSession().getAttribute("signupBanner");
         if (logo == null) {
             logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
             ((HttpServletRequest) request).getSession().setAttribute("logo", logo);
         }
 
-        if (contact == null) {
-            contact = BannerService.getInstance().getBannerByDescription("%banner%contact%");
-            ((HttpServletRequest) request).getSession().setAttribute("contact", contact);
+        if (signupBanner == null) {
+            signupBanner = BannerService.getInstance().getBannerByDescription("%banner%signup%");
+            ((HttpServletRequest) request).getSession().setAttribute("signupBanner", signupBanner);
         }
-
 
         chain.doFilter(request, response);
     }

@@ -8,7 +8,7 @@
 <%@ page import="java.util.Locale" %>
 <%@ page import="model.service.CartService" %>
 <%User user = (User) session.getAttribute("user");%>
-<% BannerImage logo = (BannerImage) request.getAttribute("bannerLogoImages");%>
+<%BannerImage logo = (BannerImage) session.getAttribute("logo");%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>

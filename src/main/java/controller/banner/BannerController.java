@@ -1,4 +1,4 @@
-package controller.banner_and_icon_controller;
+package controller.banner;
 
 import model.bean.BannerImage;
 import model.service.BannerService;

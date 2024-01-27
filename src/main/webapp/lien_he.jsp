@@ -4,8 +4,8 @@
 <%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    BannerImage logo = (BannerImage) request.getAttribute("logo");
-    BannerImage contact = (BannerImage) request.getAttribute("contact");
+    BannerImage logo = (BannerImage) session.getAttribute("logo");
+    BannerImage contact = (BannerImage) session.getAttribute("contact");
 %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -178,7 +178,7 @@
 </header>
 
 
-<main id="main" class="contact-form py-1">
+<main id="main" class="contact-form py-1 pt-5">
     <div class="container shadow p-3 mb-5 bg-body-tertiary rounded">
         <div class="row">
             <div class="contact-info col ">
