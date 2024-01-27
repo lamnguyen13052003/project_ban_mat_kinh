@@ -121,9 +121,9 @@
                                     <div class="dropdown-title text-secondary">
                                         ---------------Trạng thái---------------
                                     </div>
-                                    <li><a class="dropdown-item" href="<%=requestString%>&available=0">Tất cả</a></li>
-                                    <li><a class="dropdown-item" href="<%=requestString%>&available=1">Còn hàng</a></li>
-                                    <li><a class="dropdown-item" href="<%=requestString%>&available=-1">Hết hàng</a>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=0&page=1">Tất cả</a></li>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=1&page=1">Còn hàng</a></li>
+                                    <li><a class="dropdown-item" href="<%=requestString%>&available=-1&page=1">Hết hàng</a>
                                     </li>
                                 </ul>
                             </div>
@@ -149,7 +149,7 @@
                                     %>
                                     <li>
                                         <a class="dropdown-item"
-                                           href="<%=response.encodeURL(requestString + "&brand-name=" + brand)%>"><%=brand%>
+                                           href="<%=response.encodeURL(requestString + "&brand-name=" + brand + "&page=1")%>"><%=brand%>
                                         </a>
                                     </li>
                                     <%}%>
@@ -168,82 +168,82 @@
                                     <div class="dropdown-title text-secondary">---------------Danh mục---------------
                                     </div>
                                     <li><a class="dropdown-item"
-                                           href="<%=requestString%>&category-group-id=-1&category-id=-1">Tất
+                                           href="<%=requestString%>&category-group-id=-1&category-id=-1&page=1">Tất
                                         cả</a></li>
                                     <li><a class="dropdown-item"
-                                           href="<%=requestString%>&category-group-id=1&category-id=-1">Kính
+                                           href="<%=requestString%>&category-group-id=1&category-id=-1&page=1">Kính
                                         mát</a></li>
                                     <li>
                                         <ul>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=1">Kính
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=1&page=1">Kính
                                                 mát nam</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=2">Kính
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=2&page=1">Kính
                                                 mát nữ</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=3">Kính
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=3&page=1">Kính
                                                 đi ngày và đêm</a></li>
                                             <li><a class="dropdown-item"
                                                    href="<%=requestString%>&category-group-id=-1&category-id=4">Kính
                                                 đổi màu</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=5">Kính
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=5&page=1">Kính
                                                 lọc ánh sáng xanh</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=6">Kính
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=6&page=1">Kính
                                                 mắt clip on 2 lớp</a></li>
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item"
-                                           href="<%=requestString%>&category-group-id=2&category-id=-1">Mắt
+                                           href="<%=requestString%>&category-group-id=2&category-id=-1&page=1">Mắt
                                         kính trẻ em</a></li>
                                     <li>
                                         <ul>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=7">Gọng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=7&page=1">Gọng
                                                 kính trẻ en</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=8">Kính
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=8&page=1">Kính
                                                 mát trẻ em</a></li>
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item"
-                                           href="<%=requestString%>&category-group-id=3&category-id=-1">Gọng
+                                           href="<%=requestString%>&category-group-id=3&category-id=-1&page=1">Gọng
                                         kính</a></li>
                                     <li>
                                         <ul>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=9">Gọng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=9&page=1">Gọng
                                                 kính nữa khung</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=10">Gọng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=10&page=1">Gọng
                                                 kính khoan</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=11">Gọng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=11&page=1">Gọng
                                                 kính tròn</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=12">Gọng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=12&page=1">Gọng
                                                 kính titan</a></li>
                                         </ul>
                                     </li>
                                     <li><a class="dropdown-item"
-                                           href="<%=requestString%>&category-group-id=4&category-id=-1">Tròng
+                                           href="<%=requestString%>&category-group-id=4&category-id=-1&page=1">Tròng
                                         kính</a></li>
                                     <li>
                                         <ul>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=13">Tròng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=13&page=1">Tròng
                                                 kính chống ánh sáng xanh</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=14">Tròng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=14&page=1">Tròng
                                                 kính đổi màu</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=15">Tròng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=15&page=1">Tròng
                                                 kính màu</a></li>
                                             <li><a class="dropdown-item"
-                                                   href="<%=requestString%>&category-group-id=-1&category-id=16">Tròng
+                                                   href="<%=requestString%>&category-group-id=-1&category-id=16&page=1">Tròng
                                                 kính cho gọng khoan</a></li>
                                         </ul>
                                     </li>
@@ -274,6 +274,8 @@
                                    hidden>
                             <input type="text" name="brand-name" value="<%=request.getAttribute("brand-name")%>" hidden>
                             <input type="text" name="available" value="<%=request.getAttribute("available")%>" hidden>
+                            <input type="text" name="page"
+                                   value="1" hidden>
                             <input type="submit" value="" hidden="">
                         </form>
                     </div>
@@ -361,7 +363,7 @@
                         <span class="amount ps-0 pe-0"><%=nfNumber.format(Integer.parseInt(String.valueOf(request.getAttribute("total-product"))))%></span>
                         <span class="ps-0 pe-0"> sản phẩm</span>
                     </div>
-                    <div class="change-page-display-list col-6 d-flex ps-5 justify-content-center">
+                    <div class="change-page-display-list col-6 d-flex ps-5 justify-content-end">
                         <%
                             int totalPage = Integer.parseInt(String.valueOf(request.getAttribute("total-page"))),
                                     currentPage = Integer.parseInt(String.valueOf(request.getAttribute("page"))),
