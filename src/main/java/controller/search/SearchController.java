@@ -1,4 +1,4 @@
-package controller;
+package controller.search;
 
 import model.bean.Product;
 import model.service.ProductService;

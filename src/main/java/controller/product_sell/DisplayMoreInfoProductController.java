@@ -1,4 +1,4 @@
-package controller;
+package controller.product_sell;
 
 import model.bean.BannerImage;
 import model.bean.Product;

@@ -77,7 +77,7 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="thong_ke.jsp" class="nav-link px-4 rounded">DashBoard</a>
+                                    <a href="dashboard.jsp" class="nav-link px-4 rounded">DashBoard</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
                                     <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
@@ -356,12 +356,12 @@
 
                 <!--Phần footer, coppy-->
                 <div class="footer-table row p-4 d-flex align-items-center">
-                    <div class="text-amount-account col-7">
+                    <div class="text-amount-account col-6">
                         <span class="ps-0 pe-0">Tổng số sản phẩm: </span>
                         <span class="amount ps-0 pe-0"><%=nfNumber.format(Integer.parseInt(String.valueOf(request.getAttribute("total-product"))))%></span>
                         <span class="ps-0 pe-0"> sản phẩm</span>
                     </div>
-                    <div class="change-page-display-list col-5 d-flex ps-5">
+                    <div class="change-page-display-list col-6 d-flex ps-5 justify-content-center">
                         <%
                             int totalPage = Integer.parseInt(String.valueOf(request.getAttribute("total-page"))),
                                     currentPage = Integer.parseInt(String.valueOf(request.getAttribute("page"))),
@@ -369,6 +369,11 @@
                             if (totalPage != 1) {
                         %>
                         <%if (currentPage != 1) {%>
+                        <a href="<%=requestString%>&page=1">
+                            <button class="d-flex align-items-center justify-content-center">
+                                <span class="material-symbols-outlined">keyboard_double_arrow_left</span>
+                            </button>
+                        </a>
                         <a href="<%=requestString%>&page=<%=currentPage-1%>">
                             <button id="prev" class="d-flex align-items-center justify-content-center">
                                 <span class="material-symbols-outlined">chevron_left</span>
@@ -389,7 +394,7 @@
                                 }
                             }
                         %>
-                        <%for (indexPage = currentPage; indexPage <= totalPage && (indexPage - currentPage) < (2 - ((currentPage - 3) > 0 ? 0 : (currentPage - 3))); indexPage++) {%>
+                        <%for (indexPage = currentPage; indexPage <= totalPage && (indexPage - currentPage) < (4 - ((currentPage - 3) > 0 ? 0 : (currentPage - 3))); indexPage++) {%>
                         <a href="<%=requestString%>&page=<%=indexPage%>">
                             <button class="d-flex align-items-center justify-content-center button-number <%if(currentPage == indexPage){%>active<%}%>"
                                     data-target="<%=indexPage%>">
@@ -397,31 +402,16 @@
                             </button>
                         </a>
                         <%}%>
-                        <%if (indexPage < totalPage - 1) {%>
-                        <a href="#">
-                            <button class="d-flex align-items-center justify-content-center button-number"
-                                    data-target="">
-                                ...
-                            </button>
-                        </a>
-                        </a>
-                        <%}%>
-                        <% indexPage = indexPage <= totalPage - 2 ? totalPage - 1 : indexPage;
-                            for (; indexPage <= totalPage; indexPage++) {%>
-                        <a href="<%=requestString%>&page=<%=indexPage%>">
-                            <button class="d-flex align-items-center justify-content-center button-number <%if(currentPage == indexPage){%>active<%}%>"
-                                    data-target="<%=indexPage%>">
-                                <%=indexPage%>
-                            </button>
-                        </a>
-                        <%
-                            }
-                        %>
-                        </button>
                         <%if (totalPage != 0 && currentPage != totalPage) {%>
                         <a href="<%=requestString%>&page=<%=currentPage+1%>">
-                            <button id="next" class="d-flex align-items-center justify-content-center"><span
-                                    class="material-symbols-outlined">chevron_right</span></button>
+                            <button id="next" class="d-flex align-items-center justify-content-center">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </a>
+                        <a href="<%=requestString%>&page=<%=totalPage%>">
+                            <button class="d-flex align-items-center justify-content-center">
+                                <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+                            </button>
                         </a>
                         <%}%>
                         <%}%>
@@ -475,8 +465,8 @@
 </footer>
 
 <script src="../javascript/menu_footer.js"></script>
-<script src="../javascript/admin_page.js"></script>
-<script src="../javascript/quan_ly_san_pham.js"></script>
+<script src="../javascript/admin_pages/admin_page.js"></script>
+<script src="../javascript/admin_pages/quan_ly_san_pham.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

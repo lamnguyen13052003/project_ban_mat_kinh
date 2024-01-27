@@ -1,5 +1,6 @@
-package controller;
+package controller.register;
 
+import controller.Action;
 import helper.SendMail;
 import model.bean.User;
 import model.service.UserService;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @WebServlet(name = "SignupWithGoogle", value = "/signup_with_google")
-public class SignupWithGoogle extends HttpServlet implements Action{
+public class SignupWithGoogle extends HttpServlet implements Action {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

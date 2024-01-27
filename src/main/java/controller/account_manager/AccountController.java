@@ -1,8 +1,6 @@
-package controller.admin;
+package controller.account_manager;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import model.bean.User;
 import model.dto.Page;
 import model.dto.UserManage;
 import model.service.UserService;
@@ -13,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 
-    @WebServlet(name = "AccountControllerAdmin", value = "/admin/account")
+@WebServlet(name = "AccountControllerAdmin", value = "/admin/account")
 public class AccountController extends HttpServlet  {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,4 @@
-package controller.ChangePassword;
+package controller.change_password;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package controller;
+package controller.product_sell;
 
 import model.bean.Model;
 import model.bean.Product;

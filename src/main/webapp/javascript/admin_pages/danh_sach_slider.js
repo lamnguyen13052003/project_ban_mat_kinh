@@ -54,7 +54,7 @@ function addFile() {
                 let show_slides = $('#show-slides').html();
                 let slide = '<div class="slide-management p-3" slide-id = "slide-' + data.slideId + '">\n' +
                     '                        <div class="item-img col">\n' +
-                    '                            <img class="img-fluid" data-banner="slide-' + data.slideId + '" src="../' + data.url + '" alt="">\n' +
+                    '                            <img class="img-fluid" data-banner="slide-' + data.slideId + '" src=' + data.url + '"../.." alt="">\n' +
                     '                            <div class="check-box-img">\n' +
                     '                                <input class="form-check-input" type="checkbox" id="check-img-' + data.slideId + '">\n' +
                     '                            </div>\n' +

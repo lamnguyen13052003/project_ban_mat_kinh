@@ -1,4 +1,4 @@
-package controller;
+package controller.contact;
 
 import model.bean.BannerImage;
 import model.service.BannerService;

@@ -67,7 +67,7 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
-                                    <a href="thong_ke.jsp" class="nav-link px-4 rounded">DashBoard</a>
+                                    <a href="dashboard.jsp" class="nav-link px-4 rounded">DashBoard</a>
                                 </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0">
                                     <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
@@ -393,8 +393,8 @@
 </footer>
 
 <script src="../javascript/menu_footer.js"></script>
-<script src="../javascript/admin_page.js"></script>
-<script src="../javascript/danh_sach_hoa_don.js"></script>
+<script src="../javascript/admin_pages/admin_page.js"></script>
+<script src="../javascript/admin_pages/danh_sach_hoa_don.js"></script>
 <script type="text/javascript">
     <%User user = (User) session.getAttribute("user");
     if(user != null){%>

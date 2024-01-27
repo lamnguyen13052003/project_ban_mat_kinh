@@ -1,5 +1,6 @@
-package controller;
+package controller.bill;
 
+import controller.Action;
 import helper.SendMail;
 import model.bean.Bill;
 import model.bean.User;

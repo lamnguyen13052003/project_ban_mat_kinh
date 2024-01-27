@@ -1,4 +1,4 @@
-package controller;
+package controller.banner_and_icon_controller;
 
 import model.bean.BannerImage;
 import model.service.BannerService;
@@ -8,7 +8,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "BannerController", value = "/banner")

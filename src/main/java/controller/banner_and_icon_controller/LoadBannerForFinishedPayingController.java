@@ -1,4 +1,4 @@
-package controller;
+package controller.banner_and_icon_controller;
 
 import model.bean.BannerImage;
 import model.service.BannerService;
@@ -11,13 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "LoadBannerForBillManagerController", value = "/admin_pages/load-banner-for-bill-manager-controller")
-public class LoadBannerForBillManagerController extends HttpServlet {
+@WebServlet(name = "LoadBannerForFinishedPayingController", value = "/load-banner-for-finished-paying-controller")
+public class LoadBannerForFinishedPayingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         BannerImage logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
-        request.setAttribute("logo", logo);
-        request.getRequestDispatcher("quan_ly_hoa_don.jsp").forward(request, response);
+        session.setAttribute("logo", logo);
+        request.getRequestDispatcher("thanh_toan_thanh_cong.jsp").forward(request, response);
     }
 
     @Override

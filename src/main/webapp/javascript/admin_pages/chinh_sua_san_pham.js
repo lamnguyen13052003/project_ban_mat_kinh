@@ -144,7 +144,7 @@ function addModel() {
         $("#input-product-model").before(`<div class="row a-input-option-product align-items-center mb-2 model">
                             <hr>
                             <div class="col-2 text-center">
-                                <img src="../images/avatar/default_avatar.png" alt="hinh_anh.png">
+                                <img src="../../images/avatar/default_avatar.png" alt="hinh_anh.png">
                             </div>
                             <div class="col-3">
                                 <label>Tên mẫu</label>

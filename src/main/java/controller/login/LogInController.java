@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import model.bean.BannerImage;
 import model.bean.User;

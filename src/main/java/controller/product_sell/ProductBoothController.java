@@ -1,4 +1,4 @@
-package controller;
+package controller.product_sell;
 
 import model.bean.BannerImage;
 import model.bean.Product;
@@ -9,8 +9,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

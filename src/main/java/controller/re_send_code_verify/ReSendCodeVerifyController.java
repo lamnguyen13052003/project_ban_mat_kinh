@@ -1,4 +1,4 @@
-package controller;
+package controller.re_send_code_verify;
 
 import helper.SendMail;
 import model.service.UserService;
