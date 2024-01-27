@@ -30,7 +30,7 @@ public class LoginGoogleController extends HttpServlet {
             user =  userService.getUser(email);
             request.getSession().setAttribute("user", user);
             if (user.isAdmin()) {
-                response.sendRedirect("admin_pages/quan_ly_tai_khoan.jsp");
+                response.sendRedirect("admin_pages/dashboard.jsp");
             } else {
                 response.sendRedirect("index.jsp");
             }

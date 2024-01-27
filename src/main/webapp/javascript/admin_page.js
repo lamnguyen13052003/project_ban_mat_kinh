@@ -8,6 +8,8 @@ $(document).ready(function () {
         const button = $(this).parents(".dropdown").find("button");
         button.text(title);
     });
+
+    $(".navbar-brand").attr("href", "dashboard.jsp")
 });
 
 function displayButtonSignOut() {
