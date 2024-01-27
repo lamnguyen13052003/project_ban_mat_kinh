@@ -14,7 +14,7 @@ public class GetTypeProduct implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService productService = ProductService.getInstance();
-        List<String> types = productService.getTypes();
+        List<String> types = productService.getTypesForAdmin();
         JSONObject json = new JSONObject();
         json.put("types", types);
         response.setContentType("application/json");

@@ -11,6 +11,15 @@ public class User {
     private String avatar, fullName, sex, email, password, verify;
     private LocalDate birthDay;
     private LocalDateTime registrationTime;
+    private boolean lock;
+
+    public boolean getLock() {
+        return lock;
+    }
+
+    public void setLock(boolean lock) {
+        this.lock = lock;
+    }
 
     @Override
     public String toString() {

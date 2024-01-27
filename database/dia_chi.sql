@@ -887,7 +887,7 @@ CREATE TABLE IF NOT EXISTS `wards` (
   CONSTRAINT `wards_district_code_fkey` FOREIGN KEY (`districtCode`) REFERENCES `districts` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table dia_chi.wards: ~10,599 rows (approximately)
+-- Dumping data for table dia_chi.wards: ~10,590 rows (approximately)
 INSERT INTO `wards` (`code`, `name`, `fullName`, `districtCode`, `administrativeUnitId`) VALUES
 	('00001', 'Phúc Xá', 'Phường Phúc Xá', '001', 8),
 	('00004', 'Trúc Bạch', 'Phường Trúc Bạch', '001', 8),

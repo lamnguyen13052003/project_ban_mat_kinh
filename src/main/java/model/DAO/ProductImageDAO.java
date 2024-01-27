@@ -5,6 +5,7 @@ import model.bean.ProductImage;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.statement.Query;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

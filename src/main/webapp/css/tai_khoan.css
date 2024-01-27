@@ -142,7 +142,7 @@ input[type='number']::-webkit-outer-spin-button {
     border: 4px solid var(--border-color) !important;
 }
 #avatar{
-    width: 100px !important;
+    width:100% !important;
     height: 100% !important;
     border-radius: 50% !important;
 }

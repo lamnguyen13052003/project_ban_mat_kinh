@@ -78,14 +78,20 @@ public class ProductService {
     }
 
 
-    public Product getProductWithIdAndName(int productId) {
+    public Product getProductIdAndName(int productId) {
         ProductDAO productDAO = ProductDAO.getInstance();
-        return productDAO.getProductWithIdAndName(productId);
+        return productDAO.getProductIdAndName(productId);
     }
 
     public ProductCart getProductCart(int id) {
         ProductDAO productDAO = ProductDAO.getInstance();
         Product product = productDAO.getProductCart(id);
+        return new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), 0.0, null, 0);
+    }
+
+    public ProductCart getProductBill(int id) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        Product product = productDAO.getProductBill(id);
         return new ProductCart(product.getId(), product.getName(), product.getBrandName(), product.getDescribe(), product.getCategoryName(), product.getPrice(), 0.0, null, 0);
     }
 
@@ -344,6 +350,14 @@ public class ProductService {
         return productDAO.getProductReviewsNotYetRated(userId, offset);
     }
 
+    public List<String> getMaterialsForAdmin() {
+        return ProductDAO.getInstance().getMaterialsForAdmin();
+    }
+
+    public List<String> getTypesForAdmin() {
+        return ProductDAO.getInstance().getTypesForAdmin();
+    }
+
     public List<String> getMaterials() {
         return ProductDAO.getInstance().getMaterials();
     }
@@ -422,5 +436,16 @@ public class ProductService {
 
     public void unlock(int productId) {
         ProductDAO.getInstance().unlock(productId);
+    }
+
+    public List<Product> getSearchProducts(String name) {
+        ProductDAO productDAO = ProductDAO.getInstance();
+        List<Product> products = productDAO.getSearchProducts(name);
+        setProductImage(products, 1);
+        return products;
+    }
+
+    public List<Product> getProductsIdAndName(){
+        return ProductDAO.getInstance().getProductsIdAndName();
     }
 }

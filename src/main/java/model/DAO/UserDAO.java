@@ -2,6 +2,7 @@ package model.DAO;
 
 import model.bean.*;
 import db.JDBIConnector;
+import model.dto.UserManage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDateTime;
@@ -32,7 +33,111 @@ public class UserDAO extends DAO {
                         .execute()
         );
     }
+    public int getTotalUserCount(int id, String fullName, int role, int lock) {
+        connector = JDBIConnector.get();
+        String baseQuery = "SELECT COUNT(*) FROM users as u WHERE fullName LIKE :fullName ";
+        StringBuilder queryBuilder = new StringBuilder(baseQuery);
+        if (role != -1) {
+            queryBuilder.append(" AND u.role = :role ");
+        }
 
+        if (lock != -1) {
+            queryBuilder.append(" AND `lock` = :lock ");
+        }
+
+        if (id != -1) {
+            queryBuilder.append(" AND `id` = :id ");
+        }
+
+        return connector.withHandle(handle ->
+                handle.createQuery(queryBuilder.toString())
+                        .bind("id", id)
+                        .bind("fullName", "%" + fullName + "%")
+                        .bind("role", role)
+                        .bind("lock", lock)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+    public List<UserManage> getPageUser(int page, int size, int id, String name, int role, int lock){
+        connector = JDBIConnector.get();
+        String baseQuery = "SELECT id, fullName, sex, avatar, email, role, verify, u.lock, (select count(*) from bills where userId = u.id) as countOrder, (select sum(price) from bill_details join bills on bills.id = bill_details.billId where userId = u.id) as sumPrice FROM users as u WHERE fullName LIKE :fullName ";
+        StringBuilder queryBuilder = new StringBuilder(baseQuery);
+        if (role != -1) {
+            queryBuilder.append(" AND u.role = :role ");
+        }
+
+        if (lock != -1) {
+            queryBuilder.append(" AND `lock` = :lock ");
+        }
+
+        if (id != -1) {
+            queryBuilder.append(" AND `id` = :id ");
+        }
+
+
+        queryBuilder.append("LIMIT :start, :size");
+        System.out.println(queryBuilder);
+        List<UserManage> users = connector.withHandle(handle ->
+                handle.createQuery(queryBuilder.toString())
+                        .bind("id", id)
+                        .bind("fullName", "%" + name + "%")
+                        .bind("role", role)
+                        .bind("lock", lock)
+                        .bind("start", (page - 1) * size)
+                        .bind("size", size)
+                        .mapToBean(UserManage.class)
+                        .list()
+        );
+        return users;
+    }
+
+    public boolean updateRoleUser(int id, int role) {
+        connector = JDBIConnector.get();
+
+        User u =  connector.withHandle(handle ->
+                handle.createQuery("SELECT u.lock" +
+                                " FROM users AS u " +
+                                "WHERE u.id = ? ")
+                        .bind(0, id)
+                        .mapToBean(User.class).findFirst().orElse(null));
+
+        if(u == null) return false;
+        int rs = connector.withHandle(handle ->
+                handle.createUpdate("Update users set users.role = ? where id = ?")
+                        .bind(0,role)
+                        .bind(1, id).execute()
+
+        );
+        if(rs > 0 ) return true;
+        return false;
+    }
+    public boolean updateBlockUser(int id) {
+        connector = JDBIConnector.get();
+
+        User u =  connector.withHandle(handle ->
+                        handle.createQuery("SELECT u.lock" +
+                                        " FROM users AS u " +
+                                        "WHERE u.id = ? ")
+                                .bind(0, id)
+                                .mapToBean(User.class).findFirst().orElse(null));
+
+         if(u == null) return false;
+        int rs = connector.withHandle(handle ->
+                handle.createUpdate("Update users set users.lock = ? where id = ?")
+                        .bind(0, !u.getLock())
+                        .bind(1, id).execute()
+
+        );
+        if(rs > 0 ) return true;
+        return false;
+    }
+
+
+    public static void main(String[] args) {
+
+        new UserDAO().updateBlockUser(1);
+    }
     public int verifyAccountByEmail(String email) {
         connector = JDBIConnector.get();
         return connector.withHandle(handle ->
@@ -41,6 +146,7 @@ public class UserDAO extends DAO {
 
         );
     }
+
     public int updateProdile(User user) {
         connector = JDBIConnector.get();
         return connector.withHandle(handle ->
@@ -54,6 +160,7 @@ public class UserDAO extends DAO {
 
         );
     }
+
     public User login(String email, String password) {
         connector = JDBIConnector.get();
         User user = connector.withHandle(handle ->
@@ -149,15 +256,16 @@ public class UserDAO extends DAO {
     }
 
     public int resetPassword(String email, String password) {
-            return connector.withHandle(handle ->
-                    handle.createUpdate("UPDATE users SET " +
-                                    "`password` = ? " +
-                                    "WHERE email = ?;")
-                            .bind(0, password)
-                            .bind(1, email)
-                            .execute()
-            );
+        return connector.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET " +
+                                "`password` = ? " +
+                                "WHERE email = ?;")
+                        .bind(0, password)
+                        .bind(1, email)
+                        .execute()
+        );
     }
+
     public List<User> getAllUsers() {
         return connector.withHandle(handle ->
                 handle.createQuery("SELECT * FROM users")
@@ -167,5 +275,28 @@ public class UserDAO extends DAO {
     }
 
 
+    public User getUser(String email) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.birthday, u.fullName, u.sex, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.email = ?  AND u.lock = 0")
+                        .bind(0, email)
+                        .mapToBean(User.class)
+                        .findFirst().orElse(null)
+        );
+    }
+
+    public int insertUserNonVerify(User user) {
+        return connector.withHandle(handle ->
+                handle.createUpdate("INSERT INTO `users` (`avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL)")
+                        .bind(0, user.getAvatar())
+                        .bind(1, user.getFullName())
+                        .bind(2, user.getSex())
+                        .bind(3, user.getBirthDay())
+                        .bind(4, user.getEmail())
+                        .bind(5, user.getPassword())
+                        .bind(6, user.getRole())
+                        .bind(8, 0)
+                        .execute()
+        );
+    }
 }
 

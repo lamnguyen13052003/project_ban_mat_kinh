@@ -1,6 +1,8 @@
 $(document).ready(function () {
-    let indexPageBills = 1;
-    let indexPageProductReviews = 1;
+    const objectIndex = {
+        bill: 1,
+        review: 1,
+    }
     const button = $(".account-sidebar-menu").find("li>button");
     button.click(function () {
         button.removeClass("active");
@@ -17,39 +19,40 @@ $(document).ready(function () {
 
 
     $(`.product-reviews`).click(function () {
-        indexPageProductReviews = 1;
+        objectIndex.review = 1;
         $('#display-product-reviews').off('scroll');
         $(".main-content .display-product-reviews").html(``);
-        showProductReviews(true, indexPageProductReviews)
+        showProductReviews(true, objectIndex)
     });
 
     $(`.menu-review-item`).click(function () {
         $('#display-product-reviews').off('scroll')
         $(`.menu-review-item`).removeClass("active");
         $(this).addClass("active");
-        indexPageProductReviews = 1;
+        objectIndex.review = 1;
         $(".main-content .display-product-reviews").html(``);
-        showProductReviews(true, indexPageProductReviews);
+        showProductReviews(true, objectIndex);
     });
 
     $(`.bill-history`).click(function () {
-        indexPageBills = 1;
+        objectIndex.bill = 1
         $('#display-bills').off('scroll');
         $(".main-content .display-bills").html(``);
-        showBillHistory(true, indexPageBills)
+        showBillHistory(true, objectIndex)
     });
 
     $(`.menu-bill-item`).click(function () {
+        objectIndex.bill = 1;
         $('#display-bills').off('scroll')
         $(`.menu-bill-item`).removeClass("active");
         $(this).addClass("active");
-        indexPageBills = 1;
         $(".main-content .display-bills").html(``);
-        showBillHistory(true, indexPageBills);
+        showBillHistory(true, objectIndex);
     });
 });
 
-function lazyBillHistory(indexPageBills) {
+function lazyLoadBillHistory(objectIndex) {
+    const indexOld = objectIndex.bill;
     var myDiv = $('#display-bills');
     var totalScrollHeight = myDiv.prop('scrollHeight');
 
@@ -58,12 +61,14 @@ function lazyBillHistory(indexPageBills) {
 
     // Kiểm tra xem người dùng đã cuộn đến cuối chưa
     if (Math.ceil(scrolledHeight) === totalScrollHeight) {
-        indexPageBills++;
-        showBillHistory(false, indexPageBills)
+        const indexNew = indexOld + 1;
+        objectIndex.bill = indexNew;
+        showBillHistory(false, objectIndex);
     }
 }
 
-function lazyProductReviews(indexPageBills) {
+function lazyLoadReviews(objectIndex) {
+    const indexOld = objectIndex.review;
     var myDiv = $('#display-product-reviews');
     var totalScrollHeight = myDiv.prop('scrollHeight');
 
@@ -72,8 +77,9 @@ function lazyProductReviews(indexPageBills) {
 
     // Kiểm tra xem người dùng đã cuộn đến cuối chưa
     if (Math.ceil(scrolledHeight) === totalScrollHeight) {
-        indexPageBills++;
-        showProductReviews(false, indexPageBills);
+        const indexNew = indexOld + 1;
+        objectIndex.review = indexNew;
+        showProductReviews(false, objectIndex);
     }
 }
 
@@ -83,12 +89,12 @@ function displayPageContent(index) {
     page.eq(index).addClass("active");
 }
 
-function showBillHistory(click, indexPage) {
+function showBillHistory(click, objectIndex) {
     const data = {
         "action": `get`,
         "user-id": $("#main").attr("user-id"),
         "menu-item": $(".menu-bill-item.active").attr("data-action"),
-        "page": indexPage,
+        "page": objectIndex.bill,
     };
     $.ajax({
         url: "bill_history",
@@ -104,7 +110,7 @@ function showBillHistory(click, indexPage) {
                 let httmBill = `
                  <div class="body-bill-item row  align-items-center ms-2">
                                  <div class="bill-id col-2"><span>#${bill.id}</span></div>
-                                 <div class="bill-time col-2"><span>${formatData(bill.statuses[0].date)}</span></div>
+                                 <div class="bill-time col-2"><span>${bill.statuses[0].date}</span></div>
                                  <div class="col-3 d-flex">
                                      <div class="customer-info ms-2 w-100">
                                          <p class="customer-name">${bill.userName}</p>
@@ -129,11 +135,12 @@ function showBillHistory(click, indexPage) {
 
             $(".main-content .display-bills").html(html);
 
-           if(click) {
-               $('#display-bills').on('scroll', function () {
-                   lazyBillHistory(indexPage);
-               });
-           }
+            if (click) {
+                $('#display-bills').off('scroll');
+                $('#display-bills').on('scroll', function () {
+                    lazyLoadBillHistory(objectIndex);
+                });
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -143,15 +150,14 @@ function showBillHistory(click, indexPage) {
     });
 }
 
-function showProductReviews(click, indexPage) {
+function showProductReviews(click, objectIndex) {
     const data = {
         "action": `get-product-reviews`,
         "user-id": $("#main").attr("user-id"),
         "have-evaluated": $(".menu-review-item.active").attr("have-evaluated"),
-        "page": indexPage,
+        "page": objectIndex.review,
     };
 
-    console.log(data);
     $.ajax({
         url: "review",
         data: data,
@@ -191,10 +197,10 @@ function showProductReviews(click, indexPage) {
             });
 
             $(".main-content .display-product-reviews").html(html);
-
-            if(click) {
+            if (click) {
+                $('#display-bills').off('scroll');
                 $('#display-product-reviews').on('scroll', function () {
-                    lazyProductReviews(indexPage);
+                    lazyLoadReviews(objectIndex);
                 });
             }
         },
@@ -209,7 +215,7 @@ function showProductReviews(click, indexPage) {
 function formatCurrency(number) {
     // Sử dụng hàm toLocaleString() để định dạng số
     // và ký hiệu tiền tệ là 'VND' (Việt Nam Đồng)
-    return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    return number.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
 }
 
 function formatNumber(number) {
@@ -237,7 +243,7 @@ function uploadProfile() {
         data: formData,
         contentType: false,
         processData: false,
-        success: function(response) {
+        success: function (response) {
             console.log('Upload successful');
             console.log(response);
             Swal.fire({
@@ -246,9 +252,9 @@ function uploadProfile() {
                 icon: 'susscess',
                 confirmButtonText: 'Oke',
                 timer: 1500
-            }).then(rs=>location.reload())
+            }).then(rs => location.reload())
         },
-        error: function(error) {
+        error: function (error) {
             console.error('Error uploading profile');
             Swal.fire({
                 title: 'Thất bại!',
@@ -260,7 +266,8 @@ function uploadProfile() {
     });
 
 }
-function changePassword({email}){
+
+function changePassword({email}) {
     console.log(email)
     Swal.fire({
         title: 'Đổi mật khẩu',
@@ -268,7 +275,7 @@ function changePassword({email}){
             '<input id="password" type="password" class="swal2-input" placeholder="Mật khẩu">' +
             '<input id="confirmPassword" type="password" class="swal2-input" placeholder="Nhập lại mật khẩu">',
         showCancelButton: true,
-        confirmButtonText: 'Gửi',
+        confirmButtonText: 'Lưu',
         cancelButtonText: 'Hủy',
         focusConfirm: false,
         preConfirm: () => {
@@ -279,16 +286,16 @@ function changePassword({email}){
             if (password !== confirmPassword) {
                 Swal.showValidationMessage('Mật khẩu không hợp lệ!');
             }
-            return { password: password, confirmPassword: confirmPassword };
+            return {password: password, confirmPassword: confirmPassword};
         }
     }).then(async (result) => {
         if (result.isConfirmed) {
             const password = result.value.password;
             const rePassword = result.value.confirmPassword;
             console.log({
-                email:email,
-                password:password,
-                rePassword:rePassword
+                email: email,
+                password: password,
+                rePassword: rePassword
             })
             const url = `/maven_war/user/changePassword`;
 

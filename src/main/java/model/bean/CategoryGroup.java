@@ -1,5 +1,8 @@
 package model.bean;
 
+import java.util.List;
+import java.util.Map;
+
 public class CategoryGroup {
     private Integer id;
     private String name;

@@ -220,8 +220,14 @@
                                     Đăng nhập
                                 </button>
                             </div>
-                            <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc</p>
-                            <p style="text-align: center; font-size: 13px;">Bạn chưa có tài khoản? <a
+                            <p style="text-align: center; font-size: 13px; margin-bottom: 2px;" class="mt-2">Hoặc đăng nhập bằng</p>
+                            <p class="text-center">
+                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost/maven_war/login_google&response_type=code
+    &client_id=908243265697-739bs2s8pbobo6p2mo951ij9t86lsnuf.apps.googleusercontent.com&approval_prompt=force">
+                                    <img style="height: 25px; width: 25px" src="images/logo/google_logo.png" alt="google_logo.png">
+                                </a>
+                            </p>
+                            <p class="mt-2" style="text-align: center; font-size: 13px;">Bạn chưa có tài khoản? <a
                                     style="font-size: 13px; color: blue;" href="dang_ky.jsp">Đăng ký</a></p>
                         </form>
                     </div>

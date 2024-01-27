@@ -10,7 +10,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "DisplayModalModels", value = "/show_models")
@@ -26,7 +25,7 @@ public class DisplayModalModels extends HttpServlet {
 
         ModelService mService = ModelService.getInstance();
         ProductService pService = ProductService.getInstance();
-        Product product  = pService.getProductWithIdAndName(productId);
+        Product product  = pService.getProductIdAndName(productId);
         List<Model> models = mService.getModelsByProductId(productId);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("product", JSONObject.wrap(product));

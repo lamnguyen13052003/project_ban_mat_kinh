@@ -76,6 +76,9 @@
                          aria-labelledby="offcanvasNavbarAdminLabel">
                         <div class="offcanvas-body">
                             <ul class="navbar-nav m-auto">
+                                <li class="nav-item dropdown pe-lg-5 pe-md-0">
+                                    <a href="thong_ke.jsp" class="nav-link px-4 rounded">DashBoard</a>
+                                </li>
                                 <li class="nav-item dropdown pe-lg-5 pe-md-0 ">
                                     <a href="quan_ly_tai_khoan.jsp" class="nav-link px-4 rounded">Quản lý tài khoản</a>
                                 </li>
@@ -483,7 +486,7 @@
     user.setFullName("<%=user.getFullName()%>");
     displayMenuAccount(user);
     <%} else{%>
-    hidenMenuAccount();
+    hiddenMenuAccount();
     <%}%>
     <%String message = (String) session.getAttribute("message");
     if (message != null){%>
