@@ -8,16 +8,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoadBannerForContactFilter", value = "/lien_he.jsp")
-public class LoadBannerForContactFilter implements Filter {
+@WebFilter(filterName = "ContactFilter", value = "/lien_he.jsp")
+public class ContactFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        BannerImage logo = (BannerImage) ((HttpServletRequest) request).getSession().getAttribute("logo");
         BannerImage contact = (BannerImage) ((HttpServletRequest) request).getSession().getAttribute("contact");
-        if (logo == null) {
-            logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
-            ((HttpServletRequest) request).getSession().setAttribute("logo", logo);
-        }
 
         if (contact == null) {
             contact = BannerService.getInstance().getBannerByDescription("%banner%contact%");

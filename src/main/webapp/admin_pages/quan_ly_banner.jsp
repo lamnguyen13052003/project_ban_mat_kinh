@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%  BannerImage logoBanner = (BannerImage) request.getAttribute("bannerLogoImages"); %>
+<%  BannerImage logo = (BannerImage) session.getAttribute("logo"); %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/menu_footer.css">
     <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="stylesheet" href="../css/danh_sach_slider.css">
-    <link rel="icon" href="../<%=logoBanner.getUrlImage()%>">
+    <link rel="icon" href="../<%=logo.getUrlImage()%>">
 
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>
     <script src="../jquery/jquery-3.7.1.min.js"></script>
@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="logo col-lg-2 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                     <a href="quan_ly_tai_khoan.jsp" class="navbar-brand me-5">
-                        <img src="../<%=logoBanner.getUrlImage()%>" alt="logo.png">
+                        <img src="../<%=logo.getUrlImage()%>" alt="logo.png">
                         KIMI
                     </a>
                 </div>
@@ -200,7 +200,7 @@
                     </div>
                     <div class="p-3">
                         <div class="item-img col">
-                            <img class=" img-fluid z-0" data-banner="banner-logo" id="logo-img" src="../<%=logoBanner.getUrlImage()%>" alt="">
+                            <img class=" img-fluid z-0" data-banner="banner-logo" id="logo-img" src="../<%=logo.getUrlImage()%>" alt="">
                             <div class="text-banner"><span>Logo</span></div>
                             <form class="upload-img" action="upload-file-on-banner-management" method="post" enctype="multipart/form-data">
                                 <input class="form-check-input imageInput " type="file" value="" name="banner-logo"
@@ -270,7 +270,7 @@
         <div class="row footer-bot text-center border-3">
             <div class="logo col-lg-3 col-md-2 col-sm-2 border-0 px-lg-0 px-md-5">
                 <a href="quan_ly_tai_khoan.jsp" class="navbar-brand">
-                    <img src="../<%=logoBanner.getUrlImage()%>" alt="logo.png">
+                    <img src="../<%=logo.getUrlImage()%>" alt="logo.png">
                     <span>KIMI</span>
                 </a>
             </div>

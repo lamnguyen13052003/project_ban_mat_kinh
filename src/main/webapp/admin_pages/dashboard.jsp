@@ -4,7 +4,9 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="model.bean.Model" %>
+<%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%  BannerImage logo = (BannerImage) session.getAttribute("logo"); %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,7 +20,7 @@
     <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="stylesheet" href="../css/thong_the.css">
     <link href="../select2/select2.min.css" rel="stylesheet"/>
-    <link rel="icon" href="../images/logo/logo_icon.png">
+    <link rel="icon" href="../<%=logo.getUrlImage()%>">
 
     <%--jquery--%>
     <script src="../jquery/jquery-3.7.1.slim.min.js"></script>

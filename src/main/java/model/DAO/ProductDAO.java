@@ -703,7 +703,6 @@ public class ProductDAO extends DAO {
         String sql = "SELECT p.id, p.name, p.brandName FROM products AS p WHERE `delete` = 0 AND (";
         Handle handle;
         Query query;
-        System.out.println(name);
         StringTokenizer tk = new StringTokenizer(name, " ");
         int totalTk = tk.countTokens();
         for (int i = 0; i < totalTk; i++)

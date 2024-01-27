@@ -196,7 +196,7 @@
     </nav>
 </header>
 
-<main id="main" class="mt-5 pb-5">
+<main id="main" class="mt-2 pb-5">
     <div class="container">
         <!--Phần slide-->
         <div id="carouselIndicators" class="carousel slide mb-3" data-bs-ride="carousel">
@@ -447,7 +447,6 @@
                         List<Product> products = (List<Product>) request.getAttribute("products");
                         products = products == null ? new ArrayList<Product>() : products;
                         for (Product product : products) {
-                            System.out.println(product.getId());
                     %>
                     <!--Ô hiển thị-->
                     <div class="pro-loop col rounded-3">

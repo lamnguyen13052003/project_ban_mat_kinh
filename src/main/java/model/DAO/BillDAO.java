@@ -1,6 +1,7 @@
 package model.DAO;
 
 import model.bean.Bill;
+import model.dto.BillManage;
 
 import java.util.List;
 import java.util.Random;
@@ -139,6 +140,47 @@ public class BillDAO extends DAO {
                             .execute()
             );
         }
+    }
+
+    public List<BillManage> getBillManage(String billId, String userName, String billStatus, int limit, int offset) {
+        StringBuilder sqlSB = new StringBuilder("SELECT b.id AS billId, b.userId AS userId, bs.`status` AS status, b.userName AS name, b.email AS email, b.transfer AS transfer\n")
+                .append("FROM bills AS b\n")
+                .append("JOIN bill_details AS bd ON bd.billId = b.id\n")
+                .append("JOIN bill_statuses AS bs ON bs.billId = b.id\n")
+                .append("WHERE bs.id = (SELECT MAX(bill_statuses.id) FROM bill_statuses WHERE bill_statuses.billId = b.id)\n");
+        if (billId != null) sqlSB.append("AND CAST(bs.id AS CHAR(11)) LIKE :billId\n");
+        if (userName != null) sqlSB.append("AND b.userName LIKE :userName\n");
+        if (billStatus != null) sqlSB.append("AND bs.status LIKE :status\n");
+        sqlSB.append("LIMIT :limit OFFSET :offset;");
+        return connector.withHandle(handle ->
+                handle.createQuery(sqlSB.toString())
+                        .bind("billId", "%" + billId + "%")
+                        .bind("userName", "%" + userName + "%")
+                        .bind("status", "%" + billStatus + "%")
+                        .bind("limit", limit)
+                        .bind("offset", offset)
+                        .mapToBean(BillManage.class)
+                        .list()
+        );
+    }
+
+    public int totalPageBillManage(String billId, String userName, String billStatus) {
+        StringBuilder sqlSB = new StringBuilder("SELECT COUNT(*)\n")
+                .append("FROM bills AS b\n")
+                .append("JOIN bill_details AS bd ON bd.billId = b.id\n")
+                .append("JOIN bill_statuses AS bs ON bs.billId = b.id\n")
+                .append("WHERE bs.id = (SELECT MAX(bill_statuses.id) FROM bill_statuses WHERE bill_statuses.billId = b.id)\n");
+        if (billId != null) sqlSB.append("AND CAST(bs.id AS CHAR(11)) LIKE :billId\n");
+        if (userName != null) sqlSB.append("AND b.userName LIKE :userName\n");
+        if (billStatus != null) sqlSB.append("AND bs.status LIKE :status\n");
+        return connector.withHandle(handle ->
+                handle.createQuery(sqlSB.toString())
+                        .bind("billId", "%" + billId + "%")
+                        .bind("userName", "%" + userName + "%")
+                        .bind("status", "%" + billStatus + "%")
+                        .mapTo(Integer.class)
+                        .findFirst().orElse(0)
+        );
     }
 
     public static void main(String[] args) {

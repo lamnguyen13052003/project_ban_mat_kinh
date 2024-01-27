@@ -39,9 +39,9 @@ public class UserService {
         return false;
     }
     public Page<UserManage> getPageUser(int page, int id, String fullName, int role, int lock){
-       List<UserManage> users = userDAO.getPageUser(page, 10, id, fullName, role, lock);
+       List<UserManage> users = userDAO.getPageUser(page, 7, id, fullName, role, lock);
        int count = userDAO.getTotalUserCount(id, fullName, role, lock);
-       Page<UserManage> pagi = new Page<>(count,page,10, users);
+       Page<UserManage> pagi = new Page<>(count,page,7, users);
        return pagi;
     }
 
@@ -96,5 +96,9 @@ public class UserService {
         user.setPassword(hashPassword(user.getPassword()));
         int rs =  userDAO.insertUserNonVerify(user);
         return rs != 0;
+    }
+
+    public User getUser(Integer userId) {
+        return UserDAO.getInstance().getUser(userId);
     }
 }

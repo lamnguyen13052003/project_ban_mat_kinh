@@ -26,6 +26,7 @@ public class DeleteFileOnBannerManagement implements Action {
         File file = new File(pathFile);
         if(file.exists()) file.delete();
 
+        BannerManagerController.removeAttribute(request);
         response.getWriter().write(slideId);
     }
 }

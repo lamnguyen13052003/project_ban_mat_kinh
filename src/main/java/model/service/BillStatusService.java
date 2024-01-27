@@ -3,6 +3,7 @@ package model.service;
 import model.DAO.BillStatusDAO;
 import model.bean.BillStatus;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BillStatusService {
@@ -25,5 +26,9 @@ public class BillStatusService {
 
     public List<BillStatus> getBillStatus(Integer id) {
         return new BillStatusDAO().getBillStatus(id);
+    }
+
+    public LocalDateTime getDateOrderBill(Integer id) {
+        return new BillStatusDAO().getDateOrderBill(id);
     }
 }

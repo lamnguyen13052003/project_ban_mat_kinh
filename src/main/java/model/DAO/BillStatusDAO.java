@@ -66,6 +66,20 @@ public class BillStatusDAO extends DAO {
         return result;
     }
 
+    public LocalDateTime getDateOrderBill(int billId) {
+        String sql = "SELECT bs.date\n" +
+                "FROM bill_statuses AS bs\n" +
+                "WHERE bs.id = (SELECT MIN(id) FROM bill_statuses WHERE bill_statuses.billId = :bsBillId)";
+
+        return connector.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("billId", billId)
+                        .bind("bsBillId", billId)
+                        .mapTo(LocalDateTime.class)
+                        .findFirst().orElse(null)
+        );
+    }
+
     public void insertSampleData() {
         Random rd = new Random();
         for (int i = 1; i <= 100; i++) {

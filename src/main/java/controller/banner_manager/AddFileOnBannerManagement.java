@@ -46,6 +46,7 @@ public class AddFileOnBannerManagement implements Action {
                     BannerService.getInstance().insertSlideShowImages(bannerImage);
             //responce
 
+            BannerManagerController.removeAttribute(request);
             JSONObject json = new JSONObject();
             json.put("slideId", slideId);
             json.put("url", subFilePath);

@@ -21,31 +21,29 @@ public class IndexFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         List<BannerImage> urlBannerImages = (List<BannerImage>) request.getAttribute("bannerImages");
-        BannerImage logo = (BannerImage) ((HttpServletRequest) request).getSession().getAttribute("logo");
-        BannerImage urlBannerPRImages = (BannerImage) request.getAttribute("bannerPRImages");
+        BannerImage logo = (BannerImage) ((HttpServletRequest)request).getSession().getAttribute("logo");
+        BannerImage urlBannerPRImages = (BannerImage) ((HttpServletRequest)request).getSession().getAttribute("bannerPRImages");
         List<Product> productDiscount = (List<Product>) request.getAttribute("list-product-discount"),
                 productProminent = (List<Product>) request.getAttribute("list-product-prominent");
         if (urlBannerImages != null && urlBannerPRImages != null &&
-                productDiscount != null && productProminent != null && logo != null) {
+                productDiscount != null && productProminent != null) {
             chain.doFilter(request, response);
             return;
         }
 
-        if(logo == null) {
+        if (logo == null) {
             logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
             ((HttpServletRequest) request).getSession().setAttribute("logo", logo);
         }
 
-        urlBannerImages = urlBannerPRImages == null ? BannerService.getInstance().getSlideShowImages() : urlBannerImages; // slide
+        urlBannerImages = urlBannerImages == null ? BannerService.getInstance().getSlideShowImages() : urlBannerImages; // slide
         urlBannerPRImages = urlBannerPRImages == null ? BannerService.getInstance().getBannerByDescription("%banner%pr%") : urlBannerPRImages;
         productDiscount = productDiscount == null ? ProductService.getInstance().getProductDiscount(12) : productDiscount;
         productProminent = productProminent == null ? ProductService.getInstance().getInfoProminentProductByStart(12) : productProminent;
-
         request.setAttribute("bannerImages", urlBannerImages); // slide
-        request.setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
+        ((HttpServletRequest)request).getSession().setAttribute("bannerPRImages", urlBannerPRImages); // banner pr
         request.setAttribute("list-product-prominent", productProminent);
         request.setAttribute("list-product-discount", productDiscount);
-
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

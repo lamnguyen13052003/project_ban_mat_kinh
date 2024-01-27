@@ -1,9 +1,11 @@
-package controller.bill_detail;
+package controller.bill_manager;
 
 import controller.Action;
 import model.bean.*;
-import model.bean.BillDetail;
-import model.service.*;
+import model.service.BillService;
+import model.service.ModelService;
+import model.service.ProductService;
+import model.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeeDetail implements Action {
+public class GetBillDetail implements Action {
     @Override
     public void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BillService billService = BillService.getInstance();
@@ -58,6 +60,9 @@ public class SeeDetail implements Action {
             products.add(productCart);
         }
 
+        UserService userService = UserService.getInstance();
+        User customer = UserService.getInstance().getUser(bill.getUserId());
+        request.setAttribute("customer", customer);
         request.setAttribute("bill", bill);
         request.setAttribute("products", products);
         request.getRequestDispatcher("chi_tiet_hoa_don.jsp").forward(request, response);

@@ -1,7 +1,7 @@
 <%@ page import="model.bean.User" %>
 <%@ page import="model.bean.BannerImage" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% BannerImage logo = (BannerImage) request.getAttribute("logo");%>
+<% BannerImage logo = (BannerImage) session.getAttribute("logo");%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -103,26 +103,28 @@
             <div class="row text-center option-search">
                 <div class="search-bill col">
                     <div class= "search-item rounded">
-                        <input class="ps-2" type="text" name="search-name-customer" id="search-id-bill"
+                        <input class="ps-2" type="text" name="bill-id" id="bill-id"
                                placeholder="Nhập mã hóa đơn">
-                        <label for="search-id-bill" class="d-flex align-items-center p-1"><span
-                                class="material-symbols-outlined ps-1 fs-3">search</span></label>
+                        <button class="d-flex align-items-center p-1 input-search d-inline-block border-0" style="background: none"><span
+                                class="material-symbols-outlined ps-1 fs-3">search</span></button>
                     </div>
                 </div>
                 <div class="search-customer col">
                     <div class="search-item rounded">
-                        <input class="ps-2" type="text" name="search-name-customer" id="search-name-customer"
+                        <input class="ps-2" type="text" name="customer-name" id="customer-name"
                                placeholder="Nhập tên khách hàng">
-                        <label for="search-name-customer" class="d-flex align-items-center p-1"><span
-                                class="material-symbols-outlined ps-1 fs-3">search</span></label>
+                        <button for="customer-name" class="d-flex align-items-center p-1 input-search  d-inline-block border-0" style="background: none"><span
+                                class="material-symbols-outlined ps-1 fs-3">search</span></button>
                     </div>
                 </div>
                 <div class="col float-start d-flex align-items-center">
-                    <label for="fee"></label>
-                    <select name="" id="fee" class="ps-1 py-2 rounded w-50">
+                    <label for="status"></label>
+                    <select name="status" id="status" class="ps-1 py-2 rounded w-50 select-search">
                         <option value="">Tất cả</option>
-                        <option value="0">Đã giao</option>
-                        <option value="1">Chưa giao</option>
+                        <option value="Chờ xác nhận">Chờ xác nhận</option>
+                        <option value="Vận chuyển">Vận chuyển</option>
+                        <option value="Thành công">Thành công</option>
+                        <option value="Đã hủy">Đã hủy</option>
                     </select>
                 </div>
             </div>
@@ -138,7 +140,7 @@
                 <div class="col-1 emty"></div>
             </div>
             <!--            hiện thị danh sách sản phẩm-->
-            <div class="list-bill">
+            <div class="list-bill" id="display-bills">
                 <!-- bắt đầu một hàng hiện thị sản phẩm-->
                 <div class="item-bill row  align-items-center py-md-3 ps-4" value="Nguyễn Đình A">
                     <div class="id-item col-2"><span>#12345</span></div>
@@ -158,29 +160,12 @@
         </div>
         <!--        Tổng tiền và hiển thị nút phân trang-->
         <div class="footer-table row p-4 d-flex align-items-center">
-            <div class="text-amount-account col-8 ">
+            <div class="text-amount-account col-6">
                 <span class="ps-0 pe-0">Tổng số khách hàng: </span>
                 <span class="amount ps-0 pe-0">100</span>
                 <span class="ps-0 pe-0"> khách hàng</span>
             </div>
-            <div class="change-page-display-list col-4 d-flex ps-5">
-                <button id="prev" class="d-flex align-items-center justify-content-center"><span
-                        class="material-symbols-outlined">chevron_left</span></button>
-                <button class="d-flex align-items-center justify-content-center button-number active" data-target="1">
-                    1
-                </button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="2">2
-                </button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="3">3
-                </button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="">...
-                </button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="14">14
-                </button>
-                <button class="d-flex align-items-center justify-content-center button-number" data-target="15">15
-                </button>
-                <button id="next" class="d-flex align-items-center justify-content-center"><span
-                        class="material-symbols-outlined">chevron_right</span></button>
+            <div class="change-page-display-list col-6 d-flex ps-5 justify-content-end">
             </div>
         </div>
     </div>

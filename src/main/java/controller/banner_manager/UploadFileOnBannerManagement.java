@@ -39,6 +39,7 @@ public class UploadFileOnBannerManagement implements Action {
                     bannerImage.setUrlImage(subFilePath);
                     BannerService.getInstance().uploadBannerImage(bannerImage);
 
+                    BannerManagerController.removeAttribute(request);
                     JSONObject json = new JSONObject();
                     json.put("url", subFilePath);
                     response.setContentType("application/json");

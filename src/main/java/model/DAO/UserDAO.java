@@ -77,7 +77,6 @@ public class UserDAO extends DAO {
 
 
         queryBuilder.append("LIMIT :start, :size");
-        System.out.println(queryBuilder);
         List<UserManage> users = connector.withHandle(handle ->
                 handle.createQuery(queryBuilder.toString())
                         .bind("id", id)
@@ -296,6 +295,15 @@ public class UserDAO extends DAO {
                         .bind(6, user.getRole())
                         .bind(8, 0)
                         .execute()
+        );
+    }
+
+    public User getUser(Integer userId) {
+        return connector.withHandle(handle ->
+                handle.createQuery("SELECT u.id, u.birthday, u.fullName, u.sex, u.avatar, u.email, u.`password`, u.role, u.verify FROM users AS u WHERE u.id = ?  AND u.lock = 0")
+                        .bind(0, userId)
+                        .mapToBean(User.class)
+                        .findFirst().orElse(null)
         );
     }
 }

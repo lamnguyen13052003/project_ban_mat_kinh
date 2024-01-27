@@ -17,11 +17,9 @@ public class BannerService {
         get slide show images
      */
     public List<BannerImage> getSlideShowImages() {
-
         return  BannnerDAO.getInstance().getSlideShowImages();
     }
     public BannerImage getBannerByDescription(String descriptionBanner) {
-
         return  BannnerDAO.getInstance().getBannerByDescription(descriptionBanner);
     }
     /*

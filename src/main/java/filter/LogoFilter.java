@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoadLogoFilter", value = "/")
-public class LoadLogoFilter implements Filter {
+@WebFilter(filterName = "LogoFilter", value = "/*")
+public class LogoFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         BannerImage logo = (BannerImage) ((HttpServletRequest)request).getSession().getAttribute("logo");

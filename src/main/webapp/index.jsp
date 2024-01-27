@@ -424,7 +424,7 @@
             </div>
             <div class="home-banner-wrap-right col">
                 <%
-                    BannerImage prImage = (BannerImage) request.getAttribute("bannerPRImages");
+                    BannerImage prImage = (BannerImage) session.getAttribute("bannerPRImages");
                 %>
                 <img class=" ls-is-cached lazyloaded" src="<%=prImage.getUrlImage()%>"
                      alt="home-banner-right">

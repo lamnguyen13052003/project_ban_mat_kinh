@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoadBannerForLoginFilter", value = "/dang_nhap.jsp")
-public class LoadBannerForLoginFilter implements Filter {
+@WebFilter(filterName = "LoginFilter", value = "/dang_nhap.jsp")
+public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
@@ -17,13 +17,7 @@ public class LoadBannerForLoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        BannerImage logo = (BannerImage)  ((HttpServletRequest) request).getSession().getAttribute("logo");
         BannerImage loginBanner = (BannerImage)  ((HttpServletRequest) request).getSession().getAttribute("loginBanner");
-        if (logo == null) {
-            logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
-            ((HttpServletRequest) request).getSession().setAttribute("logo", logo);
-        }
-
         if (loginBanner == null) {
             loginBanner = BannerService.getInstance().getBannerByDescription("%banner%login%");
             ((HttpServletRequest) request).getSession().setAttribute("loginBanner", loginBanner);

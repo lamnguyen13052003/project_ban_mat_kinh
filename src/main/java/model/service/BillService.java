@@ -2,6 +2,7 @@ package model.service;
 
 import model.DAO.BillDAO;
 import model.bean.*;
+import model.dto.BillManage;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
@@ -119,12 +120,12 @@ public class BillService {
 
     public Bill getBill(int billId) {
         Bill bill = new BillDAO().getBill(billId);
-        if(bill == null) return null;
+        if (bill == null) return null;
         BillStatusService billStatusService = BillStatusService.getInstance();
         BillDetailService billDetailService = BillDetailService.getInstance();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         String addressDetails = AddressService.getInstance().getAddress(bill.getCodeProvince(), bill.getCodeDistrict(), bill.getCodeWard()) +
-                "<br>" + bill.getAddress();
+                "</br>" + bill.getAddress();
         List<BillStatus> billStatuses = billStatusService.getBillStatus(bill.getId());
         List<BillDetail> billDetails = billDetailService.getBillDetails(bill.getId());
         bill.setAddressDetail(addressDetails);
@@ -135,5 +136,20 @@ public class BillService {
 
     public boolean updateContact(Bill bill) {
         return BillDAO.getInstance().updateContact(bill);
+    }
+
+    public List<BillManage> getBillManages(String id, String name, String status, int limit, int offset) {
+        List<BillManage> billManages = BillDAO.getInstance().getBillManage(id, name, status, limit, offset);
+        BillStatusService billStatusService = BillStatusService.getInstance();
+        for(BillManage billManager : billManages) {
+            int billId = billManager.getBillId();
+            billManager.setDate(billStatusService.getDateOrderBill(billId));
+        }
+
+        return billManages;
+    }
+
+    public int totalPageBillManage(String id, String name, String status){
+        return BillDAO.getInstance().totalPageBillManage(id, name, status);
     }
 }
