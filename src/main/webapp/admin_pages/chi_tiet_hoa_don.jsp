@@ -163,7 +163,7 @@
                                 <div class="img-item pe-4">
                                     <img class="d-none" src="" alt="">
                                     <div class="img-60x60 text-center rounded-circle">
-                                        <img src="<%=model.getUrlImage()%>" alt="<%=model.getName()%>.png"
+                                        <img src="../<%=model.getUrlImage()%>" alt="<%=model.getName()%>.png"
                                              class="rounded-circle w-100">
                                     </div>
                                 </div>

@@ -25,6 +25,12 @@ public class VerifyFilter implements Filter {
             logo = BannerService.getInstance().getBannerByDescription("%banner%logo%");
             session.setAttribute("logo", logo);
         }
+
+        BannerImage auth = (BannerImage) ((HttpServletRequest)request).getSession().getAttribute("authBanner");
+        if (auth == null) {
+            auth = BannerService.getInstance().getBannerByDescription("%banner%auth%");
+            ((HttpServletRequest)request).getSession().setAttribute("authBanner", auth);
+        }
         String email = (String) session.getAttribute("email");
         if (email != null) chain.doFilter(request, response);
         else ((HttpServletResponse) response).sendRedirect("index.jsp");

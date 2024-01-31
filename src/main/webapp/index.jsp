@@ -228,7 +228,7 @@
             <div class="home-product-slider-wrap-header">
                 <div class="section-title-all">
                     <div>
-                        <h2>Sản phẩm nổi bật</h2>
+                        <h2>Sản phẩm</h2>
                     </div>
                 </div>
             </div>

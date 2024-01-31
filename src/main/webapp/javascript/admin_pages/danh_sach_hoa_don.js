@@ -31,7 +31,8 @@ function loadBill(page) {
         method: "GET",
         success: function (data) {
             renderBill(data.bills);
-            renderPagination(page, data.pages)
+            renderPagination(page, data.pages);
+            $(".amount").text(data.total)
         },
         error: function (e, t, h) {
             console.error(e);

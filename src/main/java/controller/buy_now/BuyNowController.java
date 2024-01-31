@@ -17,8 +17,9 @@ public class BuyNowController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String actionStr = request.getParameter("action");
-        System.out.println(actionStr);
         Action action = null;
         switch (actionStr) {
             case "buy-now" -> {

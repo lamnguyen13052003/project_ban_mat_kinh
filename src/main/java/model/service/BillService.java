@@ -141,7 +141,7 @@ public class BillService {
     public List<BillManage> getBillManages(String id, String name, String status, int limit, int offset) {
         List<BillManage> billManages = BillDAO.getInstance().getBillManage(id, name, status, limit, offset);
         BillStatusService billStatusService = BillStatusService.getInstance();
-        for(BillManage billManager : billManages) {
+        for (BillManage billManager : billManages) {
             int billId = billManager.getBillId();
             billManager.setDate(billStatusService.getDateOrderBill(billId));
         }
@@ -149,7 +149,7 @@ public class BillService {
         return billManages;
     }
 
-    public int totalPageBillManage(String id, String name, String status){
-        return BillDAO.getInstance().totalPageBillManage(id, name, status);
+    public int totalBillManage(String id, String name, String status) {
+        return BillDAO.getInstance().totalBillManage(id, name, status);
     }
 }

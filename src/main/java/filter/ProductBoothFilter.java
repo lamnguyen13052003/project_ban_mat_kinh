@@ -19,9 +19,7 @@ public class ProductBoothFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         List<Product> products = (List<Product>) request.getAttribute("products");
-        BannerImage logo = (BannerImage) request.getAttribute("logo");
-
-        if(products != null && logo != null) {
+        if(products != null) {
             chain.doFilter(request, response);
         }
         request.getRequestDispatcher("product-booth").forward(request, response);

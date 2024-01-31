@@ -94,8 +94,8 @@ public class UserService {
 
     public boolean signupWithGoogle(User user) {
         user.setPassword(hashPassword(user.getPassword()));
-        int rs =  userDAO.insertUserNonVerify(user);
-        return rs != 0;
+        while(userDAO.insertUserNonVerify(user) == 0) {}
+        return true;
     }
 
     public User getUser(Integer userId) {

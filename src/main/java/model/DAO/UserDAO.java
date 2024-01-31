@@ -285,7 +285,7 @@ public class UserDAO extends DAO {
 
     public int insertUserNonVerify(User user) {
         return connector.withHandle(handle ->
-                handle.createUpdate("INSERT INTO `users` (`avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL)")
+                handle.createUpdate("INSERT INTO `users` (`avatar`, `fullName`, `sex`, `birthday`, `email`, `password`, `role`, `verify`, `lock`, `registrationTime`) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)")
                         .bind(0, user.getAvatar())
                         .bind(1, user.getFullName())
                         .bind(2, user.getSex())
@@ -293,7 +293,8 @@ public class UserDAO extends DAO {
                         .bind(4, user.getEmail())
                         .bind(5, user.getPassword())
                         .bind(6, user.getRole())
-                        .bind(8, 0)
+                        .bind(7, 0)
+                        .bind(8, LocalDateTime.now())
                         .execute()
         );
     }

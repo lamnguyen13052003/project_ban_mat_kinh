@@ -17,11 +17,6 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        BannerImage loginBanner = (BannerImage)  ((HttpServletRequest) request).getSession().getAttribute("loginBanner");
-        if (loginBanner == null) {
-            loginBanner = BannerService.getInstance().getBannerByDescription("%banner%login%");
-            ((HttpServletRequest) request).getSession().setAttribute("loginBanner", loginBanner);
-        }
 
         chain.doFilter(request, response);
     }

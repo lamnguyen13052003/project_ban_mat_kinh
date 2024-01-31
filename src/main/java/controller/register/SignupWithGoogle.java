@@ -60,7 +60,7 @@ public class SignupWithGoogle extends HttpServlet implements Action {
         }
 
         user.setFullName(fullname);
-        userService.signupWithGoogle(user);
+        if(userService.signupWithGoogle(user)) user = userService.getUser(user.getEmail());
         session.setAttribute("user", user);
         response.sendRedirect("index.jsp");
     }

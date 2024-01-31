@@ -164,7 +164,7 @@ public class BillDAO extends DAO {
         );
     }
 
-    public int totalPageBillManage(String billId, String userName, String billStatus) {
+    public int totalBillManage(String billId, String userName, String billStatus) {
         StringBuilder sqlSB = new StringBuilder("SELECT COUNT(*)\n")
                 .append("FROM bills AS b\n")
                 .append("JOIN bill_details AS bd ON bd.billId = b.id\n")

@@ -28,10 +28,12 @@ public class GetBill implements Action {
         int offset = (page - 1) * limit;
 
         List<BillManage> billManages = billService.getBillManages(id, name, status, limit, offset);
-        int totalPage = billService.totalPageBillManage(id, name, status);
+        int totalBill = billService.totalBillManage(id, name, status);
+        int totalPages = totalBill % 7 == 0 ? totalBill / 7 : (totalBill / 7) + 1;
         JSONObject json = new JSONObject();
         json.put("bills", billManages);
-        json.put("pages", totalPage);
+        json.put("pages", totalPages);
+        json.put("total", totalBill);
         response.getWriter().println(json.toString());
     }
 

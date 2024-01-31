@@ -163,7 +163,7 @@
             <div class="text-amount-account col-6">
                 <span class="ps-0 pe-0">Tổng số khách hàng: </span>
                 <span class="amount ps-0 pe-0">100</span>
-                <span class="ps-0 pe-0"> khách hàng</span>
+                <span class="ps-0 pe-0"> Hóa đơn</span>
             </div>
             <div class="change-page-display-list col-6 d-flex ps-5 justify-content-end">
             </div>
